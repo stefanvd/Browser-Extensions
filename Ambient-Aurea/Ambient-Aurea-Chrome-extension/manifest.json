@@ -2,9 +2,10 @@
   "manifest_version": 2,
   "name": "__MSG_name__",
   "short_name": "AA",  
-  "version": "2.0.0.5",
+  "version": "2.1",
   "description": "__MSG_description__",
-  "homepage_url": "http://www.stefanvd.net",  
+  "author": "Stefan vd",
+  "homepage_url": "https://www.stefanvd.net",  
   "icons": { "16": "icons/icon16.png",
              "32": "icons/icon32.png",
              "48": "icons/icon48.png",
@@ -12,15 +13,11 @@
            },
   "default_locale": "en",
   "browser_action": {
-      "default_icon": "icons/icon1.png",
-      "default_title": "__MSG_browserbutton__"
-  },
-  "browser_action": {
           "default_icon": {
             "19": "icons/icon1.png",
             "38": "icons/icon1@2x.png"
           },
-	"default_title": "__MSG_browserbutton__"	  
+	        "default_title": "__MSG_browserbutton__"	  
   },
   "background": {
     "page": "background.html",
@@ -29,18 +26,19 @@
   "content_security_policy": "script-src 'self' https://ssl.google-analytics.com https://platform.twitter.com https://apis.google.com; img-src *; object-src 'self'",
   "web_accessible_resources": [
     "images/arrow.png",
-    "images/googleplus.png",
-    "images/twitter.png",
-    "images/facebook.png",
-    "images/googleplus@2x.png",
-    "images/twitter@2x.png",
-    "images/facebook@2x.png"
+    "images/sharegoogleplus.png",
+    "images/sharetwitter.png",
+    "images/sharefacebook.png",
+    "images/sharegoogleplus@2x.png",
+    "images/sharetwitter@2x.png",
+    "images/sharefacebook@2x.png",
+    "icons/icon16.png"
   ],
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
       "css" : ["css/aa.css"],
-      "js": ["js/content.js"],
+      "js": ["js/constants.js","js/content.js"],
       "run_at": "document_end"
     }
   ],

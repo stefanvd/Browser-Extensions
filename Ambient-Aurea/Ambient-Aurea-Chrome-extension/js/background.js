@@ -3,7 +3,7 @@
 
 Ambient Aurea
 Bring your image to an ambient lighting effect with just one click on the button.
-Copyright (C) 2015 Stefan vd
+Copyright (C) 2016 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -26,7 +26,13 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-chrome.extension.onMessage.addListener(function request(request,sender,sendResponse){
+/*
+TODO
++ screenshot
++ links
+*/
+
+chrome.runtime.onMessage.addListener(function request(request,sender,sendResponse){
 if (request.name == "opacitysaveme") {chrome.storage.local.set({"interval": request.value});}
 else if (request.name == "imgurl") {chrome.storage.local.set({"getimgurl": request.value});}
 else if (request.name == "selector") {chrome.storage.local.set({"getimgurl": request.value});chrome.tabs.executeScript(sender.tab.id, {file: "js/aa.js"});}
@@ -41,15 +47,21 @@ chrome.browserAction.onClicked.addListener(function(tab) {chrome.tabs.executeScr
 // contextMenus
 function onClickHandler(info, tab) {
 if (info.menuItemId == "aaimage") {chrome.tabs.executeScript(tab.id, {file: "js/aa.js"});}
-else if (info.menuItemId == "totlguideemenu") {window.open("http://www.stefanvd.net/project/aachromeguide.htm", "_blank");}
-else if (info.menuItemId == "totldevelopmenu") {window.open("http://www.stefanvd.net/donate.htm", "_blank");}
-else if (info.menuItemId == "totlratemenu") {window.open("https://chrome.google.com/webstore/detail/ambient-aurea/pkaglmndhfgdaiaccjglghcbnfinfffa/reviews", "_blank");}
-else if (info.menuItemId == "totlsharemenu") {window.open("http://www.stefanvd.net/project/aachrome.htm", "_blank");}
-else if (info.menuItemId == "totlshareemail") {window.open("mailto:youremail?subject=Ambient Aurea Chrome extension&body=Hé, This is amazing. I just tried today this Ambient Aurea Chrome extension https://chrome.google.com/webstore/detail/ambient-aurea/pkaglmndhfgdaiaccjglghcbnfinfffa", "_blank");}
-else if (info.menuItemId == "totlsharetwitter") {window.open("http://twitter.com/home?status=Try%20self%20this%20amazing%20Ambient%20Aurea%20Chrome%20extension%20chrome.google.com/webstore/detail/ambient-aurea/pkaglmndhfgdaiaccjglghcbnfinfffa @ambientaurea", "_blank");}
-else if (info.menuItemId == "totlsharefacebook") {window.open("https://www.facebook.com/sharer/sharer.php?u=chrome.google.com/webstore/detail/ambient-aurea/pkaglmndhfgdaiaccjglghcbnfinfffa", "_blank");}
-else if (info.menuItemId == "totlsharegoogleplus") {window.open("https://plus.google.com/share?url=chrome.google.com/webstore/detail/ambient-aurea/pkaglmndhfgdaiaccjglghcbnfinfffa", "_blank");}
+else if (info.menuItemId == "totlguideemenu") {window.open(linkguide, "_blank");}
+else if (info.menuItemId == "totldevelopmenu") {window.open(donatewebsite, "_blank");}
+else if (info.menuItemId == "totlratemenu") {window.open(writereview, "_blank");}
+else if (info.menuItemId == "totlsharemenu") {window.open(ambientaureawebsite, "_blank");}
+else if (info.menuItemId == "totlshareemail") {window.open("mailto:youremail?subject=Ambient Aurea extension&body=Hé, This is amazing. I just tried today this Ambient Aurea Browser extension"+ambientaureaproduct+"", "_blank");}
+else if (info.menuItemId == "totlsharetwitter") {var sambientaureaproductcodeurl = encodeURIComponent("The Best and Amazing Ambien Aurea Browser extension "+ambientaureaproduct+" @ambientaurea");window.open("https://twitter.com/home?status="+sambientaureaproductcodeurl+"", "_blank");}
+else if (info.menuItemId == "totlsharefacebook") {window.open("https://www.facebook.com/sharer/sharer.php?u="+zoomproduct, "_blank");}
+else if (info.menuItemId == "totlsharegoogleplus") {window.open("https://plus.google.com/share?url="+zoomproduct, "_blank");}
 }
+
+chrome.runtime.onInstalled.addListener(function() {
+// check to remove all contextmenus
+chrome.contextMenus.removeAll(function() {
+//console.log("contextMenus.removeAll callback");
+});
 
 // pageaction
 var sharemenusharetitle = chrome.i18n.getMessage("sharemenusharetitle");
@@ -73,37 +85,65 @@ var child2 = chrome.contextMenus.create({"title": sharemenusendatweet, "id": "to
 var child2 = chrome.contextMenus.create({"title": sharemenupostonfacebook, "id": "totlsharefacebook", "parentId": parent, "onclick": onClickHandler});
 var child2 = chrome.contextMenus.create({"title": sharemenupostongoogleplus, "id": "totlsharegoogleplus", "parentId": parent, "onclick": onClickHandler});
 
+chrome.storage.sync.get(['contextmenu'], function(items){
+    if(items['contextmenu']){checkcontextmenus();}
+});
+});
+
 chrome.contextMenus.onClicked.addListener(onClickHandler);
 
-checkcontextmenus();
-
 // context menu for page and video
-var menupage;
+var menupage = null;
+var contextmenuadded = false;
+var contextarraypage = [];
+
 function checkcontextmenus(){
-// image
-var contexts = ["image"];
-for (var i = 0; i < contexts.length; i++){
-  var context = contexts[i];
-  var imagetitle = chrome.i18n.getMessage("imagetitle");
-  menupage = chrome.contextMenus.create({"title": imagetitle, "type":"normal", "id": "aaimage", "contexts":[context]});
-}
+    if(contextmenuadded == false){
+    contextmenuadded = true;
+
+    // page
+    var contexts = ["image"];
+        for (var i = 0; i < contexts.length; i++){
+        var context = contexts[i];
+        var imagetitle = chrome.i18n.getMessage("imagetitle");
+        menupage = chrome.contextMenus.create({"title": imagetitle, "type":"normal", "id": "aaimage", "contexts":[context]});
+        contextarraypage.push(menupage); 
+        }
+    }
 }
 
 function removecontexmenus(){
-chrome.contextMenus.remove(menupage);
+    if (contextarraypage.length > 0) {
+        for (var i=0;i<contextarraypage.length;i++) {
+            if (contextarraypage[i] === undefined || contextarraypage[i] === null){}else{
+            chrome.contextMenus.remove(contextarraypage[i]);
+            }
+        }
+    }
+    contextarraypage = [];
+    contextmenuadded = false;
 }
 
-try{ chrome.runtime.setUninstallUrl("http://www.stefanvd.net/"); }
+chrome.storage.onChanged.addListener(function(changes, namespace) {
+   for (key in changes) {
+          var storageChange = changes[key];
+          if(changes['contextmenu']){if(changes['contextmenu'].newValue == true){checkcontextmenus()}else{removecontexmenus()}}
+    }
+})
+
+try{ chrome.runtime.setUninstallUrl(linkuninstall); }
 catch(e){}
 
 // Fired when an update is available
 chrome.runtime.onUpdateAvailable.addListener(function() {chrome.runtime.reload();});
 
-chrome.storage.local.get(['firstRun'], function(chromeset){
+// Fired when an update is available
+chrome.runtime.onUpdateAvailable.addListener(function() {chrome.runtime.reload();});
+
+chrome.storage.sync.get(['firstRun'], function(chromeset){
 if ((chromeset["firstRun"]!="false") && (chromeset["firstRun"]!=false)){
-  chrome.tabs.create({url: "http://www.stefanvd.net/project/aachromeguide.htm", selected:false})
-  chrome.tabs.create({url: "http://www.stefanvd.net/project/aachrome.htm", selected:true})
-  chrome.storage.local.set({"firstRun": "false"});
-  chrome.storage.local.set({"version": "2.0"});
+  chrome.tabs.create({url: linkwelcomepage, selected:true})
+  chrome.storage.sync.set({"firstRun": "false"});
+  chrome.storage.sync.set({"version": "2.0"});
 }
 });

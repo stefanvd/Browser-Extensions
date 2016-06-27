@@ -53,7 +53,7 @@ chrome.storage.sync.get(['zoomchrome', 'zoomweb'], function(items){
 });
 
 function read_options(){
-chrome.storage.sync.get(['allzoom', 'optionskipremember','countremember','websitezoom','defaultzoom','contextmenu','badge','steps','lightcolor','zoomweb','zoomchrome'], function(items){
+chrome.storage.sync.get(['allzoom','optionskipremember','countremember','websitezoom','defaultzoom','contextmenu','badge','steps','lightcolor','zoomweb','zoomchrome'], function(items){
 		if(items['defaultzoom']){$('defaultzoom').value = items['defaultzoom'];$('slider').value = items['defaultzoom'];}	
 		else $('defaultzoom').value = 100;
     if(items['steps']){$('steps').value = items['steps'];}	

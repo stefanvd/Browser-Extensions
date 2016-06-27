@@ -3,7 +3,7 @@
 
 Ambient Aurea
 Bring your image to an ambient lighting effect with just one click on the button.
-Copyright (C) 2015 Stefan vd
+Copyright (C) 2016 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -28,28 +28,8 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 
 function $(id) { return document.getElementById(id); }
 
-// Install on www.stefanvd.net
-if (window.location.href.match(/http:\/\/(.*stefanvd\.net\/.*|www\.stefanvd\.net\/.*\/.*)/i)){
-	if ($('ambientaurea-chrome-install-button')) {
-		$('ambientaurea-chrome-install-button').style.display = 'none';
-		$('ambientaurea-chrome-thanks-button').style.display = '';
-	}
-}
-
-// settings
-var contextmenus = null;
-
-chrome.storage.local.get(['contextmenus'], function(response){
-contextmenus = response.contextmenus;if(!contextmenus)contextmenus = 'true'; // default contextmenus true
-
-// context menu
-if(contextmenus == 'true'){chrome.extension.sendMessage({name: 'contextmenuon'});}
-else {chrome.extension.sendMessage({name: 'contextmenuoff'});}
-
 var last_target = null;
 document.addEventListener('mousedown', function(event){
 var goimage = event.target.src;
 chrome.extension.sendMessage({name: 'imgurl', value: goimage});
 }, true);
-
-});

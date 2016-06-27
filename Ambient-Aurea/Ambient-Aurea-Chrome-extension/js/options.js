@@ -31,110 +31,46 @@ var default_opacity = 80;
 var default_arangeblur = 25;
 var default_arangespread = 15;
 
-// Option to save current value to chrome.storage
+// Option to save current value
 function save_options(){
-	chrome.storage.local.set({"interval": $('interval').value});
-	chrome.storage.local.set({"lightcolor": $('lightcolor').value});
-	if($('contextmenus').checked)chrome.storage.local.set({"contextmenus": 'true'});
-	else chrome.storage.local.set({"contextmenus": 'false'});	
-	if($('ambilight').checked)chrome.storage.local.set({"ambilight": 'true'});
-	else chrome.storage.local.set({"ambilight": 'false'});	
-	chrome.storage.local.set({"ambilightrangeblurradius": $('ambilightrangeblurradius').value});
-	chrome.storage.local.set({"ambilightrangespreadradius": $('ambilightrangespreadradius').value});
-	if($('ambilightfixcolor').checked)chrome.storage.local.set({"ambilightfixcolor": 'true'});
-	else chrome.storage.local.set({"ambilightfixcolor": 'false'});	
-	if($('ambilightvarcolor').checked)chrome.storage.local.set({"ambilightvarcolor": 'true'});
-	else chrome.storage.local.set({"ambilightvarcolor": 'false'});	
-	chrome.storage.local.set({"ambilightcolorhex": $('ambilightcolorhex').value});
-	if($('ambilight4color').checked)chrome.storage.local.set({"ambilight4color": 'true'});
-	else chrome.storage.local.set({"ambilight4color": 'false'});
-	chrome.storage.local.set({"ambilight1colorhex": $('ambilight1colorhex').value});
-	chrome.storage.local.set({"ambilight2colorhex": $('ambilight2colorhex').value});
-	chrome.storage.local.set({"ambilight3colorhex": $('ambilight3colorhex').value});
-	chrome.storage.local.set({"ambilight4colorhex": $('ambilight4colorhex').value});
-	if($('fadein').checked)chrome.storage.local.set({"fadein": 'true'});
-	else chrome.storage.local.set({"fadein": 'false'});
-	if($('fadeout').checked)chrome.storage.local.set({"fadeout": 'true'});
-	else chrome.storage.local.set({"fadeout": 'false'});
-	if($('sharebar').checked)chrome.storage.local.set({"sharebar": 'true'});
-	else chrome.storage.local.set({"sharebar": 'false'});
-	if($('count').checked)chrome.storage.local.set({"count": 'true'});
-	else chrome.storage.local.set({"count": 'false'});
-	if($('slideshow').checked)chrome.storage.local.set({"slideshow": 'true'});
-	else chrome.storage.local.set({"slideshow": 'false'});
-	chrome.storage.local.set({"slideshowrefresh": $('slideshowrefresh').value});
-	if($('optionskipremember').checked)chrome.storage.local.set({"optionskipremember": 'true'});
-	else chrome.storage.local.set({"optionskipremember": 'false'});
-	if($('atmosvivid').checked)chrome.storage.local.set({"atmosvivid": 'true'});
-	else chrome.storage.local.set({"atmosvivid": 'false'});	
+  chrome.storage.sync.set({ "interval": $('interval').value, "lightcolor": $('lightcolor').value, "contextmenus": $('contextmenus').checked, "ambilight": $('ambilight').checked, "ambilightrangeblurradius": $('ambilightrangeblurradius').value, "ambilightrangespreadradius": $('ambilightrangespreadradius').value, "ambilightfixcolor": $('ambilightfixcolor').checked, "ambilightvarcolor": $('ambilightvarcolor').checked, "ambilightcolorhex": $('ambilightcolorhex').value, "ambilight4color": $('ambilight4color').checked, "ambilight1colorhex": $('ambilight1colorhex').value, "ambilight2colorhex": $('ambilight2colorhex').value, "ambilight3colorhex": $('ambilight3colorhex').value, "ambilight4colorhex": $('ambilight4colorhex').value, "fadein": $('fadein').checked, "fadeout": $('fadeout').checked, "sharebar": $('sharebar').checked, "count": $('count').checked, "slideshow": $('slideshow').checked, "slideshowrefresh": $('slideshowrefresh').value, "optionskipremember": $('optionskipremember').checked, "atmosvivid": $('atmosvivid').checked});
 }
 
-// Option to read current value from chrome.storage
-chrome.storage.local.get(['fadein'], function(items){ // find no localstore fadein
-	if(!items['fadein']) chrome.storage.local.set({"fadein": 'true'}); // then default true
-});
-
-chrome.storage.local.get(['fadeout'], function(items){ // find no localstore fadeout
-	if(!items['fadeout']) chrome.storage.local.set({"fadeout": 'true'}); // then default true
-});
-
-chrome.storage.local.get(['contextmenus'], function(items){ // find no localstore contextmenus
-	if(!items['contextmenus']) chrome.storage.local.set({"contextmenus": 'true'}); // then default true
-});
-
-chrome.storage.local.get(['interval'], function(items){
-	if(items['interval']) default_opacity = items['interval'];
-});
-
-chrome.storage.local.get(['ambilightrangeblurradius'], function(items){
-	if(items['ambilightrangeblurradius']) default_arangeblur = items['ambilightrangeblurradius'];
-});
-
-chrome.storage.local.get(['ambilightrangespreadradius'], function(items){
-	if(items['ambilightrangespreadradius']) default_arangeblur = items['ambilightrangespreadradius'];
-});
-
-chrome.storage.local.get(['ambilight'], function(items){ // find no localstore ambilight
-	if(!items['ambilight']) chrome.storage.local.set({"ambilight": 'true'}); // then default true
-});
-
-chrome.storage.local.get(['sharebar'], function(items){ // find no localstore sharebar
-	if(!items['sharebar']) chrome.storage.local.set({"sharebar": 'true'}); // then default true
-});
-
-chrome.storage.local.get(['count'], function(items){ // find no localstore count
-	if(!items['count']) chrome.storage.local.set({"count": 'true'}); // then default true
-});
-
-chrome.storage.local.get(['atmosvivid'], function(items){ // find no localstore atmosvivid
-	if(!items['atmosvivid']) chrome.storage.local.set({"atmosvivid": 'true'}); // then default true
-});
-	
-chrome.storage.local.get(['ambilightvarcolor', 'ambilightfixcolor', 'ambilight4color'], function(items){ // find no localstore atmos
-	if(!items['ambilightvarcolor']&&!items['ambilightfixcolor']&&!items['ambilight4color']){
-	chrome.storage.local.set({"ambilightvarcolor": 'true'}); // then default true
-	chrome.storage.local.set({"ambilightfixcolor": 'false'}); // then default false
-	chrome.storage.local.set({"ambilight4color": 'false'}); // then default false
-	}
+var firstdefaultvalues = {};
+// Option default value to read if there is no current value from chrome.storage AND init default value
+chrome.storage.sync.get(['fadein','fadeout','contextmenus','ambilight','sharebar','count','atmosvivid','ambilightvarcolor','ambilightfixcolor','ambilight4color'], function(items){
+    // find no localstore zoomengine
+	  if(items['fadein'] == null && items['fadeout'] == null){firstdefaultvalues['fadein'] = true;firstdefaultvalues['fadeout'] = true;}
+	  if(items['contextmenus'] == null){firstdefaultvalues['contextmenus'] = true;}
+	  if(items['ambilight'] == null){firstdefaultvalues['ambilight'] = true;}
+	  if(items['sharebar'] == null){firstdefaultvalues['sharebar'] = true;}
+	  if(items['count'] == null){firstdefaultvalues['count'] = true;}
+	  if(items['atmosvivid'] == null){firstdefaultvalues['atmosvivid'] = true;}
+	  if(items['ambilightvarcolor'] == null && items['ambilightfixcolor'] == null && items['ambilight4color'] == null){firstdefaultvalues['ambilightvarcolor'] = true;firstdefaultvalues['ambilightfixcolor'] = false;firstdefaultvalues['ambilight4color'] = false;}
+    // find no localstore lightimage
+    // Save the init value
+    chrome.storage.sync.set(firstdefaultvalues, function() {
+    //console.log('Settings saved');
+    });
 });
 
 function read_options(){
-chrome.storage.local.get(['interval', 'lightcolor', 'contextmenus', 'ambilight', 'ambilightrangeblurradius', 'ambilightrangespreadradius', 'ambilightfixcolor', 'ambilightvarcolor', 'ambilightcolorhex', 'ambilight4color', 'ambilight1colorhex', 'ambilight2colorhex', 'ambilight3colorhex', 'ambilight4colorhex', 'fadein', 'fadeout', 'sharebar', 'count', 'slideshow', 'slideshowrefresh', 'countremember' , 'applastonversion', 'reviewedlastonversion', 'optionskipremember', 'atmosvivid'], function(items){
-		if(items['interval'])$('interval').value = items['interval'];
+chrome.storage.sync.get(['interval', 'lightcolor', 'contextmenus', 'ambilight', 'ambilightrangeblurradius', 'ambilightrangespreadradius', 'ambilightfixcolor', 'ambilightvarcolor', 'ambilightcolorhex', 'ambilight4color', 'ambilight1colorhex', 'ambilight2colorhex', 'ambilight3colorhex', 'ambilight4colorhex', 'fadein', 'fadeout', 'sharebar', 'count', 'slideshow', 'slideshowrefresh', 'countremember' , 'applastonversion', 'reviewedlastonversion', 'optionskipremember', 'atmosvivid'], function(items){
+		if(items['interval']){default_opacity=items['interval'];$('interval').value = items['interval'];}
 		else $('interval').value = 80;
 		if(items['lightcolor']){$('lightcolor').value = items['lightcolor'];}
 		else {$('lightcolor').value = '#000000';}
-		if(items['contextmenus'] == 'true')$('contextmenus').checked = true;
-		if(items['ambilight'] == 'true')$('ambilight').checked = true;
-		if(items['ambilightrangeblurradius']){$('ambilightrangeblurradius').value = items['ambilightrangeblurradius'];$('arangeblur').value = items['ambilightrangeblurradius'];}
+		if(items['contextmenus'] == true)$('contextmenus').checked = true;
+		if(items['ambilight'] == true)$('ambilight').checked = true;
+		if(items['ambilightrangeblurradius']){default_arangeblur=items['ambilightrangeblurradius'];$('ambilightrangeblurradius').value = items['ambilightrangeblurradius'];$('arangeblur').value = items['ambilightrangeblurradius'];}
 		else{$('ambilightrangeblurradius').value = 25;}
 		if(items['ambilightrangespreadradius']){$('ambilightrangespreadradius').value = items['ambilightrangespreadradius'];$('arangespread').value = items['ambilightrangespreadradius'];}
 		else{$('ambilightrangespreadradius').value = 15;}
-		if(items['ambilightfixcolor'] == 'true')$('ambilightfixcolor').checked = true;
-		if(items['ambilightvarcolor'] == 'true')$('ambilightvarcolor').checked = true;
+		if(items['ambilightfixcolor'] == true)$('ambilightfixcolor').checked = true;
+		if(items['ambilightvarcolor'] == true)$('ambilightvarcolor').checked = true;
 		if(items['ambilightcolorhex'])$('ambilightcolorhex').value = items['ambilightcolorhex'];
 		else $('ambilightcolorhex').value = '#47C2FF';
-		if(items['ambilight4color'] == 'true')$('ambilight4color').checked = true;
+		if(items['ambilight4color'] == true)$('ambilight4color').checked = true;
 		if(items['ambilight1colorhex'])$('ambilight1colorhex').value = items['ambilight1colorhex'];
 		else $('ambilight1colorhex').value = '#FF0000';
 		if(items['ambilight2colorhex'])$('ambilight2colorhex').value = items['ambilight2colorhex'];
@@ -143,15 +79,15 @@ chrome.storage.local.get(['interval', 'lightcolor', 'contextmenus', 'ambilight',
 		else $('ambilight3colorhex').value = '#00FF00';
 		if(items['ambilight4colorhex'])$('ambilight4colorhex').value = items['ambilight4colorhex'];
 		else $('ambilight4colorhex').value = '#0000FF';
-		if(items['fadein'] == 'true')$('fadein').checked = true;
-		if(items['fadeout'] == 'true')$('fadeout').checked = true;
-		if(items['sharebar'] == 'true')$('sharebar').checked = true;
-		if(items['count'] == 'true')$('count').checked = true;
-		if(items['slideshow'] == 'true')$('slideshow').checked = true;
+		if(items['fadein'] == true)$('fadein').checked = true;
+		if(items['fadeout'] == true)$('fadeout').checked = true;
+		if(items['sharebar'] == true)$('sharebar').checked = true;
+		if(items['count'] == true)$('count').checked = true;
+		if(items['slideshow'] == true)$('slideshow').checked = true;
 		if(items['slideshowrefresh'])$('slideshowrefresh').value = items['slideshowrefresh'];
 		else $('slideshowrefresh').value = 20;
-		if(items['optionskipremember'] == 'true'){$('optionskipremember').checked = true;$('firstcheckboxskipremember').checked = true;}
-		if(items['atmosvivid'] == 'true')$('atmosvivid').checked = true;
+		if(items['optionskipremember'] == true){$('optionskipremember').checked = true;$('firstcheckboxskipremember').checked = true;}
+		if(items['atmosvivid'] == true)$('atmosvivid').checked = true;
 		if(items['reviewedlastonversion'] == chrome.runtime.getManifest().version){$("sectionreviewbox").style.display = "none";}
 		if(items['applastonversion'] == chrome.runtime.getManifest().version){$("sectionauroraplayerappbox").style.display = "none";}
 		
@@ -163,7 +99,7 @@ if($('optionskipremember').checked != true){
 	if(countremember >= 5) {$('remembershare').style.display = "";countremember = 0;}
 	else {$('remembershare').style.display = "none";}
 } else {$('remembershare').style.display = "none";}
-chrome.storage.local.set({"countremember": countremember});		
+chrome.storage.sync.set({"countremember": countremember});		
 		
 	// load tab div
 	var tabListItems = document.getElementById('navbar').childNodes;
@@ -557,26 +493,26 @@ $("fsdownload").addEventListener('click', function() {window.open(fullscreenprod
 $("zdownload").addEventListener('click', function() {window.open(zoomproduct)});
 
 // Save KB download
-$("tabbasic").addEventListener('click', function() {$('welcomeguide').src = "";$("managed-prefs-banner").style.display = "";});
-$("tabvisual").addEventListener('click', function() {$('welcomeguide').src = "";$("managed-prefs-banner").style.display = "";});
-$("tabadvan").addEventListener('click', function() {$('welcomeguide').src = "";$("managed-prefs-banner").style.display = "";});
-$("tabguide").addEventListener('click', function() {$('welcomeguide').src = linkguide;$("managed-prefs-banner").style.display = "none";});
-$("tabhelp").addEventListener('click', function() {$('welcomeguide').src = "";$("managed-prefs-banner").style.display = "";});
+$("tabbasic").addEventListener('click', function() {$('dont-turn-off-the-lights').src = "https://www.youtube.com/embed/?listType=playlist&amp;list=PLfXHh3TKRb4YxE1nyEgbOwphiK8C0JX9f";$('welcomeguide').src = "";$("managed-prefs-banner").style.display = "";});
+$("tabvisual").addEventListener('click', function() {$('dont-turn-off-the-lights').src = "";$('welcomeguide').src = "";$("managed-prefs-banner").style.display = "";});
+$("tabadvan").addEventListener('click', function() {$('dont-turn-off-the-lights').src = "";$('welcomeguide').src = "";$("managed-prefs-banner").style.display = "";});
+$("tabguide").addEventListener('click', function() {$('dont-turn-off-the-lights').src = "";$('welcomeguide').src = linkguide;$("managed-prefs-banner").style.display = "none";});
+$("tabhelp").addEventListener('click', function() {$('dont-turn-off-the-lights').src = "";$('welcomeguide').src = "";$("managed-prefs-banner").style.display = "";});
 
 $("buttonreportissue").addEventListener('click', function() {window.open(linksupport)});
 $("buttonchangelog").addEventListener('click', function() {window.open(linkchangelog)});
 $("buttontranslateme").addEventListener('click', function() {window.open(linktranslate)});
 
 // Reset settings
-$("resetambientaurea").addEventListener('click', function() {chrome.storage.local.clear();location.reload();});
+$("resetambientaurea").addEventListener('click', function() {chrome.storage.sync.clear();location.reload();});
 
 // Review box
 $("war").addEventListener('click', function() {window.open(writereview, "_blank");$("sectionreviewbox").style.display = "none";chrome.storage.sync.set({"reviewedlastonversion": chrome.runtime.getManifest().version})});
 $("nt").addEventListener('click', function() {$("sectionreviewbox").style.display = "none";chrome.storage.sync.set({"reviewedlastonversion": chrome.runtime.getManifest().version})});
 
 // Aurora Player app box
-$("apgetapp").addEventListener('click', function() {window.open("http://www.stefanvd.net/project/ambientaureaapp.htm", "_blank");$("sectionauroraplayerappbox").style.display = "none";chrome.storage.local.set({"applastonversion": chrome.runtime.getManifest().version});});
-$("apnt").addEventListener('click', function() {$("sectionauroraplayerappbox").style.display = "none";chrome.storage.local.set({"applastonversion": chrome.runtime.getManifest().version});});
+$("apgetapp").addEventListener('click', function() {window.open("http://www.stefanvd.net/project/ambientaureaapp.htm", "_blank");$("sectionauroraplayerappbox").style.display = "none";chrome.storage.sync.set({"applastonversion": chrome.runtime.getManifest().version});});
+$("apnt").addEventListener('click', function() {$("sectionauroraplayerappbox").style.display = "none";chrome.storage.sync.set({"applastonversion": chrome.runtime.getManifest().version});});
 
 // retina check
 if(window.devicePixelRatio >= 2) {
