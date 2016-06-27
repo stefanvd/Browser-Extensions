@@ -1,0 +1,476 @@
+﻿{
+   "name": {
+      "message": "Date Today",
+	  "description": "Date Today"
+   },
+   "description": {
+      "message": "Show the current day and time.",
+	  "description": "Show the current day and time."
+   },
+   "browsertitle": {
+      "message": "Date Today",
+	  "description": "Date Today"
+   },
+       "translateme": {
+        "message": "Help Translate", 
+        "description": "Help Translate"
+    },
+ "sharemenusharetitle":{
+    "message":"Share this",
+    "description":"Share this"
+  },
+  "sharemenuwelcomeguidetitle":{
+    "message":"Welcome Guide",
+    "description":"Welcome Guide"
+  },
+  "sharemenutellafriend":{
+    "message":"Tell a Friend",
+    "description":"Tell a Friend"
+  },
+  "sharemenusendatweet":{
+    "message":"Send a Tweet",
+    "description":"Send a Tweet"
+  },
+  "sharemenupostonfacebook":{
+    "message":"Post on Facebook",
+    "description":"Post on Facebook"
+  },
+  "sharemenupostongoogleplus":{
+    "message":"Post on Google+",
+    "description":"Post on Google+"
+  },
+  "sharemenuratetitle":{
+    "message":"Rate this extension",
+    "description":"Rate this extension"
+  },
+  "sharemenudonatetitle":{
+    "message":"Support Development",
+    "description":"Support Development"
+  },
+  "advancedoptions":{
+    "message":"Advanced Options",
+    "description":"Advanced Options"
+  },
+    "help":{
+    "message":"Help",
+    "description":"Help"
+  },
+  "about":{
+    "message":"About",
+    "description":"About"
+  },
+  "upgradefbshare":{
+    "message":"Share on Facebook",
+    "description":"Share on Facebook"
+  },
+  "upgradetwshare":{
+    "message":"Tweet",
+    "description":"Tweet"
+  },
+  "ratetitle":{
+    "message":"Please rate & review my extension",
+    "description":"Please rate & review my extension"
+  },
+  "ratedes":{
+    "message":"And let everyone know about this great extension!",
+    "description":"And let everyone know about this great extension!"
+  },
+  "rateitema":{
+    "message":"Rate 5 stars",
+    "description":"Rate 5 stars"
+  },
+  "titelreset":{
+    "message":"Reset settings",
+    "description":"Reset settings"
+  },
+  "resetbrowserextension":{
+    "message":"Reset the Date Today settings",
+    "description":"Reset the Date Today settings"
+  },
+  "areyouhappy":{
+    "message":"Are you happy about Date Today?",
+    "description":"Are you happy about Date Today?"
+  },
+  "tellothers":{
+    "message":"Ensures that your opinion counts",
+    "description":"Ensures that your opinion counts"
+  },
+  "nothanks":{
+    "message":"No thanks",
+    "description":"No thanks"
+  },
+  "writeareview":{
+    "message":"Write a review",
+    "description":"Write a review"
+  },
+  "titeldownloadaaupgrade":{
+    "message":"The upgrade adds support for focusing selected images, and will display a gallery of images on the site.",
+    "description":"The upgrade adds support for focusing selected images, and will display a gallery of images on the site."
+  },
+  "titeldownloadupgradepropermenubar":{
+    "message":"Add back the black menubar on the Google website.",
+    "description":"Add back the black menubar on the Google website."
+  },
+  "titeldownloadupgradefinancetoolbar":{
+    "message":"This shows you the real time stock market information.",
+    "description":"This shows you the real time stock market information."
+  },
+ "titeldownloadupgradefullscreen":{
+    "message":"With this extension you can easy go to full screen. This for image, video and webpage.",
+    "description":"With this extension you can easy go to full screen. This for image, video and webpage."
+  },
+ "titeldownloadupgradezoom":{
+    "message":"Zoom in or out on web content using the zoom button for more comfortable reading.",
+    "description":"Zoom in or out on web content using the zoom button for more comfortable reading."
+  },
+  "desrememberpage":{
+    "message":"If this option is enabled, it will not show you the reminder page",
+    "description":"If this option is enabled, it will not show you the reminder page"
+  },
+  "titelrememberpage":{
+    "message":"Reminder page",
+    "description":"Reminder page"
+  },
+  "longdonatetext":{
+    "message":"I'd truly appreciate if you can donate me to keep this browser extension alive for other new users. Whether it's $$1 or $$100, your support is immensely appreciated!",
+    "description":"I'd truly appreciate if you can donate me to keep this browser extension alive for other new users. Whether it's $$1 or $$100, your support is immensely appreciated!"
+  },
+  "enjoyshare":{
+    "message":"Enjoy this extension and share it with others who you think will appreciate it.",
+    "description":"Enjoy this extension and share it with others who you think will appreciate it."
+  },
+  "titeldownloadbutton":{
+    "message":"Download this Upgrade!",
+    "description":"Download this Upgrade!"
+  },
+  "titelsync":{
+    "message":"Sync",
+    "description":"Sync"
+  },  
+  "titelsyncbrowser":{
+    "message":"Sync the extension settings with your other browser",
+    "description":"Sync the extension settings with your other browser"
+  },
+  "titeldownloadupgrade":{
+    "message":"The entire page will be fading to dark, so you can watch the video as if you were in the cinema.",
+    "description":"The entire page will be fading to dark, so you can watch the video as if you were in the cinema."
+  },
+  "desproject":{
+    "message":"project",
+    "description":"project"
+  },
+  "desbrowserextension":{
+    "message":"browser extension",
+    "description":"browser extension"
+  },
+  "reportlist":{
+    "message":"Last known issue",
+    "description":"See the full issue list"
+  },
+  "titelwebsite":{
+    "message":"Website",
+    "description":"Website"
+  },
+  "titeldeveloper":{
+    "message":"Developer",
+    "description":"Developer"
+  },
+  "rememberrate":{
+    "message":"Rate",
+    "description":"Rate"
+  },
+  "showremember":{
+    "message":"It doesn't show the reminder page when I open the options page",
+    "description":"It doesn't show the reminder page when I open the options page"
+  },
+  "donatepromotext":{
+    "message":"If you can make a donation of any amount, I'd appreciate it immensely!",
+    "description":"If you can make a donation of any amount, I'd appreciate it immensely!"
+  },
+  "skipremember":{
+    "message":"Skip this, and open now the options page",
+    "description":"Skip this, and open now the options page"
+  },
+  "titelrightsreserved":{
+    "message":"Some rights reserved.",
+    "description":"Some rights reserved."
+  },
+  "friendlyremember":{
+    "message":"Friendly Reminder...",
+    "description":"Friendly Reminder..."
+  },
+   "head2": {
+      "message": "Clock format",
+	  "description": "Clock format"
+   },
+   "des12h": {
+      "message": "If you turn this on, it show you the 12H clock format",
+	  "description": "If you turn this on, it show you the 12H clock format"
+   },
+   "textfoot": {
+      "message": "This software is licensed under the CC-GNU GPL. To view a copy of this license, visit",
+	  "description": "This software is licensed under the CC-GNU GPL. To view a copy of this license, visit"
+   },
+   "jan": {
+      "message": "January",
+	  "description": "January"
+   },
+   "feb": {
+      "message": "February",
+	  "description": "February"
+   },
+   "mar": {
+      "message": "March",
+	  "description": "March"
+   },
+   "apr": {
+      "message": "April",
+	  "description": "April"
+   },
+   "may": {
+      "message": "May",
+	  "description": "May"
+   },
+   "jun": {
+      "message": "June",
+	  "description": "June"
+   },
+   "jul": {
+      "message": "July",
+	  "description": "July"
+   },
+   "aug": {
+      "message": "August",
+	  "description": "August"
+   },
+   "sep": {
+      "message": "September",
+	  "description": "September"
+   },
+   "oct": {
+      "message": "October",
+	  "description": "October"
+   },
+   "nov": {
+      "message": "November",
+	  "description": "November"
+   },
+   "dec": {
+      "message": "December",
+	  "description": "December"
+   },
+   "sun": {
+      "message": "Sunday",
+	  "description": "Sunday"
+   },
+   "mon": {
+      "message": "Monday",
+	  "description": "Monday"
+   },
+   "tue": {
+      "message": "Tuesday",
+	  "description": "Tuesday"
+   },
+   "wed": {
+      "message": "Wednesday",
+	  "description": "Wednesday"
+   },
+   "thu": {
+      "message": "Thursday",
+	  "description": "Thursday"
+   },
+   "fri": {
+      "message": "Friday",
+	  "description": "Friday"
+   },
+   "sat": {
+      "message": "Saturday",
+	  "description": "Saturday"
+   },
+   "head2colors": {
+      "message": "Colors",
+	  "description": "Colors"
+   },
+   "lablehours": {
+      "message": "Hour",
+	  "description": "Hour"
+   },
+   "lableminutes": {
+      "message": "Minutes",
+	  "description": "Minutes"
+   },
+   "labledaynumber": {
+      "message": "Day Number",
+	  "description": "Day Number"
+   },
+   "lablemonth": {
+      "message": "Month",
+	  "description": "Month"
+   },
+   "lableday": {
+      "message": "Day of the Week",
+	  "description": "Day of the Week"
+   },
+   "donatepromotext": {
+      "message": "If you can make a donation of any amount, I'd appreciate it immensely!",
+      "description": "If you can make a donation of any amount, I'd appreciate it immensely!"
+   },
+   "changelog": {
+      "message": "Changelog",
+      "description": "Changelog"
+   },
+   "version": {
+      "message": "Version",
+      "description": "Version"
+   },
+   "optionpagetitle": {
+      "message": "Date Today - Options",
+      "description": "Date Today - Options"
+   },
+   "reportbug": {
+      "message": "Report an Issue",
+      "description": "Report an Issue"
+   },
+   "settings": {
+      "message": "Settings",
+      "description": "Settings"
+   },
+   "basicsettings": {
+      "message": "Basics",
+      "description": "Basics"
+   },
+   "titlestamp": {
+      "message": "Stamp",
+      "description": "Stamp"
+   },
+   "desstamp": {
+      "message": "Show the right click menu to stamp the current time and day",
+      "description": "Show the right click menu to stamp the current time and day"
+   },
+   "dtstamp": {
+      "message": "Date today stamp",
+      "description": "Date today stamp"
+   },
+    "pagestillloading": {
+        "message": "The page is still loading?", 
+        "description": "The page is still loading?"
+    },
+    "pagehelp": {
+        "message": "help", 
+        "description": "help"
+    },
+    "titledonatebutton": {
+        "message": "Donate", 
+        "description": "Donate"
+    },
+	"alarm": {
+        "message": "Alarm", 
+        "description": "Alarm"
+    },
+    "guide": {
+        "message": "Date Today Guide", 
+        "description": "Date Today Guide"
+    },
+    "productshare": {
+        "message": "Share", 
+        "description": "Share"
+    },
+    "titlenightmode": {
+        "message": "Night Mode", 
+        "description": "Night Mode"
+    },
+    "desnightmode": {
+        "message": "Enable the Night Mode clock style between the following time:", 
+        "description": "Enable the Night Mode clock style between the following time:"
+    },    
+    "desuntil": {
+        "message": "until", 
+        "description": "until"
+    },
+    "desconfirmtime": {
+        "message": "Confirm", 
+        "description": "Confirm"
+    },
+    "titlebadge": {
+        "message": "Badge", 
+        "description": "Badge"
+    },
+     "desbadge": {
+        "message": "Show the current time below the Date Today extension icon", 
+        "description": "Show the current time below the Date Today extension icon"
+    },
+    "titlefont": {
+        "message": "Font", 
+        "description": "Font"
+    },
+      "welcomebasictext":{
+    "message":"Welcome on the Date Today Browser extension. Here a brief video about how to use the Date Today extension in your web browser.",
+    "description":"Welcome on the Date Today Browser extension. Here a brief video about how to use the Date Today extension in your web browser."
+  },
+  "promotitle":{
+    "message":"Tip of the day",
+    "description":"Tip of the day"
+  },
+ "promotext":{
+    "message":"Want to use something new and amazing for your web browser? Try the $product$ Browser extension.",
+    "description":"Want to use something new and amazing for your web browser? Try the $product$ Browser extension.",
+    "placeholders": {
+          "product": {
+            "content": "$1",
+            "example": "Turn Off the Lights"
+          }
+        }
+  },
+  "promocalltoaction":{
+    "message":"Download it Now!",
+    "description":"Download it Now!"
+  },
+  "donatetext":{
+    "message":"Due to the very small number of donations the project may be closed. Please support further development with a Donation.",
+    "description":"Due to the very small number of donations the project may be closed. Please support further development with a Donation."
+  },
+  "donatecalltoaction":{
+    "message":"Donate Now!",
+    "description":"Donate Now!"
+  },    
+  "titelsharethis":{
+    "message":"Share this:",
+    "description":"Share this:"
+  },
+  "titelwelcome":{
+    "message":"Welcome and Hello",
+    "description":"Welcome and Hello"
+  },
+  "optiontimesaved":{
+    "message":"Time is saved successfully!",
+    "description":"Time is saved successfully!"
+  },
+  "labletick":{
+    "message":"Tick",
+    "description":"Tick"
+  },
+  "pastestamp":{
+    "message":"Paste the current timestamp",
+    "description":"Paste the current timestamp"
+  },
+  "titleclockstyle":{
+    "message":"Clock Style",
+    "description":"Clock Style"
+  },
+  "desclockstyle":{
+    "message":"Show no circular background",
+    "description":"Show no circular background"
+  },
+  "titleclockminutes":{
+    "message":"Color of the minutes hand",
+    "description":"Color of the minutes hand"
+  },
+  "titleclockhours":{
+    "message":"Color of the hours hand",
+    "description":"Color of the hours hand"
+  },
+  "titelshowanalogclock":{
+    "message":"Show the analog clock inside the browser toolbar",
+    "description":"Show the analog clock inside the browser toolbar"
+  }
+}
