@@ -30,27 +30,27 @@ function $(id) { return document.getElementById(id); }
 // settings
 var default_opacity = null, interval = null, fadein = null, fadeout = null, lightcolor = null, ambilight = null, ambilightrangeblurradius = null, ambilightrangespreadradius = null, ambilightfixcolor = null, ambilight4color = null, ambilightvarcolor = null, ambilightcolorhex = null, ambilight1colorhex = null, ambilight2colorhex = null, ambilight3colorhex = null, ambilight4colorhex = null, sharebar = null, count = null, slideshow = null, slideshowrefresh = null, atmosvivid = null;
 
-chrome.storage.local.get(['interval', 'fadein', 'fadeout', 'lightcolor', 'ambilight', 'ambilightrangeblurradius', 'ambilightrangespreadradius', 'ambilightfixcolor', 'ambilightvarcolor', 'ambilightcolorhex', 'ambilight4color', 'ambilight1colorhex', 'ambilight2colorhex', 'ambilight3colorhex', 'ambilight4colorhex', 'sharebar', 'atmosvivid'], function(response){
+chrome.storage.sync.get(['interval', 'fadein', 'fadeout', 'lightcolor', 'ambilight', 'ambilightrangeblurradius', 'ambilightrangespreadradius', 'ambilightfixcolor', 'ambilightvarcolor', 'ambilightcolorhex', 'ambilight4color', 'ambilight1colorhex', 'ambilight2colorhex', 'ambilight3colorhex', 'ambilight4colorhex', 'sharebar', 'atmosvivid'], function(response){
 interval = response['interval'];if(!interval)interval = 80; default_opacity = interval; // default interval 80%
-fadein = response['fadein'];if(!fadein)fadein = 'true';
-fadeout = response['fadeout'];if(!fadeout)fadeout = 'true';
+fadein = response['fadein'];if(!fadein)fadein = true;
+fadeout = response['fadeout'];if(!fadeout)fadeout = true;
 lightcolor = response['lightcolor'];if(!lightcolor)lightcolor = '#000000';
-ambilight = response['ambilight'];if(!ambilight)ambilight = 'true';
+ambilight = response['ambilight'];if(!ambilight)ambilight = true;
 ambilightrangeblurradius = response['ambilightrangeblurradius'];if(!ambilightrangeblurradius)ambilightrangeblurradius = 25;
 ambilightrangespreadradius = response['ambilightrangespreadradius'];if(!ambilightrangespreadradius)ambilightrangespreadradius = 15;
-ambilightfixcolor = response['ambilightfixcolor'];if(!ambilightfixcolor)ambilightfixcolor = 'false';
-ambilight4color = response['ambilight4color'];if(!ambilight4color)ambilight4color = 'false';
-ambilightvarcolor = response['ambilightvarcolor'];if(!ambilightvarcolor)ambilightvarcolor = 'true';
+ambilightfixcolor = response['ambilightfixcolor'];if(!ambilightfixcolor)ambilightfixcolor = false;
+ambilight4color = response['ambilight4color'];if(!ambilight4color)ambilight4color = false;
+ambilightvarcolor = response['ambilightvarcolor'];if(!ambilightvarcolor)ambilightvarcolor = true;
 ambilightcolorhex = response['ambilightcolorhex'];if(!ambilightcolorhex)ambilightcolorhex = '#CCCCCC';
 ambilight1colorhex = response['ambilight1colorhex'];if(!ambilight1colorhex)ambilight1colorhex = '#FF0000';
 ambilight2colorhex = response['ambilight2colorhex'];if(!ambilight2colorhex)ambilight2colorhex = '#FFEE00';
 ambilight3colorhex = response['ambilight3colorhex'];if(!ambilight3colorhex)ambilight3colorhex = '#00FF00';
 ambilight4colorhex = response['!ambilight4colorhex'];if(!ambilight4colorhex)ambilight4colorhex = '#0000FF';
-sharebar = response['sharebar'];if(!sharebar)sharebar = 'true';
+sharebar = response['sharebar'];if(!sharebar)sharebar = true;
 count = response['count'];if(!sharebar)sharebar = 0;
 slideshow = response['slideshow'];
 slideshowrefresh = response['slideshowrefresh'];if(!slideshowrefresh)slideshowrefresh = 5;
-atmosvivid = response['atmosvivid'];if(!atmosvivid)atmosvivid = 'true';
+atmosvivid = response['atmosvivid'];if(!atmosvivid)atmosvivid = true;
 
 //---- cleanup service
 function cleanup() {
@@ -87,7 +87,7 @@ var screenwidth = document.documentElement.clientWidth;var screenheight = docume
 var j = 0;
 var blackon = $("stefanvdaagallery");
 if(blackon){
-	if(fadeout == 'true'){fader('hide');}
+	if(fadeout == true){fader('hide');}
 	else{var dodo = $("stefanvdaalightareoff1");document.body.removeChild(dodo);}
 	cleanup();
 }else{
@@ -188,7 +188,7 @@ resizeframe();refreshambilight();refreshcounter();
 // reset j to 1 first slide in the counter text
 j = 1;
 
-if(count == 'true'){
+if(count == true){
 var newcounter = document.createElement('div');
 newcounter.setAttribute('id','stefanvdaagallerycounter');
 newcounter.innerText = "" + j + "/" + kmax + ""
@@ -227,11 +227,11 @@ newdiv.style.zIndex = 999;
 document.body.appendChild(newdiv);
 
 // fade out effect
-if(fadeout == 'true'){newdiv.addEventListener("click", function() {fader('hide');cleanup();})}
+if(fadeout == true){newdiv.addEventListener("click", function() {fader('hide');cleanup();})}
 else{newdiv.addEventListener("click", function() {document.body.removeChild(newdiv);cleanup();})}
 
 // fade in effect
-if(fadein == 'true'){fader('show');}
+if(fadein == true){fader('show');}
 else{newdiv.style.opacity = default_opacity/100} // no fade effect	
 
 function refreshambilight(){
@@ -241,8 +241,8 @@ function refreshambilight(){
 	var getspread = ambilightrangespreadradius + "px";
 
 
-if(ambilightvarcolor == 'true'){
-if(atmosvivid == "true"){
+if(ambilightvarcolor == true){
+if(atmosvivid == true){
 			var calcvividscale = 1+(ambilightrangespreadradius/100);
 			var calcblur = ambilightrangeblurradius;
 			if($("stefanvdaavivideffect")){} else{
@@ -319,9 +319,9 @@ try{
 }
 }
 }
-else if (ambilightfixcolor == 'true'){
+else if (ambilightfixcolor == true){
 	totlshowtime.style.webkitBoxShadow = "0px 0px 5px black , 0px -20px " + getblur + " " + getspread + " " + ambilightcolorhex + ", 0px 20px " + getblur + " " + getspread + " " + ambilightcolorhex + ", 20px 0px " + getblur + " " + getspread + " " + ambilightcolorhex + ", -20px 0px " + getblur + " " + getspread + " " + ambilightcolorhex + "";
-} else if(ambilight4color == 'true'){
+} else if(ambilight4color == true){
 	var hex1 = ambilight1colorhex;
 	var hex2 = ambilight2colorhex;
 	var hex3 = ambilight3colorhex;
@@ -331,14 +331,13 @@ else if (ambilightfixcolor == 'true'){
 }
 
 // ambilight time
-if(ambilight == 'true'){ // yes show time
+if(ambilight == true){ // yes show time
 refreshambilight();
 }
 
 // sharebar
-if(sharebar == 'true'){
+if(sharebar == true){
 var currenturl = window.location.href;var currentencodeurl = encodeURIComponent(currenturl);
-var stefanvdurl = "https://chrome.google.com/webstore/detail/pkaglmndhfgdaiaccjglghcbnfinfffa";var stefanvdaacodeurl = encodeURIComponent(stefanvdurl);
 
 var newdivshare = document.createElement('div');
 newdivshare.setAttribute('id','stefanvdaasharepanel');
@@ -346,24 +345,24 @@ document.body.appendChild(newdivshare);
 
 var sharegp = document.createElement('img');
 sharegp.setAttribute('id','stefanvdgoogleplusshare');
-if(window.devicePixelRatio >= 2){sharegp.src = chrome.extension.getURL('/images/googleplus@2x.png');}else{sharegp.src = chrome.extension.getURL('/images/googleplus.png');}
+if(window.devicePixelRatio >= 2){sharegp.src = chrome.extension.getURL('/images/sharegoogleplus@2x.png');}else{sharegp.src = chrome.extension.getURL('/images/sharegoogleplus.png');}
 sharegp.addEventListener("click", function() {window.open('https://plus.google.com/share?ur\l=' + currentencodeurl + '', 'Share to Google+','width=600,height=460,menubar=no,location=no,status=no');});
 newdivshare.appendChild(sharegp);
 
 var sharefb = document.createElement('img');
 sharefb.setAttribute('id','stefanvdfacebookshare');
-if(window.devicePixelRatio >= 2){sharefb.src = chrome.extension.getURL('/images/facebook@2x.png');}else{sharefb.src = chrome.extension.getURL('/images/facebook.png');}
-sharefb.addEventListener("click", function() {window.open("https://www.facebook.com/sharer.php?u="+ currenturl + "[URL]&t=Try this out, i am focus the image with Ambient Aurea browser extension! http://www.stefanvd.net/project/ambientaurea.htm", "_blank");});
+if(window.devicePixelRatio >= 2){sharefb.src = chrome.extension.getURL('/images/sharefacebook@2x.png');}else{sharefb.src = chrome.extension.getURL('/images/sharefacebook.png');}
+sharefb.addEventListener("click", function() {window.open("https://www.facebook.com/sharer.php?u="+ currenturl + "&t=Try this out, I am focus the image with Ambient Aurea browser extension!", 'Share to Facebook','width=600,height=460,menubar=no,location=no,status=no');});
 newdivshare.appendChild(sharefb);
 
 var sharetw = document.createElement('img');
 sharetw.setAttribute('id','stefanvdtwittershare');
-if(window.devicePixelRatio >= 2){sharetw.src = chrome.extension.getURL('/images/twitter@2x.png');}else{sharetw.src = chrome.extension.getURL('/images/twitter.png');}
-sharetw.addEventListener("click", function() {window.open("https://twitter.com/share?url=" + currentencodeurl + "&text=Try this out, i am focus the image with Ambient Aurea browser extension! http://www.stefanvd.net/project/ambientaurea.htm", 'Share to Twitter','width=600,height=460,menubar=no,location=no,status=no');});
+if(window.devicePixelRatio >= 2){sharetw.src = chrome.extension.getURL('/images/sharetwitter@2x.png');}else{sharetw.src = chrome.extension.getURL('/images/sharetwitter.png');}
+sharetw.addEventListener("click", function() {window.open("https://twitter.com/share?url=" + currentencodeurl + "&text=Try this out, I am focus the image with Ambient Aurea browser extension! @ambientaurea", 'Share to Twitter','width=600,height=460,menubar=no,location=no,status=no');});
 newdivshare.appendChild(sharetw);
 }
 
-if(slideshow == 'true'){
+if(slideshow == true){
 var countss; // slideshow counter
 
 var newdivslideshow = document.createElement('div');

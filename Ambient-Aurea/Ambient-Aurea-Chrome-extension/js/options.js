@@ -56,15 +56,15 @@ chrome.storage.sync.get(['fadein','fadeout','contextmenus','ambilight','sharebar
 
 function read_options(){
 chrome.storage.sync.get(['interval', 'lightcolor', 'contextmenus', 'ambilight', 'ambilightrangeblurradius', 'ambilightrangespreadradius', 'ambilightfixcolor', 'ambilightvarcolor', 'ambilightcolorhex', 'ambilight4color', 'ambilight1colorhex', 'ambilight2colorhex', 'ambilight3colorhex', 'ambilight4colorhex', 'fadein', 'fadeout', 'sharebar', 'count', 'slideshow', 'slideshowrefresh', 'countremember' , 'applastonversion', 'reviewedlastonversion', 'optionskipremember', 'atmosvivid'], function(items){
-		if(items['interval']){default_opacity=items['interval'];$('interval').value = items['interval'];}
-		else $('interval').value = 80;
+		if(items['interval']){default_opacity=items['interval'];$('interval').value = items['interval'];$('slider').value = items['interval'];}
+		else {$('interval').value = 80;$('slider').value = 80;}
 		if(items['lightcolor']){$('lightcolor').value = items['lightcolor'];}
 		else {$('lightcolor').value = '#000000';}
 		if(items['contextmenus'] == true)$('contextmenus').checked = true;
 		if(items['ambilight'] == true)$('ambilight').checked = true;
 		if(items['ambilightrangeblurradius']){default_arangeblur=items['ambilightrangeblurradius'];$('ambilightrangeblurradius').value = items['ambilightrangeblurradius'];$('arangeblur').value = items['ambilightrangeblurradius'];}
 		else{$('ambilightrangeblurradius').value = 25;}
-		if(items['ambilightrangespreadradius']){$('ambilightrangespreadradius').value = items['ambilightrangespreadradius'];$('arangespread').value = items['ambilightrangespreadradius'];}
+		if(items['ambilightrangespreadradius']){default_arangespread=items['ambilightrangespreadradius'];$('ambilightrangespreadradius').value = items['ambilightrangespreadradius'];$('arangespread').value = items['ambilightrangespreadradius'];}
 		else{$('ambilightrangespreadradius').value = 15;}
 		if(items['ambilightfixcolor'] == true)$('ambilightfixcolor').checked = true;
 		if(items['ambilightvarcolor'] == true)$('ambilightvarcolor').checked = true;

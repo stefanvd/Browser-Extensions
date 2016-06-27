@@ -33,9 +33,9 @@ TODO
 */
 
 chrome.runtime.onMessage.addListener(function request(request,sender,sendResponse){
-if (request.name == "opacitysaveme") {chrome.storage.local.set({"interval": request.value});}
-else if (request.name == "imgurl") {chrome.storage.local.set({"getimgurl": request.value});}
-else if (request.name == "selector") {chrome.storage.local.set({"getimgurl": request.value});chrome.tabs.executeScript(sender.tab.id, {file: "js/aa.js"});}
+if (request.name == "opacitysaveme") {chrome.storage.sync.set({"interval": request.value});}
+else if (request.name == "imgurl") {chrome.storage.sync.set({"getimgurl": request.value});}
+else if (request.name == "selector") {chrome.storage.sync.set({"getimgurl": request.value});chrome.tabs.executeScript(sender.tab.id, {file: "js/aa.js"});}
 // contextmenu
 else if (request.name == "contextmenuon") {checkcontextmenus();}
 else if (request.name == "contextmenuoff") {removecontexmenus()}
@@ -80,13 +80,13 @@ chrome.contextMenus.create({"title": sharemenuratetitle, "type":"normal", "id": 
 
 // Create a parent item and two children.
 var parent = chrome.contextMenus.create({"title": sharemenusharetitle, "id": "totlsharemenu", "contexts":contexts});
-var child1 = chrome.contextMenus.create({"title": sharemenutellafriend, "id": "totlshareemail", "parentId": parent, "onclick": onClickHandler});
-var child2 = chrome.contextMenus.create({"title": sharemenusendatweet, "id": "totlsharetwitter", "parentId": parent, "onclick": onClickHandler});
-var child2 = chrome.contextMenus.create({"title": sharemenupostonfacebook, "id": "totlsharefacebook", "parentId": parent, "onclick": onClickHandler});
-var child2 = chrome.contextMenus.create({"title": sharemenupostongoogleplus, "id": "totlsharegoogleplus", "parentId": parent, "onclick": onClickHandler});
+var child1 = chrome.contextMenus.create({"title": sharemenutellafriend, "id": "totlshareemail", "parentId": parent});
+var child2 = chrome.contextMenus.create({"title": sharemenusendatweet, "id": "totlsharetwitter", "parentId": parent});
+var child2 = chrome.contextMenus.create({"title": sharemenupostonfacebook, "id": "totlsharefacebook", "parentId": parent});
+var child2 = chrome.contextMenus.create({"title": sharemenupostongoogleplus, "id": "totlsharegoogleplus", "parentId": parent});
 
-chrome.storage.sync.get(['contextmenu'], function(items){
-    if(items['contextmenu']){checkcontextmenus();}
+chrome.storage.sync.get(['contextmenus'], function(items){
+    if(items['contextmenus']){checkcontextmenus();}
 });
 });
 

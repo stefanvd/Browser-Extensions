@@ -37,7 +37,7 @@ function save_options(){
     var getnumber = websitezoomnumberBox.options[i].text;
 	  websitezoom[websitezoomBox.options[i].value] = getnumber;
   }
-  chrome.storage.sync.set({ "allzoom": $('allzoom').checked, "optionskipremember": $('optionskipremember').checked, "contextmenu": $('contextmenu').checked, "badge": $('badge').checked, "defaultzoom": $('defaultzoom').value, "steps": $('steps').value, "lightcolor": $('lightcolor').value, "zoomchrome": $('zoomchrome').checked, "zoomweb": $('zoomweb').checked, "websitezoom": JSON.stringify(websitezoom)});
+  chrome.storage.sync.set({ "allzoom": $('allzoom').checked, "optionskipremember": $('optionskipremember').checked, "contextmenus": $('contextmenus').checked, "badge": $('badge').checked, "defaultzoom": $('defaultzoom').value, "steps": $('steps').value, "lightcolor": $('lightcolor').value, "zoomchrome": $('zoomchrome').checked, "zoomweb": $('zoomweb').checked, "websitezoom": JSON.stringify(websitezoom)});
 }
 
 var firstdefaultvalues = {};
@@ -53,7 +53,7 @@ chrome.storage.sync.get(['zoomchrome', 'zoomweb'], function(items){
 });
 
 function read_options(){
-chrome.storage.sync.get(['allzoom','optionskipremember','countremember','websitezoom','defaultzoom','contextmenu','badge','steps','lightcolor','zoomweb','zoomchrome'], function(items){
+chrome.storage.sync.get(['allzoom','optionskipremember','countremember','websitezoom','defaultzoom','contextmenus','badge','steps','lightcolor','zoomweb','zoomchrome'], function(items){
 		if(items['defaultzoom']){$('defaultzoom').value = items['defaultzoom'];$('slider').value = items['defaultzoom'];}	
 		else $('defaultzoom').value = 100;
     if(items['steps']){$('steps').value = items['steps'];}	
@@ -62,7 +62,7 @@ chrome.storage.sync.get(['allzoom','optionskipremember','countremember','website
 		else $('lightcolor').value = "#3cb4fe";
     if(items['allzoom'] == true)$('allzoom').checked = true;
 		if(items['optionskipremember'] == true)$('optionskipremember').checked = true;
-    if(items['contextmenu'] == true)$('contextmenu').checked = true;
+    if(items['contextmenus'] == true)$('contextmenus').checked = true;
     if(items['badge'] == true)$('badge').checked = true;
     if(items['zoomchrome'] == true){$('zoomchrome').checked = true;$('zoomweb').checked = false;}
     if(items['zoomweb'] == true){$('zoomweb').checked = true;$('zoomchrome').checked = false;}

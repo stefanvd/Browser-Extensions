@@ -31,5 +31,5 @@ function $(id) { return document.getElementById(id); }
 var last_target = null;
 document.addEventListener('mousedown', function(event){
 var goimage = event.target.src;
-chrome.extension.sendMessage({name: 'imgurl', value: goimage});
+chrome.runtime.sendMessage({name: 'imgurl', value: goimage});
 }, true);
