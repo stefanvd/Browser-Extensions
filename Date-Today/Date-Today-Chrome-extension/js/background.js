@@ -2,7 +2,7 @@
 /*
 
 Date Today
-Show the current day and time.
+The best clock to see in one glance the current day and time. With an option to see the analog or digital clock in the browser toolbar.
 Copyright (C) 2016 Stefan vd
 www.stefanvd.net
 
@@ -29,7 +29,6 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 /*
 TODO
 + screenshot
-+ video
 + links
 
 */

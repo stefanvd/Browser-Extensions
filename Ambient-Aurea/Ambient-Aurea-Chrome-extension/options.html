@@ -2,8 +2,8 @@
 //================================================
 /*
 
-Zoom
-Zoom in or out on web content using the zoom button for more comfortable reading.
+Ambient Aurea
+Bring your image to an ambient lighting effect with just one click on the button.
 Copyright (C) 2015 Stefan vd
 www.stefanvd.net
 
@@ -41,7 +41,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 <script type="text/javascript" src="js/analytics.js"></script>
 
 <div id="remembershare">
-<div id="productrememberimage"><img id="rememberlamp" alt="Zoom" src="icons/icon16.png">Zoom™</div>
+<div id="productrememberimage"><img id="rememberlamp" alt="Ambient Aurea" src="icons/icon16.png">Ambient Aurea™</div>
 <div id="remembersharecenter">
 <h2><span data-i18n="friendlyremember"></span></h2>
 <div class="remembertext"><span data-i18n="longdonatetext"></span></div>
@@ -63,9 +63,10 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 </div>
 </div>
 
+
 <div id="loading">
 <div id="loadingcenter">
-<div id="productwelcomeimageload"><img id="loadinglamp" alt="Zoom" src="icons/icon16.png">Zoom™</div>
+<div id="productwelcomeimageload"><img id="loadinglamp" alt="Ambient Aurea" src="icons/icon16.png">Ambient Aurea™</div>
 <div id="progressbar"><div id="progress"><div id="pbaranim"></div></div></div>
 </div>
 <span id="loadinghelp"><span data-i18n="pagestillloading"></span> <a href="https://www.stefanvd.net/support/" target="blank" data-i18n="pagehelp"></a>!</span>
@@ -74,15 +75,15 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 <div id="main-content">
 	<div id="navbar-container">
 	<br>
-	<a href="https://www.stefanvd.net/project/zoom/browser/" target="blank" class="brand"><div id="productwelcomeimage"><img id="welcomelamp" alt="Lamp" src="icons/icon16.png">Zoom™</div></a>
+	<a href="https://www.stefanvd.net/project/ambient-aurea/browser" target="blank" class="brand"><div id="productwelcomeimage"><img id="welcomelamp" alt="Ambient Aurea" src="icons/icon16.png">Ambient Aurea™</div></a>
 	<div id="productsettingtitel" data-i18n="settings"></div>
 	<br><br><br>	
 	<ul id="navbar">
 		<li><a id="tabbasic" data-tab="#tab1" class="navbar-item navbar-item-selected"><span data-i18n="basicsettings"></span></a></li>
-		<li><a id="tabadvan" data-tab="#tab2" class="navbar-item"><span data-i18n="advancedoptions"></span></a></li>		
+		<li><a id="tabvisual" data-tab="#tab2" class="navbar-item"><span data-i18n="visualeffects"></span></a></li>
+		<li><a id="tabadvan" data-tab="#tab4" class="navbar-item"><span data-i18n="advancedoptions"></span></a></li>		
 		<li><a id="tabguide" data-tab="#tab3" class="navbar-item"><span data-i18n="guide"></span></a></li>
-		<li><a id="tabhelp" data-tab="#tab4" class="navbar-item"><span data-i18n="help"></span></a></li>
-	</ul>		
+		<li><a id="tabhelp" data-tab="#tab5" class="navbar-item"><span data-i18n="help"></span></a></li>
 	</ul>
 	</div>
 	<div id="mainview">
@@ -104,7 +105,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 			<table class="youtubepreview">
 					<tbody><tr>
 						<td class="viewpanel">
-						<iframe id="dont-turn-off-the-lights" class="youtube-player" type="text/html" width="480" height="270" src="https://www.youtube.com/embed/?listType=playlist&amp;list=PLfXHh3TKRb4ZRrIhSRo6cWEJVeS3_M5Yb" frameborder="0" allowfullscreen=""></iframe>
+						<iframe id="dont-turn-off-the-lights" class="youtube-player" type="text/html" width="480" height="270" src="https://www.youtube.com/embed/?listType=playlist&amp;list=PLfXHh3TKRb4YxE1nyEgbOwphiK8C0JX9f" frameborder="0" allowfullscreen=""></iframe>
 						</td>
 						<td class="suggpanel">
 						<h3><span data-i18n="titelwelcome"></span></h3>
@@ -122,19 +123,16 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 					<button id="btnpromoaction" class="promoboxbutton">⇩ <span id="spnpromoaction" data-i18n="promocalltoaction"></span></button>
 				</section>
 				<section>
-				<h3 data-i18n="titelzoomengine"></h3>
+				<h3 data-i18n="titelcolor"></h3>
 				<div>
-					<label class="radio"><input id="zoomchrome" type="radio" name="zoomengine" value="chrome"><span data-i18n="deszoomchrome"></span></label>					
-					<label class="radio"><input id="zoomweb" type="radio" name="zoomengine" value="web"><span data-i18n="deszoomweb"></span></label>
+				<label class="checkbox"><input id="lightcolor" type="color" class="color"> <span data-i18n="descolor"></span></label>
 				</div>
 				</section>
 				<section>
-				<h3 data-i18n="titeldefaultzoomvalue"></h3>
-				<div><label class="checkbox"><span data-i18n="desdefaultzoomvalue"></span> <input id="slider" type="range" min="1" max="400" value="100" step="5"/><input id="defaultzoom" type="number" required placeholder="100" min="1" step="1" max="400"></label></div>
-				</section>
-				<section>
-				<h3 data-i18n="titelzoomsteps"></h3>
-				<div><label class="checkbox"><span data-i18n="deszoomsteps"></span> <input id="steps" type="number" required placeholder="10" min="1" step="1" max="100"></label></div>
+				<h3 data-i18n="titelopacity"></h3>
+				<div>
+				<label class="checkbox"><input type="range" id="slider" min="0" max="100" step="1" value="0"><input type="number" id="interval" min="0" max="100" step="1" value="0" maxlength="3" size="4"> <span data-i18n="desopacity"></span></label>
+				</div>
 				</section>
 				<section id="sectionreviewbox">			
 				<div id="reviewextensionbox">
@@ -145,68 +143,111 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 					<div id="war"><span data-i18n="writeareview"></span></div>
 				</div>
 				</section>
-				<section>
-				<h3 data-i18n="titelcontextmenu"></h3>
-				<div><label class="checkbox"><input id="contextmenu" type="checkbox"> <span data-i18n="descontextmenu"></span></label></div>
-				</section>
-				<section>
-				<h3 data-i18n="titelbadge"></h3>
-				<div><label class="checkbox"><input id="badge" type="checkbox"> <span data-i18n="desbadge"></span></label>
-				<label class="checkbox"><span data-i18n="titelbadgecolor"></span> <input id="lightcolor" type="color" class="color" list="datalightcolor">
-                                <datalist id="datalightcolor">
-                                <option>#FFFFFF</option>
-                                <option>#FF0000</option>
-                                <option>#FF7700</option>
-                                <option>#FFEE00</option>
-                                <option>#00FF00</option>
-                                <option>#008000</option>
-                                <option>#3CB4FE</option>
-                                <option>#0000FF</option>
-                                <option>#808080</option>
-                                <option>#000000</option>
-                                </datalist>
-				</label>
-				</div>
-				</section>
-				<section>
-				<h3 data-i18n="titelallzoom"></h3>
-				<div>
-				<label class="checkbox"><input id="allzoom" type="checkbox"><span data-i18n="desallzoom"></span></label>
-				<label class="checkbox">
-				<table id="websitezoom">
-					<tr>
-						<td>
-							<span data-i18n="titelwebsite"></span><br>
-							<input id="websitezoomname" type="text" required placeholder="https://www.stefanvd.net">
-						</td>
-						<td>
-							<span data-i18n="websitezoomvalue"></span><br>
-							<input id="websitezoomnumber" type="number" required placeholder="100" min="0" step="1" max="100">
-						</td>
-						<td>
-							<button id="websitezoomaddbutton" name="add">Add</button>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2">
-							<select id="websitezoomBox" name="websitezoomentryList" size="10" multiple=""></select>
-							<select id="websitezoomnumberBox" name="websitezoomnumberentryList" size="10" multiple=""></select>
-						</td>
-						<td valign="top">
-							<button id="websitezoomremovebutton" name="delete">Remove</button>
-						</td>
-					</tr>
-				</table>
-				</label>
-				</div>
-				</section>
 			</div>
 			<div id="tab2" class="page hidden">
+				<h1 data-i18n="visualeffects"></h1>
+				<br>
+				<div id="example2"></div>
+				<section>
+				<div>
+				<br><br>
+				<div id="vividplace"><canvas id="stefanvdvivideffect" width="640px" height="280px"></canvas></div>
+				<img id="beeld" width="640" height="280" alt="gti Mortsel in 3D" src="images/gtimortselin3d.png">
+				<br><br><br><br>
+				</div>
+				</section>
+				<section id="sectionauroraplayerappbox">			
+				<div id="ambientaureaappbox">
+					<div id="apicon"><img id="ambientaureaicon" src="images/ambient-aurea_32x32.png" width="32px" height="32px"></div>
+					<div id="apname"><span>Ambient Aurea</span></div>
+					<div id="aptllo"><span data-i18n="desambientaurea"></span></div>
+					<div id="apnt"><span data-i18n="nothanks"></span></div>
+					<div id="apgetapp"><span data-i18n="downloadtheapp"></span></div>
+				</div>
+				</section>
+				<section>
+				<h3 data-i18n="titelambilight"></h3>
+				<div>
+				<div class="switch">
+				<div class="grey-text"><span data-i18n="titelon"></span></div>
+				<input type="range" min="0" max="1" step="1" value="0" name="onoffrange" id="onoffrange">
+				<div class="grey-text"><span data-i18n="titeloff"></span></div>
+				</div>
+				<div class="grey-text"><span>GTI Mortsel in 3D &copy; Copyright 2009 Stefan vd.</span></div>
+				<label class="checkbox"><input id="ambilight" type="checkbox"><span data-i18n="desambilight"></span></label>
+				<br>
+				<div>
+					<label class="radio"><input id="ambilightfixcolor" type="radio" name="ambilightcolor" value="fixed"><span data-i18n="desambilightfixcolor"></span> <input id="ambilightcolorhex" type="color" class="color"></label>					
+					<label class="radio"><input id="ambilight4color" type="radio" name="ambilightcolor" value="4"><span data-i18n="desambilight4color"></span><br><span data-i18n="top"></span> <input id="ambilight1colorhex" type="color" class="color"> <span data-i18n="bottom"></span> <input id="ambilight2colorhex" type="color" class="color"> <span data-i18n="right"></span> <input id="ambilight3colorhex" type="color" class="color"> <span data-i18n="left"></span> <input id="ambilight4colorhex" type="color" class="color"></label>
+					<label class="radio"><input id="ambilightvarcolor" type="radio" name="ambilightcolor" value="real"><span data-i18n="desambilightvarcolor"></span></label>
+				</div>
+				<div>
+					<div class="radio">
+						<label>
+						<table>
+							<tr>
+								<td><span class="item" data-i18n="titelblurradius"></span></td>
+								<td><input type="range" min="5" max="250" step="1" value="0" name="arangeblur" id="arangeblur"></td>
+								<td><input type="number" min="5" max="250" step="1" value="0" name="ambilightrangeblurradius" id="ambilightrangeblurradius" maxlength="3" size="4"></td>
+								</tr>								
+						</table>
+						</label>
+						<span data-i18n="desambilightrangespreadradius"></span>
+					</div>
+					<div class="radio">
+						<label>
+						<table>
+							<tr>
+								<td><span class="item" data-i18n="titelspreadradius"></span></td>
+								<td><input type="range" min="0" max="50" step="1" value="0" name="arangespread" id="arangespread"></td>
+								<td><input type="number" min="0" max="50" step="1" value="0" name="ambilightrangespreadradius" id="ambilightrangespreadradius" maxlength="3" size="4"></td>
+								</tr>								
+						</table>
+						</label>
+						<span data-i18n="desambilightrangeblurradius"></span>
+					</div>	
+				<label class="checkbox"><input id="atmosvivid" type="checkbox"><span data-i18n="desatmosvivid"></span></label>
+				<br>					
+				</div>
+				</div>
+				</section>
+				<section>
+				<h3 data-i18n="titelfadein"></h3>
+				<div><label class="checkbox"><input id="fadein" type="checkbox"><span data-i18n="desfadein"></span></label></div>
+				</section>
+				<section>
+				<h3 data-i18n="titelfadeout"></h3>
+				<div><label class="checkbox"><input id="fadeout" type="checkbox"><span data-i18n="desfadeout"></span></label></div>
+				</section>
+			</div>
+			<div id="tab4" class="page hidden">
 				<h1 data-i18n="advancedoptions"></h1>
+				<section>
+				<h3 data-i18n="titelcontextmenus"></h3>
+				<div>
+				<label class="checkbox"><input id="contextmenus" type="checkbox"><span data-i18n="descontextmenus"></span></label>
+				<div class="grey-text"><span data-i18n="imagesembedobject"></span></div>
+				</div>
+				</section>	
+				<section>
+				<h3 data-i18n="titelsharebar"></h3>
+				<div><label class="checkbox"><input id="sharebar" type="checkbox"><span data-i18n="dessharebar"></span></label></div>
+				</section>
+				<section>
+				<h3 data-i18n="titelcount"></h3>
+				<div><label class="checkbox"><input id="count" type="checkbox"><span data-i18n="descount"></span></label></div>
+				</section>
+				<section>
+				<h3 data-i18n="titelslideshow"></h3>
+				<div>
+					<label class="checkbox"><input id="slideshow" type="checkbox"><span data-i18n="desslideshow"></span></label>
+					<label class="checkbox"><input type="number" id="slideshowrefresh" min="0" max="100" step="1" value="0" maxlength="3" size="4"><span data-i18n="desslideshowrefresh"></span></label>
+				</div>
+				</section>
 				<section>
 				<h3 data-i18n="titelrememberpage"></h3>
 				<div><label class="checkbox"><input id="optionskipremember" type="checkbox"><span data-i18n="desrememberpage"></span></label></div>
-				</section>					
+				</section>						
 				<section>
 				<h3 data-i18n="titelsync"></h3>
 				<div class="grey-text"><span data-i18n="titelsyncbrowser"></span></div>
@@ -224,10 +265,10 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 					<button id="ppdownload" data-i18n="titeldownloadbutton"></button>
 					<span class="grey-text"><span data-i18n="desproject"></span> <a href="https://www.stefanvd.net/project/proper-menubar/browser/" target="blank">Proper Menubar</a> <span data-i18n="desbrowserextension"></span>.</span>
 					</p>
-					<label class="checkbox"><span class="item">Ambient Aurea browser extension</span><br><span data-i18n="titeldownloadaaupgrade"></span></label>
+					<label class="checkbox"><span class="item">Zoom browser extension</span><br><span data-i18n="titeldownloadupgradezoom"></span></label>
 					<p>
-					<button id="aadownload" data-i18n="titeldownloadbutton"></button>
-					<span class="grey-text"><span data-i18n="desproject"></span> <a href="https://www.stefanvd.net/project/ambient-aurea/browser/" target="blank">Ambient Aurea</a> <span data-i18n="desbrowserextension"></span>.</span>
+					<button id="zdownload" data-i18n="titeldownloadbutton"></button>
+					<span class="grey-text"><span data-i18n="desproject"></span> <a href="https://www.stefanvd.net/project/zoom/browser/" target="blank">Zoom</a> <span data-i18n="desbrowserextension"></span>.</span>
 					</p>
 					<label class="checkbox"><span class="item">Turn Off the Lights browser extension</span><br><span data-i18n="titeldownloadupgrade"></span></label>
 					<p>
@@ -249,25 +290,26 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				<section>			
 				<h3 data-i18n="titelreset"></h3>
 				<div>
-					<label class="checkbox"><button id="resetzoom" data-i18n="resetbrowserextension"></button></label>
+					<label class="checkbox"><button id="resetambientaurea" data-i18n="resetbrowserextension"></button></label>
 				</div>
 				</section>
 			</div>			
-			<div id="tab4" class="page hidden">
+			<div id="tab5" class="page hidden">
 			<h1 data-i18n="about"></h1>
 			<section>
 				<div>
-				<label class="checkbox"><h4>Zoom™</h4>
+				<label class="checkbox"><h4>Ambient Aurea™</h4>
 						<span data-i18n="version"></span> <span id="version_number"></span>
 						<br><span data-i18n="description"></span>
 				</label>
 				<br>
-				<label class="checkbox"><span data-i18n="titelwebsite"></span>: <a href="https://www.stefanvd.net/project/zoom/browser/" target="_blank">www.stefanvd.net/project/zoom/browser/</a></label>
-				<label class="checkbox"><span data-i18n="titeldeveloper"></span>: <a href="https://www.stefanvd.net" target="_blank">www.stefanvd.net</a></label>
+				<label class="checkbox"><span data-i18n="titelwebsite"></span>: <a href="http://www.stefanvd.net/project/ambient-aurea/browser/" target="_blank">www.stefanvd.net/project/ambient-aurea/browser/</a></label>
+				<label class="checkbox"><span data-i18n="titeldeveloper"></span>: <a href="http://www.stefanvd.net" target="_blank">www.stefanvd.net</a></label>
 				<br>
 				<button id="buttonreportissue" data-i18n="reportbug"></button><button id="buttonchangelog" data-i18n="changelog"></button><button id="buttontranslateme" data-i18n="translateme"></button>
 				<br><br><br><br><br><br>
-				<div class="grey-text">Zoom<br>
+				<div class="grey-text">
+				Ambient Aurea<br>
 				<span class="style_bold">&copy; <span id="yearnow"></span> Stefan vd. <span data-i18n="titelrightsreserved"></span></span><br>
 				<span class="license" data-i18n="textfoot"></span> <a href="http://creativecommons.org/licenses/GPL/2.0/">GPL 2.0</a>.
 				</div>
@@ -278,6 +320,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 			<div id="tab3" class="page hidden">
 				<iframe id="welcomeguide" src="" width="100%" height="100%" frameBorder="0" scrolling="no"></iframe>
 			</div>
+<script type="text/javascript" src="js/options-bottom.js"></script>
 <script type="text/javascript" src="js/translate.js"></script>
 </body>
 </html>

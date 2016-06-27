@@ -1,8 +1,8 @@
 ﻿//================================================
 /*
 
-Date Today
-The best clock to see in one glance the current day and time. With an option to see the analog or digital clock in the browser toolbar.
+Ambient Aurea
+Bring your image to an ambient lighting effect with just one click on the button.
 Copyright (C) 2016 Stefan vd
 www.stefanvd.net
 
@@ -24,7 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.0/
 
 */
-//===============================================
+//================================================
 
 if (typeof safari !== "undefined") {
   chrome = {

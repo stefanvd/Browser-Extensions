@@ -1,8 +1,8 @@
 ﻿/*
 //================================================
 
-Date Today
-The best clock to see in one glance the current day and time. With an option to see the analog or digital clock in the browser toolbar.
+Ambient Aurea
+Bring your image to an ambient lighting effect with just one click on the button.
 Copyright (C) 2016 Stefan vd
 www.stefanvd.net
 
@@ -26,7 +26,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 //================================================
 */
 
-body{min-width:1150px;min-height:800px;background-color:#fff;color:#000;font-family:Arial,sans-serif;cursor:default;font-size:13px}
+body{background-color:#fff;color:#000;font-family:Arial,sans-serif;cursor:default;font-size:13px}
 #main-content{display:-webkit-box;position:absolute;left:0;right:0;top:0;bottom:0}
 #mainview{-webkit-box-align:stretch;-webkit-padding-start:216px;margin:0;position:absolute;left:0;right:0;top:0;bottom:0;z-index:1}
 #mainview-content{box-sizing:border-box;max-width:888px;min-width:600px;padding:0 24px;position:relative}
@@ -103,9 +103,9 @@ header div{display:inline-block;vertical-align:middle}
 #skipremember{float:right}
 #divcheckboxskipremember{text-align:left}
 /* lamp */
-#loadinglamp{margin-right:5px;vertical-align:-2px}
-#welcomelamp{margin-right:5px;vertical-align:-2px}
-#rememberlamp{margin-right:5px;vertical-align:-2px}
+#loadinglamp{margin-right:5px}
+#welcomelamp{margin-right:5px}
+#rememberlamp{margin-right:5px}
 /* share box */
 #shareboxgoogle{background:url(../images/googleplus@2x.png)left top no-repeat;background:-webkit-image-set(url(../images/googleplus.png) 1x,url(../images/googleplus@2x.png) 2x);width:28px;height:18px;display:inline-block;background-size:cover;margin-left:10px;margin-right:10px;cursor:pointer}
 #shareboxfacebook{background:url(../images/facebook@2x.png)left top no-repeat;background:-webkit-image-set(url(../images/facebook.png) 1x,url(../images/facebook@2x.png) 2x);width:18px;height:18px;display:inline-block;background-size:cover;margin-right:10px;cursor:pointer}
@@ -123,11 +123,16 @@ header div{display:inline-block;vertical-align:middle}
 #tllo{position:absolute;font-size:16px;top:25px;right:30px;color:#000}
 #nt{position:absolute;font-size:12px;font-weight:700;color:#000;text-transform:uppercase;top:60px;left:50px;cursor:pointer}
 #war{position:absolute;font-size:12px;font-weight:700;color:#39F;text-transform:uppercase;top:60px;right:30px;cursor:pointer}
-/* clock preview */
-#day{height:44px;color:Gray;width:204px;font-size:25pt;font-family:arial}
-#month{height:40px;color:Black;width:160px;font-size:23pt;font-family:arial}
-#daynumber{height:50px;color:Black;width:60px;font-size:32pt;font-family:arial;text-align:center}
-#minutes{height:100px;color:Black;width:120px;font-size:70pt;font-family:arial}
-#hours{height:100px;color:Gray;width:100px;font-family:arial;font-size:70pt;text-align:right}
-#point{height:100px;color:#999999;width:25px;font-family:arial;font-size:70pt}
-#tic{color:Black;font-family:arial;font-weight:bold;position:absolute;top:0px;left:15px;font-size:12pt}
+/* Ambient Aurea app */
+#ambientaureaappbox{height:75px;position:relative;background:#F5F5F5;border-radius:2px}
+#apicon{position:absolute;top:18px;left:30px}
+#apname{position:absolute;font-size:20px;top:25px;left:72px;color:#000}
+#aptllo{position:absolute;font-size:16px;top:28px;right:30px;color:#000}
+#apnt{position:absolute;font-size:12px;font-weight:700;color:#000;text-transform:uppercase;top:60px;left:50px;cursor:pointer}
+#apgetapp{position:absolute;font-size:12px;font-weight:700;color:#39F;text-transform:uppercase;top:60px;right:30px;cursor:pointer}
+/* Black */
+#example2{box-shadow:rgba(0,0,0,0.5) 0px 1px 3px;border-top-left-radius:5px 5px;border-top-right-radius:5px 5px;border-bottom-right-radius:0px;border-bottom-left-radius:0px;width:840px;height:410px;opacity:1;position:absolute;background-color:#000000;z-index:99}
+#beeld{position:relative;z-index:99;margin-left:100px;margin-top:10px}
+#vividplace{position:absolute;z-index:99;margin-left:100px;margin-top:10px}
+.switch{position:absolute;width:100px;height:200px;right:0px;border-left:1px solid #D9D9D9;padding-left:30px}
+#onoffrange{width:20px;height:20px;-webkit-transform:rotate(90deg)}

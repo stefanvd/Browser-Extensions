@@ -4,8 +4,8 @@
 	  "description": "Date Today"
    },
    "description": {
-      "message": "Show the current day and time.",
-	  "description": "Show the current day and time."
+      "message": "The best clock to see in one glance the current day and time. With an option to see the analog or digital clock in the browser toolbar.",
+	  "description": "The best clock to see in one glance the current day and time. With an option to see the analog or digital clock in the browser toolbar."
    },
    "browsertitle": {
       "message": "Date Today",
