@@ -511,7 +511,7 @@ $("war").addEventListener('click', function() {window.open(writereview, "_blank"
 $("nt").addEventListener('click', function() {$("sectionreviewbox").style.display = "none";chrome.storage.sync.set({"reviewedlastonversion": chrome.runtime.getManifest().version})});
 
 // Aurora Player app box
-$("apgetapp").addEventListener('click', function() {window.open("http://www.stefanvd.net/project/ambientaureaapp.htm", "_blank");$("sectionauroraplayerappbox").style.display = "none";chrome.storage.sync.set({"applastonversion": chrome.runtime.getManifest().version});});
+$("apgetapp").addEventListener('click', function() {window.open(ambientaureaapp, "_blank");$("sectionauroraplayerappbox").style.display = "none";chrome.storage.sync.set({"applastonversion": chrome.runtime.getManifest().version});});
 $("apnt").addEventListener('click', function() {$("sectionauroraplayerappbox").style.display = "none";chrome.storage.sync.set({"applastonversion": chrome.runtime.getManifest().version});});
 
 // retina check

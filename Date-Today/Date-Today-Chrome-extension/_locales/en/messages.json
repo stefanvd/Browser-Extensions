@@ -163,10 +163,6 @@
     "message":"browser extension",
     "description":"browser extension"
   },
-  "reportlist":{
-    "message":"Last known issue",
-    "description":"See the full issue list"
-  },
   "titelwebsite":{
     "message":"Website",
     "description":"Website"
@@ -310,10 +306,6 @@
    "lableday": {
       "message": "Day of the Week",
 	  "description": "Day of the Week"
-   },
-   "donatepromotext": {
-      "message": "If you can make a donation of any amount, I'd appreciate it immensely!",
-      "description": "If you can make a donation of any amount, I'd appreciate it immensely!"
    },
    "changelog": {
       "message": "Changelog",

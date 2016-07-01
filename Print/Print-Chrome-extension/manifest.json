@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "name": "__MSG_name__",
+  "version": "2.0.2.5",
+  "description": "__MSG_description__",
+  "icons": { "16": "icon16.png",
+             "32": "icon32.png",
+             "48": "icon48.png",
+             "128": "icon128.png" },
+  "default_locale": "en",
+  "browser_action": {
+    "default_title": "__MSG_pageatitle__",
+    "default_icon": "icon.png"
+  },
+  "background": {
+    "page": "background.html",
+	"persistent": false
+  },
+  "content_security_policy": "script-src 'self' https://ssl.google-analytics.com https://platform.twitter.com https://apis.google.com; img-src *; object-src 'self'",
+  "options_page": "options.html",
+  "permissions": ["tabs", "http://*/*", "https://*/*"]
+}

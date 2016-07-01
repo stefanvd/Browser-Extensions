@@ -1,0 +1,54 @@
+﻿{
+   "name": {
+      "message": "Print",
+	  "description": "Print"
+   },
+   "description": {
+      "message": "Print the current page you see.",
+	  "description": "Print the current page you see."
+   },
+   "pageatitle": {
+      "message": "Print",
+	  "description": "Print"
+   },
+   "head1": {
+      "message": "Print Options",
+	  "description": "Print Options"
+   },
+   "head2": {
+      "message": "Choose your favorite print icon:",
+	  "description": "Choose your favorite print icon:"
+   },
+   "textfoot": {
+      "message": "This software is licensed under the CC-GNU GPL. To view a copy of this license, visit",
+	  "description": "This software is licensed under the CC-GNU GPL. To view a copy of this license, visit"
+   },
+   "donatepromotext": {
+      "message": "If you can make a donation of any amount, I'd appreciate it immensely!",
+      "description": "If you can make a donation of any amount, I'd appreciate it immensely!"
+   },
+   "changelog": {
+      "message": "Changelog",
+      "description": "changelog link"
+   },
+   "version": {
+      "message": "Version",
+      "description": "Version number text"
+   },
+   "optionpagetitle": {
+      "message": "Print - Options",
+      "description": "Option page title"
+   },
+   "reportbug": {
+      "message": "Report an Issue",
+      "description": "Report an Issue of my extension"
+   },
+   "settings": {
+      "message": "Settings",
+      "description": "Settings"
+   },
+   "basicsettings": {
+      "message": "Basics",
+      "description": "Basics"
+   }
+}

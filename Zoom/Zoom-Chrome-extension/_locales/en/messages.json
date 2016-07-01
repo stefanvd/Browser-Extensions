@@ -55,10 +55,6 @@
         "message": "Share", 
         "description": "Share"
     },
-    "reportlist": {
-        "message": "(see list)", 
-        "description": "See the full issue list"
-    },
     "titelallzoom": {
         "message": "All Zoom In/Out", 
         "description": "All Zoom In/Out"
@@ -235,10 +231,6 @@
     "message":"browser extension",
     "description":"browser extension"
   },
-  "reportlist":{
-    "message":"Last known issue",
-    "description":"See the full issue list"
-  },
   "titelwebsite":{
     "message":"Website",
     "description":"Website"
@@ -254,10 +246,6 @@
   "showremember":{
     "message":"It doesn't show the reminder page when I open the Options",
     "description":"It doesn't show the reminder page when I open the Options"
-  },
-  "donatepromotext":{
-    "message":"If you can make a donation of any amount, I'd appreciate it immensely!",
-    "description":"If you can make a donation of any amount, I'd appreciate it immensely!"
   },
   "skipremember":{
     "message":"Skip this, and open now the options page",

@@ -1,0 +1,82 @@
+﻿{
+   "name": {
+      "message": "Full Screen",
+	  "description": "Full Screen"
+   },
+   "description": {
+      "message": "Go full screen with one click on the button.",
+	  "description": "Go full screen with one click on the button."
+   },
+   "pageatitle": {
+      "message": "Full Screen",
+	  "description": "Full Screen"
+   },
+   "textfoot": {
+      "message": "This software is licensed under the CC-GNU GPL. To view a copy of this license, visit",
+	  "description": "This software is licensed under the CC-GNU GPL. To view a copy of this license, visit"
+   },
+   "titelcontextmenus": {
+      "message": "Context Menu",
+      "description": "Context Menu"
+   },
+   "descontextmenus": {
+      "message": "Show the context menu for an item to go full screen.",
+      "description": "Show the context menu for an item to go full screen."
+   },
+    "donatepromotext": {
+      "message": "If you can make a donation of any amount, I'd appreciate it immensely!",
+      "description": "If you can make a donation of any amount, I'd appreciate it immensely!"
+   },
+    "videotitle": {
+      "message": "Video go to full screen",
+      "description": "Video go to full screen"
+   },
+    "imagetitle": {
+      "message": "Image go to full screen",
+      "description": "Image go to full screen"
+   },
+    "changelog": {
+      "message": "Changelog",
+      "description": "Changelog"
+   },
+   "version": {
+      "message": "Version",
+      "description": "Version"
+   },
+   "optionpagetitle": {
+      "message": "Full Screen - Options",
+      "description": "Full Screen - Options"
+   },
+   "reportbug": {
+      "message": "Report an Issue",
+      "description": "Report an Issue"
+   },
+   "titelicon": {
+      "message": "Pageaction Icon",
+      "description": "Pageaction Icon"
+   },
+   "desicon": {
+      "message": "Hide the pageaction icon in the omnibar.",
+      "description": "Hide the pageaction icon in the omnibar."
+   },
+   "settings": {
+      "message": "Settings",
+      "description": "Settings"
+   },
+   "basicsettings": {
+      "message": "Basics",
+      "description": "Basics"
+   },
+   "titledonatebutton": {
+      "message": "Donate",
+	  "description": "Donate"
+   },
+   "titleautofullscreen": {
+      "message": "Auto Full Screen",
+	  "description": "Auto Full Screen"
+   },
+   "desautofullscreen": {
+      "message": "When you click on the play button, it automatic bring the video to Full Screen.",
+	  "description": "When you click on the play button, it automatic bring the video to Full Screen."
+   }  
+}

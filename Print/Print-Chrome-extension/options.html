@@ -1,0 +1,89 @@
+<!--
+//================================================
+/*
+
+Date Today
+Show the current day and time.
+Copyright (C) 2011 Stefan vd
+www.stefanvd.net
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+
+To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.0/
+
+*/
+//================================================
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title></title>
+<link href="css/options.css" rel="stylesheet" type="text/css">
+<script src="js/options.js" type="text/javascript"></script>
+</head>
+
+<body>
+<script src="js/analytics.js"></script>
+
+<div id="main-content">
+	<div id="navbar-container">
+	<h1 id="settings"></h1>
+	<ul id="navbar">
+	    <div><li id="searchPageNav" pagename="search"><a class="navbar-item" href="http://www.stefanvd.net"><input id="homepageURL" class="favicon-cell" type="url" style="background-image: url(images/s.png);" placeholder=" Stefanvd.net"></a></li></div> 
+		<li><a onclick="#tab1" class="navbar-item navbar-item-selected"><span id="basicsettings"></span></a></li>
+	</ul>
+	<footer>
+	<span id="textfoot" class="license"></span>
+	<a href="http://creativecommons.org/licenses/GPL/2.0/">GPL 2.0</a>.<br><br>
+	<span class="style_bold">&copy; <span id="yearnow"></span> Stefan vd. Some rights reserved.</span>
+	</footer>
+	</div>
+	<div id="mainview">
+	<div id="managed-prefs-banner">
+		<span id="managed-prefs-icon">
+			<a class="donatebutton" href="http://www.stefanvd.net/donate.htm">Donate Me</a>
+		</span>
+		<span id="managed-prefs-text"></span>
+		<div id="managed-prefs-text-close"><span id="close" style="display:none;">Close</span></div>
+    </div>
+		<div id="mainview-content">
+			<div id="tab1" class="page">
+			<h1 id="name"></h1>
+			<header>
+			<span id="version"></span> <span id="version_number"></span> - <a id="changelog" href="http://docs.google.com/View?id=dfjh722z_74f53zv6hm"></a> - <a id="reportbug" href="http://www.stefanvd.net/support/browserextensions.htm"></a>
+			</header>
+				<br>
+				<section>
+				<h3 id="head2"></h3>
+				<div>				
+				<table style="width: 100%">
+					<tr>
+						<td style="width: 60%">
+						<span>Design</span><div><img id="p1" alt="" class="color" src="icon.png"><img id="p2" alt="" class="color" src="gray19.png"><img id="p3" alt="" class="color" src="whitegray19.png"><img id="p4" alt="" class="color" src="white19.png"><img id="p5" alt="" class="color" src="wood19.png"><img id="p6" alt="" class="color" src="gold19.png"><img id="p7" alt="" class="color" src="darkgreen19.png"><img id="p8" alt="" class="color" src="green19.png"><img id="p9" alt="" class="color" src="pink19.png"><img id="p10" alt="" class="color" src="red19.png"></div>
+						<span>Original</span><div><img id="o1" alt="" class="color" src="reel19.png"></div>		
+						<br>
+						</td>
+						<td style="width: 30%"><div style="width:19px; height:19px; position: absolute; padding-top: 24px; padding-left: 190px;"><img alt="" name="preview" class="color" src="icon.png"></div><img alt="" height="96" src="images/preview.png" width="277">
+						</td>
+					</tr>
+				</table>
+				</div>
+				</section>
+			</div>
+</div>
+</body>
+</html>

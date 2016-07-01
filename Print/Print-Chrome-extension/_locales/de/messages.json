@@ -1,0 +1,54 @@
+﻿{
+   "name": {
+      "message": "Drucken",
+	  "description": "Print"
+   },
+   "description": {
+      "message": "Drucken Sie die aktuelle Seite sehen.",
+	  "description": "Print the current page you see."
+   },
+   "pageatitle": {
+      "message": "Drucken",
+	  "description": "Print"
+   },
+   "head1": {
+      "message": "Druckoptionen",
+	  "description": "Print Options"
+   },
+   "head2": {
+      "message": "Wählen Sie Ihren Favoriten Drucken Symbol:",
+	  "description": "Choose your favorite print icon:"
+   },
+   "textfoot": {
+      "message": "Diese Software ist unter der CC-GNU GPL lizenziert. Um eine Kopie dieser Lizenz einzusehen, besuchen Sie",
+	  "description": "This software is licensed under the CC-GNU GPL. To view a copy of this license, visit"
+   },
+    "donatepromotext": {
+      "message": "Wenn Sie einen einen Betrag in beliebiger Höhe spenden könnten, würde ich es ungemein zu schätzen wissen!",
+      "description": "If you can make a donation of any amount, I'd appreciate it immensely!"
+   },
+   "changelog": {
+      "message": "Änderungen",
+      "description": "changelog link"
+   },
+   "version": {
+      "message": "Version",
+      "description": "Version number text"
+   },
+   "optionpagetitle": {
+      "message": "Print - Optionen",
+      "description": "Option page title"
+   },
+   "reportbug": {
+      "message": "Problem melden",
+      "description": "Report an Issue of my extension"
+   },
+   "settings": {
+      "message": "Einstellungen",
+      "description": "Settings"
+   },
+   "basicsettings": {
+      "message": "Basis",
+      "description": "Basics"
+   }
+}

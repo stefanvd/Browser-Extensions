@@ -1,0 +1,202 @@
+<!--
+//================================================
+/*
+
+Proper Menubar
+Add back the black menubar below the omnibox.
+Copyright (C) 2013 Stefan vd
+www.stefanvd.net
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+
+To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.0/
+
+*/
+//================================================
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<title data-i18n="optionpagetitle">Proper Menubar - Options</title>
+<link rel="stylesheet" type="text/css" href="css/options.css">
+<script type="text/javascript" src="js/options.js"></script>
+</head>
+<body>
+<script type="text/javascript" src="js/analytics.js"></script>
+
+<div id="loading">
+<div id="loadingcenter">
+<img id="productwelcomeimage" src="images/propermenubarwelcome.png"/>
+<div id="progressbar"><div id="progress"><div id="pbaranim"></div></div></div>
+</div>
+<span id="loadinghelp"><span data-i18n="pagestillloading"></span> <a href="http://www.stefanvd.net/support/contactus.php" target="blank" data-i18n="pagehelp"></a>!</span>
+</div>
+
+<div id="main-content">
+			<div id="sharepopup" style="display:none;">
+				<div id="sharepopupwindow">
+					<div id="productsharebuttonclose">X</div>
+					<iframe id="sharebuttonspopup" src="" width="720px" height="630px" frameBorder="0" scrolling="no"></iframe>
+				</div>
+			</div>
+	<div id="navbar-container">
+	<br>
+	<img id="productwelcomeimage" src="images/propermenubarwelcome.png"/>
+	<div id="productsettingtitel" data-i18n="settings"></div>
+	<br><br>
+	<div id="productsharebar">
+		<div id="productsharebutton" data-i18n="productshare"></div>
+	</div>
+	<br>
+	<ul id="navbar">
+		<li><a id="tabbasic" onclick="#tab1" class="navbar-item navbar-item-selected"><span data-i18n="basicsettings"></span></a></li>
+		<li><a id="tabdesign" onclick="#tab2" class="navbar-item"><span data-i18n="designmenubar"></span></a></li>
+		<li><a id="tabguide" onclick="#tab3" class="navbar-item"><span data-i18n="guide"></span></a></li>
+	</ul>
+	<footer>
+	<span class="style_bold">&copy; <span id="yearnow"></span> Stefan vd. Some rights reserved.</span>
+	</footer>
+	</div>
+	<div id="mainview">
+	<div id="managed-prefs-banner">
+		<span id="managed-prefs-icon">
+			<a class="donatebutton" href="http://www.stefanvd.net/donate.htm" data-i18n="titledonatebutton"></a>
+		</span>
+		<span id="managed-prefs-text" data-i18n="donatepromotext"></span>
+		<div id="managed-prefs-text-close"><span style="display:none;">Close</span></div>
+    </div>
+		<div id="mainview-content">
+			<div id="tab1" class="page">
+			<h1 data-i18n="basicsettings"></h1>
+			<header>
+			<span data-i18n="version"></span> <span id="version_number"></span> - <a href="http://www.stefanvd.net/project/propermenubar.htm" data-i18n="changelog"></a> - <a href="http://www.stefanvd.net/support/contactus.php" data-i18n="reportbug"></a>
+			</header>
+				<section>
+				<h3 data-i18n="menubar"></h3>
+				<div>
+				<br>
+				<div>
+				<span data-i18n="desmenubar"></span>
+				<br>
+				<br>
+				<input id="link1a" type="checkbox"><span data-i18n="link1a"></span>: <input type="text" id="googleplus" value="You">
+				<input id="link2a" type="checkbox"><span data-i18n="link2a"></span>
+				<input id="link3a" type="checkbox"><span data-i18n="link3a"></span>
+				<input id="link4a" type="checkbox"><span data-i18n="link4a"></span>
+				<input id="link5a" type="checkbox"><span data-i18n="link5a"></span>
+				<br>
+				<input id="link6a" type="checkbox"><span data-i18n="link6a"></span>
+				<input id="link7a" type="checkbox"><span data-i18n="link7a"></span>
+				<input id="link8a" type="checkbox"><span data-i18n="link8a"></span>
+				<input id="link9a" type="checkbox"><span data-i18n="link9a"></span>
+				<input id="link10a" type="checkbox"><span data-i18n="link10a"></span>
+				<br>
+				<input id="link11a" type="checkbox"><span data-i18n="link11a"></span>
+				<input id="link12a" type="checkbox"><span data-i18n="link12a"></span>
+				<input id="link13a" type="checkbox"><span data-i18n="link13a"></span>
+				<input id="link14a" type="checkbox"><span data-i18n="link14a"></span>
+				<input id="link15a" type="checkbox"><span data-i18n="link15a"></span>
+				<br>
+				<input id="link16a" type="checkbox"><span data-i18n="link16a"></span>
+				<input id="link17a" type="checkbox"><span data-i18n="link17a"></span>
+				<input id="link18a" type="checkbox"><span data-i18n="link18a"></span>
+				<input id="link19a" type="checkbox"><span data-i18n="link19a"></span>
+				<input id="link20a" type="checkbox"><span data-i18n="link20a"></span>
+				<br>
+				<input id="link22a" type="checkbox"><span data-i18n="link22a"></span>
+				<input id="link23a" type="checkbox"><span data-i18n="link23a"></span>
+				<input id="link24a" type="checkbox"><span data-i18n="link24a"></span>
+				<input id="link25a" type="checkbox"><span data-i18n="link25a"></span>
+				<input id="link21a" type="checkbox"><span data-i18n="link21a"></span>	
+				</div>
+				</section>
+				<section>
+				<h3 data-i18n="titelallsites"></h3>
+				<div>
+				<label class="checkbox"><input id="googlesites" type="radio" name="pmw"><span data-i18n="desgooglesites"></span></label>
+				<label class="checkbox"><input id="allsites" type="radio" name="pmw"><span data-i18n="desallsites"></span></label>
+				<label class="checkbox"><input id="propermenuonly" type="radio" name="pmw"><span data-i18n="despropermenuonly"></span></label>
+				  <table id="propermenuwhitelist">
+ 				   <tr>
+ 				     <td>Website:</td>
+  				     <td><input id="propermenuwebsiteurl" type="url" required pattern="https?://.+" placeholder="http://www.example.com"></td>
+ 				     <td><button id="propermenuaddbutton" name="add"><span data-i18n="addbutton"></span></button></td>
+ 				   </tr>
+ 				   <tr>
+				      <td colspan="2"><select id="propermenuDomainsBox" name="propermenuentryList" size="3" multiple=""></select></td>
+				      <td valign="center"><button id="propermenuremovebutton" name="delete"><span data-i18n="deletebutton"></span></button></td>					  
+				    </tr>
+				  </table>
+				</div>
+				</section>
+				<section>
+				<h3 data-i18n="titelsearch"></h3>
+				<div>
+				<label class="checkbox"><input id="search" type="checkbox"><span data-i18n="dessearch"></span></label>
+				</div>
+				</section>
+				<section>
+				<h3 data-i18n="titelexistingtab"></h3>
+				<div>
+				<label class="checkbox"><input id="existingtab" type="checkbox"><span data-i18n="desexistingtab"></span></label>
+				</div>
+				</section>
+				<section>
+				<h3></h3>
+				<div>
+				<div class="grey-text"><span data-i18n="googletrademark"></span></div>
+				</section>
+			</div>
+			<div id="tab2" class="page">
+			<h1 data-i18n="designmarquee"></h1>
+				<section>
+				<h3 data-i18n="titelcountry"></h3>
+				<div>
+				<label class="checkbox"><span data-i18n="descountry"></span> <input type="text" id="country" value="com" maxlength="6" size="4"></label>
+				</div>
+				</section>
+				<section>
+				<h3 data-i18n="titelfontcolor"></h3>
+				<div>
+				<label class="checkbox"><span data-i18n="desfontcolor"></span> <input id="fontcolor" type="color"></label>
+				</div>
+				</section>	
+				<section>
+				<h3 data-i18n="titelbackground"></h3>
+				<div>
+				<label class="checkbox"><input id="backgroundcolor" type="radio" name="bckprop"><span data-i18n="desbackgroundcolor"></span> <input id="backgroundhex" type="color"> <span data-i18n="desopacity"></span> <input id="opacity" type="number" min="0" max="100">%</label>
+				<label class="checkbox"><input id="backgroundimage" type="radio" name="bckprop"><span data-i18n="desbackgroundimage"></span>
+				<input id="backgroundimagesource" type="text">
+				<br>
+				1. <div class="slice1" id="slice1"></div>
+				2. <div class="slice2" id="slice2"></div>
+				3. <div class="slice3" id="slice3"></div>
+				4. <div class="slice4" id="slice4"></div>
+				5. <div class="slice5" id="slice5"></div>
+				6. <div class="slice6" id="slice6"></div>
+				</label>
+				</div>
+				</section>			
+			</div>
+		</div>
+			<div id="tab3" class="page hidden">
+				<iframe id="welcomeguide" src="" width="100%" height="100%" frameBorder="0" scrolling="no"></iframe>
+			</div>
+<script type="text/javascript" src="js/translate.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!--
+//================================================
+/*
+
+Full Screen
+Go full screen with one click on the button.
+Copyright (C) 2012 Stefan vd
+www.stefanvd.net
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+
+To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.0/
+
+*/
+//================================================
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<title data-i18n="optionpagetitle">Full Screen - Options</title>
+<link rel="stylesheet" type="text/css" href="css/options.css">
+<script type="text/javascript" src="js/options.js"></script>
+<!-- Place this tag in your head or just before your close body tag -->
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+</head>
+<body>
+<script type="text/javascript" src="js/analytics.js"></script>
+
+<div id="loading">
+<div id="loadingcenter">
+<img id="productwelcomeimage" src="images/fullscreenwelcome.png"/>
+<div id="progressbar"><div id="progress"><div id="pbaranim"></div></div></div>
+</div>
+</div>
+
+<div id="main-content">
+	<div id="navbar-container">
+	<br>
+	<a href="http://www.stefanvd.net/project/fullscreen.htm" target="blank"><img id="productwelcomeimage" src="images/fullscreenwelcome.png"/></a>
+	<div id="productsettingtitel" data-i18n="settings"></div>
+	<br><br>
+	<div id="productsharebutton">
+		<!-- Facebook -->
+		<div id="productsharebuttonfb">
+		<iframe <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fchrome.google.com%2Fwebstore%2Fdetail%2Fgmimocjjppdelmhpcmpkhekmpoddgima&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:21px;" allowTransparency="true"></iframe>
+		</div>
+		<!-- Twitter -->
+		<div id="productsharebuttont">
+		<a href="https://twitter.com/share" class="twitter-share-button" data-url="https://chrome.google.com/webstore/detail/gmimocjjppdelmhpcmpkhekmpoddgima" data-text="I go for Full Screen, this extension bring my video and image element to Full Screen, yeah!" data-count="none">Tweet</a>
+		<script type="text/javascript" src="js/twitter-button.js"></script>
+		</div>
+		<!-- Google +1 -->
+		<div id="productsharebuttong">
+		<g:plusone size="medium" annotation="none" href="https://chrome.google.com/webstore/detail/gmimocjjppdelmhpcmpkhekmpoddgima"></g:plusone>
+		</div>
+	</div>
+	<br>	
+	<ul id="navbar">
+		<li><a id="tabbasic" onclick="#tab1" class="navbar-item navbar-item-selected"><span data-i18n="basicsettings"></span></a></li>
+	</ul>
+	<footer>
+	<span class="license" data-i18n="textfoot"></span>
+	<a href="http://creativecommons.org/licenses/GPL/2.0/">GPL 2.0</a>.<br><br>
+	<span class="style_bold">&copy; <span id="yearnow"></span> Stefan vd. Some rights reserved.</span>
+	</footer>
+	</div>
+	<div id="mainview">
+	<div id="managed-prefs-banner">
+		<span id="managed-prefs-icon">
+			<a class="donatebutton" href="http://www.stefanvd.net/donate.htm" data-i18n="titledonatebutton"></a>
+		</span>
+		<span id="managed-prefs-text" data-i18n="donatepromotext"></span>
+		<div id="managed-prefs-text-close"><span style="display:none;">Close</span></div>
+    </div>
+		<div id="mainview-content">
+			<div id="tab1" class="page">
+			<h1 data-i18n="basicsettings"></h1>
+			<header>
+			<span data-i18n="version"></span> <span id="version_number"></span> - <a href="https://docs.google.com/document/pub?id=1xP3HutAm75SMDU8s-JZof355vot2igASxt97x3kMaOs" data-i18n="changelog"></a> - <a href="http://spreadsheets.google.com/viewform?formkey=dExtZUJLeFRpc01aeHJxQ1pIN1NYOGc6MQy" data-i18n="reportbug"></a>
+			</header>
+			<br>
+				<section>
+				<h3 data-i18n="titelcontextmenus"></h3>
+				<div>
+				<label class="checkbox"><input id="contextmenus" type="checkbox"><span data-i18n="descontextmenus"></span></label>
+				<div class="grey-text">Support: &lt;img&gt;, &lt;video&gt;, &lt;page&gt;.</div>
+				</div>
+				</section>
+				<section>
+				<h3 data-i18n="titelicon"></h3>
+				<div><label class="checkbox"><input id="pageaction" type="checkbox"><span data-i18n="desicon"></span></label>
+				</section>			
+				<section>
+				<h3 data-i18n="titleautofullscreen"></h3>
+				<div><label class="checkbox"><input id="autofullscreen" type="checkbox"><span data-i18n="desautofullscreen"></span></label>
+				</section>				
+			</div>
+</div>
+<script type="text/javascript" src="js/translate.js"></script>
+</body>
+</html>

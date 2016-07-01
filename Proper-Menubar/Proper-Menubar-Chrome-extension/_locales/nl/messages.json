@@ -1,0 +1,286 @@
+{
+   "basicsettings": {
+      "description": "Basics",
+      "message": "Basis"
+   },
+   "changelog": {
+      "description": "changelog link",
+      "message": "Wijziging"
+   },
+   "desallsites": {
+      "description": "Show the bar on all websites included not Google sites",
+      "message": "Toon de balk op alle website's inclusief niet Google-sites"
+   },
+   "desbackgroundcolor": {
+      "description": "Background Color",
+      "message": "Achtergrondkleur"
+   },
+   "desbackgroundimage": {
+      "description": "Click below your favorite background image:",
+      "message": "Klik hieronder je favoriete afbeelding achtergrond:"
+   },
+   "descountry": {
+      "description": "Type here your country website code (or 'com' for international):",
+      "message": "Type hier u land website code (of 'com' voor internationale):"
+   },
+   "description": {
+      "description": "Add back the black menubar below the omnibox.",
+      "message": "Voeg weer de zwarte menubalk onder de omnibox."
+   },
+   "designmenubar": {
+      "description": "Design",
+      "message": "Ontwerp"
+   },
+   "desmenubar": {
+      "description": "Menubar",
+      "message": "Controleer de volgende elementen als je dit wilt zien in de menubalk:"
+   },
+   "desopacity": {
+      "description": "with an opacity of",
+      "message": "met een opaciteit van"
+   },
+   "dessearch": {
+      "description": "Option to use the search keyword for other Google links.",
+      "message": "Optie om de zoekwoord te gebruiken voor andere Google linken."
+   },
+   "donatepromotext": {
+      "description": "If you can make a donation of any amount, I'd appreciate it immensely!",
+      "message": "Als u een donatie van een bedrag kan maken, zou ik het enorm waarderen!"
+   },
+   "googletrademark": {
+      "description": "Note: Google is a trademark of Google Inc. Use of this trademark is subject to Google Permissions.",
+      "message": "Opmerking: Google is een handelsmerk van Google Inc. Het gebruik van deze handelsmerk is onderworpen aan Toestemming van Google."
+   },
+   "guide": {
+      "description": "Proper Menubar Guide",
+      "message": "Proper Menubar Gids"
+   },
+   "link10a": {
+      "description": "Calendar",
+      "message": "Agenda"
+   },
+   "link11a": {
+      "description": "Translate",
+      "message": "Vertalen"
+   },
+   "link12a": {
+      "description": "Mobile",
+      "message": "Mobiel"
+   },
+   "link13a": {
+      "description": "Books",
+      "message": "Boeken"
+   },
+   "link14a": {
+      "description": "Offers",
+      "message": "Offers"
+   },
+   "link15a": {
+      "description": "Wallet",
+      "message": "Wallet"
+   },
+   "link16a": {
+      "description": "Shopping",
+      "message": "Shopping"
+   },
+   "link17a": {
+      "description": "Blogger",
+      "message": "Blogger"
+   },
+   "link18a": {
+      "description": "Finance",
+      "message": "Financieren"
+   },
+   "link19a": {
+      "description": "Photos",
+      "message": "Foto's"
+   },
+   "link1a": {
+      "description": "+You",
+      "message": "+Jij"
+   },
+   "link20a": {
+      "description": "Videos",
+      "message": "Video's"
+   },
+   "link21a": {
+      "description": "More Google...",
+      "message": "Meer Google..."
+   },
+   "link22a": {
+      "description": "Google Voice",
+      "message": "Google Voice"
+   },
+   "link23a": {
+      "description": "Contacts",
+      "message": "Contacten"
+   },
+   "link24a": {
+      "description": "Scholar",
+      "message": "Scholar"
+   },
+   "link25a": {
+      "description": "Google Keep",
+      "message": "Google Keep"
+   },
+   "link2a": {
+      "description": "Search",
+      "message": "Zoek"
+   },
+   "link3a": {
+      "description": "Images",
+      "message": "Afbeeldingen"
+   },
+   "link4a": {
+      "description": "Maps",
+      "message": "Maps"
+   },
+   "link5a": {
+      "description": "Play",
+      "message": "Play"
+   },
+   "link6a": {
+      "description": "YouTube",
+      "message": "YouTube"
+   },
+   "link7a": {
+      "description": "News",
+      "message": "Nieuws"
+   },
+   "link8a": {
+      "description": "Gmail",
+      "message": "Gmail"
+   },
+   "link9a": {
+      "description": "Drive",
+      "message": "Drive"
+   },
+   "menubar": {
+      "description": "Menubar",
+      "message": "Menubalk"
+   },
+   "name": {
+      "description": "Proper Menubar",
+      "message": "Proper Menubar"
+   },
+   "optionpagetitle": {
+      "description": "Proper Menubar - Options",
+      "message": "Proper Menubar - Opties"
+   },
+   "pagehelp": {
+      "description": "help",
+      "message": "help"
+   },
+   "pagestillloading": {
+      "description": "The page is still loading?",
+      "message": "De pagina is nog aan het laden?"
+   },
+   "popupdonate": {
+      "description": "Support my development",
+      "message": "Steun mijn ontwikkeling"
+   },
+   "productshare": {
+      "description": "Share",
+      "message": "Deel"
+   },
+   "reportbug": {
+      "description": "Report an Issue of my extension",
+      "message": "Rapporteer een probleem"
+   },
+   "settings": {
+      "description": "Settings",
+      "message": "Instellingen"
+   },
+   "textfoot": {
+      "description": "This software is licensed under the CC-GNU GPL. To view a copy of this license, visit",
+      "message": "Deze software is gelicenseerd onder de CC-GNU GPL. Om een \u200B\u200Bkopie van deze licentie bekijken, bezoek"
+   },
+   "titelallsites": {
+      "description": "Websites",
+      "message": "Website's"
+   },
+   "titelbackground": {
+      "description": "Background",
+      "message": "Achtergrond"
+   },
+   "titelcountry": {
+      "description": "Country",
+      "message": "Land"
+   },
+   "titelsearch": {
+      "description": "Search keyword",
+      "message": "Zoekwoord"
+   },
+   "titledonatebutton": {
+      "description": "Donate",
+      "message": "Doneer"
+   },
+   "turnoff": {
+      "description": "'Proper Menubar' is ON",
+      "message": "'Proper Menubar' is AAN"
+   },
+   "turnon": {
+      "description": "'Proper Menubar' is OFF",
+      "message": "'Proper Menubar' is UIT"
+   },
+   "version": {
+      "description": "Version",
+      "message": "Versie"
+   },
+   "designmarquee": {
+      "description": "Design",
+      "message": "Ontwerp"
+   },
+   "titelexistingtab": {
+      "description": "Open Link",
+      "message": "Open Link"
+   }, 
+   "desexistingtab": {
+      "description": "Als u deze optie inschakelt, zal het de link openen in uw bestaande tabblad.",
+      "message": "If you enable this option, it will open the link in your existing tab."
+   },
+   "upgradecontexttitle": {
+      "description": "Verbetering",
+      "message": "Improvement"
+   },
+   "upgradecontextmessage": {
+      "description": "op Google website",
+      "message": "for Google website"
+   }, 
+   "upgradecontextitemta": {
+      "description": "Verbetering",
+      "message": "Improvement"
+   }, 
+   "upgradecontextitemma": {
+      "description": "op YouTube website",
+      "message": "for YouTube website"
+   }, 
+   "upgradecontextitemtb": {
+      "description": "Link",
+      "message": "Link"
+   }, 
+   "upgradecontextitemmb": {
+      "description": "Nu kunt u de koppeling openen in uw bestaande tab",
+      "message": "Now you can open the link in your existing tab"
+   },
+    "upgradefbshare": {
+        "message": "Facebook Delen", 
+        "description": "Facebook Share"
+    },	
+    "upgradetwshare": {
+        "message": "Tweet", 
+        "description": "Tweet"
+    },
+    "ratetitle": {
+        "message": "Alstublieft geef & beoordelen mijn extensie", 
+        "description": "Please rate & review my extension"
+    },
+    "ratedes": {
+        "message": "En laat iedereen weten over deze geweldige uitbreiding!", 
+        "description": "And let everyone know about this great extension!"
+    },
+    "rateitema": {
+        "message": "Beoordeel 5 sterren", 
+        "description": "Rate 5 stars"
+    }
+}

@@ -1,207 +1,175 @@
 ﻿{
-   "name": {
-      "message": "Ambient Aurea",
-	  "description": "Ambient Aurea"
-   },
-   "description": {
-      "message": "Bring your image to an ambient lighting effect with just one click on the button.",
-	  "description": "Bring your image to an ambient lighting effect with just one click on the button."
-   },
-   "browserbutton": {
-      "message": "Ambient Aurea",
-	  "description": "Ambient Aurea"
-   },
-   "textfoot": {
-      "message": "This software is licensed under the CC-GNU GPL. To view a copy of this license, visit",
-	  "description": "This software is licensed under the CC-GNU GPL. To view a copy of this license, visit"
-   },
-   "titelcontextmenus": {
-      "message": "Context Menu",
-      "description": "Context Menu"
-   },
-   "descontextmenus": {
-      "message": "Show the context menu for Ambient Aurea",
-      "description": "Show the context menu for Ambient Aurea"
-   },
-    "donatepromotext": {
-      "message": "If you can make a donation of any amount, I'd appreciate it immensely!",
-      "description": "If you can make a donation of any amount, I'd appreciate it immensely!"
-   },
-    "imagetitle": {
-      "message": "Image go to Ambient Aurea",
-      "description": "Image go to Ambient Aurea"
-   },
-    "changelog": {
-      "message": "Changelog",
-      "description": "Changelog"
-   },
-   "version": {
-      "message": "Version",
-      "description": "Version"
-   },
-   "optionpagetitle": {
-      "message": "Ambient Aurea - Options",
-      "description": "Ambient Aurea - Options"
-   },
-   "reportbug": {
-      "message": "Report an Issue",
-      "description": "Report an Issue"
-   },
-   "titelicon": {
-      "message": "Pageaction Icon",
-      "description": "Pageaction Icon"
-   },
-   "desicon": {
-      "message": "Hide the pageaction icon in the omnibar",
-      "description": "Hide the pageaction icon in the omnibar"
-   },
-   "settings": {
-      "message": "Settings",
-      "description": "Settings"
-   },
-   "basicsettings": {
-      "message": "Basics",
-      "description": "Basics"
-   },
-   "titledonatebutton": {
-      "message": "Donate",
-	  "description": "Donate"
-   },
-   "visualeffects": {
-      "message": "Visual Effects",
-	  "description": "Visual Effects"
-   },
-   "titelfadein": {
-      "message": "Fade In", 
-      "description": "Fade In"
-   },    
-   "desfadein": {
-      "message": "Show the fade in effect", 
-      "description": "Show the fade in effect"
-   }, 
-   "titelfadeout": {
-      "message": "Fade Out", 
-      "description": "Fade Out"
-   }, 	
-   "desfadeout": {
-      "message": "Show the fade out effect", 
-      "description": "Show the fade out effect"
-   },
-   "titelambilight": {
-      "message": "Atmosphere Lighting", 
-      "description": "Atmosphere Lighting"
-   },    
-   "desambilight": {
-      "message": "Show you the atmosphere lighting effect of the current image", 
-      "description": "Show you the atmosphere lighting effect of the current image"
-   },    
-   "desambilightfixcolor": {
-      "message": "A solid color:", 
-      "description": "A solid color:"
-   },   
-   "desambilight4color": {
-      "message": "4 choosen colors around the image:", 
-      "description": "4 choosen colors around the image:"
-   },   
-   "desambilightvarcolor": {
-      "message": "Take the colors from the image content.", 
-      "description": "Take the colors from the image content."
-   },
-  "titelspreadradius":{
-    "message":"Spread radius:",
-    "description":"Spread radius:"
-  }, 
-   "desambilightrangespreadradius": {
-    "message":"Positive values increase the size of the shadow, negative values decrease the size.",
-    "description":"Positive values increase the size of the shadow, negative values decrease the size."
-  },
-   "titelblurradius": {
-    "message":"Blur radius:",
-    "description":"Blur radius:"
-  },
-   "desambilightrangeblurradius": {
-    "message":"Lower values will sharpen the shadow, higher values will make them more blurred.",
-    "description":"Lower values will sharpen the shadow, higher values will make them more blurred."
-  },
-   "titelon": {
-      "message": "On", 
-      "description": "On"
-   },
-   "titeloff": {
-      "message": "Off", 
-      "description": "Off"
-   }, 
-   "left":{
-      "message":"Left:",
-      "description":"Left:"
-   },
-   "right": {
-      "message": "Right:", 
-      "description": "Right:"
-   },
-   "top": {
-      "message": "Top:", 
-      "description": "Top:"
-   },    
-   "bottom": {
-      "message": "Bottom:", 
-      "description": "Bottom:"
-   },
-   "guide": {
-      "message": "AA Welcome Guide", 
-      "description": "AA Welcome Guide"
-   },
-   "titelcolor": {
-      "message": "Color", 
-      "description": "Color"
-   },
-   "descolor": {
-      "message": "The background color of the outside of the frame", 
-      "description": "The background color of the outside of the frame"
-   },
-   "titelopacity": {
-      "message": "Opacity", 
-      "description": "Opacity"
-   },
-   "desopacity": {
-      "message": "Choose the opacity level outside of the frame.", 
-      "description": "Choose the opacity level outside of the frame."
-   },
-   "titelsharebar": {
-      "message": "Share Bar", 
-      "description": "Share Bar"
-   },
-   "dessharebar": {
-      "message": "This shows the share bar for the current image.", 
-      "description": "This shows the share bar for the current image."
-   },
-   "titelcount": {
-      "message": "All found images", 
-      "description": "All found images"
-   },
-   "descount": {
-      "message": "This show right below the total number of images found in the gallery.", 
-      "description": "This show right below the total number of images found in the gallery."
-   },
-   "titelslideshow": {
-      "message": "Slideshow",
-      "description": "Slideshow"
-   },
-   "desslideshow": {
-      "message": "This add on the top of your website an extra play button. So you can start the slideshow in that gallery.", 
-      "description": "This add on the top of your website an extra play button. So you can start the slideshow in that gallery."
-   },
-   "desslideshowrefresh": {
-      "message": "to show the next image.", 
-      "description": "to show the next image."
-   },
-    "pagehelp": {
-        "message": "help", 
-        "description": "help"
+    "name": {
+        "message": "Finance Toolbar", 
+        "description": "Finance Toolbar"
     }, 
+    "description": {
+        "message": "This show you the real time stock market information.", 
+        "description": "This show you the real time stock market information."
+    },
+    "browserbutton": {
+        "message": "Finance Toolbar", 
+        "description": "Finance Toolbar"
+    },
+    "optionpagetitle": {
+        "message": "Finance Toolbar - Options", 
+        "description": "Finance Toolbar - Options"
+    },
+	"settings": {
+        "message": "Settings", 
+        "description": "Settings"
+    }, 
+    "changelog": {
+        "message": "Changelog", 
+        "description": "changelog link"
+    },
+    "textfoot": {
+        "message": "This software is licensed under the CC-GNU GPL. To view a copy of this license, visit", 
+        "description": "This software is licensed under the CC-GNU GPL. To view a copy of this license, visit"
+    }, 	
+    "reportbug": {
+        "message": "Report an Issue", 
+        "description": "Report an Issue of my extension"
+    },
+    "titledonatebutton": {
+        "message": "Donate", 
+        "description": "Donate"
+    },	
+    "donatepromotext": {
+        "message": "If you can make a donation of any amount, I'd appreciate it immensely!", 
+        "description": "If you can make a donation of any amount, I'd appreciate it immensely!"
+    },
+    "basicsettings": {
+        "message": "Basics", 
+        "description": "Basics"
+    },
+    "version": {
+        "message": "Version", 
+        "description": "Version"
+    },
+    "titelquotes": {
+        "message": "Quotes", 
+        "description": "Quotes"
+    },
+    "titelmarquee": {
+        "message": "Marquee", 
+        "description": "Marquee"
+    },	
+    "direction": {
+        "message": "Direction", 
+        "description": "Direction"
+    },	
+    "scrollamount": {
+        "message": "Speed", 
+        "description": "Speed"
+    },
+    "marqueebehaviour": {
+        "message": "Marquee behaviour", 
+        "description": "Marquee behaviour"
+    },
+    "stocks": {
+        "message": "Stocks", 
+        "description": "Stocks"
+    },
+    "extrascrollamount": {
+        "message": "How higher the value, how faster it will move.", 
+        "description": "How higher the value, how faster it will move."
+    },
+    "titeljapan": {
+        "message": "Invert red/green", 
+        "description": "Invert red/green"
+    },
+    "desjapan": {
+        "message": "Change the color for Asia users", 
+        "description": "Change the color for Asia users"
+    },
+    "titelxminutes": {
+        "message": "Resfresh Data", 
+        "description": "Resfresh Data"
+    },
+    "desxminutes": {
+        "message": "Update the stock market information on the choosen seconds", 
+        "description": "Update the stock market information on the choosen seconds"
+    },
+    "designmarquee": {
+        "message": "Design", 
+        "description": "Design"
+    },
+    "addbutton": {
+        "message": "Add", 
+        "description": "Add"
+    },
+    "deletebutton": {
+        "message": "Delete", 
+        "description": "Delete"
+    },
+    "titelfavo": {
+        "message": "Favorite Stocks", 
+        "description": "Favorite Stocks"
+    },	
+    "destitelfavo": {
+        "message": "Show left the 4 favorite stock graph's in the bar.", 
+        "description": "Show left the 4 favorite stock graph's in the bar."
+    },
+    "titelhoverpopup": {
+        "message": "Hover Popup", 
+        "description": "Hover Popup"
+    },
+    "deshoverpopup": {
+        "message": "Show the popup image for that current stock, when i hover over the current value.", 
+        "description": "Show the popup image for that current stock, when i hover over the current value."
+    },
+    "example": {
+        "message": "Example", 
+        "description": "Example"
+    },
+    "changepercent": {
+        "message": "Percent", 
+        "description": "Percent"
+    },
+    "changeprice": {
+        "message": "Price", 
+        "description": "Price"
+    },
+    "marketcap": {
+        "message": "Market Capitalization", 
+        "description": "Market Capitalization"
+    },	
+    "guide": {
+        "message": "Finance Toolbar Guide", 
+        "description": "Finance Toolbar Guide"
+    },
+    "productshare": {
+        "message": "Share", 
+        "description": "Share"
+    },
+    "titelfont": {
+        "message": "Font", 
+        "description": "Font"
+    },	
+    "titelfontfamily": {
+        "message": "Font Family", 
+        "description": "Font Family"
+    },
+    "desfontsize": {
+        "message": "Font size of the toolbar", 
+        "description": "Font size of the toolbar"
+    },
+    "moveupbutton": {
+        "message": "Move Up", 
+        "description": "Move Up"
+    },
+    "movedownbutton": {
+        "message": "Move Down", 
+        "description": "Move Down"
+    },
     "pagestillloading": {
         "message": "The page is still loading?", 
         "description": "The page is still loading?"
+    },
+    "pagehelp": {
+        "message": "help", 
+        "description": "help"
     },
     "seelist": {
         "message": "(see list)", 
@@ -210,10 +178,6 @@
     "helptranslate": {
         "message": "Help Translate", 
         "description": "Help Translate"
-    },
-    "productshare": {
-        "message": "Share", 
-        "description": "Share"
     },
  "sharemenusharetitle":{
     "message":"Share this",
@@ -288,12 +252,12 @@
     "description":"Reset settings"
   },
   "resetbrowserextension":{
-    "message":"Reset the Ambient Aurea settings",
-    "description":"Reset the Ambient Aurea settings"
+    "message":"Reset the Finance Toolbar settings",
+    "description":"Reset the Finance Toolbar settings"
   },
   "areyouhappy":{
-    "message":"Are you happy about Ambient Aurea?",
-    "description":"Are you happy about Ambient Aurea?"
+    "message":"Are you happy about Finance Toolbar?",
+    "description":"Are you happy about Finance Toolbar?"
   },
   "tellothers":{
     "message":"Ensure that your opinion counts",
@@ -307,9 +271,9 @@
     "message":"Write a review",
     "description":"Write a review"
   },
-  "desambientaurea":{
-    "message":"Where your photos come to life is also available for your computer.",
-    "description":"Where your photos come to life is also available for your computer."
+  "desfinancetoolbar":{
+    "message":"Your personal stocks toolbar on your desktop is also available for your computer.",
+    "description":"our personal stocks toolbar on your desktop is also available for your computer."
   },
   "downloadtheapp":{
     "message":"Download the app now",
@@ -411,17 +375,13 @@
     "message":"Friendly Reminder...",
     "description":"Friendly Reminder..."
   },  
-  "imagesembedobject":{
-    "message":"Supports: <img>.",
-    "description":"Supports: <img>."
-  },
   "titelupgrade":{
     "message":"Upgrade",
     "description":"Upgrade"
-  },  
-  "welcomebasictext":{
-    "message":"Welcome on the Ambient Aurea Browser extension. Here a brief video about how to use the Ambient Aurea extension in your web browser.",
-    "description":"Welcome on the Ambient Aurea Browser extension. Here a brief video about how to use the Ambient Aurea extension in your web browser."
+  }, 
+ "welcomebasictext":{
+    "message":"Welcome on the Finance Toolbar Browser extension. Here a brief video about how to use the Finance Toolbar extension in your web browser.",
+    "description":"Welcome on the Finance Toolbar Browser extension. Here a brief video about how to use the Finance Toolbar extension in your web browser."
   },
   "promotitle":{
     "message":"Tip of the day",
@@ -456,5 +416,61 @@
   "titelwelcome":{
     "message":"Welcome and Hello",
     "description":"Welcome and Hello"
+  },
+  "titelcolor": {
+      "message": "Color", 
+      "description": "Color"
+   },
+   "descolor": {
+      "message": "Change the background color of the toolbar", 
+      "description": "Change the background color of the toolbar"
+   },
+  "desredcolor": {
+      "message": "Change the red color of the toolbar", 
+      "description": "Change the red color of the toolbar"
+   },
+  "desgreencolor": {
+      "message": "Change the green color of the toolbar", 
+      "description": "Change the green color of the toolbar"
+   },
+  "destextcolor": {
+      "message": "Change the label color of the toolbar", 
+      "description": "Change the label color of the toolbar"
+   },
+  "titeldropshadow": {
+      "message": "Drop shadow", 
+      "description": "Drop shadow"
+   },
+  "desdropshadow": {
+     "message": "Get a shadow effect below the toolbar", 
+      "description": "Get a shadow effect below the toolbar"
+   },
+  "titeltoolbaroff": {
+      "message": "Finance Toolbar is OFF", 
+      "description": "Finance Toolbar is OFF"
+   },
+  "titeltoolbaron": {
+      "message": "Finance Toolbar is ON", 
+      "description": "Finance Toolbar is ON"
+   },
+  "titelpopupoptions": {
+      "message": "Options", 
+      "description": "Options"
+   },
+  "titelpopupratestars": {
+      "message": "Rate 5 stars", 
+      "description": "Rate 5 stars"
+   },
+  "titelpopupsupport": {
+      "message": "Support", 
+      "description": "Support"
+   },
+  "titelpopupwelcomeguide":{
+    "message":"Welcome Guide",
+    "description":"Welcome Guide"
+   },
+  "titelpopupvideo":{
+    "message":"YouTube",
+    "description":"YouTube"
   }
 }

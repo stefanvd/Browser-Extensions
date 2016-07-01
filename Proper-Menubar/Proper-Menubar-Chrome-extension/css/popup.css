@@ -1,0 +1,38 @@
+/*
+//================================================
+
+Proper Menubar
+Add back the black menubar below the omnibox.
+Copyright (C) 2013 Stefan vd
+www.stefanvd.net
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+
+To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.0/
+
+//================================================
+*/
+
+body { min-width: 200px; min-height: 65px; overflow-x: hidden; margin-left: 10px; margin-right: 10px; margin: 0; padding: 0; }
+/* Button */
+button, input[type=button], input[type=submit] { box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1); border: 1px solid #aaa; color: #444; font-size: 11px; margin-bottom: 0px; width: 100%; padding: 3px 8px 3px 8px; }
+button:hover, input[type=button]:hover, input[type=submit]:hover { box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2); background: #ebebeb; border-color: #999; color: #222; }
+button:active, input[type=button]:active, input[type=submit]:active { box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.2); background: #ebebeb; color: #333; }
+button[disabled], input[type=button][disabled], input[type=submit][disabled], button[disabled]:hover, input[type=button][disabled]:hover, input[type=submit][disabled]:hover { box-shadow: none; border-color: #aaa; color: #888; }
+#bottombar { height: 40px; color: white; text-align: center; vertical-align: bottom; }
+#bottombar a { font-size: 12px; }
+.redbutton, .redbutton:hover{ background: darkred; color: white; }
+.greenbutton, .greenbutton:hover { background: darkgreen; color: white; }
