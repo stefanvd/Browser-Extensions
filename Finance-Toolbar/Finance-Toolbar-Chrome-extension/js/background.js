@@ -51,11 +51,11 @@ function onClickHandler(info, tab) {
 if (info.menuItemId == "totlguideemenu") {window.open(linkguide, "_blank");}
 else if (info.menuItemId == "totldevelopmenu") {window.open(donatewebsite, "_blank");}
 else if (info.menuItemId == "totlratemenu") {window.open(writereview, "_blank");}
-else if (info.menuItemId == "totlsharemenu") {window.open(ambientaureawebsite, "_blank");}
-else if (info.menuItemId == "totlshareemail") {window.open("mailto:youremail?subject=Ambient Aurea extension&body=Hé, This is amazing. I just tried today this Ambient Aurea Browser extension"+ambientaureaproduct+"", "_blank");}
-else if (info.menuItemId == "totlsharetwitter") {var sambientaureaproductcodeurl = encodeURIComponent("The Best and Amazing Ambien Aurea Browser extension "+ambientaureaproduct+" @ambientaurea");window.open("https://twitter.com/home?status="+sambientaureaproductcodeurl+"", "_blank");}
-else if (info.menuItemId == "totlsharefacebook") {window.open("https://www.facebook.com/sharer/sharer.php?u="+zoomproduct, "_blank");}
-else if (info.menuItemId == "totlsharegoogleplus") {window.open("https://plus.google.com/share?url="+zoomproduct, "_blank");}
+else if (info.menuItemId == "totlsharemenu") {window.open(financetoolbarwebsite, "_blank");}
+else if (info.menuItemId == "totlshareemail") {window.open("mailto:youremail?subject=Finance Toolbar extension&body=Hé, This is amazing. I just tried today this Finance Toolbar Browser extension"+financetoolbarproduct+"", "_blank");}
+else if (info.menuItemId == "totlsharetwitter") {var sfinancetoolbarproductcodeurl = encodeURIComponent("The Best and Amazing Finance Toolbar Browser extension "+financetoolbarproduct+" @ambientaurea");window.open("https://twitter.com/home?status="+sfinancetoolbarproductcodeurl+"", "_blank");}
+else if (info.menuItemId == "totlsharefacebook") {window.open("https://www.facebook.com/sharer/sharer.php?u="+financetoolbarproduct, "_blank");}
+else if (info.menuItemId == "totlsharegoogleplus") {window.open("https://plus.google.com/share?url="+financetoolbarproduct, "_blank");}
 }
 
 chrome.runtime.onInstalled.addListener(function() {
@@ -124,6 +124,24 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
 
 try{ chrome.runtime.setUninstallUrl(linkuninstall); }
 catch(e){}
+
+chrome.commands.onCommand.addListener(function(command) {
+    if(command == "toggle-feature-financetoolbar"){
+        var addbar = null;
+        chrome.storage.sync.get(['addbar'], function(items){
+        if(items['addbar']){addbar = items['addbar'];}if(!addbar)addbar = false;
+            chrome.tabs.getSelected(null, function(tab) {
+            if(addbar == true){
+            chrome.storage.sync.set({ "addbar": false});
+            chrome.tabs.sendMessage(tab.id, {action: "addremove"});
+            }else{
+            chrome.storage.sync.set({ "addbar": true});
+            chrome.tabs.sendMessage(tab.id, {action: "addremove"});
+            }
+            });
+        });
+    }
+});
 
 // Fired when an update is available
 chrome.runtime.onUpdateAvailable.addListener(function() {chrome.runtime.reload();});

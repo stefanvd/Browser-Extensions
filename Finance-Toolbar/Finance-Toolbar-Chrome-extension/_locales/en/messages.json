@@ -472,5 +472,9 @@
   "titelpopupvideo":{
     "message":"YouTube",
     "description":"YouTube"
+  },
+  "titelshortfinance":{
+    "message":"Show or hide the Finance Toolbar",
+    "description":"Show or hide the Finance Toolbar"
   }
 }

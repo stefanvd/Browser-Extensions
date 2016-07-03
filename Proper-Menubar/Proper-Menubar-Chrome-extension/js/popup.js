@@ -2,8 +2,8 @@
 /*
 
 Proper Menubar
-Add back the black menubar below the omnibox.
-Copyright (C) 2014 Stefan vd
+Add the black menubar below the addresbar. To get easy and fast access to all your Google products.
+Copyright (C) 2016 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -29,9 +29,9 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 function $(id) { return document.getElementById(id); }
 
 var addbar = null;
-chrome.extension.sendMessage({comando:'proprequest'}, function(response){
-addbar = response.addbar;if(!addbar)addbar = 'true';
-if(addbar == 'true'){
+chrome.storage.sync.get(['addbar'], function(items){
+if(items['addbar']){addbar = items['addbar'];}if(!addbar)addbar = false;
+if(addbar == true){
   turnoff.style.display = "";
   turnon.style.display = "none";
 } else{
@@ -43,9 +43,8 @@ if(addbar == 'true'){
 function toggleoff(){
 chrome.tabs.getSelected(null, function(tab) {
   // Send a request to the content script.
-  chrome.extension.sendMessage({'name' : 'savevalueaddbar', 'value' : 'false'});
+  chrome.storage.sync.set({ "addbar": false});
   chrome.tabs.sendMessage(tab.id, {action: "addremove"});
-  chrome.tabs.sendMessage(tab.id, {action: "navON"});
   turnoff.style.display = "none";
   turnon.style.display = "";
 });
@@ -53,26 +52,28 @@ chrome.tabs.getSelected(null, function(tab) {
 function toggleon(){
 chrome.tabs.getSelected(null, function(tab) {
   // Send a request to the content script.
-  chrome.extension.sendMessage({'name' : 'savevalueaddbar', 'value' : 'true'});
+  chrome.storage.sync.set({ "addbar": true});
   chrome.tabs.sendMessage(tab.id, {action: "addremove"});
-  chrome.tabs.sendMessage(tab.id, {action: "navOFF"});
   turnoff.style.display = "";
   turnon.style.display = "none";
 });
 }
 document.addEventListener('DOMContentLoaded', function () {
-var i18nturnoff = chrome.i18n.getMessage("turnoff");
-var i18nturnon = chrome.i18n.getMessage("turnon");
-$("turnoff").innerText = i18nturnoff;
-$("turnon").innerText = i18nturnon;
-
-var i18npopupdonate = chrome.i18n.getMessage("popupdonate");
-$("donate").innerText = i18npopupdonate;
-
-
 // Toggle on
-$("turnoff").addEventListener('click', function() {toggleoff();});
-
+$("turnoff").addEventListener('click', function() {toggleoff()});
 // Toggle off
-$("turnon").addEventListener('click', function() {toggleon();});
+$("turnon").addEventListener('click', function() {toggleon()});
+
+$("opendonate").addEventListener('click', function() {window.open(donatewebsite)});
+$("openrate").addEventListener('click', function() {window.open(writereview)});
+$("openoptions").addEventListener('click', function() {window.open(chrome.extension.getURL('options.html'))});
+
+$("opensupport").addEventListener('click', function() {window.open(linksupport)});
+$("openwelcomeguide").addEventListener('click', function() {window.open(linkguide)});
+$("openyoutube").addEventListener('click', function() {window.open(linkyoutube)});
+
+var currentencodeurl = encodeURIComponent(financetoolbarproduct);
+$("opengoogleplus").addEventListener('click', function() {window.open('https://plus.google.com/share?ur\l=' + currentencodeurl + '', 'Share to Google+','width=600,height=460,menubar=no,location=no,status=no')});
+$("openfacebook").addEventListener('click', function() {window.open("https://www.facebook.com/sharer.php?u="+ financetoolbarproduct + "&t=Try this out, I check my stocks with this Finance Toolbar browser extension!", 'Share to Facebook','width=600,height=460,menubar=no,location=no,status=no')});
+$("opentwitter").addEventListener('click', function() {window.open("https://twitter.com/share?url=" + currentencodeurl + "&text=Try this out, I check my stocks with this Finance Toolbar browser extension!", 'Share to Twitter','width=600,height=460,menubar=no,location=no,status=no')});
 });

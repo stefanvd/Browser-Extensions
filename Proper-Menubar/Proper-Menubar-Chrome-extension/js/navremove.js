@@ -2,8 +2,8 @@
 /*
 
 Proper Menubar
-Add back the black menubar below the omnibox.
-Copyright (C) 2014 Stefan vd
+Add the black menubar below the addresbar. To get easy and fast access to all your Google products.
+Copyright (C) 2016 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -28,17 +28,11 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 
 function $(id) { return document.getElementById(id); }
 
-function resetnavwebpage(){
-		document.body.style.position = "relative";
-		//document.getElementsByTagName('html')[0].style.top = '0px';
-		//document.getElementsByTagName('html')[0].style.marginTop = '0px';
-		document.getElementsByTagName('body')[0].style.top = '0px';
-}
-
-	var check2 = $('stefanvdnavwrappe');
-	if(check2){
-	document.body.removeChild(check2);
-	resetnavwebpage();
+var check2 = $('stefanvdnavwrappe');
+if(check2){
+		document.body.removeChild(check2);
+		document.getElementsByTagName('html')[0].style.top = '0px';
+		document.getElementsByTagName('html')[0].style.marginTop = '0px';
 	
 		if (window.location.href.match("https://plus.google.com")){
 		$("gb").style.marginTop = "0px";
@@ -78,13 +72,14 @@ function resetnavwebpage(){
 		// class detect
 		var div = document.getElementsByTagName('div'); 
 		for(var i = 0; i < div.length; i++ )
-		{if(div[i].className == ('gb_ub gb_l gb_Ua')) {div[i].style.position = "relative";div[i].style.top = '0px';
-		$("gba").style.height = '0px';
+		{if(div[i].className == ('gb_ub gb_l gb_Ua')) {
+			div[i].style.position = "relative";div[i].style.top = '0px';
 		}}
 		
+		$("gba").style.height = '0px';
 		// use id detect
-		//$("gb").style.position = "relative";
-		//$("gb").style.top = '0px';
+		$("gb").style.position = "relative";
+		$("gb").style.top = '0px';
 		}
 		
 		if(window.location.href.match("http://www.google.com/maps") || window.location.href.match("https://www.google.com/maps")){

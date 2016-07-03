@@ -2,9 +2,10 @@
   "manifest_version": 2,
   "name": "__MSG_name__",
   "short_name": "PMB",
-  "version": "0.1.7.3",
+  "version": "1.0",
   "description": "__MSG_description__",
-   "homepage_url": "http://www.stefanvd.net",
+  "author": "Stefan vd",
+  "homepage_url": "https://www.stefanvd.net",
   "icons": { "16": "icons/icon16.png",
              "32": "icons/icon32.png",
              "48": "icons/icon48.png",
@@ -13,7 +14,7 @@
   "default_locale": "en",
   "background": {
     "page": "background.html",
-	"persistent": false
+	  "persistent": false
   },
   "content_security_policy": "script-src 'self' https://ssl.google-analytics.com https://platform.twitter.com https://apis.google.com; img-src *; object-src 'self'",
   "web_accessible_resources": [
@@ -22,22 +23,44 @@
     "images/slice3.png",
     "images/slice4.png",
     "images/slice5.png",
-    "images/slice6.png"
+    "images/slice6.png",
+    "icons/icon16.png"
   ],
   "content_scripts": [
     {
-      "matches": ["http://*/*", "https://*/*"],
+      "matches": ["*://*/*"],
       "css" : ["css/toolbar.css"],
-      "js": ["js/content.js"],
+      "js": ["js/constants.js","js/content.js"],
       "run_at": "document_end"
     }
   ],
-  "browser_action": {
-      "default_icon": "icons/icon19.png",
-      "default_title": "__MSG_name__",
-      "default_popup": "popup.html"
+  "commands": {
+    "_execute_page_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+M",
+        "mac": "MacCtrl+Shift+M"
+      }
+    },
+    "toggle-feature-propermenubar": {
+            "suggested_key": {
+              "default": "Ctrl+Shift+P",
+              "mac": "MacCtrl+Shift+P"
+            },
+            "description": "__MSG_titelshortproper__"
+          }
   },
-  "options_page": "options.html",
+  "browser_action": {
+          "default_icon": {
+            "19": "icons/icon1.png",
+            "38": "icons/icon1@2x.png"
+          },
+	"default_title": "__MSG_name__",
+    "default_popup": "popup.html"	
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
   "minimum_chrome_version": "20",
-  "permissions": [ "contextMenus", "tabs", "http://*/*", "https://*/*", "notifications"]
+  "permissions": [ "contextMenus", "tabs", "http://*/*", "https://*/*", "storage", "notifications" ]
 }

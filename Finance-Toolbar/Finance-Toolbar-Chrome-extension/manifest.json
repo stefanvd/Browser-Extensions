@@ -24,6 +24,21 @@
     "images/slice.png",
     "images/worldmap.png"
   ],
+    "commands": {
+    "_execute_page_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+M",
+        "mac": "MacCtrl+Shift+M"
+      }
+    },
+    "toggle-feature-financetoolbar": {
+            "suggested_key": {
+              "default": "Ctrl+Shift+F",
+              "mac": "MacCtrl+Shift+F"
+            },
+            "description": "__MSG_titelshortfinance__"
+          }
+  },
   "browser_action": {
       "default_icon": {
             "19": "icons/icon1.png",
@@ -39,7 +54,10 @@
       "run_at": "document_end"
     }
   ],
-  "options_page": "options.html",
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
   "minimum_chrome_version": "18",
   "permissions": [ "contextMenus", "tabs", "http://*/*", "https://*/*", "storage", "notifications" ]
 }

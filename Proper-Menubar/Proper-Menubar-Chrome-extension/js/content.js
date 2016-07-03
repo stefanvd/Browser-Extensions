@@ -2,8 +2,8 @@
 /*
 
 Proper Menubar
-Add back the black menubar below the omnibox.
-Copyright (C) 2014 Stefan vd
+Add the black menubar below the addresbar. To get easy and fast access to all your Google products.
+Copyright (C) 2016 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -28,19 +28,15 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 
 function $(id) { return document.getElementById(id); }
 
-//settings
-var addbar = null;
-
-chrome.extension.onMessage.addListener(function(request, sender, sendMessage) {
+chrome.runtime.onMessage.addListener(function(request, sender, sendMessage) {
 if (request.action == "addremove"){
-
-chrome.extension.sendMessage({comando:'proprequest'}, function(response){
-addbar = response.addbar;if(!addbar)addbar = 'true'; // default
-
-if(addbar == 'true'){ chrome.extension.sendMessage({'name' : 'navON'}); }
-else { chrome.extension.sendMessage({'name' : 'navOFF'}); }
-
+var addbar = null;
+chrome.storage.sync.get(['addbar'], function(items){
+addbar = items['addbar'];
+if(addbar == true){ chrome.runtime.sendMessage({name : 'navON'}); }
+else { chrome.runtime.sendMessage({name : 'navOFF'}); }
 });
-
+} else if (request.action == "toolbarrefresh") {
+    window.location.reload();
 }
 });

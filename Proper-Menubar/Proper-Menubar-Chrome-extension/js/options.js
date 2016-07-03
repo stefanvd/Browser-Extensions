@@ -2,8 +2,8 @@
 /*
 
 Proper Menubar
-Add back the black menubar below the omnibox.
-Copyright (C) 2014 Stefan vd
+Add the black menubar below the addresbar. To get easy and fast access to all your Google products.
+Copyright (C) 2016 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -28,173 +28,124 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 
 function $(id) { return document.getElementById(id); }
 
-// Option to save current value to window.localStorage
+// Option to save current value
 function save_options(){
-	window.localStorage['googleplus'] = $('googleplus').value;
-	window.localStorage['opacity'] = $('opacity').value;
-	window.localStorage['country'] = $('country').value;
-	window.localStorage['backgroundhex'] = $('backgroundhex').value;
-	window.localStorage['backgroundimagesource'] = $('backgroundimagesource').value;
-	if($('backgroundcolor').checked)window.localStorage['backgroundcolor'] = 'true';
-	else window.localStorage['backgroundcolor'] = 'false';	
-	if($('backgroundimage').checked)window.localStorage['backgroundimage'] = 'true';
-	else window.localStorage['backgroundimage'] = 'false';	
-	if($('link1a').checked)window.localStorage['link1a'] = 'true';
-	else window.localStorage['link1a'] = 'false';
-	if($('link2a').checked)window.localStorage['link2a'] = 'true';
-	else window.localStorage['link2a'] = 'false';	
-	if($('link3a').checked)window.localStorage['link3a'] = 'true';
-	else window.localStorage['link3a'] = 'false';	
-	if($('link4a').checked)window.localStorage['link4a'] = 'true';
-	else window.localStorage['link4a'] = 'false';	
-	if($('link5a').checked)window.localStorage['link5a'] = 'true';
-	else window.localStorage['link5a'] = 'false';	
-	if($('link6a').checked)window.localStorage['link6a'] = 'true';
-	else window.localStorage['link6a'] = 'false';	
-	if($('link7a').checked)window.localStorage['link7a'] = 'true';
-	else window.localStorage['link7a'] = 'false';	
-	if($('link8a').checked)window.localStorage['link8a'] = 'true';
-	else window.localStorage['link8a'] = 'false';	
-	if($('link9a').checked)window.localStorage['link9a'] = 'true';
-	else window.localStorage['link9a'] = 'false';	
-	if($('link10a').checked)window.localStorage['link10a'] = 'true';
-	else window.localStorage['link10a'] = 'false';	
-	if($('link11a').checked)window.localStorage['link11a'] = 'true';
-	else window.localStorage['link11a'] = 'false';	
-	if($('link12a').checked)window.localStorage['link12a'] = 'true';
-	else window.localStorage['link12a'] = 'false';	
-	if($('link13a').checked)window.localStorage['link13a'] = 'true';
-	else window.localStorage['link13a'] = 'false';	
-	if($('link14a').checked)window.localStorage['link14a'] = 'true';
-	else window.localStorage['link14a'] = 'false';	
-	if($('link15a').checked)window.localStorage['link15a'] = 'true';
-	else window.localStorage['link15a'] = 'false';	
-	if($('link16a').checked)window.localStorage['link16a'] = 'true';
-	else window.localStorage['link16a'] = 'false';	
-	if($('link17a').checked)window.localStorage['link17a'] = 'true';
-	else window.localStorage['link17a'] = 'false';	
-	if($('link18a').checked)window.localStorage['link18a'] = 'true';
-	else window.localStorage['link18a'] = 'false';	
-	if($('link19a').checked)window.localStorage['link19a'] = 'true';
-	else window.localStorage['link19a'] = 'false';	
-	if($('link20a').checked)window.localStorage['link20a'] = 'true';
-	else window.localStorage['link20a'] = 'false';		
-	if($('link21a').checked)window.localStorage['link21a'] = 'true';
-	else window.localStorage['link21a'] = 'false';
-	if($('link22a').checked)window.localStorage['link22a'] = 'true';
-	else window.localStorage['link22a'] = 'false';
-	if($('link23a').checked)window.localStorage['link23a'] = 'true';
-	else window.localStorage['link23a'] = 'false';
-	if($('link24a').checked)window.localStorage['link24a'] = 'true';
-	else window.localStorage['link24a'] = 'false';
-	if($('link25a').checked)window.localStorage['link25a'] = 'true';
-	else window.localStorage['link25a'] = 'false';
-	if($('allsites').checked)window.localStorage['allsites'] = 'true';
-	else window.localStorage['allsites'] = 'false';
-	window.localStorage['fontcolor'] = $('fontcolor').value;
-	if($('googlesites').checked)window.localStorage['googlesites'] = 'true';
-	else window.localStorage['googlesites'] = 'false';
-	if($('propermenuonly').checked)window.localStorage['propermenuonly'] = 'true';
-	else window.localStorage['propermenuonly'] = 'false';
-	if($('search').checked)window.localStorage['search'] = 'true';
-	else window.localStorage['search'] = 'false';
-	if($('existingtab').checked)window.localStorage['existingtab'] = 'true';
-	else window.localStorage['existingtab'] = 'false';
-	
 	// proper menu Excluded domains
-var propermenuDomainsBox = $("propermenuDomainsBox");
-var propermenuDomains = {};
-for (var i = 0; i < propermenuDomainsBox.length; i++)
-	propermenuDomains[propermenuDomainsBox.options[i].value] = true;
-    localStorage["propermenuDomains"] = JSON.stringify(propermenuDomains);
-	
+	var propermenuDomainsBox = $("propermenuDomainsBox");
+	var propermenuDomains = {};
+	for (var i = 0; i < propermenuDomainsBox.length; i++){propermenuDomains[propermenuDomainsBox.options[i].value] = true;}
+
+  	chrome.storage.sync.set({"googleplus": $('googleplus').value, "opacity": $('opacity').value,"country":$('country').value, "backgroundhex":$('backgroundhex').value, "backgroundimagesource":$('backgroundimagesource').value,"backgroundcolor":$('backgroundcolor').checked,"backgroundimage":$('backgroundimage').checked,"link1a":$('link1a').checked,"link2a":$('link2a').checked,"link3a":$('link3a').checked,"link4a":$('link4a').checked,"link5a":$('link5a').checked,"link6a":$('link6a').checked,"link7a":$('link7a').checked,"link8a":$('link8a').checked,"link9a":$('link9a').checked,"link10a":$('link10a').checked,"link11a":$('link11a').checked,"link12a":$('link12a').checked,"link13a":$('link13a').checked,"link14a":$('link14a').checked,"link15a":$('link15a').checked,"link16a":$('link16a').checked,"link17a":$('link17a').checked,"link18a":$('link18a').checked,"link19a":$('link19a').checked,"link20a":$('link20a').checked,"link21a":$('link21a').checked,"link22a":$('link22a').checked,"link23a":$('link23a').checked,"link24a":$('link24a').checked,"link25a":$('link25a').checked,"link26a":$('link26a').checked,"allsites":$('allsites').checked,"fontcolor":$('fontcolor').value,"googlesites":$('googlesites').checked,"propermenuonly":$('propermenuonly').checked,"search":$('search').checked,"existingtab":$('existingtab').checked,"propermenuDomains": JSON.stringify(propermenuDomains),"optionskipremember":$('optionskipremember').checked,"display":$('display').value});
 }
 
-if(!window.localStorage['backgroundcolor']) // find no localstore
-{	window.localStorage['backgroundcolor'] = 'true'; // then default true
-	window.localStorage['backgroundimage'] = 'false'; // then default true
-}
-
-if(!window.localStorage['link1a']){ window.localStorage['link1a'] = 'true'; } // then default true
-if(!window.localStorage['link2a']){ window.localStorage['link2a'] = 'true'; } // then default true
-if(!window.localStorage['link3a']){ window.localStorage['link3a'] = 'true'; } // then default true
-if(!window.localStorage['link4a']){ window.localStorage['link4a'] = 'true'; } // then default true
-if(!window.localStorage['link5a']){ window.localStorage['link5a'] = 'true'; } // then default true
-if(!window.localStorage['link6a']){ window.localStorage['link6a'] = 'true'; } // then default true
-if(!window.localStorage['link7a']){ window.localStorage['link7a'] = 'true'; } // then default true
-if(!window.localStorage['link8a']){ window.localStorage['link8a'] = 'true'; } // then default true
-if(!window.localStorage['link9a']){ window.localStorage['link9a'] = 'true'; } // then default true
-if(!window.localStorage['link10a']){ window.localStorage['link10a'] = 'true'; } // then default true
-if(!window.localStorage['link11a']){ window.localStorage['link11a'] = 'true'; } // then default true
-if(!window.localStorage['link12a']){ window.localStorage['link12a'] = 'true'; } // then default true
-if(!window.localStorage['link13a']){ window.localStorage['link13a'] = 'true'; } // then default true
-if(!window.localStorage['link14a']){ window.localStorage['link14a'] = 'true'; } // then default true
-if(!window.localStorage['link15a']){ window.localStorage['link15a'] = 'true'; } // then default true
-if(!window.localStorage['link16a']){ window.localStorage['link16a'] = 'true'; } // then default true
-if(!window.localStorage['link17a']){ window.localStorage['link17a'] = 'true'; } // then default true
-if(!window.localStorage['link18a']){ window.localStorage['link18a'] = 'true'; } // then default true
-if(!window.localStorage['link19a']){ window.localStorage['link19a'] = 'true'; } // then default true
-if(!window.localStorage['link20a']){ window.localStorage['link20a'] = 'true'; } // then default true
-if(!window.localStorage['link21a']){ window.localStorage['link21a'] = 'true'; } // then default true
-if(!window.localStorage['link22a']){ window.localStorage['link22a'] = 'true'; } // then default true
-if(!window.localStorage['link23a']){ window.localStorage['link23a'] = 'true'; } // then default true
-if(!window.localStorage['link24a']){ window.localStorage['link24a'] = 'true'; } // then default true
-if(!window.localStorage['link25a']){ window.localStorage['link25a'] = 'true'; } // then default true
-
-if(!window.localStorage['googlesites']){ window.localStorage['googlesites'] = 'true'; } // then default true
+var firstdefaultvalues = {};
+// Option default value to read if there is no current value from chrome.storage AND init default value
+chrome.storage.sync.get(['backgroundcolor','backgroundimage','googlesites','dropshadow','link1a','link2a','link3a','link4a','link5a','link6a','link7a','link8a','link9a','link10a','link11a','link12a','link13a','link14a','link15a','link16a','link17a','link18a','link19a','link20a','link21a','link22a','link23a','link24a','link25a','link26a','display'], function(items){
+    // find no localstore zoomengine
+	  if(items['backgroundcolor'] == null && items['backgroundimage'] == null){firstdefaultvalues['backgroundcolor'] = true;firstdefaultvalues['backgroundimage'] = false}
+	  if(items['googlesites'] == null){firstdefaultvalues['googlesites'] = true}
+	  if(items['dropshadow'] == null){firstdefaultvalues['dropshadow'] = true}
+	  if(items['link1a'] == null){firstdefaultvalues['link1a'] = true}
+	  if(items['link2a'] == null){firstdefaultvalues['link2a'] = true}
+	  if(items['link3a'] == null){firstdefaultvalues['link3a'] = true}
+	  if(items['link4a'] == null){firstdefaultvalues['link4a'] = true}
+	  if(items['link5a'] == null){firstdefaultvalues['link5a'] = true}
+	  if(items['link6a'] == null){firstdefaultvalues['link6a'] = true}
+	  if(items['link7a'] == null){firstdefaultvalues['link7a'] = true}
+	  if(items['link8a'] == null){firstdefaultvalues['link8a'] = true}
+	  if(items['link9a'] == null){firstdefaultvalues['link9a'] = true}
+	  if(items['link10a'] == null){firstdefaultvalues['link10a'] = true}
+	  if(items['link11a'] == null){firstdefaultvalues['link11a'] = true}
+	  if(items['link12a'] == null){firstdefaultvalues['link12a'] = true}
+	  if(items['link13a'] == null){firstdefaultvalues['link13a'] = true}
+	  if(items['link14a'] == null){firstdefaultvalues['link14a'] = true}
+	  if(items['link15a'] == null){firstdefaultvalues['link15a'] = true}
+	  if(items['link16a'] == null){firstdefaultvalues['link16a'] = true}
+	  if(items['link17a'] == null){firstdefaultvalues['link17a'] = true}
+	  if(items['link18a'] == null){firstdefaultvalues['link18a'] = true}
+	  if(items['link19a'] == null){firstdefaultvalues['link19a'] = true}
+	  if(items['link20a'] == null){firstdefaultvalues['link20a'] = true}
+	  if(items['link21a'] == null){firstdefaultvalues['link21a'] = true}
+	  if(items['link22a'] == null){firstdefaultvalues['link22a'] = true}
+	  if(items['link23a'] == null){firstdefaultvalues['link23a'] = true}
+	  if(items['link24a'] == null){firstdefaultvalues['link24a'] = true}
+	  if(items['link25a'] == null){firstdefaultvalues['link25a'] = true}
+	  if(items['link26a'] == null){firstdefaultvalues['link26a'] = true}
+	  if(items['display'] == null){firstdefaultvalues['display'] = 13}
+    // find no localstore lightimage
+    // Save the init value
+    chrome.storage.sync.set(firstdefaultvalues, function() {
+    //console.log('Settings saved');
+    });
+});
 
 function read_options(){
-	if(window.localStorage['googleplus']){$('googleplus').value = window.localStorage['googleplus'];}
-	else {$('googleplus').value = 'You';}
-	if(window.localStorage['opacity']){$('opacity').value = window.localStorage['opacity'];}
-	else {$('opacity').value = '100';}
-	if(window.localStorage['country']){$('country').value = window.localStorage['country'];}
-	else {$('country').value = 'com';}
-	if(window.localStorage['backgroundhex']){$('backgroundhex').value = window.localStorage['backgroundhex'];}
-	else {$('backgroundhex').value = '#2D2D2D';}
-	if(window.localStorage['backgroundimagesource']){$('backgroundimagesource').value = window.localStorage['backgroundimagesource'];}
-	else {$('backgroundimagesource').value = '';}
-	if(window.localStorage['backgroundcolor'] == 'true')$('backgroundcolor').checked = true;
-	if(window.localStorage['backgroundimage'] == 'true')$('backgroundimage').checked = true;
-	if(window.localStorage['link1a'] == 'true')$('link1a').checked = true;
-	if(window.localStorage['link2a'] == 'true')$('link2a').checked = true;
-	if(window.localStorage['link3a'] == 'true')$('link3a').checked = true;
-	if(window.localStorage['link4a'] == 'true')$('link4a').checked = true;
-	if(window.localStorage['link5a'] == 'true')$('link5a').checked = true;
-	if(window.localStorage['link6a'] == 'true')$('link6a').checked = true;
-	if(window.localStorage['link7a'] == 'true')$('link7a').checked = true;
-	if(window.localStorage['link8a'] == 'true')$('link8a').checked = true;
-	if(window.localStorage['link9a'] == 'true')$('link9a').checked = true;
-	if(window.localStorage['link10a'] == 'true')$('link10a').checked = true;
-	if(window.localStorage['link11a'] == 'true')$('link11a').checked = true;
-	if(window.localStorage['link12a'] == 'true')$('link12a').checked = true;
-	if(window.localStorage['link13a'] == 'true')$('link13a').checked = true;
-	if(window.localStorage['link14a'] == 'true')$('link14a').checked = true;
-	if(window.localStorage['link15a'] == 'true')$('link15a').checked = true;
-	if(window.localStorage['link16a'] == 'true')$('link16a').checked = true;
-	if(window.localStorage['link17a'] == 'true')$('link17a').checked = true;
-	if(window.localStorage['link18a'] == 'true')$('link18a').checked = true;
-	if(window.localStorage['link19a'] == 'true')$('link19a').checked = true;
-	if(window.localStorage['link20a'] == 'true')$('link20a').checked = true;
-	if(window.localStorage['link21a'] == 'true')$('link21a').checked = true;
-	if(window.localStorage['link22a'] == 'true')$('link22a').checked = true;
-	if(window.localStorage['link23a'] == 'true')$('link23a').checked = true;
-	if(window.localStorage['link24a'] == 'true')$('link24a').checked = true;
-	if(window.localStorage['link25a'] == 'true')$('link25a').checked = true;
-	if(window.localStorage['allsites'] == 'true')$('allsites').checked = true;
-	if(window.localStorage['fontcolor']){$('fontcolor').value = window.localStorage['fontcolor'];}
-	else {$('fontcolor').value = '#cccccc';}
-	if(window.localStorage['googlesites'] == 'true')$('googlesites').checked = true;
-	if(window.localStorage['propermenuonly'] == 'true')$('propermenuonly').checked = true;
-	if(window.localStorage['search'] == 'true')$('search').checked = true;
-	if(window.localStorage['existingtab'] == 'true')$('existingtab').checked = true;
-	
+chrome.storage.sync.get(['googleplus','opacity','country','backgroundhex','backgroundimagesource','backgroundcolor','backgroundimage','googlesites','dropshadow','link1a','link2a','link3a','link4a','link5a','link6a','link7a','link8a','link9a','link10a','link11a','link12a','link13a','link14a','link15a','link16a','link17a','link18a','link19a','link20a','link21a','link22a','link23a','link24a','link25a','link26a','allsites','fontcolor','propermenuonly','search','existingtab','propermenuDomains','countremember','optionskipremember','display'], function(items){
+		if(items['googleplus']){$('googleplus').value = items['googleplus'];}
+		else {$('googleplus').value = 'You';}
+		if(items['opacity']){$('opacity').value = items['opacity'];}
+		else {$('opacity').value = '100';}
+		if(items['country']){$('country').value = items['country'];}
+		else {$('country').value = 'com';}
+		if(items['backgroundhex']){$('backgroundhex').value = items['backgroundhex'];}
+		else {$('backgroundhex').value = '#2D2D2D';}
+		if(items['backgroundimagesource']){$('backgroundimagesource').value = items['backgroundimagesource'];}
+		else {$('backgroundimagesource').value = '';}
+		if(items['backgroundcolor'] == true)$('backgroundcolor').checked = true;
+		if(items['backgroundimage'] == true)$('backgroundimage').checked = true;
+		if(items['googlesites'] == true)$('googlesites').checked = true;
+		if(items['dropshadow'] == true)$('dropshadow').checked = true;
+		if(items['link1a'] == true)$('link1a').checked = true;
+		if(items['link2a'] == true)$('link2a').checked = true;
+		if(items['link3a'] == true)$('link3a').checked = true;
+		if(items['link4a'] == true)$('link4a').checked = true;
+		if(items['link5a'] == true)$('link5a').checked = true;
+		if(items['link6a'] == true)$('link6a').checked = true;
+		if(items['link7a'] == true)$('link7a').checked = true;
+		if(items['link8a'] == true)$('link8a').checked = true;
+		if(items['link9a'] == true)$('link9a').checked = true;
+		if(items['link10a'] == true)$('link10a').checked = true;
+		if(items['link11a'] == true)$('link11a').checked = true;
+		if(items['link12a'] == true)$('link12a').checked = true;
+		if(items['link13a'] == true)$('link13a').checked = true;
+		if(items['link14a'] == true)$('link14a').checked = true;
+		if(items['link15a'] == true)$('link15a').checked = true;
+		if(items['link16a'] == true)$('link16a').checked = true;
+		if(items['link17a'] == true)$('link17a').checked = true;
+		if(items['link18a'] == true)$('link18a').checked = true;
+		if(items['link19a'] == true)$('link19a').checked = true;
+		if(items['link20a'] == true)$('link20a').checked = true;
+		if(items['link21a'] == true)$('link21a').checked = true;
+		if(items['link22a'] == true)$('link22a').checked = true;
+		if(items['link23a'] == true)$('link23a').checked = true;
+		if(items['link24a'] == true)$('link24a').checked = true;
+		if(items['link25a'] == true)$('link25a').checked = true;
+		if(items['link26a'] == true)$('link26a').checked = true;
+		if(items['allsites'] == true)$('allsites').checked = true;
+		if(items['fontcolor']){$('fontcolor').value = items['fontcolor'];}
+		else {$('fontcolor').value = '#cccccc';}
+		if(items['propermenuonly'] == true)$('propermenuonly').checked = true;
+		if(items['search'] == true)$('search').checked = true;
+		if(items['existingtab'] == true)$('existingtab').checked = true;
+		if(items['optionskipremember'] == true){$('optionskipremember').checked = true;$('firstcheckboxskipremember').checked = true;}
+		if(items['display']){$('display').value = items['display'];}
+
+// show remember page
+var countremember = items['countremember'];
+if(!countremember){countremember = 0;}
+countremember = parseInt(countremember) + 1;
+if($('optionskipremember').checked != true){
+	if(countremember >= 5) {$('remembershare').style.display = "";countremember = 0;}
+	else {$('remembershare').style.display = "none";}
+} else {$('remembershare').style.display = "none";}
+chrome.storage.sync.set({"countremember": countremember});	
+
 	// load tab div
 	var tabListItems = document.getElementById('navbar').childNodes;
 	for ( var i = 0; i < tabListItems.length; i++ ) {
 		if ( tabListItems[i].nodeName == 'LI' ) {
 		var tabLink = getFirstChildWithTagName( tabListItems[i], 'A' );
-		var id = getHash( tabLink.getAttribute('onclick') );
+		var id = getHash( tabLink.getAttribute('data-tab') );
 		tabLinks[id] = tabLink;
 		contentDivs[id] = document.getElementById( id );
         }
@@ -220,25 +171,13 @@ function read_options(){
     }
 
     // display version number
-    function displayVersionNumber() {
-        try {
-          var xhr = new XMLHttpRequest();
-          xhr.open("GET", chrome.extension.getURL('manifest.json'), false);
-          xhr.onreadystatechange = function() {
-            if(this.readyState == 4) {
-              var theManifest = JSON.parse(this.responseText);
-              document.getElementById("version_number").innerText = theManifest.version;
-            }
-          };
-          xhr.send();
-        } catch (ex) {} // silently fail
-    }
-    displayVersionNumber();
+	var manifestData = chrome.runtime.getManifest();
+	$("version_number").innerText = manifestData.version;
 	
 // propermenu - Excluded domains - sort these alphabetically
-var propermenuDomains = window.localStorage["propermenuDomains"];
+var propermenuDomains = items["propermenuDomains"];
 if(typeof propermenuDomains == "undefined")
-propermenuDomains = JSON.stringify({'http://www.google.com': true, 'http://www.youtube.com': true});
+propermenuDomains = JSON.stringify({'https://www.google.com': true, 'https://www.youtube.com': true});
 
 if(typeof propermenuDomains == "string") {
 	propermenuDomains = JSON.parse(propermenuDomains);
@@ -248,8 +187,13 @@ if(typeof propermenuDomains == "string") {
         abuf.sort();
 	for(var i = 0; i < abuf.length; i++)
 		appendToListBox("propermenuDomainsBox", abuf[i]);
-    }	
-}
+    }
+
+	// retest the function
+	test();
+
+	});// chrome storage end
+} // end read
 
 // Add a filter string to the list box.
 function appendToListBox(boxId, text) { var elt = document.createElement("option"); elt.text = text; elt.value = text; document.getElementById(boxId).add(elt, null); }
@@ -259,7 +203,7 @@ function appendToListBox(boxId, text) { var elt = document.createElement("option
     var contentDivs = new Array();
  
     function showTab() {
-      var selectedId = getHash( this.getAttribute('onclick') );
+      var selectedId = getHash( this.getAttribute('data-tab') );
  
       // Highlight the selected tab, and dim all others.
       // Also show the selected content div, and hide all others.
@@ -304,17 +248,32 @@ function propermenuremoveSelectedExcludedDomain() {
     save_options();
 }
 
+function test(){
+}
+
+function slidepreview1(){$("backgroundimagesource").value = chrome.extension.getURL('/images/slice1.png');save_options();}
+function slidepreview2(){$("backgroundimagesource").value = chrome.extension.getURL('/images/slice2.png');save_options();}
+function slidepreview3(){$("backgroundimagesource").value = chrome.extension.getURL('/images/slice3.png');save_options();}
+function slidepreview4(){$("backgroundimagesource").value = chrome.extension.getURL('/images/slice4.png');save_options();}
+function slidepreview5(){$("backgroundimagesource").value = chrome.extension.getURL('/images/slice5.png');save_options();}
+function slidepreview6(){$("backgroundimagesource").value = chrome.extension.getURL('/images/slice6.png');save_options();}
+
 // Current year
 function yearnow() {
 var today = new Date(); var y0 = today.getFullYear();$("yearnow").innerText = y0;
 }
 
-function slidepreview1(){$("backgroundimagesource").value = "chrome-extension://"+ chrome.i18n.getMessage("@@extension_id") + "/images/slice1.png";save_options();}
-function slidepreview2(){$("backgroundimagesource").value = "chrome-extension://"+ chrome.i18n.getMessage("@@extension_id") + "/images/slice2.png";save_options();}
-function slidepreview3(){$("backgroundimagesource").value = "chrome-extension://"+ chrome.i18n.getMessage("@@extension_id") + "/images/slice3.png";save_options();}
-function slidepreview4(){$("backgroundimagesource").value = "chrome-extension://"+ chrome.i18n.getMessage("@@extension_id") + "/images/slice4.png";save_options();}
-function slidepreview5(){$("backgroundimagesource").value = "chrome-extension://"+ chrome.i18n.getMessage("@@extension_id") + "/images/slice5.png";save_options();}
-function slidepreview6(){$("backgroundimagesource").value = "chrome-extension://"+ chrome.i18n.getMessage("@@extension_id") + "/images/slice6.png";save_options();}
+function detectExtension(extensionId, callback) { 
+  var img; 
+  img = new Image(); 
+  img.src = "chrome-extension://" + extensionId + "/icons/icon16.png"; 
+  img.onload = function() { 
+    callback(true); 
+  }; 
+  img.onerror = function() { 
+    callback(false); 
+  };
+}
 
 /* Option page body action */
 // Read current value settings
@@ -326,9 +285,63 @@ $('loading').style.display = "none";
 });
 
 document.addEventListener('DOMContentLoaded', function () {
+// random generator
+var items = Array();
+detectExtension(idaa,function(a){if(a != true){items.push(1)}});
+detectExtension(iddt,function(a){if(a != true){items.push(2)}});
+detectExtension(idtotl,function(a){if(a != true){items.push(3)}});
+detectExtension(idft,function(a){if(a != true){items.push(4)}});
+detectExtension(idpp,function(a){if(a != true){items.push(5)}});
+detectExtension(idfs,function(a){if(a != true){items.push(6)}});
+detectExtension(idz,function(a){if(a != true){items.push(7)}runinstalltest()});
+
+function runinstalltest(){
+var numberpick = items[Math.floor(Math.random()*items.length)];
+// pick this extension
+if(numberpick == 1){
+  $("promotext").innerText = chrome.i18n.getMessage("promotext", "Ambient Aurea");
+  $("btnpromoaction").addEventListener('click', function() {window.open(ambientaureaproduct)});  
+} else if(numberpick == 2){
+  $("promotext").innerText = chrome.i18n.getMessage("promotext", "Date Today");
+  $("btnpromoaction").addEventListener('click', function() {window.open(datetodayproduct)});
+} else if(numberpick == 3){
+  $("promotext").innerText = chrome.i18n.getMessage("promotext", "Turn Off the Lights");
+  $("btnpromoaction").addEventListener('click', function() {window.open(turnoffthelightsproduct)});
+} else if(numberpick == 4){
+  $("promotext").innerText = chrome.i18n.getMessage("promotext", "Finance Toolbar");
+  $("btnpromoaction").addEventListener('click', function() {window.open(financetoolbarproduct)});
+} else if(numberpick == 5){
+  $("promotext").innerText = chrome.i18n.getMessage("promotext", "Proper Menubar");
+  $("btnpromoaction").addEventListener('click', function() {window.open(propermenubarproduct)});
+} else if(numberpick == 6){
+  $("promotext").innerText = chrome.i18n.getMessage("promotext", "Full Screen");
+  $("btnpromoaction").addEventListener('click', function() {window.open(fullscreenproduct)});
+} else {
+  $("promotext").innerText = chrome.i18n.getMessage("donatetext");
+  $("spnpromoaction").innerText = chrome.i18n.getMessage("donatecalltoaction");
+  $("btnpromoaction").addEventListener('click', function() {window.open(donatewebsite)});
+}
+}
+
+// Remove remember
+$("skipremember").addEventListener('click', function() {$('remembershare').style.display = "none";});
+$("firstcheckboxskipremember").addEventListener('click', function() {if(firstcheckboxskipremember.checked == true){$('optionskipremember').checked = true;}save_options();});
+var sharetext = "I highly recommended Proper Menubar. Download and try it yourself! www.stefanvd.net";
+var stefanvdurl = propermenubarproduct;var stefanvdaacodeurl = encodeURIComponent(stefanvdurl);
+$("rememberboxrate").addEventListener("click", function() {window.open(writereview);});
+$("rememberboxgoogle").addEventListener("click", function() {window.open('https://plus.google.com/share?ur\l=' + stefanvdaacodeurl + '', 'Share to Google+','width=600,height=460,menubar=no,location=no,status=no');});
+$("rememberboxfacebook").addEventListener("click", function() {window.open("https://www.facebook.com/sharer.php?u="+ stefanvdurl + "&t=" + sharetext + "", 'Share to Facebook','width=600,height=460,menubar=no,location=no,status=no');});
+$("rememberboxtwitter").addEventListener("click", function() {window.open("https://twitter.com/share?url=" + stefanvdaacodeurl + "&text=" + sharetext + "", 'Share to Twitter','width=600,height=460,menubar=no,location=no,status=no');});
+
+$("shareboxgoogle").addEventListener("click", function() {window.open('https://plus.google.com/share?ur\l=' + stefanvdaacodeurl + '', 'Share to Google+','width=600,height=460,menubar=no,location=no,status=no');});
+$("shareboxfacebook").addEventListener("click", function() {window.open("https://www.facebook.com/sharer.php?u="+ stefanvdurl + "&t=" + sharetext + "", 'Share to Facebook','width=600,height=460,menubar=no,location=no,status=no');});
+$("shareboxtwitter").addEventListener("click", function() {window.open("https://twitter.com/share?url=" + stefanvdaacodeurl + "&text=" + sharetext + "", 'Share to Twitter','width=600,height=460,menubar=no,location=no,status=no');});
+	
 // Detect click / change to save the page and test it.
 var inputs = document.querySelectorAll('input');
-for (var i = 0; i < inputs.length; i++) {inputs[i].addEventListener('change', save_options);}
+for (var i = 0; i < inputs.length; i++) {inputs[i].addEventListener('change', test);inputs[i].addEventListener('change', save_options);}
+var select = document.querySelectorAll('select');
+for (var i = 0; i < select.length; i++) {select[i].addEventListener('change', test);select[i].addEventListener('change', save_options);}
 
 // Close yellow bar
 $("managed-prefs-text-close").addEventListener('click', function() {$("managed-prefs-banner").style.display = "none";});
@@ -340,30 +353,39 @@ $("slice4").addEventListener('click', function() {slidepreview4();});
 $("slice5").addEventListener('click', function() {slidepreview5();});
 $("slice6").addEventListener('click', function() {slidepreview6();});
 
-// Save KB download
-$("tabbasic").addEventListener('click', function() {$('welcomeguide').src = "";});
-$("tabdesign").addEventListener('click', function() {$('welcomeguide').src = "";});
-$("tabguide").addEventListener('click', function() {$('welcomeguide').src = "http://www.stefanvd.net/project/propermenubarchromeguide.htm";$("managed-prefs-banner").style.display = "none";});
-
-// Share button
-$("productsharebutton").addEventListener('click', function() {
-$('sharebuttonspopup').src = "http://www.stefanvd.net/project/propermenubarchromeshare.htm";$("sharepopup").style.display = "";
-});
-
-$("productsharebuttonclose").addEventListener('click', function() {
-$('sharebuttonspopup').src = "";$("sharepopup").style.display = "none";
-});
-
 // proper menu Add website
 $("propermenuaddbutton").addEventListener('click', function() {propermenuaddWhitelistDomain();});
 
 // proper menu Remove website
 $("propermenuremovebutton").addEventListener('click', function() {propermenuremoveSelectedExcludedDomain();});
 
+// Download Upgrade
+$("aadownload").addEventListener('click', function() {window.open(ambientaureaproduct);});
+$("ftdownload").addEventListener('click', function() {window.open(financetoolbarproduct);});
+$("dtdownload").addEventListener('click', function() {window.open(datetodayproduct)});
+$("totldownload").addEventListener('click', function() {window.open(turnoffthelightsproduct)});
+$("fsdownload").addEventListener('click', function() {window.open(fullscreenproduct)});
+$("zdownload").addEventListener('click', function() {window.open(zoomproduct)});
+
+// Save KB download
+$("tabbasic").addEventListener('click', function() {$('dont-turn-off-the-lights').src = "https://www.youtube.com/embed/?listType=playlist&amp;list=PLfXHh3TKRb4ZIWFeG31L_jRs5fRHtzYAc";$('welcomeguide').src = "";});
+$("tabdesign").addEventListener('click', function() {$('dont-turn-off-the-lights').src = "";$('welcomeguide').src = "";});
+$("tabadvan").addEventListener('click', function() {$('dont-turn-off-the-lights').src = "";$('dont-turn-off-the-lights').src = "";$('welcomeguide').src = "";$("managed-prefs-banner").style.display = "";});
+$("tabguide").addEventListener('click', function() {$('dont-turn-off-the-lights').src = "";$('welcomeguide').src = linkguide;$("managed-prefs-banner").style.display = "none";});
+$("tabhelp").addEventListener('click', function() {$('dont-turn-off-the-lights').src = "";$('dont-turn-off-the-lights').src = "";$('welcomeguide').src = "";$("managed-prefs-banner").style.display = "";});
+
+// Reset settings
+$("resetpropermenubar").addEventListener('click', function() {chrome.storage.sync.clear();location.reload();});
+
+// Review box
+$("war").addEventListener('click', function() {window.open(writereview, "_blank");$("sectionreviewbox").style.display = "none";chrome.storage.sync.set({"reviewedlastonversion": chrome.runtime.getManifest().version})});
+$("nt").addEventListener('click', function() {$("sectionreviewbox").style.display = "none";chrome.storage.sync.set({"reviewedlastonversion": chrome.runtime.getManifest().version})});
+
 // retina check
 if(window.devicePixelRatio >= 2) {
-$("productwelcomeimageload").src = "images/propermenubarwelcome@2x.png";$("productwelcomeimageload").style.width = "190px"; $("productwelcomeimageload").style.height = "40px";
-$("productwelcomeimage").src = "images/propermenubarwelcome@2x.png";$("productwelcomeimage").style.width = "190px"; $("productwelcomeimage").style.height = "40px";
+$("loadinglamp").src = "icons/icon16@2x.png";$("loadinglamp").style.width = "16px"; $("loadinglamp").style.height = "16px";
+$("welcomelamp").src = "icons/icon16@2x.png";$("welcomelamp").style.width = "16px"; $("welcomelamp").style.height = "16px";
+$("rememberlamp").src = "icons/icon16@2x.png";$("rememberlamp").style.width = "16px"; $("rememberlamp").style.height = "16px";
 }
 
 });

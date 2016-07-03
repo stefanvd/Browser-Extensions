@@ -3,8 +3,8 @@
 /*
 
 Proper Menubar
-Add back the black menubar below the omnibox.
-Copyright (C) 2013 Stefan vd
+Add the black menubar below the addresbar. To get easy and fast access to all your Google products.
+Copyright (C) 2016 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -33,11 +33,21 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 <head>
 <link rel="stylesheet" type="text/css" href="css/popup.css">
 <script type="text/javascript" src="js/popup.js"></script>
+<script type="text/javascript" src="js/constants.js"></script>
 <body>
-<button id="turnoff" class="greenbutton"></button>
-<button id="turnon" class="redbutton" style="display:none;"></button>
-<div id="bottombar"><br>
-<a id="donate" href="http://www.stefanvd.net/donate.htm" target="_blank"></a>
+<div class="button green" id="turnoff"><span data-i18n="titeltoolbaron"></span></div>
+<div class="button red" id="turnon" style="display:none;"><span data-i18n="titeltoolbaroff"></span></div>
+<div class="btnbox">
+    <div id="opendonate" class="dbn donatebck"><div class="textdonate">&#9749;</div><div class="lbl"><span data-i18n="titledonatebutton"></span></div></div>
+    <div id="openrate" class="dbn"><div class="textrate">&#9733;</div><div class="lbl"><span data-i18n="titelpopupratestars"></span></div></div>
+    <div id="openoptions" class="dbn"><div class="textsettings">&#9881;</div><div class="lbl"><span data-i18n="titelpopupoptions"></span></div></div>
+    <div id="opensupport" class="dbn"><div class="textsettings">&#9993;</div><div class="lbl"><span data-i18n="titelpopupsupport"></span></div></div>
+    <div id="openwelcomeguide" class="dbn"><div class="textsettings">&#x1f530;</div><div class="lbl"><span data-i18n="titelpopupwelcomeguide"></span></div></div>
+    <div id="openyoutube" class="dbn"><div class="textsettings">&#x1f39e;</div><div class="lbl"><span data-i18n="titelpopupvideo"></span></div></div>
+    <div id="opengoogleplus" class="dbn"><div class="googleplus"></div><div class="lbl">Google+</div></div>
+    <div id="openfacebook" class="dbn"><div class="facebook"></div><div class="lbl">Facebook</div></div>
+    <div id="opentwitter" class="dbn"><div class="twitter"></div><div class="lbl">Twitter</div></div>
 </div>
+<script type="text/javascript" src="js/translate.js"></script>   
 </body>
 </html>

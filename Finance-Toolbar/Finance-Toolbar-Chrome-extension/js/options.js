@@ -43,7 +43,7 @@ function save_options(){
 
 var firstdefaultvalues = {};
 // Option default value to read if there is no current value from chrome.storage AND init default value
-chrome.storage.sync.get(['getinfovaluepercent','getinfovaluestock','getinfovaluepercent'], function(items){
+chrome.storage.sync.get(['getinfovaluepercent','getinfovaluestock','getinfovaluepercent','dropshadow'], function(items){
     // find no localstore zoomengine
 	  if(items['getinfovaluepercent'] == null && items['getinfovaluestock'] == null && items['getinfovaluemc'] == null){firstdefaultvalues['getinfovaluepercent'] = true;firstdefaultvalues['getinfovaluestock'] = false;firstdefaultvalues['getinfovaluemc'] = false;}
 	  if(items['dropshadow'] == null){firstdefaultvalues['dropshadow'] = true}

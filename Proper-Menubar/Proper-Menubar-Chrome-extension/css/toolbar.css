@@ -1,10 +1,9 @@
-//*
+/*
 /================================================
 
-
 Proper Menubar
-Add back the black menubar below the URL box.
-Copyright (C) 2013 Stefan vd
+Add the black menubar below the addresbar. To get easy and fast access to all your Google products.
+Copyright (C) 2016 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -27,11 +26,14 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 //================================================
 */
 
-/*--navigation wrapper--*/
-#stefanvdnavwrappe { margin: 0 auto; background-color: #2D2D2D; position: fixed; top: 0; left: 0; height: 30px; width: 100%; }
-#stefanvdnavwrappe #stefanvdpropermenubarnav { font-family: Arial, Helvetica, sans-serif; font-size: 12px; padding-top: 4px; width: 100%!important; }
-#stefanvdnavwrappe #stefanvdpropermenubarnav, #stefanvdnavwrappe #stefanvdpropermenubarnav ul { padding: 0; margin: 0; list-style: none; font-family: Arial, Helvetica, sans-serif; }
-#stefanvdnavwrappe #stefanvdpropermenubarnav a { display: block !important; padding: 7px 7px 7px 7px; text-decoration: none; font-weight: normal; }
-#stefanvdnavwrappe #stefanvdpropermenubarnav li { float: left !important; position: relative !important; line-height: 1.5 !important; height: 30px !important; font-size: inherit !important; margin: 0px!important; padding: 0px!important; border: 0!important; list-style: none!important; background: transparent!important; }
-#stefanvdnavwrappe #stefanvdpropermenubarnav li:hover a, #stefanvdnavwrappe #stefanvdpropermenubarnav a:focus, #stefanvdnavwrappe #stefanvdpropermenubarnav a:active { padding: 7px 7px 7px 7px; color: #fff; background: #444; text-decoration: none; height: 30px; font-weight: normal; }
-#stefanvdnavwrappe #stefanvdpropermenubarnav ul li a:hover  { color:#3366CC !important; background-color: #eef3fb !important; border-right: 0 !important; }
+#stefanvdnavwrappe{margin:0 auto;background-color:#2D2D2D;position:fixed;top:0;left:0;height:30px;width:100%}
+#stefanvdnavwrappe #stefanvdpropermenubarnav{font-family:Arial,Helvetica,sans-serif!important;font-size:12px;padding-top:4px;width:100%!important}
+#stefanvdnavwrappe #stefanvdpropermenubarnav,#stefanvdnavwrappe #stefanvdpropermenubarnav ul{padding:0;margin:0;list-style:none;font-family:Arial, Helvetica,sans-serif}
+#stefanvdnavwrappe #stefanvdpropermenubarnav a{font-family:Arial,Helvetica,sans-serif!important;display:block!important;padding:0 7px;line-height:30px!important;height:30px!important;text-decoration:none;font-weight:normal}
+#stefanvdnavwrappe #stefanvdpropermenubarnav li{font-family:Arial,Helvetica,sans-serif!important;float:left!important;position:relative!important;line-height:30px!important;height:30px!important;font-size: inherit!important;margin:0!important;padding:0!important;border:0!important;list-style:none!important;background:transparent!important}
+#stefanvdnavwrappe #stefanvdpropermenubarnav li:hover a,#stefanvdnavwrappe #stefanvdpropermenubarnav a:focus,#stefanvdnavwrappe #stefanvdpropermenubarnav a:active{padding:0 7px;line-height:30px!important;color:#fff;background:#444;text-decoration:none;height:30px;font-weight:normal}
+#stefanvdnavwrappe #stefanvdpropermenubarnav ul li a:hover{color:#3366CC!important; background-color:#eef3fb!important;border-right:0!important}
+#stefanvdpropermenubardropdown{position:relative;display:inline-block}
+#stefanvdpropermenubardropdowncontent{min-width:100px;display:none;position:absolute;box-shadow:0px 8px 16px 0px rgba(0,0,0,0.2);padding:0}
+#stefanvdpropermenubardropdown:hover #stefanvdpropermenubardropdowncontent{display:block}
+#stefanvdpropermenubardropdown:hover #stefanvdpropermenubardropdowncontent li{width:100%}

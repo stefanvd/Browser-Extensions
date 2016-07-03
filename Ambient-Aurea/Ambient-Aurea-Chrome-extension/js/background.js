@@ -52,9 +52,9 @@ else if (info.menuItemId == "totldevelopmenu") {window.open(donatewebsite, "_bla
 else if (info.menuItemId == "totlratemenu") {window.open(writereview, "_blank");}
 else if (info.menuItemId == "totlsharemenu") {window.open(ambientaureawebsite, "_blank");}
 else if (info.menuItemId == "totlshareemail") {window.open("mailto:youremail?subject=Ambient Aurea extension&body=Hé, This is amazing. I just tried today this Ambient Aurea Browser extension"+ambientaureaproduct+"", "_blank");}
-else if (info.menuItemId == "totlsharetwitter") {var sambientaureaproductcodeurl = encodeURIComponent("The Best and Amazing Ambien Aurea Browser extension "+ambientaureaproduct+" @ambientaurea");window.open("https://twitter.com/home?status="+sambientaureaproductcodeurl+"", "_blank");}
-else if (info.menuItemId == "totlsharefacebook") {window.open("https://www.facebook.com/sharer/sharer.php?u="+zoomproduct, "_blank");}
-else if (info.menuItemId == "totlsharegoogleplus") {window.open("https://plus.google.com/share?url="+zoomproduct, "_blank");}
+else if (info.menuItemId == "totlsharetwitter") {var sambientaureaproductcodeurl = encodeURIComponent("The Best and Amazing Ambient Aurea Browser extension "+ambientaureaproduct+" @ambientaurea");window.open("https://twitter.com/home?status="+sambientaureaproductcodeurl+"", "_blank");}
+else if (info.menuItemId == "totlsharefacebook") {window.open("https://www.facebook.com/sharer/sharer.php?u="+ambientaureaproduct, "_blank");}
+else if (info.menuItemId == "totlsharegoogleplus") {window.open("https://plus.google.com/share?url="+ambientaureaproduct, "_blank");}
 }
 
 chrome.runtime.onInstalled.addListener(function() {

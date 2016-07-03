@@ -2,8 +2,8 @@
 /*
 
 Proper Menubar
-Add back the black menubar below the omnibox.
-Copyright (C) 2014 Stefan vd
+Add the black menubar below the addresbar. To get easy and fast access to all your Google products.
+Copyright (C) 2016 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -26,11 +26,8 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-chrome.extension.onMessage.addListener(function request(request,sender,sendMessage){
-if(request.comando == 'proprequest')sendMessage({addbar:localStorage['addbar'], googleplus:localStorage['googleplus'], opacity:localStorage['opacity'], backgroundhex:localStorage['backgroundhex'], backgroundcolor:localStorage['backgroundcolor'], backgroundimage:localStorage['backgroundimage'], backgroundimagesource:localStorage['backgroundimagesource'], country:localStorage['country'], link1a:localStorage['link1a'], link2a:localStorage['link2a'], link3a:localStorage['link3a'], link4a:localStorage['link4a'], link5a:localStorage['link5a'], link6a:localStorage['link6a'], link7a:localStorage['link7a'], link8a:localStorage['link8a'], link9a:localStorage['link9a'], link10a:localStorage['link10a'], link11a:localStorage['link11a'], link12a:localStorage['link12a'], link13a:localStorage['link13a'], link14a:localStorage['link14a'], link15a:localStorage['link15a'], link16a:localStorage['link16a'], link17a:localStorage['link17a'], link18a:localStorage['link18a'], link19a:localStorage['link19a'], link20a:localStorage['link20a'], link21a:localStorage['link21a'], allsites:localStorage['allsites'], fontcolor:localStorage['fontcolor'], propermenuDomains:localStorage['propermenuDomains'], googlesites:localStorage['googlesites'], propermenuonly:localStorage['propermenuonly'], link22a:localStorage['link22a'], search:localStorage['search'], link23a:localStorage['link23a'], link24a:localStorage['link24a'], link25a:localStorage['link25a'], existingtab:localStorage['existingtab']});
-else if (request.name == "savevalueaddbar") {localStorage['addbar'] = request.value;}
-else if (request.name == "savevaluecountry") {localStorage['country'] = request.value;}
-else if (request.name == "navOFF") {
+chrome.runtime.onMessage.addListener(function request(request,sender,sendMessage){
+if (request.name == "navOFF") {
 chrome.tabs.query({}, function (tabs) {
             for (var i = 0; i < tabs.length; i++) {
                 chrome.tabs.executeScript(tabs[i].id, {file: "js/navremove.js"});
@@ -48,104 +45,153 @@ chrome.tabs.query({}, function (tabs) {
 }
 });
 
-function init() {
-	chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+// update when refresh on the tab
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 		if ((tab.url.match(/^http/i))) {
-			
 			chrome.tabs.getSelected(null, function(tab) {
-			// Send a request to the content script.
 			chrome.tabs.sendMessage(tab.id, {action: "addremove"});
 			});
-			
 		}
-	});
-}
-
-if ((localStorage["firstRun"]!="false") && (localStorage["firstRun"]!=false)){
-  chrome.tabs.create({url: "http://www.stefanvd.net/project/propermenubarchrome.htm", selected:true})
-  localStorage["firstRun"] = false;
-  localStorage["version"]  = "1.7";
-}
-
-// Read current value settings
-window.addEventListener('load', function() {
-init();
 });
 
+// update when click on the tab
+chrome.tabs.onHighlighted.addListener(function(){
+    	chrome.windows.getCurrent(function (w) {
+        	chrome.tabs.getSelected(w.id,
+        	function (response) {
+            	tabId = response.id;
+            	chrome.tabs.sendMessage(tabId, {action: "addremove"});
+        	});
+		});
+});
 
-// desknotify listeners
-function desktopNotifyCliked(id,index){
-    if(id.indexOf('rate') != -1){
-		var ratemyextension = chrome.i18n.getMessage("@@extension_id");
-        var rateURL = 'https://chrome.google.com/webstore/detail/' + ratemyextension + '/reviews';
-		window.open(rateURL,'_blank');
-    }else if(id == 'upgrade' && index!=undefined){
-		var myextension = chrome.i18n.getMessage("@@extension_id");
-        var shareUrl = 'https://chrome.google.com/webstore/detail/' + myextension;
-        var tweetText = encodeURIComponent("Proper Menubar is the most awesome extension. Don't believe me try yourself,") + '%20' + encodeURIComponent(shareUrl);
-        if(index == 0){
-            window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(shareUrl),'_blank');
-        }else if(index == 1){
-            window.open('https://twitter.com/home?status=' + tweetText,'_blank');
+// contextMenus
+function onClickHandler(info, tab) {
+if (info.menuItemId == "totlguideemenu") {window.open(linkguide, "_blank");}
+else if (info.menuItemId == "totldevelopmenu") {window.open(donatewebsite, "_blank");}
+else if (info.menuItemId == "totlratemenu") {window.open(writereview, "_blank");}
+else if (info.menuItemId == "totlsharemenu") {window.open(propermenubarwebsite, "_blank");}
+else if (info.menuItemId == "totlshareemail") {window.open("mailto:youremail?subject=Ambient Aurea extension&body=Hé, This is amazing. I just tried today this Ambient Aurea Browser extension"+propermenubarproduct+"", "_blank");}
+else if (info.menuItemId == "totlsharetwitter") {var spropermenubarproductcodeurl = encodeURIComponent("The Best and Amazing Ambien Aurea Browser extension "+propermenubarproduct+" @ambientaurea");window.open("https://twitter.com/home?status="+spropermenubarproductcodeurl+"", "_blank");}
+else if (info.menuItemId == "totlsharefacebook") {window.open("https://www.facebook.com/sharer/sharer.php?u="+propermenubarproduct, "_blank");}
+else if (info.menuItemId == "totlsharegoogleplus") {window.open("https://plus.google.com/share?url="+propermenubarproduct, "_blank");}
+}
+
+chrome.runtime.onInstalled.addListener(function() {
+// check to remove all contextmenus
+chrome.contextMenus.removeAll(function() {
+//console.log("contextMenus.removeAll callback");
+});
+
+// pageaction
+var sharemenusharetitle = chrome.i18n.getMessage("sharemenusharetitle");
+var sharemenuwelcomeguidetitle = chrome.i18n.getMessage("sharemenuwelcomeguidetitle");
+var sharemenutellafriend = chrome.i18n.getMessage("sharemenutellafriend");
+var sharemenusendatweet = chrome.i18n.getMessage("sharemenusendatweet");
+var sharemenupostonfacebook = chrome.i18n.getMessage("sharemenupostonfacebook");
+var sharemenupostongoogleplus = chrome.i18n.getMessage("sharemenupostongoogleplus");
+var sharemenuratetitle = chrome.i18n.getMessage("sharemenuratetitle");
+var sharemenudonatetitle = chrome.i18n.getMessage("sharemenudonatetitle");
+
+var contexts = ["page_action", "browser_action"];
+chrome.contextMenus.create({"title": sharemenuwelcomeguidetitle, "type":"normal", "id": "totlguideemenu", "contexts":contexts});
+chrome.contextMenus.create({"title": sharemenudonatetitle, "type":"normal", "id": "totldevelopmenu", "contexts":contexts});
+chrome.contextMenus.create({"title": sharemenuratetitle, "type":"normal", "id": "totlratemenu", "contexts":contexts});
+
+// Create a parent item and two children.
+var parent = chrome.contextMenus.create({"title": sharemenusharetitle, "id": "totlsharemenu", "contexts":contexts});
+var child1 = chrome.contextMenus.create({"title": sharemenutellafriend, "id": "totlshareemail", "parentId": parent});
+var child2 = chrome.contextMenus.create({"title": sharemenusendatweet, "id": "totlsharetwitter", "parentId": parent});
+var child2 = chrome.contextMenus.create({"title": sharemenupostonfacebook, "id": "totlsharefacebook", "parentId": parent});
+var child2 = chrome.contextMenus.create({"title": sharemenupostongoogleplus, "id": "totlsharegoogleplus", "parentId": parent});
+});
+
+chrome.contextMenus.onClicked.addListener(onClickHandler);
+
+function refreshtoolbar() {
+    chrome.tabs.query({}, function (tabs) {
+        for (var i = 0; i < tabs.length; ++i) {
+            chrome.tabs.sendMessage(tabs[i].id, { action: "toolbarrefresh" });
         }
+    });
+}
+
+chrome.storage.onChanged.addListener(function (changes, namespace) {
+    for (key in changes) {
+        var storageChange = changes[key];
+      if(changes['backgroundcolor']){if (changes['backgroundcolor'].newValue) { refreshtoolbar() }}
+      if(changes['backgroundhex']){if (changes['backgroundhex'].newValue) { refreshtoolbar() }}
+      if(changes['backgroundimage']){if (changes['backgroundimage'].newValue) { refreshtoolbar() }}
+      if(changes['backgroundimagesource']){if (changes['backgroundimagesource'].newValue) { refreshtoolbar() }}
+      if(changes['opacity']){if (changes['opacity'].newValue) { refreshtoolbar() }}
+      if(changes['googleplus']){if (changes['googleplus'].newValue) { refreshtoolbar() }}
+      if(changes['fontcolor']){if (changes['fontcolor'].newValue) { refreshtoolbar() }}
+      if(changes['search']){if (changes['search'].newValue) { refreshtoolbar() }}
+      if(changes['existingtab']){if (changes['existingtab'].newValue) { refreshtoolbar() }}
+      if(changes['googlesites']){if (changes['googlesites'].newValue) { refreshtoolbar() }}
+      if(changes['propermenuonly']){if (changes['propermenuonly'].newValue) { refreshtoolbar() }}
+	  if(changes['dropshadow']){if (changes['dropshadow'].newValue) { refreshtoolbar() }}
+	  if(changes['link1a']){if (changes['link1a'].newValue) { refreshtoolbar() }}
+	  if(changes['link2a']){if (changes['link2a'].newValue) { refreshtoolbar() }}
+	  if(changes['link3a']){if (changes['link3a'].newValue) { refreshtoolbar() }}
+	  if(changes['link4a']){if (changes['link4a'].newValue) { refreshtoolbar() }}
+	  if(changes['link5a']){if (changes['link5a'].newValue) { refreshtoolbar() }}
+	  if(changes['link6a']){if (changes['link6a'].newValue) { refreshtoolbar() }}
+	  if(changes['link7a']){if (changes['link7a'].newValue) { refreshtoolbar() }}
+	  if(changes['link8a']){if (changes['link8a'].newValue) { refreshtoolbar() }}
+	  if(changes['link9a']){if (changes['link9a'].newValue) { refreshtoolbar() }}
+	  if(changes['link10a']){if (changes['link10a'].newValue) { refreshtoolbar() }}
+	  if(changes['link11a']){if (changes['link11a'].newValue) { refreshtoolbar() }}
+	  if(changes['link12a']){if (changes['link12a'].newValue) { refreshtoolbar() }}
+	  if(changes['link13a']){if (changes['link13a'].newValue) { refreshtoolbar() }}
+	  if(changes['link14a']){if (changes['link14a'].newValue) { refreshtoolbar() }}
+	  if(changes['link15a']){if (changes['link15a'].newValue) { refreshtoolbar() }}
+	  if(changes['link16a']){if (changes['link16a'].newValue) { refreshtoolbar() }}
+	  if(changes['link17a']){if (changes['link17a'].newValue) { refreshtoolbar() }}
+	  if(changes['link18a']){if (changes['link18a'].newValue) { refreshtoolbar() }}
+	  if(changes['link19a']){if (changes['link19a'].newValue) { refreshtoolbar() }}
+	  if(changes['link20a']){if (changes['link20a'].newValue) { refreshtoolbar() }}
+	  if(changes['link21a']){if (changes['link21a'].newValue) { refreshtoolbar() }}
+	  if(changes['link22a']){if (changes['link22a'].newValue) { refreshtoolbar() }}
+	  if(changes['link23a']){if (changes['link23a'].newValue) { refreshtoolbar() }}
+	  if(changes['link24a']){if (changes['link24a'].newValue) { refreshtoolbar() }}
+	  if(changes['link25a']){if (changes['link25a'].newValue) { refreshtoolbar() }}
+	  if(changes['link26a']){if (changes['link26a'].newValue) { refreshtoolbar() }}
+      if(changes['display']){if (changes['display'].newValue) { refreshtoolbar() }}
     }
-}
-chrome.notifications.onClicked.addListener(function(id){
-    desktopNotifyCliked(id);
+})
+
+chrome.commands.onCommand.addListener(function(command) {
+    if(command == "toggle-feature-propermenubar"){
+        var addbar = null;
+        chrome.storage.sync.get(['addbar'], function(items){
+        if(items['addbar']){addbar = items['addbar'];}if(!addbar)addbar = false;
+            chrome.tabs.getSelected(null, function(tab) {
+            if(addbar == true){
+            chrome.storage.sync.set({ "addbar": false});
+            chrome.tabs.sendMessage(tab.id, {action: "addremove"});
+            }else{
+            chrome.storage.sync.set({ "addbar": true});
+            chrome.tabs.sendMessage(tab.id, {action: "addremove"});
+            }
+            });
+        });
+    }
 });
-chrome.notifications.onButtonClicked.addListener(function(id,index){
-    desktopNotifyCliked(id,index);
+
+try{ chrome.runtime.setUninstallUrl(linkuninstall); }
+catch(e){}
+
+// Fired when an update is available
+chrome.runtime.onUpdateAvailable.addListener(function() {chrome.runtime.reload();});
+
+// Fired when an update is available
+chrome.runtime.onUpdateAvailable.addListener(function() {chrome.runtime.reload();});
+
+chrome.storage.sync.get(['firstRun'], function(chromeset){
+if ((chromeset["firstRun"]!="false") && (chromeset["firstRun"]!=false)){
+  chrome.tabs.create({url: linkwelcomepage, selected:true})
+  chrome.storage.sync.set({"firstRun": "false"});
+  chrome.storage.sync.set({"version": "2.0"});
+}
 });
-function desknotGetIcon128(){
-    var icon = 'icons/icon128.png';
-    return icon;
-}
-
-if ((localStorage["version"]=="0.1")){ 
-localStorage["version"]  = "1.7";
-
-var upgradecontexttitle = chrome.i18n.getMessage("upgradecontexttitle");
-var upgradecontextmessage = chrome.i18n.getMessage("upgradecontextmessage");
-var upgradecontextitemta = chrome.i18n.getMessage("upgradecontextitemta"); // title item
-var upgradecontextitemma = chrome.i18n.getMessage("upgradecontextitemma"); // message item
-var upgradecontextitemtb = chrome.i18n.getMessage("upgradecontextitemtb");
-var upgradecontextitemmb = chrome.i18n.getMessage("upgradecontextitemmb");
-
-var upgradefbshare = chrome.i18n.getMessage("upgradefbshare");
-var upgradetwshare = chrome.i18n.getMessage("upgradetwshare");
-
-
-chrome.notifications.create(
-                    'upgrade',{
-                        type: 'list', 
-                        iconUrl: desknotGetIcon128(), 
-                        title: upgradecontexttitle, 
-                        message: upgradecontextmessage, // for the basic
-						items: [{ title: "\u2713 " + upgradecontextitemta + "", message: upgradecontextitemma},
-								{ title: "\u2713 " + upgradecontextitemtb + "", message: upgradecontextitemmb}],
-                        buttons: [
-                            { title: upgradefbshare, iconUrl: 'images/fb_share_16.png'},
-                            { title: upgradetwshare, iconUrl: 'images/twt_share_16.png'},
-                        ],
-                        priority: 0},
-                    function(){} 
-                );
-
-				
-var ratetitle = chrome.i18n.getMessage("ratetitle");
-var ratedes = chrome.i18n.getMessage("ratedes");
-var rateitema = chrome.i18n.getMessage("rateitema");
-
-chrome.notifications.create(
-                    'rate',{   
-                        type: 'basic', 
-                        iconUrl: desknotGetIcon128(), 
-                        title: ratetitle, 
-                        message: ratedes, // for the basic
-                        buttons: [
-                            { title: rateitema, iconUrl: 'images/browser_star_16.png'},
-                        ],
-                        priority: 0},
-                    function(){} 
-                );
-}
