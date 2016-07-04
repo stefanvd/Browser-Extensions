@@ -52,6 +52,10 @@ if(!country){
 var userLang = navigator.language || navigator.userLanguage; 
 if(userLang == "en-US"){country = "com"}
 else if(userLang == "en-UK"){country = "co.uk"}
+else if(userLang == "en-US"){country = "com"}
+else if(userLang == "en-IE"){country = "ie"}
+else if(userLang == "en-AU"){country = "au"}
+else if(userLang == "en-CA"){country = "ca"}
 else if(userLang == "ar-AR"){country = "ar"}
 else if(userLang == "de-DE"){country = "de"}
 else if(userLang == "ru-RU"){country = "ru"}
@@ -62,8 +66,14 @@ else if(userLang == "pl-PL"){country = "pl"}
 else if(userLang == "pt-PT"){country = "pt"}
 else if(userLang == "nl-NL"){country = "nl"}
 else if(userLang == "nl-BE"){country = "be"}
+else if(userLang == "fi-FI"){country = "fi"}
+else if(userLang == "fr-CA"){country = "ca"}
 else if(userLang == "fr-BE"){country = "be"}
 else if(userLang == "fr-FR"){country = "fr"}
+else if(userLang == "uk-UK"){country = "uk"}
+else if(userLang == "sv-SV"){country = "sv"}
+else if(userLang == "th-TH"){country = "th"}
+else if(userLang == "tr-TR"){country = "tr"}
 else {country = "com";}
 chrome.storage.sync.set({"country": country});
 }
@@ -113,7 +123,11 @@ display = items['display'];if(!display)display = 13;
 var keyword = "";
 function getkeyword(){
 		try{
-			if($("gbqfq")){ keyword = $("gbqfq").value;}
+			var inputs = document.getElementsByTagName('input');
+			for (index = 0; index < inputs.length; ++index) {
+				// deal with inputs[index] element.
+				if(inputs[index].getAttribute("name")=="q"){keyword = inputs[index].value}
+			}
 		}catch(e){}
 }
 
@@ -176,7 +190,6 @@ function addtoolbar(){
 
 		var newtoolbarul = document.createElement('div');
 		newtoolbarul.setAttribute('id','stefanvdpropermenubarnav');
-		newtoolbarul.className='floatleft';
 		newtoolbar.appendChild(newtoolbarul);
 
 		var numberitems = 0;
@@ -297,6 +310,13 @@ function addtoolbar(){
 		if(link26a == true){createlink(i18nlink26a,'#','link26s');}
 		if(link21a == true){createlink(i18nlink21a,'#','link21s');}
 		
+		// gmail app 
+		// http://mail.google.com/a/turnoffthelights.com
+		// calendar
+		// http://calendar.google.com/a/turnoffthelights.com
+		// drive
+		// http://drive.google.com/a/turnoffthelights.com
+
 		$("link1s").addEventListener('click', function (e) { getkeyword(); window.open('https://plus.google.'+country+''); }, true);
 		$("link2s").addEventListener('click', function (e) { getkeyword(); window.open('https://www.google.'+country+'/search?q='+keyword+''); }, true);
 		$("link3s").addEventListener('click', function (e) { getkeyword(); window.open('https://images.google.'+country+'/search?q='+keyword+'&source=lnms&tbm=isch'); }, true);
@@ -307,7 +327,7 @@ function addtoolbar(){
 		$("link8s").addEventListener('click', function (e) { getkeyword(); window.open('https://mail.google.'+country+''); }, true);
 		$("link9s").addEventListener('click', function (e) { getkeyword(); window.open('https://drive.google.'+country+''); }, true);
 		$("link10s").addEventListener('click', function (e) { getkeyword(); window.open('https://calendar.google.'+country+''); }, true);
-		$("link11s").addEventListener('click', function (e) { getkeyword(); window.open('https://translate.google.'+country+''); }, true);
+		$("link11s").addEventListener('click', function (e) { getkeyword(); window.open('https://translate.google.'+country+'/#auto/en/'+keyword); }, true);
 		$("link12s").addEventListener('click', function (e) { getkeyword(); window.open('https://mobile.google.'+country+''); }, true);
 		$("link13s").addEventListener('click', function (e) { getkeyword(); window.open('https://www.google.'+country+'/search?tbm=bks&q='+keyword+''); }, true);
 		$("link14s").addEventListener('click', function (e) { getkeyword(); window.open('https://offers.google.'+country+''); }, true);
@@ -316,7 +336,7 @@ function addtoolbar(){
 		$("link17s").addEventListener('click', function (e) { getkeyword(); window.open('https://www.blogger.'+country+''); }, true);
 		$("link18s").addEventListener('click', function (e) { getkeyword(); window.open('https://finance.google.'+country+'/finance?q='+keyword); }, true);
 		$("link19s").addEventListener('click', function (e) { getkeyword(); window.open('https://photos.google.'+country+''); }, true);
-		$("link20s").addEventListener('click', function (e) { getkeyword(); window.open('https://videos.google.'+country+'/search?q='+keyword+'&tbm=vid'); }, true);
+		$("link20s").addEventListener('click', function (e) { getkeyword(); window.open('https://www.google.'+country+'/?tbm=vid&q='+keyword); }, true);
 		$("link22s").addEventListener('click', function (e) { getkeyword(); window.open('https://www.google.com/voice'); }, true);
 		$("link23s").addEventListener('click', function (e) { getkeyword(); window.open('https://www.google.com/contacts/#contacts‎'); }, true);
 		$("link24s").addEventListener('click', function (e) { getkeyword(); window.open('https://scholar.google.'+country+''); }, true);
@@ -343,7 +363,7 @@ function addtoolbar(){
 		if(link17a == true){createlink(i18nlink17a,'https://www.blogger.'+country+'','link17s');}
 		if(link18a == true){createlink(i18nlink18a,'https://finance.google.'+country+'','link18s');}
 		if(link19a == true){createlink(i18nlink19a,'https://photos.google.'+country+'','link19s');}
-		if(link20a == true){createlink(i18nlink20a,'https://videos.google.'+country+'','link20s');}
+		if(link20a == true){createlink(i18nlink20a,'https://www.google.'+country+'/?tbm=vid','link20s');}
 		if(link22a == true){createlink(i18nlink22a,'https://www.google.com/voice','link22s');}
 		if(link23a == true){createlink(i18nlink23a,'https://www.google.com/contacts/#contacts','link23s');}
 		if(link24a == true){createlink(i18nlink24a,'https://scholar.google.'+country+'','link24s');}

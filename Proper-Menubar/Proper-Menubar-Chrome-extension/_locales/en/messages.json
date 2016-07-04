@@ -60,8 +60,8 @@
       "message": "Show the bar only on this websites:"
    },
    "dessearch": {
-      "description": "Option to use the search keyword for other Google links.",
-      "message": "Option to use the search keyword for other Google links."
+      "description": "Option to use the search keyword for other Google links",
+      "message": "Option to use the search keyword for other Google links"
    },
    "donatepromotext": {
       "description": "If you can make a donation of any amount, I'd appreciate it immensely!",
@@ -504,8 +504,8 @@
     "description":"Upgrade"
   }, 
  "welcomebasictext":{
-    "message":"Welcome on the Proper Menubar Browser extension. Here a brief video about how to use the Finance Toolbar extension in your web browser.",
-    "description":"Welcome on the Proper Menubar Browser extension. Here a brief video about how to use the Finance Toolbar extension in your web browser."
+    "message":"Welcome on the Proper Menubar Browser extension. Here a brief video about how to use the Proper Menubar extension in your web browser.",
+    "description":"Welcome on the Proper Menubar Browser extension. Here a brief video about how to use the Proper Menubar extension in your web browser."
   },
   "promotitle":{
     "message":"Tip of the day",
