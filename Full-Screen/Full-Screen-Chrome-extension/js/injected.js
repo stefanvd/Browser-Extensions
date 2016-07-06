@@ -28,28 +28,51 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 
 (ytCinema = {
 	players: {objs: [], active: 0},
-	messageEvent: document.createEvent("Event"),
+	messageEvent: new Event('StefanvdFullSreenMessage'),
 	playerStateChange: function (stateId) {
 		var message = document.getElementById("StefanvdFullSreenMessage"),
 			stateIO = "playerStateChange:".concat(stateId);
-		if (message && message.innerText !== stateIO) {
-			message.innerText = stateIO;
-			message.dispatchEvent(this.messageEvent);
+		// console.log("Debug " + message.textContent + " " +stateIO);
+		if (message && message.textContent !== stateIO) {
+			message.textContent = stateIO;
+			message.dispatchEvent(ytCinema.messageEvent);
 		}
 	},
 	initialize: function () {
-		var that = this;
-		this.messageEvent.initEvent("StefanvdFullSreenMessage", true, true);
+		this.messageEvent;
 		window.addEventListener("load", initvideoinject, false);
+        document.addEventListener("DOMContentLoaded", initvideoinject, false);
 		initvideoinject();
+ 
+ 		// New Mutation Summary API Reference
+ 		var MutationObserver = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+ 		if (MutationObserver) {
+ 		// setup MutationSummary observer
+ 		var videolist = document.querySelector('body');
+ 		var observer = new MutationObserver(function(mutations, observer) {
+                                     initvideoinject();
+                                     });
+ 
+ 		observer.observe(videolist, {
+                  subtree: true,       // observe the subtree rooted at ...videolist...
+                  childList: true,     // include childNode insertion/removals
+                  characterData: false, // include textContent changes
+                  attributes: false     // include changes to attributes within the subtree
+                  });
+ 		} else {
+ 		// setup DOM event listeners
+ 		document.addEventListener("DOMNodeRemoved", initvideoinject, false);
+ 		document.addEventListener("DOMNodeInserted", initvideoinject, false);
+ 		}
+
 		function initvideoinject(e) {
 			var youtubeplayer = document.getElementById("movie_player") || null;
 			var htmlplayer = document.getElementsByTagName("video") || false;
 			
 			if (youtubeplayer !== null) { // YouTube video element
-				var interval = setInterval(function () {
+				var interval = window.setInterval(function () {
 					if (youtubeplayer.pause || youtubeplayer.pauseVideo) {
-						clearInterval(interval);
+						window.clearInterval(interval);
 						if (youtubeplayer.pauseVideo) {youtubeplayer.addEventListener("onStateChange", "ytCinema.playerStateChange");}
 					}
 				}, 10);
@@ -74,8 +97,8 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				};
 				
 				setPlayerEvents(htmlplayer);
-				
-				(function(o) {				
+ 
+				(function(o) {		
 					var triggerDOMChanges = function() {
 						var htmlplayer = document.getElementsByTagName("video") || null;
 						
@@ -93,27 +116,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 						setPlayerEvents(htmlplayer);
 					};				
 
-					// New Mutation Summary API Reference
-					if (typeof WebKitMutationObserver == "function") {
-						// setup MutationSummary observer
-						var videolist = document.querySelector('body');
-						var observer = new WebKitMutationObserver(function(mutations, observer) {
-						triggerDOMChanges();
-						});
-					
-						observer.observe(videolist, {
-							subtree: true,       // observe the subtree rooted at ...videolist...
-							childList: true,     // include childNode insertion/removals
-							characterData: false, // include textContent changes
-							attributes: false     // include changes to attributes within the subtree
-						});
-					} else {
-						// setup DOM event listeners
-						document.addEventListener("DOMNodeRemoved", triggerDOMChanges, false);
-						document.addEventListener("DOMNodeInserted", triggerDOMChanges, false);
-					}
-					
-				}(this.ytCinema));				
+				}(this.ytCinema));
 			}
 		}
 	}

@@ -3,7 +3,7 @@
 
 Full Screen
 Go full screen with one click on the button.
-Copyright (C) 2012 Stefan vd
+Copyright (C) 2016 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -35,12 +35,12 @@ function $(id) { return document.getElementById(id); }
 // settings
 var contextmenus = null, autofullscreen = null;
 
-chrome.extension.sendRequest({comando:'fullscreenrequest'}, function(response){
-contextmenus = response.contextmenus;if(!contextmenus)contextmenus = 'true'; // default contextmenus true
-autofullscreen = response.autofullscreen;
+chrome.storage.sync.get(['contextmenus','autofullscreen'], function(items){
+contextmenus = items['contextmenus'];if(!contextmenus)contextmenus = true; 
+autofullscreen = items['autofullscreen'];
 
 // auto bring the html5 or youtube video to fullscreen
-if(autofullscreen == 'true') {
+if(autofullscreen == true) {
 var gracePeriod = 250, lastEvent = null, timeout = null;
 
 			function trigger (data) {
@@ -74,7 +74,7 @@ var gracePeriod = 250, lastEvent = null, timeout = null;
 							}
 							break;
 						default:
-							console.log("unknown event", data);
+							//console.log("unknown event", data);
 							break;
 					}
 				}
@@ -114,32 +114,43 @@ var gracePeriod = 250, lastEvent = null, timeout = null;
 	}
 	function shadesOff(player) {
 		if (player !== null) {
-var fullscreenElement = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement;
-var fullscreenEnabled = document.fullscreenEnabled || document.mozFullScreenEnabled || document.webkitFullscreenEnabled;
+				var fullscreenElement = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement;
+				var fullscreenEnabled = document.fullscreenEnabled || document.mozFullScreenEnabled || document.webkitFullscreenEnabled;
 
-if (!fullscreenEnabled) {}
-else {
-	if(document.exitFullscreen) {
-    document.exitFullscreen();
-	player.style.cssText="position: relative;width: 100%!important;height: 100%!important;";
-	} else if(document.webkitExitFullscreen) {
-    document.webkitExitFullscreen();
-	player.style.cssText="position: relative;width: 100%!important;height: 100%!important;";
-	}
-}
+			if (window.location.href.match(/((http:\/\/(.*youtube\.com\/.*))|(https:\/\/(.*youtube\.com\/.*)))/i)){
+				if(document.exitFullscreen) {
+					document.exitFullscreen();
+				} else if(document.webkitExitFullscreen) {
+					document.webkitExitFullscreen();
+				}
+			}else{
+				if (!fullscreenEnabled) {}
+				else {
+					if(document.exitFullscreen) {
+					document.exitFullscreen();
+					player.style.cssText="position: relative;width: 100%!important;height: 100%!important;";
+					} else if(document.webkitExitFullscreen) {
+					document.webkitExitFullscreen();
+					player.style.cssText="position: relative;width: 100%!important;height: 100%!important;";
+					}
+				}
+			}
 		}
 	}
 	function shadesOn(player) {
 		if (player !== null) {
-
-if (player.requestFullScreen) {
-  player.requestFullScreen();
-  player.style.cssText="position: relative;width: " + screen.width + "px!important;height: " + screen.height +"px!important;";
-} else if(player.webkitRequestFullscreen) {
-  player.webkitRequestFullscreen();
-  player.style.cssText="position: relative;width: " + screen.width + "px!important;height: " + screen.height +"px!important;";
-}
-		
+			if (window.location.href.match(/((http:\/\/(.*youtube\.com\/.*))|(https:\/\/(.*youtube\.com\/.*)))/i)){
+				// send to background
+				chrome.runtime.sendMessage({name: 'youtubefullscreen'});
+			}else{
+				if (player.requestFullScreen) {
+				player.requestFullScreen();
+				player.style.cssText="position: relative;width: " + screen.width + "px!important;height: " + screen.height +"px!important;";
+				} else if(player.webkitRequestFullscreen) {
+				player.webkitRequestFullscreen();
+				player.style.cssText="position: relative;width: " + screen.width + "px!important;height: " + screen.height +"px!important;";
+				}
+			}
 		}
 	}
 
@@ -170,10 +181,6 @@ if (player.requestFullScreen) {
   		});
 
 } // option autofullscreen on end
-
-// context menu
-if(contextmenus == 'true'){chrome.extension.sendRequest({name: 'contextmenuon'});}
-else {chrome.extension.sendRequest({name: 'contextmenuoff'});}
 });
 
 var last_target = null;
@@ -181,13 +188,16 @@ document.addEventListener('mousedown', function(event){
   last_target = event.target;
 }, true);
 
-chrome.extension.onMessage.addListener(function(event){
-var elem = last_target;
+chrome.runtime.onMessage.addListener(function(request, sender, sendMessage) {
+	if (request.action == "gofullscreen") {
+		var elem = last_target;
+		// if it get the "hide" command from the background page
+		// run this code
 
-  if(elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if(elem.webkitRequestFullscreen) {
-    elem.webkitRequestFullscreen();
-  }
-
+		if(elem.requestFullscreen) {
+			elem.requestFullscreen();
+		} else if(elem.webkitRequestFullscreen) {
+			elem.webkitRequestFullscreen();
+		}
+	}
 })

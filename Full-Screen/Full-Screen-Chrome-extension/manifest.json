@@ -1,20 +1,27 @@
 {
   "manifest_version": 2,
   "name": "__MSG_name__",
-  "version": "1.2",
+  "short_name": "FT",  
+  "version": "1.3",
   "description": "__MSG_description__",
+  "author": "Stefan vd",
+  "homepage_url": "https://www.stefanvd.net",  
   "icons": { "16": "icons/icon16.png",
              "32": "icons/icon32.png",
              "48": "icons/icon48.png",
              "128": "icons/icon128.png" },
-  "permissions": [ "contextMenus", "tabs", "http://*/*", "https://*/*"],
+  "permissions": [ "contextMenus", "tabs", "http://*/*", "https://*/*", "storage", "notifications" ],
   "default_locale": "en",
   "page_action": {
       "default_title": "__MSG_pageatitle__",
-      "default_icon": "icons/icon1.png"
+	    "default_icon": {
+        "19": "icons/icon1.png",
+        "38": "icons/icon38.png"
+      }
   },
   "web_accessible_resources": [
-	"js/injected.js"
+    "icons/icon16.png",
+	  "js/injected.js"
   ],
   "content_scripts": [
     {
@@ -24,9 +31,13 @@
     }
   ],
   "background": {
-    "page": "background.html"
+    "page": "background.html",
+	  "persistent": false
   },
   "content_security_policy": "script-src 'self' https://ssl.google-analytics.com https://platform.twitter.com https://apis.google.com; img-src *; object-src 'self'",
-  "options_page": "options.html",
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
   "minimum_chrome_version": "20"
 }
