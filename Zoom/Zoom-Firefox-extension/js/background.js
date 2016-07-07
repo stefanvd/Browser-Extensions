@@ -56,7 +56,8 @@ if (allzoom == true) {
             if(zoomchrome == true){
                 chrome.tabs.setZoom(tabs[0].id, allzoomvalue);
             }else{
-                chrome.tabs.executeScript(tabs[0].id,{code:"document.body.style.zoom=" + allzoomvalue});
+                chrome.tabs.executeScript(tabs[0].id,{code:"document.body.style.transformOrigin='left top';document.body.style.transform='scale(" + allzoomvalue + ")'"});
+                //chrome.tabs.executeScript(tabs[0].id,{code:"document.body.style.zoom=" + allzoomvalue});
             }
             if(badge == true){
                 chrome.browserAction.setBadgeBackgroundColor({color:lightcolor}); 
@@ -80,7 +81,8 @@ else{
                   if (zoomchrome == true) {
                       chrome.tabs.setZoom(tabs[0].id, editzoom);
                   } else {
-                      chrome.tabs.executeScript(tabs[0].id, { code: "document.body.style.zoom=" + editzoom });
+                      chrome.tabs.executeScript(tabs[0].id,{code:"document.body.style.transformOrigin='left top';document.body.style.transform='scale(" + editzoom + ")'"});
+                      //chrome.tabs.executeScript(tabs[0].id, { code: "document.body.style.zoom=" + editzoom });
                   }
                   if (badge == true) {
                       chrome.browserAction.setBadgeBackgroundColor({ color: lightcolor });
@@ -150,7 +152,8 @@ if (respage == "zoompage") {
         if(zoomchrome == true){
             chrome.tabs.setZoom(tabs[0].id, czl/100);
         }else{
-            chrome.tabs.executeScript(tabs[0].id,{code:"document.body.style.zoom=" + czl/100});
+            chrome.tabs.executeScript(tabs[0].id,{code:"document.body.style.transformOrigin='left top';document.body.style.transform='scale(" + czl/100 + ")'"});
+            //chrome.tabs.executeScript(tabs[0].id,{code:"document.body.style.zoom=" + czl/100});
         }
         if(badge == true){
             chrome.browserAction.setBadgeBackgroundColor({color:lightcolor}); 

@@ -1,8 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<!--
 //================================================
 /*
 
@@ -30,23 +25,17 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 
 */
 //================================================
--->
-<link rel="stylesheet" type="text/css" href="css/popup.css">
-<script type="text/javascript" src="js/popup.js"></script>
-</head>
-<body>
-<script src="js/analytics.js"></script>
-<div id="zoompopup">
-	<div><input id="range" type="range" min="1" max="400" value="100" step="5"/></div>
-	<div class="dvnumber"><input id="number" type="number" min="1" max="400" value="100" step="1"/></div>
-	<div>
-		<ul class="button_group">
-		<li><a id="hund" href="#"><span data-i18n="btnreset"></span></a></li>
-		<li><a id="minus" href="#">-</a></li>
-		<li><a id="plus" href="#">+</a></li>
-		</ul>
-	</div>
-</div>
-<script type="text/javascript" src="js/translate.js"></script>
-</body>
-</html>
+
+function $(id) { return document.getElementById(id); }
+
+chrome.runtime.sendMessage({action: "getallRatio", website: window.location.protocol + '//' + window.location.host});
+
+// Listen for messages
+chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
+    // If the received message has the expected format...
+    if (msg.text === 'getwebzoom') {
+        // Call the specified callback, passing
+        // the web-page's DOM content as argument
+        sendResponse(document.body.style.zoom);
+    }
+});

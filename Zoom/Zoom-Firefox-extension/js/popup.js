@@ -43,7 +43,8 @@ function zoomtab(a,b){
         chrome.tabs.setZoom(a, b);
     }else{
         try{
-            chrome.tabs.executeScript(null,{code:"document.body.style.zoom=" + b});
+            chrome.tabs.executeScript(null,{code:"document.body.style.transformOrigin='left top';document.body.style.transform='scale(" + b + ")'"});
+            //chrome.tabs.executeScript(null,{code:"document.body.style.zoom=" + b});
         }
         catch(e){}
     }

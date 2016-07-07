@@ -1,8 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<!--
 //================================================
 /*
 
@@ -30,23 +25,15 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 
 */
 //================================================
--->
-<link rel="stylesheet" type="text/css" href="css/popup.css">
-<script type="text/javascript" src="js/popup.js"></script>
-</head>
-<body>
-<script src="js/analytics.js"></script>
-<div id="zoompopup">
-	<div><input id="range" type="range" min="1" max="400" value="100" step="5"/></div>
-	<div class="dvnumber"><input id="number" type="number" min="1" max="400" value="100" step="1"/></div>
-	<div>
-		<ul class="button_group">
-		<li><a id="hund" href="#"><span data-i18n="btnreset"></span></a></li>
-		<li><a id="minus" href="#">-</a></li>
-		<li><a id="plus" href="#">+</a></li>
-		</ul>
-	</div>
-</div>
-<script type="text/javascript" src="js/translate.js"></script>
-</body>
-</html>
+
+var manifestData = chrome.runtime.getManifest();
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-16237836-40']);
+_gaq.push(['_setSampleRate', '1']);
+_gaq.push(['_trackPageview', '/background.html?version='+manifestData.version+'']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = 'https://ssl.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
