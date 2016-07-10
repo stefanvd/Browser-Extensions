@@ -1,31 +1,31 @@
 function $(id) { return document.getElementById(id); }
 // Install on www.stefanvd.net
 if (window.location.href.match(/http:\/\/(.*stefanvd\.net\/.*|www\.stefanvd\.net\/.*\/.*)/i)){
-	if ($('zoom-chrome-install-button')) {
+	if ($('zoom-opera-install-button')) {
 		$('zoom-chrome-install-button').style.display = 'none';
 		$('zoom-chrome-thanks-button').style.display = '';
 	}
 }
-var ambientaureaproduct = "https://chrome.google.com/webstore/detail/ambient-aurea/pkaglmndhfgdaiaccjglghcbnfinfffa";
-var idaa = "pkaglmndhfgdaiaccjglghcbnfinfffa";
-var datetodayproduct = "https://chrome.google.com/webstore/detail/date-today/mhgknbehalhkedjgfhiaindklahhkccc";
-var iddt = "mhgknbehalhkedjgfhiaindklahhkccc";
-var turnoffthelightsproduct = "https://chrome.google.com/webstore/detail/turn-off-the-lights/bfbmjmiodbnnpllbbbfblcplfjjepjdn";
-var idtotl = "bfbmjmiodbnnpllbbbfblcplfjjepjdn";
-var financetoolbarproduct = "https://chrome.google.com/webstore/detail/finance-toolbar/cichbngoomgnobmmjpagmbkimbamigie";
-var idft = "cichbngoomgnobmmjpagmbkimbamigie";
-var propermenubarproduct = "https://chrome.google.com/webstore/detail/proper-menubar/egclcjdpndeoioimlbbbmdhcaopnedkp";
-var idpp = "egclcjdpndeoioimlbbbmdhcaopnedkp";
-var fullscreenproduct = "https://chrome.google.com/webstore/detail/full-screen/gmimocjjppdelmhpcmpkhekmpoddgima";
-var idfs = "gmimocjjppdelmhpcmpkhekmpoddgima";
-var zoomproduct = "https://chrome.google.com/webstore/detail/zoom/lajondecmobodlejlcjllhojikagldgd";
-var idz = "lajondecmobodlejlcjllhojikagldgd";
+var ambientaureaproduct = "https://addons.opera.com/extensions/details/ambient-aurea/";
+var idaa = "nmnhcielcdnkiaonbpdjmccclbhmejba";
+var datetodayproduct = "https://addons.opera.com/extensions/details/date-today/";
+var iddt = "kmmoagblhjcpjphddefmeilhobmdhica";
+var turnoffthelightsproduct = "https://addons.opera.com/extensions/details/turn-off-the-lights/";
+var idtotl = "ccbdoklfbpcifppcfahmmpmbkfdjjccm";
+var financetoolbarproduct = "https://addons.opera.com/extensions/details/finance-toolbar/";
+var idft = "bkolejhblonecomnblbhojjjllbmhicj";
+var propermenubarproduct = "https://addons.opera.com/extensions/details/proper-menubar/";
+var idpp = "nlgffdljekdinjgdnhcegnhgmeaihifa";
+var fullscreenproduct = "https://addons.opera.com/extensions/details/full-screen/";
+var idfs = "cglldighaohibhhehmibonhdjompidpj";
+var zoomproduct = "https://addons.opera.com/extensions/details/zoom/";
+var idz = "agocngbnphnfdhpacecdpcpfphhdmoff";
 var donatewebsite = "https://www.stefanvd.net/donate.htm";
-var writereview = "https://chrome.google.com/webstore/detail/zoom/lajondecmobodlejlcjllhojikagldgd/reviews";
-var linkchangelog = "https://www.stefanvd.net/project/zoomchromechangelog.htm";
+var writereview = "https://addons.opera.com/extensions/details/zoom/";
+var linkchangelog = "https://www.stefanvd.net/project/zoom/browser/opera/changelog.htm";
 var linktranslate = "https://www.stefanvd.net/project/translate.htm";
 var linksupport = "https://www.stefanvd.net/support/";
-var linkguide = "https://www.stefanvd.net/project/zoomchromeguide.htm";
-var linkwelcomepage = "https://www.stefanvd.net/project/zoomchrome.htm";
-var linkuninstall = "https://www.stefanvd.net/";
+var linkguide = "https://www.stefanvd.net/project/zoom/browser/opera/guide.htm";
+var linkwelcomepage = "https://www.stefanvd.net/project/zoom/browser/opera/welcome.htm";
+var linkuninstall = "https://www.stefanvd.net/project/zoom/browser/opera/uninstall.htm";
 var zoomwebsite = "https://www.stefanvd.net/project/zoom/browser/";

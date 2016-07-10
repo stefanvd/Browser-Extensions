@@ -32,7 +32,7 @@ chrome.runtime.onMessage.addListener(function request(request,sender,sendRespons
 if(request.action == 'getallRatio'){
 currentURL = request.website;
 chrome.storage.local.get(['allzoom','allzoomvalue','websitezoom','badge','lightcolor','zoomchrome','zoomweb'], function(response){
-allzoom = response.allzoom;if(!allzoom)allzoom = 'false'; // default allzoom false
+allzoom = response.allzoom;if(!allzoom)allzoom = false; // default allzoom false
 allzoomvalue = response.allzoomvalue;
 badge = response.badge;
 lightcolor = response.lightcolor;if(!lightcolor)lightcolor = '#3cb4fe';
@@ -48,12 +48,14 @@ if (allzoom == true) {
         
             if(zoomchrome == true){
                 chrome.tabs.setZoom(tabs[0].id, allzoomvalue);
-            }else{
+            } else{
                 chrome.tabs.executeScript(tabs[0].id,{code:"document.body.style.zoom=" + allzoomvalue});
             }
             if(badge == true){
                 chrome.browserAction.setBadgeBackgroundColor({color:lightcolor}); 
-                chrome.browserAction.setBadgeText ( { text: ""+parseInt(allzoomvalue*100)+"" } ); }else{chrome.browserAction.setBadgeText ( { text: "" } );
+                chrome.browserAction.setBadgeText ( { text: ""+parseInt(allzoomvalue*100)+"" } );
+            } else{
+                chrome.browserAction.setBadgeText ( { text: "" } );
             }
         });
 }
@@ -67,20 +69,27 @@ else{
       atbbuf.sort();
     for(var i = 0; i < atbbuf.length; i++){
       if(atbbuf[i] == currentURL){
-      var editzoom = websitezoom[atbbuf[i]]/100;
-              chrome.tabs.query({ active: true, currentWindow: true},
+        var tempatbbuf = atbbuf[i];
+        var editzoom = websitezoom[atbbuf[i]]/100;
+              chrome.tabs.query({},
               function (tabs) {
-                  if (zoomchrome == true) {
-                      chrome.tabs.setZoom(tabs[0].id, editzoom);
-                  } else {
-                      chrome.tabs.executeScript(tabs[0].id, { code: "document.body.style.zoom=" + editzoom });
-                  }
-                  if (badge == true) {
-                      chrome.browserAction.setBadgeBackgroundColor({ color: lightcolor });
-                      chrome.browserAction.setBadgeText({ text: "" + parseInt(editzoom * 100) + "" });
-                  } else {
-                      chrome.browserAction.setBadgeText({ text: "" });
-                  }
+                  tabs.forEach(function(tab){
+                        var tor = tab.url;
+                        var webtor = tor.match(/^[\w-]+:\/*\[?([\w\.:-]+)\]?(?::\d+)?/)[0];
+                        if(webtor == tempatbbuf){
+                            if (zoomchrome == true) {
+                                chrome.tabs.setZoom(tab.id, editzoom);
+                            } else {
+                                chrome.tabs.executeScript(tab.id, { code: "document.body.style.zoom=" + editzoom });
+                            }
+                            if (badge == true) {
+                                chrome.browserAction.setBadgeBackgroundColor({ color: lightcolor });
+                                chrome.browserAction.setBadgeText({ text: "" + parseInt(editzoom * 100) + "" });
+                            } else {
+                                chrome.browserAction.setBadgeText({ text: "" });
+                            }
+                        }
+                  });
               });
       }
     }
