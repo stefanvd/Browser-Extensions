@@ -40,12 +40,45 @@ function zoomtab(a,b){
     document.getElementById("range").value=Math.round(b*100);
 
     if (zoomchrome == true) {
-        chrome.tabs.setZoom(a, b);
-    }else{
-        try{
-            chrome.tabs.executeScript(null,{code:"document.body.style.zoom=" + b});
+        if(allzoom == true){
+                chrome.tabs.query({},
+                function (tabs) {
+                    tabs.forEach(function(tab){
+                        chrome.tabs.setZoom(tab.id, b);
+                    });
+                });
+        }else{
+            try{
+                chrome.tabs.setZoom(a, b);
+            }
+            catch(e){}
         }
-        catch(e){}
+    }else{
+        if(allzoom == true){
+                chrome.tabs.query({},
+                function (tabs) {
+                    tabs.forEach(function(tab){
+                        try{
+                            chrome.tabs.executeScript(tab.id,{code:"document.body.style.zoom=" + b});
+                        }
+                        catch(e){}
+                    });
+                });
+        }else{
+            chrome.tabs.query({},
+                function (tabs) {
+                    tabs.forEach(function(tab){
+                        var pop = tab.url;
+                        var webpop = pop.match(/^[\w-]+:\/*\[?([\w\.:-]+)\]?(?::\d+)?/)[0];
+                        if(webpop == webjob){
+                            try{
+                            chrome.tabs.executeScript(tab.id,{code:"document.body.style.zoom=" + b});
+                            }
+                            catch(e){}
+                        }
+                    });
+                });
+        }
     }
 
     if(badge == true){

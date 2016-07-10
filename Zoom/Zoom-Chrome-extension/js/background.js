@@ -26,20 +26,13 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-
-/*
-TODO
-+ screenshot
-+ links
-*/
-
 var currentURL;var allzoom;var allzoomvalue;var badge;
 
 chrome.runtime.onMessage.addListener(function request(request,sender,sendResponse){
 if(request.action == 'getallRatio'){
 currentURL = request.website;
 chrome.storage.local.get(['allzoom','allzoomvalue','websitezoom','badge','lightcolor','zoomchrome','zoomweb'], function(response){
-allzoom = response.allzoom;if(!allzoom)allzoom = 'false'; // default allzoom false
+allzoom = response.allzoom;if(!allzoom)allzoom = false; // default allzoom false
 allzoomvalue = response.allzoomvalue;
 badge = response.badge;
 lightcolor = response.lightcolor;if(!lightcolor)lightcolor = '#3cb4fe';
@@ -55,12 +48,14 @@ if (allzoom == true) {
         
             if(zoomchrome == true){
                 chrome.tabs.setZoom(tabs[0].id, allzoomvalue);
-            }else{
+            } else{
                 chrome.tabs.executeScript(tabs[0].id,{code:"document.body.style.zoom=" + allzoomvalue});
             }
             if(badge == true){
                 chrome.browserAction.setBadgeBackgroundColor({color:lightcolor}); 
-                chrome.browserAction.setBadgeText ( { text: ""+parseInt(allzoomvalue*100)+"" } ); }else{chrome.browserAction.setBadgeText ( { text: "" } );
+                chrome.browserAction.setBadgeText ( { text: ""+parseInt(allzoomvalue*100)+"" } );
+            } else{
+                chrome.browserAction.setBadgeText ( { text: "" } );
             }
         });
 }
@@ -74,20 +69,27 @@ else{
       atbbuf.sort();
     for(var i = 0; i < atbbuf.length; i++){
       if(atbbuf[i] == currentURL){
-      var editzoom = websitezoom[atbbuf[i]]/100;
-              chrome.tabs.query({ active: true, currentWindow: true},
+        var tempatbbuf = atbbuf[i];
+        var editzoom = websitezoom[atbbuf[i]]/100;
+              chrome.tabs.query({},
               function (tabs) {
-                  if (zoomchrome == true) {
-                      chrome.tabs.setZoom(tabs[0].id, editzoom);
-                  } else {
-                      chrome.tabs.executeScript(tabs[0].id, { code: "document.body.style.zoom=" + editzoom });
-                  }
-                  if (badge == true) {
-                      chrome.browserAction.setBadgeBackgroundColor({ color: lightcolor });
-                      chrome.browserAction.setBadgeText({ text: "" + parseInt(editzoom * 100) + "" });
-                  } else {
-                      chrome.browserAction.setBadgeText({ text: "" });
-                  }
+                  tabs.forEach(function(tab){
+                        var tor = tab.url;
+                        var webtor = tor.match(/^[\w-]+:\/*\[?([\w\.:-]+)\]?(?::\d+)?/)[0];
+                        if(webtor == tempatbbuf){
+                            if (zoomchrome == true) {
+                                chrome.tabs.setZoom(tab.id, editzoom);
+                            } else {
+                                chrome.tabs.executeScript(tab.id, { code: "document.body.style.zoom=" + editzoom });
+                            }
+                            if (badge == true) {
+                                chrome.browserAction.setBadgeBackgroundColor({ color: lightcolor });
+                                chrome.browserAction.setBadgeText({ text: "" + parseInt(editzoom * 100) + "" });
+                            } else {
+                                chrome.browserAction.setBadgeText({ text: "" });
+                            }
+                        }
+                  });
               });
       }
     }
@@ -146,7 +148,7 @@ if (respage == "zoompage") {
     zoomchrome = response.zoomchrome;if(!zoomchrome)zoomchrome = false;
     zoomweb = response.zoomweb;if(!zoomweb)zoomweb = true;
     websitezoom = response.websitezoom;websitezoom = JSON.parse(websitezoom);
-    chrome.tabs.query({ active: true }, function (tabs) {
+    chrome.tabs.query({ active: true, currentWindow: true}, function (tabs) {
         if(zoomchrome == true){
             chrome.tabs.setZoom(tabs[0].id, czl/100);
         }else{
@@ -222,8 +224,8 @@ var child2 = chrome.contextMenus.create({"title": sharemenusendatweet, "id": "to
 var child2 = chrome.contextMenus.create({"title": sharemenupostonfacebook, "id": "totlsharefacebook", "parentId": parent});
 var child2 = chrome.contextMenus.create({"title": sharemenupostongoogleplus, "id": "totlsharegoogleplus", "parentId": parent});
 
-chrome.storage.local.get(['contextmenu'], function(items){
-    if(items['contextmenu']){checkcontextmenus();}
+chrome.storage.local.get(['contextmenus'], function(items){
+    if(items['contextmenus']){checkcontextmenus();}
 });
 });
 
@@ -271,7 +273,7 @@ function removecontexmenus(){
 chrome.storage.onChanged.addListener(function(changes, namespace) {
    for (key in changes) {
           var storageChange = changes[key];
-          if(changes['contextmenu']){if(changes['contextmenu'].newValue == true){checkcontextmenus()}else{removecontexmenus()}}
+          if(changes['contextmenus']){if(changes['contextmenus'].newValue == true){checkcontextmenus()}else{removecontexmenus()}}
           if(changes['badge']) {
               if(changes['badge'].newValue) { chrome.browserAction.setBadgeText({ text: "100" }) } else { chrome.browserAction.setBadgeText({ text: "" }) }
           }
@@ -294,6 +296,6 @@ chrome.storage.local.get(['firstRun'], function(chromeset){
 if ((chromeset["firstRun"]!="false") && (chromeset["firstRun"]!=false)){
   chrome.tabs.create({url: linkwelcomepage, selected:true})
   chrome.storage.local.set({"firstRun": "false"});
-  chrome.storage.local.set({"version": "2.0"});
+  chrome.storage.local.set({"version": "2.1"});
 }
 });

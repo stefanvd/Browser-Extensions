@@ -26,13 +26,6 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-
-/*
-TODO
-+ screenshot
-+ links
-*/
-
 var currentURL;var allzoom;var allzoomvalue;var badge;
 
 chrome.runtime.onMessage.addListener(function request(request,sender,sendResponse){
@@ -146,7 +139,7 @@ if (respage == "zoompage") {
     zoomchrome = response.zoomchrome;if(!zoomchrome)zoomchrome = false;
     zoomweb = response.zoomweb;if(!zoomweb)zoomweb = true;
     websitezoom = response.websitezoom;websitezoom = JSON.parse(websitezoom);
-    chrome.tabs.query({ active: true }, function (tabs) {
+    chrome.tabs.query({ active: true, currentWindow: true}, function (tabs) {
         if(zoomchrome == true){
             chrome.tabs.setZoom(tabs[0].id, czl/100);
         }else{
@@ -222,8 +215,8 @@ var child2 = chrome.contextMenus.create({"title": sharemenusendatweet, "id": "to
 var child2 = chrome.contextMenus.create({"title": sharemenupostonfacebook, "id": "totlsharefacebook", "parentId": parent});
 var child2 = chrome.contextMenus.create({"title": sharemenupostongoogleplus, "id": "totlsharegoogleplus", "parentId": parent});
 
-chrome.storage.local.get(['contextmenu'], function(items){
-    if(items['contextmenu']){checkcontextmenus();}
+chrome.storage.local.get(['contextmenus'], function(items){
+    if(items['contextmenus']){checkcontextmenus();}
 });
 });
 
@@ -271,7 +264,7 @@ function removecontexmenus(){
 chrome.storage.onChanged.addListener(function(changes, namespace) {
    for (key in changes) {
           var storageChange = changes[key];
-          if(changes['contextmenu']){if(changes['contextmenu'].newValue == true){checkcontextmenus()}else{removecontexmenus()}}
+          if(changes['contextmenus']){if(changes['contextmenus'].newValue == true){checkcontextmenus()}else{removecontexmenus()}}
           if(changes['badge']) {
               if(changes['badge'].newValue) { chrome.browserAction.setBadgeText({ text: "100" }) } else { chrome.browserAction.setBadgeText({ text: "" }) }
           }
@@ -294,6 +287,6 @@ chrome.storage.local.get(['firstRun'], function(chromeset){
 if ((chromeset["firstRun"]!="false") && (chromeset["firstRun"]!=false)){
   chrome.tabs.create({url: linkwelcomepage, selected:true})
   chrome.storage.local.set({"firstRun": "false"});
-  chrome.storage.local.set({"version": "2.0"});
+  chrome.storage.local.set({"version": "2.1"});
 }
 });
