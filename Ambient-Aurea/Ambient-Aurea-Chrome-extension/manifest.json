@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "__MSG_name__",
   "short_name": "AA",  
-  "version": "2.1",
+  "version": "2.1.0.1",
   "description": "__MSG_description__",
   "author": "Stefan vd",
   "homepage_url": "https://www.stefanvd.net",  
@@ -42,7 +42,18 @@
       "run_at": "document_end"
     }
   ],
-  "options_page": "options.html",
+ "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+A",
+        "mac": "MacCtrl+Shift+A"
+      }
+    }
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
   "minimum_chrome_version": "20",
   "permissions": [ "contextMenus", "tabs", "http://*/*", "https://*/*", "storage", "notifications" ]
 }

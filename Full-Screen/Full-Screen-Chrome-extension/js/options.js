@@ -3,7 +3,7 @@
 
 Full Screen
 Go full screen with one click on the button.
-Copyright (C) 2014 Stefan vd
+Copyright (C) 2016 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -251,10 +251,6 @@ $("resetfullscreen").addEventListener('click', function() {chrome.storage.sync.c
 // Review box
 $("war").addEventListener('click', function() {window.open(writereview, "_blank");$("sectionreviewbox").style.display = "none";chrome.storage.sync.set({"reviewedlastonversion": chrome.runtime.getManifest().version})});
 $("nt").addEventListener('click', function() {$("sectionreviewbox").style.display = "none";chrome.storage.sync.set({"reviewedlastonversion": chrome.runtime.getManifest().version})});
-
-// Finance Toolbar app box
-$("apgetapp").addEventListener('click', function() {window.open(financetoolbarapp, "_blank");$("sectionfinancetoolbarappbox").style.display = "none";chrome.storage.sync.set({"applastonversion": chrome.runtime.getManifest().version});});
-$("apnt").addEventListener('click', function() {$("sectionfinancetoolbarappbox").style.display = "none";chrome.storage.sync.set({"applastonversion": chrome.runtime.getManifest().version});});
 
 // retina check
 if(window.devicePixelRatio >= 2) {

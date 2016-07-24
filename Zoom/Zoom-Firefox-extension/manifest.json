@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "__MSG_name__",
-  "version": "2.1.0.2",
+  "version": "2.1.0.6",
   "short_name": "Zoom",   
   "description": "__MSG_description__",
   "homepage_url": "https://www.stefanvd.net",    
@@ -24,6 +24,14 @@
     "page": "background.html"
   },
   "content_security_policy": "script-src 'self' https://ssl.google-analytics.com https://platform.twitter.com https://apis.google.com; img-src *; object-src 'self'",
+    "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Z",
+        "mac": "MacCtrl+Shift+Z"
+      }
+    }
+  },
   "web_accessible_resources": [
     "icons/icon16.png"
   ],

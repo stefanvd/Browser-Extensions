@@ -1,9 +1,9 @@
 function $(id) { return document.getElementById(id); }
 // Install on www.stefanvd.net
 if (window.location.href.match(/http:\/\/(.*stefanvd\.net\/.*|www\.stefanvd\.net\/.*\/.*)/i)){
-	if ($('datetoday-chrome-install-button')) {
-		$('datetoday-chrome-install-button').style.display = 'none';
-		$('datetoday-chrome-thanks-button').style.display = '';
+	if ($('date-today-chrome-install-button')) {
+		$('date-today-chrome-install-button').style.display = 'none';
+		$('date-today-chrome-thanks-button').style.display = '';
 	}
 }
 var ambientaureaproduct = "https://chrome.google.com/webstore/detail/ambient-aurea/pkaglmndhfgdaiaccjglghcbnfinfffa";
@@ -22,10 +22,10 @@ var zoomproduct = "https://chrome.google.com/webstore/detail/zoom/lajondecmobodl
 var idz = "lajondecmobodlejlcjllhojikagldgd";
 var donatewebsite = "https://www.stefanvd.net/donate.htm";
 var writereview = "https://chrome.google.com/webstore/detail/date-today/mhgknbehalhkedjgfhiaindklahhkccc/reviews";
-var linkchangelog = "https://www.stefanvd.net/project/datetodaychromechangelog.htm";
+var linkchangelog = "https://stefanvd.net/project/date-today/browser/google-chrome/changelog.htm";
 var linktranslate = "https://www.stefanvd.net/project/translate.htm";
 var linksupport = "https://www.stefanvd.net/support/";
-var linkguide = "https://www.stefanvd.net/project/datetodaychromeguide.htm";
-var linkwelcomepage = "https://www.stefanvd.net/project/datetodaychrome.htm";
-var linkuninstall = "https://www.stefanvd.net/";
+var linkguide = "https://stefanvd.net/project/date-today/browser/google-chrome/guide.htm";
+var linkwelcomepage = "https://stefanvd.net/project/date-today/browser/google-chrome/welcome.htm";
+var linkuninstall = "https://stefanvd.net/project/date-today/browser/google-chrome/uninstall.htm";
 var datetodaywebsite = "https://www.stefanvd.net/project/date-today/browser/";

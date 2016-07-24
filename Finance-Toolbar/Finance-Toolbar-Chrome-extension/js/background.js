@@ -2,7 +2,7 @@
 /*
 
 Finance Toolbar
-This show you the real time stock market information.
+Get real time stock market information about your favorite stocks. With mini-charts of the currency value.
 Copyright (C) 2016 Stefan vd
 www.stefanvd.net
 
@@ -44,6 +44,12 @@ chrome.tabs.onHighlighted.addListener(function(){
             	chrome.tabs.sendMessage(tabId, {action: "addremove"});
         	});
 		});
+});
+
+chrome.commands.onCommand.addListener(function(command) {
+if(command == "toggle-feature-financetoolbar"){
+    chrome.tabs.sendMessage(null, {action: "addremove"});
+}
 });
 
 // contextMenus
@@ -142,9 +148,6 @@ chrome.commands.onCommand.addListener(function(command) {
         });
     }
 });
-
-// Fired when an update is available
-chrome.runtime.onUpdateAvailable.addListener(function() {chrome.runtime.reload();});
 
 // Fired when an update is available
 chrome.runtime.onUpdateAvailable.addListener(function() {chrome.runtime.reload();});

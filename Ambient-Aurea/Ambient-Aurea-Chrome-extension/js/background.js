@@ -26,12 +26,6 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-/*
-TODO
-+ screenshot
-+ links
-*/
-
 chrome.runtime.onMessage.addListener(function request(request,sender,sendResponse){
 if (request.name == "opacitysaveme") {chrome.storage.sync.set({"interval": request.value});}
 else if (request.name == "imgurl") {chrome.storage.sync.set({"getimgurl": request.value});}
@@ -133,9 +127,6 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
 
 try{ chrome.runtime.setUninstallUrl(linkuninstall); }
 catch(e){}
-
-// Fired when an update is available
-chrome.runtime.onUpdateAvailable.addListener(function() {chrome.runtime.reload();});
 
 // Fired when an update is available
 chrome.runtime.onUpdateAvailable.addListener(function() {chrome.runtime.reload();});

@@ -2,7 +2,7 @@
 /*
  
 Date Today
-The best clock to see in one glance the current day and time. With an option to see the analog or digital clock in the browser toolbar.
+The best clock to see in one glance the current day and time. With an option to see the digital clock in the browser toolbar.
 Copyright (C) 2016 Stefan vd
 www.stefanvd.net
  

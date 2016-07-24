@@ -2,7 +2,7 @@
 /*
 
 Date Today
-The best clock to see in one glance the current day and time. With an option to see the analog or digital clock in the browser toolbar.
+The best clock to see in one glance the current day and time. With an option to see the digital clock in the browser toolbar.
 Copyright (C) 2016 Stefan vd
 www.stefanvd.net
 
@@ -26,12 +26,6 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-/*
-TODO
-+ screenshot
-+ links
-
-*/
 var twelfh; var timenow; var badge; var lightcolor; var clockbck; var colorhours; var colorminutes; var clockanalog;
 var callback = null;
 var pastetext;
@@ -214,7 +208,7 @@ else if (info.menuItemId == "totldevelopmenu") {window.open(donatewebsite, "_bla
 else if (info.menuItemId == "totlratemenu") {window.open(writereview, "_blank");}
 else if (info.menuItemId == "totlsharemenu") {window.open(datetodaywebsite, "_blank");}
 else if (info.menuItemId == "totlshareemail") {window.open("mailto:youremail?subject=Date Today extension&body=Hé, This is amazing. I just tried today this Date Today Browser extension"+datetodayproduct+"", "_blank");}
-else if (info.menuItemId == "totlsharetwitter") {var sdatetodayproductcodeurl = encodeURIComponent("The Best and Amazing Date Today Browser extension "+zoomproduct+"");window.open("https://twitter.com/home?status="+sdatetodayproductcodeurl+"", "_blank");}
+else if (info.menuItemId == "totlsharetwitter") {var sdatetodayproductcodeurl = encodeURIComponent("The Best and Amazing Date Today Browser extension "+datetodayproduct+"");window.open("https://twitter.com/home?status="+sdatetodayproductcodeurl+"", "_blank");}
 else if (info.menuItemId == "totlsharefacebook") {window.open("https://www.facebook.com/sharer/sharer.php?u="+datetodayproduct, "_blank");}
 else if (info.menuItemId == "totlsharegoogleplus") {window.open("https://plus.google.com/share?url="+datetodayproduct, "_blank");}
 }
@@ -317,9 +311,6 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
 
 try{ chrome.runtime.setUninstallUrl(linkuninstall); }
 catch(e){}
-
-// Fired when an update is available
-chrome.runtime.onUpdateAvailable.addListener(function() {chrome.runtime.reload();});
 
 // Fired when an update is available
 chrome.runtime.onUpdateAvailable.addListener(function() {chrome.runtime.reload();});

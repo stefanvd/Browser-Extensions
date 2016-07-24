@@ -344,7 +344,7 @@ $("websitezoomaddbutton").addEventListener('click', function() {websitezoomadd()
 $("websitezoomremovebutton").addEventListener('click', function() {websitezoomremoveSelectedExcludedDomain()});
 
 // Reset settings
-$("resetzoom").addEventListener('click', function() {chrome.storage.local.clear();location.reload()});
+$("resetzoom").addEventListener('click', function() {chrome.storage.local.clear();window.location.reload()});
 
 // Review box
 $("war").addEventListener('click', function() {window.open(writereview, "_blank");$("sectionreviewbox").style.display = "none";chrome.storage.local.set({"reviewedlastonversion": chrome.runtime.getManifest().version})});

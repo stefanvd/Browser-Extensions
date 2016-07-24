@@ -2,7 +2,7 @@
 /*
 
 Proper Menubar
-Add the black menubar below the addresbar. To get easy and fast access to all your Google products.
+Add the black menubar below the address bar. To get easy and fast access to all your Google products.
 Copyright (C) 2016 Stefan vd
 www.stefanvd.net
 
@@ -71,8 +71,8 @@ if (info.menuItemId == "totlguideemenu") {window.open(linkguide, "_blank");}
 else if (info.menuItemId == "totldevelopmenu") {window.open(donatewebsite, "_blank");}
 else if (info.menuItemId == "totlratemenu") {window.open(writereview, "_blank");}
 else if (info.menuItemId == "totlsharemenu") {window.open(propermenubarwebsite, "_blank");}
-else if (info.menuItemId == "totlshareemail") {window.open("mailto:youremail?subject=Ambient Aurea extension&body=Hé, This is amazing. I just tried today this Ambient Aurea Browser extension"+propermenubarproduct+"", "_blank");}
-else if (info.menuItemId == "totlsharetwitter") {var spropermenubarproductcodeurl = encodeURIComponent("The Best and Amazing Ambien Aurea Browser extension "+propermenubarproduct+" @ambientaurea");window.open("https://twitter.com/home?status="+spropermenubarproductcodeurl+"", "_blank");}
+else if (info.menuItemId == "totlshareemail") {window.open("mailto:youremail?subject=Proper Menubar extension&body=Hé, This is amazing. I just tried today this Proper Menubar Browser extension"+propermenubarproduct+"", "_blank");}
+else if (info.menuItemId == "totlsharetwitter") {var spropermenubarproductcodeurl = encodeURIComponent("The Best and Amazing Proper Menubar Browser extension "+propermenubarproduct+"");window.open("https://twitter.com/home?status="+spropermenubarproductcodeurl+"", "_blank");}
 else if (info.menuItemId == "totlsharefacebook") {window.open("https://www.facebook.com/sharer/sharer.php?u="+propermenubarproduct, "_blank");}
 else if (info.menuItemId == "totlsharegoogleplus") {window.open("https://plus.google.com/share?url="+propermenubarproduct, "_blank");}
 }
@@ -119,45 +119,47 @@ function refreshtoolbar() {
 chrome.storage.onChanged.addListener(function (changes, namespace) {
     for (key in changes) {
         var storageChange = changes[key];
-      if(changes['backgroundcolor']){if (changes['backgroundcolor'].newValue) { refreshtoolbar() }}
-      if(changes['backgroundhex']){if (changes['backgroundhex'].newValue) { refreshtoolbar() }}
-      if(changes['backgroundimage']){if (changes['backgroundimage'].newValue) { refreshtoolbar() }}
-      if(changes['backgroundimagesource']){if (changes['backgroundimagesource'].newValue) { refreshtoolbar() }}
-      if(changes['opacity']){if (changes['opacity'].newValue) { refreshtoolbar() }}
-      if(changes['googleplus']){if (changes['googleplus'].newValue) { refreshtoolbar() }}
-      if(changes['fontcolor']){if (changes['fontcolor'].newValue) { refreshtoolbar() }}
-      if(changes['search']){if (changes['search'].newValue) { refreshtoolbar() }}
-      if(changes['existingtab']){if (changes['existingtab'].newValue) { refreshtoolbar() }}
-      if(changes['googlesites']){if (changes['googlesites'].newValue) { refreshtoolbar() }}
-      if(changes['propermenuonly']){if (changes['propermenuonly'].newValue) { refreshtoolbar() }}
-	  if(changes['dropshadow']){if (changes['dropshadow'].newValue) { refreshtoolbar() }}
-	  if(changes['link1a']){if (changes['link1a'].newValue) { refreshtoolbar() }}
-	  if(changes['link2a']){if (changes['link2a'].newValue) { refreshtoolbar() }}
-	  if(changes['link3a']){if (changes['link3a'].newValue) { refreshtoolbar() }}
-	  if(changes['link4a']){if (changes['link4a'].newValue) { refreshtoolbar() }}
-	  if(changes['link5a']){if (changes['link5a'].newValue) { refreshtoolbar() }}
-	  if(changes['link6a']){if (changes['link6a'].newValue) { refreshtoolbar() }}
-	  if(changes['link7a']){if (changes['link7a'].newValue) { refreshtoolbar() }}
-	  if(changes['link8a']){if (changes['link8a'].newValue) { refreshtoolbar() }}
-	  if(changes['link9a']){if (changes['link9a'].newValue) { refreshtoolbar() }}
-	  if(changes['link10a']){if (changes['link10a'].newValue) { refreshtoolbar() }}
-	  if(changes['link11a']){if (changes['link11a'].newValue) { refreshtoolbar() }}
-	  if(changes['link12a']){if (changes['link12a'].newValue) { refreshtoolbar() }}
-	  if(changes['link13a']){if (changes['link13a'].newValue) { refreshtoolbar() }}
-	  if(changes['link14a']){if (changes['link14a'].newValue) { refreshtoolbar() }}
-	  if(changes['link15a']){if (changes['link15a'].newValue) { refreshtoolbar() }}
-	  if(changes['link16a']){if (changes['link16a'].newValue) { refreshtoolbar() }}
-	  if(changes['link17a']){if (changes['link17a'].newValue) { refreshtoolbar() }}
-	  if(changes['link18a']){if (changes['link18a'].newValue) { refreshtoolbar() }}
-	  if(changes['link19a']){if (changes['link19a'].newValue) { refreshtoolbar() }}
-	  if(changes['link20a']){if (changes['link20a'].newValue) { refreshtoolbar() }}
-	  if(changes['link21a']){if (changes['link21a'].newValue) { refreshtoolbar() }}
-	  if(changes['link22a']){if (changes['link22a'].newValue) { refreshtoolbar() }}
-	  if(changes['link23a']){if (changes['link23a'].newValue) { refreshtoolbar() }}
-	  if(changes['link24a']){if (changes['link24a'].newValue) { refreshtoolbar() }}
-	  if(changes['link25a']){if (changes['link25a'].newValue) { refreshtoolbar() }}
-	  if(changes['link26a']){if (changes['link26a'].newValue) { refreshtoolbar() }}
-      if(changes['display']){if (changes['display'].newValue) { refreshtoolbar() }}
+      if(changes['backgroundcolor']){ refreshtoolbar() }
+      if(changes['backgroundhex']){ refreshtoolbar() }
+      if(changes['backgroundimage']){ refreshtoolbar() }
+      if(changes['backgroundimagesource']){ refreshtoolbar() }
+      if(changes['opacity']){ refreshtoolbar() }
+      if(changes['googleplus']){ refreshtoolbar() }
+      if(changes['fontcolor']){ refreshtoolbar() }
+      if(changes['search']){ refreshtoolbar() }
+      if(changes['existingtab']){ refreshtoolbar() }
+      if(changes['googlesites']){ refreshtoolbar() }
+      if(changes['propermenuonly']){ refreshtoolbar() }
+	  if(changes['dropshadow']){ refreshtoolbar() }
+	  if(changes['link1a']){ refreshtoolbar() }
+	  if(changes['link2a']){ refreshtoolbar() }
+	  if(changes['link3a']){ refreshtoolbar() }
+	  if(changes['link4a']){ refreshtoolbar() }
+	  if(changes['link5a']){ refreshtoolbar() }
+	  if(changes['link6a']){ refreshtoolbar() }
+	  if(changes['link7a']){ refreshtoolbar() }
+	  if(changes['link8a']){ refreshtoolbar() }
+	  if(changes['link9a']){ refreshtoolbar() }
+	  if(changes['link10a']){ refreshtoolbar() }
+	  if(changes['link11a']){ refreshtoolbar() }
+	  if(changes['link12a']){ refreshtoolbar() }
+	  if(changes['link13a']){ refreshtoolbar() }
+	  if(changes['link14a']){ refreshtoolbar() }
+	  if(changes['link15a']){ refreshtoolbar() }
+	  if(changes['link16a']){ refreshtoolbar() }
+	  if(changes['link17a']){ refreshtoolbar() }
+	  if(changes['link18a']){ refreshtoolbar() }
+	  if(changes['link19a']){ refreshtoolbar() }
+	  if(changes['link20a']){ refreshtoolbar() }
+	  if(changes['link21a']){ refreshtoolbar() }
+	  if(changes['link22a']){ refreshtoolbar() }
+	  if(changes['link23a']){ refreshtoolbar() }
+	  if(changes['link24a']){ refreshtoolbar() }
+	  if(changes['link25a']){ refreshtoolbar() }
+	  if(changes['link26a']){ refreshtoolbar() }
+      if(changes['link27a']){ refreshtoolbar() }
+      if(changes['link28a']){ refreshtoolbar() }
+      if(changes['display']){ refreshtoolbar() }
     }
 })
 
@@ -165,7 +167,7 @@ chrome.commands.onCommand.addListener(function(command) {
     if(command == "toggle-feature-propermenubar"){
         var addbar = null;
         chrome.storage.sync.get(['addbar'], function(items){
-        if(items['addbar']){addbar = items['addbar'];}if(!addbar)addbar = false;
+        if(items['addbar']){addbar = items['addbar'];}if(addbar == null)addbar = false;
             chrome.tabs.getSelected(null, function(tab) {
             if(addbar == true){
             chrome.storage.sync.set({ "addbar": false});
@@ -181,9 +183,6 @@ chrome.commands.onCommand.addListener(function(command) {
 
 try{ chrome.runtime.setUninstallUrl(linkuninstall); }
 catch(e){}
-
-// Fired when an update is available
-chrome.runtime.onUpdateAvailable.addListener(function() {chrome.runtime.reload();});
 
 // Fired when an update is available
 chrome.runtime.onUpdateAvailable.addListener(function() {chrome.runtime.reload();});

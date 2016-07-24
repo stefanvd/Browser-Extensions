@@ -1,0 +1,460 @@
+﻿{
+  "name":{
+    "message":"Ambient Aurea",
+    "description":"Ambient Aurea"
+  },
+  "description":{
+    "message":"Додај својој слици ефекат амбијенталног осветљења са само једним кликом на дугме.",
+    "description":"Додај својој слици ефекат амбијенталног осветљења са само једним кликом на дугме."
+  },
+  "browserbutton":{
+    "message":"Ambient Aurea",
+    "description":"Ambient Aurea"
+  },
+  "textfoot":{
+    "message":"За овај софтвер важи CC-GNU GPL лиценца. Да бисте прочитали садржај ове лиценце, посетите",
+    "description":"За овај софтвер важи CC-GNU GPL лиценца. Да бисте прочитали садржај ове лиценце, посетите"
+  },
+  "titelcontextmenus":{
+    "message":"Контекстни мени",
+    "description":"Контекстни мени"
+  },
+  "descontextmenus":{
+    "message":"Прикажи контекстни мени за Ambient Aurea.",
+    "description":"Прикажи контекстни мени за Ambient Aurea"
+  },
+  "donatepromotext":{
+    "message":"Ако сте у могућности да донирате били који новчани износ, бићу вам неизмерно захвалан!",
+    "description":"Ако сте у могућности да донирате били који новчани износ, бићу вам неизмерно захвалан!"
+  },
+  "imagetitle":{
+    "message":"Слика иде на Ambient Aurea",
+    "description":"Слика иде на Ambient Aurea"
+  },
+  "changelog":{
+    "message":"Историја измена",
+    "description":"Списак измена"
+  },
+  "version":{
+    "message":"Верзија",
+    "description":"Верзија"
+  },
+  "optionpagetitle":{
+    "message":"Ambient Aurea - Опције",
+    "description":"Ambient Aurea - Options"
+  },
+  "reportbug":{
+    "message":"Пријави проблем",
+    "description":"Пријави проблем"
+  },
+  "titelicon":{
+    "message":"Икона радњи",
+    "description":"Икона радњи"
+  },
+  "desicon":{
+    "message":"Сакриј икону радњи у омнибару",
+    "description":"Сакриј икону радњи у омнибару"
+  },
+  "settings":{
+    "message":"Подешавања",
+    "description":"Подешавања"
+  },
+  "basicsettings":{
+    "message":"Основно",
+    "description":"Основно"
+  },
+  "titledonatebutton":{
+    "message":"Донирај",
+    "description":"Донирај"
+  },
+  "visualeffects":{
+    "message":"Визуелни ефекти",
+    "description":"Визуелни ефекти"
+  },
+  "titelfadein":{
+    "message":"Постепено појављивање",
+    "description":"Постепено појављивање"
+  },
+  "desfadein":{
+    "message":"Прикажи ефекат постепеног појављивања.",
+    "description":"Прикажи ефекат постепеног појављивања"
+  },
+  "titelfadeout":{
+    "message":"Постепено ишчезавање",
+    "description":"Постепено ишчезавање"
+  },
+  "desfadeout":{
+    "message":"Прикажи ефекат постепеног ишчезавања.",
+    "description":"Прикажи ефекат постепеног ишчезавања"
+  },
+  "titelambilight":{
+    "message":"Aтмосферско осветљење",
+    "description":"Амбијентално осветљење"
+  },
+  "desambilight":{
+    "message":"Приказује ти ефекат атмосферског осветљења на тренутној слици.",
+    "description":"Приказује ти ефекат амбијенталног осветљења на тренутној слици"
+  },
+  "desambilightfixcolor":{
+    "message":"Једнобојно:",
+    "description":"Једнобојно:"
+  },
+  "desambilight4color":{
+    "message":"4 одабране боје око слике:",
+    "description":"4 одабране боје око слике:"
+  },
+  "desambilightvarcolor":{
+    "message":"Узми боје из садржаја слике.",
+    "description":"Узми боје из садржаја слике."
+  },
+  "titelspreadradius":{
+    "message":"Ширење радијуса:",
+    "description":"Ширење радијуса:"
+  },
+  "desambilightrangespreadradius":{
+    "message":"Позитивне вредности повећавају величину сенке, док је негативне вредности је смањују.",
+    "description":"Позитивне вредности повећавају величину сенке, док је негативне вредности смањују."
+  },
+  "titelblurradius":{
+    "message":"Радијус замагљења:",
+    "description":"Радијус замагљења:"
+  },
+  "desambilightrangeblurradius":{
+    "message":"Мање вредности ће изоштрити сенку, веће вредности ће их учинити замагљеним.",
+    "description":"Мање вредности ће изоштрити сенку, веће вредности ће их учинити замагљеним."
+  },
+  "titelon":{
+    "message":"Укључи",
+    "description":"Укључено"
+  },
+  "titeloff":{
+    "message":"Искључи",
+    "description":"Искључено"
+  },
+  "left":{
+    "message":"Лево:",
+    "description":"Лево:"
+  },
+  "right":{
+    "message":"Десно:",
+    "description":"Десно:"
+  },
+  "top":{
+    "message":"Врх:",
+    "description":"Врх:"
+  },
+  "bottom":{
+    "message":"Дно:",
+    "description":"Дно:"
+  },
+  "guide":{
+    "message":"AA водич за добродошлицу",
+    "description":"AA водич за добродошлицу"
+  },
+  "titelcolor":{
+    "message":"Боја",
+    "description":"Боја"
+  },
+  "descolor":{
+    "message":"Боја позадине изван рама",
+    "description":"Боја позадине изван рама"
+  },
+  "titelopacity":{
+    "message":"Затамњеност",
+    "description":"Провидност"
+  },
+  "desopacity":{
+    "message":"Одабери ниво затамњености око рама.",
+    "description":"Одабери ниво провидности ван рама."
+  },
+  "titelsharebar":{
+    "message":"Линија дељења",
+    "description":"Трака дељења"
+  },
+  "dessharebar":{
+    "message":"Ово приказује линију дељења на тренутној слици.",
+    "description":"Ово приказује траку дељења на тренутној слици."
+  },
+  "titelcount":{
+    "message":"Све нађене слике",
+    "description":"Све нађене слике"
+  },
+  "descount":{
+    "message":"Ово је приказано тачно испод укупног броја слика у галерији.",
+    "description":"Ово је приказано тачно испод укупног броја слика у галерији."
+  },
+  "titelslideshow":{
+    "message":"Презентација",
+    "description":"Приказ слајдова"
+  },
+  "desslideshow":{
+    "message":"Ово додаје на врху сајта дугме за пуштање, преко кога можеш покренути презентацију у галерији.",
+    "description":"Ово додаје на врху сајта дугме за пуштање, преко кога можеш покренути презентацију у галерији."
+  },
+  "desslideshowrefresh":{
+    "message":"за приказ следеће слике.",
+    "description":"за приказ следеће слике."
+  },
+  "pagehelp":{
+    "message":"помоћ",
+    "description":"помоћ"
+  },
+  "pagestillloading":{
+    "message":"Страница се и даље учитава?",
+    "description":"Страница се и даље учитава?"
+  },
+  "seelist":{
+    "message":"(погледај списак)",
+    "description":"(погледај списак)"
+  },
+  "helptranslate":{
+    "message":"Помози у превођењу",
+    "description":"Помози у превођењу"
+  },
+  "productshare":{
+    "message":"Подели",
+    "description":"Подели"
+  },
+  "sharemenusharetitle":{
+    "message":"Подели ово",
+    "description":"Подели ово"
+  },
+  "sharemenuwelcomeguidetitle":{
+    "message":"Уводни водич",
+    "description":"Уводни водич"
+  },
+  "sharemenutellafriend":{
+    "message":"Препоручи пријатељу",
+    "description":"Препоручи пријатељу"
+  },
+  "sharemenusendatweet":{
+    "message":"Пошаљи твит",
+    "description":"Пошаљи твит"
+  },
+  "sharemenupostonfacebook":{
+    "message":"Објави на Фејсбуку",
+    "description":"Објави на Фејсбуку"
+  },
+  "sharemenupostongoogleplus":{
+    "message":"Објави на Google+",
+    "description":"Објави на Google+"
+  },
+  "sharemenuratetitle":{
+    "message":"Оцени овај додатак",
+    "description":"Оцени овај додатак"
+  },
+  "sharemenudonatetitle":{
+    "message":"Подржи развој",
+    "description":"Подржи развој"
+  },
+  "advancedoptions":{
+    "message":"Напредне опције",
+    "description":"Напредне опције"
+  },
+  "desatmosvivid":{
+    "message":"Живописни амбијентални ефекти",
+    "description":"Живописни амбијентални ефекти"
+  },
+  "help":{
+    "message":"Помоћ",
+    "description":"Помоћ"
+  },
+  "about":{
+    "message":"О програму",
+    "description":"О програму"
+  },
+  "upgradefbshare":{
+    "message":"Подели на Фејсбуку",
+    "description":"Подели на Фејсбуку"
+  },
+  "upgradetwshare":{
+    "message":"Твитуј",
+    "description":"Твитуј"
+  },
+  "ratetitle":{
+    "message":"Оцените и критикујте мој додатак",
+    "description":"Оцените и критикујте мој додатак"
+  },
+  "ratedes":{
+    "message":"И нек' свако зна за овај сјајни додатак!",
+    "description":"И нек' свако зна за овај сјајни додатак!"
+  },
+  "rateitema":{
+    "message":"Оцените са 5 звездица",
+    "description":"Оцените са 5 звездица"
+  },
+  "titelreset":{
+    "message":"Вратите подешавања",
+    "description":"Враћање подешавања"
+  },
+  "resetbrowserextension":{
+    "message":"Врати подешавања на почетне вредности",
+    "description":"Врати подешавања на почетне вредности"
+  },
+  "areyouhappy":{
+    "message":"Да ли сте задовољни додатком Ambient Aurea?",
+    "description":"Да ли сте задовољни додатком Ambient Aurea?"
+  },
+  "tellothers":{
+    "message":"Ваше мишљење се рачуна",
+    "description":"Ваше мишљење се рачуна"
+  },
+  "nothanks":{
+    "message":"Не, хвала",
+    "description":"Не, хвала"
+  },
+  "writeareview":{
+    "message":"Напишите рецензију",
+    "description":"Напишите рецензију"
+  },
+  "desambientaurea":{
+    "message":"Где ваше фотографије оживљавају је такође доступан за ваш рачунар.",
+    "description":"Где ваше фотографије оживљавају је такође доступан за ваш рачунар."
+  },
+  "downloadtheapp":{
+    "message":"Преузми апликацију одмах",
+    "description":"Преузми апликацију одмах"
+  },
+  "titeldownloadaaupgrade":{
+    "message":"The upgrade adds support for focusing selected images, and will display a gallery of images on the site.",
+    "description":"The upgrade adds support for focusing selected images, and will display a gallery of images on the site."
+  },
+  "titeldownloadupgradepropermenubar":{
+    "message":"Додаје поново црну траку менија на Google веб сајту.",
+    "description":"Додаје поново црну траку менија на Google веб сајту."
+  },
+  "titeldownloadupgradefinancetoolbar":{
+    "message":"Ово приказује информације са берзе у реалном времену.",
+    "description":"Ово приказује информације са берзе у реалном времену."
+  },
+  "titeldownloadupgradefullscreen":{
+    "message":"With this extension you can easy go to full screen. This for image, video and webpage.",
+    "description":"With this extension you can easy go to full screen. This for image, video and webpage."
+  },
+  "titeldownloadupgradezoom":{
+    "message":"Увећај или умањи приказ веб садржаја помоћу дугмета за зумирање страница ради угоднијег читања.",
+    "description":"Увећај или умањи приказ веб садржаја помоћу дугмета за зумирање страница ради угоднијег читања."
+  },
+  "titeldownloadupgradedatetoday":{
+    "message":"This extension show the analog clock in the menu bar. When you click on the icon, it shows you the current time; month and day of the week.",
+    "description":"This extension show the analog clock in the menu bar. When you click on the icon, it shows you the current time; month and day of the week."
+  },
+  "desrememberpage":{
+    "message":"Ако је ова опција омогућена, подсетник се не приказује.",
+    "description":"Ако је ова опција омогућена, подсетник се не приказује."
+  },
+  "titelrememberpage":{
+    "message":"Подсетник",
+    "description":"Подсетник"
+  },
+  "longdonatetext":{
+    "message":"Заиста бих био захвалан ако можете да донирате да овај додатак за претраживач преживи и за остале нове кориснике. Било да је $$1 или $$100, ваша подршка је изузетно цењена!",
+    "description":"Заиста бих био захвалан ако можете да донирате да овај додатак за претраживач преживи и за остале нове кориснике. Било да је $$1 или $$100, ваша подршка је изузетно цењена!"
+  },
+  "enjoyshare":{
+    "message":"Уживајте у овом додатку и поделите га са онима за које мислите да ће га ценити.",
+    "description":"Уживајте у овом додатку и поделите га са онима за које мислите да ће га ценити."
+  },
+  "titeldownloadbutton":{
+    "message":"Преузми ову надоградњу!",
+    "description":"Преузми ову надоградњу!"
+  },
+  "titelsync":{
+    "message":"Синхронизација",
+    "description":"Синхронизација"
+  },
+  "titelsyncbrowser":{
+    "message":"Синхронизујте подешавања проширења са вашим другим прегледачем.",
+    "description":"Синхронизујте подешавања проширења са вашим другим прегледачем."
+  },
+  "titeldownloadupgrade":{
+    "message":"Цела страница ће се замрачити и омогућити вам гледање видео снимка као да сте у биоскопу.",
+    "description":"Цела страница ће се замрачити и омогућити вам гледање видео снимка као да сте у биоскопу."
+  },
+  "desproject":{
+    "message":"пројекат",
+    "description":"пројекат"
+  },
+  "desbrowserextension":{
+    "message":"додатак за прегледач",
+    "description":"додатак за прегледач"
+  },
+  "translateme":{
+    "message":"Помози у превођењу",
+    "description":"Помози у превођењу"
+  },
+  "titelwebsite":{
+    "message":"Веб сајт",
+    "description":"Веб сајт"
+  },
+  "titeldeveloper":{
+    "message":"Програмер",
+    "description":"Програмер"
+  },
+  "rememberrate":{
+    "message":"Оцени",
+    "description":"Оцени"
+  },
+  "showremember":{
+    "message":"Не приказуј поново овај подсетник када отворим опције",
+    "description":"Не приказуј поново овај подсетник када отворим опције"
+  },
+  "skipremember":{
+    "message":"Прескочи ово и одмах отвори страницу опција",
+    "description":"Прескочи ово и одмах отвори страницу опција"
+  },
+  "titelrightsreserved":{
+    "message":"Нека права задржана.",
+    "description":"Нека права задржана."
+  },
+  "friendlyremember":{
+    "message":"Пријатељски подсетник...",
+    "description":"Пријатељски подсетник..."
+  },
+  "imagesembedobject":{
+    "message":"Подржава: <img>.",
+    "description":"Подржава: <img>."
+  },
+  "titelupgrade":{
+    "message":"Надогради",
+    "description":"Надогради"
+  },
+  "welcomebasictext":{
+    "message":"Welcome on the Ambient Aurea Browser extension. Here a brief video about how to use the Ambient Aurea extension in your web browser.",
+    "description":"Welcome on the Ambient Aurea Browser extension. Here a brief video about how to use the Ambient Aurea extension in your web browser."
+  },
+  "promotitle":{
+    "message":"Tip of the day",
+    "description":"Tip of the day"
+  },
+  "promotext":{
+    "message":"Want to use something new and amazing for your web browser? Try the $product$ Browser extension.",
+    "description":"Want to use something new and amazing for your web browser? Try the $product$ Browser extension.",
+    "placeholders":{
+      "product":{
+        "content":"$1",
+        "example":"Turn Off the Lights"
+      }
+    }
+  },
+  "promocalltoaction":{
+    "message":"Download it Now!",
+    "description":"Download it Now!"
+  },
+  "donatetext":{
+    "message":"Due to the very small number of donations the project may be closed. Please support further development with a Donation.",
+    "description":"Due to the very small number of donations the project may be closed. Please support further development with a Donation."
+  },
+  "donatecalltoaction":{
+    "message":"Donate Now!",
+    "description":"Donate Now!"
+  },
+  "titelsharethis":{
+    "message":"Share this:",
+    "description":"Share this:"
+  },
+  "titelwelcome":{
+    "message":"Welcome and Hello",
+    "description":"Welcome and Hello"
+  }
+}

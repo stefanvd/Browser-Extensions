@@ -92,8 +92,8 @@
       "message": "Books"
    },
    "link14a": {
-      "description": "Offers",
-      "message": "Offers"
+      "description": "Docs",
+      "message": "Docs"
    },
    "link15a": {
       "description": "Wallet",
@@ -147,6 +147,14 @@
       "description": "Google Space",
       "message": "Google Space"
    },
+   "link27a": {
+      "description": "Google Groups",
+      "message": "Google Groups"
+   },
+   "link28a": {
+      "description": "Hangouts",
+      "message": "Hangouts"
+   },      
    "link2a": {
       "description": "Search",
       "message": "Search"
@@ -246,14 +254,6 @@
    "titledonatebutton": {
       "description": "Donate",
       "message": "Donate"
-   },
-   "turnoff": {
-      "description": "'Proper Menubar' is ON",
-      "message": "'Proper Menubar' is ON"
-   },
-   "turnon": {
-      "description": "'Proper Menubar' is OFF",
-      "message": "'Proper Menubar' is OFF"
    },
    "version": {
       "description": "Version",
@@ -423,9 +423,9 @@
     "message":"Zoom in or out on web content using the zoom button for more comfortable reading.",
     "description":"Zoom in or out on web content using the zoom button for more comfortable reading."
   },
-  "titeldownloadupgradedatetoday":{
-    "message":"This extension show the analog clock in the menu bar. But when you click the icon, let the current time, month, day and days of the week.",
-    "description":"This extension show the analog clock in the menu bar. But when you click the icon, let the current time, month, day and days of the week."
+ "titeldownloadupgradedatetoday":{
+    "message":"This extension show the analog clock in the menu bar. When you click on the icon, it shows you the current time; month and day of the week.",
+    "description":"This extension show the analog clock in the menu bar. When you click on the icon, it shows you the current time; month and day of the week."
   },
   "desrememberpage":{
     "message":"If this option is enabled, it will not show you the reminder page",
@@ -548,18 +548,6 @@
    "descolor": {
       "message": "Change the background color of the toolbar", 
       "description": "Change the background color of the toolbar"
-   },
-  "desredcolor": {
-      "message": "Change the red color of the toolbar", 
-      "description": "Change the red color of the toolbar"
-   },
-  "desgreencolor": {
-      "message": "Change the green color of the toolbar", 
-      "description": "Change the green color of the toolbar"
-   },
-  "destextcolor": {
-      "message": "Change the label color of the toolbar", 
-      "description": "Change the label color of the toolbar"
    },
   "titeldropshadow": {
       "message": "Drop shadow", 

@@ -335,9 +335,9 @@
     "message":"Zoom in or out on web content using the zoom button for more comfortable reading.",
     "description":"Zoom in or out on web content using the zoom button for more comfortable reading."
   },
-  "titeldownloadupgradedatetoday":{
-    "message":"This extension show the analog clock in the menu bar. But when you click the icon, let the current time, month, day and days of the week.",
-    "description":"This extension show the analog clock in the menu bar. But when you click the icon, let the current time, month, day and days of the week."
+ "titeldownloadupgradedatetoday":{
+    "message":"This extension show the analog clock in the menu bar. When you click on the icon, it shows you the current time; month and day of the week.",
+    "description":"This extension show the analog clock in the menu bar. When you click on the icon, it shows you the current time; month and day of the week."
   },
   "desrememberpage":{
     "message":"If this option is enabled, it will not show you the reminder page",

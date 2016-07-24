@@ -1,0 +1,360 @@
+{
+   "name": {
+      "message": "Zoom",
+	  "description": "Zoom"
+   },
+   "description": {
+      "message": "Zoom in or out on web content using the zoom button for more comfortable reading.",
+	  "description": "Zoom in or out on web content using the zoom button for more comfortable reading."
+   },
+   "pageatitle": {
+      "message": "Zoom",
+	  "description": "Zoom"
+   },
+    "titledonatebutton": {
+        "message": "Donate", 
+        "description": "Donate"
+    },
+    "basicsettings": {
+        "message": "Basics", 
+        "description": "Basics"
+    }, 
+    "donatepromotext": {
+        "message": "If you can make a donation of any amount, I'd appreciate it immensely!", 
+        "description": "If you can make a donation of any amount, I'd appreciate it immensely!"
+    },
+    "textfoot": {
+        "message": "This software is licensed under the CC-GNU GPL. To view a copy of this license, visit", 
+        "description": "This software is licensed under the CC-GNU GPL. To view a copy of this license, visit"
+    },
+    "titelsharebutton": {
+        "message": "Share Buttons", 
+        "description": "Share Buttons"
+    }, 
+    "lastchecked": {
+        "message": "Latest version checked on", 
+        "description": "Latest version checked on"
+    },
+    "version": {
+        "message": "Version", 
+        "description": "Version"
+    },
+    "changelog": {
+        "message": "Changelog", 
+        "description": "Changelog"
+    },
+    "reportbug": {
+        "message": "Report an Issue", 
+        "description": "Report an Issue"
+    }, 
+    "guide": {
+        "message": "Z Welcome Guide", 
+        "description": "Z Welcome Guide"
+    },
+    "productshare": {
+        "message": "Share", 
+        "description": "Share"
+    },
+    "titelallzoom": {
+        "message": "All Zoom In/Out", 
+        "description": "All Zoom In/Out"
+    },
+    "desallzoom": {
+        "message": "Apply the zoom level to all pages.", 
+        "description": "Apply the zoom level to all pages."
+    },
+    "pagehelp": {
+        "message": "help", 
+        "description": "help"
+    },
+    "pagestillloading": {
+        "message": "The page is still loading?", 
+        "description": "The page is still loading?"
+    },
+    "optionpagetitle": {
+        "message": "Zoom - Options", 
+        "description": "Option page title"
+    },
+    "settings": {
+        "message": "Settings", 
+        "description": "Settings"
+    },
+    "translateme": {
+        "message": "Help Translate", 
+        "description": "Help Translate"
+    },
+ "sharemenusharetitle":{
+    "message":"Share this",
+    "description":"Share this"
+  },
+  "sharemenuwelcomeguidetitle":{
+    "message":"Welcome Guide",
+    "description":"Welcome Guide"
+  },
+  "sharemenutellafriend":{
+    "message":"Tell a Friend",
+    "description":"Tell a Friend"
+  },
+  "sharemenusendatweet":{
+    "message":"Send a Tweet",
+    "description":"Send a Tweet"
+  },
+  "sharemenupostonfacebook":{
+    "message":"Post on Facebook",
+    "description":"Post on Facebook"
+  },
+  "sharemenupostongoogleplus":{
+    "message":"Post on Google+",
+    "description":"Post on Google+"
+  },
+  "sharemenuratetitle":{
+    "message":"Rate this extension",
+    "description":"Rate this extension"
+  },
+  "sharemenudonatetitle":{
+    "message":"Support Development",
+    "description":"Support Development"
+  },
+  "advancedoptions":{
+    "message":"Advanced Options",
+    "description":"Advanced Options"
+  },
+  "help":{
+    "message":"Help",
+    "description":"Help"
+  },
+  "about":{
+    "message":"About",
+    "description":"About"
+  },
+  "upgradefbshare":{
+    "message":"Share on Facebook",
+    "description":"Share on Facebook"
+  },
+  "upgradetwshare":{
+    "message":"Tweet",
+    "description":"Tweet"
+  },
+  "ratetitle":{
+    "message":"Please rate & review my extension",
+    "description":"Please rate & review my extension"
+  },
+  "ratedes":{
+    "message":"And let everyone know about this great extension!",
+    "description":"And let everyone know about this great extension!"
+  },
+  "rateitema":{
+    "message":"Rate 5 stars",
+    "description":"Rate 5 stars"
+  },
+  "titelreset":{
+    "message":"Reset settings",
+    "description":"Reset settings"
+  },
+  "resetbrowserextension":{
+    "message":"Reset the Zoom settings",
+    "description":"Reset the Zoom settings"
+  },
+  "areyouhappy":{
+    "message":"Are you happy about Zoom?",
+    "description":"Are you happy about Zoom?"
+  },
+  "tellothers":{
+    "message":"Ensures that your opinion counts",
+    "description":"Ensures that your opinion counts"
+  },
+  "nothanks":{
+    "message":"No thanks",
+    "description":"No thanks"
+  },
+  "writeareview":{
+    "message":"Write a review",
+    "description":"Write a review"
+  },
+  "titeldownloadaaupgrade":{
+    "message":"The upgrade adds support for focusing selected images, and will display a gallery of images on the site.",
+    "description":"The upgrade adds support for focusing selected images, and will display a gallery of images on the site."
+  },
+  "titeldownloadupgradepropermenubar":{
+    "message":"Add back the black menubar on the Google website.",
+    "description":"Add back the black menubar on the Google website."
+  },
+  "titeldownloadupgradefinancetoolbar":{
+    "message":"This shows you the real time stock market information.",
+    "description":"This shows you the real time stock market information."
+  },
+ "titeldownloadupgradefullscreen":{
+    "message":"With this extension you can easy go to full screen. This for image, video and webpage.",
+    "description":"With this extension you can easy go to full screen. This for image, video and webpage."
+  },
+ "titeldownloadupgradedatetoday":{
+    "message":"This extension show the analog clock in the menu bar. But when you click the icon, let the current time, month, day and days of the week.",
+    "description":"This extension show the analog clock in the menu bar. But when you click the icon, let the current time, month, day and days of the week."
+  },
+  "desrememberpage":{
+    "message":"If this option is enabled, it will not show you the reminder page",
+    "description":"If this option is enabled, it will not show you the reminder page"
+  },
+  "titelrememberpage":{
+    "message":"Reminder page",
+    "description":"Reminder page"
+  },
+  "longdonatetext":{
+    "message":"I'd truly appreciate if you can donate me to keep this browser extension alive for other new users. Whether it's $$1 or $$100, your support is immensely appreciated!",
+    "description":"I'd truly appreciate if you can donate me to keep this browser extension alive for other new users. Whether it's $$1 or $$100, your support is immensely appreciated!"
+  },
+  "enjoyshare":{
+    "message":"Enjoy this extension and share it with others who you think will appreciate it.",
+    "description":"Enjoy this extension and share it with others who you think will appreciate it."
+  },
+  "titeldownloadbutton":{
+    "message":"Download this Upgrade!",
+    "description":"Download this Upgrade!"
+  },
+  "titelsync":{
+    "message":"Sync",
+    "description":"Sync"
+  },  
+  "titelsyncbrowser":{
+    "message":"Sync the extension settings with your other browser",
+    "description":"Sync the extension settings with your other browser"
+  },
+  "titeldownloadupgrade":{
+    "message":"The entire page will be fading to dark, so you can watch the video as if you were in the cinema.",
+    "description":"The entire page will be fading to dark, so you can watch the video as if you were in the cinema."
+  },
+  "desproject":{
+    "message":"project",
+    "description":"project"
+  },
+  "desbrowserextension":{
+    "message":"browser extension",
+    "description":"browser extension"
+  },
+  "titelwebsite":{
+    "message":"Website",
+    "description":"Website"
+  },
+  "titeldeveloper":{
+    "message":"Developer",
+    "description":"Developer"
+  },
+  "rememberrate":{
+    "message":"Rate",
+    "description":"Rate"
+  },
+  "showremember":{
+    "message":"It doesn't show the reminder page when I open the Options",
+    "description":"It doesn't show the reminder page when I open the Options"
+  },
+  "skipremember":{
+    "message":"Skip this, and open now the options page",
+    "description":"Skip this, and open now the options page"
+  },
+  "titelrightsreserved":{
+    "message":"Some rights reserved.",
+    "description":"Some rights reserved."
+  },
+  "friendlyremember":{
+    "message":"Friendly Reminder...",
+    "description":"Friendly Reminder..."
+  },
+  "websitezoomvalue":{
+    "message":"Zoom value in percent (e.g. 80%)",
+    "description":"Zoom value in percent (e.g. 80%)"
+  },
+  "titeldefaultzoomvalue":{
+    "message":"Default Zoom Level",
+    "description":"Default Zoom Level"
+  },
+  "desdefaultzoomvalue":{
+    "message":"Choose your default zoom level",
+    "description":"Choose your default zoom level"
+  },
+ "titelcontextmenu":{
+    "message":"Context Menu",
+    "description":"Context Menu"
+  },
+  "descontextmenu":{
+    "message":"Enable the right click menu to zoom in or out the web page",
+    "description":"Enable the right click menu to zoom in or out the web page"
+  },
+  "titelbadge":{
+    "message":"Badge",
+    "description":"Badge"
+  },
+  "titelbadgecolor":{
+    "message":"Choose your background badge color",
+    "description":"Choose your background badge color"
+  },
+  "desbadge":{
+    "message":"Show the current zoom value in the Zoom Extension icon",
+    "description":"Show the current zoom value in the Zoom Extension icon"
+  },
+  "titelzoomsteps":{
+    "message":"Steps",
+    "description":"Steps"
+  },
+  "deszoomsteps":{
+    "message":"The zoom steps for the next value",
+    "description":"The zoom steps for the next value"
+  },
+  "btnreset":{
+    "message":"Reset",
+    "description":"Reset"
+  },
+  "titelzoomengine":{
+    "message":"Zoom Engine",
+    "description":"Zoom Engine"
+  },
+  "deszoomchrome":{
+    "message":"Use the built-in browser zoom",
+    "description":"Use the built-in browser zoom"
+  },
+  "deszoomweb":{
+    "message":"Use the web CSS zoom",
+    "description":"Use the web CSS zoom"
+  },
+  "welcomebasictext":{
+    "message":"Welcome on the Zoom Browser extension. Here a brief video about how to use the Zoom extension in your web browser.",
+    "description":"Welcome on the Zoom Browser extension. Here a brief video about how to use the Zoom extension in your web browser."
+  },
+  "promotitle":{
+    "message":"Tip of the day",
+    "description":"Tip of the day"
+  },
+ "promotext":{
+    "message":"Want to use something new and amazing for your web browser? Try the $product$ Browser extension.",
+    "description":"Want to use something new and amazing for your web browser? Try the $product$ Browser extension.",
+    "placeholders": {
+          "product": {
+            "content": "$1",
+            "example": "Turn Off the Lights"
+          }
+        }
+  },
+  "promocalltoaction":{
+    "message":"Download it Now!",
+    "description":"Download it Now!"
+  },
+  "donatetext":{
+    "message":"Due to the very small number of donations the project may be closed. Please support further development with a Donation.",
+    "description":"Due to the very small number of donations the project may be closed. Please support further development with a Donation."
+  },
+  "donatecalltoaction":{
+    "message":"Donate Now!",
+    "description":"Donate Now!"
+  },    
+  "titelsharethis":{
+    "message":"Share this:",
+    "description":"Share this:"
+  },
+  "titelwelcome":{
+    "message":"Welcome and Hello",
+    "description":"Welcome and Hello"
+  },
+    "titelupgrade":{
+    "message":"Upgrade",
+    "description":"Upgrade"
+  }
+}

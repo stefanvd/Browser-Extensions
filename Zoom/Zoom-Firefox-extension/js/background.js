@@ -32,7 +32,7 @@ chrome.runtime.onMessage.addListener(function request(request,sender,sendRespons
 if(request.action == 'getallRatio'){
 currentURL = request.website;
 chrome.storage.local.get(['allzoom','allzoomvalue','websitezoom','badge','lightcolor','zoomchrome','zoomweb'], function(response){
-allzoom = response.allzoom;if(!allzoom)allzoom = 'false'; // default allzoom false
+allzoom = response.allzoom;if(!allzoom)allzoom = false; // default allzoom false
 allzoomvalue = response.allzoomvalue;
 badge = response.badge;
 lightcolor = response.lightcolor;if(!lightcolor)lightcolor = '#3cb4fe';
@@ -48,13 +48,20 @@ if (allzoom == true) {
         
             if(zoomchrome == true){
                 chrome.tabs.setZoom(tabs[0].id, allzoomvalue);
-            }else{
-                chrome.tabs.executeScript(tabs[0].id,{code:"document.body.style.transformOrigin='left top';document.body.style.transform='scale(" + allzoomvalue + ")'"});
-                //chrome.tabs.executeScript(tabs[0].id,{code:"document.body.style.zoom=" + allzoomvalue});
+            } else{
+                // Check for transform support so that we can fallback otherwise
+                var supportsZoom = 'zoom' in document.body.style;
+                if(supportsZoom){
+                    chrome.tabs.executeScript(tabs[0].id,{code:"document.body.style.zoom=" + allzoomvalue});
+                }else{
+                    chrome.tabs.executeScript(tabs[0].id,{code:"document.body.style.transformOrigin='left top';document.body.style.transform='scale(" + allzoomvalue + ")'"});
+                }
             }
             if(badge == true){
                 chrome.browserAction.setBadgeBackgroundColor({color:lightcolor}); 
-                chrome.browserAction.setBadgeText ( { text: ""+parseInt(allzoomvalue*100)+"" } ); }else{chrome.browserAction.setBadgeText ( { text: "" } );
+                chrome.browserAction.setBadgeText ( { text: ""+parseInt(allzoomvalue*100)+"" } );
+            } else{
+                chrome.browserAction.setBadgeText ( { text: "" } );
             }
         });
 }
@@ -68,21 +75,27 @@ else{
       atbbuf.sort();
     for(var i = 0; i < atbbuf.length; i++){
       if(atbbuf[i] == currentURL){
-      var editzoom = websitezoom[atbbuf[i]]/100;
-              chrome.tabs.query({ active: true, currentWindow: true},
+        var tempatbbuf = atbbuf[i];
+        var editzoom = websitezoom[atbbuf[i]]/100;
+              chrome.tabs.query({},
               function (tabs) {
-                  if (zoomchrome == true) {
-                      chrome.tabs.setZoom(tabs[0].id, editzoom);
-                  } else {
-                      chrome.tabs.executeScript(tabs[0].id,{code:"document.body.style.transformOrigin='left top';document.body.style.transform='scale(" + editzoom + ")'"});
-                      //chrome.tabs.executeScript(tabs[0].id, { code: "document.body.style.zoom=" + editzoom });
-                  }
-                  if (badge == true) {
-                      chrome.browserAction.setBadgeBackgroundColor({ color: lightcolor });
-                      chrome.browserAction.setBadgeText({ text: "" + parseInt(editzoom * 100) + "" });
-                  } else {
-                      chrome.browserAction.setBadgeText({ text: "" });
-                  }
+                  tabs.forEach(function(tab){
+                        var tor = tab.url;
+                        var webtor = tor.match(/^[\w-]+:\/*\[?([\w\.:-]+)\]?(?::\d+)?/)[0];
+                        if(webtor == tempatbbuf){
+                            if (zoomchrome == true) {
+                                chrome.tabs.setZoom(tab.id, editzoom);
+                            } else {
+                                chrome.tabs.executeScript(tab.id, { code: "document.body.style.zoom=" + editzoom });
+                            }
+                            if (badge == true) {
+                                chrome.browserAction.setBadgeBackgroundColor({ color: lightcolor });
+                                chrome.browserAction.setBadgeText({ text: "" + parseInt(editzoom * 100) + "" });
+                            } else {
+                                chrome.browserAction.setBadgeText({ text: "" });
+                            }
+                        }
+                  });
               });
       }
     }
@@ -145,8 +158,12 @@ if (respage == "zoompage") {
         if(zoomchrome == true){
             chrome.tabs.setZoom(tabs[0].id, czl/100);
         }else{
-            chrome.tabs.executeScript(tabs[0].id,{code:"document.body.style.transformOrigin='left top';document.body.style.transform='scale(" + czl/100 + ")'"});
-            //chrome.tabs.executeScript(tabs[0].id,{code:"document.body.style.zoom=" + czl/100});
+            var supportsZoom = 'zoom' in document.body.style;
+            if(supportsZoom){
+                 chrome.tabs.executeScript(tabs[0].id,{code:"document.body.style.zoom=" + czl/100});
+            }else{
+                chrome.tabs.executeScript(tabs[0].id,{code:"document.body.style.transformOrigin='left top';document.body.style.transform='scale(" + czl/100 + ")'"});
+            }
         }
         if(badge == true){
             chrome.browserAction.setBadgeBackgroundColor({color:lightcolor}); 
@@ -190,7 +207,7 @@ else if (info.menuItemId == "totlsharefacebook") {window.open("https://www.faceb
 else if (info.menuItemId == "totlsharegoogleplus") {window.open("https://plus.google.com/share?url="+zoomproduct, "_blank");}
 }
 
-chrome.runtime.onInstalled.addListener(function() {
+//chrome.runtime.onInstalled.addListener(function() {
 // check to remove all contextmenus
 chrome.contextMenus.removeAll(function() {
 //console.log("contextMenus.removeAll callback");
@@ -221,7 +238,7 @@ var child2 = chrome.contextMenus.create({"title": sharemenupostongoogleplus, "id
 chrome.storage.local.get(['contextmenus'], function(items){
     if(items['contextmenus']){checkcontextmenus();}
 });
-});
+//});
 
 chrome.contextMenus.onClicked.addListener(onClickHandler);
 
@@ -281,15 +298,12 @@ try{ chrome.runtime.setUninstallUrl(linkuninstall); }
 catch(e){}
 
 // Fired when an update is available
-chrome.runtime.onUpdateAvailable.addListener(function() {chrome.runtime.reload();});
-
-// Fired when an update is available
-chrome.runtime.onUpdateAvailable.addListener(function() {chrome.runtime.reload();});
+//chrome.runtime.onUpdateAvailable.addListener(function() {chrome.runtime.reload();});
 
 chrome.storage.local.get(['firstRun'], function(chromeset){
 if ((chromeset["firstRun"]!="false") && (chromeset["firstRun"]!=false)){
-  chrome.tabs.create({url: linkwelcomepage, selected:true})
-  chrome.storage.local.set({"firstRun": "false"});
+  chrome.tabs.create({url: linkwelcomepage})
+  chrome.storage.local.set({"firstRun": false});
   chrome.storage.local.set({"version": "2.1"});
 }
 });

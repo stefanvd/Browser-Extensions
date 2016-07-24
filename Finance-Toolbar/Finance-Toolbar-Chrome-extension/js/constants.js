@@ -22,11 +22,11 @@ var zoomproduct = "https://chrome.google.com/webstore/detail/zoom/lajondecmobodl
 var idz = "lajondecmobodlejlcjllhojikagldgd";
 var donatewebsite = "https://www.stefanvd.net/donate.htm";
 var writereview = "https://chrome.google.com/webstore/detail/finance-toolbar/cichbngoomgnobmmjpagmbkimbamigie/reviews";
-var linkchangelog = "https://www.stefanvd.net/project/financetoolbarchromechangelog.htm";
+var linkchangelog = "https://www.stefanvd.net/project/finance-toolbar/browser/google-chrome/changelog.htm";
 var linktranslate = "https://www.stefanvd.net/project/translate.htm";
 var linksupport = "https://www.stefanvd.net/support/";
-var linkguide = "https://www.stefanvd.net/project/financetoolbarchromeguide.htm";
-var linkwelcomepage = "https://www.stefanvd.net/project/financetoolbarchrome.htm";
+var linkguide = "https://www.stefanvd.net/project/finance-toolbar/browser/google-chrome/guide.htm";
+var linkwelcomepage = "https://www.stefanvd.net/project/finance-toolbar/browser/google-chrome/welcome.htm";
 var linkuninstall = "https://www.stefanvd.net/";
 var financetoolbarwebsite = "https://www.stefanvd.net/project/finance-toolbar/browser/";
 var linkyoutube = "https://www.youtube.com/c/stefanvandamme?sub_confirmation=1";

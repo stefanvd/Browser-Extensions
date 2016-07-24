@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "__MSG_name__",
   "short_name": "FT",  
-  "version": "0.4",
+  "version": "0.4.0.1",
   "description": "__MSG_description__",
   "author": "Stefan vd",
   "homepage_url": "https://www.stefanvd.net",  
@@ -24,8 +24,8 @@
     "images/slice.png",
     "images/worldmap.png"
   ],
-    "commands": {
-    "_execute_page_action": {
+  "commands": {
+    "_execute_browser_action": {
       "suggested_key": {
         "default": "Ctrl+Shift+M",
         "mac": "MacCtrl+Shift+M"
@@ -33,8 +33,8 @@
     },
     "toggle-feature-financetoolbar": {
             "suggested_key": {
-              "default": "Ctrl+Shift+F",
-              "mac": "MacCtrl+Shift+F"
+              "default": "Ctrl+Shift+P",
+              "mac": "MacCtrl+Shift+P"
             },
             "description": "__MSG_titelshortfinance__"
           }

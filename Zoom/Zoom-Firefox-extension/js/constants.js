@@ -1,9 +1,9 @@
 function $(id) { return document.getElementById(id); }
 // Install on www.stefanvd.net
 if (window.location.href.match(/http:\/\/(.*stefanvd\.net\/.*|www\.stefanvd\.net\/.*\/.*)/i)){
-	if ($('zoom-chrome-install-button')) {
-		$('zoom-chrome-install-button').style.display = 'none';
-		$('zoom-chrome-thanks-button').style.display = '';
+	if ($('zoom-firefox-install-button')) {
+		$('zoom-firefox-install-button').style.display = 'none';
+		$('zoom-firefox-thanks-button').style.display = '';
 	}
 }
 var ambientaureaproduct = "https://chrome.google.com/webstore/detail/ambient-aurea/pkaglmndhfgdaiaccjglghcbnfinfffa";
@@ -22,10 +22,10 @@ var zoomproduct = "https://chrome.google.com/webstore/detail/zoom/lajondecmobodl
 var idz = "lajondecmobodlejlcjllhojikagldgd";
 var donatewebsite = "https://www.stefanvd.net/donate.htm";
 var writereview = "https://chrome.google.com/webstore/detail/zoom/lajondecmobodlejlcjllhojikagldgd/reviews";
-var linkchangelog = "https://www.stefanvd.net/project/zoomchromechangelog.htm";
+var linkchangelog = "https://www.stefanvd.net/project/zoom/browser/firefox/changelog.htm";
 var linktranslate = "https://www.stefanvd.net/project/translate.htm";
 var linksupport = "https://www.stefanvd.net/support/";
-var linkguide = "https://www.stefanvd.net/project/zoomchromeguide.htm";
-var linkwelcomepage = "https://www.stefanvd.net/project/zoomchrome.htm";
-var linkuninstall = "https://www.stefanvd.net/";
+var linkguide = "https://www.stefanvd.net/project/zoom/browser/firefox/guide.htm";
+var linkwelcomepage = "https://www.stefanvd.net/project/zoom/browser/firefox/welcome.htm";
+var linkuninstall = "https://www.stefanvd.net/project/zoom/browser/firefox/uninstall.htm";
 var zoomwebsite = "https://www.stefanvd.net/project/zoom/browser/";

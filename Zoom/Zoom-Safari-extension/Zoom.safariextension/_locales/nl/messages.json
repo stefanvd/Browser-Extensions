@@ -1,0 +1,82 @@
+{
+   "name": {
+      "message": "Zoom",
+	  "description": "Zoom"
+   },
+   "description": {
+      "message": "In-of uitzoomen op webcontent met behulp van de zoomknop om meer comfortabeler te lezen.",
+	  "description": "Zoom in or out on web content using the zoom button for more comfortable reading."
+   },
+   "pageatitle": {
+      "message": "Zoom",
+	  "description": "Zoom"
+   },
+    "titledonatebutton": {
+        "message": "Doneer", 
+        "description": "Donate"
+    },
+    "basicsettings": {
+        "message": "Basis Instellingen", 
+        "description": "Basics"
+    }, 
+    "donatepromotext": {
+        "message": "Als je kan doneren voor elk bedrag, dan zou ik dat enorm waarderen!", 
+        "description": "If you can make a donation of any amount, I'd appreciate it immensely!"
+    },
+    "textfoot": {
+        "message": "Deze software is gelicenseerd onder de CC-GNU GPL. Om een ​​kopie van deze licentie bekijken, bezoek", 
+        "description": "This software is licensed under the CC-GNU GPL. To view a copy of this license, visit"
+    },
+    "titelsharebutton": {
+        "message": "Deel Knoppen", 
+        "description": "Share Buttons"
+    }, 
+    "changelog": {
+        "message": "Wijzigingen", 
+        "description": "changelog link"
+    },
+    "reportbug": {
+        "message": "Een probleem rapporteren?", 
+        "description": "Report an Issue"
+    }, 
+    "guide": {
+        "message": "Z Welkom Gids", 
+        "description": "Z Welcome Guide"
+    },
+    "productshare": {
+        "message": "Deel", 
+        "description": "Share"
+    },
+    "reportlist": {
+        "message": "(zie lijst)", 
+        "description": "See the full issue list"
+    },
+    "titelallzoom": {
+        "message": "Alles In/Uit Zomen", 
+        "description": "All Zoom In/Out"
+    },
+    "desallzoom": {
+        "message": "Breng het zoomniveau aan alle pagina's.", 
+        "description": "Apply the zoom level to all pages."
+    },
+    "pagehelp": {
+        "message": "help", 
+        "description": "help"
+    },
+    "pagestillloading": {
+        "message": "De pagina is nog altijd aan het laden?", 
+        "description": "The page is still loading?"
+    },
+    "optionpagetitle": {
+        "message": "Zoom - Opties", 
+        "description": "Option page title"
+    },
+    "settings": {
+        "message": "Instellingen", 
+        "description": "Settings"
+    },
+    "translateme": {
+        "message": "Help Vertalen", 
+        "description": "Help Translate"
+    }	
+}

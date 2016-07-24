@@ -40,13 +40,55 @@ function zoomtab(a,b){
     document.getElementById("range").value=Math.round(b*100);
 
     if (zoomchrome == true) {
-        chrome.tabs.setZoom(a, b);
-    }else{
-        try{
-            chrome.tabs.executeScript(null,{code:"document.body.style.transformOrigin='left top';document.body.style.transform='scale(" + b + ")'"});
-            //chrome.tabs.executeScript(null,{code:"document.body.style.zoom=" + b});
+        if(allzoom == true){
+                chrome.tabs.query({},
+                function (tabs) {
+                    tabs.forEach(function(tab){
+                        chrome.tabs.setZoom(tab.id, b);
+                    });
+                });
+        }else{
+            try{
+                chrome.tabs.setZoom(a, b);
+            }
+            catch(e){}
         }
-        catch(e){}
+    }else{
+        if(allzoom == true){
+                chrome.tabs.query({},
+                function (tabs) {
+                    tabs.forEach(function(tab){
+                        try{ 
+                            var supportsZoom = 'zoom' in document.body.style;
+                            if(supportsZoom){
+                                chrome.tabs.executeScript(tab.id,{code:"document.body.style.zoom=" + b});
+                            }else{
+                                chrome.tabs.executeScript(tab.id,{code:"document.body.style.transformOrigin='left top';document.body.style.transform='scale(" + b + ")'"});
+                            }
+                        }
+                        catch(e){}
+                    });
+                });
+        }else{
+            chrome.tabs.query({},
+                function (tabs) {
+                    tabs.forEach(function(tab){
+                        var pop = tab.url;
+                        var webpop = pop.match(/^[\w-]+:\/*\[?([\w\.:-]+)\]?(?::\d+)?/)[0];
+                        if(webpop == webjob){
+                            try{
+                                var supportsZoom = 'zoom' in document.body.style;
+                                if(supportsZoom){
+                                    chrome.tabs.executeScript(tab.id,{code:"document.body.style.zoom=" + b});
+                                }else{
+                                    chrome.tabs.executeScript(tab.id,{code:"document.body.style.transformOrigin='left top';document.body.style.transform='scale(" + b + ")'"});
+                                }
+                            }
+                            catch(e){}
+                        }
+                    });
+                });
+        }
     }
 
     if(badge == true){
@@ -109,8 +151,7 @@ function handle(delta) {
 
 function wheel(event){
     var delta = 0;
-    if (!event){ event = window.event; }
-    if (event.wheelDelta) { delta = event.wheelDelta/120; }
+    delta = event.deltaY;
     if (delta){ handle(delta); } // do the UP and DOWN job
     // prevent the mouse default actions using scroll
     if (event.preventDefault){ event.preventDefault(); }
@@ -128,7 +169,7 @@ $("minus").addEventListener('click', function() {zoomview(-1);});
 $("plus").addEventListener('click', function() {zoomview(+1);});
 
 // mouse scroll
-document.addEventListener("mousewheel", wheel, false);
+window.addEventListener('wheel', wheel); // for modern
 
 chrome.storage.local.get(['allzoom','allzoomvalue','websitezoom','defaultzoom','badge','steps','lightcolor','zoomchrome','zoomweb'], function(response){
 allzoom = response.allzoom;if(!allzoom)allzoom = false; // default allzoom false
