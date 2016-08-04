@@ -1,0 +1,166 @@
+﻿{
+   "name": {
+      "message": "Date Today",
+	  "description": "Date Today"
+   },
+   "description": {
+      "message": "Toon u de huidige dag en tijd.",
+	  "description": "Show the current day and time."
+   },
+   "browsertitle": {
+      "message": "Date Today",
+	  "description": "Date Today"
+   },
+   "head2": {
+      "message": "Klok formaat",
+	  "description": "Clock format"
+   },
+   "des12h": {
+      "message": "Als je dit aan vink, toon het u de 12uren klok formaat.",
+	  "description": "If you turn this on, it show you the 12H clock format."
+   },
+   "textfoot": {
+      "message": "Deze software is beschikbaar onder de CC-GNU GPL. Als u een kopie wilt zien van deze licentie, bezoek",
+	  "description": "This software is licensed under the CC-GNU GPL. To view a copy of this license, visit"
+   },
+   "jan": {
+      "message": "Januari",
+	  "description": "January"
+   },
+   "feb": {
+      "message": "Februari",
+	  "description": "February"
+   },
+   "mar": {
+      "message": "Maart",
+	  "description": "March"
+   },
+   "apr": {
+      "message": "April",
+	  "description": "April"
+   },
+   "may": {
+      "message": "Mei",
+	  "description": "May"
+   },
+   "jun": {
+      "message": "Juni",
+	  "description": "June"
+   },
+   "jul": {
+      "message": "Juli",
+	  "description": "July"
+   },
+   "aug": {
+      "message": "Augustus",
+	  "description": "August"
+   },
+   "sep": {
+      "message": "September",
+	  "description": "September"
+   },
+   "oct": {
+      "message": "Oktober",
+	  "description": "October"
+   },
+   "nov": {
+      "message": "November",
+	  "description": "November"
+   },
+   "dec": {
+      "message": "December",
+	  "description": "December"
+   },
+   "sun": {
+      "message": "Zondag",
+	  "description": "Sunday"
+   },
+   "mon": {
+      "message": "Maandag",
+	  "description": "Monday"
+   },
+   "tue": {
+      "message": "Dinsdag",
+	  "description": "Tuesday"
+   },
+   "wed": {
+      "message": "Woensdag",
+	  "description": "Wednesday"
+   },
+   "thu": {
+      "message": "Donderdag",
+	  "description": "Thursday"
+   },
+   "fri": {
+      "message": "Vrijdag",
+	  "description": "Friday"
+   },
+   "sat": {
+      "message": "Zaterdag",
+	  "description": "Saturday"
+   },
+   "head2colors": {
+      "message": "Kleuren",
+	  "description": "Colors"
+   },
+   "lablehours": {
+      "message": "Uur",
+	  "description": "Hour"
+   },
+   "lableminutes": {
+      "message": "Minuten",
+	  "description": "Minutes"
+   },
+   "labledaynumber": {
+      "message": "Dag Nummer",
+	  "description": "Day Number"
+   },
+   "lablemonth": {
+      "message": "Maand",
+	  "description": "Month"
+   },
+   "lableday": {
+      "message": "Dag van de Week",
+	  "description": "Day of the Week"
+   },
+   "donatepromotext": {
+      "message": "Als je kan doneren voor een bedrag, dan zou ik dat enorm waarderen!",
+	  "description": "If you can make a donation of any amount, I'd appreciate it immensely!"
+   },
+   "changelog": {
+      "message": "Wijzigingen",
+	  "description": "changelog link"
+   },
+   "version": {
+      "message": "Versie",
+	  "description": "Version number text"
+   },
+   "optionpagetitle": {
+      "message": "Date Today - Opties",
+	  "description": "Option page title"
+   },
+   "reportbug": {
+      "message": "Rapporteert een Bug",
+	  "description": "Report an Issue of my extension"
+   },
+   "settings": {
+      "message": "Opties",
+      "description": "Settings"
+   },
+   "basicsettings": {
+      "message": "Basisinstellingen",
+      "description": "Basics"
+   },
+   "titlestamp": {
+      "message": "Stempel",
+      "description": "Stamp"
+   },
+   "desstamp": {
+      "message": "Toon de rechtermuisknop-menu om de huidige tijd en dag te stempelen.",
+      "description": "Show the right click menu to stamp the current time and day."
+   },
+   "dtstamp": {
+      "message": "Datum vandaag stempel",
+      "description": "Date today stamp"
+   }   
+}

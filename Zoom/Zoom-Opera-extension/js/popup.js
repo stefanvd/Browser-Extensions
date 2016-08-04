@@ -58,8 +58,13 @@ function zoomtab(a,b){
                 chrome.tabs.query({},
                 function (tabs) {
                     tabs.forEach(function(tab){
-                        try{
-                            chrome.tabs.executeScript(tab.id,{code:"document.body.style.zoom=" + b});
+                        try{ 
+                            var supportsZoom = 'zoom' in document.body.style;
+                            if(supportsZoom){
+                                chrome.tabs.executeScript(tab.id,{code:"document.body.style.zoom=" + b});
+                            }else{
+                                chrome.tabs.executeScript(tab.id,{code:"document.body.style.transformOrigin='left top';document.body.style.transform='scale(" + b + ")'"});
+                            }
                         }
                         catch(e){}
                     });
@@ -72,7 +77,12 @@ function zoomtab(a,b){
                         var webpop = pop.match(/^[\w-]+:\/*\[?([\w\.:-]+)\]?(?::\d+)?/)[0];
                         if(webpop == webjob){
                             try{
-                            chrome.tabs.executeScript(tab.id,{code:"document.body.style.zoom=" + b});
+                                var supportsZoom = 'zoom' in document.body.style;
+                                if(supportsZoom){
+                                    chrome.tabs.executeScript(tab.id,{code:"document.body.style.zoom=" + b});
+                                }else{
+                                    chrome.tabs.executeScript(tab.id,{code:"document.body.style.transformOrigin='left top';document.body.style.transform='scale(" + b + ")'"});
+                                }
                             }
                             catch(e){}
                         }
@@ -88,7 +98,7 @@ function zoomtab(a,b){
 
     if(allzoom == true){
         // save for all zoom feature
-        chrome.storage.local.set({"allzoomvalue": b});
+        chrome.storage.sync.set({"allzoomvalue": b});
     }else{
             var atbbuf = [];
             for(var domain in websitezoom){atbbuf.push(domain);atbbuf.sort();}
@@ -108,7 +118,7 @@ function zoomtab(a,b){
                 }
                 
                 // save for zoom feature
-                chrome.storage.local.set({ "websitezoom": JSON.stringify(websitezoom) });
+                chrome.storage.sync.set({ "websitezoom": JSON.stringify(websitezoom) });
             }
     }
 }
@@ -141,8 +151,7 @@ function handle(delta) {
 
 function wheel(event){
     var delta = 0;
-    if (!event){ event = window.event; }
-    if (event.wheelDelta) { delta = event.wheelDelta/120; }
+    delta = event.deltaY;
     if (delta){ handle(delta); } // do the UP and DOWN job
     // prevent the mouse default actions using scroll
     if (event.preventDefault){ event.preventDefault(); }
@@ -160,16 +169,16 @@ $("minus").addEventListener('click', function() {zoomview(-1);});
 $("plus").addEventListener('click', function() {zoomview(+1);});
 
 // mouse scroll
-document.addEventListener("mousewheel", wheel, false);
+window.addEventListener('wheel', wheel); // for modern
 
-chrome.storage.local.get(['allzoom','allzoomvalue','websitezoom','defaultzoom','badge','steps','lightcolor','zoomchrome','zoomweb'], function(response){
-allzoom = response.allzoom;if(!allzoom)allzoom = false; // default allzoom false
-allzoomvalue = response.allzoomvalue;if(!allzoomvalue)allzoomvalue = 1; // default allzoomvalue value
-badge = response.badge;if(!badge)badge = false;
-lightcolor = response.lightcolor;if(!lightcolor)lightcolor = "#3cb4fe";
-steps = response.steps;if(!steps)steps = 10;
-zoomchrome = response.zoomchrome;if(!zoomchrome)zoomchrome = false;
-zoomweb = response.zoomweb;if(!zoomweb)zoomweb = true;
+chrome.storage.sync.get(['allzoom','allzoomvalue','websitezoom','defaultzoom','badge','steps','lightcolor','zoomchrome','zoomweb'], function(response){
+allzoom = response.allzoom;if(allzoom == null)allzoom = false; // default allzoom false
+allzoomvalue = response.allzoomvalue;if(allzoomvalue == null)allzoomvalue = 1; // default allzoomvalue value
+badge = response.badge;if(badge == null)badge = false;
+lightcolor = response.lightcolor;if(lightcolor == null)lightcolor = "#3cb4fe";
+steps = response.steps;if(steps == null)steps = 10;
+zoomchrome = response.zoomchrome;if(zoomchrome == null)zoomchrome = true;
+zoomweb = response.zoomweb;if(zoomweb == null)zoomweb = true;
 websitezoom = response.websitezoom;
 if (typeof websitezoom == "undefined" || websitezoom == null) {
     websitezoom = JSON.stringify({ 'https://www.stefanvd.net': ["90"], 'https://www.google.com': ["90"], 'http://www.nytimes.com': ["75"] });

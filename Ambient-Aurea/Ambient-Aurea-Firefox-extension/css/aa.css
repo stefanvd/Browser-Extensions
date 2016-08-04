@@ -1,0 +1,71 @@
+/*
+//================================================
+
+Ambient Aurea
+Bring your image to an ambient lighting effect with just one click on the button.
+Copyright (C) 2016 Stefan vd
+www.stefanvd.net
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+
+To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.0/
+
+//================================================
+*/
+
+@-webkit-keyframes stefanvdaa{from{opacity:0}to{opacity:1}}
+#stefanvdaavivideffect{position:absolute;top:0;left:0;z-index:-1}
+/* Lights */
+.stefanvdaalightareoff{position:fixed;top:0;left:0;width:100%;height:100%;z-index:250000!important;opacity:0}
+/* gallery */
+#stefanvdaagallery{pointer-events:none!important;height:100%!important;width:100%!important;margin:0!important;padding:0!important;border:0!important;position:fixed!important;z-index:250001!important}
+.stefanvdaagalleryimageshow{-webkit-animation-name:stefanvdaa;-webkit-animation-duration:1.25s;-webkit-animation-iteration-count:1;-webkit-animation-timing-function:ease-in-out;-webkit-animation-direction:alternate;display:block;z-index:2147483647!important;background:#fff}
+.stefanvdaagalleryimagehide{display:none}
+#stefanvdaagallerybuttonleft{opacity:.1;z-index:2147483647!important;position:fixed!important;display:block;background-image:url(moz-extension://__MSG_@@extension_id__/images/arrow.png);width:39px!important;height:85px!important}
+#stefanvdaagallerybuttonleft:hover{opacity:1;-webkit-transition:all .4s ease-out}
+#stefanvdaagallerybuttonright{opacity:.1;z-index:2147483647!important;position:fixed!important;display:block;background-image:url(moz-extension://__MSG_@@extension_id__/images/arrow.png);width:39px!important;height:85px!important;-webkit-transform:scale(-1,1)}
+#stefanvdaagallerybuttonright:hover{opacity:1;-webkit-transition:all .4s ease-out}
+#stefanvdaagallerycounter{z-index:2147483647!important;position:fixed!important;display:block;color:#fff!important;font-size:20px!important;bottom:10px!important;right:30px!important}
+#stefanvdaaslideshow{margin-left:auto!important;margin-right:auto!important;position:relative!important;display:block!important;left:0!important;right:0!important;border-radius:5px!important;top:5px!important;position:fixed!important;z-index:2147483647!important;width:30px!important;height:30px!important}
+/* Icon */
+#stefanvdaaslideshow a.stefanvdaaicon{margin:12px!important;background-color:#000!important;border:2px solid #eee!important;display:inline-block;position:relative!important;vertical-align:top!important}
+#stefanvdaaslideshow a.stefanvdaaicon:after,a.stefanvdaaicon:before{background:#000!important;border:2px solid #eee!important;content:''!important;position:absolute!important}
+#stefanvdaaslideshow a.stefanvdaaicon:hover,a.stefanvdaaicon:hover:after,a.stefanvdaaicon:hover:before{background-color:rgba(255,255,255,0.5)!important}
+/* Play Icon */
+#stefanvdaaslideshow a.play{border-radius:100%;height:26px!important;width:26px!important}
+#stefanvdaaslideshow a.play:after,a.play:before,a.play:hover:after,a.play:hover:before{background:none!important}
+#stefanvdaaslideshow a.play:after{border-bottom:8px solid transparent!important;border-left:13px solid #eee!important;border-right:13px solid transparent!important;border-top:8px solid transparent!important;height:0!important;left:8px!important;top:5px!important;width:0!important}
+#stefanvdaaslideshow a.play:before{border:none!important}
+/* Pause Icon */
+#stefanvdaaslideshow a.pause{border-radius:100%!important;height:26px!important;width:26px!important}
+#stefanvdaaslideshow a.pause:after,a.pause:before{height:10px!important;top:6px!important;width:0!important}
+#stefanvdaaslideshow a.pause:after{left:7px!important}
+#stefanvdaaslideshow a.pause:before{left:15px!important}
+/*share buttons */
+#stefanvdaasharepanel{margin-left:auto!important;margin-right:auto!important;display:block!important;left:0!important;right:0!important;border-radius:5px!important;box-shadow:0 2px 8px rgba(0,0,0,0.5),inset 0 1px rgba(255,255,255,0.3),inset 0 10px rgba(255,255,255,0.2),inset 0 10px 20px rgba(255,255,255,0.25),inset 0 -15px 30px rgba(0,0,0,0.3)!important;bottom:15px!important;position:fixed!important;z-index:2147483647!important;padding:5px!important;width:495px!important;height:34px!important}
+#stefanvdbuttonsbox{display:inline-block!important}
+#stefanvdgoogleplusshare{display:inline-block!important;cursor:pointer!important;margin-left:30px!important;border-radius:3px;box-shadow:rgba(0,0,0,0.5) 0 1px 3px;height:34px;width:123px}
+#stefanvdfacebookshare{display:inline-block!important;cursor:pointer!important;margin-left:30px!important;border-radius:3px;box-shadow:rgba(0,0,0,0.5) 0 1px 3px;height:34px;width:123px}
+#stefanvdtwittershare{display:inline-block!important;cursor:pointer!important;margin-left:30px!important;border-radius:3px;box-shadow:rgba(0,0,0,0.5) 0 1px 3px;height:34px;width:123px}
+/* aa */
+#stefanvdaapaneltopl{font-weight:700!important;color:#fff!important;text-align:center!important;box-shadow:0 2px 8px rgba(0,0,0,0.5),inset 0 1px rgba(255,255,255,0.3),inset 0 10px rgba(255,255,255,0.2),inset 0 10px 20px rgba(255,255,255,0.25),inset 0 -15px 30px rgba(0,0,0,0.3);border-radius:5px;top:60px!important;left:10px!important;position:fixed!important;z-index:2147483647!important;padding:4px!important;width:28px!important}
+#stefanvdaapaneltopr{font-weight:700!important;color:#fff!important;text-align:center!important;box-shadow:0 2px 8px rgba(0,0,0,0.5),inset 0 1px rgba(255,255,255,0.3),inset 0 10px rgba(255,255,255,0.2),inset 0 10px 20px rgba(255,255,255,0.25),inset 0 -15px 30px rgba(0,0,0,0.3);border-radius:5px;top:60px!important;right:10px!important;position:fixed!important;z-index:2147483647!important;padding:4px!important;width:28px!important}
+#stefanvdaaheightrange{-webkit-appearance:slider-vertical;width:20px!important;height:200px!important}
+#stefanvdaaheightinput{width:24px!important}
+#stefanvdaaopacityrange{-webkit-appearance:slider-vertical;width:20px!important;height:200px!important}
+#stefanvdaaopacityinput{width:24px!important}
+#stefanvdaapaneltop{box-shadow:0 2px 8px rgba(0,0,0,0.5),inset 0 1px rgba(255,255,255,0.3),inset 0 10px rgba(255,255,255,0.2),inset 0 10px 20px rgba(255,255,255,0.25),inset 0 -15px 30px rgba(0,0,0,0.3)!important;top:0!important;left:0!important;position:fixed!important;z-index:2147483647!important;padding:5px!important;width:100%!important}
+#stefanvdaarotaterange{margin-left:auto!important;margin-right:auto!important;position:relative!important;display:block!important;width:200px!important}

@@ -1,0 +1,159 @@
+﻿/*
+//================================================
+
+Finance Toolbar
+Get real time stock market information about your favorite stocks. With mini-charts of the currency value.
+Copyright (C) 2016 Stefan vd
+www.stefanvd.net
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+
+To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.0/
+
+//================================================
+*/
+
+body{min-width:1150px;min-height:800px;background-color:#fff;color:#000;font-family:Arial,sans-serif;cursor:default;font-size:13px}
+#main-content{display:-webkit-box;position:absolute;left:0;right:0;top:0;bottom:0}
+#mainview{-webkit-box-align:stretch;-webkit-padding-start:216px;-moz-box-align:stretch;-moz-padding-start:216px;margin:0;position:absolute;left:0;right:0;top:0;bottom:0;z-index:1}
+#mainview-content{box-sizing:border-box;max-width:888px;min-width:600px;padding:0 24px;position:relative}
+#managed-prefs-banner{background:#FFF2B7;height:31px;width:100%;margin:0;padding:0;vertical-align:middle;border-bottom:1px solid #c6c9ce}
+#managed-prefs-icon{display:inline-block;padding:7px 7px 2px;height:21px;vertical-align:middle}
+#managed-prefs-text{vertical-align:middle}
+#managed-prefs-text-close{float:right;background:url(../images/close@2x.png)left top no-repeat;background:-webkit-image-set(url(../images/close.png) 1x,url(../images/close@2x.png) 2x);width:10px;height:10px;margin:10px;background-repeat:no-repeat;background-position:center}
+#navbar{margin:0}
+#navbar-container{-webkit-border-end:1px solid #c6c9ce;-moz-border-end:1px solid #c6c9ce;background:#fff;bottom:0;display:block;left:0;position:fixed;top:0;width:216px;z-index:2}
+#navbar-container>ul{-webkit-user-select:none;list-style-type:none;margin:0;padding:0}
+.navbar-item{color:#373737;cursor:pointer;display:block;font-size:105%;outline:none;padding:7px 0;text-align:end;-webkit-padding-end:24px}
+.navbar-item-selected{background:#f5f5f5;color:#000}
+ul#navbar li a{display:block;margin-right:0;padding:12px 24px 12px 0;text-align:right;font-size:105%}
+#settings{-webkit-padding-end:24px;-webkit-user-select:none;color:#333;cursor:pointer;font-size:200%;font-weight:400;margin:0;padding-bottom:14px;padding-top:13px;text-align:end;text-shadow:#fff 0 1px 2px}
+.page h1{-webkit-padding-end:24px;-webkit-user-select:none;border-bottom:1px solid #EEE;color:#333;font-size:200%;font-weight:400;margin:0;padding-bottom:4px;padding-top:13px;text-shadow:#fff 0 1px 2px}
+.page{overflow:hidden;height:100%}
+section{position:relative;-webkit-box-orient:horizontal;border-bottom:1px solid #EEE;display:-webkit-box;margin-top:17px;padding-bottom:20px;width:100%}
+section>h3{font-size:105%;font-weight:700;margin:0;vertical-align:middle;width:140px}
+section>div:only-of-type{-webkit-box-flex:1}
+section>div:only-of-type label{margin:5px 0}
+label.checkbox,label.radio{display:block}
+#customHomePageGroup{display:-webkit-box;-webkit-box-orient:horizontal;width:100%}
+#customHomePageGroup>:last-child{-webkit-margin-start:1ex;-webkit-box-flex:1;position:relative}
+div.checkbox,div.radio{margin:5px 0}
+.superscript{vertical-align:super;color:#FF8F00;font-size:smaller}
+/* Hyperlinks */
+#mainview-content section a{color:#15c;text-decoration:underline}
+#mainview-content section a:active{color:#052577}
+/* Input, Checkbox, radio */
+input[type="password"],input[type="text"],input[type="url"],input[type="number"],input:not([type]){border-radius:2px;border:1px solid #AAA;font-size:inherit;padding:0px}
+input[type=checkbox],input[type=radio]{margin-left:0;position:relative;top:0px;margin-right:5px}
+label>input[type=checkbox],label>input[type=radio]{margin-top:1px}
+input[type="color"]{margin:0;padding:0;vertical-align:bottom;border:none}
+input[type="range"]{background-image:-webkit-linear-gradient(left,hsla(0,0%,0%,.1) 45%,transparent 45%),-webkit-linear-gradient(hsla(0,0%,0%,.1),hsla(0,0%,100%,.1)),-webkit-linear-gradient(left,#FFF,#000);background-size:3px 3px,100% 100%,100% 100%;border-radius:1px;box-shadow:inset 0 1px 4px hsla(0,0%,0%,.5),inset 0 0 10px hsla(0,0%,0%,.5),0 0 0 1px hsla(0,0%,0%,.1),0 -1px 2px 1px hsla(0,0%,0%,.25),0 2px 2px 1px hsla(0,0%,100%,.75),0 -2px 10px 2px hsla(0,0%,100%,.75),0 2px 10px 0 hsla(0,0%,0%,.25);cursor:pointer;height:10px;position:relative;width:200px;-webkit-appearance:none;-webkit-transition:.15s}
+/* Button */
+button,input[type=button],input[type=submit]{border-radius:2px;box-shadow:0 1px 3px rgba(0,0,0,0.1);-webkit-user-select:none;background:-webkit-linear-gradient(#fafafa,#f4f4f4 40%,#e5e5e5);border:1px solid #aaa;color:#444;font-size:inherit;margin-bottom:0;min-width:4em;padding:3px 12px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap}
+button:hover,input[type=button]:hover,input[type=submit]:hover{box-shadow:0 1px 3px rgba(0,0,0,0.2);background:#ebebeb -webkit-linear-gradient(#fefefe,#f8f8f8 40%,#e9e9e9);border-color:#999;color:#222}
+button:active,input[type=button]:active,input[type=submit]:active{box-shadow:inset 0 1px 3px rgba(0,0,0,0.2);background:#ebebeb -webkit-linear-gradient(#f4f4f4,#efefef 40%,#dcdcdc);color:#333}
+button[disabled],input[type=button][disabled],input[type=submit][disabled],button[disabled]:hover,input[type=button][disabled]:hover,input[type=submit][disabled]:hover{box-shadow:none;background:-webkit-linear-gradient(#fafafa,#f4f4f4 40%,#e5e5e5);border-color:#aaa;color:#888}
+.grey-text{color:grey}
+.hidden{display:none}
+.item{font-style:italic}
+/* html */
+header{position:absolute;right:30px;margin-top:-27px;color:#999;font-size:11px}
+header div{display:inline-block;vertical-align:middle}
+/* donation button */
+.donatebutton{background:#fcba49;-webkit-user-select:none;border:1px solid #F3A835;color:#FFF;font-size:inherit;font-weight:700;min-width:7em;padding:1px 10px;text-decoration:none}
+.donatebutton:hover{opacity:.88}
+/* sidebar */
+#productwelcomeimage{display:block;margin-left:auto;margin-right:auto;padding-left:0;text-align:center;position:absolute;top:16px;right:12px;font-family:verdana;font-size:16px;color:#000;vertical-align:top}
+#productwelcomeimageload{display:block;margin-left:auto;margin-right:auto;padding-left:0;font-family:verdana;font-size:16px;color:#000;text-align:center;vertical-align:top}
+.brand{text-decoration:none}
+#productsharebar{display:block;padding:2px 5px;border-top:1px solid #D3D0CA;border-bottom:1px solid #D3D0CA}
+#productsettingtitel{display:inline-block;position:absolute;top:40px;color:#333;cursor:pointer;font-size:10px;font-weight:400;margin:0;text-align:right;text-shadow:#fff 0 1px 2px;width:200px}
+/* loading bar */
+#loadinghelp{bottom:10px;position:absolute;right:15px}
+#loading{position:fixed;width:100%;height:100%;z-index:500;background:rgba(256,256,256,1);margin:0;padding:0;left:0;top:0}
+#loadingcenter{margin:20% auto;width:500px}
+#progressbar{width:500px;height:5px;background-color:#E6E6E6;padding:1px;border:1px #CECECE double;clear:both;margin:5px}
+#progress{background:#39F;height:5px;width:0;max-width:100%;float:left;-webkit-animation:progress 2s 1 forwards}
+#pbaranim{height:5px;width:500px;overflow:hidden;opacity:.25}
+@-webkit-keyframes progress{to{width:500px}}
+/* Remember */
+.remembertext{margin:5px 0}
+#remembershare{position:fixed;width:100%;height:100%;z-index:400;background:rgba(256,256,256,1);margin:0;padding:0;left:0;top:0;text-align:center}
+#productrememberimage{position:absolute;top:16px;left:12px;font-family:verdana;font-size:16px;color:#000;vertical-align:top}
+#remembersharecenter{margin:auto;width:1024px;height:350px;position:absolute;top:0;bottom:0;left:0;right:0}
+#rememberboxdonate{cursor:pointer;background:#FDBD4E;color:#fff;width:900px;display:inline-block;font-size:20px;text-align:center;padding:15px;height:30px;vertical-align:top;margin:0;font-family:verdana;text-decoration:none;border:1px solid rgba(128,128,128,0.3)}
+#rememberboxrate{cursor:pointer;background:#FFCE32;color:#fff;width:200px;display:inline-block;font-size:20px;text-align:center;padding:15px;height:30px;vertical-align:top;margin:0;font-family:verdana;text-decoration:none;border:1px solid rgba(128,128,128,0.3)}
+#rememberboxgoogle{cursor:pointer;background:#C23434;color:#fff;width:200px;display:inline-block;font-size:20px;text-align:center;padding:15px;height:30px;vertical-align:top;margin:0;font-family:verdana;text-decoration:none;border:1px solid rgba(128,128,128,0.3)}
+#rememberboxfacebook{cursor:pointer;background:#4c66a4;color:#fff;width:200px;display:inline-block;font-size:20px;text-align:center;padding:15px;height:30px;vertical-align:top;margin:0;font-family:verdana;text-decoration:none;border:1px solid rgba(128,128,128,0.3)}
+#rememberboxtwitter{cursor:pointer;background:#3CF;color:#fff;width:200px;display:inline-block;font-size:20px;text-align:center;padding:15px;height:30px;vertical-align:top;margin:0;font-family:verdana;text-decoration:none;border:1px solid rgba(128,128,128,0.3)}
+#rememberboxdonate:hover,#rememberboxrate:hover,#rememberboxgoogle:hover,#rememberboxfacebook:hover,#rememberboxtwitter:hover{opacity:.88}
+#skipremember{float:right}
+#divcheckboxskipremember{text-align:left}
+/* lamp */
+#loadinglamp{margin-right:5px;vertical-align:-2px}
+#welcomelamp{margin-right:5px;vertical-align:-2px}
+#rememberlamp{margin-right:5px;vertical-align:-2px}
+/* share box */
+#shareboxgoogle{background:url(../images/googleplus@2x.png)left top no-repeat;background:-webkit-image-set(url(../images/googleplus.png) 1x,url(../images/googleplus@2x.png) 2x);width:28px;height:18px;display:inline-block;background-size:cover;margin-left:10px;margin-right:10px;cursor:pointer}
+#shareboxfacebook{background:url(../images/facebook@2x.png)left top no-repeat;background:-webkit-image-set(url(../images/facebook.png) 1x,url(../images/facebook@2x.png) 2x);width:18px;height:18px;display:inline-block;background-size:cover;margin-right:10px;cursor:pointer}
+#shareboxtwitter{background:url(../images/twitter@2x.png)left top no-repeat;background:-webkit-image-set(url(../images/twitter.png) 1x,url(../images/twitter@2x.png) 2x);width:21px;height:18px;display:inline-block;background-size:cover;cursor:pointer}
+#shareboxrate:hover,#shareboxgoogle:hover,#shareboxfacebook:hover,#shareboxtwitter:hover{opacity:.8;cursor:pointer}
+.youtubepreview .suggpanel{vertical-align:top;padding-left:20px}
+.promobox{top:-18px;position:absolute;background:#ffce32;color:white;font-size:12px;padding:0 2px;border-radius:2px;display:inline-block}
+.promoboxtext{display:inline-flex;line-height:18px;padding:15px 15px 10px}
+.promoboxbutton,.promoboxbutton:hover{border:0;background:#4285f4;color:white;width:225px;margin-left:25px;padding:10px 15px}
+.promoboxbutton:hover{opacity:.8}
+/* Review box */
+#reviewextensionbox{height:75px;position:relative}
+.stars{position:absolute;color:#ffce32;font-size:38px;top:0;left:30px}
+#ayh{position:absolute;font-size:20px;font-weight:700;top:0;right:30px;color:#000}
+#tllo{position:absolute;font-size:16px;top:25px;right:30px;color:#000}
+#nt{position:absolute;font-size:12px;font-weight:700;color:#000;text-transform:uppercase;top:60px;left:50px;cursor:pointer}
+#war{position:absolute;font-size:12px;font-weight:700;color:#39F;text-transform:uppercase;top:60px;right:30px;cursor:pointer}
+/* Ambient Aurea app */
+#financetoolbarappbox{height:75px;position:relative;background:#333333;border-radius:2px}
+#apicon{position:absolute;top:18px;left:30px}
+#apname{position:absolute;font-size:20px;top:25px;left:72px;color:#fff}
+#aptllo{position:absolute;font-size:16px;top:28px;right:30px;color:#fff}
+#apnt{position:absolute;font-size:12px;font-weight:700;color:#fff;text-transform:uppercase;top:60px;left:50px;cursor:pointer}
+#apgetapp{position:absolute;font-size:12px;font-weight:700;color:#39F;text-transform:uppercase;top:60px;right:30px;cursor:pointer}
+/* stocks */
+#Stocklist{border:1px solid#D9D9D9;border-radius:2px;margin-top:10px;margin-left:0px;padding-left:5px;padding-right:150px}
+#Stocklist tr td{vertical-align:top}
+#Stocklist input[type=url]{width:368px;float:left}
+#Stocklist select{width:425px}
+/* example bar */
+@font-face{font-family:'Wallstreet';src:url('moz-extension://__MSG_@@extension_id__/wallstreet.eot');src:url('moz-extension://__MSG_@@extension_id__/wallstreet.ttf')format('truetype');font-weight:normal;font-style:normal}
+@font-face{font-family:'jd_lcd_roundedregular';src:url('moz-extension://__MSG_@@extension_id__/jdlcdrounded-webfont.eot');src:url('moz-extension://__MSG_@@extension_id__/jdlcdrounded-webfont.eot?#iefix') format('embedded-opentype'),url('moz-extension://__MSG_@@extension_id__/jdlcdrounded-webfont.woff')format('woff'),url('moz-extension://__MSG_@@extension_id__/jdlcdrounded-webfont.ttf')format('truetype'),url('moz-extension://__MSG_@@extension_id__/jdlcdrounded-webfont.svg#jd_lcd_roundedregular')format('svg');font-weight:normal;font-style:normal}
+#examplebar{position:relative;background:black;color:white;height:30px;width:100%;box-shadow:#777 0px 0px 7px}
+#examplebar .world{-webkit-user-select:none;user-select:none;font-family:Webdings;cursor:pointer;left:0px;position: absolute;display:inline-block;width:63px;height:30px;color:rgba(255,255,255,.40);font-size:40px;padding-left:8px;vertical-align:top;top:-3px}
+#examplebar #favorite{-webkit-user-select:none;user-select:none;vertical-align:top;margin-left:80px;padding-left:5px;width:230px;display:inline-block;height:30px;position:absolute;line-height:1.15}
+#examplebar #favorite span{-webkit-user-select:none;user-select:none;vertical-align:top;font-family:'Verdana';font-size:7px;font-variant:normal;font-stretch:normal;font-weight:normal;font-style:normal;line-height:2}
+#examplebar #favorite img{-webkit-user-select:none;user-select:none;margin-left:3px;margin-right:2px;display:inline-block;vertical-align:top;line-height:1.15}
+#examplebar .arrowright{-webkit-user-select:none;user-select:none;cursor:pointer;right:0px;position:absolute;background:transparent;display:inline-block;height:30px;padding:0px;margin-left:5px;margin-right:5px;font-family:'jd_lcd_roundedregular';font-size:30px;font-variant:normal;font-stretch:normal;font-weight:normal;font-style:normal;line-height:1.15}
+#examplebar .arrowleft{-webkit-user-select:none;user-select:none;cursor:pointer;position:absolute;background:transparent;display:inline-block;height:30px;padding:0px;margin-left:315px;margin-right:5px;font-family:'jd_lcd_roundedregular';font-size:30px;font-variant:normal;font-stretch:normal;font-weight:normal;font-style:normal;line-height:1.15}
+#examplebar #stefanvdfinancemarquee{-webkit-user-select:none;user-select:none;overflow:hidden;white-space:nowrap;box-sizing:border-box;font-family:'jd_lcd_roundedregular';height:30px;font-size:30px;font-variant:normal;font-stretch:normal;font-weight:normal;font-style:normal;line-height:1.15;position:relative}
+#examplebar #stefanvdfinancemarquee .moveeffect{position:absolute;right:0;overflow:hidden;white-space:nowrap;box-sizing:border-box;height:30px}
+#examplebar #stefanvdfinancemarquee .moveeffect:hover{animation-play-state:paused}
+#examplebar #stefanvdfinancemarquee a:link,#examplebar #stefanvdfinancemarquee a:visited,#examplebar #stefanvdfinancemarquee a:hover,#examplebar #stefanvdfinancemarquee a:active{background:transparent;font-family:'jd_lcd_roundedregular';font-size:30px;font-variant:normal;font-stretch:normal;font-weight:normal;font-style:normal;line-height:1.15;text-decoration:none}
+#examplebar #stefanvdfinancemarquee div{background:transparent;display:inline-block;height:30px;padding:0px;font-family:'jd_lcd_roundedregular';font-size:30px;font-variant:normal;font-stretch:normal;font-weight:normal;font-style:normal;line-height:1.15}
+#examplebar #stefanvdfinancemarquee div a:link,#examplebar #stefanvdfinancemarquee div a:visited,#examplebar #stefanvdfinancemarquee div a:hover,#examplebar  #stefanvdfinancemarquee div a:active{background:transparent;font-family:'jd_lcd_roundedregular';font-size:30px;font-variant:normal;font-stretch:normal;font-weight:normal;font-style:normal;line-height:1.15;color:white}
+#examplebar #stefanvdfinancemarquee div span{background:transparent;margin-left:2px;font-family:'jd_lcd_roundedregular';font-size:30px;font-variant:normal;font-stretch:normal;font-weight:normal;font-style:normal;line-height:1.15}
+#examplebar #stefanvdfinancemarquee .green a:link,#examplebar #stefanvdfinancemarquee .green a:visited,#examplebar #stefanvdfinancemarquee .green a:hover,#examplebar #stefanvdfinancemarquee .green a:active{color:green}
+#examplebar #stefanvdfinancemarquee .red a:link,#examplebar #stefanvdfinancemarquee .red a:visited,#examplebar #stefanvdfinancemarquee .red a:hover,#examplebar #stefanvdfinancemarquee .red a:active{color:red}
+#examplebar #stefanvdfinancemarquee .orange a:link,#examplebar #stefanvdfinancemarquee .orange a:visited,#examplebar #stefanvdfinancemarquee .orange a:hover,#examplebar #stefanvdfinancemarquee .orange a:active{color:orange}
+#examplebar #stefanvdfinancemarquee .white a:link,#examplebar #stefanvdfinancemarquee .white a:visited,#examplebar #stefanvdfinancemarquee .white a:hover,#examplebar #stefanvdfinancemarquee .white a:active{color:white}
+#examplebar #stefanvdfinancemarquee .yellow a:link,#examplebar #stefanvdfinancemarquee .yellow a:visited,#examplebar #stefanvdfinancemarquee .yellow a:hover,#examplebar #stefanvdfinancemarquee .yellow a:active{color:#FFCC00}

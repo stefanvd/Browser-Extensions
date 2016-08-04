@@ -44,7 +44,7 @@ var firstdefaultvalues = {};
 // Option default value to read if there is no current value from chrome.storage AND init default value
 chrome.storage.local.get(['zoomchrome', 'zoomweb'], function(items){
     // find no localstore zoomengine
-	  if(items['zoomchrome'] == null && items['zoomweb'] == null){firstdefaultvalues['zoomweb'] = true;firstdefaultvalues['zoomchrome'] = false;}
+	  if(items['zoomchrome'] == null && items['zoomweb'] == null){firstdefaultvalues['zoomweb'] = false;firstdefaultvalues['zoomchrome'] = true;}
     // find no localstore lightimage
     // Save the init value
     chrome.storage.local.set(firstdefaultvalues, function() {

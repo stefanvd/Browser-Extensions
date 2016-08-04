@@ -172,13 +172,13 @@ $("plus").addEventListener('click', function() {zoomview(+1);});
 window.addEventListener('wheel', wheel); // for modern
 
 chrome.storage.sync.get(['allzoom','allzoomvalue','websitezoom','defaultzoom','badge','steps','lightcolor','zoomchrome','zoomweb'], function(response){
-allzoom = response.allzoom;if(!allzoom)allzoom = false; // default allzoom false
-allzoomvalue = response.allzoomvalue;if(!allzoomvalue)allzoomvalue = 1; // default allzoomvalue value
-badge = response.badge;if(!badge)badge = false;
-lightcolor = response.lightcolor;if(!lightcolor)lightcolor = "#3cb4fe";
-steps = response.steps;if(!steps)steps = 10;
-zoomchrome = response.zoomchrome;if(!zoomchrome)zoomchrome = false;
-zoomweb = response.zoomweb;if(!zoomweb)zoomweb = true;
+allzoom = response.allzoom;if(allzoom == null)allzoom = false; // default allzoom false
+allzoomvalue = response.allzoomvalue;if(allzoomvalue == null)allzoomvalue = 1; // default allzoomvalue value
+badge = response.badge;if(badge == null)badge = false;
+lightcolor = response.lightcolor;if(lightcolor == null)lightcolor = "#3cb4fe";
+steps = response.steps;if(steps == null)steps = 10;
+zoomchrome = response.zoomchrome;if(zoomchrome == null)zoomchrome = true;
+zoomweb = response.zoomweb;if(zoomweb == null)zoomweb = true;
 websitezoom = response.websitezoom;
 if (typeof websitezoom == "undefined" || websitezoom == null) {
     websitezoom = JSON.stringify({ 'https://www.stefanvd.net': ["90"], 'https://www.google.com': ["90"], 'http://www.nytimes.com': ["75"] });

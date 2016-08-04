@@ -207,7 +207,6 @@ else if (info.menuItemId == "totlsharefacebook") {window.open("https://www.faceb
 else if (info.menuItemId == "totlsharegoogleplus") {window.open("https://plus.google.com/share?url="+zoomproduct, "_blank");}
 }
 
-chrome.runtime.onInstalled.addListener(function() {
 // check to remove all contextmenus
 chrome.contextMenus.removeAll(function() {
 //console.log("contextMenus.removeAll callback");
@@ -237,7 +236,6 @@ var child2 = chrome.contextMenus.create({"title": sharemenupostongoogleplus, "id
 
 chrome.storage.sync.get(['contextmenus'], function(items){
     if(items['contextmenus']){checkcontextmenus();}
-});
 });
 
 chrome.contextMenus.onClicked.addListener(onClickHandler);
@@ -297,9 +295,6 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
 try{ chrome.runtime.setUninstallUrl(linkuninstall); }
 catch(e){}
 
-// Fired when an update is available
-chrome.runtime.onUpdateAvailable.addListener(function() {chrome.runtime.reload();});
-
 // convert from the chrome.local to chrome.sync
 chrome.storage.local.get(['firstRun','version'], function(chromeset){
     // if yes, it use the chrome.local setting
@@ -320,7 +315,7 @@ chrome.storage.local.get(['firstRun','version'], function(chromeset){
 function initwelcome(){
 chrome.storage.sync.get(['firstRun'], function(chromeset){
 if ((chromeset["firstRun"]!="false") && (chromeset["firstRun"]!=false)){
-  chrome.tabs.create({url: linkwelcomepage, selected:true})
+  chrome.tabs.create({url: linkwelcomepage})
   chrome.storage.sync.set({"firstRun": false});
   chrome.storage.sync.set({"version": "2.1"});
 }

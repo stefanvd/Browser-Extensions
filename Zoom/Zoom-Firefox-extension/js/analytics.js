@@ -27,13 +27,12 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 //================================================
 
 var manifestData = chrome.runtime.getManifest();
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-16237836-40']);
-_gaq.push(['_setSampleRate', '1']);
-_gaq.push(['_trackPageview', '/background.html?version='+manifestData.version+'']);
+const GA_TRACKING_ID = "UA-16237836-40";
+const GA_CLIENT_ID = "c886270f-b296-4034-ae7e-3cb42b97332d";
 
-(function() {
-  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-  ga.src = 'https://ssl.google-analytics.com/ga.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();
+let request = new XMLHttpRequest();
+let message =
+  "v=1&tid=" + GA_TRACKING_ID + "&cid= " + GA_CLIENT_ID + "&aip=1" +
+  "&ds=add-on&t=pageview&dp=%2Fbackground.html?version=" + manifestData.version + "";
+request.open("POST", "https://www.google-analytics.com/collect", true);
+request.send(message);

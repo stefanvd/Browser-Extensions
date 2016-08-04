@@ -37,23 +37,23 @@ function save_options(){
     var getnumber = websitezoomnumberBox.options[i].text;
 	  websitezoom[websitezoomBox.options[i].value] = getnumber;
   }
-  chrome.storage.local.set({ "allzoom": $('allzoom').checked, "optionskipremember": $('optionskipremember').checked, "contextmenus": $('contextmenus').checked, "badge": $('badge').checked, "defaultzoom": $('defaultzoom').value, "steps": $('steps').value, "lightcolor": $('lightcolor').value, "zoomchrome": $('zoomchrome').checked, "zoomweb": $('zoomweb').checked, "websitezoom": JSON.stringify(websitezoom)});
+  chrome.storage.sync.set({ "allzoom": $('allzoom').checked, "optionskipremember": $('optionskipremember').checked, "contextmenus": $('contextmenus').checked, "badge": $('badge').checked, "defaultzoom": $('defaultzoom').value, "steps": $('steps').value, "lightcolor": $('lightcolor').value, "zoomchrome": $('zoomchrome').checked, "zoomweb": $('zoomweb').checked, "websitezoom": JSON.stringify(websitezoom)});
 }
 
 var firstdefaultvalues = {};
 // Option default value to read if there is no current value from chrome.storage AND init default value
-chrome.storage.local.get(['zoomchrome', 'zoomweb'], function(items){
+chrome.storage.sync.get(['zoomchrome', 'zoomweb'], function(items){
     // find no localstore zoomengine
 	  if(items['zoomchrome'] == null && items['zoomweb'] == null){firstdefaultvalues['zoomweb'] = true;firstdefaultvalues['zoomchrome'] = false;}
     // find no localstore lightimage
     // Save the init value
-    chrome.storage.local.set(firstdefaultvalues, function() {
+    chrome.storage.sync.set(firstdefaultvalues, function() {
     //console.log('Settings saved');
     });
 });
 
 function read_options(){
-chrome.storage.local.get(['allzoom','optionskipremember','countremember','websitezoom','defaultzoom','contextmenus','badge','steps','lightcolor','zoomweb','zoomchrome'], function(items){
+chrome.storage.sync.get(['allzoom','optionskipremember','countremember','websitezoom','defaultzoom','contextmenus','badge','steps','lightcolor','zoomweb','zoomchrome'], function(items){
 		if(items['defaultzoom']){$('defaultzoom').value = items['defaultzoom'];$('slider').value = items['defaultzoom'];}	
 		else $('defaultzoom').value = 100;
     if(items['steps']){$('steps').value = items['steps'];}	
@@ -93,7 +93,7 @@ if($('optionskipremember').checked != true){
 	if(countremember >= 5) {$('remembershare').style.display = "";countremember = 0;}
 	else {$('remembershare').style.display = "none";}
 } else {$('remembershare').style.display = "none";}
-chrome.storage.local.set({"countremember": countremember});		
+chrome.storage.sync.set({"countremember": countremember});		
 		
 	// load tab div
 	var tabListItems = document.getElementById('navbar').childNodes;
@@ -344,11 +344,11 @@ $("websitezoomaddbutton").addEventListener('click', function() {websitezoomadd()
 $("websitezoomremovebutton").addEventListener('click', function() {websitezoomremoveSelectedExcludedDomain()});
 
 // Reset settings
-$("resetzoom").addEventListener('click', function() {chrome.storage.local.clear();location.reload()});
+$("resetzoom").addEventListener('click', function() {chrome.storage.sync.clear();window.location.reload()});
 
 // Review box
-$("war").addEventListener('click', function() {window.open(writereview, "_blank");$("sectionreviewbox").style.display = "none";chrome.storage.local.set({"reviewedlastonversion": chrome.runtime.getManifest().version})});
-$("nt").addEventListener('click', function() {$("sectionreviewbox").style.display = "none";chrome.storage.local.set({"reviewedlastonversion": chrome.runtime.getManifest().version})});
+$("war").addEventListener('click', function() {window.open(writereview, "_blank");$("sectionreviewbox").style.display = "none";chrome.storage.sync.set({"reviewedlastonversion": chrome.runtime.getManifest().version})});
+$("nt").addEventListener('click', function() {$("sectionreviewbox").style.display = "none";chrome.storage.sync.set({"reviewedlastonversion": chrome.runtime.getManifest().version})});
 
 // retina check
 if(window.devicePixelRatio >= 2) {

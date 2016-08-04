@@ -31,7 +31,7 @@ var currentURL;var allzoom;var allzoomvalue;var badge;
 chrome.runtime.onMessage.addListener(function request(request,sender,sendResponse){
 if(request.action == 'getallRatio'){
 currentURL = request.website;
-chrome.storage.local.get(['allzoom','allzoomvalue','websitezoom','badge','lightcolor','zoomchrome','zoomweb'], function(response){
+chrome.storage.sync.get(['allzoom','allzoomvalue','websitezoom','badge','lightcolor','zoomchrome','zoomweb'], function(response){
 allzoom = response.allzoom;if(!allzoom)allzoom = false; // default allzoom false
 allzoomvalue = response.allzoomvalue;
 badge = response.badge;
@@ -49,7 +49,13 @@ if (allzoom == true) {
             if(zoomchrome == true){
                 chrome.tabs.setZoom(tabs[0].id, allzoomvalue);
             } else{
-                chrome.tabs.executeScript(tabs[0].id,{code:"document.body.style.zoom=" + allzoomvalue});
+                // Check for transform support so that we can fallback otherwise
+                var supportsZoom = 'zoom' in document.body.style;
+                if(supportsZoom){
+                    chrome.tabs.executeScript(tabs[0].id,{code:"document.body.style.zoom=" + allzoomvalue});
+                }else{
+                    chrome.tabs.executeScript(tabs[0].id,{code:"document.body.style.transformOrigin='left top';document.body.style.transform='scale(" + allzoomvalue + ")'"});
+                }
             }
             if(badge == true){
                 chrome.browserAction.setBadgeBackgroundColor({color:lightcolor}); 
@@ -105,7 +111,7 @@ else if (request.name == "contextmenuoff") {removecontexmenus();}
 
 // update when click on the tab
 chrome.tabs.onHighlighted.addListener(function(){
-    chrome.storage.local.get(['badge','zoomchrome','zoomweb','lightcolor'], function(response){
+    chrome.storage.sync.get(['badge','zoomchrome','zoomweb','lightcolor'], function(response){
     var lightcolor = response.lightcolor;
     var badge = response.badge;if(!badge)badge = false;
     var zoomchrome = response.zoomchrome;if(!zoomchrome)zoomchrome = false;
@@ -142,7 +148,7 @@ chrome.tabs.onHighlighted.addListener(function(){
 function onClickHandler(info, tab) {
 var str = info.menuItemId;var respage = str.substring(0, 8);var czl = str.substring(8);
 if (respage == "zoompage") {
-    chrome.storage.local.get(['allzoom','allzoomvalue','zoomchrome','zoomweb','websitezoom'], function(response){
+    chrome.storage.sync.get(['allzoom','allzoomvalue','zoomchrome','zoomweb','websitezoom'], function(response){
     allzoom = response.allzoom;
     allzoomvalue = response.allzoomvalue;
     zoomchrome = response.zoomchrome;if(!zoomchrome)zoomchrome = false;
@@ -152,7 +158,12 @@ if (respage == "zoompage") {
         if(zoomchrome == true){
             chrome.tabs.setZoom(tabs[0].id, czl/100);
         }else{
-            chrome.tabs.executeScript(tabs[0].id,{code:"document.body.style.zoom=" + czl/100});
+            var supportsZoom = 'zoom' in document.body.style;
+            if(supportsZoom){
+                 chrome.tabs.executeScript(tabs[0].id,{code:"document.body.style.zoom=" + czl/100});
+            }else{
+                chrome.tabs.executeScript(tabs[0].id,{code:"document.body.style.transformOrigin='left top';document.body.style.transform='scale(" + czl/100 + ")'"});
+            }
         }
         if(badge == true){
             chrome.browserAction.setBadgeBackgroundColor({color:lightcolor}); 
@@ -162,7 +173,7 @@ if (respage == "zoompage") {
         webjob = job.match(/^[\w-]+:\/*\[?([\w\.:-]+)\]?(?::\d+)?/)[0];
         if(allzoom == true){
             // save for all zoom feature
-            chrome.storage.local.set({"allzoomvalue": czl/100});
+            chrome.storage.sync.set({"allzoomvalue": czl/100});
         }else{
                 var atbbuf = [];
                 for(var domain in websitezoom){atbbuf.push(domain);atbbuf.sort();}
@@ -181,7 +192,7 @@ if (respage == "zoompage") {
                     }
                 }
                 // save for zoom feature
-                chrome.storage.local.set({"websitezoom": JSON.stringify(websitezoom) });
+                chrome.storage.sync.set({"websitezoom": JSON.stringify(websitezoom) });
         }
     });
     });
@@ -196,7 +207,6 @@ else if (info.menuItemId == "totlsharefacebook") {window.open("https://www.faceb
 else if (info.menuItemId == "totlsharegoogleplus") {window.open("https://plus.google.com/share?url="+zoomproduct, "_blank");}
 }
 
-chrome.runtime.onInstalled.addListener(function() {
 // check to remove all contextmenus
 chrome.contextMenus.removeAll(function() {
 //console.log("contextMenus.removeAll callback");
@@ -224,9 +234,8 @@ var child2 = chrome.contextMenus.create({"title": sharemenusendatweet, "id": "to
 var child2 = chrome.contextMenus.create({"title": sharemenupostonfacebook, "id": "totlsharefacebook", "parentId": parent});
 var child2 = chrome.contextMenus.create({"title": sharemenupostongoogleplus, "id": "totlsharegoogleplus", "parentId": parent});
 
-chrome.storage.local.get(['contextmenus'], function(items){
+chrome.storage.sync.get(['contextmenus'], function(items){
     if(items['contextmenus']){checkcontextmenus();}
-});
 });
 
 chrome.contextMenus.onClicked.addListener(onClickHandler);
@@ -286,16 +295,29 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
 try{ chrome.runtime.setUninstallUrl(linkuninstall); }
 catch(e){}
 
-// Fired when an update is available
-chrome.runtime.onUpdateAvailable.addListener(function() {chrome.runtime.reload();});
+// convert from the chrome.local to chrome.sync
+chrome.storage.local.get(['firstRun','version'], function(chromeset){
+    // if yes, it use the chrome.local setting
+    if (chromeset["firstRun"] == "false"){
+        // move all settings from the local to sync
+        if(chromeset["firstRun"] == "false"){ chrome.storage.sync.set({"firstRun": false}); }
+        if(chromeset["version"] == "2.1"){ chrome.storage.sync.set({"version": "2.1"}); }
+          
+        // when done, clear the local
+        chrome.storage.local.clear();
+    } else {
+        // already done converting the 'firstrun' (from chrome.local to chrome.sync) to false
+        // or no firstrun found in chrome.local (empty value), then do the 'welcome page'
+        initwelcome();
+    }
+});
 
-// Fired when an update is available
-chrome.runtime.onUpdateAvailable.addListener(function() {chrome.runtime.reload();});
-
-chrome.storage.local.get(['firstRun'], function(chromeset){
+function initwelcome(){
+chrome.storage.sync.get(['firstRun'], function(chromeset){
 if ((chromeset["firstRun"]!="false") && (chromeset["firstRun"]!=false)){
-  chrome.tabs.create({url: linkwelcomepage, selected:true})
-  chrome.storage.local.set({"firstRun": "false"});
-  chrome.storage.local.set({"version": "2.1"});
+  chrome.tabs.create({url: linkwelcomepage})
+  chrome.storage.sync.set({"firstRun": false});
+  chrome.storage.sync.set({"version": "2.1"});
 }
 });
+}

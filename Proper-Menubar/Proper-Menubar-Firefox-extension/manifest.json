@@ -1,0 +1,70 @@
+{
+  "manifest_version": 2,
+  "name": "__MSG_name__",
+  "short_name": "PMB",
+  "version": "1.1.0.6",
+  "description": "__MSG_description__",
+  "homepage_url": "https://www.stefanvd.net",
+  "icons": { "16": "icons/icon16.png",
+             "32": "icons/icon32.png",
+             "48": "icons/icon48.png",
+             "128": "icons/icon128.png"
+           },
+  "default_locale": "en",
+  "background": {
+    "page": "background.html"
+  },
+  "content_security_policy": "script-src 'self' https://ssl.google-analytics.com https://platform.twitter.com https://apis.google.com; img-src *; object-src 'self'",
+  "web_accessible_resources": [
+    "images/slice1.png",
+    "images/slice2.png",
+    "images/slice3.png",
+    "images/slice4.png",
+    "images/slice5.png",
+    "images/slice6.png",
+    "icons/icon16.png"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "css" : ["css/toolbar.css"],
+      "js": ["js/constants.js","js/content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+M",
+        "mac": "MacCtrl+Shift+M"
+      }
+    },
+    "toggle-feature-propermenubar": {
+            "suggested_key": {
+              "default": "Ctrl+Shift+P",
+              "mac": "MacCtrl+Shift+P"
+            },
+            "description": "__MSG_titelshortproper__"
+          }
+  },
+  "browser_action": {
+     "browser_style": true,
+          "default_icon": {
+            "19": "icons/icon1.png",
+            "38": "icons/icon1@2x.png"
+          },
+	"default_title": "__MSG_name__",
+    "default_popup": "popup.html"	
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "permissions": [ "contextMenus", "tabs", "http://*/*", "https://*/*", "storage", "notifications" ],
+  "applications": {
+    "gecko": {
+      "id": "propermenubar@stefanvd.net",
+      "strict_min_version": "49.0a1"
+    }
+  }
+}

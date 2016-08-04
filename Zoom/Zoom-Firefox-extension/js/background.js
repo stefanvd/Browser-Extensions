@@ -207,7 +207,6 @@ else if (info.menuItemId == "totlsharefacebook") {window.open("https://www.faceb
 else if (info.menuItemId == "totlsharegoogleplus") {window.open("https://plus.google.com/share?url="+zoomproduct, "_blank");}
 }
 
-//chrome.runtime.onInstalled.addListener(function() {
 // check to remove all contextmenus
 chrome.contextMenus.removeAll(function() {
 //console.log("contextMenus.removeAll callback");
@@ -238,7 +237,6 @@ var child2 = chrome.contextMenus.create({"title": sharemenupostongoogleplus, "id
 chrome.storage.local.get(['contextmenus'], function(items){
     if(items['contextmenus']){checkcontextmenus();}
 });
-//});
 
 chrome.contextMenus.onClicked.addListener(onClickHandler);
 
@@ -296,9 +294,6 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
 
 try{ chrome.runtime.setUninstallUrl(linkuninstall); }
 catch(e){}
-
-// Fired when an update is available
-//chrome.runtime.onUpdateAvailable.addListener(function() {chrome.runtime.reload();});
 
 chrome.storage.local.get(['firstRun'], function(chromeset){
 if ((chromeset["firstRun"]!="false") && (chromeset["firstRun"]!=false)){

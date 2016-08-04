@@ -1,0 +1,63 @@
+{
+  "manifest_version": 2,
+  "name": "__MSG_name__",
+  "short_name": "AA",  
+  "version": "2.1.0.5",
+  "description": "__MSG_description__",
+  "homepage_url": "https://www.stefanvd.net",  
+  "icons": { "16": "icons/icon16.png",
+             "32": "icons/icon32.png",
+             "48": "icons/icon48.png",
+             "128": "icons/icon128.png"
+           },
+  "default_locale": "en",
+  "browser_action": {
+     "browser_style": true,
+          "default_icon": {
+            "19": "icons/icon1.png",
+            "38": "icons/icon1@2x.png"
+          },
+	        "default_title": "__MSG_browserbutton__"	  
+  },
+  "background": {
+    "page": "background.html"
+  },
+  "content_security_policy": "script-src 'self' https://ssl.google-analytics.com https://platform.twitter.com https://apis.google.com; img-src *; object-src 'self'",
+  "web_accessible_resources": [
+    "images/arrow.png",
+    "images/sharegoogleplus.png",
+    "images/sharetwitter.png",
+    "images/sharefacebook.png",
+    "images/sharegoogleplus@2x.png",
+    "images/sharetwitter@2x.png",
+    "images/sharefacebook@2x.png",
+    "icons/icon16.png"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "css" : ["css/aa.css"],
+      "js": ["js/constants.js","js/content.js"],
+      "run_at": "document_end"
+    }
+  ],
+ "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+A",
+        "mac": "MacCtrl+Shift+A"
+      }
+    }
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "permissions": [ "contextMenus", "tabs", "http://*/*", "https://*/*", "storage", "notifications" ],
+  "applications": {
+    "gecko": {
+      "id": "ambientaurea@stefanvd.net",
+      "strict_min_version": "49.0a1"
+    }
+  }
+}

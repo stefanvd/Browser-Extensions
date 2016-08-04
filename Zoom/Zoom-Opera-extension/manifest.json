@@ -1,10 +1,12 @@
 {
   "manifest_version": 2,
   "name": "__MSG_name__",
-  "version": "2.1.0.3",
-  "short_name": "Zoom",   
+  "version": "2.1.0.9",
   "description": "__MSG_description__",
-  "author": "Stefan vd",
+  "developer": {
+	  "name": "Stefan vd",
+	  "url": "https://www.stefanvd.net"
+  },
   "homepage_url": "https://www.stefanvd.net",    
   "icons": { "16": "icons/icon16.png",
              "32": "icons/icon32.png",
@@ -25,6 +27,14 @@
 	  "persistent": false
   },
   "content_security_policy": "script-src 'self' https://ssl.google-analytics.com https://platform.twitter.com https://apis.google.com; img-src *; object-src 'self'",
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Z",
+        "mac": "MacCtrl+Shift+Z"
+      }
+    }
+  },
   "web_accessible_resources": [
     "icons/icon16.png"
   ],
@@ -35,7 +45,7 @@
       "run_at": "document_idle"
     }
   ],
-  "minimum_chrome_version": "43",
+  "minimum_opera_version": "15",
   "options_ui": {
     "page": "options.html",
     "open_in_tab": true

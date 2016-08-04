@@ -29,3 +29,4 @@ var linkguide = "https://www.stefanvd.net/project/proper-menubar/browser/google-
 var linkwelcomepage = "https://www.stefanvd.net/project/proper-menubar/browser/google-chrome/welcome.htm";
 var linkuninstall = "https://www.stefanvd.net/project/proper-menubar/browser/google-chrome/uninstall.htm";
 var propermenubarwebsite = "https://www.stefanvd.net/project/proper-menubar/browser/";
+var linkyoutube = "https://www.youtube.com/c/stefanvandamme?sub_confirmation=1";

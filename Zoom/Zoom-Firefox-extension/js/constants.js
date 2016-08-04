@@ -6,22 +6,22 @@ if (window.location.href.match(/http:\/\/(.*stefanvd\.net\/.*|www\.stefanvd\.net
 		$('zoom-firefox-thanks-button').style.display = '';
 	}
 }
-var ambientaureaproduct = "https://chrome.google.com/webstore/detail/ambient-aurea/pkaglmndhfgdaiaccjglghcbnfinfffa";
+var ambientaureaproduct = "https://addons.mozilla.org/firefox/addon/ambient-aurea";
 var idaa = "pkaglmndhfgdaiaccjglghcbnfinfffa";
-var datetodayproduct = "https://chrome.google.com/webstore/detail/date-today/mhgknbehalhkedjgfhiaindklahhkccc";
+var datetodayproduct = "https://addons.mozilla.org/firefox/addon/date-today";
 var iddt = "mhgknbehalhkedjgfhiaindklahhkccc";
-var turnoffthelightsproduct = "https://chrome.google.com/webstore/detail/turn-off-the-lights/bfbmjmiodbnnpllbbbfblcplfjjepjdn";
+var turnoffthelightsproduct = "https://addons.mozilla.org/firefox/addon/turn-off-the-lights";
 var idtotl = "bfbmjmiodbnnpllbbbfblcplfjjepjdn";
-var financetoolbarproduct = "https://chrome.google.com/webstore/detail/finance-toolbar/cichbngoomgnobmmjpagmbkimbamigie";
+var financetoolbarproduct = "https://addons.mozilla.org/firefox/addon/finance-toolbar";
 var idft = "cichbngoomgnobmmjpagmbkimbamigie";
-var propermenubarproduct = "https://chrome.google.com/webstore/detail/proper-menubar/egclcjdpndeoioimlbbbmdhcaopnedkp";
+var propermenubarproduct = "https://addons.mozilla.org/firefox/addon/proper-menubar";
 var idpp = "egclcjdpndeoioimlbbbmdhcaopnedkp";
-var fullscreenproduct = "https://chrome.google.com/webstore/detail/full-screen/gmimocjjppdelmhpcmpkhekmpoddgima";
+var fullscreenproduct = "https://addons.mozilla.org/firefox/addon/full-screen-for-firefox";
 var idfs = "gmimocjjppdelmhpcmpkhekmpoddgima";
-var zoomproduct = "https://chrome.google.com/webstore/detail/zoom/lajondecmobodlejlcjllhojikagldgd";
+var zoomproduct = "https://addons.mozilla.org/firefox/addon/zoom";
 var idz = "lajondecmobodlejlcjllhojikagldgd";
 var donatewebsite = "https://www.stefanvd.net/donate.htm";
-var writereview = "https://chrome.google.com/webstore/detail/zoom/lajondecmobodlejlcjllhojikagldgd/reviews";
+var writereview = "https://addons.mozilla.org/firefox/addon/zoom/reviews/";
 var linkchangelog = "https://www.stefanvd.net/project/zoom/browser/firefox/changelog.htm";
 var linktranslate = "https://www.stefanvd.net/project/translate.htm";
 var linksupport = "https://www.stefanvd.net/support/";
