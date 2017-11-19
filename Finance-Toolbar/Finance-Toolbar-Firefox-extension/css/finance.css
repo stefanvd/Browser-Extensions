@@ -26,8 +26,6 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 //================================================
 */
 
-@font-face{font-family:'Wallstreet';src:url('moz-extension://__MSG_@@extension_id__/wallstreet.eot');src:url('moz-extension://__MSG_@@extension_id__/wallstreet.ttf')format('truetype');font-weight:normal;font-style:normal}
-@font-face{font-family:'jd_lcd_roundedregular';src:url('moz-extension://__MSG_@@extension_id__/jdlcdrounded-webfont.eot');src:url('moz-extension://__MSG_@@extension_id__/jdlcdrounded-webfont.eot?#iefix') format('embedded-opentype'),url('moz-extension://__MSG_@@extension_id__/jdlcdrounded-webfont.woff')format('woff'),url('moz-extension://__MSG_@@extension_id__/jdlcdrounded-webfont.ttf')format('truetype'),url('moz-extension://__MSG_@@extension_id__/jdlcdrounded-webfont.svg#jd_lcd_roundedregular')format('svg');font-weight:normal;font-style:normal}
 html{position:relative;top:0;bottom:0;left:0;right:0px;margin:30px 0 0 0;padding:0}
 body{overflow:hidden}
 #stefanvdfinance{position:fixed;top:0;left:0;z-index:999999;color:white;height:30px !important;width:100%}

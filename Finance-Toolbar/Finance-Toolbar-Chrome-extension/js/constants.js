@@ -2,8 +2,8 @@ function $(id) { return document.getElementById(id); }
 // Install on www.stefanvd.net
 if (window.location.href.match(/http:\/\/(.*stefanvd\.net\/.*|www\.stefanvd\.net\/.*\/.*)/i)){
 	if ($('finance-toolbar-chrome-install-button')) {
-		$('finance-toolbar-install-button').style.display = 'none';
-		$('finance-toolbar-thanks-button').style.display = '';
+		$('finance-toolbar-chrome-install-button').style.display = 'none';
+		$('finance-toolbar-chrome-thanks-button').style.display = '';
 	}
 }
 var ambientaureaproduct = "https://chrome.google.com/webstore/detail/ambient-aurea/pkaglmndhfgdaiaccjglghcbnfinfffa";

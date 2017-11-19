@@ -128,8 +128,7 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
     }
 })
 
-try{ chrome.runtime.setUninstallUrl(linkuninstall); }
-catch(e){}
+chrome.runtime.setUninstallURL(linkuninstall);
 
 chrome.commands.onCommand.addListener(function(command) {
     if(command == "toggle-feature-financetoolbar"){

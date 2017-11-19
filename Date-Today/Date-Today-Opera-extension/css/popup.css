@@ -3,7 +3,7 @@
 
 Date Today
 The best clock to see in one glance the current day and time. With an option to see the digital clock in the browser toolbar.
-Copyright (C) 2016 Stefan vd
+Copyright (C) 2017 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -26,9 +26,24 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 //================================================
 */
 
-body{min-width:450px;min-height:102px;margin:0;padding:0;user-select:none;-webkit-user-select:none;overflow:hidden}
+body{min-width:450px;min-height:102px;margin:0;padding:0;user-select:none;-webkit-user-select:none;overflow:hidden;cursor:pointer}
 #datetoday{z-index:30000;opacity:1;-webkit-animation:dtpanel;-webkit-animation-duration:1s;animation:dtpanel;animation-duration:1s}
 @keyframes dtpanel{0%{opacity:0}25%{opacity:0}100%{opacity:1}}
 #a{border:0px}
 #point{height:100px;color:#999999;width:25px;font-family:arial;font-size:70pt;position:absolute;top:-4px;left:105px}
 #tic{color:Black;font-family:arial;font-weight:bold;position:absolute;top:0px;left:2px}
+#remember{width:100%;height:100%;background-color:rgba(255,255,255,.98);top:0;left:0;position:absolute;z-index:50000}
+.below{position:absolute;bottom:5px;left:5px;color:gray}
+#rate{cursor:pointer;background:#FFCE32;color:#fff;height:50px;width:275px;display:inline-block;margin:8px;padding:8px;font-size:16px;vertical-align:middle;line-height:50px;text-align:center}
+#continue{cursor:pointer;background:#f7f7f7;color:#000;height:50px;width:100px;display:inline-block;margin:8px;padding:8px;font-size:16px;vertical-align:middle;line-height:50px;text-align:center}
+#rate:hover,#continue:hover{opacity:.8}
+#remembernever{outline:none}
+#copytext{display:block;position:absolute;top:-20px;opacity:0}
+#flasheffect{pointer-events:none;color:black;display:flex;align-items:center;justify-content:center;font-size:18px;opacity:0;background:white;position:absolute;top:0;left:0;width:100%;height:100%;-webkit-animation:flash;-webkit-animation-duration:2s;animation:flash;animation-duration:2s}
+@keyframes flash{0%{opacity:0}25%{opacity:1}100%{opacity:1}}
+.blinkme{animation:blinker 1s linear infinite}
+@keyframes blinker{50%{opacity:0}}
+#fbrecommend{background:#e9ebee;height:30px;width:100%;position:absolute;left:0;bottom:0;color:black;display:block;padding:5px}
+#fbrecommend iframe{display:inline-block}
+#fbrecommend .fbtex{display:inline-block;width:270px}
+#fbclose{position:absolute;right:20px;bottom:15px;color:black;font-size:12px;cursor:pointer}

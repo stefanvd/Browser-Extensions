@@ -3,7 +3,7 @@
 
 Date Today
 The best clock to see in one glance the current day and time. With an option to see the digital clock in the browser toolbar.
-Copyright (C) 2016 Stefan vd
+Copyright (C) 2017 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -26,12 +26,13 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-var twelfh; var timenow; var badge; var lightcolor; var clockbck; var colorhours; var colorminutes; var clockanalog; var clocktickpoint; var colorbackground; var colordots;
+var twelfh = null, timenow = null, badge = null, lightcolor = null, clockbck = null, colorhours = null, colorminutes = null, clockanalog = null, clocktickpoint = null, colorbackground = null, colordots = null, badgeclock = null, badgedate = null, badgeweek = null, badgemonth = null, badgedatesystema = null, badgedatesystemb = null, textcanvascolor = null, stamptypeA = null, stamptypeB = null, stamptypeC = null, stamptypeD = null;
 var callback = null;
 var pastetext;
+chrome.runtime.onMessageExternal.addListener(function(req,sender,callback){if(req){if(req.message){if(req.message == "installed"){if(sender.tab.url){var hostname = (new URL(sender.tab.url)).protocol+'//'+(new URL(sender.tab.url)).hostname;}if(sender.id == idaa || sender.id == idz || sender.id == idtotl || sender.id == idft || sender.id == idpp || sender.id == idfs || sender.id == iddt || hostname == developerwebsite){callback(true);}}}}return true;});
 // Read current value settings
 document.addEventListener('DOMContentLoaded', function () {
-chrome.storage.sync.get(['twelfh','badge','lightcolor','clockbck','colorhours','colorminutes','clockanalog','clocktickpoint','colorbackground','colordots'], function(response){
+chrome.storage.sync.get(['twelfh','badge','lightcolor','clockbck','colorhours','colorminutes','clockanalog','clocktickpoint','colorbackground','colordots','badgeclock','badgedate','badgeweek','badgemonth','badgedatesystema','badgedatesystemb','textcanvascolor','stamptypeA','stamptypeB','stamptypeC','stamptypeD'], function(response){
 twelfh = response.twelfh;if(twelfh == null)twelfh = false;
 badge = response.badge;if(badge == null)badge = false;
 lightcolor = response.lightcolor;if(lightcolor == null)lightcolor = '#3cb4fe';
@@ -42,6 +43,17 @@ clockanalog = response.clockanalog;if(clockanalog == null)clockanalog = true;
 clocktickpoint = response.clocktickpoint;if(clocktickpoint == null)clocktickpoint = false;
 colorbackground = response.colorbackground;if(colorbackground == null)colorbackground = '#F7F8FA';
 colordots = response.colordots;if(colordots == null)colordots = '#000000';
+badgeclock = response.badgeclock;if(badgeclock == null)badgeclock = true;
+badgedate = response.badgedate;if(badgedate == null)badgedate = false;
+badgeweek = response.badgeweek;if(badgeweek == null)badgeweek = false;
+badgemonth = response.badgemonth;if(badgemonth == null)badgemonth = false;
+badgedatesystema = response.badgedatesystema;if(badgedatesystema == null)badgedatesystema = true;
+badgedatesystemb = response.badgedatesystemb;if(badgedatesystemb == null)badgedatesystemb = false;
+textcanvascolor = response.textcanvascolor;if(textcanvascolor == null)textcanvascolor = '#000000';
+stamptypeA = response.stamptypeA;if(stamptypeA == null)stamptypeA = true;
+stamptypeB = response.stamptypeB;if(stamptypeB == null)stamptypeB = false;
+stamptypeC = response.stamptypeC;if(stamptypeC == null)stamptypeC = false;
+stamptypeD = response.stamptypeD;if(stamptypeD == null)stamptypeD = false;
 
 var jan = chrome.i18n.getMessage('jan');var feb = chrome.i18n.getMessage('feb');var mar = chrome.i18n.getMessage('mar');
 var apr = chrome.i18n.getMessage('apr');var may = chrome.i18n.getMessage('may');var jun = chrome.i18n.getMessage('jun');
@@ -55,23 +67,28 @@ var sat = chrome.i18n.getMessage('sat');
 // Date today now
 var this_weekday_name_array = new Array(sun, mon, tue, wed, thu, fri, sat);	//predefine weekday names
 var this_month_name_array = new Array(jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec);	//predefine month names
- 
+//---
 var currentday = new Date();	//get current day-time stamp
- 
+		
 var this_weekday = currentday.getDay();	//extract weekday
 var this_date = currentday.getDate();	//extract day of month
 var this_month = currentday.getMonth();	//extract month
 var this_year = currentday.getYear();	//extract year
- 
+		
 if (this_year < 1000)
 this_year += 1900; //fix Y2K problem
- 
-var currentdate = this_weekday_name_array[this_weekday] + " " + this_month_name_array[this_month] + " " + this_date + " " + this_year; //long date string 
-var tic = "";
 		
+var currentdate = this_weekday_name_array[this_weekday] + " " + this_month_name_array[this_month] + " " + this_date + " " + this_year; //long date string 
+
+var tic = "";
+
 // analog clock
-var canvas; var c; var d; var hours; var minutes;
- 
+var canvas; var c; var d; var hours; var minutes; var seconds;
+
+chrome.alarms.onAlarm.addListener(function(alarm){
+    startTime();
+});
+
 	function drawPen(angle, len, smaller) {
 		c.save();
 		c.lineWidth = 2.5;
@@ -98,16 +115,25 @@ var canvas; var c; var d; var hours; var minutes;
 		this.fill = fill;
 	}
 
+	var bckshowclock = false;
 	function updateClock() {
 		canvas = document.getElementById("clock");
 		c = canvas.getContext('2d');
 		d = new Date();
 		hours = d.getHours();
 		minutes = d.getMinutes();
-				
+		seconds = d.getSeconds();
+
 		// Clean canvas
 		c.clearRect(0,0,38,38);
-		
+
+		if((badgedate == true) && (badge == true)){bckshowclock=true;}
+		else if((badgeweek == true) && (badge == true)){bckshowclock=true;}
+		else if((badgemonth == true) && (badge == true)){bckshowclock=false;}
+		else if((badgeclock == true) && (badge == true)){bckshowclock=true;}
+		else {bckshowclock=true;}
+
+		if((bckshowclock == true)){
 		if(clockanalog == true){
 		// Draw Arc
 		c.beginPath();
@@ -127,6 +153,14 @@ var canvas; var c; var d; var hours; var minutes;
 		// Draw current hour from pen
 		drawPen(((hours/12) + (minutes/720))*(2*Math.PI),-9,true);
  		}
+		}
+
+		if((badge == true) && (badgemonth == true)){
+			c.font = "22px Arial";
+			c.fillStyle = textcanvascolor;
+			c.textAlign = "center";
+			c.fillText(d.getDate(), canvas.width/2, canvas.height/2-2);
+		}
 		 
 		if(clocktickpoint == true){
 			var myRect = [];
@@ -142,7 +176,7 @@ var canvas; var c; var d; var hours; var minutes;
 	 	}
 
 		// Update tooltip text
-		this_weekday= d.getDay();
+		this_weekday = d.getDay();
 		this_date = d.getDate();
 		this_month = d.getMonth();
 		this_year = d.getFullYear();
@@ -151,19 +185,31 @@ var canvas; var c; var d; var hours; var minutes;
 		{
 			if (hours >= 12){hours -= 12; tic = "pm ";}else{tic = "am ";}
 			if (hours == 0){hours = 12;}
-		}else {tic = "";}
+		}else{tic = "";}
 		
-		if (String(minutes).length == 1) {
+		if(String(minutes).length == 1) {
 			minutes = "0" + String(minutes);
+		}
+
+		if(String(seconds).length == 1) {
+			seconds = "0" + String(seconds);
 		}
 		
 		// Write to the browserAction
 		chrome.browserAction.setIcon({imageData:c.getImageData(0, 0, canvas.width,canvas.height)});
  		timenow = hours + ":" + minutes;
-		datetoday = hours + ":" + minutes + " " + tic + this_weekday_name_array[this_weekday] + " " + this_date + " " + this_month_name_array[this_month] + " " + this_year;
+		datetoday = hours + ":" + minutes + ":" + seconds + " " + tic + this_weekday_name_array[this_weekday] + " " + this_date + " " + this_month_name_array[this_month] + " " + this_year;
 		
+		var badgelabel = "";
 		if(badge == true){
-			chrome.browserAction.setBadgeText({ text: timenow })
+			if(badgeclock == true){badgelabel = hours + "" + minutes;}
+			else if(badgedate == true){
+				 if(badgedatesystema == true){badgelabel = parseInt(this_month + 1) + "" + this_date;}
+				 else{badgelabel = this_date + "" + parseInt(this_month + 1);}
+			}
+			else if(badgeweek == true){badgelabel = this_weekday_name_array[this_weekday];}
+			else if(badgemonth == true){badgelabel = this_month_name_array[this_month];}
+			chrome.browserAction.setBadgeText({ text: badgelabel });
 			chrome.browserAction.setBadgeBackgroundColor({color:lightcolor}); 
 		}else{
 			chrome.browserAction.setBadgeText({ text: "" })
@@ -176,40 +222,38 @@ var canvas; var c; var d; var hours; var minutes;
 		hours = null;
 		minutes = null;
 		tic = null;
-		this_weekday = null;
-		this_day = null;
-		this_date = null;
-		this_month = null;
-		this_year = null;
-		datetoday = null;
 		timenow = null;
 		}
  
 		function startTime(){
 		updateClock();timestamp();
-		t = setTimeout(startTime,500);  // refresh
+		chrome.alarms.create("startTime", {when:Date.now() + 1000});		
 		}
 
 // Date stamp
-var dt;var dthours;var dtminutes;
+var dt;var h;var m;
 var dttic = "";
 
 function timestamp(){
-dt = new Date();
-dthours = dt.getHours();
-dtminutes = dt.getMinutes();
+	dt = new Date();
+	h = dt.getHours();
+	m = dt.getMinutes();
 
-		if(twelfh == true)
-		{
-			if(dthours >= 12){dthours -= 12;dttic = "pm ";}
-	    	else{dttic = "am ";}
-			if(dthours == 0){dthours = 12;}
-		}
-		else {dttic = ""}
-		if (String(dtminutes).length == 1) {
-			dtminutes = "0" + String(dtminutes);
-		}
-pastetext = dthours + ":" + dtminutes + " " + dttic + currentdate;
+	if(twelfh == true)
+	{
+		if(h >= 12){h -= 12;dttic = "pm ";}
+    	else{dttic = "am ";}
+		if(h == 0){h = 12;}
+	}
+	else {dttic = ""}
+	if (String(m).length == 1) {
+		m = "0" + String(m);
+	}
+
+	if(stamptypeA == true){pastetext = h + ":" + m + dttic + " " + this_date + " " + this_month_name_array[this_month] + " " + this_year;}
+	else if(stamptypeB == true){pastetext = h + ":" + m + dttic + " " + this_weekday_name_array[this_weekday] + " " + this_date + " " + this_month_name_array[this_month] + " " + this_year;}
+	else if(stamptypeC == true){pastetext = h + ":" + m + dttic + " " + this_date + "/" + parseInt(this_month + 1) + "/" + this_year;}
+	else if(stamptypeD == true){pastetext = h + ":" + m + dttic + " " + parseInt(this_month + 1) + "/" + this_date + "/" + this_year;}
 }
 
 startTime();
@@ -258,10 +302,10 @@ chrome.contextMenus.create({"title": sharemenuratetitle, "type":"normal", "id": 
 
 // Create a parent item and two children.
 var parent = chrome.contextMenus.create({"title": sharemenusharetitle, "id": "totlsharemenu", "contexts":contexts});
-var child1 = chrome.contextMenus.create({"title": sharemenutellafriend, "id": "totlshareemail", "parentId": parent});
-var child2 = chrome.contextMenus.create({"title": sharemenusendatweet, "id": "totlsharetwitter", "parentId": parent});
-var child2 = chrome.contextMenus.create({"title": sharemenupostonfacebook, "id": "totlsharefacebook", "parentId": parent});
-var child2 = chrome.contextMenus.create({"title": sharemenupostongoogleplus, "id": "totlsharegoogleplus", "parentId": parent});
+var child1 = chrome.contextMenus.create({"title": sharemenutellafriend, "id": "totlshareemail", "contexts": contexts, "parentId": parent});
+var child2 = chrome.contextMenus.create({"title": sharemenusendatweet, "id": "totlsharetwitter", "contexts": contexts, "parentId": parent});
+var child3 = chrome.contextMenus.create({"title": sharemenupostonfacebook, "id": "totlsharefacebook", "contexts": contexts, "parentId": parent});
+var child4 = chrome.contextMenus.create({"title": sharemenupostongoogleplus, "id": "totlsharegoogleplus", "contexts": contexts, "parentId": parent});
 
 chrome.storage.sync.get(['stamp'], function(items){
     if(items['stamp']){checkcontextmenus();}
@@ -306,10 +350,43 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
           var storageChange = changes[key];
           if(changes['stamp']){if(changes['stamp'].newValue == true){checkcontextmenus()}else{removecontexmenus()}}
           if(changes['badge']) {
-              if(changes['badge'].newValue) { badge = true; } else { badge = false; chrome.browserAction.setBadgeText({ text: "" }) }
+              if(changes['badge'].newValue) { badge = true; chrome.browserAction.setBadgeBackgroundColor({ color: changes['lightcolor'].newValue }) } else { badge = false; chrome.browserAction.setBadgeText({ text: "" }) }
           }
+		  if(changes['badgeclock']){
+			  if(changes['badgeclock'].newValue == true){ badgeclock = true; } else { badgeclock = false; }
+		  }
+		  if(changes['badgedate']){
+			  if(changes['badgedate'].newValue == true){ badgedate = true; } else { badgedate = false; }
+		  }
+		  if(changes['badgeweek']){
+			  if(changes['badgeweek'].newValue == true){ badgeweek = true; } else { badgeweek = false; }
+		  }
+		  if(changes['badgemonth']){
+			  if(changes['badgemonth'].newValue == true){ badgemonth = true; } else { badgemonth = false; }
+		  }
+		  if(changes['badgedatesystema']){
+			  if(changes['badgedatesystema'].newValue == true){ badgedatesystema = true; } else { badgedatesystema = false; }
+		  }
+		  if(changes['badgedatesystemb']){
+			  if(changes['badgedatesystemb'].newValue == true){ badgedatesystemb = true; } else { badgedatesystemb = false; }
+		  }
+          if(changes['textcanvascolor']) {
+              if(changes['textcanvascolor'].newValue) { textcanvascolor = changes['textcanvascolor'].newValue; }
+          }
+		  if(changes['stamptypeA']){
+			  if(changes['stamptypeA'].newValue == true){ stamptypeA = true; } else { stamptypeA = false; }
+		  }
+		  if(changes['stamptypeB']){
+			  if(changes['stamptypeB'].newValue == true){ stamptypeB = true; } else { stamptypeB = false; }
+		  }
+		  if(changes['stamptypeC']){
+			  if(changes['stamptypeC'].newValue == true){ stamptypeC = true; } else { stamptypeC = false; }
+		  }
+		  if(changes['stamptypeD']){
+			  if(changes['stamptypeD'].newValue == true){ stamptypeD = true; } else { stamptypeD = false; }
+		  }
           if(changes['lightcolor']) {
-              if(changes['lightcolor'].newValue) { chrome.browserAction.setBadgeBackgroundColor({ color: lightcolor }) }
+              if(changes['lightcolor'].newValue) { chrome.browserAction.setBadgeBackgroundColor({ color: changes['lightcolor'].newValue }) }
           }
 		  if(changes['twelfh']){
 			  if(changes['twelfh'].newValue == true){ twelfh = true; } else { twelfh = false; }
@@ -339,13 +416,12 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
     }
 })
 
-try{ chrome.runtime.setUninstallUrl(linkuninstall); }
-catch(e){}
+chrome.runtime.setUninstallURL(linkuninstall);
 
 chrome.storage.sync.get(['firstRun'], function(chromeset){
 if ((chromeset["firstRun"]!="false") && (chromeset["firstRun"]!=false)){
   chrome.tabs.create({url: linkwelcomepage})
-  chrome.storage.sync.set({"firstRun": "false"});
-  chrome.storage.sync.set({"version": "1.1"});
+  var crrinstall = new Date().getTime();
+  chrome.storage.sync.set({"firstRun": false, "version": "1.1", "firstDate": crrinstall});
 }
 });

@@ -3,9 +3,10 @@ function $(id) { return document.getElementById(id); }
 if (window.location.href.match(/http:\/\/(.*stefanvd\.net\/.*|www\.stefanvd\.net\/.*\/.*)/i)){
 	if ($('zoom-firefox-install-button')) {
 		$('zoom-firefox-install-button').style.display = 'none';
-		$('zoom-firefox-thanks-button').style.display = '';
+		$('zoom-firefox-thanks-button').style.display = 'block';
 	}
 }
+var developerwebsite = "https://www.stefanvd.net";
 var ambientaureaproduct = "https://addons.mozilla.org/firefox/addon/ambient-aurea";
 var idaa = "pkaglmndhfgdaiaccjglghcbnfinfffa";
 var datetodayproduct = "https://addons.mozilla.org/firefox/addon/date-today";

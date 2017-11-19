@@ -27,9 +27,9 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 //================================================
 
 chrome.runtime.onMessage.addListener(function request(request,sender,sendResponse){
-if (request.name == "opacitysaveme") {chrome.storage.local.set({"interval": request.value});}
-else if (request.name == "imgurl") {chrome.storage.local.set({"getimgurl": request.value});}
-else if (request.name == "selector") {chrome.storage.local.set({"getimgurl": request.value});chrome.tabs.executeScript(sender.tab.id, {file: "js/aa.js"});}
+if (request.name == "opacitysaveme") {chrome.storage.sync.set({"interval": request.value});}
+else if (request.name == "imgurl") {chrome.storage.sync.set({"getimgurl": request.value});}
+else if (request.name == "selector") {chrome.storage.sync.set({"getimgurl": request.value});chrome.tabs.executeScript(sender.tab.id, {file: "js/aa.js"});}
 // contextmenu
 else if (request.name == "contextmenuon") {checkcontextmenus();}
 else if (request.name == "contextmenuoff") {removecontexmenus()}
@@ -78,7 +78,7 @@ var child2 = chrome.contextMenus.create({"title": sharemenusendatweet, "id": "to
 var child2 = chrome.contextMenus.create({"title": sharemenupostonfacebook, "id": "totlsharefacebook", "parentId": parent});
 var child2 = chrome.contextMenus.create({"title": sharemenupostongoogleplus, "id": "totlsharegoogleplus", "parentId": parent});
 
-chrome.storage.local.get(['contextmenus'], function(items){
+chrome.storage.sync.get(['contextmenus'], function(items){
     if(items['contextmenus']){checkcontextmenus();}
 });
 
@@ -126,10 +126,10 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
 try{ chrome.runtime.setUninstallUrl(linkuninstall); }
 catch(e){}
 
-chrome.storage.local.get(['firstRun'], function(chromeset){
+chrome.storage.sync.get(['firstRun'], function(chromeset){
 if ((chromeset["firstRun"]!="false") && (chromeset["firstRun"]!=false)){
   chrome.tabs.create({url: linkwelcomepage})
-  chrome.storage.local.set({"firstRun": "false"});
-  chrome.storage.local.set({"version": "2.0"});
+  chrome.storage.sync.set({"firstRun": "false"});
+  chrome.storage.sync.set({"version": "2.0"});
 }
 });

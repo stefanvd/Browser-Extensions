@@ -1,82 +1,314 @@
 {
-   "name": {
-      "message": "Zoom",
-	  "description": "Zoom"
-   },
-   "description": {
-      "message": "In-of uitzoomen op webcontent met behulp van de zoomknop om meer comfortabeler te lezen.",
-	  "description": "Zoom in or out on web content using the zoom button for more comfortable reading."
-   },
-   "pageatitle": {
-      "message": "Zoom",
-	  "description": "Zoom"
-   },
-    "titledonatebutton": {
-        "message": "Doneer", 
-        "description": "Donate"
-    },
-    "basicsettings": {
-        "message": "Basis Instellingen", 
-        "description": "Basics"
-    }, 
-    "donatepromotext": {
-        "message": "Als je kan doneren voor elk bedrag, dan zou ik dat enorm waarderen!", 
-        "description": "If you can make a donation of any amount, I'd appreciate it immensely!"
-    },
-    "textfoot": {
-        "message": "Deze software is gelicenseerd onder de CC-GNU GPL. Om een ​​kopie van deze licentie bekijken, bezoek", 
-        "description": "This software is licensed under the CC-GNU GPL. To view a copy of this license, visit"
-    },
-    "titelsharebutton": {
-        "message": "Deel Knoppen", 
-        "description": "Share Buttons"
-    }, 
-    "changelog": {
-        "message": "Wijzigingen", 
-        "description": "changelog link"
-    },
-    "reportbug": {
-        "message": "Een probleem rapporteren?", 
-        "description": "Report an Issue"
-    }, 
-    "guide": {
-        "message": "Z Welkom Gids", 
-        "description": "Z Welcome Guide"
-    },
-    "productshare": {
-        "message": "Deel", 
-        "description": "Share"
-    },
-    "reportlist": {
-        "message": "(zie lijst)", 
-        "description": "See the full issue list"
-    },
-    "titelallzoom": {
-        "message": "Alles In/Uit Zomen", 
-        "description": "All Zoom In/Out"
-    },
-    "desallzoom": {
-        "message": "Breng het zoomniveau aan alle pagina's.", 
-        "description": "Apply the zoom level to all pages."
-    },
-    "pagehelp": {
-        "message": "help", 
-        "description": "help"
-    },
-    "pagestillloading": {
-        "message": "De pagina is nog altijd aan het laden?", 
-        "description": "The page is still loading?"
-    },
-    "optionpagetitle": {
-        "message": "Zoom - Opties", 
-        "description": "Option page title"
-    },
-    "settings": {
-        "message": "Instellingen", 
-        "description": "Settings"
-    },
-    "translateme": {
-        "message": "Help Vertalen", 
-        "description": "Help Translate"
-    }	
+  "name":{
+    "message":"Zoom"
+  },
+  "description":{
+    "message":"Zoom in of uit op webinhoud via de zoomknop voor comfortabeler lezen."
+  },
+  "pageatitle":{
+    "message":"Zoom"
+  },
+  "titledonatebutton":{
+    "message":"Doneren"
+  },
+  "basicsettings":{
+    "message":"Basisprincipes"
+  },
+  "donatepromotext":{
+    "message":"Als u een donatie van welk bedrag dan ook kunt doen, zou ik dat enorm waarderen!"
+  },
+  "textfoot":{
+    "message":"Deze software valt onder de CC-GNU GPL-licentie. Als u een kopie van deze licentie wilt zien, bezoek dan"
+  },
+  "titelsharebutton":{
+    "message":"Deelknoppen"
+  },
+  "lastchecked":{
+    "message":"Laatste versiecontrole op"
+  },
+  "version":{
+    "message":"Versie"
+  },
+  "changelog":{
+    "message":"Changelog"
+  },
+  "reportbug":{
+    "message":"Meld een probleem"
+  },
+  "guide":{
+    "message":"Z Welkom Guide"
+  },
+  "productshare":{
+    "message":"Deel"
+  },
+  "titelallzoom":{
+    "message":"Volledig inzoomen\/uitzoomen"
+  },
+  "desallzoom":{
+    "message":"Het zoomniveau op alle pagina's toepassen."
+  },
+  "pagehelp":{
+    "message":"Help"
+  },
+  "pagestillloading":{
+    "message":"De pagina is nog steeds aan het laden?"
+  },
+  "optionpagetitle":{
+    "message":"Zoom - opties"
+  },
+  "settings":{
+    "message":"Instellingen"
+  },
+  "translateme":{
+    "message":"Helpen met vertalen"
+  },
+  "sharemenusharetitle":{
+    "message":"Dit delen"
+  },
+  "sharemenuwelcomeguidetitle":{
+    "message":"Welkomsthandleiding"
+  },
+  "sharemenutellafriend":{
+    "message":"Een vriend(in) vertellen"
+  },
+  "sharemenusendatweet":{
+    "message":"Een Tweet verzenden"
+  },
+  "sharemenupostonfacebook":{
+    "message":"Plaatsen op Facebook"
+  },
+  "sharemenupostongoogleplus":{
+    "message":"Plaatsen op Google+"
+  },
+  "sharemenuratetitle":{
+    "message":"Deze extensie beoordelen"
+  },
+  "sharemenudonatetitle":{
+    "message":"Ontwikkeling steunen"
+  },
+  "advancedoptions":{
+    "message":"Geavanceerde opties"
+  },
+  "help":{
+    "message":"Help"
+  },
+  "about":{
+    "message":"Over"
+  },
+  "upgradefbshare":{
+    "message":"Delen op Facebook"
+  },
+  "upgradetwshare":{
+    "message":"Tweeten"
+  },
+  "ratetitle":{
+    "message":"Beoordeel en schrijf een recensie over mijn extensie"
+  },
+  "ratedes":{
+    "message":"En laat iedereen over deze geweldige extensie weten!"
+  },
+  "rateitema":{
+    "message":"Met 5 sterren beoordelen"
+  },
+  "titelreset":{
+    "message":"Instellingen herinitialiseren"
+  },
+  "resetbrowserextension":{
+    "message":"De Zoom instellingen opnieuw instellen"
+  },
+  "areyouhappy":{
+    "message":"Bent u tevreden over Zoom?"
+  },
+  "tellothers":{
+    "message":"Zorg ervoor dat uw mening telt"
+  },
+  "nothanks":{
+    "message":"Nee bedankt"
+  },
+  "writeareview":{
+    "message":"Schrijf een beoordeling"
+  },
+  "titeldownloadaaupgrade":{
+    "message":"De upgrade voegt ondersteuning voor het benadrukken van geselecteerde afbeeldingen toe en zal een galerij van afbeeldingen op de website weergeven."
+  },
+  "titeldownloadupgradepropermenubar":{
+    "message":"Voegt de zwarte menubalk op de Google-website weer toe."
+  },
+  "titeldownloadupgradefinancetoolbar":{
+    "message":"Toont de realtime-aandelenbeursinformatie."
+  },
+  "titeldownloadupgradefullscreen":{
+    "message":"Met deze extensie kun je gemakkelijk naar volledig scherm gaan. Dit voor afbeeldings-, video- en webpagina."
+  },
+  "titeldownloadupgradedatetoday":{
+    "message":"Deze extensie toon u de analoge klok in de menubalk. Wanneer u klikt op het pictogram, toon het u de huidige tijd; maand en dag van de week."
+  },
+  "desrememberpage":{
+    "message":"Geen herinneringspagina tonen."
+  },
+  "titelrememberpage":{
+    "message":"Herinneringspagina"
+  },
+  "longdonatetext":{
+    "message":"Ik zou het echt waarderen als u een donatie kunt doen om deze browserextensie voor andere nieuwe gebruikers in leven te houden. Of het nu € 1 of € 100 is, uw steun wordt enorm gewaardeerd!"
+  },
+  "enjoyshare":{
+    "message":"Veel plezier met deze extensie en deel hem met anderen die hem volgens u zullen waarderen."
+  },
+  "titeldownloadbutton":{
+    "message":"Deze upgrade downloaden!"
+  },
+  "titelsync":{
+    "message":"Synchroniseren"
+  },
+  "titelsyncbrowser":{
+    "message":"De extensie-instellingen met mijn andere browser synchroniseren."
+  },
+  "titeldownloadupgrade":{
+    "message":"De hele pagina wordt donkerder, zodat u naar video's kunt kijken alsof u in de bioscoop bent."
+  },
+  "desproject":{
+    "message":"project"
+  },
+  "desbrowserextension":{
+    "message":"browserextensie"
+  },
+  "titelwebsite":{
+    "message":"Website"
+  },
+  "titeldeveloper":{
+    "message":"Ontwikkelaar"
+  },
+  "rememberrate":{
+    "message":"Beoordelen"
+  },
+  "showremember":{
+    "message":"Deze herinneringspagina niet meer tonen als ik de opties open."
+  },
+  "skipremember":{
+    "message":"Dit overslaan en nu de optiespagina openen"
+  },
+  "titelrightsreserved":{
+    "message":"Sommige rechten voorbehouden."
+  },
+  "friendlyremember":{
+    "message":"Vriendelijke herinnering..."
+  },
+  "websitezoomvalue":{
+    "message":"Zoomwaarde in procenten (bv 80%)"
+  },
+  "titeldefaultzoomvalue":{
+    "message":"Standaard zoomniveau"
+  },
+  "desdefaultzoomvalue":{
+    "message":"Kies uw standaardniveau voor de zoom"
+  },
+  "titelcontextmenu":{
+    "message":"Contextmenu"
+  },
+  "descontextmenu":{
+    "message":"Schakel de rechtermuisknop menu aan om de webpagina in- of uitzoomen"
+  },
+  "titelbadge":{
+    "message":"Badge"
+  },
+  "titelbadgecolor":{
+    "message":"Kies u achtergrond badge kleur"
+  },
+  "desbadge":{
+    "message":"Toon de huidige zoom waarde in de Zoom extensiepictogram"
+  },
+  "titelzoomsteps":{
+    "message":"Stappen"
+  },
+  "deszoomsteps":{
+    "message":"De zoom-stappen voor de volgende waarde"
+  },
+  "btnreset":{
+    "message":"Resetten"
+  },
+  "titelzoomengine":{
+    "message":"Zoom motor"
+  },
+  "deszoomchrome":{
+    "message":"Gebruik de ingebouwde browser zoom"
+  },
+  "deszoomweb":{
+    "message":"Gebruik de web CSS zoom"
+  },
+  "welcomebasictext":{
+    "message":"Welkom op de Zoom browserextensie. Hier een korte video over het gebruik van de Zoom-extensie in uw webbrowser."
+  },
+  "promotitle":{
+    "message":"Tip van de Dag"
+  },
+  "promotext":{
+    "message":"Wil iets nieuw en geweldige uitproberen voor uw webbrowser? Probeer de $product$ browserextensie.",
+    "placeholders":{
+      "product":{
+        "content":"$1",
+        "example":"Turn Off the Lights"
+      }
+    }
+  },
+  "promocalltoaction":{
+    "message":"Download het Nu!"
+  },
+  "donatetext":{
+    "message":"Vanwege het zeer kleine aantal donaties kan het project worden afgesloten. Gelieve deze verdere ontwikkeling te ondersteunen met een donatie."
+  },
+  "donatecalltoaction":{
+    "message":"Doneer nu!"
+  },
+  "titelsharethis":{
+    "message":"Deel dit:"
+  },
+  "titelwelcome":{
+    "message":"Welkom en Hallo"
+  },
+  "titelupgrade":{
+    "message":"Upgrade"
+  },
+  "titelzoomdoubleclick":{
+    "message":"Knopactie"
+  },
+  "deszoomdoubleclick":{
+    "message":"Schakel de optie in voor dubbelklik om in te zomen en een enkele klik om uit te zomen op de webpagina"
+  },
+  "desremyoutube":{
+    "message":"Abonneren op YouTube"
+  },
+  "desremfacebook":{
+    "message":"Dit aanbevelen op Facebook"
+  },
+  "titelzoommousescroll":{
+    "message":"Muiswiel"
+  },
+  "deszoommousescroll":{
+    "message":"Houd de muisknop ingedrukt en scroll omhoog of omlaag om het zoomniveau te wijzigen"
+  },
+  "deszoommouseleft":{
+    "message":"Linkere muisklik"
+  },
+  "deszoommouseright":{
+    "message":"Rechter muisklik"
+  },
+  "deszoommousedirectionup":{
+    "message":"Tegen de klok in scrollen"
+  },
+  "deszoommousedirectiondown":{
+    "message":"Met de klok mee scrollen"
+  },
+  "titellargepopup":{
+    "message":"Grote venster"
+  },
+  "deslargepopup":{
+    "message":"Toon u een grote pop-upvenster"
+  },
+  "deszoombydomain":{
+    "message":"Zoom op domeinniveau"
+  },
+  "deszoombypage":{
+    "message":"Zoom op het niveau van de webpagina"
+  }
 }

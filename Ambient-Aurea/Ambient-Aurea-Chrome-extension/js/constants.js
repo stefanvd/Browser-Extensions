@@ -2,8 +2,8 @@ function $(id) { return document.getElementById(id); }
 // Install on www.stefanvd.net
 if (window.location.href.match(/http:\/\/(.*stefanvd\.net\/.*|www\.stefanvd\.net\/.*\/.*)/i)){
 	if ($('ambient-aurea-chrome-install-button')) {
-		$('ambient-aurea-install-button').style.display = 'none';
-		$('ambient-aurea-thanks-button').style.display = '';
+		$('ambient-aurea-chrome-install-button').style.display = 'none';
+		$('ambient-aurea-chrome-thanks-button').style.display = '';
 	}
 }
 var ambientaureaproduct = "https://chrome.google.com/webstore/detail/ambient-aurea/pkaglmndhfgdaiaccjglghcbnfinfffa";

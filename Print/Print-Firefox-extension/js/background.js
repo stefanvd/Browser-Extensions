@@ -119,9 +119,6 @@ chrome.contextMenus.onClicked.addListener(onClickHandler);
 try{ chrome.runtime.setUninstallUrl(linkuninstall); }
 catch(e){}
 
-// convert from old storage to new
-if(localStorage["firstRun"] == "false"){ chrome.storage.local.set({"firstRun": false}); }
-
 chrome.storage.local.get(['firstRun'], function(chromeset){
 if ((chromeset["firstRun"]!="false") && (chromeset["firstRun"]!=false)){
   chrome.tabs.create({url: linkwelcomepage})

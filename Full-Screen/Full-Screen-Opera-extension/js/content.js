@@ -26,11 +26,6 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-/* inject script for autofullscreen */
-try {
-var script = document.createElement("script");script.type = "text/javascript";script.src = chrome.extension.getURL("/js/injected.js");document.getElementsByTagName("head")[0].appendChild(script);
-} catch(e) {}
-
 function $(id) { return document.getElementById(id); }
 // settings
 var contextmenus = null, autofullscreen = null;
@@ -41,6 +36,11 @@ autofullscreen = items['autofullscreen'];
 
 // auto bring the html5 or youtube video to fullscreen
 if(autofullscreen == true) {
+/* inject script for autofullscreen */
+try {
+var script = document.createElement("script");script.type = "text/javascript";script.src = chrome.extension.getURL("/js/injected.js");document.getElementsByTagName("head")[0].appendChild(script);
+} catch(e) {}
+
 var gracePeriod = 250, lastEvent = null, timeout = null;
 
 			function trigger (data) {
@@ -143,10 +143,10 @@ var gracePeriod = 250, lastEvent = null, timeout = null;
 				// send to background
 				chrome.runtime.sendMessage({name: 'youtubefullscreen'});
 			}else{
-				if (player.requestFullScreen) {
+				if(player.requestFullScreen){
 				player.requestFullScreen();
 				player.style.cssText="position: relative;width: " + screen.width + "px!important;height: " + screen.height +"px!important;";
-				} else if(player.webkitRequestFullscreen) {
+				} else if(player.webkitRequestFullscreen){
 				player.webkitRequestFullscreen();
 				player.style.cssText="position: relative;width: " + screen.width + "px!important;height: " + screen.height +"px!important;";
 				}
@@ -188,16 +188,32 @@ document.addEventListener('mousedown', function(event){
   last_target = event.target;
 }, true);
 
+
+function exitFullscreen() {
+  if(document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if(document.mozCancelFullScreen) {
+    document.mozCancelFullScreen();
+  } else if(document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  }
+}
+
 chrome.runtime.onMessage.addListener(function(request, sender, sendMessage) {
 	if (request.action == "gofullscreen") {
 		var elem = last_target;
+		var fullscreenElement = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement;
 		// if it get the "hide" command from the background page
 		// run this code
-
-		if(elem.requestFullscreen) {
-			elem.requestFullscreen();
-		} else if(elem.webkitRequestFullscreen) {
-			elem.webkitRequestFullscreen();
+		if (!fullscreenElement) {
+			if(elem.requestFullscreen) {
+				elem.requestFullscreen();
+			} else if(elem.webkitRequestFullscreen) {
+				elem.webkitRequestFullscreen();
+			}
+		} else {
+				// Cancel fullscreen for web browser
+				exitFullscreen();
 		}
 	}
 })

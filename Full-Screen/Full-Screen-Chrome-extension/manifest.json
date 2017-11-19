@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "__MSG_name__",
   "short_name": "FS",  
-  "version": "1.3.0.5",
+  "version": "1.3.0.12",
   "description": "__MSG_description__",
   "author": "Stefan vd",
   "homepage_url": "https://www.stefanvd.net",  
@@ -12,8 +12,12 @@
              "128": "icons/icon128.png" },
   "permissions": [ "contextMenus", "tabs", "http://*/*", "https://*/*", "storage", "notifications" ],
   "default_locale": "en",
-  "page_action": {
-      "default_title": "__MSG_pageatitle__"
+  "browser_action": {
+      "default_title": "__MSG_pageatitle__",
+      "default_icon": {
+            "19": "icons/icon1.png",
+            "38": "icons/icon1@2x.png"
+          }
   },
   "web_accessible_resources": [
     "icons/icon16.png",

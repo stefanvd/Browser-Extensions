@@ -82,7 +82,7 @@ if(check2){
 		$("gb").style.top = '0px';
 		}
 		
-		if(window.location.href.match("http://www.google.com/maps") || window.location.href.match("https://www.google.com/maps")){
+		if(window.location.href.match(/^https?\:\/\/(www\.)?google\.[a-z]+\/maps\b/)){
 			if($("content-container")){ $("content-container").style.top = '0px'; }
 		}
 		

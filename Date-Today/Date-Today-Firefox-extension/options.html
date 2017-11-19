@@ -8,7 +8,7 @@
 
 Date Today
 The best clock to see in one glance the current day and time. With an option to see the digital clock in the browser toolbar.
-Copyright (C) 2016 Stefan vd
+Copyright (C) 2017 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -40,26 +40,43 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 <script type="text/javascript" src="js/analytics.js"></script>
 
 <div id="remembershare">
-<div id="productrememberimage"><img id="rememberlamp" alt="Date Today" src="icons/icon16.png">Date Today™</div>
-<div id="remembersharecenter">
-<h2><span data-i18n="friendlyremember"></span></h2>
-<div class="remembertext"><span data-i18n="longdonatetext"></span></div>
-<a href="https://www.stefanvd.net/donate.htm" target="_blank" id="rememberboxdonate" data-i18n="titledonatebutton"></a>
-<br>
-<br>
-<br>
-<div class="remembertext"><span data-i18n="enjoyshare"></span></div>
-<a id="rememberboxrate" target="_blank"><span data-i18n="rememberrate"></span> 5 &#9733;</a>
-<a id="rememberboxgoogle" target="_blank">Google+</a>
-<a id="rememberboxfacebook" target="_blank">Facebook</a>
-<a id="rememberboxtwitter" target="_blank">Twitter</a>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<div id="divcheckboxskipremember">
-	<input id="firstcheckboxskipremember" type="checkbox"><span data-i18n="showremember"></span> <button id="skipremember" data-i18n="skipremember"></button>
-</div>
-</div>
+<div id="productrememberimage"><img id="rememberlamp" alt="Date Today" width="16" height="16" src="icons/icon16.png" srcset="icons/icon16.png 1x, icons/icon16@2x.png 2x">Date Today™</div>
+	<div id="remembersharecenter">
+	<h2><span data-i18n="friendlyremember"></span></h2>
+	<div class="remembertext"><span data-i18n="enjoyshare"></span></div>
+	<br>
+	<div class="remgroup">
+		<a id="rememberboxyoutube"><span data-i18n="desremyoutube"></span></a><br>
+		<div id="remyoutube">
+			<iframe id="addyoutubebutton" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" tabindex="0" vspace="0" width="200" height="25" src="https://www.youtube.com/subscribe_embed?bsv&amp;usegapi=1&amp;channelid=UCvVjhlvkd2lgg4hDhQk1Lyw&amp;theme=light&amp;layout=default&amp;hl=en-US&amp;origin=http%3A%2F%2Fstefanvd.net&amp;ic=1&amp;jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.en.Hm9QrP5wPuw.O%2Fm%3D__features__%2Fam%3DEQ%2Frt%3Dj%2Fd%3D1%2Frs%3DAItRSTOJmMfO7AjAhJbN5yM-BshnzKg53Q#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled%2Conload&amp;id=I0_1371683853533&amp;parent=http%3A%2F%2Fstefanvd.net&amp;rpctoken=33681162" data-gapiattached="true"></iframe>
+		</div>
+	</div>
+	<div class="remgroup">
+		<a id="rememberboxrate"><span data-i18n="rememberrate"></span> 5 &#9733;</a>
+	</div>
+	<div class="remgroup">
+		<a id="rememberboxfacebook"><span data-i18n="desremfacebook"></span></a><br>
+		<div id="remfacebook">
+			<iframe id="addrecommendbutton" src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FDateTodayextension&width=118&layout=button_count&action=recommend&size=small&show_faces=false&share=false&height=21&appId=1542940745981253" width="200" height="25" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+		</div>
+	</div>
+	<br><br><br>
+	<br><br><br>
+	<br><br><br>
+	<a id="skipremember" class="continuebutton">&gt;</a>
+	<br><br><br>
+	<span id="buttoncontinuetip" data-i18n="skipremember"></span>
+	</div>
+	<div id="divcheckboxskipremember">
+		<input id="firstcheckboxskipremember" type="checkbox"><span data-i18n="showremember"></span>
+	</div>
+	<div id="remdonate">
+		<div id="remclosethisdonate">X</div>
+		<div class="promobox"><span data-i18n="promotitle"></span></div>
+		<div>
+			<div data-i18n="longdonatetext"></div> <a href="https://www.stefanvd.net/donate.htm" target="_blank" id="rememberboxdonate" data-i18n="titledonatebutton"></a>
+		</div>
+	</div>
 </div>
 
 <div id="loading">
@@ -113,11 +130,11 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				</tbody></table>
 				</section>
 				<section>
-					<div class="promobox"><span data-i18n="promotitle"></span></div>
-					<div class="promoboxtext">
+					<div class="probox"><span data-i18n="promotitle"></span></div>
+					<div class="proboxtext">
 					<span id="promotext"></span>
 					<br><br>
-					<button id="btnpromoaction" class="promoboxbutton">⇩ <span id="spnpromoaction" data-i18n="promocalltoaction"></span></button>
+					<button id="btnpromoaction" class="proboxbutton">⇩ <span id="spnpromoaction" data-i18n="promocalltoaction"></span></button>
 					</div>
 				</section>
 				<section>	
@@ -173,6 +190,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				<tr><td><span data-i18n="lablehours" class="item"></span></td><td><label class="checkbox"><input id="color1" type="color" class="color" list="datalightcolor"></label></td><td><span data-i18n="lablemonth" class="item"></span></td><td><label class="checkbox"><input id="color4" type="color" class="color" list="datalightcolor"></label></td></tr>
 				<tr><td><span data-i18n="lableminutes" class="item"></span></td><td><label class="checkbox"><input id="color2" type="color" class="color" list="datalightcolor"></label></td><td><span data-i18n="lableday" class="item"></span></td><td><label class="checkbox"><input id="color5" type="color" class="color" list="datalightcolor"></label></td></tr>
 				<tr><td><span data-i18n="labledaynumber" class="item"></span></td><td><label class="checkbox"><input id="color3" type="color" class="color" list="datalightcolor"></label></td><td><span data-i18n="labletick" class="item"></span></td><td><label class="checkbox"><input id="color6" type="color" class="color" list="datalightcolor"></label></td></tr>
+				<tr><td><span data-i18n="labledaytheme" class="item"></span></td><td><label class="checkbox"><input id="color7" type="color" class="color" list="datalightcolor"></label></td><td></td><td></td></tr>
 				</table></div>
 				</section>
 				<section id="sectionreviewbox">			
@@ -199,7 +217,11 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				<section>
 				<h3 data-i18n="titlestamp"></h3>
 				<div>
-					<label class="checkbox"><input id="stamp" type="checkbox"><span data-i18n="desstamp" class="description"></span></label>
+					<label class="checkbox"><input id="stamp" type="checkbox"><span data-i18n="desstamp" class="description"></span></label>					
+					<label class="checkbox"><input id="stamptypeA" type="radio" name="stamptype"> <span id="titlestampA"></span></label>
+					<label class="checkbox"><input id="stamptypeB" type="radio" name="stamptype"> <span id="titlestampB"></span></label>
+					<label class="checkbox"><input id="stamptypeC" type="radio" name="stamptype"> <span id="titlestampC"></span></label>
+					<label class="checkbox"><input id="stamptypeD" type="radio" name="stamptype"> <span id="titlestampD"></span></label>
 				</div>
 				</section>
 				<section>
@@ -214,13 +236,14 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				<tr><td><span data-i18n="lablehours" class="item"></span></td><td><label class="checkbox"><input id="color1night" type="color" class="color" list="datalightcolor"></label></td><td><span data-i18n="lablemonth" class="item"></span></td><td><label class="checkbox"><input id="color4night" type="color" class="color" list="datalightcolor"></label></td></tr>
 				<tr><td><span data-i18n="lableminutes" class="item"></span></td><td><label class="checkbox"><input id="color2night" type="color" class="color" list="datalightcolor"></label></td><td><span data-i18n="lableday" class="item"></span></td><td><label class="checkbox"><input id="color5night" type="color" class="color" list="datalightcolor"></label></td></tr>
 				<tr><td><span data-i18n="labledaynumber" class="item"></span></td><td><label class="checkbox"><input id="color3night" type="color" class="color" list="datalightcolor"></label></td><td><span data-i18n="labletick" class="item"></span></td><td><label class="checkbox"><input id="color6night" type="color" class="color" list="datalightcolor"></label></td></tr>
+				<tr><td><span data-i18n="lablenighttheme" class="item"></span></td><td><label class="checkbox"><input id="color7night" type="color" class="color" list="datalightcolor"></label></td><td></td><td></td></tr>
 				</table></div>		
 				</div>
 				</section>
 				<section>
 				<h3 data-i18n="titlebadge"></h3>
-				<div><label class="checkbox"><input id="badge" type="checkbox"> <span data-i18n="desbadge"></span></label>
-				<label class="checkbox"><span data-i18n="titelbadgecolor"></span> <input id="lightcolor" type="color" class="color" list="datalightcolor">
+				<div>
+					<label class="checkbox"><input id="badge" type="checkbox"> <span data-i18n="desbadge"></span> <input id="lightcolor" type="color" class="color" list="datalightcolor"></label>
                                 <datalist id="datalightcolor">
                                 <option>#FFFFFF</option>
                                 <option>#FF0000</option>
@@ -233,7 +256,15 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
                                 <option>#808080</option>
                                 <option>#000000</option>
                                 </datalist>
-				</label>
+					<label class="checkbox"><input id="badgeclock" type="radio" name="badgedatetoday"> <span data-i18n="titlebadgeclock"></span></label>
+					<label class="checkbox"><input id="badgedate" type="radio" name="badgedatetoday"> <span data-i18n="titlebadgedate"></span><br>
+						&nbsp;&nbsp;&nbsp;<input id="badgedatesystema" type="radio" name="badgedatesys"> <span data-i18n="titlebadgedatesystema"></span><br>
+						&nbsp;&nbsp;&nbsp;<input id="badgedatesystemb" type="radio" name="badgedatesys"> <span data-i18n="titlebadgedatesystemb"></span>
+					</label>	
+					<label class="checkbox"><input id="badgeweek" type="radio" name="badgedatetoday"> <span data-i18n="titlebadgeweek"></span></label>
+					<label class="checkbox"><input id="badgemonth" type="radio" name="badgedatetoday"> <span data-i18n="titlebadgemonth"></span> <input id="textcanvascolor" type="color" class="color" list="datalightcolor"></label>
+					<label class="checkbox"><span data-i18n="titelbadgecolor"></span>
+					</label>
 				</div>
 				</section>
 			</div>

@@ -2,8 +2,8 @@ function $(id) { return document.getElementById(id); }
 // Install on www.stefanvd.net
 if (window.location.href.match(/http:\/\/(.*stefanvd\.net\/.*|www\.stefanvd\.net\/.*\/.*)/i)){
 	if ($('zoom-opera-install-button')) {
-		$('zoom-chrome-install-button').style.display = 'none';
-		$('zoom-chrome-thanks-button').style.display = '';
+		$('zoom-opera-install-button').style.display = 'none';
+		$('zoom-opera-thanks-button').style.display = '';
 	}
 }
 var ambientaureaproduct = "https://addons.opera.com/extensions/details/ambient-aurea/";

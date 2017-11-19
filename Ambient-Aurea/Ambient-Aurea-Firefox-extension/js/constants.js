@@ -2,8 +2,8 @@ function $(id) { return document.getElementById(id); }
 // Install on www.stefanvd.net
 if (window.location.href.match(/http:\/\/(.*stefanvd\.net\/.*|www\.stefanvd\.net\/.*\/.*)/i)){
 	if ($('ambient-aurea-firefox-install-button')) {
-		$('ambient-aurea-install-button').style.display = 'none';
-		$('ambient-aurea-thanks-button').style.display = '';
+		$('ambient-aurea-firefox-install-button').style.display = 'none';
+		$('ambient-aurea-firefox-thanks-button').style.display = '';
 	}
 }
 var ambientaureaproduct = "https://addons.mozilla.org/firefox/addon/ambient-aurea";

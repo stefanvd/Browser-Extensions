@@ -139,8 +139,7 @@ chrome.commands.onCommand.addListener(function(command) {
     }
 });
 
-try{ chrome.runtime.setUninstallUrl(linkuninstall); }
-catch(e){}
+chrome.runtime.setUninstallURL(linkuninstall);
 
 chrome.storage.sync.get(['firstRun'], function(chromeset){
 if ((chromeset["firstRun"]!="false") && (chromeset["firstRun"]!=false)){

@@ -35,7 +35,7 @@ function save_options(){
 	var propermenuDomains = {};
 	for (var i = 0; i < propermenuDomainsBox.length; i++){propermenuDomains[propermenuDomainsBox.options[i].value] = true;}
 
-  	chrome.storage.local.set({"googleplus": $('googleplus').value, "opacity": $('opacity').value,"country":$('country').value, "backgroundhex":$('backgroundhex').value, "backgroundimagesource":$('backgroundimagesource').value,"backgroundcolor":$('backgroundcolor').checked,"backgroundimage":$('backgroundimage').checked,"dropshadow":$('dropshadow').checked,"link1a":$('link1a').checked,"link2a":$('link2a').checked,"link3a":$('link3a').checked,"link4a":$('link4a').checked,"link5a":$('link5a').checked,"link6a":$('link6a').checked,"link7a":$('link7a').checked,"link8a":$('link8a').checked,"link9a":$('link9a').checked,"link10a":$('link10a').checked,"link11a":$('link11a').checked,"link12a":$('link12a').checked,"link13a":$('link13a').checked,"link14a":$('link14a').checked,"link15a":$('link15a').checked,"link16a":$('link16a').checked,"link17a":$('link17a').checked,"link18a":$('link18a').checked,"link19a":$('link19a').checked,"link20a":$('link20a').checked,"link21a":$('link21a').checked,"link22a":$('link22a').checked,"link23a":$('link23a').checked,"link24a":$('link24a').checked,"link25a":$('link25a').checked,"link26a":$('link26a').checked,"link27a":$('link27a').checked,"link28a":$('link28a').checked,"allsites":$('allsites').checked,"fontcolor":$('fontcolor').value,"googlesites":$('googlesites').checked,"propermenuonly":$('propermenuonly').checked,"search":$('search').checked,"existingtab":$('existingtab').checked,"propermenuDomains": JSON.stringify(propermenuDomains),"optionskipremember":$('optionskipremember').checked,"display":$('display').value});
+  	chrome.storage.local.set({"googleplus": $('googleplus').value, "opacity": $('opacity').value,"country":$('country').value, "backgroundhex":$('backgroundhex').value, "backgroundimagesource":$('backgroundimagesource').value,"backgroundcolor":$('backgroundcolor').checked,"backgroundimage":$('backgroundimage').checked,"dropshadow":$('dropshadow').checked,"link1a":$('link1a').checked,"link2a":$('link2a').checked,"link3a":$('link3a').checked,"link4a":$('link4a').checked,"link5a":$('link5a').checked,"link6a":$('link6a').checked,"link7a":$('link7a').checked,"link8a":$('link8a').checked,"link9a":$('link9a').checked,"link10a":$('link10a').checked,"link11a":$('link11a').checked,"link12a":$('link12a').checked,"link13a":$('link13a').checked,"link14a":$('link14a').checked,"link15a":$('link15a').checked,"link16a":$('link16a').checked,"link17a":$('link17a').checked,"link18a":$('link18a').checked,"link19a":$('link19a').checked,"link20a":$('link20a').checked,"link21a":$('link21a').checked,"link22a":$('link22a').checked,"link23a":$('link23a').checked,"link24a":$('link24a').checked,"link25a":$('link25a').checked,"link26a":$('link26a').checked,"link27a":$('link27a').checked,"link28a":$('link28a').checked,"allsites":$('allsites').checked,"fontcolor":$('fontcolor').value,"googlesites":$('googlesites').checked,"propermenuonly":$('propermenuonly').checked,"search":$('search').checked,"existingtab":$('existingtab').checked,"propermenuDomains": JSON.stringify(propermenuDomains),"optionskipremember":$('optionskipremember').checked,"display":$('display').value,"hovertextcolor":$('hovertextcolor').value,"hoverbackground":$('hoverbackground').value});
 
 //refresh toolbar
     chrome.tabs.query({}, function (tabs) {
@@ -47,7 +47,7 @@ function save_options(){
 
 var firstdefaultvalues = {};
 // Option default value to read if there is no current value from chrome.storage AND init default value
-chrome.storage.local.get(['backgroundcolor','backgroundimage','googlesites','dropshadow','link1a','link2a','link3a','link4a','link5a','link6a','link7a','link8a','link9a','link10a','link11a','link12a','link13a','link14a','link15a','link16a','link17a','link18a','link19a','link20a','link21a','link22a','link23a','link24a','link25a','link26a','link27a','link28a','display'], function(items){
+chrome.storage.local.get(['backgroundcolor','backgroundimage','googlesites','dropshadow','link1a','link2a','link3a','link4a','link5a','link6a','link7a','link8a','link9a','link10a','link11a','link12a','link13a','link14a','link15a','link16a','link17a','link18a','link19a','link20a','link21a','link22a','link23a','link24a','link25a','link26a','link27a','link28a','display','hovertextcolor','hoverbackground'], function(items){
     // find no localstore zoomengine
 	  if(items['backgroundcolor'] == null && items['backgroundimage'] == null){firstdefaultvalues['backgroundcolor'] = true;firstdefaultvalues['backgroundimage'] = false}
 	  if(items['googlesites'] == null){firstdefaultvalues['googlesites'] = true}
@@ -81,6 +81,9 @@ chrome.storage.local.get(['backgroundcolor','backgroundimage','googlesites','dro
 	  if(items['link27a'] == null){firstdefaultvalues['link27a'] = true}
 	  if(items['link28a'] == null){firstdefaultvalues['link28a'] = true}
 	  if(items['display'] == null){firstdefaultvalues['display'] = 13}
+	  if(items['hovertextcolor'] == null){firstdefaultvalues['hovertextcolor'] = "#ffffff"}
+	  if(items['hoverbackground'] == null){firstdefaultvalues['hoverbackground'] = "#444444"}
+
     // find no localstore lightimage
     // Save the init value
     chrome.storage.local.set(firstdefaultvalues, function() {
@@ -89,7 +92,7 @@ chrome.storage.local.get(['backgroundcolor','backgroundimage','googlesites','dro
 });
 
 function read_options(){
-chrome.storage.local.get(['googleplus','opacity','country','backgroundhex','backgroundimagesource','backgroundcolor','backgroundimage','googlesites','dropshadow','link1a','link2a','link3a','link4a','link5a','link6a','link7a','link8a','link9a','link10a','link11a','link12a','link13a','link14a','link15a','link16a','link17a','link18a','link19a','link20a','link21a','link22a','link23a','link24a','link25a','link26a','link27a','link28a','allsites','fontcolor','propermenuonly','search','existingtab','propermenuDomains','countremember','optionskipremember','display'], function(items){
+chrome.storage.local.get(['googleplus','opacity','country','backgroundhex','backgroundimagesource','backgroundcolor','backgroundimage','googlesites','dropshadow','link1a','link2a','link3a','link4a','link5a','link6a','link7a','link8a','link9a','link10a','link11a','link12a','link13a','link14a','link15a','link16a','link17a','link18a','link19a','link20a','link21a','link22a','link23a','link24a','link25a','link26a','link27a','link28a','allsites','fontcolor','propermenuonly','search','existingtab','propermenuDomains','countremember','optionskipremember','display','hovertextcolor','hoverbackground'], function(items){
 		if(items['googleplus']){$('googleplus').value = items['googleplus'];}
 		else {$('googleplus').value = 'You';}
 		if(items['opacity']){$('opacity').value = items['opacity'];}
@@ -140,6 +143,10 @@ chrome.storage.local.get(['googleplus','opacity','country','backgroundhex','back
 		if(items['existingtab'] == true)$('existingtab').checked = true;
 		if(items['optionskipremember'] == true){$('optionskipremember').checked = true;$('firstcheckboxskipremember').checked = true;}
 		if(items['display']){$('display').value = items['display'];}
+		if(items['hovertextcolor']){$('hovertextcolor').value = items['hovertextcolor'];}
+		else {$('hovertextcolor').value = '#ffffff';}
+		if(items['hoverbackground']){$('hoverbackground').value = items['hoverbackground'];}
+		else {$('hoverbackground').value = '#444444';}
 
 // show remember page
 var countremember = items['countremember'];

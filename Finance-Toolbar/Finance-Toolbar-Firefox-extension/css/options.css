@@ -136,8 +136,8 @@ header div{display:inline-block;vertical-align:middle}
 #Stocklist input[type=url]{width:368px;float:left}
 #Stocklist select{width:425px}
 /* example bar */
-@font-face{font-family:'Wallstreet';src:url('moz-extension://__MSG_@@extension_id__/wallstreet.eot');src:url('moz-extension://__MSG_@@extension_id__/wallstreet.ttf')format('truetype');font-weight:normal;font-style:normal}
-@font-face{font-family:'jd_lcd_roundedregular';src:url('moz-extension://__MSG_@@extension_id__/jdlcdrounded-webfont.eot');src:url('moz-extension://__MSG_@@extension_id__/jdlcdrounded-webfont.eot?#iefix') format('embedded-opentype'),url('moz-extension://__MSG_@@extension_id__/jdlcdrounded-webfont.woff')format('woff'),url('moz-extension://__MSG_@@extension_id__/jdlcdrounded-webfont.ttf')format('truetype'),url('moz-extension://__MSG_@@extension_id__/jdlcdrounded-webfont.svg#jd_lcd_roundedregular')format('svg');font-weight:normal;font-style:normal}
+@font-face{font-family:'Wallstreet';src:url('/wallstreet.eot');src:url('/wallstreet.ttf')format('truetype');font-weight:normal;font-style:normal}
+@font-face{font-family:'jd_lcd_roundedregular';src:url('/jdlcdrounded-webfont.eot');src:url('/jdlcdrounded-webfont.eot?#iefix') format('embedded-opentype'),url('/jdlcdrounded-webfont.woff')format('woff'),url('/jdlcdrounded-webfont.ttf')format('truetype'),url('/jdlcdrounded-webfont.svg#jd_lcd_roundedregular')format('svg');font-weight:normal;font-style:normal}
 #examplebar{position:relative;background:black;color:white;height:30px;width:100%;box-shadow:#777 0px 0px 7px}
 #examplebar .world{-webkit-user-select:none;user-select:none;font-family:Webdings;cursor:pointer;left:0px;position: absolute;display:inline-block;width:63px;height:30px;color:rgba(255,255,255,.40);font-size:40px;padding-left:8px;vertical-align:top;top:-3px}
 #examplebar #favorite{-webkit-user-select:none;user-select:none;vertical-align:top;margin-left:80px;padding-left:5px;width:230px;display:inline-block;height:30px;position:absolute;line-height:1.15}

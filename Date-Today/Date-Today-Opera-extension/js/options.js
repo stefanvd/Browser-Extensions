@@ -3,7 +3,7 @@
 
 Date Today
 The best clock to see in one glance the current day and time. With an option to see the digital clock in the browser toolbar.
-Copyright (C) 2016 Stefan vd
+Copyright (C) 2017 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -31,17 +31,21 @@ function $(id) { return document.getElementById(id); }
 // Option to save current value
 function save_options(){
 	var e = $("getfontfamily");
-	chrome.storage.sync.set({ "optionskipremember": $('optionskipremember').checked, "color1night": $('color1night').value, "color2night": $('color2night').value, "color3night": $('color3night').value, "color4night": $('color4night').value, "color5night": $('color5night').value, "color6night": $('color6night').value, "twelfh": $('twelfh').checked, "stamp": $('stamp').checked, "color1": $('color1').value, "color2": $('color2').value, "color3": $('color3').value, "color4": $('color4').value, "color5": $('color5').value, "color6": $('color6').value,"badge": $('badge').checked, "nightmode": $('nightmode').checked, "begintime": $('begintime').value, "endtime": $('endtime').value, "getfontfamily": e.options[e.selectedIndex].value, "lightcolor": $('lightcolor').value , "clockbck": $('clockbck').checked, "colorhours": $('colorhours').value, "colorminutes": $('colorminutes').value, "clockanalog": $('clockanalog').checked,"clocktickpoint": $('clocktickpoint').checked,"colorbackground": $('colorbackground').value,"colordots": $('colordots').value});
+	chrome.storage.sync.set({ "optionskipremember": $('optionskipremember').checked, "color1night": $('color1night').value, "color2night": $('color2night').value, "color3night": $('color3night').value, "color4night": $('color4night').value, "color5night": $('color5night').value, "color6night": $('color6night').value, "twelfh": $('twelfh').checked, "stamp": $('stamp').checked, "color1": $('color1').value, "color2": $('color2').value, "color3": $('color3').value, "color4": $('color4').value, "color5": $('color5').value, "color6": $('color6').value,"badge": $('badge').checked, "nightmode": $('nightmode').checked, "begintime": $('begintime').value, "endtime": $('endtime').value, "getfontfamily": e.options[e.selectedIndex].value, "lightcolor": $('lightcolor').value , "clockbck": $('clockbck').checked, "colorhours": $('colorhours').value, "colorminutes": $('colorminutes').value, "clockanalog": $('clockanalog').checked,"clocktickpoint": $('clocktickpoint').checked,"colorbackground": $('colorbackground').value,"colordots": $('colordots').value,"badgeclock": $('badgeclock').checked,"badgedate": $('badgedate').checked,"badgeweek": $('badgeweek').checked,"badgedatesystema": $('badgedatesystema').checked,"badgedatesystemb": $('badgedatesystemb').checked,"badgemonth": $('badgemonth').checked,"stamptypeA": $('stamptypeA').checked,"stamptypeB": $('stamptypeB').checked,"stamptypeC": $('stamptypeC').checked,"stamptypeD": $('stamptypeD').checked,"textcanvascolor": $('textcanvascolor').value});
 }
 
 var firstdefaultvalues = {};
 // Option default value to read if there is no current value from chrome.storage AND init default value
-chrome.storage.sync.get(['color1', 'color2', 'color3', 'color4', 'color5', 'color6', 'color1night', 'color2night', 'color3night', 'color4night', 'color5night','clockanalog','colorbackground'], function(items){
+chrome.storage.sync.get(['color1', 'color2', 'color3', 'color4', 'color5', 'color6', 'color1night', 'color2night', 'color3night', 'color4night', 'color5night','clockanalog','colorbackground','badgeclock','badgedatesystema','stamptypeA','textcanvascolor'], function(items){
     // find no localstore datetodayengine
 	if(items['color1'] == null && items['color2'] == null && items['color3'] == null && items['color4'] == null && items['color5'] == null && items['color6'] == null){firstdefaultvalues['color1'] = "#808080";firstdefaultvalues['color2'] = "#000000";firstdefaultvalues['color3'] = "#808080";firstdefaultvalues['color4'] = "#000000";firstdefaultvalues['color5'] = "#000000";firstdefaultvalues['color6'] = "#808080"}
     if(items['color1night'] == null && items['color2night'] == null && items['color3night'] == null && items['color4night'] == null && items['color5night'] == null && items['color6night'] == null){firstdefaultvalues['color1night'] = "#0fff58";firstdefaultvalues['color2night'] = "#0fff58";firstdefaultvalues['color3night'] = "#0fff58";firstdefaultvalues['color4night'] = "#0fff58";firstdefaultvalues['color5night'] = "#0fff58";firstdefaultvalues['color6night'] = "#0fff58";}// find no localstore lightimage
     if(items['clockanalog'] == null){firstdefaultvalues['clockanalog'] = true}
 	if(items['colorbackground'] == null){firstdefaultvalues['colorbackground'] = '#F7F8FA'}
+	if(items['badgeclock'] == null){firstdefaultvalues['badgeclock'] = true}
+	if(items['badgedatesystema'] == null){firstdefaultvalues['badgedatesystema'] = true}
+	if(items['stamptypeA'] == null){firstdefaultvalues['stamptypeA'] = true}
+	if(items['textcanvascolor'] == null){firstdefaultvalues['textcanvascolor'] = '#000000'}
 	// Save the init value
     chrome.storage.sync.set(firstdefaultvalues, function() {
     //console.log('Settings saved');
@@ -49,7 +53,7 @@ chrome.storage.sync.get(['color1', 'color2', 'color3', 'color4', 'color5', 'colo
 });
 
 function read_options(){
-chrome.storage.sync.get(['optionskipremember','countremember','color1','color2','color3','color4','color5','color6','twelfh','stamp','color1night','color2night','color3night','color4night','color5night','color6night','badge','nightmode','begintime','endtime','getfontfamily','lightcolor','clockbck','colorhours','colorminutes','clockanalog','clocktickpoint','colorbackground','colordots'], function(items){
+chrome.storage.sync.get(['firstDate','optionskipremember','countremember','color1','color2','color3','color4','color5','color6','twelfh','stamp','color1night','color2night','color3night','color4night','color5night','color6night','badge','nightmode','begintime','endtime','getfontfamily','lightcolor','clockbck','colorhours','colorminutes','clockanalog','clocktickpoint','colorbackground','colordots','badgeclock','badgedate','badgeweek','badgemonth','badgedatesystema','badgedatesystemb','stamptypeA','stamptypeB','stamptypeC','stamptypeD','textcanvascolor'], function(items){
     if(items['color1']){$('color1').value = items['color1'];}	
 	else $('color1').value = "#808080";
 	if(items['color2']){$('color2').value = items['color2'];}	
@@ -97,17 +101,58 @@ chrome.storage.sync.get(['optionskipremember','countremember','color1','color2',
 	else $('colorbackground').value = "#F7F8FA";
 	if(items['colordots']){$('colordots').value = items['colordots'];}	
 	else $('colordots').value = "#000000";
+	if(items['badgeclock'] == true)$('badgeclock').checked = true;
+	if(items['badgedate'] == true)$('badgedate').checked = true;
+	if(items['badgeweek'] == true)$('badgeweek').checked = true;
+	if(items['badgemonth'] == true)$('badgemonth').checked = true;
+	if(items['badgedatesystema'] == true)$('badgedatesystema').checked = true;
+	if(items['badgedatesystemb'] == true)$('badgedatesystemb').checked = true;
+	if(items['stamptypeA'] == true)$('stamptypeA').checked = true;
+	if(items['stamptypeB'] == true)$('stamptypeB').checked = true;
+	if(items['stamptypeC'] == true)$('stamptypeC').checked = true;
+	if(items['stamptypeD'] == true)$('stamptypeD').checked = true;
+	if(items['textcanvascolor']){$('textcanvascolor').value = items['textcanvascolor'];}	
+	else $('textcanvascolor').value = "#000000";
 
-// show reminder page
+// show remember page
 var countremember = items['countremember'];
 if(!countremember){countremember = 0;}
 countremember = parseInt(countremember) + 1;
-if($('optionskipremember').checked != true){
-	if(countremember >= 5) {$('remembershare').style.display = "";countremember = 0;}
-	else {$('remembershare').style.display = "none";}
-} else {$('remembershare').style.display = "none";}
-chrome.storage.sync.set({"countremember": countremember});		
-		
+
+var firstweek = false;
+var currentDate = new Date().getTime();
+if(items['firstDate']){
+    var datestart = items['firstDate'];
+    var dateend = datestart + (7 * 24 * 60 * 60 * 1000);
+    if(currentDate>=dateend){firstweek = false;}
+    else{firstweek = true;}
+}else{
+    chrome.storage.sync.set({"firstDate": currentDate});
+    firstweek = true;
+}
+
+if(firstweek){$('remembershare').style.display = "none";}else{
+var d = new Date();
+var dayweek = d.getDay();
+var dayhour = d.getHours();
+if((dayweek == 4 && dayhour >= 16) || (dayweek == 5 && dayhour >= 16)){
+    if($('optionskipremember').checked != true){
+        $('remembershare').style.display = "block";
+    } else {$('remembershare').style.display = "none";}
+}
+else if(dayweek == 6 || dayweek == 0){
+    if($('optionskipremember').checked != true){
+        $('remembershare').style.display = "block";
+    } else {$('remembershare').style.display = "none";}
+} else {
+    if($('optionskipremember').checked != true){
+        if(countremember >= 4) {$('remembershare').style.display = "block";countremember = 0;}
+        else {$('remembershare').style.display = "none";}
+    } else {$('remembershare').style.display = "none";}
+    chrome.storage.sync.set({"countremember": countremember});
+}
+}
+
 	// load tab div
 	var tabListItems = document.getElementById('navbar').childNodes;
 	for ( var i = 0; i < tabListItems.length; i++ ) {
@@ -230,13 +275,13 @@ chrome.storage.sync.set({"countremember": countremember});
 	      	  if (h >= 12) {h -= 12; tic = "pm"; }
 	      	  else {tic = "am"; }
 	      	  if (h == 0) {h = 12;}
-	      	  document.getElementById('hours').innerHTML = h;
-	      	  document.getElementById('minutes').innerHTML = (m<10?'0':'') + m;
-	      	  document.getElementById('tic').innerHTML = tic;
+	      	  document.getElementById('hours').innerText = h;
+	      	  document.getElementById('minutes').innerText = (m<10?'0':'') + m;
+	      	  document.getElementById('tic').innerText = tic;
 	    }
-	    else {document.getElementById('hours').innerHTML = h;
-	          document.getElementById('minutes').innerHTML = (m<10?'0':'') + m;
-	          document.getElementById('tic').innerHTML = "";
+	    else {document.getElementById('hours').innerText = h;
+	          document.getElementById('minutes').innerText = (m<10?'0':'') + m;
+	          document.getElementById('tic').innerText = "";
 	    }
 		
 		m = checkTime(m); // (check) Add a zero number if below 10
@@ -249,7 +294,13 @@ chrome.storage.sync.set({"countremember": countremember});
 		document.getElementById('month').style.color = $("color4").value;
 		document.getElementById('daynumber').style.color = $("color3").value;
 		document.getElementById('point').style.color = $("color6").value;
-		
+
+		// option stamp
+		document.getElementById("titlestampA").innerText = h + ":" + m + document.getElementById('tic').innerText + " " + this_date + " " + this_month_name_array[this_month] + " " + this_year;
+		document.getElementById("titlestampB").innerText = h + ":" + m + document.getElementById('tic').innerText + " " + this_weekday_name_array[this_weekday] + " " + this_date + " " + this_month_name_array[this_month] + " " + this_year;
+		document.getElementById("titlestampC").innerText = h + ":" + m + document.getElementById('tic').innerText + " " + this_date + "/" + parseInt(this_month+1) + "/" + this_year;
+		document.getElementById("titlestampD").innerText = h + ":" + m + document.getElementById('tic').innerText + " " + parseInt(this_month+1) + "/" + this_date + "/" + this_year;
+
 		// auto night
 		var now = new Date();var hours = now.getHours();var minutes = now.getMinutes();var gettime = hours + ":" + minutes;
 		var gettimesecond = gettime.split(":")[0] * 3600 + gettime.split(":")[1] * 60;
@@ -335,18 +386,6 @@ function yearnow() {
 var today = new Date(); var y0 = today.getFullYear();$("yearnow").innerText = y0;
 }
 
-function detectExtension(extensionId, callback) { 
-  var img; 
-  img = new Image(); 
-  img.src = "chrome-extension://" + extensionId + "/icons/icon16.png"; 
-  img.onload = function() { 
-    callback(true); 
-  }; 
-  img.onerror = function() { 
-    callback(false); 
-  };
-}
-
 /* Option page body action */
 // Read current value settings
 window.addEventListener('load', function() {
@@ -359,13 +398,14 @@ $('loading').style.display = "none";
 document.addEventListener('DOMContentLoaded', function () {
 // random generator
 var items = Array();
-detectExtension(idaa,function(a){if(a != true){items.push(1)}});
-detectExtension(idz,function(a){if(a != true){items.push(2)}});
-detectExtension(idtotl,function(a){if(a != true){items.push(3)}});
-detectExtension(idft,function(a){if(a != true){items.push(4)}});
-detectExtension(idpp,function(a){if(a != true){items.push(5)}});
-detectExtension(idfs,function(a){if(a != true){items.push(6)}});
-detectExtension(iddt,function(a){if(a != true){items.push(7)}runinstalltest()});
+function IsExist(extensionId,callback){chrome.runtime.sendMessage(extensionId,{message:"installed"},function(reply){if(reply){callback(true);}else{callback(false);}});}
+IsExist(idaa,function(installed){if(!installed){items.push(1)}});
+IsExist(idz,function(installed){if(!installed){items.push(2)}});
+IsExist(idtotl,function(installed){if(!installed){items.push(3)}});
+IsExist(idft,function(installed){if(!installed){items.push(4)}});
+IsExist(idpp,function(installed){if(!installed){items.push(5)}});
+IsExist(idfs,function(installed){if(!installed){items.push(6)}});
+IsExist(iddt,function(installed){if(!installed){items.push(7)}runinstalltest()});
 
 function runinstalltest(){
 var numberpick = items[Math.floor(Math.random()*items.length)];
@@ -401,13 +441,14 @@ $("firstcheckboxskipremember").addEventListener('click', function() {if(firstche
 var sharetext = "I highly recommended Date Today. Download and try it yourself! www.stefanvd.net";
 var stefanvdurl = datetodayproduct;var stefanvdaacodeurl = encodeURIComponent(stefanvdurl);
 $("rememberboxrate").addEventListener("click", function() {window.open(writereview);});
-$("rememberboxgoogle").addEventListener("click", function() {window.open('https://plus.google.com/share?ur\l=' + stefanvdaacodeurl + '', 'Share to Google+','width=600,height=460,menubar=no,location=no,status=no');});
-$("rememberboxfacebook").addEventListener("click", function() {window.open("https://www.facebook.com/sharer.php?u="+ stefanvdurl + "&t=" + sharetext + "", 'Share to Facebook','width=600,height=460,menubar=no,location=no,status=no');});
-$("rememberboxtwitter").addEventListener("click", function() {window.open("https://twitter.com/share?url=" + stefanvdaacodeurl + "&text=" + sharetext + "", 'Share to Twitter','width=600,height=460,menubar=no,location=no,status=no');});
+$("rememberboxyoutube").addEventListener("click", function() {if($('remyoutube').style.display == "block"){$('remyoutube').style.display = "none";}else{$('remyoutube').style.display = "block";}});
+$("rememberboxfacebook").addEventListener("click", function() {if($('remfacebook').style.display == "block"){$('remfacebook').style.display = "none";}else{$('remfacebook').style.display = "block";}});
+$("remclosethisdonate").addEventListener("click", function() {$('remclosethisdonate').style.display = "none";$('remdonate').style.display = "none";});
 
 $("shareboxgoogle").addEventListener("click", function() {window.open('https://plus.google.com/share?ur\l=' + stefanvdaacodeurl + '', 'Share to Google+','width=600,height=460,menubar=no,location=no,status=no');});
 $("shareboxfacebook").addEventListener("click", function() {window.open("https://www.facebook.com/sharer.php?u="+ stefanvdurl + "&t=" + sharetext + "", 'Share to Facebook','width=600,height=460,menubar=no,location=no,status=no');});
 $("shareboxtwitter").addEventListener("click", function() {window.open("https://twitter.com/share?url=" + stefanvdaacodeurl + "&text=" + sharetext + "", 'Share to Twitter','width=600,height=460,menubar=no,location=no,status=no');});
+
 
 // Detect click / change to save the page and test it.
 var inputs = document.querySelectorAll('input');

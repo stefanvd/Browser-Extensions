@@ -29,7 +29,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 function $(id) { return document.getElementById(id); }
 
 //settings
-var opacity = null;var country = null;var addbar = null;var link1a = null;var link2a = null;var link3a = null;var link4a = null;var link5a = null;var link6a = null;var link7a = null;var link8a = null;var link9a = null;var link10a = null;var link11a = null;var link12a = null;var link13a = null;var link14a = null;var link15a = null;var link16a = null;var link17a = null;var link18a = null;var link19a = null;var link20a = null;var link21a = null;var link22a = null;var link23a = null;var link24a = null;var link25a = null;var link26a = null;var link27a = null;var link28a = null;var allsites = null;var fontcolor = null;var googlesites = null;var propermenuonly = null;var propermenuDomains = null;var search = null;var existingtab = null; var display = null;
+var opacity = null;var country = null;var addbar = null;var link1a = null;var link2a = null;var link3a = null;var link4a = null;var link5a = null;var link6a = null;var link7a = null;var link8a = null;var link9a = null;var link10a = null;var link11a = null;var link12a = null;var link13a = null;var link14a = null;var link15a = null;var link16a = null;var link17a = null;var link18a = null;var link19a = null;var link20a = null;var link21a = null;var link22a = null;var link23a = null;var link24a = null;var link25a = null;var link26a = null;var link27a = null;var link28a = null;var allsites = null;var fontcolor = null;var googlesites = null;var propermenuonly = null;var propermenuDomains = null;var search = null;var existingtab = null; var display = null; var hovertextcolor = null; var hoverbackground = null;
 
 function hex2rgb(hex) {
   if (hex[0]=="#") hex=hex.substr(1);
@@ -46,7 +46,7 @@ function hex2rgb(hex) {
   }
 }
 
-chrome.storage.local.get(['country','addbar','backgroundhex','backgroundimagesource','opacity','backgroundcolor','backgroundimage','googleplus','dropshadow','link1a','link2a','link3a','link4a','link5a','link6a','link7a','link8a','link9a','link10a','link11a','link12a','link13a','link14a','link15a','link16a','link17a','link18a','link19a','link20a','link21a','link22a','link23a','link24a','link25a','link26a','link27a','link28a','allsites','fontcolor','googlesites','propermenuonly','propermenuDomains','search','existingtab','display'], function(response){
+chrome.storage.local.get(['country','addbar','backgroundhex','backgroundimagesource','opacity','backgroundcolor','backgroundimage','googleplus','dropshadow','link1a','link2a','link3a','link4a','link5a','link6a','link7a','link8a','link9a','link10a','link11a','link12a','link13a','link14a','link15a','link16a','link17a','link18a','link19a','link20a','link21a','link22a','link23a','link24a','link25a','link26a','link27a','link28a','allsites','fontcolor','googlesites','propermenuonly','propermenuDomains','search','existingtab','display','hovertextcolor','hoverbackground'], function(response){
 country = response.country;
 if(country == null){
 var userLang = navigator.language || navigator.userLanguage; 
@@ -75,7 +75,7 @@ else if(userLang == "sv-SV"){country = "sv"}
 else if(userLang == "th-TH"){country = "th"}
 else if(userLang == "tr-TR"){country = "tr"}
 else {country = "com";}
-chrome.storage.local.set({"country": country});
+chrome.storage.sync.set({"country": country});
 }
 addbar = response['addbar'];if(addbar == null)addbar = true;
 backgroundhex = response['backgroundhex'];if(backgroundhex == null)backgroundhex = '#2d2d2d';
@@ -121,6 +121,8 @@ propermenuDomains = response['propermenuDomains'];
 search = response['search'];
 existingtab = response['existingtab'];
 display = response['display'];if(display == null)display = 13;
+hovertextcolor = response['hovertextcolor'];if(hovertextcolor == null)hovertextcolor = '#ffffff';
+hoverbackground = response['hoverbackground'];if(hoverbackground == null)hoverbackground = '#444444';
 
 var keyword = "";
 function getkeyword(){
@@ -134,7 +136,7 @@ function getkeyword(){
 }
 
 function positionnavwebpage(){
-	if(!window.location.href.match("https://www.google.com/maps")){
+	if(!window.location.href.match(/^https?\:\/\/(www\.)?google\.[a-z]+\/maps\b/)){
 		if(window.location.href.match("http://mail.google.com") || window.location.href.match("https://mail.google.com")){
 		// use id detect
 		$("gb").style.position = "relative";
@@ -153,7 +155,7 @@ function positionnavwebpage(){
 		}
 	}
 	
-	if(window.location.href.match("http://www.google.com/maps") || window.location.href.match("https://www.google.com/maps")){
+	if(window.location.href.match(/^https?\:\/\/(www\.)?google\.[a-z]+\/maps\b/)){
 		if($("content-container")){ $("content-container").style.top = '30px'; }
 	}
 	
@@ -165,7 +167,24 @@ function positionnavwebpage(){
 
 function addtoolbar(){
 		positionnavwebpage();
+		// inject CSS for the hover effect
+		try{
+		var totlvideovolume = "#stefanvdnavwrappe #stefanvdpropermenubarnav li:hover a,#stefanvdnavwrappe #stefanvdpropermenubarnav a:focus,#stefanvdnavwrappe #stefanvdpropermenubarnav a:active{padding:0 7px;line-height:30px!important;color:"+hovertextcolor+"!important;background:"+hoverbackground+"!important;text-decoration:none;height:30px;font-weight:normal}";
+
+		if($("csspropermenubar")){
+		var elem = document.getElementById("csspropermenubar");
+		elem.parentElement.removeChild(elem);
+		}
 		
+		var css = document.createElement('style');
+		css.setAttribute('id','csspropermenubar');
+		css.type = 'text/css';
+		css.appendChild(document.createTextNode(totlvideovolume));
+		document.getElementsByTagName("head")[0].appendChild(css);
+		}
+		catch(e) {}
+
+		//---
 		var newtoolbar = document.createElement('div');
 		newtoolbar.setAttribute('id','stefanvdnavwrappe');
 		//newtoolbar.style.overflow='hidden';

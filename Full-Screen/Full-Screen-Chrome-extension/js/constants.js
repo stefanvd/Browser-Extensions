@@ -29,3 +29,4 @@ var linkguide = "https://www.stefanvd.net/project/full-screen/browser/google-chr
 var linkwelcomepage = "https://www.stefanvd.net/project/full-screen/browser/google-chrome/welcome.htm";
 var linkuninstall = "https://www.stefanvd.net/";
 var fullscreenwebsite = "https://www.stefanvd.net/project/full-screen/browser/";
+var browsernewtab = "chrome://newtab/";

@@ -33,12 +33,12 @@ var default_arangespread = 15;
 
 // Option to save current value
 function save_options(){
-  chrome.storage.local.set({ "interval": $('interval').value, "lightcolor": $('lightcolor').value, "contextmenus": $('contextmenus').checked, "ambilight": $('ambilight').checked, "ambilightrangeblurradius": $('ambilightrangeblurradius').value, "ambilightrangespreadradius": $('ambilightrangespreadradius').value, "ambilightfixcolor": $('ambilightfixcolor').checked, "ambilightvarcolor": $('ambilightvarcolor').checked, "ambilightcolorhex": $('ambilightcolorhex').value, "ambilight4color": $('ambilight4color').checked, "ambilight1colorhex": $('ambilight1colorhex').value, "ambilight2colorhex": $('ambilight2colorhex').value, "ambilight3colorhex": $('ambilight3colorhex').value, "ambilight4colorhex": $('ambilight4colorhex').value, "fadein": $('fadein').checked, "fadeout": $('fadeout').checked, "sharebar": $('sharebar').checked, "count": $('count').checked, "slideshow": $('slideshow').checked, "slideshowrefresh": $('slideshowrefresh').value, "optionskipremember": $('optionskipremember').checked, "atmosvivid": $('atmosvivid').checked});
+  chrome.storage.sync.set({ "interval": $('interval').value, "lightcolor": $('lightcolor').value, "contextmenus": $('contextmenus').checked, "ambilight": $('ambilight').checked, "ambilightrangeblurradius": $('ambilightrangeblurradius').value, "ambilightrangespreadradius": $('ambilightrangespreadradius').value, "ambilightfixcolor": $('ambilightfixcolor').checked, "ambilightvarcolor": $('ambilightvarcolor').checked, "ambilightcolorhex": $('ambilightcolorhex').value, "ambilight4color": $('ambilight4color').checked, "ambilight1colorhex": $('ambilight1colorhex').value, "ambilight2colorhex": $('ambilight2colorhex').value, "ambilight3colorhex": $('ambilight3colorhex').value, "ambilight4colorhex": $('ambilight4colorhex').value, "fadein": $('fadein').checked, "fadeout": $('fadeout').checked, "sharebar": $('sharebar').checked, "count": $('count').checked, "slideshow": $('slideshow').checked, "slideshowrefresh": $('slideshowrefresh').value, "optionskipremember": $('optionskipremember').checked, "atmosvivid": $('atmosvivid').checked});
 }
 
 var firstdefaultvalues = {};
 // Option default value to read if there is no current value from chrome.storage AND init default value
-chrome.storage.local.get(['fadein','fadeout','contextmenus','ambilight','sharebar','count','atmosvivid','ambilightvarcolor','ambilightfixcolor','ambilight4color'], function(items){
+chrome.storage.sync.get(['fadein','fadeout','contextmenus','ambilight','sharebar','count','atmosvivid','ambilightvarcolor','ambilightfixcolor','ambilight4color'], function(items){
     // find no localstore zoomengine
 	  if(items['fadein'] == null && items['fadeout'] == null){firstdefaultvalues['fadein'] = true;firstdefaultvalues['fadeout'] = true;}
 	  if(items['contextmenus'] == null){firstdefaultvalues['contextmenus'] = true;}
@@ -49,13 +49,13 @@ chrome.storage.local.get(['fadein','fadeout','contextmenus','ambilight','shareba
 	  if(items['ambilightvarcolor'] == null && items['ambilightfixcolor'] == null && items['ambilight4color'] == null){firstdefaultvalues['ambilightvarcolor'] = true;firstdefaultvalues['ambilightfixcolor'] = false;firstdefaultvalues['ambilight4color'] = false;}
     // find no localstore lightimage
     // Save the init value
-    chrome.storage.local.set(firstdefaultvalues, function() {
+    chrome.storage.sync.set(firstdefaultvalues, function() {
     //console.log('Settings saved');
     });
 });
 
 function read_options(){
-chrome.storage.local.get(['interval', 'lightcolor', 'contextmenus', 'ambilight', 'ambilightrangeblurradius', 'ambilightrangespreadradius', 'ambilightfixcolor', 'ambilightvarcolor', 'ambilightcolorhex', 'ambilight4color', 'ambilight1colorhex', 'ambilight2colorhex', 'ambilight3colorhex', 'ambilight4colorhex', 'fadein', 'fadeout', 'sharebar', 'count', 'slideshow', 'slideshowrefresh', 'countremember' , 'applastonversion', 'reviewedlastonversion', 'optionskipremember', 'atmosvivid'], function(items){
+chrome.storage.sync.get(['interval', 'lightcolor', 'contextmenus', 'ambilight', 'ambilightrangeblurradius', 'ambilightrangespreadradius', 'ambilightfixcolor', 'ambilightvarcolor', 'ambilightcolorhex', 'ambilight4color', 'ambilight1colorhex', 'ambilight2colorhex', 'ambilight3colorhex', 'ambilight4colorhex', 'fadein', 'fadeout', 'sharebar', 'count', 'slideshow', 'slideshowrefresh', 'countremember' , 'applastonversion', 'reviewedlastonversion', 'optionskipremember', 'atmosvivid'], function(items){
 		if(items['interval']){default_opacity=items['interval'];$('interval').value = items['interval'];$('slider').value = items['interval'];}
 		else {$('interval').value = 80;$('slider').value = 80;}
 		if(items['lightcolor']){$('lightcolor').value = items['lightcolor'];}
@@ -99,7 +99,7 @@ if($('optionskipremember').checked != true){
 	if(countremember >= 5) {$('remembershare').style.display = "";countremember = 0;}
 	else {$('remembershare').style.display = "none";}
 } else {$('remembershare').style.display = "none";}
-chrome.storage.local.set({"countremember": countremember});		
+chrome.storage.sync.set({"countremember": countremember});		
 		
 	// load tab div
 	var tabListItems = document.getElementById('navbar').childNodes;
@@ -504,15 +504,15 @@ $("buttonchangelog").addEventListener('click', function() {window.open(linkchang
 $("buttontranslateme").addEventListener('click', function() {window.open(linktranslate)});
 
 // Reset settings
-$("resetambientaurea").addEventListener('click', function() {chrome.storage.local.clear();location.reload();});
+$("resetambientaurea").addEventListener('click', function() {chrome.storage.sync.clear();location.reload();});
 
 // Review box
-$("war").addEventListener('click', function() {window.open(writereview, "_blank");$("sectionreviewbox").style.display = "none";chrome.storage.local.set({"reviewedlastonversion": chrome.runtime.getManifest().version})});
-$("nt").addEventListener('click', function() {$("sectionreviewbox").style.display = "none";chrome.storage.local.set({"reviewedlastonversion": chrome.runtime.getManifest().version})});
+$("war").addEventListener('click', function() {window.open(writereview, "_blank");$("sectionreviewbox").style.display = "none";chrome.storage.sync.set({"reviewedlastonversion": chrome.runtime.getManifest().version})});
+$("nt").addEventListener('click', function() {$("sectionreviewbox").style.display = "none";chrome.storage.sync.set({"reviewedlastonversion": chrome.runtime.getManifest().version})});
 
 // Aurora Player app box
-$("apgetapp").addEventListener('click', function() {window.open(ambientaureaapp, "_blank");$("sectionauroraplayerappbox").style.display = "none";chrome.storage.local.set({"applastonversion": chrome.runtime.getManifest().version});});
-$("apnt").addEventListener('click', function() {$("sectionauroraplayerappbox").style.display = "none";chrome.storage.local.set({"applastonversion": chrome.runtime.getManifest().version});});
+$("apgetapp").addEventListener('click', function() {window.open(ambientaureaapp, "_blank");$("sectionauroraplayerappbox").style.display = "none";chrome.storage.sync.set({"applastonversion": chrome.runtime.getManifest().version});});
+$("apnt").addEventListener('click', function() {$("sectionauroraplayerappbox").style.display = "none";chrome.storage.sync.set({"applastonversion": chrome.runtime.getManifest().version});});
 
 // retina check
 if(window.devicePixelRatio >= 2) {

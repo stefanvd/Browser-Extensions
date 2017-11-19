@@ -3,7 +3,7 @@
 
 Zoom
 Zoom in or out on web content using the zoom button for more comfortable reading.
-Copyright (C) 2016 Stefan vd
+Copyright (C) 2017 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -37,14 +37,25 @@ function save_options(){
     var getnumber = websitezoomnumberBox.options[i].text;
 	  websitezoom[websitezoomBox.options[i].value] = getnumber;
   }
-  chrome.storage.sync.set({ "allzoom": $('allzoom').checked, "optionskipremember": $('optionskipremember').checked, "contextmenus": $('contextmenus').checked, "badge": $('badge').checked, "defaultzoom": $('defaultzoom').value, "steps": $('steps').value, "lightcolor": $('lightcolor').value, "zoomchrome": $('zoomchrome').checked, "zoomweb": $('zoomweb').checked, "websitezoom": JSON.stringify(websitezoom)});
+  var screenzoomBox = $("screenzoomBox");
+  var screenzoomnumberBox = $("screenzoomnumberBox");
+  var screenzoom = {};
+  for (var i = 0; i < screenzoomBox.length; i++){
+    var getsnumber = screenzoomnumberBox.options[i].text;
+	  screenzoom[screenzoomBox.options[i].value] = getsnumber;
+  }
+  chrome.storage.sync.set({ "allzoom": $('allzoom').checked, "optionskipremember": $('optionskipremember').checked, "contextmenus": $('contextmenus').checked, "badge": $('badge').checked, "steps": $('steps').value, "lightcolor": $('lightcolor').value, "zoomchrome": $('zoomchrome').checked, "zoomweb": $('zoomweb').checked, "websitezoom": JSON.stringify(websitezoom), "zoomdoubleclick": $('zoomdoubleclick').checked, "zoommousescroll": $('zoommousescroll').checked, "zoommousebuttonleft": $('zoommousebuttonleft').checked, "zoommousebuttonright": $('zoommousebuttonright').checked, "zoommousescrollup": $('zoommousescrollup').checked, "zoommousescrolldown": $('zoommousescrolldown').checked, "largepopup": $('largepopup').checked, "zoombydomain": $('zoombydomain').checked, "zoombypage": $('zoombypage').checked, "allzoomvalue": $('allzoomvalue').value/100, "defaultallscreen": $('defaultallscreen').checked, "defaultsinglescreen": $('defaultsinglescreen').checked, "screenzoom": JSON.stringify(screenzoom)});
 }
 
 var firstdefaultvalues = {};
 // Option default value to read if there is no current value from chrome.storage AND init default value
-chrome.storage.sync.get(['zoomchrome', 'zoomweb'], function(items){
+chrome.storage.sync.get(['zoomchrome', 'zoomweb','zoommousebuttonleft','zoommousebuttonright','zoommousescrollup','zoommousescrolldown','zoombydomain','zoombypage','defaultallscreen','defaultsinglescreen'], function(items){
     // find no localstore zoomengine
 	  if(items['zoomchrome'] == null && items['zoomweb'] == null){firstdefaultvalues['zoomweb'] = true;firstdefaultvalues['zoomchrome'] = false;}
+    if(items['zoommousebuttonleft'] == null && items['zoommousebuttonright'] == null){firstdefaultvalues['zoommousebuttonleft'] = true;firstdefaultvalues['zoommousebuttonright'] = false;}
+    if(items['zoommousescrollup'] == null && items['zoommousescrolldown'] == null){firstdefaultvalues['zoommousescrollup'] = true;firstdefaultvalues['zoommousescrolldown'] = false;}
+    if(items['zoombydomain'] == null && items['zoombypage'] == null){firstdefaultvalues['zoombydomain'] = true;firstdefaultvalues['zoombypage'] = false;}
+	  if(items['defaultallscreen'] == null && items['defaultsinglescreen'] == null){firstdefaultvalues['defaultallscreen'] = true;firstdefaultvalues['defaultsinglescreen'] = false;}
     // find no localstore lightimage
     // Save the init value
     chrome.storage.sync.set(firstdefaultvalues, function() {
@@ -53,24 +64,35 @@ chrome.storage.sync.get(['zoomchrome', 'zoomweb'], function(items){
 });
 
 function read_options(){
-chrome.storage.sync.get(['allzoom','optionskipremember','countremember','websitezoom','defaultzoom','contextmenus','badge','steps','lightcolor','zoomweb','zoomchrome'], function(items){
-		if(items['defaultzoom']){$('defaultzoom').value = items['defaultzoom'];$('slider').value = items['defaultzoom'];}	
-		else $('defaultzoom').value = 100;
+chrome.storage.sync.get(['firstDate','optionskipremember','countremember','allzoom','websitezoom','allzoomvalue','contextmenus','badge','steps','lightcolor','zoomweb','zoomchrome','zoomdoubleclick','zoommousescroll','zoommousebuttonleft','zoommousebuttonright','zoommousescrollup','zoommousescrolldown','largepopup','zoombydomain','zoombypage','defaultallscreen','defaultsinglescreen','screenzoom'], function(items){
+    if(items['allzoomvalue']){$('allzoomvalue').value = Math.round(items['allzoomvalue']*100);$('slider').value = Math.round(items['allzoomvalue']*100);}
+    else{$('allzoomvalue').value = 100;$('slider').value = 100;}
     if(items['steps']){$('steps').value = items['steps'];}	
-		else $('steps').value = 10;
+    else $('steps').value = 10;
     if(items['lightcolor']){$('lightcolor').value = items['lightcolor'];}	
-		else $('lightcolor').value = "#3cb4fe";
+    else $('lightcolor').value = "#3cb4fe";
     if(items['allzoom'] == true)$('allzoom').checked = true;
-		if(items['optionskipremember'] == true)$('optionskipremember').checked = true;
+    if(items['optionskipremember'] == true)$('optionskipremember').checked = true;
     if(items['contextmenus'] == true)$('contextmenus').checked = true;
     if(items['badge'] == true)$('badge').checked = true;
     if(items['zoomchrome'] == true){$('zoomchrome').checked = true;$('zoomweb').checked = false;}
     if(items['zoomweb'] == true){$('zoomweb').checked = true;$('zoomchrome').checked = false;}
+    if(items['zoomdoubleclick'] == true)$('zoomdoubleclick').checked = true;
+    if(items['zoommousescroll'] == true)$('zoommousescroll').checked = true;
+    if(items['zoommousebuttonleft'] == true)$('zoommousebuttonleft').checked = true;
+    if(items['zoommousebuttonright'] == true)$('zoommousebuttonright').checked = true;
+    if(items['zoommousescrollup'] == true)$('zoommousescrollup').checked = true;
+    if(items['zoommousescrolldown'] == true)$('zoommousescrolldown').checked = true;
+    if(items['largepopup'] == true)$('largepopup').checked = true;
+    if(items['zoombydomain'] == true)$('zoombydomain').checked = true;
+    if(items['zoombypage'] == true)$('zoombypage').checked = true;
+    if(items['defaultallscreen'] == true)$('defaultallscreen').checked = true;
+    if(items['defaultsinglescreen'] == true)$('defaultsinglescreen').checked = true;
 
 // if empty use this
 var websitezoom = items['websitezoom'];
 if(typeof websitezoom == "undefined" || websitezoom == null){
-websitezoom = JSON.stringify({'https://www.stefanvd.net': ["90"], 'https://www.google.com': ["90"], 'http://www.nytimes.com': ["75"]});
+websitezoom = JSON.stringify({'https://www.stefanvd.net': ["90"], 'https://www.google.com': ["90"], 'https://www.nytimes.com': ["85"]});
 }
 
 if(typeof websitezoom == "string") {
@@ -84,16 +106,62 @@ if(typeof websitezoom == "string") {
 		appendToListBox("websitezoomBox", atbbuf[i],websitezoom[''+atbbuf[i]+'']);
     }
 }
+// screen
+var screenzoom = items['screenzoom'];
+if(typeof screenzoom == "undefined" || screenzoom == null){
+screenzoom = JSON.stringify({'1440x900': ["90"], '3000x2000': ["90"], '2560x1600': ["110"]});
+}
+
+if(typeof screenzoom == "string") {
+	screenzoom = JSON.parse(screenzoom);
+	var satbbuf = [];
+	for(var sdomain in screenzoom)
+		satbbuf.push(sdomain);
+        satbbuf.sort();
+        
+	for(var i = 0; i < satbbuf.length; i++){
+		screenappendToListBox("screenzoomBox", satbbuf[i],screenzoom[''+satbbuf[i]+'']);
+    }
+}
 	
-// show reminder page
+// show remember page
 var countremember = items['countremember'];
 if(!countremember){countremember = 0;}
 countremember = parseInt(countremember) + 1;
-if($('optionskipremember').checked != true){
-	if(countremember >= 5) {$('remembershare').style.display = "";countremember = 0;}
-	else {$('remembershare').style.display = "none";}
-} else {$('remembershare').style.display = "none";}
-chrome.storage.sync.set({"countremember": countremember});		
+
+var firstweek = false;
+var currentDate = new Date().getTime();
+if(items['firstDate']){
+    var datestart = items['firstDate'];
+    var dateend = datestart + (7 * 24 * 60 * 60 * 1000);
+    if(currentDate>=dateend){firstweek = false;}
+    else{firstweek = true;}
+}else{
+    chrome.storage.sync.set({"firstDate": currentDate});
+    firstweek = true;
+}
+
+if(firstweek){$('remembershare').style.display = "none";}else{
+var d = new Date();
+var dayweek = d.getDay();
+var dayhour = d.getHours();
+if((dayweek == 4 && dayhour >= 16) || (dayweek == 5 && dayhour >= 16)){
+    if($('optionskipremember').checked != true){
+        $('remembershare').style.display = "block";
+    } else {$('remembershare').style.display = "none";}
+}
+else if(dayweek == 6 || dayweek == 0){
+    if($('optionskipremember').checked != true){
+        $('remembershare').style.display = "block";
+    } else {$('remembershare').style.display = "none";}
+} else {
+    if($('optionskipremember').checked != true){
+        if(countremember >= 4) {$('remembershare').style.display = "block";countremember = 0;}
+        else {$('remembershare').style.display = "none";}
+    } else {$('remembershare').style.display = "none";}
+    chrome.storage.sync.set({"countremember": countremember});
+}
+}
 		
 	// load tab div
 	var tabListItems = document.getElementById('navbar').childNodes;
@@ -210,6 +278,50 @@ function websitezoomremoveSelectedExcludedDomain() {
     save_options();
 }
 
+// screen
+function screenappendToListBox(boxId, text, phonenumber) {
+    var elt = document.createElement("option");
+    elt.text = text;
+    elt.value = text;
+    $(boxId).add(elt, null);
+    
+    var phelt = document.createElement("option");
+    phelt.text = phonenumber;
+    phelt.value = text;
+    $("screenzoomnumberBox").add(phelt, null);
+}
+
+function screenzoomchangeurl(){
+  var selwzv = $("screenzoomBox").selectedIndex;
+  $("screenzoomnumberBox").selectedIndex = selwzv;
+}
+
+function screenzoomchangenumberl(){
+  var selwzv = $("screenzoomnumberBox").selectedIndex;
+  $("screenzoomBox").selectedIndex = selwzv;
+}
+
+function screenzoomadd() {
+    var domain = $("screenzoomname").value;
+    var number = $("screenzoomnumber").value;
+    if(domain == ""){return;}
+    if(number == ""){return;}
+    screenappendToListBox("screenzoomBox", domain, number);
+    save_options();
+}
+
+function screenzoomremoveSelectedExcludedDomain() {
+    var screenzoomBox = $("screenzoomBox");
+    var screenzoomphoneBox = $("screenzoomnumberBox");
+    for (var i = screenzoomBox.length-1; i >= 0; i--) {
+        if (screenzoomBox.options[i].selected){
+            screenzoomBox.remove(i);
+            screenzoomphoneBox.remove(i);
+        }
+    }
+    save_options();
+}
+
 function test(){
   if($('allzoom').checked){
     $("websitezoomBox").disabled = true;
@@ -218,6 +330,8 @@ function test(){
     $("websitezoomnumber").disabled = true;
     $("websitezoomaddbutton").disabled = true;
     $("websitezoomremovebutton").disabled = true;
+    $("zoombydomain").disabled = true;
+    $("zoombypage").disabled = true;
   } else{
     $("websitezoomBox").disabled = false;
     $("websitezoomnumberBox").disabled = false;  
@@ -225,24 +339,31 @@ function test(){
     $("websitezoomnumber").disabled = false;
     $("websitezoomaddbutton").disabled = false;
     $("websitezoomremovebutton").disabled = false;
+    $("zoombydomain").disabled = false;
+    $("zoombypage").disabled = false;
+  }
+  if($('defaultallscreen').checked){
+    $("screenzoomBox").disabled = true;
+    $("screenzoomnumberBox").disabled = true;
+    $("screenzoomname").disabled = true;
+    $("screenzoomnumber").disabled = true;
+    $("screenzoomaddbutton").disabled = true;
+    $("screenzoomremovebutton").disabled = true;
+    $("detectscreensize").disabled = true;
+  } else{
+    $("screenzoomBox").disabled = false;
+    $("screenzoomnumberBox").disabled = false;  
+    $("screenzoomname").disabled = false;
+    $("screenzoomnumber").disabled = false;
+    $("screenzoomaddbutton").disabled = false;
+    $("screenzoomremovebutton").disabled = false;
+    $("detectscreensize").disabled = false;
   }
 }
 	
 // Current year
 function yearnow() {
 var today = new Date(); var y0 = today.getFullYear();$("yearnow").innerText = y0;
-}
-
-function detectExtension(extensionId, callback) { 
-  var img; 
-  img = new Image(); 
-  img.src = "chrome-extension://" + extensionId + "/icons/icon16.png"; 
-  img.onload = function() { 
-    callback(true); 
-  }; 
-  img.onerror = function() { 
-    callback(false); 
-  };
 }
 
 /* Option page body action */
@@ -257,13 +378,14 @@ $('loading').style.display = "none";
 document.addEventListener('DOMContentLoaded', function () {
 // random generator
 var items = Array();
-detectExtension(idaa,function(a){if(a != true){items.push(1)}});
-detectExtension(iddt,function(a){if(a != true){items.push(2)}});
-detectExtension(idtotl,function(a){if(a != true){items.push(3)}});
-detectExtension(idft,function(a){if(a != true){items.push(4)}});
-detectExtension(idpp,function(a){if(a != true){items.push(5)}});
-detectExtension(idfs,function(a){if(a != true){items.push(6)}});
-detectExtension(idz,function(a){if(a != true){items.push(7)}runinstalltest()});
+function IsExist(extensionId,callback){chrome.runtime.sendMessage(extensionId,{message:"installed"},function(reply){if(reply){callback(true);}else{callback(false);}});}
+IsExist(idaa,function(installed){if(!installed){items.push(1)}});
+IsExist(idz,function(installed){if(!installed){items.push(2)}});
+IsExist(idtotl,function(installed){if(!installed){items.push(3)}});
+IsExist(idft,function(installed){if(!installed){items.push(4)}});
+IsExist(idpp,function(installed){if(!installed){items.push(5)}});
+IsExist(idfs,function(installed){if(!installed){items.push(6)}});
+IsExist(iddt,function(installed){if(!installed){items.push(7)}runinstalltest()});
 
 function runinstalltest(){
 var numberpick = items[Math.floor(Math.random()*items.length)];
@@ -272,7 +394,7 @@ if(numberpick == 1){
   $("promotext").innerText = chrome.i18n.getMessage("promotext", "Ambient Aurea");
   $("btnpromoaction").addEventListener('click', function() {window.open(ambientaureaproduct)});  
 } else if(numberpick == 2){
-  $("promotext").innerText = chrome.i18n.getMessage("promotext", "Date Today");
+  $("promotext").innerText = chrome.i18n.getMessage("promotext", "Zoom");
   $("btnpromoaction").addEventListener('click', function() {window.open(datetodayproduct)});
 } else if(numberpick == 3){
   $("promotext").innerText = chrome.i18n.getMessage("promotext", "Turn Off the Lights");
@@ -299,20 +421,21 @@ $("firstcheckboxskipremember").addEventListener('click', function() {if(firstche
 var sharetext = "I highly recommended Zoom. Download and try it yourself! www.stefanvd.net";
 var stefanvdurl = zoomproduct;var stefanvdaacodeurl = encodeURIComponent(stefanvdurl);
 $("rememberboxrate").addEventListener("click", function() {window.open(writereview);});
-$("rememberboxgoogle").addEventListener("click", function() {window.open('https://plus.google.com/share?ur\l=' + stefanvdaacodeurl + '', 'Share to Google+','width=600,height=460,menubar=no,location=no,status=no');});
-$("rememberboxfacebook").addEventListener("click", function() {window.open("https://www.facebook.com/sharer.php?u="+ stefanvdurl + "&t=" + sharetext + "", 'Share to Facebook','width=600,height=460,menubar=no,location=no,status=no');});
-$("rememberboxtwitter").addEventListener("click", function() {window.open("https://twitter.com/share?url=" + stefanvdaacodeurl + "&text=" + sharetext + "", 'Share to Twitter','width=600,height=460,menubar=no,location=no,status=no');});
+$("rememberboxyoutube").addEventListener("click", function() {if($('remyoutube').style.display == "block"){$('remyoutube').style.display = "none";}else{$('remyoutube').style.display = "block";}});
+$("rememberboxfacebook").addEventListener("click", function() {if($('remfacebook').style.display == "block"){$('remfacebook').style.display = "none";}else{$('remfacebook').style.display = "block";}});
+$("remclosethisdonate").addEventListener("click", function() {$('remclosethisdonate').style.display = "none";$('remdonate').style.display = "none";});
 
 $("shareboxgoogle").addEventListener("click", function() {window.open('https://plus.google.com/share?ur\l=' + stefanvdaacodeurl + '', 'Share to Google+','width=600,height=460,menubar=no,location=no,status=no');});
 $("shareboxfacebook").addEventListener("click", function() {window.open("https://www.facebook.com/sharer.php?u="+ stefanvdurl + "&t=" + sharetext + "", 'Share to Facebook','width=600,height=460,menubar=no,location=no,status=no');});
 $("shareboxtwitter").addEventListener("click", function() {window.open("https://twitter.com/share?url=" + stefanvdaacodeurl + "&text=" + sharetext + "", 'Share to Twitter','width=600,height=460,menubar=no,location=no,status=no');});
 
+
 // Detect click / change to save the page and test it.
 var inputs = document.querySelectorAll('input');
 for (var i = 0; i < inputs.length; i++) {inputs[i].addEventListener('change', test);inputs[i].addEventListener('change', save_options);}
 
-$("slider").addEventListener('change', function() {$("defaultzoom").value=this.value;save_options();});
-$("defaultzoom").addEventListener('change', function() {$("slider").value=this.value;save_options();});
+$("slider").addEventListener('change', function() {$("allzoomvalue").value=this.value;save_options();});
+$("allzoomvalue").addEventListener('change', function() {$("slider").value=this.value;save_options();});
 
 // Close yellow bar
 $("managed-prefs-text-close").addEventListener('click', function() {$("managed-prefs-banner").style.display = "none";});
@@ -339,9 +462,20 @@ $("buttontranslateme").addEventListener('click', function() {window.open(linktra
 $("websitezoomBox").addEventListener('click', function() {websitezoomchangeurl()});
 $("websitezoomnumberBox").addEventListener('click', function() {websitezoomchangenumberl()});
 // Add
-$("websitezoomaddbutton").addEventListener('click', function() {websitezoomadd()});
+document.getElementById('formwebsitezoom').addEventListener("submit", function(e){e.preventDefault();websitezoomadd();});
+
 // Remove
 $("websitezoomremovebutton").addEventListener('click', function() {websitezoomremoveSelectedExcludedDomain()});
+
+// Screen size
+$("detectscreensize").addEventListener('click', function() {$("screenzoomname").value = screen.width+"x"+screen.height;});
+// Change
+$("screenzoomBox").addEventListener('click', function() {screenzoomchangeurl()});
+$("screenzoomnumberBox").addEventListener('click', function() {screenzoomchangenumberl()});
+// Add
+$("screenzoomaddbutton").addEventListener('click', function() {screenzoomadd()});
+// Remove
+$("screenzoomremovebutton").addEventListener('click', function() {screenzoomremoveSelectedExcludedDomain()});
 
 // Reset settings
 $("resetzoom").addEventListener('click', function() {chrome.storage.sync.clear();window.location.reload()});

@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "__MSG_name__",
-  "version": "1.1.0.5",
+  "version": "1.2.9.0",
   "short_name": "Date Today",  
   "description": "__MSG_description__",
   "author": "Stefan vd",
@@ -21,10 +21,11 @@
     "page": "options.html",
     "open_in_tab": true
   },
-  "permissions": [ "activeTab", "contextMenus", "storage", "notifications" ],
+  "offline_enabled": true,
+  "permissions": [ "activeTab", "contextMenus", "storage", "notifications", "alarms" ],
   "background": {
     "page": "background.html",
-    "persistent": false
+    "persistent": true
   },
   "content_security_policy": "script-src 'self' https://ssl.google-analytics.com https://platform.twitter.com https://apis.google.com; img-src *; object-src 'self'",
   "commands": {
@@ -35,9 +36,6 @@
       }
     }
   },
-  "web_accessible_resources": [
-    "icons/icon16.png"
-  ],
   "content_scripts": [ {
       "all_frames": true,
       "js": ["js/constants.js","js/content.js"],

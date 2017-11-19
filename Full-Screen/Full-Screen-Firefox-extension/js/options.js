@@ -30,7 +30,7 @@ function $(id) { return document.getElementById(id); }
 
 // Option to save current value
 function save_options(){
-  chrome.storage.local.set({ "pageaction":$('pageaction').checked,"contextmenus":$('contextmenus').checked,"autofullscreen":$('autofullscreen').checked,"optionskipremember": $('optionskipremember').checked,"fullscreenweb":$('fullscreenweb').checked,"fullscreenwindow":$('fullscreenwindow').checked,"fullscreenvideo":$('fullscreenvideo').checked});
+  chrome.storage.local.set({ "contextmenus":$('contextmenus').checked,"autofullscreen":$('autofullscreen').checked,"optionskipremember": $('optionskipremember').checked,"fullscreenweb":$('fullscreenweb').checked,"fullscreenwindow":$('fullscreenwindow').checked,"fullscreenvideo":$('fullscreenvideo').checked});
 }
 
 var firstdefaultvalues = {};
@@ -47,8 +47,7 @@ chrome.storage.local.get(['contextmenus','fullscreenweb','fullscreenwindow','ful
 });
 
 function read_options(){
-chrome.storage.local.get(['pageaction','contextmenus','autofullscreen','countremember','optionskipremember','fullscreenweb','fullscreenwindow','fullscreenvideo'], function(items){
-  if(items['pageaction'] == true)$('pageaction').checked = true;
+chrome.storage.local.get(['contextmenus','autofullscreen','countremember','optionskipremember','fullscreenweb','fullscreenwindow','fullscreenvideo'], function(items){
   if(items['contextmenus'] == true)$('contextmenus').checked = true;
   if(items['autofullscreen'] == true)$('autofullscreen').checked = true;
   if(items['optionskipremember'] == true)$('optionskipremember').checked = true;

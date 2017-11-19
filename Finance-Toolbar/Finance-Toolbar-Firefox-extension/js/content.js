@@ -75,7 +75,10 @@ if(addbar == true){
 });
 
 } else if (request.action == "toolbarrefresh") {
-    window.location.reload();
+    //window.location.reload();
+    chrome.runtime.sendMessage({name : 'navOFF', function(response) {
+    chrome.runtime.sendMessage({name : 'navON'});
+    }});
 }
 
 });

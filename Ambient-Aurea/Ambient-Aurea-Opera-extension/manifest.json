@@ -1,12 +1,10 @@
 {
   "manifest_version": 2,
   "name": "__MSG_name__",
-  "version": "2.1.0.6",
+  "short_name": "AA",  
+  "version": "2.1.0.7",
   "description": "__MSG_description__",
-  "developer": {
-	  "name": "Stefan vd",
-	  "url": "https://www.stefanvd.net"
-  },
+  "author": "Stefan vd",
   "homepage_url": "https://www.stefanvd.net",  
   "icons": { "16": "icons/icon16.png",
              "32": "icons/icon32.png",
@@ -56,6 +54,6 @@
     "page": "options.html",
     "open_in_tab": true
   },
-  "minimum_opera_version": "15",
+  "minimum_chrome_version": "20",
   "permissions": [ "contextMenus", "tabs", "http://*/*", "https://*/*", "storage", "notifications" ]
 }

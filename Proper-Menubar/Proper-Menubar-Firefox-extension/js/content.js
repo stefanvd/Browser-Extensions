@@ -37,6 +37,47 @@ if(addbar == true){ chrome.runtime.sendMessage({name : 'navON'}); }
 else { chrome.runtime.sendMessage({name : 'navOFF'}); }
 });
 } else if (request.action == "toolbarrefresh") {
-    window.location.reload();
+    //window.location.reload();
+    chrome.runtime.sendMessage({name : 'navOFF', function(response) {
+    chrome.runtime.sendMessage({name : 'navON'});
+    }});
 }
+
+
+// observeDOM - dynamic check
+var observeDOM = (function(){
+    var MutationObserver = window.MutationObserver || window.WebKitMutationObserver,
+        eventListenerSupported = window.addEventListener;
+
+    return function(obj, callback){
+        if( MutationObserver ){
+            // define a new observer
+            var obs = new MutationObserver(function(mutations, observer){
+                if( mutations[0].addedNodes.length || mutations[0].removedNodes.length )
+                    callback();
+            });
+            // have the observer observe foo for changes in children
+            obs.observe( obj, { childList:true, subtree:true });
+        }
+        else if( eventListenerSupported ){
+            obj.addEventListener('DOMNodeInserted', callback, false);
+            obj.addEventListener('DOMNodeRemoved', callback, false);
+        }
+    }
+})();
+
+// Observe a specific DOM element:
+if(window.location.href.match(/^https?\:\/\/(www\.)?google\.[a-z]+\/maps\b/)){
+if(document.body){
+	observeDOM( document.body ,function(){
+            chrome.storage.local.get(['addbar'], function(items){
+            if(items['addbar'] == true){
+                // fixed Google Maps drop overlay
+                if($("content-container")){ $("content-container").style.top = '30px'; }
+            }
+        });
+	});
+}
+}
+
 });

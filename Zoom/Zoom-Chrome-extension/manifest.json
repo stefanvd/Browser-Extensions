@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "__MSG_name__",
-  "version": "2.1.0.9",
+  "version": "2.3.11.0",
   "short_name": "Zoom",   
   "description": "__MSG_description__",
   "author": "Stefan vd",
@@ -17,8 +17,7 @@
             "19": "icons/icon1.png",
             "38": "icons/icon1@2x.png"
           },
-	"default_title": "__MSG_name__",
-    "default_popup": "popup.html"	
+          "default_title": "__MSG_name__"
   },  
   "background": {
     "page": "background.html",
@@ -31,11 +30,29 @@
         "default": "Ctrl+Shift+Z",
         "mac": "MacCtrl+Shift+Z"
       }
+    },
+    "toggle-feature-zoomin": {
+            "suggested_key": {
+              "default": "Ctrl+Shift+1",
+              "mac": "MacCtrl+Shift+1"
+            },
+            "description": "__MSG_titleshortzoomin__"
+    },
+    "toggle-feature-zoomout": {
+            "suggested_key": {
+              "default": "Ctrl+Shift+2",
+              "mac": "MacCtrl+Shift+2"
+            },
+            "description": "__MSG_titleshortzoomout__"
+    },
+    "toggle-feature-zoomreset": {
+            "suggested_key": {
+              "default": "Ctrl+Shift+0",
+              "mac": "MacCtrl+Shift+0"
+            },
+            "description": "__MSG_titleshortzoomreset__"
     }
   },
-  "web_accessible_resources": [
-    "icons/icon16.png"
-  ],
   "content_scripts": [
     {
       "matches": ["*://*/*"],
@@ -48,5 +65,6 @@
     "page": "options.html",
     "open_in_tab": true
   },
+  "offline_enabled": true,
   "permissions": [ "contextMenus", "tabs", "<all_urls>", "storage", "notifications" ]
 }

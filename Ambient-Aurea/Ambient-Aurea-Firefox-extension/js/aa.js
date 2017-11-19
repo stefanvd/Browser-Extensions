@@ -30,7 +30,7 @@ function $(id) { return document.getElementById(id); }
 // settings
 var default_opacity = null, interval = null, fadein = null, fadeout = null, lightcolor = null, ambilight = null, ambilightrangeblurradius = null, ambilightrangespreadradius = null, ambilightfixcolor = null, ambilight4color = null, ambilightvarcolor = null, ambilightcolorhex = null, ambilight1colorhex = null, ambilight2colorhex = null, ambilight3colorhex = null, ambilight4colorhex = null, sharebar = null, count = null, slideshow = null, slideshowrefresh = null, atmosvivid = null;
 
-chrome.storage.local.get(['getimgurl','interval', 'fadein', 'fadeout', 'lightcolor', 'ambilight', 'ambilightrangeblurradius', 'ambilightrangespreadradius', 'ambilightfixcolor', 'ambilightvarcolor', 'ambilightcolorhex', 'ambilight4color', 'ambilight1colorhex', 'ambilight2colorhex', 'ambilight3colorhex', 'ambilight4colorhex', 'sharebar', 'atmosvivid'], function(response){
+chrome.storage.sync.get(['getimgurl','interval', 'fadein', 'fadeout', 'lightcolor', 'ambilight', 'ambilightrangeblurradius', 'ambilightrangespreadradius', 'ambilightfixcolor', 'ambilightvarcolor', 'ambilightcolorhex', 'ambilight4color', 'ambilight1colorhex', 'ambilight2colorhex', 'ambilight3colorhex', 'ambilight4colorhex', 'sharebar', 'atmosvivid'], function(response){
 getimgurl = response['getimgurl'];
 var last_target = getimgurl;
 

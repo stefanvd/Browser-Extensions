@@ -8,7 +8,7 @@
 
 Zoom
 Zoom in or out on web content using the zoom button for more comfortable reading.
-Copyright (C) 2016 Stefan vd
+Copyright (C) 2017 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -40,26 +40,43 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 <script type="text/javascript" src="js/analytics.js"></script>
 
 <div id="remembershare">
-<div id="productrememberimage"><img id="rememberlamp" alt="Zoom" src="icons/icon16.png">Zoom™</div>
-<div id="remembersharecenter">
-<h2><span data-i18n="friendlyremember"></span></h2>
-<div class="remembertext"><span data-i18n="longdonatetext"></span></div>
-<a href="https://www.stefanvd.net/donate.htm" target="_blank" id="rememberboxdonate" data-i18n="titledonatebutton"></a>
-<br>
-<br>
-<br>
-<div class="remembertext"><span data-i18n="enjoyshare"></span></div>
-<a id="rememberboxrate" target="_blank"><span data-i18n="rememberrate"></span> 5 &#9733;</a>
-<a id="rememberboxgoogle" target="_blank">Google+</a>
-<a id="rememberboxfacebook" target="_blank">Facebook</a>
-<a id="rememberboxtwitter" target="_blank">Twitter</a>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<div id="divcheckboxskipremember">
-	<input id="firstcheckboxskipremember" type="checkbox"><span data-i18n="showremember"></span> <button id="skipremember" data-i18n="skipremember"></button>
-</div>
-</div>
+<div id="productrememberimage"><img id="rememberlamp" alt="Zoom" width="16" height="16" src="icons/icon16.png" srcset="icons/icon16.png 1x, icons/icon16@2x.png 2x">Zoom™</div>
+	<div id="remembersharecenter">
+	<h2><span data-i18n="friendlyremember"></span></h2>
+	<div class="remembertext"><span data-i18n="enjoyshare"></span></div>
+	<br>
+	<div class="remgroup">
+		<a id="rememberboxyoutube"><span data-i18n="desremyoutube"></span></a><br>
+		<div id="remyoutube">
+			<iframe id="addyoutubebutton" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" tabindex="0" vspace="0" width="200" height="25" src="https://www.youtube.com/subscribe_embed?bsv&amp;usegapi=1&amp;channelid=UCNjCSr589GFD0JVmxF7eUoA&amp;theme=light&amp;layout=default&amp;hl=en-US&amp;origin=http%3A%2F%2Fstefanvd.net&amp;ic=1&amp;jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.en.Hm9QrP5wPuw.O%2Fm%3D__features__%2Fam%3DEQ%2Frt%3Dj%2Fd%3D1%2Frs%3DAItRSTOJmMfO7AjAhJbN5yM-BshnzKg53Q#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled%2Conload&amp;id=I0_1371683853533&amp;parent=http%3A%2F%2Fstefanvd.net&amp;rpctoken=33681162" data-gapiattached="true"></iframe>
+		</div>
+	</div>
+	<div class="remgroup">
+		<a id="rememberboxrate"><span data-i18n="rememberrate"></span> 5 &#9733;</a>
+	</div>
+	<div class="remgroup">
+		<a id="rememberboxfacebook"><span data-i18n="desremfacebook"></span></a><br>
+		<div id="remfacebook">
+			<iframe id="addrecommendbutton" src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FZoomExtension&width=118&layout=button_count&action=recommend&size=small&show_faces=false&share=false&height=21&appId=1542940745981253" width="200" height="25" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+		</div>
+	</div>
+	<br><br><br>
+	<br><br><br>
+	<br><br><br>
+	<a id="skipremember" class="continuebutton">&gt;</a>
+	<br><br><br>
+	<span id="buttoncontinuetip" data-i18n="skipremember"></span>
+	</div>
+	<div id="divcheckboxskipremember">
+		<input id="firstcheckboxskipremember" type="checkbox"><span data-i18n="showremember"></span>
+	</div>
+	<div id="remdonate">
+		<div id="remclosethisdonate">X</div>
+		<div class="promobox"><span data-i18n="promotitle"></span></div>
+		<div>
+			<div data-i18n="longdonatetext"></div> <a href="https://www.stefanvd.net/donate.htm" target="_blank" id="rememberboxdonate" data-i18n="titledonatebutton"></a>
+		</div>
+	</div>
 </div>
 
 <div id="loading">
@@ -81,12 +98,12 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 		<li><a id="tabadvan" data-tab="#tab2" class="navbar-item"><span data-i18n="advancedoptions"></span></a></li>		
 		<li><a id="tabguide" data-tab="#tab3" class="navbar-item"><span data-i18n="guide"></span></a></li>
 		<li><a id="tabhelp" data-tab="#tab4" class="navbar-item"><span data-i18n="help"></span></a></li>
-	</ul>		
+	</ul>
 	</div>
 	<div id="mainview">
 	<div id="managed-prefs-banner">
 		<span id="managed-prefs-icon">
-			<a class="donatebutton" href="http://www.stefanvd.net/donate.htm" data-i18n="titledonatebutton"></a>
+			<a class="donatebutton" href="https://www.stefanvd.net/donate.htm" target="_blank" data-i18n="titledonatebutton"></a>
 		</span>
 		<span id="managed-prefs-text" data-i18n="donatepromotext"></span>
 		<div id="managed-prefs-text-close"><span style="display:none;">Close</span></div>
@@ -113,11 +130,12 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				</tbody></table>
 				</section>
 				<section>
-					<div class="promobox"><span data-i18n="promotitle"></span></div>
-					<div class="promoboxtext">
+					<div class="probox"><span data-i18n="promotitle"></span></div>
+					<div class="proboxtext">
 					<span id="promotext"></span>
 					<br><br>
-					<button id="btnpromoaction" class="promoboxbutton">⇩ <span id="spnpromoaction" data-i18n="promocalltoaction"></span></button>
+					<button id="btnpromoaction" class="proboxbutton">⇩ <span id="spnpromoaction" data-i18n="promocalltoaction"></span></button>
+					</div>
 				</section>
 				<section>
 				<h3 data-i18n="titelzoomengine"></h3>
@@ -126,28 +144,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 					<label class="radio"><input id="zoomweb" type="radio" name="zoomengine" value="web"><span data-i18n="deszoomweb"></span></label>
 				</div>
 				</section>
-				<section>
-				<h3 data-i18n="titeldefaultzoomvalue"></h3>
-				<div><label class="checkbox"><span data-i18n="desdefaultzoomvalue"></span> <input id="slider" type="range" min="1" max="400" value="100" step="5"/><input id="defaultzoom" type="number" required placeholder="100" min="1" step="1" max="400"></label></div>
-				</section>
-				<section>
-				<h3 data-i18n="titelzoomsteps"></h3>
-				<div><label class="checkbox"><span data-i18n="deszoomsteps"></span> <input id="steps" type="number" required placeholder="10" min="1" step="1" max="100"></label></div>
-				</section>
-				<section id="sectionreviewbox">			
-				<div id="reviewextensionbox">
-					<div class="stars">★★★★★</div>
-					<div id="ayh"><span data-i18n="areyouhappy"></span></div>
-					<div id="tllo"><span data-i18n="tellothers"></span></div>
-					<div id="nt"><span data-i18n="nothanks"></span></div>
-					<div id="war"><span data-i18n="writeareview"></span></div>
-				</div>
-				</section>
-				<section>
-				<h3 data-i18n="titelcontextmenu"></h3>
-				<div><label class="checkbox"><input id="contextmenus" type="checkbox"> <span data-i18n="descontextmenu"></span></label></div>
-				</section>
-				<section>
+				<section>					
 				<h3 data-i18n="titelbadge"></h3>
 				<div><label class="checkbox"><input id="badge" type="checkbox"> <span data-i18n="desbadge"></span></label>
 				<label class="checkbox"><span data-i18n="titelbadgecolor"></span> <input id="lightcolor" type="color" class="color" list="datalightcolor">
@@ -167,22 +164,74 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				</div>
 				</section>
 				<section>
+				<h3 data-i18n="titelcontextmenu"></h3>
+				<div><label class="checkbox"><input id="contextmenus" type="checkbox"> <span data-i18n="descontextmenu"></span></label></div>
+				</section>
+				<section id="sectionreviewbox">			
+				<div id="reviewextensionbox">
+					<div class="stars">★★★★★</div>
+					<div id="ayh"><span data-i18n="areyouhappy"></span></div>
+					<div id="tllo"><span data-i18n="tellothers"></span></div>
+					<div id="nt"><span data-i18n="nothanks"></span></div>
+					<div id="war"><span data-i18n="writeareview"></span></div>
+				</div>
+				</section>
+				<section>
+				<h3 data-i18n="titelzoomsteps"></h3>
+				<div><label class="checkbox"><span data-i18n="deszoomsteps"></span> <input id="steps" type="number" required placeholder="10" min="1" step="1" max="100"></label></div>
+				</section>
+				<section>
+				<h3 data-i18n="titeldefaultzoomvalue"></h3>
+				<div>
+					<label class="radio"><input id="defaultallscreen" type="radio" name="byscreen" value="allscreen"><span data-i18n="desallscreen"></span></label>
+					<label class="checkbox"><span data-i18n="desdefaultzoomvalue"></span> <input id="slider" type="range" min="1" max="400" value="100" step="5"/><input id="allzoomvalue" type="number" required placeholder="100" min="1" step="1" max="400"></label>
+					<label class="radio"><input id="defaultsinglescreen" type="radio" name="byscreen" value="singlescreen"><span data-i18n="dessinglescreen"></span></label>
+					<label class="checkbox">
+					<table id="screenzoom">
+						<tr>
+							<td>
+								<span data-i18n="titelscreen"></span><br>
+								<input id="screenzoomname" type="text" required placeholder="1440x900"><button id="detectscreensize" name="screendetect"><span data-i18n="titelscreendetect"></span></button>
+							</td>
+							<td>
+								<span data-i18n="screenzoomvalue"></span><br>
+								<input id="screenzoomnumber" type="number" required placeholder="100" min="0" step="1" max="400" value="100">
+							</td>
+							<td>
+								<button id="screenzoomaddbutton" name="add"><span data-i18n="titeladd"></span></button>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<select id="screenzoomBox" name="screenzoomentryList" size="3" multiple=""></select>
+								<select id="screenzoomnumberBox" name="screenzoomnumberentryList" size="3" multiple=""></select>
+							</td>
+							<td valign="top">
+								<button id="screenzoomremovebutton" name="delete"><span data-i18n="titelremove"></span></button>
+							</td>
+						</tr>
+					</table>
+					</label>
+				</div>
+				</section>
+				<section>
 				<h3 data-i18n="titelallzoom"></h3>
 				<div>
-				<label class="checkbox"><input id="allzoom" type="checkbox"><span data-i18n="desallzoom"></span></label>
+				<label class="checkbox"><input id="allzoom" type="checkbox"><span data-i18n="desallzoom"></span>
 				<label class="checkbox">
+				<form id="formwebsitezoom">
 				<table id="websitezoom">
 					<tr>
 						<td>
 							<span data-i18n="titelwebsite"></span><br>
-							<input id="websitezoomname" type="text" required placeholder="https://www.stefanvd.net">
+							<input id="websitezoomname" type="url" required pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)" placeholder="https://www.example.com">
 						</td>
 						<td>
 							<span data-i18n="websitezoomvalue"></span><br>
-							<input id="websitezoomnumber" type="number" required placeholder="100" min="0" step="1" max="100">
+							<input id="websitezoomnumber" type="number" required placeholder="100" min="0" step="1" max="400" value="100">
 						</td>
 						<td>
-							<button id="websitezoomaddbutton" name="add">Add</button>
+							<button type="submit" id="websitezoomaddbutton" name="add"><span data-i18n="titeladd"></span></button>
 						</td>
 					</tr>
 					<tr>
@@ -191,25 +240,47 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 							<select id="websitezoomnumberBox" name="websitezoomnumberentryList" size="10" multiple=""></select>
 						</td>
 						<td valign="top">
-							<button id="websitezoomremovebutton" name="delete">Remove</button>
+							<button type="button" id="websitezoomremovebutton" name="delete"><span data-i18n="titelremove"></span></button>
 						</td>
 					</tr>
 				</table>
+				</form>
 				</label>
+				<label class="radio"><input id="zoombydomain" type="radio" name="pagezoom" value="domain"><span data-i18n="deszoombydomain"></span></label>					
+				<label class="radio"><input id="zoombypage" type="radio" name="pagezoom" value="page"><span data-i18n="deszoombypage"></span></label>
 				</div>
 				</section>
 			</div>
 			<div id="tab2" class="page hidden">
 				<h1 data-i18n="advancedoptions"></h1>
 				<section>
+				<h3 data-i18n="titelzoommousescroll"></h3>
+				<div>
+					<label class="checkbox"><input id="zoommousescroll" type="checkbox"> <span data-i18n="deszoommousescroll"></span></label>
+					<label class="radio"><input id="zoommousebuttonleft" type="radio" name="zoommouse" value="left"><span data-i18n="deszoommouseleft"></span></label>
+					<label class="radio"><input id="zoommousebuttonright" type="radio" name="zoommouse" value="right"><span data-i18n="deszoommouseright"></span></label>
+					<br>
+					<label class="radio"><input id="zoommousescrollup" type="radio" name="zoommousescroll" value="left"><span data-i18n="deszoommousedirectionup"></span></label>
+					<label class="radio"><input id="zoommousescrolldown" type="radio" name="zoommousescroll" value="right"><span data-i18n="deszoommousedirectiondown"></span></label>
+				</div>
+				</section>
+				<section>
+				<h3 data-i18n="titelzoomdoubleclick"></h3>
+				<div><label class="checkbox"><input id="zoomdoubleclick" type="checkbox"> <span data-i18n="deszoomdoubleclick"></span></label></div>
+				</section>
+				<section>
+				<h3 data-i18n="titellargepopup"></h3>
+				<div><label class="checkbox"><input id="largepopup" type="checkbox"><span data-i18n="deslargepopup"></span></label></div>
+				</section>
+				<section>
 				<h3 data-i18n="titelrememberpage"></h3>
 				<div><label class="checkbox"><input id="optionskipremember" type="checkbox"><span data-i18n="desrememberpage"></span></label></div>
-				</section>					
+				</section>
 				<section>
 				<h3 data-i18n="titelsync"></h3>
 				<div class="grey-text"><span data-i18n="titelsyncbrowser"></span></div>
 				</section>
-				<section>			
+				<section>
 				<h3 data-i18n="titelupgrade"></h3>
 				<div>
 					<label class="checkbox"><span class="item">Finance Toolbar browser extension</span><br><span data-i18n="titeldownloadupgradefinancetoolbar"></span></label>

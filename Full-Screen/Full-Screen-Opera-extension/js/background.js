@@ -30,7 +30,7 @@ chrome.runtime.onMessage.addListener(function request(request,sender,sendRespons
 if (request.name == "youtubefullscreen") {
     chrome.tabs.query({active: true}, function (tabs) {
             for (var i = 0; i < tabs.length; i++) {
-                chrome.tabs.executeScript(tabs[i].id, {code:"document.getElementsByTagName('video')[0].requestFullscreen();"});
+                chrome.tabs.executeScript(tabs[i].id, {file: "js/video.js"});
             }
         }
     );
@@ -40,33 +40,20 @@ else if (request.name == "contextmenuon") {checkcontextmenus();}
 else if (request.name == "contextmenuoff") {removecontexmenus()}
 });
 
-chrome.pageAction.onClicked.addListener(function(tab) {
+chrome.browserAction.onClicked.addListener(function(tab) {
   chrome.windows.getCurrent(null, function(window) {
     chrome.storage.sync.get(['fullscreenweb','fullscreenwindow','fullscreenvideo'], function(items){
-      if(items['fullscreenweb'] == true){chrome.tabs.executeScript(tab.id, {code:"document.documentElement.webkitRequestFullScreen();"});}
+      if(items['fullscreenweb'] == true){chrome.tabs.executeScript(tab.id, {file: "js/fullscreen.js"});}
       else if(items['fullscreenwindow'] == true){chrome.windows.update(window.id, {state: "fullscreen"});}
-      else if(items['fullscreenvideo'] == true){chrome.tabs.executeScript(tab.id, {code:"document.getElementsByTagName('video')[0].webkitRequestFullScreen();"});}
-      else{chrome.tabs.executeScript(tab.id, {code:"document.documentElement.webkitRequestFullScreen();"});}
+      else if(items['fullscreenvideo'] == true){chrome.tabs.executeScript(tab.id, {file: "js/video.js"});}
+      else{chrome.tabs.executeScript(tab.id, {file: "js/fullscreen.js"});}
     });
   });
 });
 
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-		chrome.storage.sync.get(['pageaction'], function(chromeset){		
-			if ((tab.url.match(/^http/i)||tab.url.match(/^file/i)) && (chromeset["pageaction"] != true) && (chromeset["pageaction"] != true)) {
-					if(tabId != null){
-					// fix Chrome bug, can't show icon on HDPI screen
-					// chrome.pageAction.setIcon({tabId: tab.id, path: {'19': 'icons/icon1.png', '38':'icons/icon1@2x.png'}});
-					// https://code.google.com/p/chromium/issues/detail?id=381383
-					chrome.pageAction.show(tabId);
-					}
-			}
-		});
-});
-
 // contextMenus
 function onClickHandler(info, tab) {
-if (info.menuItemId == "fsvideo" || info.menuItemId == "fsimage") {chrome.tabs.sendMessage(tab.id, { action: "gofullscreen" });}
+if (info.menuItemId == "fsvideo" || info.menuItemId == "fsimage" || info.menuItemId == "fspage") {chrome.tabs.sendMessage(tab.id, { action: "gofullscreen" });}
 else if (info.menuItemId == "totlguideemenu") {window.open(linkguide, "_blank");}
 else if (info.menuItemId == "totldevelopmenu") {window.open(donatewebsite, "_blank");}
 else if (info.menuItemId == "totlratemenu") {window.open(writereview, "_blank");}
@@ -92,7 +79,7 @@ var sharemenupostongoogleplus = chrome.i18n.getMessage("sharemenupostongoogleplu
 var sharemenuratetitle = chrome.i18n.getMessage("sharemenuratetitle");
 var sharemenudonatetitle = chrome.i18n.getMessage("sharemenudonatetitle");
 
-var contexts = ["page_action", "browser_action"];
+var contexts = ["browser_action"];
 chrome.contextMenus.create({"title": sharemenuwelcomeguidetitle, "type":"normal", "id": "totlguideemenu", "contexts":contexts});
 chrome.contextMenus.create({"title": sharemenudonatetitle, "type":"normal", "id": "totldevelopmenu", "contexts":contexts});
 chrome.contextMenus.create({"title": sharemenuratetitle, "type":"normal", "id": "totlratemenu", "contexts":contexts});
@@ -111,10 +98,11 @@ chrome.storage.sync.get(['contextmenus'], function(items){
 chrome.contextMenus.onClicked.addListener(onClickHandler);
 
 // context menu for page and video
-var menuvideo = null; var menuimage = null;
+var menuvideo = null; var menuimage = null; var menupage = null;
 var contextmenuadded = false;
 var contextarrayvideo = [];
 var contextarrayimage = [];
+var contextarraypage = [];
 
 function checkcontextmenus(){
     if(contextmenuadded == false){
@@ -138,6 +126,15 @@ function checkcontextmenus(){
     contextarrayimage.push(menuimage);
     }
 
+    // page
+    var contexts = ["page"];
+    for (var i = 0; i < contexts.length; i++){
+    var context = contexts[i];
+    var pagetitle = chrome.i18n.getMessage("pagetitle");
+    menupage = chrome.contextMenus.create({"title": pagetitle, "type":"normal", "id": "fspage", "contexts":[context]});
+    contextarraypage.push(menupage);
+    }
+
     }
 }
 
@@ -156,15 +153,23 @@ function removecontexmenus(){
             }
         }
     }
+    if (contextarraypage.length > 0) {
+        for (var i=0;i<contextarraypage.length;i++) {
+            if (contextarraypage[i] === undefined || contextarraypage[i] === null){}else{
+            chrome.contextMenus.remove(contextarraypage[i]);
+            }
+        }
+    }
     contextarrayvideo = [];
     contextarrayimage = [];
+    contextarraypage = [];
     contextmenuadded = false;
 }
 
 chrome.storage.onChanged.addListener(function(changes, namespace) {
    for (key in changes) {
           var storageChange = changes[key];
-          if(changes['contextmenu']){if(changes['contextmenu'].newValue == true){checkcontextmenus()}else{removecontexmenus()}}
+          if(changes['contextmenus']){if(changes['contextmenus'].newValue == true){checkcontextmenus()}else{removecontexmenus()}}
     }
 })
 

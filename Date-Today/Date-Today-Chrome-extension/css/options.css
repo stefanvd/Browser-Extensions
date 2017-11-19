@@ -3,7 +3,7 @@
 
 Date Today
 The best clock to see in one glance the current day and time. With an option to see the digital clock in the browser toolbar.
-Copyright (C) 2016 Stefan vd
+Copyright (C) 2017 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -91,17 +91,27 @@ header div{display:inline-block;vertical-align:middle}
 @-webkit-keyframes progress{to{width:500px}}
 /* Remember */
 .remembertext{margin:5px 0}
-#remembershare{position:fixed;width:100%;height:100%;z-index:400;background:rgba(256,256,256,1);margin:0;padding:0;left:0;top:0;text-align:center}
+#remembershare{display:none;background:white;position:fixed;width:100%;height:100%;z-index:400;margin:0;padding:0;left:0;top:0;text-align:center}
 #productrememberimage{position:absolute;top:16px;left:12px;font-family:verdana;font-size:16px;color:#000;vertical-align:top}
-#remembersharecenter{margin:auto;width:1024px;height:350px;position:absolute;top:0;bottom:0;left:0;right:0}
-#rememberboxdonate{cursor:pointer;background:#FDBD4E;color:#fff;width:900px;display:inline-block;font-size:20px;text-align:center;padding:15px;height:30px;vertical-align:top;margin:0;font-family:verdana;text-decoration:none;border:1px solid rgba(128,128,128,0.3)}
-#rememberboxrate{cursor:pointer;background:#FFCE32;color:#fff;width:200px;display:inline-block;font-size:20px;text-align:center;padding:15px;height:30px;vertical-align:top;margin:0;font-family:verdana;text-decoration:none;border:1px solid rgba(128,128,128,0.3)}
-#rememberboxgoogle{cursor:pointer;background:#C23434;color:#fff;width:200px;display:inline-block;font-size:20px;text-align:center;padding:15px;height:30px;vertical-align:top;margin:0;font-family:verdana;text-decoration:none;border:1px solid rgba(128,128,128,0.3)}
-#rememberboxfacebook{cursor:pointer;background:#4c66a4;color:#fff;width:200px;display:inline-block;font-size:20px;text-align:center;padding:15px;height:30px;vertical-align:top;margin:0;font-family:verdana;text-decoration:none;border:1px solid rgba(128,128,128,0.3)}
-#rememberboxtwitter{cursor:pointer;background:#3CF;color:#fff;width:200px;display:inline-block;font-size:20px;text-align:center;padding:15px;height:30px;vertical-align:top;margin:0;font-family:verdana;text-decoration:none;border:1px solid rgba(128,128,128,0.3)}
-#rememberboxdonate:hover,#rememberboxrate:hover,#rememberboxgoogle:hover,#rememberboxfacebook:hover,#rememberboxtwitter:hover{opacity:.88}
-#skipremember{float:right}
-#divcheckboxskipremember{text-align:left}
+#remembersharecenter{margin:auto;width:760px;height:325px;position:absolute;top:0;bottom:0;left:0;right:0}
+#remembersharecenter h2{font-weight:normal}
+#remembersharecenter .remgroup{display:inline-block;vertical-align:top;height:80px}
+#rememberboxrate{-webkit-user-select:none;cursor:pointer;background:#fdbc40;color:#fff;width:225px;display:inline-block;font-size:14px;text-align:center;padding:8px;height:16px;vertical-align:top;margin:0;font-family:verdana;text-decoration:none;border:1px solid rgba(128,128,128,0.3)}
+#rememberboxyoutube{-webkit-user-select:none;cursor:pointer;background:#e52d27;color:#fff;width:225px;display:inline-block;font-size:14px;text-align:center;padding:8px;height:16px;vertical-align:top;margin:0;font-family:verdana;text-decoration:none;border:1px solid rgba(128,128,128,0.3)}
+#rememberboxfacebook{-webkit-user-select:none;cursor:pointer;background:#4080ff;color:#fff;width:225px;display:inline-block;font-size:14px;text-align:center;padding:8px;height:16px;vertical-align:top;margin:0;font-family:verdana;text-decoration:none;border:1px solid rgba(128,128,128,0.3)}
+#rememberboxdonate{-webkit-user-select:none;cursor:pointer;background:#fcba49;border:1px solid #F3A835;color:#FFF;font-size:inherit;font-weight:700;padding:10px 15px;text-decoration:none;margin:5px 25px;display:inline-block}
+#rememberboxdonate:hover,#rememberboxrate:hover,#rememberboxyoutube:hover,#rememberboxfacebook:hover,#remclosethisdonate:hover{opacity:.88}
+#divcheckboxskipremember{text-align:left;position:absolute;margin:10px;bottom:0}
+#remdonate{position:absolute;width:100%;top:0;left:0;right:0;background:#f8f8f8;border-top:1px solid #EEE;padding:15px 5px}
+#remdonate div{display:inline-block}
+#remfacebook,#remyoutube{display:none}
+#addrecommendbutton,#addyoutubebutton{padding:10px;border:none;overflow:hidden}
+#skipremember{text-decoration:none;border:2px solid #666;font-size:24px;color:#666;padding:17px 25px;cursor:pointer}
+#skipremember:hover{opacity:.68;background:#f9f9f9}
+#skipremember:hover~#buttoncontinuetip{display:block}
+#buttoncontinuetip{display:none}
+#remclosethisdonate{position:absolute;top:0px;right:15px;color:#c3c3c3;font-size:12px;padding:5px}
+.promobox{top:2px;position:absolute;background:#ffce32;color:white;font-size:12px;padding:0 2px;border-radius:2px;display:inline-block}
 /* lamp */
 #loadinglamp{margin-right:5px;vertical-align:-2px}
 #welcomelamp{margin-right:5px;vertical-align:-2px}
@@ -112,10 +122,10 @@ header div{display:inline-block;vertical-align:middle}
 #shareboxtwitter{background:url(../images/twitter@2x.png)left top no-repeat;background:-webkit-image-set(url(../images/twitter.png) 1x,url(../images/twitter@2x.png) 2x);width:21px;height:18px;display:inline-block;background-size:cover;cursor:pointer}
 #shareboxrate:hover,#shareboxgoogle:hover,#shareboxfacebook:hover,#shareboxtwitter:hover{opacity:.8;cursor:pointer}
 .youtubepreview .suggpanel{vertical-align:top;padding-left:20px}
-.promobox{top:-18px;position:absolute;background:#ffce32;color:white;font-size:12px;padding:0 2px;border-radius:2px;display:inline-block}
-.promoboxtext{display:inline-flex;line-height:18px;padding:15px 15px 10px}
-.promoboxbutton,.promoboxbutton:hover{border:0;background:#4285f4;color:white;width:225px;margin-left:25px;padding:10px 15px}
-.promoboxbutton:hover{opacity:.8}
+.probox{top:-18px;position:absolute;background:#ffce32;color:white;font-size:12px;padding:0 2px;border-radius:2px;display:inline-block}
+.proboxtext{display:inline-flex;line-height:18px;padding:15px 15px 10px}
+.proboxbutton,.proboxbutton:hover{border:0;background:#4285f4;color:white;width:225px;margin-left:25px;padding:10px 15px}
+.proboxbutton:hover{opacity:.8}
 /* Review box */
 #reviewextensionbox{height:75px;position:relative}
 .stars{position:absolute;color:#ffce32;font-size:38px;top:0;left:30px}

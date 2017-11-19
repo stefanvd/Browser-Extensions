@@ -26,16 +26,16 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 //================================================
 */
 
-body{background-color:#fff;color:#000;font-family:Arial,sans-serif;cursor:default;font-size:13px}
+body{min-width:1150px;min-height:800px;background-color:#fff;color:#000;font-family:Arial,sans-serif;cursor:default;font-size:13px}
 #main-content{display:-webkit-box;position:absolute;left:0;right:0;top:0;bottom:0}
-#mainview{-webkit-box-align:stretch;-webkit-padding-start:216px;margin:0;position:absolute;left:0;right:0;top:0;bottom:0;z-index:1}
+#mainview{-webkit-box-align:stretch;-webkit-padding-start:216px;-moz-box-align:stretch;-moz-padding-start:216px;margin:0;position:absolute;left:0;right:0;top:0;bottom:0;z-index:1}
 #mainview-content{box-sizing:border-box;max-width:888px;min-width:600px;padding:0 24px;position:relative}
 #managed-prefs-banner{background:#FFF2B7;height:31px;width:100%;margin:0;padding:0;vertical-align:middle;border-bottom:1px solid #c6c9ce}
 #managed-prefs-icon{display:inline-block;padding:7px 7px 2px;height:21px;vertical-align:middle}
 #managed-prefs-text{vertical-align:middle}
 #managed-prefs-text-close{float:right;background:url(../images/close@2x.png)left top no-repeat;background:-webkit-image-set(url(../images/close.png) 1x,url(../images/close@2x.png) 2x);width:10px;height:10px;margin:10px;background-repeat:no-repeat;background-position:center}
 #navbar{margin:0}
-#navbar-container{-webkit-border-end:1px solid #c6c9ce;background:#fff;bottom:0;display:block;left:0;position:fixed;top:0;width:216px;z-index:2}
+#navbar-container{-webkit-border-end:1px solid #c6c9ce;-moz-border-end:1px solid #c6c9ce;background:#fff;bottom:0;display:block;left:0;position:fixed;top:0;width:216px;z-index:2}
 #navbar-container>ul{-webkit-user-select:none;list-style-type:none;margin:0;padding:0}
 .navbar-item{color:#373737;cursor:pointer;display:block;font-size:105%;outline:none;padding:7px 0;text-align:end;-webkit-padding-end:24px}
 .navbar-item-selected{background:#f5f5f5;color:#000}
@@ -136,8 +136,8 @@ header div{display:inline-block;vertical-align:middle}
 #Stocklist input[type=url]{width:368px;float:left}
 #Stocklist select{width:425px}
 /* example bar */
-@font-face{font-family:'Wallstreet';src:url('chrome-extension://__MSG_@@extension_id__/wallstreet.eot');src:url('chrome-extension://__MSG_@@extension_id__/wallstreet.ttf')format('truetype');font-weight:normal;font-style:normal}
-@font-face{font-family:'jd_lcd_roundedregular';src:url('chrome-extension://__MSG_@@extension_id__/jdlcdrounded-webfont.eot');src:url('chrome-extension://__MSG_@@extension_id__/jdlcdrounded-webfont.eot?#iefix') format('embedded-opentype'),url('chrome-extension://__MSG_@@extension_id__/jdlcdrounded-webfont.woff')format('woff'),url('chrome-extension://__MSG_@@extension_id__/jdlcdrounded-webfont.ttf')format('truetype'),url('chrome-extension://__MSG_@@extension_id__/jdlcdrounded-webfont.svg#jd_lcd_roundedregular')format('svg');font-weight:normal;font-style:normal}
+@font-face{font-family:'Wallstreet';src:url('/wallstreet.eot');src:url('/wallstreet.ttf')format('truetype');font-weight:normal;font-style:normal}
+@font-face{font-family:'jd_lcd_roundedregular';src:url('/jdlcdrounded-webfont.eot');src:url('/jdlcdrounded-webfont.eot?#iefix') format('embedded-opentype'),url('/jdlcdrounded-webfont.woff')format('woff'),url('/jdlcdrounded-webfont.ttf')format('truetype'),url('/jdlcdrounded-webfont.svg#jd_lcd_roundedregular')format('svg');font-weight:normal;font-style:normal}
 #examplebar{position:relative;background:black;color:white;height:30px;width:100%;box-shadow:#777 0px 0px 7px}
 #examplebar .world{-webkit-user-select:none;user-select:none;font-family:Webdings;cursor:pointer;left:0px;position: absolute;display:inline-block;width:63px;height:30px;color:rgba(255,255,255,.40);font-size:40px;padding-left:8px;vertical-align:top;top:-3px}
 #examplebar #favorite{-webkit-user-select:none;user-select:none;vertical-align:top;margin-left:80px;padding-left:5px;width:230px;display:inline-block;height:30px;position:absolute;line-height:1.15}

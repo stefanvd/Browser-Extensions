@@ -596,5 +596,21 @@
   "titelshortproper":{
     "message":"Show or hide the Proper Menubar",
     "description":"Show or hide the Proper Menubar"
+  },
+  "titelhovertextcolor":{
+    "message":"Text color on mouse hover",
+    "description":"Text color on mouse hover"
+  },
+  "deshovertextcolor":{
+    "message":"Change the font color when you mouse is over a link",
+    "description":"Change the font color when you mouse is over a link"
+  },
+  "titelhoverbackground":{
+    "message":"Background color on mouse hover",
+    "description":"Background color on mouse hover"
+  },
+  "deshoverbackground":{
+    "message":"Change the background color when you mouse is over a link",
+    "description":"Change the background color when you mouse is over a link"
   }
 }

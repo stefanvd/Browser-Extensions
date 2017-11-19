@@ -86,7 +86,13 @@ else{
                             if (zoomchrome == true) {
                                 chrome.tabs.setZoom(tab.id, editzoom);
                             } else {
-                                chrome.tabs.executeScript(tab.id, { code: "document.body.style.zoom=" + editzoom });
+                                // Check for transform support so that we can fallback otherwise
+                                var supportsZoom = 'zoom' in document.body.style;
+                                if(supportsZoom){
+                                    chrome.tabs.executeScript(tab.id,{code:"document.body.style.zoom=" + editzoom});
+                                }else{
+                                    chrome.tabs.executeScript(tab.id,{code:"document.body.style.transformOrigin='left top';document.body.style.transform='scale(" + editzoom + ")'"});
+                                }
                             }
                             if (badge == true) {
                                 chrome.browserAction.setBadgeBackgroundColor({ color: lightcolor });

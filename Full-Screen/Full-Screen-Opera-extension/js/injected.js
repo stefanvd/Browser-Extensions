@@ -26,7 +26,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-(ytCinema = {
+(fsCinema = {
 	players: {objs: [], active: 0},
 	messageEvent: new Event('StefanvdFullSreenMessage'),
 	playerStateChange: function (stateId) {
@@ -35,7 +35,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 		// console.log("Debug " + message.textContent + " " +stateIO);
 		if (message && message.textContent !== stateIO) {
 			message.textContent = stateIO;
-			message.dispatchEvent(ytCinema.messageEvent);
+			message.dispatchEvent(fsCinema.messageEvent);
 		}
 	},
 	initialize: function () {
@@ -73,7 +73,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				var interval = window.setInterval(function () {
 					if (youtubeplayer.pause || youtubeplayer.pauseVideo) {
 						window.clearInterval(interval);
-						if (youtubeplayer.pauseVideo) {youtubeplayer.addEventListener("onStateChange", "ytCinema.playerStateChange");}
+						if (youtubeplayer.pauseVideo) {youtubeplayer.addEventListener("onStateChange", "fsCinema.playerStateChange");}
 					}
 				}, 10);
 			}
@@ -92,7 +92,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 							p.addEventListener("play", ev.play);
 							p.addEventListener("ended", ev.ended);
 							o.players.objs.push(p);
-						}(this.ytCinema, htmlplayer[j]));
+						}(this.fsCinema, htmlplayer[j]));
 					}
 				};
 				
@@ -116,7 +116,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 						setPlayerEvents(htmlplayer);
 					};				
 
-				}(this.ytCinema));
+				}(this.fsCinema));
 			}
 		}
 	}

@@ -35,6 +35,10 @@
       "message": "Image go to full screen",
       "description": "Image go to full screen"
    },
+   "pagetitle": {
+      "message": "Page go to full screen",
+      "description": "Page go to full screen"
+   },
     "changelog": {
       "message": "Changelog",
       "description": "Changelog"

@@ -1,0 +1,314 @@
+{
+  "name":{
+    "message":"Zoom"
+  },
+  "description":{
+    "message":"Збільшуйте або зменшуйте вміст веб-сторінки, за допомогою кнопки масштабування, для більш комфортного перегляду і читання."
+  },
+  "pageatitle":{
+    "message":"Zoom"
+  },
+  "titledonatebutton":{
+    "message":"Підтримати проект"
+  },
+  "basicsettings":{
+    "message":"Основні налаштування"
+  },
+  "donatepromotext":{
+    "message":"Якби ви зробили пожертвування, не важливою на яку суму, я був би безмежно вдячний!"
+  },
+  "textfoot":{
+    "message":"Це програмне забезпечення поширюється на умовах ліцензії CC-HNU GPL. Щоб переглянути копію цієї ліцензії, відвідайте"
+  },
+  "titelsharebutton":{
+    "message":"Поділитися"
+  },
+  "lastchecked":{
+    "message":"Остання перевірка оновлень відбулась"
+  },
+  "version":{
+    "message":"Версія"
+  },
+  "changelog":{
+    "message":"Історія змін"
+  },
+  "reportbug":{
+    "message":"Повідомити про проблему"
+  },
+  "guide":{
+    "message":"Z Вступний посібник"
+  },
+  "productshare":{
+    "message":"Поділитись"
+  },
+  "titelallzoom":{
+    "message":"Все збільшити\/зменшити"
+  },
+  "desallzoom":{
+    "message":"Застосувати масштабування до всіх сторінок."
+  },
+  "pagehelp":{
+    "message":"допомога"
+  },
+  "pagestillloading":{
+    "message":"Сторінка все ще завантажується?"
+  },
+  "optionpagetitle":{
+    "message":"Zoom - Параметри"
+  },
+  "settings":{
+    "message":"Налаштування"
+  },
+  "translateme":{
+    "message":"Допомогти з перекладом"
+  },
+  "sharemenusharetitle":{
+    "message":"Поділитися з друзями"
+  },
+  "sharemenuwelcomeguidetitle":{
+    "message":"Вступний посібник"
+  },
+  "sharemenutellafriend":{
+    "message":"Розповісти друзям"
+  },
+  "sharemenusendatweet":{
+    "message":"Твітнути"
+  },
+  "sharemenupostonfacebook":{
+    "message":"Розповісти у Facebook"
+  },
+  "sharemenupostongoogleplus":{
+    "message":"Розповісти у Google+"
+  },
+  "sharemenuratetitle":{
+    "message":"Оцінити розширення"
+  },
+  "sharemenudonatetitle":{
+    "message":"Підтримати розробку"
+  },
+  "advancedoptions":{
+    "message":"Розширені налаштування"
+  },
+  "help":{
+    "message":"Допомога"
+  },
+  "about":{
+    "message":"Про програму"
+  },
+  "upgradefbshare":{
+    "message":"Поділитися на Facebook"
+  },
+  "upgradetwshare":{
+    "message":"Твітнути"
+  },
+  "ratetitle":{
+    "message":"Будь-ласка, оцініть розширення і напишіть відгук"
+  },
+  "ratedes":{
+    "message":"І нехай кожен дізнається про це чудове розширення!"
+  },
+  "rateitema":{
+    "message":"Поставити 5 зірочок"
+  },
+  "titelreset":{
+    "message":"Скинути налаштування"
+  },
+  "resetbrowserextension":{
+    "message":"Скинути налаштування Zoom"
+  },
+  "areyouhappy":{
+    "message":"Вам сподобався Zoom?"
+  },
+  "tellothers":{
+    "message":"Гарантуємо, ваша думка буде почута"
+  },
+  "nothanks":{
+    "message":"Ні, дякую"
+  },
+  "writeareview":{
+    "message":"Написати відгук"
+  },
+  "titeldownloadaaupgrade":{
+    "message":"Дозволяє сфокусуватись на вибраних зображеннях, які будуть відображені на сайті у вигляді галереї."
+  },
+  "titeldownloadupgradepropermenubar":{
+    "message":"Додає чорну панель меню на веб-сайті Google."
+  },
+  "titeldownloadupgradefinancetoolbar":{
+    "message":"Показує в режимі реального часу інформацію про фондовий ринок."
+  },
+  "titeldownloadupgradefullscreen":{
+    "message":"With this extension you can easy go to full screen. This for image, video and webpage."
+  },
+  "titeldownloadupgradedatetoday":{
+    "message":"This extension show the analog clock in the menu bar. When you click on the icon, it shows you the current time; month and day of the week."
+  },
+  "desrememberpage":{
+    "message":"Якщо цей параметр активовано, то опцію запам'ятати сторінку показано не буде."
+  },
+  "titelrememberpage":{
+    "message":"Запам'ятати сторінку"
+  },
+  "longdonatetext":{
+    "message":"I'd truly appreciate if you can donate me to keep this browser extension alive for other new users. Whether it's $$1 or $$100, your support is immensely appreciated!"
+  },
+  "enjoyshare":{
+    "message":"Enjoy this extension and share it with others who you think will appreciate it."
+  },
+  "titeldownloadbutton":{
+    "message":"Завантажити покращення!"
+  },
+  "titelsync":{
+    "message":"Синхронізація"
+  },
+  "titelsyncbrowser":{
+    "message":"Синхронізувати налаштування розширення з іншим браузером."
+  },
+  "titeldownloadupgrade":{
+    "message":"Вся сторінка буде затемнена для комфортного перегляду відео (як у кінотеатрі)."
+  },
+  "desproject":{
+    "message":"проект"
+  },
+  "desbrowserextension":{
+    "message":"розширення браузера"
+  },
+  "titelwebsite":{
+    "message":"Веб-сайт"
+  },
+  "titeldeveloper":{
+    "message":"Розробник"
+  },
+  "rememberrate":{
+    "message":"Оцінка"
+  },
+  "showremember":{
+    "message":"Опція Запам'ятати Сторінку не відображається в меню Параметри."
+  },
+  "skipremember":{
+    "message":"Пропусти зараз і відкрити сторінку налаштувань"
+  },
+  "titelrightsreserved":{
+    "message":"Деякі права захищено."
+  },
+  "friendlyremember":{
+    "message":"Доброзичливе нагадування..."
+  },
+  "websitezoomvalue":{
+    "message":"Zoom value in percent (e.g. 80%)"
+  },
+  "titeldefaultzoomvalue":{
+    "message":"Default Zoom Level"
+  },
+  "desdefaultzoomvalue":{
+    "message":"Choose your default zoom level"
+  },
+  "titelcontextmenu":{
+    "message":"Контекстове меню"
+  },
+  "descontextmenu":{
+    "message":"Enable the right click menu to zoom in or out the web page"
+  },
+  "titelbadge":{
+    "message":"Значок"
+  },
+  "titelbadgecolor":{
+    "message":"Choose your background badge color"
+  },
+  "desbadge":{
+    "message":"Show the current zoom value in the Zoom Extension icon"
+  },
+  "titelzoomsteps":{
+    "message":"Кроки"
+  },
+  "deszoomsteps":{
+    "message":"The zoom steps for the next value"
+  },
+  "btnreset":{
+    "message":"Скинути"
+  },
+  "titelzoomengine":{
+    "message":"Рушій Zoom"
+  },
+  "deszoomchrome":{
+    "message":"Use the built-in browser zoom"
+  },
+  "deszoomweb":{
+    "message":"Use the web CSS zoom"
+  },
+  "welcomebasictext":{
+    "message":"Welcome on the Zoom Browser extension. Here a brief video about how to use the Zoom extension in your web browser."
+  },
+  "promotitle":{
+    "message":"Tip of the day"
+  },
+  "promotext":{
+    "message":"Want to use something new and amazing for your web browser? Try the $product$ Browser extension.",
+    "placeholders":{
+      "product":{
+        "content":"$1",
+        "example":"Turn Off the Lights"
+      }
+    }
+  },
+  "promocalltoaction":{
+    "message":"Download it Now!"
+  },
+  "donatetext":{
+    "message":"Due to the very small number of donations the project may be closed. Please support further development with a Donation."
+  },
+  "donatecalltoaction":{
+    "message":"Фінансово підтримати!"
+  },
+  "titelsharethis":{
+    "message":"Поширити це:"
+  },
+  "titelwelcome":{
+    "message":"Ласкаво просимо"
+  },
+  "titelupgrade":{
+    "message":"Апґрейд"
+  },
+  "titelzoomdoubleclick":{
+    "message":"Button action"
+  },
+  "deszoomdoubleclick":{
+    "message":"Enable the option for double click to zooms in and a single click to zooms out the web page"
+  },
+  "desremyoutube":{
+    "message":"Subscribe on YouTube"
+  },
+  "desremfacebook":{
+    "message":"Recommend this on Facebook"
+  },
+  "titelzoommousescroll":{
+    "message":"Mouse Wheel"
+  },
+  "deszoommousescroll":{
+    "message":"Hold the 'mouse button', and scroll up or down to change the zoom level"
+  },
+  "deszoommouseleft":{
+    "message":"Left mouse click"
+  },
+  "deszoommouseright":{
+    "message":"Right mouse click"
+  },
+  "deszoommousedirectionup":{
+    "message":"Counter clockwise scroll"
+  },
+  "deszoommousedirectiondown":{
+    "message":"Clockwise scroll"
+  },
+  "titellargepopup":{
+    "message":"Large window"
+  },
+  "deslargepopup":{
+    "message":"Show you a large popup window"
+  },
+  "deszoombydomain":{
+    "message":"Zoom at domain level"
+  },
+  "deszoombypage":{
+    "message":"Zoom at web page level"
+  }
+}

@@ -151,6 +151,7 @@ var kmax = j;
 // button left
 var newaagalleryleft = document.createElement('div');
 newaagalleryleft.setAttribute('id','stefanvdaagallerybuttonleft');
+newaagalleryleft.style.backgroundImage = "url('"+chrome.extension.getURL('/images/arrow.png')+"')";
 newaagalleryleft.style.left = "20px";
 newaagalleryleft.style.top = (screenheight/2) - 42 + "px";
 newaagalleryleft.addEventListener("click", function() {
@@ -164,6 +165,7 @@ document.body.appendChild(newaagalleryleft);
 // button right
 var newaagalleryright = document.createElement('div');
 newaagalleryright.setAttribute('id','stefanvdaagallerybuttonright');
+newaagalleryright.style.backgroundImage = "url('"+chrome.extension.getURL('/images/arrow.png')+"')";
 newaagalleryright.style.right = "20px";
 newaagalleryright.style.top = (screenheight/2) - 42 + "px";
 newaagalleryright.addEventListener("click", function() {

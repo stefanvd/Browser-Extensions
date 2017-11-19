@@ -116,8 +116,7 @@ var child2 = chrome.contextMenus.create({"title": sharemenupostongoogleplus, "id
 
 chrome.contextMenus.onClicked.addListener(onClickHandler);
 
-try{ chrome.runtime.setUninstallUrl(linkuninstall); }
-catch(e){}
+chrome.runtime.setUninstallURL(linkuninstall);
 
 // convert from old storage to new
 if(localStorage["firstRun"] == "false"){ chrome.storage.sync.set({"firstRun": false}); }

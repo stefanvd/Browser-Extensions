@@ -30,7 +30,7 @@ function $(id) { return document.getElementById(id); }
 // settings
 var default_opacity = null, interval = null, fadein = null, fadeout = null, lightcolor = null, ambilight = null, ambilightrangeblurradius = null, ambilightrangespreadradius = null, ambilightfixcolor = null, ambilight4color = null, ambilightvarcolor = null, ambilightcolorhex = null, ambilight1colorhex = null, ambilight2colorhex = null, ambilight3colorhex = null, ambilight4colorhex = null, sharebar = null, count = null, slideshow = null, slideshowrefresh = null, atmosvivid = null;
 
-chrome.storage.local.get(['interval', 'fadein', 'fadeout', 'lightcolor', 'ambilight', 'ambilightrangeblurradius', 'ambilightrangespreadradius', 'ambilightfixcolor', 'ambilightvarcolor', 'ambilightcolorhex', 'ambilight4color', 'ambilight1colorhex', 'ambilight2colorhex', 'ambilight3colorhex', 'ambilight4colorhex', 'sharebar', 'atmosvivid'], function(response){
+chrome.storage.sync.get(['interval', 'fadein', 'fadeout', 'lightcolor', 'ambilight', 'ambilightrangeblurradius', 'ambilightrangespreadradius', 'ambilightfixcolor', 'ambilightvarcolor', 'ambilightcolorhex', 'ambilight4color', 'ambilight1colorhex', 'ambilight2colorhex', 'ambilight3colorhex', 'ambilight4colorhex', 'sharebar', 'atmosvivid'], function(response){
 interval = response['interval'];if(interval == null)interval = 80; default_opacity = interval; // default interval 80%
 fadein = response['fadein'];if(fadein == null)fadein = true;
 fadeout = response['fadeout'];if(fadeout == null)fadeout = true;
@@ -151,6 +151,7 @@ var kmax = j;
 // button left
 var newaagalleryleft = document.createElement('div');
 newaagalleryleft.setAttribute('id','stefanvdaagallerybuttonleft');
+newaagalleryleft.style.backgroundImage = "url('"+chrome.extension.getURL('/images/arrow.png')+"')";
 newaagalleryleft.style.left = "20px";
 newaagalleryleft.style.top = (screenheight/2) - 42 + "px";
 newaagalleryleft.addEventListener("click", function() {
@@ -164,6 +165,7 @@ document.body.appendChild(newaagalleryleft);
 // button right
 var newaagalleryright = document.createElement('div');
 newaagalleryright.setAttribute('id','stefanvdaagallerybuttonright');
+newaagalleryright.style.backgroundImage = "url('"+chrome.extension.getURL('/images/arrow.png')+"')";
 newaagalleryright.style.right = "20px";
 newaagalleryright.style.top = (screenheight/2) - 42 + "px";
 newaagalleryright.addEventListener("click", function() {

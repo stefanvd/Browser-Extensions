@@ -30,6 +30,24 @@ function $(id) { return document.getElementById(id); }
 // settings
 var marqueebehaviour = null, direction = null, scrollamount = null, japan = null, xminutes = null, excludedstock = null, favoritestock = null, favo1 = null, favo2 = null, favo3 = null, favo4 = null, getinfovaluestock = null, getinfovaluepercent = null, getinfovaluemc = null, getfontfamily = null, getfontsize = null, lightcolor = null, redcolor = null, greencolor = null, textcolor = null;
 
+// inject CSS for the font family
+try{
+var totlvideovolume = "@font-face{font-family:'Wallstreet';src:url('"+chrome.runtime.getURL('wallstreet.eot')+"');src:url('"+chrome.runtime.getURL('wallstreet.ttf')+"')format('truetype');font-weight:normal;font-style:normal}@font-face{font-family:'jd_lcd_roundedregular';src:url('"+chrome.runtime.getURL('jdlcdrounded-webfont.eot')+"');src:url('"+chrome.runtime.getURL('jdlcdrounded-webfont.eot')+"?#iefix') format('embedded-opentype'),url('"+chrome.runtime.getURL('jdlcdrounded-webfont.woff')+"')format('woff'),url('"+chrome.runtime.getURL('jdlcdrounded-webfont.ttf')+"')format('truetype'),url('"+chrome.runtime.getURL('jdlcdrounded-webfont.svg')+"#jd_lcd_roundedregular')format('svg');font-weight:normal;font-style:normal}";
+
+if($("cssfinancetoolbar")){
+ var elem = document.getElementById("cssfinancetoolbar");
+ elem.parentElement.removeChild(elem);
+}
+
+var css = document.createElement('style');
+css.setAttribute('id','cssfinancetoolbar');
+css.type = 'text/css';
+css.appendChild(document.createTextNode(totlvideovolume));
+document.getElementsByTagName("head")[0].appendChild(css);
+
+}
+catch(e) {}
+
 /////////// Option page settings
 chrome.storage.sync.get(['marqueebehaviour','direction','scrollamount','japan','xminutes','favoritestock','favo1','favo2','favo3','favo4','getinfovaluestock','getinfovaluepercent','getinfovaluemc','getfontfamily','getfontsize','excludedstock','countremember','optionskipremember','lightcolor','redcolor','greencolor','textcolor'], function(items){
 		marqueebehaviour = items['marqueebehaviour'];if(marqueebehaviour == null)marqueebehaviour = 'scroll';
@@ -213,7 +231,7 @@ if(typeof excludedstock == "string") {
 			newfinitembox.style.fontSize = getfontsize + "px";
 			newfinframe.appendChild(newfinitembox);			
 			var newfinitemboxa = document.createElement('a');
-			newfinitemboxa.setAttribute('href','http://finance.yahoo.com/q?s=' + encodeURIComponent(nameoutput) + '');
+			newfinitemboxa.setAttribute('href','https://finance.yahoo.com/q?s=' + encodeURIComponent(nameoutput) + '');
 			newfinitemboxa.setAttribute('target','_blank');
 			newfinitemboxa.style.fontFamily = getfontfamily;
 			newfinitemboxa.style.fontSize = getfontsize + "px";

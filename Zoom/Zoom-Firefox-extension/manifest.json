@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "__MSG_name__",
-  "version": "2.1.0.9",
+  "version": "2.3.11.0",
   "short_name": "Zoom",   
   "description": "__MSG_description__",
   "homepage_url": "https://www.stefanvd.net",    
@@ -12,7 +12,7 @@
            },
   "default_locale": "en",
   "browser_action": {
-      "browser_style": true,
+      "browser_style": false,
           "default_icon": {
             "19": "icons/icon1.png",
             "38": "icons/icon1@2x.png"
@@ -23,18 +23,35 @@
   "background": {
     "page": "background.html"
   },
-  "content_security_policy": "script-src 'self' https://ssl.google-analytics.com https://platform.twitter.com https://apis.google.com; img-src *; object-src 'self'",
-    "commands": {
+  "commands": {
     "_execute_browser_action": {
       "suggested_key": {
         "default": "Ctrl+Shift+Z",
         "mac": "MacCtrl+Shift+Z"
       }
+    },
+    "toggle-feature-zoomin": {
+            "suggested_key": {
+              "default": "Ctrl+Shift+1",
+              "mac": "MacCtrl+Shift+1"
+            },
+            "description": "__MSG_titleshortzoomin__"
+    },
+    "toggle-feature-zoomout": {
+            "suggested_key": {
+              "default": "Ctrl+Shift+2",
+              "mac": "MacCtrl+Shift+2"
+            },
+            "description": "__MSG_titleshortzoomout__"
+    },
+    "toggle-feature-zoomreset": {
+            "suggested_key": {
+              "default": "Ctrl+Shift+0",
+              "mac": "MacCtrl+Shift+0"
+            },
+            "description": "__MSG_titleshortzoomreset__"
     }
   },
-  "web_accessible_resources": [
-    "icons/icon16.png"
-  ],
   "content_scripts": [
     {
       "matches": ["*://*/*"],
@@ -50,7 +67,7 @@
   "applications": {
     "gecko": {
       "id": "zoom@stefanvd.net",
-      "strict_min_version": "49.0a1"
+      "strict_min_version": "54.0"
     }
   }
 }
