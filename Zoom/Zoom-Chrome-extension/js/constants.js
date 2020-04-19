@@ -27,4 +27,4 @@ var zoomwebsite = "https://www.stefanvd.net/project/zoom/browser/";
 var browsernewtab = "chrome://newtab/";
 var browserstore = "https://chrome.google.com";
 var linkyoutube = "https://www.youtube.com/c/stefanvandamme?sub_confirmation=1";
-var devmode = true;
+var devmode = false;
