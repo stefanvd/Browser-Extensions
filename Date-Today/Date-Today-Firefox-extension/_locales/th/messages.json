@@ -1,7 +1,22 @@
 ﻿{
   "name": {
-    "message": "Date Today"
+     "message": "Date Today"
   },
+  "namechrome": {
+   "message": "Date Today for Google Chrome"
+ },
+ "namefirefox": {
+   "message": "Date Today for Firefox"
+ },
+ "nameopera": {
+   "message": "Date Today for Opera"
+ },
+ "nameedge": {
+   "message": "Date Today for Microsoft Edge"
+ },
+ "namesafari": {
+   "message": "Date Today for Safari"
+ },
   "description": {
     "message": "The best clock to see in one glance the current day and time. With an option to see the digital clock in the browser toolbar."
   },

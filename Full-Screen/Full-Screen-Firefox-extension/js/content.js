@@ -3,7 +3,7 @@
 
 Full Screen
 Go full screen with one click on the button.
-Copyright (C) 2016 Stefan vd
+Copyright (C) 2017 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -30,16 +30,16 @@ function $(id) { return document.getElementById(id); }
 // settings
 var contextmenus = null, autofullscreen = null;
 
-chrome.storage.local.get(['contextmenus','autofullscreen'], function(items){
+chrome.storage.sync.get(['contextmenus','autofullscreen'], function(items){
 contextmenus = items['contextmenus'];if(contextmenus == null)contextmenus = true; 
-autofullscreen = items['autofullscreen'];
+autofullscreen = items['autofullscreen'];if(autofullscreen == null)autofullscreen = false; 
 
 // auto bring the html5 or youtube video to fullscreen
 if(autofullscreen == true) {
-/* inject script for autofullscreen */
-try {
-var script = document.createElement("script");script.type = "text/javascript";script.src = chrome.extension.getURL("/js/injected.js");document.getElementsByTagName("head")[0].appendChild(script);
-} catch(e) {}
+// inject script for autofullscreen
+if(autofullscreen == true){
+	chrome.runtime.sendMessage({name: 'sendautoplay'});
+}
 
 var gracePeriod = 250, lastEvent = null, timeout = null;
 
@@ -112,44 +112,70 @@ var gracePeriod = 250, lastEvent = null, timeout = null;
 			}
 		}
 	}
-	function shadesOff(player) {
-		if (player !== null) {
-				var fullscreenElement = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement;
-				var fullscreenEnabled = document.fullscreenEnabled || document.mozFullScreenEnabled || document.webkitFullscreenEnabled;
 
-			if (window.location.href.match(/((http:\/\/(.*youtube\.com\/.*))|(https:\/\/(.*youtube\.com\/.*)))/i)){
-				if(document.exitFullscreen) {
-					document.exitFullscreen();
-				} else if(document.webkitExitFullscreen) {
-					document.webkitExitFullscreen();
-				}
-			}else{
-				if (!fullscreenEnabled) {}
-				else {
-					if(document.exitFullscreen) {
-					document.exitFullscreen();
-					player.style.cssText="position: relative;width: 100%!important;height: 100%!important;";
-					} else if(document.webkitExitFullscreen) {
-					document.webkitExitFullscreen();
-					player.style.cssText="position: relative;width: 100%!important;height: 100%!important;";
+	window.addEventListener("keyup", function(e){ if(e.keyCode == 27){if(videowindow == true){windowfullaction();}} }, false);
+	var videowindow = false;
+	function windowfullaction(thatplayer){
+	if(document.getElementsByTagName('video')[0]){
+			if(window.location.href.match(/((http:\/\/(.*youtube\.com\/.*))|(https:\/\/(.*youtube\.com\/.*)))/i)){
+			// YouTube website
+				var ytplayerapi = document.getElementById("player-api");
+				var playercontainer = document.getElementById("player-container");
+
+				var pagemanager = $('page-manager');
+				if(pagemanager)$('page-manager').style.cssText = 'z-index:auto !important';
+
+				if(playercontainer){
+					var stefanvdregularhtmlplayer = document.getElementsByClassName('stefanvdvideowindow')[0];
+					var stefanyoutubecontrols = document.getElementsByClassName('ytp-chrome-bottom')[0];
+					if(stefanvdregularhtmlplayer){
+						playercontainer.classList.remove("stefanvdvideowindow");
+						document.getElementsByTagName('video')[0].classList.remove("stefanvdvideowindow");
+						videowindow = false;
+					} else {
+						if(document.getElementsByTagName('video')[0].paused == false){
+						playercontainer.classList.add('stefanvdvideowindow');
+						document.getElementsByTagName('video')[0].classList.add('stefanvdvideowindow');
+						stefanyoutubecontrols.style.cssText = "width:100% !important";
+						videowindow = true;
+						}
 					}
 				}
+				else if(ytplayerapi){
+					var stefanvdregularhtmlplayer = document.getElementsByClassName('stefanvdvideowindow')[0];
+					var stefanyoutubecontrols = document.getElementsByClassName('ytp-chrome-bottom')[0];
+					if(stefanvdregularhtmlplayer){
+						ytplayerapi.classList.remove("stefanvdvideowindow");
+						document.getElementsByTagName('video')[0].classList.remove("stefanvdvideowindow");
+						videowindow = false;
+					} else {
+						if(document.getElementsByTagName('video')[0].paused == false){
+						ytplayerapi.classList.add('stefanvdvideowindow');
+						document.getElementsByTagName('video')[0].classList.add('stefanvdvideowindow');
+						stefanyoutubecontrols.style.width = "98%";
+						videowindow = true;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	function shadesOff(player) {
+		if (player !== null) {
+			if (window.location.href.match(/((http:\/\/(.*youtube\.com\/.*))|(https:\/\/(.*youtube\.com\/.*)))/i)){
+				windowfullaction(player);
+			}else{
+				player.classList.remove("stefanvdvideowindow");
 			}
 		}
 	}
 	function shadesOn(player) {
 		if (player !== null) {
 			if (window.location.href.match(/((http:\/\/(.*youtube\.com\/.*))|(https:\/\/(.*youtube\.com\/.*)))/i)){
-				// send to background
-				chrome.runtime.sendMessage({name: 'youtubefullscreen'});
+				windowfullaction(player);
 			}else{
-				if(player.requestFullScreen){
-				player.requestFullScreen();
-				player.style.cssText="position: relative;width: " + screen.width + "px!important;height: " + screen.height +"px!important;";
-				} else if(player.webkitRequestFullscreen){
-				player.webkitRequestFullscreen();
-				player.style.cssText="position: relative;width: " + screen.width + "px!important;height: " + screen.height +"px!important;";
-				}
+				player.classList.add('stefanvdvideowindow');
 			}
 		}
 	}
@@ -200,7 +226,7 @@ function exitFullscreen() {
 }
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendMessage) {
-	if (request.action == "gofullscreen") {
+	if (request.name == "gofullscreen") {
 		var elem = last_target;
 		var fullscreenElement = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement;
 		// if it get the "hide" command from the background page
@@ -216,4 +242,5 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendMessage) {
 				exitFullscreen();
 		}
 	}
+	else if(request.name == "injectvideostatus"){var script = document.createElement("script");script.type = "text/javascript";script.textContent = request.message;document.getElementsByTagName("head")[0].appendChild(script);}
 })

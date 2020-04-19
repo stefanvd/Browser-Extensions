@@ -2,8 +2,8 @@
 /*
 
 Proper Menubar
-Add the black menubar below the address bar. To get easy and fast access to all your Google products.
-Copyright (C) 2016 Stefan vd
+Add the best menu bar to get easy and fast access to all your useful browser options and internet products!
+Copyright (C) 2019 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or

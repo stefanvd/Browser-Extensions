@@ -1,314 +1,112 @@
 {
-  "name":{
-    "message":"Zoom"
-  },
-  "description":{
-    "message":"Увећај или умањи приказ веб садржаја помоћу дугмета за зумирање страница ради угоднијег читања."
-  },
-  "pageatitle":{
-    "message":"Zoom"
-  },
-  "titledonatebutton":{
-    "message":"Донирај"
-  },
-  "basicsettings":{
-    "message":"Основно"
-  },
-  "donatepromotext":{
-    "message":"Ако сте у могућности да донирате били који новчани износ, бићу вам неизмерно захвалан!"
-  },
-  "textfoot":{
-    "message":"За овај софтвер важи CC-GNU GPL лиценца. Да бисте прочитали садржај ове лиценце, посетите"
-  },
-  "titelsharebutton":{
-    "message":"Дељење"
-  },
-  "lastchecked":{
-    "message":"Датум провере најновије верзије"
-  },
-  "version":{
-    "message":"Верзија"
-  },
-  "changelog":{
-    "message":"Списак измена"
-  },
-  "reportbug":{
-    "message":"Пријави проблем"
-  },
-  "guide":{
-    "message":"Z Уводни водич"
-  },
-  "productshare":{
-    "message":"Подели"
-  },
-  "titelallzoom":{
-    "message":"Сва зумирања"
-  },
-  "desallzoom":{
-    "message":"Примени ниво зумирања на свим страницама."
-  },
-  "pagehelp":{
-    "message":"помоћ"
-  },
-  "pagestillloading":{
-    "message":"Страница се и даље учитава?"
-  },
-  "optionpagetitle":{
-    "message":"Zoom - Опције"
-  },
-  "settings":{
-    "message":"Подешавања"
-  },
-  "translateme":{
-    "message":"Помозите у превођењу"
-  },
-  "sharemenusharetitle":{
-    "message":"Подели ово"
-  },
-  "sharemenuwelcomeguidetitle":{
-    "message":"Уводни водич"
-  },
-  "sharemenutellafriend":{
-    "message":"Реци пријатељу"
-  },
-  "sharemenusendatweet":{
-    "message":"Пошаљи твит"
-  },
-  "sharemenupostonfacebook":{
-    "message":"Објави на Фејсбуку"
-  },
-  "sharemenupostongoogleplus":{
-    "message":"Објави на Google+"
-  },
-  "sharemenuratetitle":{
-    "message":"Оцени овај додатак"
-  },
-  "sharemenudonatetitle":{
-    "message":"Подржи развој"
-  },
-  "advancedoptions":{
-    "message":"Напредне опције"
-  },
-  "help":{
-    "message":"Помоћ"
-  },
-  "about":{
-    "message":"О програму"
-  },
-  "upgradefbshare":{
-    "message":"Подели на Фејсбуку"
-  },
-  "upgradetwshare":{
-    "message":"Твитуј"
-  },
-  "ratetitle":{
-    "message":"Оцените и критикујте мој додатак"
-  },
-  "ratedes":{
-    "message":"И нек' свако зна за овај сјајни додатак!"
-  },
-  "rateitema":{
-    "message":"Оцените са 5 звездица"
-  },
-  "titelreset":{
-    "message":"Враћање подешавања"
-  },
-  "resetbrowserextension":{
-    "message":"Врати Zoom подешавања на почетна"
-  },
-  "areyouhappy":{
-    "message":"Да ли сте задовољни програмом Zoom?"
-  },
-  "tellothers":{
-    "message":"Ваше мишљење се рачуна"
-  },
-  "nothanks":{
-    "message":"Не, хвала"
-  },
-  "writeareview":{
-    "message":"Напишите рецензију"
-  },
-  "titeldownloadaaupgrade":{
-    "message":"Надоградња додаје подршку фокусирања одабраних слика и даје могућност галеријског приказа слика на сајту."
-  },
-  "titeldownloadupgradepropermenubar":{
-    "message":"Додаје поново црну траку менија на Google веб сајту."
-  },
-  "titeldownloadupgradefinancetoolbar":{
-    "message":"Ово приказује информације са берзе у реалном времену."
-  },
-  "titeldownloadupgradefullscreen":{
-    "message":"With this extension you can easy go to full screen. This for image, video and webpage."
-  },
-  "titeldownloadupgradedatetoday":{
-    "message":"This extension show the analog clock in the menu bar. When you click on the icon, it shows you the current time; month and day of the week."
-  },
-  "desrememberpage":{
-    "message":"Ако је ова опција омогућена, подсетник се не приказује."
-  },
-  "titelrememberpage":{
-    "message":"Подсетник"
-  },
-  "longdonatetext":{
-    "message":"I'd truly appreciate if you can donate me to keep this browser extension alive for other new users. Whether it's $$1 or $$100, your support is immensely appreciated!"
-  },
-  "enjoyshare":{
-    "message":"Enjoy this extension and share it with others who you think will appreciate it."
-  },
-  "titeldownloadbutton":{
-    "message":"Преузми ову надоградњу!"
-  },
-  "titelsync":{
-    "message":"Синхронизација"
-  },
-  "titelsyncbrowser":{
-    "message":"Синхронизујте подешавања проширења са вашим другим прегледачем."
-  },
-  "titeldownloadupgrade":{
-    "message":"Цела страница ће се замрачити и омогућити вам гледање видео снимка као да сте у биоскопу."
-  },
-  "desproject":{
-    "message":"пројекат"
-  },
-  "desbrowserextension":{
-    "message":"проширење прегледача"
-  },
-  "titelwebsite":{
-    "message":"Веб сајт"
-  },
-  "titeldeveloper":{
-    "message":"Програмер"
-  },
-  "rememberrate":{
-    "message":"Оцени"
-  },
-  "showremember":{
-    "message":"Не приказуј подсетник када отворим опције."
-  },
-  "skipremember":{
-    "message":"Прескочи ово и одмах отвори страницу опција"
-  },
-  "titelrightsreserved":{
-    "message":"Нека права задржана."
-  },
-  "friendlyremember":{
-    "message":"Пријатељски подсетник..."
-  },
-  "websitezoomvalue":{
-    "message":"Zoom value in percent (e.g. 80%)"
-  },
-  "titeldefaultzoomvalue":{
-    "message":"Подразумевани ниво зумирања"
-  },
-  "desdefaultzoomvalue":{
-    "message":"Choose your default zoom level"
-  },
-  "titelcontextmenu":{
-    "message":"Контекстни мени"
-  },
-  "descontextmenu":{
-    "message":"Enable the right click menu to zoom in or out the web page"
-  },
-  "titelbadge":{
-    "message":"Badge"
-  },
-  "titelbadgecolor":{
-    "message":"Choose your background badge color"
-  },
-  "desbadge":{
-    "message":"Show the current zoom value in the Zoom Extension icon"
-  },
-  "titelzoomsteps":{
-    "message":"Steps"
-  },
-  "deszoomsteps":{
-    "message":"The zoom steps for the next value"
-  },
-  "btnreset":{
-    "message":"Reset"
-  },
-  "titelzoomengine":{
-    "message":"Zoom Engine"
-  },
-  "deszoomchrome":{
-    "message":"Use the built-in browser zoom"
-  },
-  "deszoomweb":{
-    "message":"Use the web CSS zoom"
-  },
-  "welcomebasictext":{
-    "message":"Welcome on the Zoom Browser extension. Here a brief video about how to use the Zoom extension in your web browser."
-  },
-  "promotitle":{
-    "message":"Cавет дана"
-  },
-  "promotext":{
-    "message":"Want to use something new and amazing for your web browser? Try the $product$ Browser extension.",
-    "placeholders":{
-      "product":{
-        "content":"$1",
-        "example":"Turn Off the Lights"
-      }
-    }
-  },
-  "promocalltoaction":{
-    "message":"Download it Now!"
-  },
-  "donatetext":{
-    "message":"Due to the very small number of donations the project may be closed. Please support further development with a Donation."
-  },
-  "donatecalltoaction":{
-    "message":"Donate Now!"
-  },
-  "titelsharethis":{
-    "message":"Share this:"
-  },
-  "titelwelcome":{
-    "message":"Welcome and Hello"
-  },
-  "titelupgrade":{
-    "message":"Upgrade"
-  },
-  "titelzoomdoubleclick":{
-    "message":"Button action"
-  },
-  "deszoomdoubleclick":{
-    "message":"Enable the option for double click to zooms in and a single click to zooms out the web page"
-  },
-  "desremyoutube":{
-    "message":"Subscribe on YouTube"
-  },
-  "desremfacebook":{
-    "message":"Recommend this on Facebook"
-  },
-  "titelzoommousescroll":{
-    "message":"Mouse Wheel"
-  },
-  "deszoommousescroll":{
-    "message":"Hold the 'mouse button', and scroll up or down to change the zoom level"
-  },
-  "deszoommouseleft":{
-    "message":"Left mouse click"
-  },
-  "deszoommouseright":{
-    "message":"Right mouse click"
-  },
-  "deszoommousedirectionup":{
-    "message":"Counter clockwise scroll"
-  },
-  "deszoommousedirectiondown":{
-    "message":"Clockwise scroll"
-  },
-  "titellargepopup":{
-    "message":"Large window"
-  },
-  "deslargepopup":{
-    "message":"Show you a large popup window"
-  },
-  "deszoombydomain":{
-    "message":"Zoom at domain level"
-  },
-  "deszoombypage":{
-    "message":"Zoom at web page level"
-  }
+    "name": {"message": "Zoom"},
+    "namechrome": {"message": "Zoom for Google Chrome"},
+    "namefirefox": {"message": "Zoom for Firefox"},
+    "nameopera": {"message": "Zoom for Opera"},
+    "nameedge": {"message": "Zoom for Microsoft Edge"},
+    "namesafari": {"message": "Zoom for Safari"},
+    "description": {"message": "Увећај или умањи приказ веб садржаја помоћу дугмета за зумирање страница ради угоднијег читања."},
+    "pageatitle": {"message": "Zoom"},
+    "titledonatebutton": {"message": "Донирај"},
+    "basicsettings": {"message": "Основно"},
+    "donatepromotext": {"message": "Ако сте у могућности да донирате били који новчани износ, бићу вам неизмерно захвалан!"},
+    "textfoot": {"message": "За овај софтвер важи CC-GNU GPL лиценца. Да бисте прочитали садржај ове лиценце, посетите"},
+    "titelsharebutton": {"message": "Дељење"},
+    "lastchecked": {"message": "Датум провере најновије верзије"},
+    "version": {"message": "Верзија"},
+    "changelog": {"message": "Списак измена"},
+    "reportbug": {"message": "Пријави проблем"},
+    "guide": {"message": "Z Уводни водич"},
+    "productshare": {"message": "Подели"},
+    "titelallzoom": {"message": "Сва зумирања"},
+    "desallzoom": {"message": "Примени ниво зумирања на свим страницама."},
+    "pagehelp": {"message": "помоћ"},
+    "pagestillloading": {"message": "Страница се и даље учитава?"},
+    "optionpagetitle": {"message": "Zoom - Опције"},
+    "settings": {"message": "Подешавања"},
+    "translateme": {"message": "Помозите у превођењу"},
+    "sharemenusharetitle": {"message": "Подели ово"},
+    "sharemenuwelcomeguidetitle": {"message": "Уводни водич"},
+    "sharemenutellafriend": {"message": "Реци пријатељу"},
+    "sharemenusendatweet": {"message": "Пошаљи твит"},
+    "sharemenupostonfacebook": {"message": "Објави на Фејсбуку"},
+    "sharemenupostongoogleplus": {"message": "Објави на Google+"},
+    "sharemenuratetitle": {"message": "Оцени овај додатак"},
+    "sharemenudonatetitle": {"message": "Подржи развој"},
+    "advancedoptions": {"message": "Напредне опције"},
+    "help": {"message": "Помоћ"},
+    "about": {"message": "О програму"},
+    "upgradefbshare": {"message": "Подели на Фејсбуку"},
+    "upgradetwshare": {"message": "Твитуј"},
+    "ratetitle": {"message": "Оцените и критикујте мој додатак"},
+    "ratedes": {"message": "И нек' свако зна за овај сјајни додатак!"},
+    "rateitema": {"message": "Оцените са 5 звездица"},
+    "titelreset": {"message": "Враћање подешавања"},
+    "resetbrowserextension": {"message": "Врати Zoom подешавања на почетна"},
+    "areyouhappy": {"message": "Да ли сте задовољни програмом Zoom?"},
+    "tellothers": {"message": "Ваше мишљење се рачуна"},
+    "nothanks": {"message": "Не, хвала"},
+    "writeareview": {"message": "Напишите рецензију"},
+    "titeldownloadaaupgrade": {"message": "Надоградња додаје подршку фокусирања одабраних слика и даје могућност галеријског приказа слика на сајту."},
+    "titeldownloadupgradepropermenubar": {"message": "Додаје поново црну траку менија на Google веб сајту."},
+    "titeldownloadupgradefinancetoolbar": {"message": "Ово приказује информације са берзе у реалном времену."},
+    "titeldownloadupgradefullscreen": {"message": "With this extension you can easy go to full screen. This for image, video and webpage."},
+    "titeldownloadupgradedatetoday": {"message": "This extension show the analog clock in the menu bar. When you click on the icon, it shows you the current time; month and day of the week."},
+    "desrememberpage": {"message": "Ако је ова опција омогућена, подсетник се не приказује."},
+    "titelrememberpage": {"message": "Подсетник"},
+    "longdonatetext": {"message": "I'd truly appreciate if you can donate me to keep this browser extension alive for other new users. Whether it's $$1 or $$100, your support is immensely appreciated!"},
+    "enjoyshare": {"message": "Enjoy this extension and share it with others who you think will appreciate it."},
+    "titeldownloadbutton": {"message": "Преузми ову надоградњу!"},
+    "titelsync": {"message": "Синхронизација"},
+    "titelsyncbrowser": {"message": "Синхронизујте подешавања проширења са вашим другим прегледачем."},
+    "titeldownloadupgrade": {"message": "Цела страница ће се замрачити и омогућити вам гледање видео снимка као да сте у биоскопу."},
+    "desproject": {"message": "пројекат"},
+    "desbrowserextension": {"message": "проширење прегледача"},
+    "titelwebsite": {"message": "Веб сајт"},
+    "titeldeveloper": {"message": "Програмер"},
+    "rememberrate": {"message": "Оцени"},
+    "showremember": {"message": "Не приказуј подсетник када отворим опције."},
+    "skipremember": {"message": "Прескочи ово и одмах отвори страницу опција"},
+    "titelrightsreserved": {"message": "Нека права задржана."},
+    "friendlyremember": {"message": "Пријатељски подсетник..."},
+    "websitezoomvalue": {"message": "Zoom value in percent (e.g. 80%)"},
+    "titeldefaultzoomvalue": {"message": "Подразумевани ниво зумирања"},
+    "desdefaultzoomvalue": {"message": "Choose your default zoom level"},
+    "titelcontextmenu": {"message": "Контекстни мени"},
+    "descontextmenu": {"message": "Enable the right click menu to zoom in or out the web page"},
+    "titelbadge": {"message": "Badge"},
+    "titelbadgecolor": {"message": "Choose your background badge color"},
+    "desbadge": {"message": "Show the current zoom value in the Zoom Extension icon"},
+    "titelzoomsteps": {"message": "Steps"},
+    "deszoomsteps": {"message": "The zoom steps for the next value"},
+    "btnreset": {"message": "Reset"},
+    "titelzoomengine": {"message": "Zoom Engine"},
+    "deszoomchrome": {"message": "Use the built-in browser zoom"},
+    "deszoomweb": {"message": "Use the web CSS zoom"},
+    "welcomebasictext": {"message": "Welcome on the Zoom Browser extension. Here a brief video about how to use the Zoom extension in your web browser."},
+    "promotitle": {"message": "Cавет дана"},
+    "promotext": {
+        "message": "Want to use something new and amazing for your web browser? Try the $product$ Browser extension.",
+        "placeholders": {"product": {"content": "$1", "example": "Turn Off the Lights"}}
+    },
+    "promocalltoaction": {"message": "Download it Now!"},
+    "donatetext": {"message": "Due to the very small number of donations the project may be closed. Please support further development with a Donation."},
+    "donatecalltoaction": {"message": "Donate Now!"},
+    "titelsharethis": {"message": "Share this:"},
+    "titelwelcome": {"message": "Welcome and Hello"},
+    "titelupgrade": {"message": "Upgrade"},
+    "titelzoomdoubleclick": {"message": "Button action"},
+    "deszoomdoubleclick": {"message": "Enable the option for double click to zooms in and a single click to zooms out the web page"},
+    "desremyoutube": {"message": "Subscribe on YouTube"},
+    "desremfacebook": {"message": "Recommend this on Facebook"},
+    "titelzoommousescroll": {"message": "Mouse Wheel"},
+    "deszoommousescroll": {"message": "Hold the 'mouse button', and scroll up or down to change the zoom level"},
+    "deszoommouseleft": {"message": "Left mouse click"},
+    "deszoommouseright": {"message": "Right mouse click"},
+    "deszoommousedirectionup": {"message": "Counter clockwise scroll"},
+    "deszoommousedirectiondown": {"message": "Clockwise scroll"},
+    "titellargepopup": {"message": "Large window"},
+    "deslargepopup": {"message": "Show you a large popup window"},
+    "deszoombydomain": {"message": "Zoom at domain level"},
+    "deszoombypage": {"message": "Zoom at web page level"}
 }

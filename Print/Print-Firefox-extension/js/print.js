@@ -3,7 +3,7 @@
 
 Print
 Print the current page you see.
-Copyright (C) 2016 Stefan vd
+Copyright (C) 2018 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -26,4 +26,10 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
+function $(id) { return document.getElementById(id); }
+
+if($("cssstefanprint")){
+    var elem = document.getElementById("cssstefanprint");
+    elem.parentElement.removeChild(elem);
+}
 window.print();

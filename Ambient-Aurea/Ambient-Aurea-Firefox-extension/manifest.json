@@ -1,18 +1,20 @@
 {
   "manifest_version": 2,
   "name": "__MSG_name__",
-  "short_name": "AA",  
-  "version": "2.1.0.7",
+  "short_name": "Ambient Aurea",  
+  "version": "2.2.6.0",
   "description": "__MSG_description__",
   "author": "Stefan vd",
-  "homepage_url": "https://www.stefanvd.net",  
-  "icons": { "16": "icons/icon16.png",
-             "32": "icons/icon32.png",
-             "48": "icons/icon48.png",
-             "128": "icons/icon128.png"
-           },
+  "homepage_url": "https://www.stefanvd.net/support/",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
   "default_locale": "en",
   "browser_action": {
+          "browser_style": false,
           "default_icon": {
             "19": "icons/icon1.png",
             "38": "icons/icon1@2x.png"
@@ -20,8 +22,7 @@
 	        "default_title": "__MSG_browserbutton__"	  
   },
   "background": {
-    "page": "background.html",
-    "persistent": false	
+    "page": "background.html"
   },
   "web_accessible_resources": [
     "images/arrow.png",
@@ -35,10 +36,16 @@
   ],
   "content_scripts": [
     {
-      "matches": ["http://*/*", "https://*/*"],
-      "css" : ["css/aa.css"],
+      "matches": ["*://*/*"],
+      "exclude_matches": ["*://*.stefanvd.net/project/ambient-aurea/browser/options.html"],
       "js": ["js/constants.js","js/content.js"],
+      "css" : ["css/aa.css"],
       "run_at": "document_end"
+    },
+    {
+    "matches": ["*://*.stefanvd.net/project/ambient-aurea/browser/options.html"],
+    "js": ["js/constants.js","js/options.js"],
+    "run_at": "document_end"
     }
   ],
  "commands": {
@@ -50,9 +57,15 @@
     }
   },
   "options_ui": {
+    "browser_style": false,
     "page": "options.html",
     "open_in_tab": true
   },
-  "minimum_chrome_version": "20",
-  "permissions": [ "contextMenus", "tabs", "http://*/*", "https://*/*", "storage", "notifications" ]
+  "applications": {
+    "gecko": {
+      "id": "ambientaurea@stefanvd.net",
+      "strict_min_version": "53.0"
+    }
+  },
+  "permissions": [ "contextMenus", "tabs", "http://*/*", "https://*/*", "storage" ]
 }

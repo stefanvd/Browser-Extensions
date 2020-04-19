@@ -1,344 +1,122 @@
 {
-   "name": {
-      "message": "Přiblížení"
-   },
-   "description": {
-      "message": "Pro pohodlnější čtení přibližuje\/oddaluje obsah webu pomocí tlačítka Zoom."
-   },
-   "pageatitle": {
-      "message": "Přiblížení"
-   },
-   "titledonatebutton": {
-      "message": "Podpořit"
-   },
-   "basicsettings": {
-      "message": "Základní"
-   },
-   "donatepromotext": {
-      "message": "Pokud poskytnete dar v podobě libovolné částky, budu si toho nesmírně vážit!"
-   },
-   "textfoot": {
-      "message": "Tento software je licencován pod CC-GNU GPL. Pro zobrazení kopie této licence přejděte na"
-   },
-   "titelsharebutton": {
-      "message": "Tlačítka sdílení"
-   },
-   "lastchecked": {
-      "message": "Kontrola nejnovější verze proběhla"
-   },
-   "version": {
-      "message": "Verze"
-   },
-   "changelog": {
-      "message": "Changelog"
-   },
-   "reportbug": {
-      "message": "Nahlásit problém"
-   },
-   "guide": {
-      "message": "Úvodní průvodce"
-   },
-   "productshare": {
-      "message": "Sdílet"
-   },
-   "titelallzoom": {
-      "message": "Všechna přiblížení\/oddálení"
-   },
-   "desallzoom": {
-      "message": "Použít úroveň přiblížení pro všechny stránky"
-   },
-   "pagehelp": {
-      "message": "pomoc"
-   },
-   "pagestillloading": {
-      "message": "Stránka se stále načítá?"
-   },
-   "optionpagetitle": {
-      "message": "Zoom - možnosti"
-   },
-   "settings": {
-      "message": "Nastavení"
-   },
-   "translateme": {
-      "message": "Pomoc s překladem"
-   },
-   "sharemenusharetitle": {
-      "message": "Sdílet"
-   },
-   "sharemenuwelcomeguidetitle": {
-      "message": "Úvodní průvodce"
-   },
-   "sharemenutellafriend": {
-      "message": "Doporučit příteli"
-   },
-   "sharemenusendatweet": {
-      "message": "Pošlete Tweet"
-   },
-   "sharemenupostonfacebook": {
-      "message": "Sdílet na Facebooku"
-   },
-   "sharemenupostongoogleplus": {
-      "message": "Sdílet na Google +"
-   },
-   "sharemenuratetitle": {
-      "message": "Ohodnotit toto rozšíření"
-   },
-   "sharemenudonatetitle": {
-      "message": "Podpořte vývoj"
-   },
-   "advancedoptions": {
-      "message": "Rozšířené možnosti"
-   },
-   "help": {
-      "message": "Pomoc"
-   },
-   "about": {
-      "message": "O rozšíření"
-   },
-   "upgradefbshare": {
-      "message": "Sdílet na Facebooku"
-   },
-   "upgradetwshare": {
-      "message": "Tweet"
-   },
-   "ratetitle": {
-      "message": "Prosím oznámkujte a zhodnoťte moje rozšíření"
-   },
-   "ratedes": {
-      "message": "A řekněte všem o tomto skvělém rozšíření!"
-   },
-   "rateitema": {
-      "message": "Hodnotit 5 hvězdami"
-   },
-   "titelreset": {
-      "message": "Obnovit nastavení"
-   },
-   "resetbrowserextension": {
-      "message": "Resetovat nastavení přiblížení"
-   },
-   "areyouhappy": {
-      "message": "Líbí se vám Zoom?"
-   },
-   "tellothers": {
-      "message": "Zajistěte, že Váš názor je brán na zřetel"
-   },
-   "nothanks": {
-      "message": "Ne, děkuji"
-   },
-   "writeareview": {
-      "message": "Napsat recenzi"
-   },
-   "titeldownloadaaupgrade": {
-      "message": "Toto rozšíření umožní zaměřit se na vybrané obrázky a zobrazit je jako galerii na webové stránce."
-   },
-   "titeldownloadupgradepropermenubar": {
-      "message": "Vrací černý panel menu na stránce Google."
-   },
-   "titeldownloadupgradefinancetoolbar": {
-      "message": "Toto rozšíření ukazuje burzovní informace v reálném čase."
-   },
-   "titeldownloadupgradefullscreen": {
-      "message": "Toto rozšíření umožňuje zobrazit obrázek, video a webovou stránku přes celou obrazovku."
-   },
-   "titeldownloadupgradedatetoday": {
-      "message": "Toto rozšíření zobrazuje analogové hodiny v panelu nabídek. Když klepnete na ikonu, zobrazí aktuální čas, měsíc a den v týdnu."
-   },
-   "desrememberpage": {
-      "message": "Je-li tato možnost povolena, nebude se zobrazovat stránka připomenutí"
-   },
-   "titelrememberpage": {
-      "message": "Stránka připomenutí"
-   },
-   "longdonatetext": {
-      "message": "Opravdu bych ocenil, kdybyste mne finančně podpořili, abych mohl dále provozovat toto rozšíření. Ať už darujete dolar nebo sto, vaše podpora je neuvěřitelně nápomocná!"
-   },
-   "enjoyshare": {
-      "message": "Užijte si toto rozšíření a sdílejte jej s ostatními uživateli, kteří si myslíte, že to ocení."
-   },
-   "titeldownloadbutton": {
-      "message": "Stáhnout toto rozšíření!"
-   },
-   "titelsync": {
-      "message": "Sync"
-   },
-   "titelsyncbrowser": {
-      "message": "Synchronizujte nastavení rozšíření s jiným prohlížečem"
-   },
-   "titeldownloadupgrade": {
-      "message": "Celá stránka se zahalí do černého a vy tak můžete sledovat video, jako byste byli v kině."
-   },
-   "desproject": {
-      "message": "projekt"
-   },
-   "desbrowserextension": {
-      "message": "rozšíření prohlížeče"
-   },
-   "titelwebsite": {
-      "message": "Domovská stránka"
-   },
-   "titeldeveloper": {
-      "message": "Vývojář"
-   },
-   "rememberrate": {
-      "message": "Ohodnoďte"
-   },
-   "showremember": {
-      "message": "Nezobrazovat tuto upomínku při příštím otevření nastavení"
-   },
-   "skipremember": {
-      "message": "Přeskočit a otevřít stránku možností"
-   },
-   "titelrightsreserved": {
-      "message": "Některá práva vyhrazena."
-   },
-   "friendlyremember": {
-      "message": "Přátelské upozornění..."
-   },
-   "websitezoomvalue": {
-      "message": "Hodnoty přiblížení v procentech (např. 80 %)"
-   },
-   "titeldefaultzoomvalue": {
-      "message": "Výchozí úroveň přiblížení"
-   },
-   "desdefaultzoomvalue": {
-      "message": "Vyberte výchozí úroveň přiblížení"
-   },
-   "titelcontextmenu": {
-      "message": "Kontextová nabídka"
-   },
-   "descontextmenu": {
-      "message": "Povolit zvětšení nebo zmenšení webové stránky z kontextové nabídky pravého tlačítka"
-   },
-   "titelbadge": {
-      "message": "Notifikace na ikoně"
-   },
-   "titelbadgecolor": {
-      "message": "Zvolte barvu pozadí notifikace"
-   },
-   "desbadge": {
-      "message": "Zobrazit hodnotu přiblížení jako notifikaci v ikoně"
-   },
-   "titelzoomsteps": {
-      "message": "Skoky"
-   },
-   "deszoomsteps": {
-      "message": "Velikost skoku na další hodnotu"
-   },
-   "btnreset": {
-      "message": "Obnovit"
-   },
-   "titelzoomengine": {
-      "message": "Metoda přiblížení"
-   },
-   "deszoomchrome": {
-      "message": "Přiblížit\/oddálit celé okno prohlížeče"
-   },
-   "deszoomweb": {
-      "message": "Přiblížit\/oddálit obsah stránky"
-   },
-   "welcomebasictext": {
-      "message": "Vítejte v rozšíření prohlížeče Zoom. Zde je krátké video o použití rozšíření Zoom ve vašem prohlížeči."
-   },
-   "promotitle": {
-      "message": "Tip dne"
-   },
-   "promotext": {
-      "message": "Chcete něco nového a úžasného pro váš webový prohlížeč? Zkuste rozšíření prohlížeče $product$.",
-      "placeholders": {
-         "product": {
-            "content": "$1",
-            "example": "Turn Off the Lights"
-         }
-      }
-   },
-   "promocalltoaction": {
-      "message": "Stahujte nyní!"
-   },
-   "donatetext": {
-      "message": "Nízký počet příspěvků by mohl vést k ukončení projektu. Podpořte další vývoj Příspěvkem."
-   },
-   "donatecalltoaction": {
-      "message": "Přispějte nyní!"
-   },
-   "titelsharethis": {
-      "message": "Sdílet:"
-   },
-   "titelwelcome": {
-      "message": "Vítám a zdravím"
-   },
-   "titelupgrade": {
-      "message": "Upgradovat"
-   },
-   "titelzoomdoubleclick": {
-      "message": "Chování tlačítka"
-   },
-   "deszoomdoubleclick": {
-      "message": "Dvojklikem na ikonu přiblížit a kliknutím oddálit"
-   },
-   "desremyoutube": {
-      "message": "Odebírat na YouTube"
-   },
-   "desremfacebook": {
-      "message": "Doporučte to na Facebooku"
-   },
-   "titelzoommousescroll": {
-      "message": "Kolečko myši"
-   },
-   "deszoommousescroll": {
-      "message": "Držte tlačítko myši a rolováním kolečka nahoru nebo dolů změníte úroveň přiblížení"
-   },
-   "deszoommouseleft": {
-      "message": "Kliknutí levým tlačítkem myši"
-   },
-   "deszoommouseright": {
-      "message": "Kliknutí pravým tlačítkem myši"
-   },
-   "deszoommousedirectionup": {
-      "message": "Rolování proti směru hodinových ručiček"
-   },
-   "deszoommousedirectiondown": {
-      "message": "Rolování po směru hodinových ručiček"
-   },
-   "titellargepopup": {
-      "message": "Velké okno"
-   },
-   "deslargepopup": {
-      "message": "Zobrazit větší vyskakovací okno"
-   },
-   "deszoombydomain": {
-      "message": "Přiblížení na úrovni domény"
-   },
-   "deszoombypage": {
-      "message": "Přiblížení na úrovni webové stránky"
-   },
-   "desallscreen": {
-      "message": "Pro všechny velikosti obrazovky"
-   },
-   "dessinglescreen": {
-      "message": "Pro tuto velikost obrazovky"
-   },
-   "titelscreen": {
-      "message": "Velikost obrazovky"
-   },
-   "screenzoomvalue": {
-      "message": "Hodnota přiblížení v procentech (např. 80 %)"
-   },
-   "titeladd": {
-      "message": "Přidat"
-   },
-   "titelremove": {
-      "message": "Odebrat"
-   },
-   "titelscreendetect": {
-      "message": "Zjistit velikost"
-   },
-   "titleshortzoomin": {
-      "message": "Přiblížit na aktuální webové stránce"
-   },
-   "titleshortzoomout": {
-      "message": "Oddálit na aktuální webové stránce"
-   },
-   "titleshortzoomreset": {
-      "message": "Obnovit hodnotu přiblížení na aktuální webové stránce"
-   }
+    "name": {"message": "Přiblížení"},
+    "namechrome": {"message": "Zoom for Google Chrome"},
+    "namefirefox": {"message": "Zoom for Firefox"},
+    "nameopera": {"message": "Zoom for Opera"},
+    "nameedge": {"message": "Zoom for Microsoft Edge"},
+    "namesafari": {"message": "Zoom for Safari"},
+    "description": {"message": "Pro pohodlnější čtení přibližuje\\/oddaluje obsah webu pomocí tlačítka Zoom."},
+    "pageatitle": {"message": "Přiblížení"},
+    "titledonatebutton": {"message": "Podpořit"},
+    "basicsettings": {"message": "Základní"},
+    "donatepromotext": {"message": "Pokud poskytnete dar v podobě libovolné částky, budu si toho nesmírně vážit!"},
+    "textfoot": {"message": "Tento software je licencován pod CC-GNU GPL. Pro zobrazení kopie této licence přejděte na"},
+    "titelsharebutton": {"message": "Tlačítka sdílení"},
+    "lastchecked": {"message": "Kontrola nejnovější verze proběhla"},
+    "version": {"message": "Verze"},
+    "changelog": {"message": "Changelog"},
+    "reportbug": {"message": "Nahlásit problém"},
+    "guide": {"message": "Úvodní průvodce"},
+    "productshare": {"message": "Sdílet"},
+    "titelallzoom": {"message": "Všechna přiblížení\\/oddálení"},
+    "desallzoom": {"message": "Použít úroveň přiblížení pro všechny stránky"},
+    "pagehelp": {"message": "pomoc"},
+    "pagestillloading": {"message": "Stránka se stále načítá?"},
+    "optionpagetitle": {"message": "Zoom - možnosti"},
+    "settings": {"message": "Nastavení"},
+    "translateme": {"message": "Pomoc s překladem"},
+    "sharemenusharetitle": {"message": "Sdílet"},
+    "sharemenuwelcomeguidetitle": {"message": "Úvodní průvodce"},
+    "sharemenutellafriend": {"message": "Doporučit příteli"},
+    "sharemenusendatweet": {"message": "Pošlete Tweet"},
+    "sharemenupostonfacebook": {"message": "Sdílet na Facebooku"},
+    "sharemenupostongoogleplus": {"message": "Sdílet na Google +"},
+    "sharemenuratetitle": {"message": "Ohodnotit toto rozšíření"},
+    "sharemenudonatetitle": {"message": "Podpořte vývoj"},
+    "advancedoptions": {"message": "Rozšířené možnosti"},
+    "help": {"message": "Pomoc"},
+    "about": {"message": "O rozšíření"},
+    "upgradefbshare": {"message": "Sdílet na Facebooku"},
+    "upgradetwshare": {"message": "Tweet"},
+    "ratetitle": {"message": "Prosím oznámkujte a zhodnoťte moje rozšíření"},
+    "ratedes": {"message": "A řekněte všem o tomto skvělém rozšíření!"},
+    "rateitema": {"message": "Hodnotit 5 hvězdami"},
+    "titelreset": {"message": "Obnovit nastavení"},
+    "resetbrowserextension": {"message": "Resetovat nastavení přiblížení"},
+    "areyouhappy": {"message": "Líbí se vám Zoom?"},
+    "tellothers": {"message": "Zajistěte, že Váš názor je brán na zřetel"},
+    "nothanks": {"message": "Ne, děkuji"},
+    "writeareview": {"message": "Napsat recenzi"},
+    "titeldownloadaaupgrade": {"message": "Toto rozšíření umožní zaměřit se na vybrané obrázky a zobrazit je jako galerii na webové stránce."},
+    "titeldownloadupgradepropermenubar": {"message": "Vrací černý panel menu na stránce Google."},
+    "titeldownloadupgradefinancetoolbar": {"message": "Toto rozšíření ukazuje burzovní informace v reálném čase."},
+    "titeldownloadupgradefullscreen": {"message": "Toto rozšíření umožňuje zobrazit obrázek, video a webovou stránku přes celou obrazovku."},
+    "titeldownloadupgradedatetoday": {"message": "Toto rozšíření zobrazuje analogové hodiny v panelu nabídek. Když klepnete na ikonu, zobrazí aktuální čas, měsíc a den v týdnu."},
+    "desrememberpage": {"message": "Je-li tato možnost povolena, nebude se zobrazovat stránka připomenutí"},
+    "titelrememberpage": {"message": "Stránka připomenutí"},
+    "longdonatetext": {"message": "Opravdu bych ocenil, kdybyste mne finančně podpořili, abych mohl dále provozovat toto rozšíření. Ať už darujete dolar nebo sto, vaše podpora je neuvěřitelně nápomocná!"},
+    "enjoyshare": {"message": "Užijte si toto rozšíření a sdílejte jej s ostatními uživateli, kteří si myslíte, že to ocení."},
+    "titeldownloadbutton": {"message": "Stáhnout toto rozšíření!"},
+    "titelsync": {"message": "Sync"},
+    "titelsyncbrowser": {"message": "Synchronizujte nastavení rozšíření s jiným prohlížečem"},
+    "titeldownloadupgrade": {"message": "Celá stránka se zahalí do černého a vy tak můžete sledovat video, jako byste byli v kině."},
+    "desproject": {"message": "projekt"},
+    "desbrowserextension": {"message": "rozšíření prohlížeče"},
+    "titelwebsite": {"message": "Domovská stránka"},
+    "titeldeveloper": {"message": "Vývojář"},
+    "rememberrate": {"message": "Ohodnoďte"},
+    "showremember": {"message": "Nezobrazovat tuto upomínku při příštím otevření nastavení"},
+    "skipremember": {"message": "Přeskočit a otevřít stránku možností"},
+    "titelrightsreserved": {"message": "Některá práva vyhrazena."},
+    "friendlyremember": {"message": "Přátelské upozornění..."},
+    "websitezoomvalue": {"message": "Hodnoty přiblížení v procentech (např. 80 %)"},
+    "titeldefaultzoomvalue": {"message": "Výchozí úroveň přiblížení"},
+    "desdefaultzoomvalue": {"message": "Vyberte výchozí úroveň přiblížení"},
+    "titelcontextmenu": {"message": "Kontextová nabídka"},
+    "descontextmenu": {"message": "Povolit zvětšení nebo zmenšení webové stránky z kontextové nabídky pravého tlačítka"},
+    "titelbadge": {"message": "Notifikace na ikoně"},
+    "titelbadgecolor": {"message": "Zvolte barvu pozadí notifikace"},
+    "desbadge": {"message": "Zobrazit hodnotu přiblížení jako notifikaci v ikoně"},
+    "titelzoomsteps": {"message": "Skoky"},
+    "deszoomsteps": {"message": "Velikost skoku na další hodnotu"},
+    "btnreset": {"message": "Obnovit"},
+    "titelzoomengine": {"message": "Metoda přiblížení"},
+    "deszoomchrome": {"message": "Přiblížit\\/oddálit celé okno prohlížeče"},
+    "deszoomweb": {"message": "Přiblížit\\/oddálit obsah stránky"},
+    "welcomebasictext": {"message": "Vítejte v rozšíření prohlížeče Zoom. Zde je krátké video o použití rozšíření Zoom ve vašem prohlížeči."},
+    "promotitle": {"message": "Tip dne"},
+    "promotext": {
+        "message": "Chcete něco nového a úžasného pro váš webový prohlížeč? Zkuste rozšíření prohlížeče $product$.",
+        "placeholders": {"product": {"content": "$1", "example": "Turn Off the Lights"}}
+    },
+    "promocalltoaction": {"message": "Stahujte nyní!"},
+    "donatetext": {"message": "Nízký počet příspěvků by mohl vést k ukončení projektu. Podpořte další vývoj Příspěvkem."},
+    "donatecalltoaction": {"message": "Přispějte nyní!"},
+    "titelsharethis": {"message": "Sdílet:"},
+    "titelwelcome": {"message": "Vítám a zdravím"},
+    "titelupgrade": {"message": "Upgradovat"},
+    "titelzoomdoubleclick": {"message": "Chování tlačítka"},
+    "deszoomdoubleclick": {"message": "Dvojklikem na ikonu přiblížit a kliknutím oddálit"},
+    "desremyoutube": {"message": "Odebírat na YouTube"},
+    "desremfacebook": {"message": "Doporučte to na Facebooku"},
+    "titelzoommousescroll": {"message": "Kolečko myši"},
+    "deszoommousescroll": {"message": "Držte tlačítko myši a rolováním kolečka nahoru nebo dolů změníte úroveň přiblížení"},
+    "deszoommouseleft": {"message": "Kliknutí levým tlačítkem myši"},
+    "deszoommouseright": {"message": "Kliknutí pravým tlačítkem myši"},
+    "deszoommousedirectionup": {"message": "Rolování proti směru hodinových ručiček"},
+    "deszoommousedirectiondown": {"message": "Rolování po směru hodinových ručiček"},
+    "titellargepopup": {"message": "Velké okno"},
+    "deslargepopup": {"message": "Zobrazit větší vyskakovací okno"},
+    "deszoombydomain": {"message": "Přiblížení na úrovni domény"},
+    "deszoombypage": {"message": "Přiblížení na úrovni webové stránky"},
+    "desallscreen": {"message": "Pro všechny velikosti obrazovky"},
+    "dessinglescreen": {"message": "Pro tuto velikost obrazovky"},
+    "titelscreen": {"message": "Velikost obrazovky"},
+    "screenzoomvalue": {"message": "Hodnota přiblížení v procentech (např. 80 %)"},
+    "titeladd": {"message": "Přidat"},
+    "titelremove": {"message": "Odebrat"},
+    "titelscreendetect": {"message": "Zjistit velikost"},
+    "titleshortzoomin": {"message": "Přiblížit na aktuální webové stránce"},
+    "titleshortzoomout": {"message": "Oddálit na aktuální webové stránce"},
+    "titleshortzoomreset": {"message": "Obnovit hodnotu přiblížení na aktuální webové stránce"}
 }

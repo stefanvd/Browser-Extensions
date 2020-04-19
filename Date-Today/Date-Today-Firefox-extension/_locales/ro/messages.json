@@ -1,7 +1,21 @@
 ﻿{
-   "name": {
-      "message": "Date Today",
-	  "description": "Date Today"
+    "name": {
+       "message": "Date Today"
+    },
+    "namechrome": {
+     "message": "Date Today for Google Chrome"
+   },
+   "namefirefox": {
+     "message": "Date Today for Firefox"
+   },
+   "nameopera": {
+     "message": "Date Today for Opera"
+   },
+   "nameedge": {
+     "message": "Date Today for Microsoft Edge"
+   },
+   "namesafari": {
+     "message": "Date Today for Safari"
    },
    "description": {
       "message": "Aratã ziua ºi ora curentã.",

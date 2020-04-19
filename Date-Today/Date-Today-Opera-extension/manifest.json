@@ -1,16 +1,17 @@
 {
   "manifest_version": 2,
   "name": "__MSG_name__",
-  "version": "1.2.4.0",
   "short_name": "Date Today",  
+  "version": "1.3.5.0",
   "description": "__MSG_description__",
   "author": "Stefan vd",
-  "homepage_url": "https://www.stefanvd.net",  
-  "icons": { "16": "icons/icon16.png",
-             "32": "icons/icon32.png",
-             "48": "icons/icon48.png",
-             "128": "icons/icon128.png"
-           },
+  "homepage_url": "https://www.stefanvd.net/support/",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
   "default_locale": "en",
   "browser_action": {
     "default_title": "__MSG_browsertitle__",
@@ -21,12 +22,11 @@
     "page": "options.html",
     "open_in_tab": true
   },
-  "permissions": [ "activeTab", "contextMenus", "storage", "notifications" ],
   "background": {
     "page": "background.html",
     "persistent": true
   },
-  "content_security_policy": "script-src 'self' https://ssl.google-analytics.com https://platform.twitter.com https://apis.google.com; img-src *; object-src 'self'",
+  "content_security_policy": "script-src 'self'; img-src *; object-src 'self'",
   "commands": {
     "_execute_browser_action": {
       "suggested_key": {
@@ -35,10 +35,19 @@
       }
     }
   },
-  "content_scripts": [ {
-    "all_frames": true,
-    "js": ["js/constants.js","js/content.js"],
-    "matches": [ "http://*/*", "https://*/*" ],
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "exclude_matches": ["*://*.stefanvd.net/project/date-today/browser/options.html"],
+      "all_frames": true,
+      "js": ["js/constants.js","js/content.js"],
+      "run_at": "document_end"
+    },
+    {
+    "matches": ["*://*.stefanvd.net/project/date-today/browser/options.html"],
+    "js": ["js/constants.js","js/options.js"],
     "run_at": "document_end"
- } ]
+    }
+    ],
+  "permissions": [ "activeTab", "contextMenus", "storage", "alarms" ]
 }

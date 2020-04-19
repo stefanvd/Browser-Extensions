@@ -1,460 +1,414 @@
 ﻿{
-  "name":{
-    "message":"Ambient Aurea",
-    "description":"Ambient Aurea"
-  },
-  "description":{
-    "message":"Tek bir butona tıklama ile görselinize ambiyans ışık efekti getirin.",
-    "description":"Bring your image to an ambient lighting effect with just one click on the button."
-  },
-  "browserbutton":{
-    "message":"Ambient Aurea",
-    "description":"Ambient Aurea"
-  },
-  "textfoot":{
-    "message":"Bu yazılım CC-GNU GPL tarafından lisanslıdır. Lisansın bir kopyasını görmek için ziyaret edin",
-    "description":"Bu yazılım CC-GNU GPL lisanslıdır. Bu lisansın bir kopyasını görüntülemek için ziyaret edin"
-  },
-  "titelcontextmenus":{
-    "message":"Kaynak Menü",
-    "description":"Kaynak Menü"
-  },
-  "descontextmenus":{
-    "message":"Ambient Aurea için kaynak menüyü göster",
-    "description":"Ambient Aurea için kaynak menüyü göster"
-  },
-  "donatepromotext":{
-    "message":"Yapabileceğiniz her miktar bağışı, memnuniyetle karşılarım!",
-    "description":"Yapabileceğiniz her miktar bağışı, memnuniyetle karşılarım!"
-  },
-  "imagetitle":{
-    "message":"Resmi Ambient Aurea kısmına götür",
-    "description":"Resmi Ambient Aurea kısmına götür"
-  },
-  "changelog":{
-    "message":"Değişiklikler",
-    "description":"Değişiklikler"
-  },
-  "version":{
-    "message":"Sürüm",
-    "description":"Sürüm"
-  },
-  "optionpagetitle":{
-    "message":"Ambient Aurea - Seçenekler",
-    "description":"Ambient Aurea - Seçenekler"
-  },
-  "reportbug":{
-    "message":"Sorun Bildir",
-    "description":"Sorun Bildir"
-  },
-  "titelicon":{
-    "message":"Значок Pageaction",
-    "description":"Значок Pageaction"
-  },
-  "desicon":{
-    "message":"Omnibar pageaction simgesini gizle",
-    "description":"Omnibar pageaction simgesini gizle"
-  },
-  "settings":{
-    "message":"Ayarlar",
-    "description":"Ayarlar"
-  },
-  "basicsettings":{
-    "message":"Temeller",
-    "description":"Temeller"
-  },
-  "titledonatebutton":{
-    "message":"Bağış Yapın",
-    "description":"Bağış Yapın"
-  },
-  "visualeffects":{
-    "message":"Görsel Efektler",
-    "description":"Görsel Efektler"
-  },
-  "titelfadein":{
-    "message":"Aydınlat",
-    "description":"Aydınlat"
-  },
-  "desfadein":{
-    "message":"Aydınlatma efektini göster",
-    "description":"Aydınlatma efektini göster"
-  },
-  "titelfadeout":{
-    "message":"Karart",
-    "description":"Karart"
-  },
-  "desfadeout":{
-    "message":"Karartma efektini göster",
-    "description":"Karartma efektini göster"
-  },
-  "titelambilight":{
-    "message":"Ortam Aydınlatması",
-    "description":"Ortam Aydınlatması"
-  },
-  "desambilight":{
-    "message":"Mevcut görselin ortam aydınlatma efektini gösterir",
-    "description":"Mevcut görselin ortam aydınlatma efektini gösterir"
-  },
-  "desambilightfixcolor":{
-    "message":"Tek renk:",
-    "description":"Tek renk:"
-  },
-  "desambilight4color":{
-    "message":"Resim etrafına seçilmiş 4 renk:",
-    "description":"Resim etrafına seçilmiş 4 renk:"
-  },
-  "desambilightvarcolor":{
-    "message":"Renkleri görüntü içeriğinden al.",
-    "description":"Renkleri görüntü içeriğinden al."
-  },
-  "titelspreadradius":{
-    "message":"Yayma yarıçapı:",
-    "description":"Yayma yarıçapı:"
-  },
-  "desambilightrangespreadradius":{
-    "message":"Pozitif değerler gölge boyutunu artırırken, negatif değerler azaltır.",
-    "description":"Pozitif değerler gölge boyutunu artırırken, negatif değerler azaltır."
-  },
-  "titelblurradius":{
-    "message":"Bulanıklık yarıçapı:",
-    "description":"Bulanıklık yarıçapı:"
-  },
-  "desambilightrangeblurradius":{
-    "message":"Daha düşük değerler gölgeyi daha keskin yapacaktır, daha yüksek değerler de daha bulanık yapar.",
-    "description":"Daha düşük değerler gölgeyi daha keskin yapacaktır, daha yüksek değerler de daha bulanık yapar."
-  },
-  "titelon":{
-    "message":"Açık",
-    "description":"Açık"
-  },
-  "titeloff":{
-    "message":"Kapalı",
-    "description":"Kapalı"
-  },
-  "left":{
-    "message":"Sol:",
-    "description":"Sol:"
-  },
-  "right":{
-    "message":"Sağ:",
-    "description":"Sağ:"
-  },
-  "top":{
-    "message":"Üst:",
-    "description":"Üst:"
-  },
-  "bottom":{
-    "message":"Alt:",
-    "description":"Alt:"
-  },
-  "guide":{
-    "message":"AA Hoş geldiniz Rehberi",
-    "description":"AA Hoş geldiniz Rehberi"
-  },
-  "titelcolor":{
-    "message":"Renk",
-    "description":"Renk"
-  },
-  "descolor":{
-    "message":"Dış çerçevenin arka plan rengi",
-    "description":"Dış çerçevenin arka plan rengi"
-  },
-  "titelopacity":{
-    "message":"Saydamlık",
-    "description":"Opaklık"
-  },
-  "desopacity":{
-    "message":"Çerçevenin dışı için opaklık seviyesi seçin.",
-    "description":"Çerçevenin dışı için opaklık seviyesi seçin."
-  },
-  "titelsharebar":{
-    "message":"Paylaşım Çubuğu",
-    "description":"Paylaşım Çubuğu"
-  },
-  "dessharebar":{
-    "message":"Bu, mevcut görsel için paylaşım çubuğunu gösterir.",
-    "description":"Bu, mevcut görsel için paylaşım çubuğunu gösterir."
-  },
-  "titelcount":{
-    "message":"Bulunan tüm görseller",
-    "description":"Bulunan tüm görseller"
-  },
-  "descount":{
-    "message":"Bu, galeride bulunan toplam görsel sayısını hemen aşağıda gösterir.",
-    "description":"Bu, galeride bulunan toplam görsel sayısını hemen aşağıda gösterir."
-  },
-  "titelslideshow":{
-    "message":"Slayt gösterisi",
-    "description":"Slayt gösterisi"
-  },
-  "desslideshow":{
-    "message":"Bu, sitenizin üstüne ekstra oynatma butonu ekler. Böylece bu galeride bir slayt gösterisi başlatabilirsiniz.",
-    "description":"Bu, sitenizin üstüne ekstra oynatma butonu ekler. Böylece bu galeride bir slayt gösterisi başlatabilirsiniz."
-  },
-  "desslideshowrefresh":{
-    "message":"ile sonraki görüntüyü göster.",
-    "description":"ile sonraki görüntüyü göster."
-  },
-  "pagehelp":{
-    "message":"yardım",
-    "description":"yardım"
-  },
-  "pagestillloading":{
-    "message":"Sayfa hala yükleniyor mu?",
-    "description":"Sayfa hala yükleniyor mu?"
-  },
-  "seelist":{
-    "message":"(listeyi gör)",
-    "description":"(listeyi gör)"
-  },
-  "helptranslate":{
-    "message":"Tercümeye Yardımcı Ol",
-    "description":"Tercümeye Yardımcı Ol"
-  },
-  "productshare":{
-    "message":"Paylaş",
-    "description":"Paylaş"
-  },
-  "sharemenusharetitle":{
-    "message":"Bunu paylaş",
-    "description":"Bunu paylaş"
-  },
-  "sharemenuwelcomeguidetitle":{
-    "message":"Hoşgeldiniz Rehberi",
-    "description":"Hoşgeldiniz Rehberi"
-  },
-  "sharemenutellafriend":{
-    "message":"Arkadaşlarına bildir",
-    "description":"Arkadaşlarına bildir"
-  },
-  "sharemenusendatweet":{
-    "message":"Tweet Gönder",
-    "description":"Tweet Gönder"
-  },
-  "sharemenupostonfacebook":{
-    "message":"Facebook'ta Yayınla",
-    "description":"Facebook'ta Yayınla"
-  },
-  "sharemenupostongoogleplus":{
-    "message":"Google+'ta yayınla",
-    "description":"Google+'ta yayınla"
-  },
-  "sharemenuratetitle":{
-    "message":"Eklentiyi derecelendir",
-    "description":"Eklentiyi derecelendir"
-  },
-  "sharemenudonatetitle":{
-    "message":"Geliştirmeye Destek Ol",
-    "description":"Geliştirmeye Destek Ol"
-  },
-  "advancedoptions":{
-    "message":"Gelişmiş Seçenekler",
-    "description":"Gelişmiş Seçenekler"
-  },
-  "desatmosvivid":{
-    "message":"Canlı atmosfer efektleri",
-    "description":"Canlı atmosfer efektleri"
-  },
-  "help":{
-    "message":"Yardım",
-    "description":"Yardım"
-  },
-  "about":{
-    "message":"Hakkında",
-    "description":"Hakkında"
-  },
-  "upgradefbshare":{
-    "message":"Facebook'ta paylaş",
-    "description":"Facebook'ta paylaş"
-  },
-  "upgradetwshare":{
-    "message":"Tweetle",
-    "description":"Tweetle"
-  },
-  "ratetitle":{
-    "message":"Lütfen eklentimi değerlendirin & derecelendirin",
-    "description":"Lütfen eklentimi değerlendirin & derecelendirin"
-  },
-  "ratedes":{
-    "message":"Ve bu güzel eklentiyi herkese bildirin!",
-    "description":"Ve bu güzel eklentiyi herkese bildirin!"
-  },
-  "rateitema":{
-    "message":"5 Yıldızlı Oy Verin",
-    "description":"5 Yıldızlı Oy Verin"
-  },
-  "titelreset":{
-    "message":"Ayarları sıfırla",
-    "description":"Ayarları sıfırla"
-  },
-  "resetbrowserextension":{
-    "message":"Ambient Aurea ayarlarını sıfırla",
-    "description":"Ambient Aurea ayarlarını sıfırla"
-  },
-  "areyouhappy":{
-    "message":"Ambient Aurea'dan mutlu musun?",
-    "description":"Ambient Aurea'dan mutlu musun?"
-  },
-  "tellothers":{
-    "message":"Görüşlerinizi emniyete alır",
-    "description":"Size ayar yapma imkanı tanır"
-  },
-  "nothanks":{
-    "message":"Hayır, teşekkürler",
-    "description":"Hayır, teşekkürler"
-  },
-  "writeareview":{
-    "message":"Bir Yorum Yaz",
-    "description":"Bir Yorum Yaz"
-  },
-  "desambientaurea":{
-    "message":"Nerede fotoğraflarınızı hayata da bilgisayarınız için kullanılabilir.",
-    "description":"Nerede fotoğraflarınızı hayata da bilgisayarınız için kullanılabilir."
-  },
-  "downloadtheapp":{
-    "message":"Belgili tanımlık app şimdi karşıdan yükle",
-    "description":"Belgili tanımlık app şimdi karşıdan yükle"
-  },
-  "titeldownloadaaupgrade":{
-    "message":"The upgrade adds support for focusing selected images, and will display a gallery of images on the site.",
-    "description":"The upgrade adds support for focusing selected images, and will display a gallery of images on the site."
-  },
-  "titeldownloadupgradepropermenubar":{
-    "message":"Google websitenize siyah menu çubuğunu geri ekleyin.",
-    "description":"Google websitenize siyah menu çubuğunu geri ekleyin."
-  },
-  "titeldownloadupgradefinancetoolbar":{
-    "message":"Bu seçenek size eş zamanlı borsa bilgilerini gösterir.",
-    "description":"This shows you the real time stock market information."
-  },
-  "titeldownloadupgradefullscreen":{
-    "message":"With this extension you can easy go to full screen. This for image, video and webpage.",
-    "description":"With this extension you can easy go to full screen. This for image, video and webpage."
-  },
-  "titeldownloadupgradezoom":{
-    "message":"Web içeriğini daha rahat okuyabilmek için zoom butonunu kullanabilirsiniz.",
-    "description":"Zoom, İnternet içinde veya dışında bir şeyleri rahatça okumanız için yazılar üzerinde yeterli yakınlaştırmayı sağlar."
-  },
-  "titeldownloadupgradedatetoday":{
-    "message":"This extension show the analog clock in the menu bar. When you click on the icon, it shows you the current time; month and day of the week.",
-    "description":"This extension show the analog clock in the menu bar. When you click on the icon, it shows you the current time; month and day of the week."
-  },
-  "desrememberpage":{
-    "message":"Bu seçeneği etkinleştirirseniz, hatırlanan sayfalarınız görüntülenmeyecektir.",
-    "description":"Bu seçeneği etkinleştirirseniz, hatırlanan sayfalarınız görüntülenmeyecektir."
-  },
-  "titelrememberpage":{
-    "message":"Uyarı mektubu sayfa",
-    "description":"Uyarı mektubu sayfa"
-  },
-  "longdonatetext":{
-    "message":"Gelecek yeni kullanıcılar için bu eklentiyi hayatta tutmam için bağış yaparsanız çok memnun kalırım. 1$$ ya da 100$$ olması fark etmez, her türlü makbule geçer!",
-    "description":"Gelecek yeni kullanıcılar için bu eklentiyi hayatta tutmam için bağış yaparsanız çok memnun kalırım. 1$$ ya da 100$$ olması fark etmez, her türlü makbule geçer!"
-  },
-  "enjoyshare":{
-    "message":"Bu eklenti hoşunuza gittiyse, kullanmaktan zevk alacak başkalarıyla da paylaşın.",
-    "description":"Bu eklenti hoşunuza gittiyse, kullanmaktan zevk alacak başkalarıyla da paylaşın."
-  },
-  "titeldownloadbutton":{
-    "message":"Скачать это обновление!",
-    "description":"Güncelleştirmeyi İndir!"
-  },
-  "titelsync":{
-    "message":"Eşitle",
-    "description":"Eşitle"
-  },
-  "titelsyncbrowser":{
-    "message":"Eklenti seçeneklerini diğer bir tarayıcın ile senkronize et.",
-    "description":"Eklenti seçeneklerini diğer bir tarayıcın ile senkronize et."
-  },
-  "titeldownloadupgrade":{
-    "message":"Video dışında tüm sayfa kararır ve videoyu sinemadaymış gibi izleyebilirsiniz.",
-    "description":"Video dışında tüm sayfa kararır ve videoyu sinemadaymış gibi izleyebilirsiniz."
-  },
-  "desproject":{
-    "message":"proje",
-    "description":"proje"
-  },
-  "desbrowserextension":{
-    "message":"tarayıcı eklentisi",
-    "description":"tarayıcı uzantısı"
-  },
-  "translateme":{
-    "message":"Çeviri Yardımı",
-    "description":"Yerelleştirmede Yardımcı Ol"
-  },
-  "titelwebsite":{
-    "message":"Web sitesi",
-    "description":"Website"
-  },
-  "titeldeveloper":{
-    "message":"Geliştirici",
-    "description":"Geliştirici"
-  },
-  "rememberrate":{
-    "message":"Derecelendir",
-    "description":"Oy"
-  },
-  "showremember":{
-    "message":"Seçenekler kısmını açtığım zaman hatırlatma sayfasını tekrar gösterme",
-    "description":"Seçenekler kısmını açtığım zaman hatırlatma sayfasını tekrar gösterme"
-  },
-  "skipremember":{
-    "message":"Bu adımı geç ve seçenekler sayfasını aç",
-    "description":"Bu adımı geç ve seçenekler sayfasını aç"
-  },
-  "titelrightsreserved":{
-    "message":"Bazı hakları saklıdır.",
-    "description":"Bazı hakları gizlidir."
-  },
-  "friendlyremember":{
-    "message":"Dostça Hatırlatma...",
-    "description":"Dostça Hatırlatma..."
-  },
-  "imagesembedobject":{
-    "message":"Destekler: <img>.",
-    "description":"Destekler: <img>."
-  },
-  "titelupgrade":{
-    "message":"Yükselt",
-    "description":"Yükselt"
-  },
-  "welcomebasictext":{
-    "message":"Welcome on the Ambient Aurea Browser extension. Here a brief video about how to use the Ambient Aurea extension in your web browser.",
-    "description":"Welcome on the Ambient Aurea Browser extension. Here a brief video about how to use the Ambient Aurea extension in your web browser."
-  },
-  "promotitle":{
-    "message":"Tip of the day",
-    "description":"Tip of the day"
-  },
-  "promotext":{
-    "message":"Want to use something new and amazing for your web browser? Try the $product$ Browser extension.",
-    "description":"Want to use something new and amazing for your web browser? Try the $product$ Browser extension.",
-    "placeholders":{
-      "product":{
-        "content":"$1",
-        "example":"Turn Off the Lights"
+  "name": {
+    "message": "Ambient Aurea"
+  },
+  "namechrome": {
+    "message": "Ambient Aurea for Google Chrome"
+  },
+  "namefirefox": {
+    "message": "Ambient Aurea for Firefox"
+  },
+  "nameopera": {
+    "message": "Ambient Aurea for Opera"
+  },
+  "nameedge": {
+    "message": "Ambient Aurea for Microsoft Edge"
+  },
+  "namesafari": {
+    "message": "Ambient Aurea for Safari"
+  },
+  "description": {
+    "message": "The best way to focus that photo or image and add it to one photo gallery with ambient lighting effects."
+  },
+  "browserbutton": {
+    "message": "Ambient Aurea"
+  },
+  "textfoot": {
+    "message": "Bu yazılım CC-GNU GPL tarafından lisanslıdır. Lisansın bir kopyasını görmek için ziyaret edin"
+  },
+  "titelcontextmenus": {
+    "message": "Kaynak Menü"
+  },
+  "descontextmenus": {
+    "message": "Ambient Aurea için kaynak menüyü göster"
+  },
+  "donatepromotext": {
+    "message": "Yapabileceğiniz her miktar bağışı, memnuniyetle karşılarım!"
+  },
+  "imagetitle": {
+    "message": "Resmi Ambient Aurea kısmına götür"
+  },
+  "changelog": {
+    "message": "Değişiklikler"
+  },
+  "version": {
+    "message": "Sürüm"
+  },
+  "optionpagetitle": {
+    "message": "Ambient Aurea - Seçenekler"
+  },
+  "reportbug": {
+    "message": "Sorun Bildir"
+  },
+  "titelicon": {
+    "message": "Значок Pageaction"
+  },
+  "desicon": {
+    "message": "Omnibar pageaction simgesini gizle"
+  },
+  "settings": {
+    "message": "Ayarlar"
+  },
+  "basicsettings": {
+    "message": "Temeller"
+  },
+  "titledonatebutton": {
+    "message": "Bağış Yapın"
+  },
+  "visualeffects": {
+    "message": "Görsel Efektler"
+  },
+  "titelfadein": {
+    "message": "Aydınlat",
+    "description": "Aydınlat"
+  },
+  "desfadein": {
+    "message": "Aydınlatma efektini göster"
+  },
+  "titelfadeout": {
+    "message": "Karart"
+  },
+  "desfadeout": {
+    "message": "Karartma efektini göster"
+  },
+  "titelambilight": {
+    "message": "Ortam Aydınlatması"
+  },
+  "desambilight": {
+    "message": "Mevcut görselin ortam aydınlatma efektini gösterir"
+  },
+  "desambilightfixcolor": {
+    "message": "Tek renk:"
+  },
+  "desambilight4color": {
+    "message": "Resim etrafına seçilmiş 4 renk:"
+  },
+  "desambilightvarcolor": {
+    "message": "Renkleri görüntü içeriğinden al."
+  },
+  "titelspreadradius": {
+    "message": "Yayma yarıçapı:"
+  },
+  "desambilightrangespreadradius": {
+    "message": "Pozitif değerler gölge boyutunu artırırken, negatif değerler azaltır."
+  },
+  "titelblurradius": {
+    "message": "Bulanıklık yarıçapı:"
+  },
+  "desambilightrangeblurradius": {
+    "message": "Daha düşük değerler gölgeyi daha keskin yapacaktır, daha yüksek değerler de daha bulanık yapar."
+  },
+  "titelon": {
+    "message": "Açık"
+  },
+  "titeloff": {
+    "message": "Kapalı"
+  },
+  "left": {
+    "message": "Sol:"
+  },
+  "right": {
+    "message": "Sağ:"
+  },
+  "top": {
+    "message": "Üst:"
+  },
+  "bottom": {
+    "message": "Alt:"
+  },
+  "guide": {
+    "message": "AA Hoş geldiniz Rehberi"
+  },
+  "titelcolor": {
+    "message": "Renk"
+  },
+  "descolor": {
+    "message": "Dış çerçevenin arka plan rengi"
+  },
+  "titelopacity": {
+    "message": "Saydamlık"
+  },
+  "desopacity": {
+    "message": "Çerçevenin dışı için opaklık seviyesi seçin."
+  },
+  "titelsharebar": {
+    "message": "Paylaşım Çubuğu"
+  },
+  "dessharebar": {
+    "message": "Bu, mevcut görsel için paylaşım çubuğunu gösterir."
+  },
+  "titelcount": {
+    "message": "Bulunan tüm görseller"
+  },
+  "descount": {
+    "message": "Bu, galeride bulunan toplam görsel sayısını hemen aşağıda gösterir."
+  },
+  "titelslideshow": {
+    "message": "Slayt gösterisi"
+  },
+  "desslideshow": {
+    "message": "Bu, sitenizin üstüne ekstra oynatma butonu ekler. Böylece bu galeride bir slayt gösterisi başlatabilirsiniz."
+  },
+  "desslideshowrefresh": {
+    "message": "ile sonraki görüntüyü göster."
+  },
+  "pagehelp": {
+    "message": "yardım"
+  },
+  "pagestillloading": {
+    "message": "Sayfa hala yükleniyor mu?"
+  },
+  "seelist": {
+    "message": "(listeyi gör)"
+  },
+  "helptranslate": {
+    "message": "Tercümeye Yardımcı Ol"
+  },
+  "productshare": {
+    "message": "Paylaş"
+  },
+  "sharemenusharetitle": {
+    "message": "Bunu paylaş"
+  },
+  "sharemenuwelcomeguidetitle": {
+    "message": "Hoşgeldiniz Rehberi"
+  },
+  "sharemenutellafriend": {
+    "message": "Arkadaşlarına bildir"
+  },
+  "sharemenusendatweet": {
+    "message": "Tweet Gönder"
+  },
+  "sharemenupostonfacebook": {
+    "message": "Facebook'ta Yayınla"
+  },
+  "sharemenupostongoogleplus": {
+    "message": "Google+'ta yayınla"
+  },
+  "sharemenuratetitle": {
+    "message": "Eklentiyi derecelendir"
+  },
+  "sharemenudonatetitle": {
+    "message": "Geliştirmeye Destek Ol"
+  },
+  "advancedoptions": {
+    "message": "Gelişmiş Seçenekler"
+  },
+  "desatmosvivid": {
+    "message": "Canlı atmosfer efektleri"
+  },
+  "help": {
+    "message": "Yardım"
+  },
+  "about": {
+    "message": "Hakkında"
+  },
+  "upgradefbshare": {
+    "message": "Facebook'ta paylaş"
+  },
+  "upgradetwshare": {
+    "message": "Tweetle"
+  },
+  "ratetitle": {
+    "message": "Lütfen eklentimi değerlendirin & derecelendirin"
+  },
+  "ratedes": {
+    "message": "Ve bu güzel eklentiyi herkese bildirin!"
+  },
+  "rateitema": {
+    "message": "5 Yıldızlı Oy Verin"
+  },
+  "titelreset": {
+    "message": "Ayarları sıfırla"
+  },
+  "resetbrowserextension": {
+    "message": "Ambient Aurea ayarlarını sıfırla"
+  },
+  "areyouhappy": {
+    "message": "Ambient Aurea'dan mutlu musun?"
+  },
+  "tellothers": {
+    "message": "Görüşlerinizi emniyete alır"
+  },
+  "nothanks": {
+    "message": "Hayır, teşekkürler"
+  },
+  "writeareview": {
+    "message": "Bir Yorum Yaz"
+  },
+  "desambientaurea": {
+    "message": "Nerede fotoğraflarınızı hayata da bilgisayarınız için kullanılabilir."
+  },
+  "downloadtheapp": {
+    "message": "Belgili tanımlık app şimdi karşıdan yükle"
+  },
+  "titeldownloadaaupgrade": {
+    "message": "Yükseltme, seçilen görsellere odaklanma desteği ekler ve sitedeki görsellerin galerisini gösterir."
+  },
+  "titeldownloadupgradepropermenubar": {
+    "message": "Google websitenize siyah menu çubuğunu geri ekleyin."
+  },
+  "titeldownloadupgradefinancetoolbar": {
+    "message": "Bu seçenek size eş zamanlı borsa bilgilerini gösterir."
+  },
+  "titeldownloadupgradefullscreen": {
+    "message": "Bu eklenti ile tam ekrana geçebilirsiniz. Bu özellik görsel, video ve web sayfası içindir."
+  },
+  "titeldownloadupgradezoom": {
+    "message": "Web içeriğini daha rahat okuyabilmek için zoom butonunu kullanabilirsiniz."
+  },
+  "titeldownloadupgradedatetoday": {
+    "message": "Bu eklenti menü çubuğunda analog saat gösterir. Simgeye tıkladığınız zaman şu anki saati; ayı ve günü gösterir."
+  },
+  "desrememberpage": {
+    "message": "Bu seçeneği etkinleştirirseniz, hatırlanan sayfalarınız görüntülenmeyecektir."
+  },
+  "titelrememberpage": {
+    "message": "Uyarı mektubu sayfa"
+  },
+  "longdonatetext": {
+    "message": "Gelecek yeni kullanıcılar için bu eklentiyi hayatta tutmam için bağış yaparsanız çok memnun kalırım. 1$$ ya da 100$$ olması fark etmez, her türlü makbule geçer!"
+  },
+  "enjoyshare": {
+    "message": "Bu eklenti hoşunuza gittiyse, kullanmaktan zevk alacak başkalarıyla da paylaşın."
+  },
+  "titeldownloadbutton": {
+    "message": "Скачать это обновление!"
+  },
+  "titelsync": {
+    "message": "Eşitle"
+  },
+  "titelsyncbrowser": {
+    "message": "Eklenti seçeneklerini diğer bir tarayıcın ile senkronize et."
+  },
+  "titeldownloadupgrade": {
+    "message": "Video dışında tüm sayfa kararır ve videoyu sinemadaymış gibi izleyebilirsiniz."
+  },
+  "desproject": {
+    "message": "proje"
+  },
+  "desbrowserextension": {
+    "message": "tarayıcı eklentisi"
+  },
+  "translateme": {
+    "message": "Çeviri Yardımı"
+  },
+  "titelwebsite": {
+    "message": "Web sitesi"
+  },
+  "titeldeveloper": {
+    "message": "Geliştirici"
+  },
+  "rememberrate": {
+    "message": "Derecelendir"
+  },
+  "showremember": {
+    "message": "Seçenekler kısmını açtığım zaman hatırlatma sayfasını tekrar gösterme"
+  },
+  "skipremember": {
+    "message": "Bu adımı geç ve seçenekler sayfasını aç"
+  },
+  "titelrightsreserved": {
+    "message": "Bazı hakları saklıdır."
+  },
+  "friendlyremember": {
+    "message": "Dostça Hatırlatma..."
+  },
+  "imagesembedobject": {
+    "message": "Destekler: <img>."
+  },
+  "titelupgrade": {
+    "message": "Yükselt"
+  },
+  "welcomebasictext": {
+    "message": "Ambient Aurea Tarayıcı eklentisine hoşgeldiniz. Web tarayıcınızda Ambient Aurea eklentisini nasıl kullanacağınızı anlatan bir video bulunmaktadır."
+  },
+  "promotitle": {
+    "message": "Günün İpucu"
+  },
+  "promotext": {
+    "message": "Web tarayıcınız için yeni ve muazzam bir şey kullanmak ister misiniz? $product$ Tarayıcı eklentisini deneyin.",
+    "placeholders": {
+      "product": {
+        "content": "$1",
+        "example": "Turn Off the Lights"
       }
     }
   },
-  "promocalltoaction":{
-    "message":"Download it Now!",
-    "description":"Download it Now!"
+  "promocalltoaction": {
+    "message": "Şimdi İndirin!"
   },
-  "donatetext":{
-    "message":"Due to the very small number of donations the project may be closed. Please support further development with a Donation.",
-    "description":"Due to the very small number of donations the project may be closed. Please support further development with a Donation."
+  "donatetext": {
+    "message": "Bağış miktarının az olmasından dolayı proje kapanabilir. Lütfen Bağışla sonraki geliştirmeleri destekleyin."
   },
-  "donatecalltoaction":{
-    "message":"Donate Now!",
-    "description":"Donate Now!"
+  "donatecalltoaction": {
+    "message": "Şimdi Bağış Yapın!"
   },
-  "titelsharethis":{
-    "message":"Share this:",
-    "description":"Share this:"
+  "sharetextd": {
+    "message": "Ambient Aurea extension is the Best extension for my web browser. Download it and try it yourself!"
   },
-  "titelwelcome":{
-    "message":"Welcome and Hello",
-    "description":"Welcome and Hello"
+  "titelsharethis": {
+    "message": "Bunu paylaş:"
+  },
+  "titeldoesntwork": {
+    "message": "Ambient Aurea doesn't work on this web page. Please try another page."
+  },
+  "titelpopupvideo": {
+    "message": "YouTube"
+  },
+  "titelpopupwelcomeguide": {
+    "message": "Welcome Guide"
+  },
+  "titelpopupratestars": {
+    "message": "Rate 5 stars"
+  },
+  "titelwelcome": {
+    "message": "Merhaba ve Hoşgeldiniz"
+  },
+  "titleok": {
+    "message": "OK"
+  },
+  "titlecancel": {
+    "message": "Cancel"
+  },
+  "titledarkmodeon": {
+    "message": "Dark Mode ON"
+  },
+  "titledarkmodeoff": {
+    "message": "Dark Mode OFF"
+  },
+  "titelpopupsupport": {
+    "message": "Support"
+  },
+  "titelpopupoptions": {
+    "message": "Options"
+  },
+  "titelintroduce": {
+    "message": "Introducing the new Ambient Aurea!"
+  },
+  "desintroduce": {
+    "message": "All the features you're used to, with a brand new look and feel, and personalized to you."
+  },
+  "titlelratenow": {
+    "message": "Rate Now!"
+  },
+  "titleratelater": {
+    "message": "Later"
+  },
+  "desremrate": {
+    "message": "If you like Ambient Aurea™, please do not hesitate to rate this extension to five stars now. This gives us courage to continue to maintain and improve this product for you. Writing a review is recommended, but not mandatory. If you do not have the time to write a review, you can rate it anonymously. It is important to give it ★★★★★. Thank you!"
+  },
+  "desatmossolidcolor": {
+    "message": "Choose your one solid glow effect color"
   }
 }

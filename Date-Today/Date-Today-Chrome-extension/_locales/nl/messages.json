@@ -1,7 +1,21 @@
 ﻿{
-   "name": {
-      "message": "Date Today",
-	  "description": "Date Today"
+    "name": {
+       "message": "Date Today"
+    },
+    "namechrome": {
+     "message": "Date Today voor Google Chrome"
+   },
+   "namefirefox": {
+     "message": "Date Today voor Firefox"
+   },
+   "nameopera": {
+     "message": "Date Today voor Opera"
+   },
+   "nameedge": {
+     "message": "Date Today voor Microsoft Edge"
+   },
+   "namesafari": {
+     "message": "Date Today voor Safari"
    },
    "description": {
       "message": "Toon u de huidige dag en tijd.",

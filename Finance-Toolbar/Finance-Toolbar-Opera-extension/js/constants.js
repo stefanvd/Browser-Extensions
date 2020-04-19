@@ -3,23 +3,18 @@ function $(id) { return document.getElementById(id); }
 if (window.location.href.match(/http:\/\/(.*stefanvd\.net\/.*|www\.stefanvd\.net\/.*\/.*)/i)){
 	if ($('finance-toolbar-opera-install-button')) {
 		$('finance-toolbar-opera-install-button').style.display = 'none';
-		$('finance-toolbar-opera-thanks-button').style.display = '';
+		$('finance-toolbar-opera-thanks-button').style.display = 'block';
 	}
 }
+var developerwebsite = "https://www.stefanvd.net";
+var exoptionspage = "https://www.stefanvd.net/project/finance-toolbar/browser/options.html";
 var ambientaureaproduct = "https://addons.opera.com/extensions/details/ambient-aurea/";
-var idaa = "nmnhcielcdnkiaonbpdjmccclbhmejba";
 var datetodayproduct = "https://addons.opera.com/extensions/details/date-today/";
-var iddt = "kmmoagblhjcpjphddefmeilhobmdhica";
 var turnoffthelightsproduct = "https://addons.opera.com/extensions/details/turn-off-the-lights/";
-var idtotl = "ccbdoklfbpcifppcfahmmpmbkfdjjccm";
 var financetoolbarproduct = "https://addons.opera.com/extensions/details/finance-toolbar/";
-var idft = "bkolejhblonecomnblbhojjjllbmhicj";
 var propermenubarproduct = "https://addons.opera.com/extensions/details/proper-menubar/";
-var idpp = "nlgffdljekdinjgdnhcegnhgmeaihifa";
 var fullscreenproduct = "https://addons.opera.com/extensions/details/full-screen/";
-var idfs = "cglldighaohibhhehmibonhdjompidpj";
 var zoomproduct = "https://addons.opera.com/extensions/details/zoom/";
-var idz = "agocngbnphnfdhpacecdpcpfphhdmoff";
 var donatewebsite = "https://www.stefanvd.net/donate.htm";
 var writereview = "https://addons.opera.com/extensions/details/finance-toolbar/";
 var linkchangelog = "https://www.stefanvd.net/project/finance-toolbar/browser/opera/changelog.htm";
@@ -27,8 +22,10 @@ var linktranslate = "https://www.stefanvd.net/project/translate.htm";
 var linksupport = "https://www.stefanvd.net/support/";
 var linkguide = "https://www.stefanvd.net/project/finance-toolbar/browser/opera/guide.htm";
 var linkwelcomepage = "https://www.stefanvd.net/project/finance-toolbar/browser/opera/welcome.htm";
-var linkuninstall = "https://www.stefanvd.net/";
+var linkuninstall = "https://www.stefanvd.net/project/finance-toolbar/browser/opera/uninstall.htm";
 var financetoolbarwebsite = "https://www.stefanvd.net/project/finance-toolbar/browser/";
-var linkyoutube = "https://www.youtube.com/c/stefanvandamme?sub_confirmation=1";
 /* promo app */
 var financetoolbarapp = "https://www.stefanvd.net/project/finance-toolbar/"
+var browsernewtab = "chrome://newtab/";
+var browserstore = "https://chrome.google.com";
+var linkyoutube = "https://www.youtube.com/c/stefanvandamme?sub_confirmation=1";

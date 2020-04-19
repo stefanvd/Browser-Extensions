@@ -3,7 +3,7 @@
 
 Date Today
 The best clock to see in one glance the current day and time. With an option to see the digital clock in the browser toolbar.
-Copyright (C) 2017 Stefan vd
+Copyright (C) 2018 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -28,18 +28,35 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 
 function $(id) { return document.getElementById(id); }
 
+window.addEventListener("message", (event) => {
+	if(event.origin == "https://www.stefanvd.net"){
+    if (event.source == window &&
+        event.data &&
+        event.data.direction == "from-page-script") {
+        //alert("Content script received message: \"" + event.data.message + "\"");
+        var myid = chrome.runtime.id;
+        var myversion = chrome.runtime.getManifest().version;
+        window.postMessage({
+            direction: "from-datetoday-script",
+            message: myid,
+            version: myversion
+        }, "https://www.stefanvd.net");
+    }
+    }
+});
+
 // Option to save current value
 function save_options(){
 	var e = $("getfontfamily");
-	chrome.storage.sync.set({ "optionskipremember": $('optionskipremember').checked, "color1night": $('color1night').value, "color2night": $('color2night').value, "color3night": $('color3night').value, "color4night": $('color4night').value, "color5night": $('color5night').value, "color6night": $('color6night').value, "twelfh": $('twelfh').checked, "stamp": $('stamp').checked, "color1": $('color1').value, "color2": $('color2').value, "color3": $('color3').value, "color4": $('color4').value, "color5": $('color5').value, "color6": $('color6').value,"badge": $('badge').checked, "nightmode": $('nightmode').checked, "begintime": $('begintime').value, "endtime": $('endtime').value, "getfontfamily": e.options[e.selectedIndex].value, "lightcolor": $('lightcolor').value , "clockbck": $('clockbck').checked, "colorhours": $('colorhours').value, "colorminutes": $('colorminutes').value, "clockanalog": $('clockanalog').checked,"clocktickpoint": $('clocktickpoint').checked,"colorbackground": $('colorbackground').value,"colordots": $('colordots').value,"badgeclock": $('badgeclock').checked,"badgedate": $('badgedate').checked,"badgeweek": $('badgeweek').checked,"badgedatesystema": $('badgedatesystema').checked,"badgedatesystemb": $('badgedatesystemb').checked,"badgemonth": $('badgemonth').checked,"stamptypeA": $('stamptypeA').checked,"stamptypeB": $('stamptypeB').checked,"stamptypeC": $('stamptypeC').checked,"stamptypeD": $('stamptypeD').checked,"textcanvascolor": $('textcanvascolor').value});
+	chrome.storage.sync.set({ "optionskipremember": $('optionskipremember').checked, "color1night": $('color1night').value, "color2night": $('color2night').value, "color3night": $('color3night').value, "color4night": $('color4night').value, "color5night": $('color5night').value, "color6night": $('color6night').value, "color7night": $('color7night').value, "twelfh": $('twelfh').checked, "stamp": $('stamp').checked, "color1": $('color1').value, "color2": $('color2').value, "color3": $('color3').value, "color4": $('color4').value, "color5": $('color5').value, "color6": $('color6').value, "color7": $('color7').value, "badge": $('badge').checked, "nightmode": $('nightmode').checked, "begintime": $('begintime').value, "endtime": $('endtime').value, "getfontfamily": e.options[e.selectedIndex].value, "lightcolor": $('lightcolor').value , "clockbck": $('clockbck').checked, "colorhours": $('colorhours').value, "colorminutes": $('colorminutes').value, "clockanalog": $('clockanalog').checked,"clocktickpoint": $('clocktickpoint').checked,"colorbackground": $('colorbackground').value,"colordots": $('colordots').value,"badgeclock": $('badgeclock').checked,"badgedate": $('badgedate').checked,"badgeweek": $('badgeweek').checked,"badgedatesystema": $('badgedatesystema').checked,"badgedatesystemb": $('badgedatesystemb').checked,"badgemonth": $('badgemonth').checked,"stamptypeA": $('stamptypeA').checked,"stamptypeB": $('stamptypeB').checked,"stamptypeC": $('stamptypeC').checked,"stamptypeD": $('stamptypeD').checked,"textcanvascolor": $('textcanvascolor').value, "stamptypeE": $('stamptypeE').checked});
 }
 
 var firstdefaultvalues = {};
 // Option default value to read if there is no current value from chrome.storage AND init default value
-chrome.storage.sync.get(['color1', 'color2', 'color3', 'color4', 'color5', 'color6', 'color1night', 'color2night', 'color3night', 'color4night', 'color5night','clockanalog','colorbackground','badgeclock','badgedatesystema','stamptypeA','textcanvascolor'], function(items){
+chrome.storage.sync.get(['color1','color2','color3','color4','color5','color6','color7','color1night','color2night','color3night','color4night','color5night','color6night','color7night','clockanalog','colorbackground','badgeclock','badgedatesystema','stamptypeA','textcanvascolor'], function(items){
     // find no localstore datetodayengine
-	if(items['color1'] == null && items['color2'] == null && items['color3'] == null && items['color4'] == null && items['color5'] == null && items['color6'] == null){firstdefaultvalues['color1'] = "#808080";firstdefaultvalues['color2'] = "#000000";firstdefaultvalues['color3'] = "#808080";firstdefaultvalues['color4'] = "#000000";firstdefaultvalues['color5'] = "#000000";firstdefaultvalues['color6'] = "#808080"}
-    if(items['color1night'] == null && items['color2night'] == null && items['color3night'] == null && items['color4night'] == null && items['color5night'] == null && items['color6night'] == null){firstdefaultvalues['color1night'] = "#0fff58";firstdefaultvalues['color2night'] = "#0fff58";firstdefaultvalues['color3night'] = "#0fff58";firstdefaultvalues['color4night'] = "#0fff58";firstdefaultvalues['color5night'] = "#0fff58";firstdefaultvalues['color6night'] = "#0fff58";}// find no localstore lightimage
+	if(items['color1'] == null && items['color2'] == null && items['color3'] == null && items['color4'] == null && items['color5'] == null && items['color6'] == null && items['color7'] == null){firstdefaultvalues['color1'] = "#808080";firstdefaultvalues['color2'] = "#000000";firstdefaultvalues['color3'] = "#808080";firstdefaultvalues['color4'] = "#000000";firstdefaultvalues['color5'] = "#000000";firstdefaultvalues['color6'] = "#808080";firstdefaultvalues['color7'] = "#ffffff"}
+    if(items['color1night'] == null && items['color2night'] == null && items['color3night'] == null && items['color4night'] == null && items['color5night'] == null && items['color6night'] == null){firstdefaultvalues['color1night'] = "#0fff58";firstdefaultvalues['color2night'] = "#0fff58";firstdefaultvalues['color3night'] = "#0fff58";firstdefaultvalues['color4night'] = "#0fff58";firstdefaultvalues['color5night'] = "#0fff58";firstdefaultvalues['color6night'] = "#0fff58";;firstdefaultvalues['color6night'] = "#000000"}// find no localstore lightimage
     if(items['clockanalog'] == null){firstdefaultvalues['clockanalog'] = true}
 	if(items['colorbackground'] == null){firstdefaultvalues['colorbackground'] = '#F7F8FA'}
 	if(items['badgeclock'] == null){firstdefaultvalues['badgeclock'] = true}
@@ -53,7 +70,73 @@ chrome.storage.sync.get(['color1', 'color2', 'color3', 'color4', 'color5', 'colo
 });
 
 function read_options(){
-chrome.storage.sync.get(['firstDate','optionskipremember','countremember','color1','color2','color3','color4','color5','color6','twelfh','stamp','color1night','color2night','color3night','color4night','color5night','color6night','badge','nightmode','begintime','endtime','getfontfamily','lightcolor','clockbck','colorhours','colorminutes','clockanalog','clocktickpoint','colorbackground','colordots','badgeclock','badgedate','badgeweek','badgemonth','badgedatesystema','badgedatesystemb','stamptypeA','stamptypeB','stamptypeC','stamptypeD','textcanvascolor'], function(items){
+//---
+// rate
+$("materialModalRate").addEventListener('click', function(e){
+    closeMaterialRateAlert(e, false);
+});
+$("materialModalRateContent").addEventListener('click', function(e){
+    e.stopPropagation();
+});
+$("materialModalRateButtonOK").addEventListener('click', function(e){
+    closeMaterialRateAlert(e, true);
+    window.open(writereview);$("sectionreviewbox").style.display = "none";chrome.storage.sync.set({"reviewedlastonversion": chrome.runtime.getManifest().version});
+});
+$("materialModalRateButtonCANCEL").addEventListener('click', function(e){
+    closeMaterialRateAlert(e, false);
+});
+
+// introduce
+$("materialModalIntroduce").addEventListener('click', function(e){
+    closeMaterialIntroduceAlert(e, false);
+});
+$("materialModalIntroduceContent").addEventListener('click', function(e){
+    e.stopPropagation();
+});
+$("materialModalIntroduceButtonOK").addEventListener('click', function(e){
+    closeMaterialIntroduceAlert(e, true);
+});
+$("materialModalIntroduceButtonCANCEL").addEventListener('click', function(e){
+    closeMaterialIntroduceAlert(e, false);
+});
+
+// dialog
+function materialAlert(callback){
+    document.getElementById('materialModalButtonCANCEL').style.display = 'none';
+    document.getElementById('materialModal').className = 'show';
+    document.getElementById('materialModal').setAttribute('aria-disabled', "false");   
+}
+function closeMaterialAlert(e, result){
+    e.stopPropagation();
+    document.getElementById('materialModal').className = 'hide';
+    document.getElementById('materialModal').setAttribute('aria-disabled', "true");   
+}
+
+// rate
+function materialRateAlert(callback){
+    document.getElementById('materialModalRate').className = 'show';
+    document.getElementById('materialModalRate').setAttribute('aria-disabled', "false");   
+}
+function closeMaterialRateAlert(e, result){
+    e.stopPropagation();
+    document.getElementById('materialModalRate').className = 'hide';
+    document.getElementById('materialModalRate').setAttribute('aria-disabled', "true");   
+}
+
+// introduce
+function materialIntroduceAlert(callback){
+    document.getElementById('materialModalIntroduceButtonCANCEL').style.display = 'none';
+    document.getElementById('materialModalIntroduce').className = 'show';
+    document.getElementById('materialModalIntroduce').setAttribute('aria-disabled', "false");   
+}
+function closeMaterialIntroduceAlert(e, result){
+    e.stopPropagation();
+    document.getElementById('materialModalIntroduce').className = 'hide';
+    document.getElementById('materialModalIntroduce').setAttribute('aria-disabled', "true");  
+}
+//---
+
+chrome.storage.sync.get(['firstDate','optionskipremember','countremember','color1','color2','color3','color4','color5','color6','color7','twelfh','stamp','color1night','color2night','color3night','color4night','color5night','color6night','color7night','badge','nightmode','begintime','endtime','getfontfamily','lightcolor','clockbck','colorhours','colorminutes','clockanalog','clocktickpoint','colorbackground','colordots','badgeclock','badgedate','badgeweek','badgemonth','badgedatesystema','badgedatesystemb','stamptypeA','stamptypeB','stamptypeC','stamptypeD','textcanvascolor','firstsawrate','introduce','stamptypeE'], function(items){
     if(items['color1']){$('color1').value = items['color1'];}	
 	else $('color1').value = "#808080";
 	if(items['color2']){$('color2').value = items['color2'];}	
@@ -66,6 +149,8 @@ chrome.storage.sync.get(['firstDate','optionskipremember','countremember','color
 	else $('color5').value = "#000000";
 	if(items['color6']){$('color6').value = items['color6'];}	
 	else $('color6').value = "#808080";
+	if(items['color7']){$('color7').value = items['color7'];}	
+	else $('color7').value = "#ffffff";
 	if(items['twelfh'] == true)$('twelfh').checked = true;
 	if(items['stamp'] == true)$('stamp').checked = true;
 	if(items['color1night']){$('color1night').value = items['color1night'];}	
@@ -80,6 +165,8 @@ chrome.storage.sync.get(['firstDate','optionskipremember','countremember','color
 	else $('color5night').value = "#0fff58";
 	if(items['color6night']){$('color6night').value = items['color6night'];}
 	else $('color6night').value = "#0fff58";
+	if(items['color7night']){$('color7night').value = items['color7night'];}
+	else $('color7night').value = "#000000";
     if(items['badge'] == true)$('badge').checked = true;
 	if(items['nightmode'] == true)$('nightmode').checked = true;
 	if(items['begintime']){$('begintime').value = items['begintime'];}
@@ -110,47 +197,48 @@ chrome.storage.sync.get(['firstDate','optionskipremember','countremember','color
 	if(items['stamptypeA'] == true)$('stamptypeA').checked = true;
 	if(items['stamptypeB'] == true)$('stamptypeB').checked = true;
 	if(items['stamptypeC'] == true)$('stamptypeC').checked = true;
-	if(items['stamptypeD'] == true)$('stamptypeD').checked = true;
+    if(items['stamptypeD'] == true)$('stamptypeD').checked = true;
+    if(items['stamptypeE'] == true)$('stamptypeE').checked = true;
 	if(items['textcanvascolor']){$('textcanvascolor').value = items['textcanvascolor'];}	
 	else $('textcanvascolor').value = "#000000";
 
-// show remember page
-var countremember = items['countremember'];
-if(!countremember){countremember = 0;}
-countremember = parseInt(countremember) + 1;
+// show introduce
+if(items['introduce'] != true){
+    window.setTimeout(function () {
+        materialIntroduceAlert(function (result) { console.log(result) });
+    }, 2500);
+    chrome.storage.sync.set({"introduce": true});
+}
 
-var firstweek = false;
+// show remember page
+var firstmonth = false;
 var currentDate = new Date().getTime();
 if(items['firstDate']){
     var datestart = items['firstDate'];
-    var dateend = datestart + (7 * 24 * 60 * 60 * 1000);
-    if(currentDate>=dateend){firstweek = false;}
-    else{firstweek = true;}
+    var dateend = datestart + (30 * 24 * 60 * 60 * 1000);
+    if(currentDate>=dateend){firstmonth = false;}
+    else{firstmonth = true;}
 }else{
     chrome.storage.sync.set({"firstDate": currentDate});
-    firstweek = true;
+    firstmonth = true;
 }
 
-if(firstweek){$('remembershare').style.display = "none";}else{
-var d = new Date();
-var dayweek = d.getDay();
-var dayhour = d.getHours();
-if((dayweek == 4 && dayhour >= 16) || (dayweek == 5 && dayhour >= 16)){
+if(firstmonth){
+// show nothing
+$("sectionreviewbox").style.display = "none";
+}else{
     if($('optionskipremember').checked != true){
-        $('remembershare').style.display = "block";
-    } else {$('remembershare').style.display = "none";}
-}
-else if(dayweek == 6 || dayweek == 0){
-    if($('optionskipremember').checked != true){
-        $('remembershare').style.display = "block";
-    } else {$('remembershare').style.display = "none";}
-} else {
-    if($('optionskipremember').checked != true){
-        if(countremember >= 4) {$('remembershare').style.display = "block";countremember = 0;}
-        else {$('remembershare').style.display = "none";}
-    } else {$('remembershare').style.display = "none";}
-    chrome.storage.sync.set({"countremember": countremember});
-}
+        $("sectionreviewbox").style.display = "block"; // show now always the banner
+            if(items['firstsawrate'] != true){
+                window.setTimeout(function () {
+                    materialRateAlert(function(result){console.log(result)})
+                }, 2500);
+                chrome.storage.sync.set({"firstsawrate": true});
+            }
+        else{}
+    }else{
+        $("sectionreviewbox").style.display = "none";
+    }
 }
 
 	// load tab div
@@ -271,7 +359,7 @@ else if(dayweek == 6 || dayweek == 0){
         var m = time.getMinutes();
         var s = time.getSeconds();
 
-		if (twelfh.checked == true){
+		if(document.getElementById("twelfh").checked == true){
 	      	  if (h >= 12) {h -= 12; tic = "pm"; }
 	      	  else {tic = "am"; }
 	      	  if (h == 0) {h = 12;}
@@ -288,6 +376,7 @@ else if(dayweek == 6 || dayweek == 0){
         s = checkTime(s); // (check) Add a zero number if below 10
         
 		// regular colors
+		document.getElementById('previewclock').style.background = $("color7").value;
 		document.getElementById('hours').style.color = $("color1").value;
 		document.getElementById('minutes').style.color = $("color2").value;
 		document.getElementById('day').style.color = $("color5").value;
@@ -296,11 +385,12 @@ else if(dayweek == 6 || dayweek == 0){
 		document.getElementById('point').style.color = $("color6").value;
 
 		// option stamp
-		document.getElementById("titlestampA").innerText = h + ":" + m + document.getElementById('tic').innerText + " " + this_date + " " + this_month_name_array[this_month] + " " + this_year;
-		document.getElementById("titlestampB").innerText = h + ":" + m + document.getElementById('tic').innerText + " " + this_weekday_name_array[this_weekday] + " " + this_date + " " + this_month_name_array[this_month] + " " + this_year;
-		document.getElementById("titlestampC").innerText = h + ":" + m + document.getElementById('tic').innerText + " " + this_date + "/" + parseInt(this_month+1) + "/" + this_year;
-		document.getElementById("titlestampD").innerText = h + ":" + m + document.getElementById('tic').innerText + " " + parseInt(this_month+1) + "/" + this_date + "/" + this_year;
-
+		document.getElementById("titlestampA").innerText = this_date + " " + this_month_name_array[this_month] + " " + this_year + " " + h + ":" + m + document.getElementById('tic').innerText;
+		document.getElementById("titlestampB").innerText = this_weekday_name_array[this_weekday] + " " + this_date + " " + this_month_name_array[this_month] + " " + this_year + " " + h + ":" + m + document.getElementById('tic').innerText;
+		document.getElementById("titlestampC").innerText = this_date + "/" + parseInt(this_month+1) + "/" + this_year + " " + h + ":" + m + document.getElementById('tic').innerText;
+		document.getElementById("titlestampD").innerText = parseInt(this_month+1) + "/" + this_date + "/" + this_year + " " + h + ":" + m + document.getElementById('tic').innerText;
+        document.getElementById("titlestampE").innerText = this_weekday_name_array[this_weekday] + ", " + this_month_name_array[this_month] + " " + this_date + ", " + this_year + " " + h + ":" + m + document.getElementById('tic').innerText;
+        
 		// auto night
 		var now = new Date();var hours = now.getHours();var minutes = now.getMinutes();var gettime = hours + ":" + minutes;
 		var gettimesecond = gettime.split(":")[0] * 3600 + gettime.split(":")[1] * 60;
@@ -334,7 +424,8 @@ else if(dayweek == 6 || dayweek == 0){
 function checkTime(i){if(i<10){i="0" + i;}return i;}
 
 function nightdojob(){
-		if(nightmode.checked == true){
+		if(document.getElementById("nightmode").checked == true){
+			document.getElementById('previewclock').style.background = $("color7night").value;
 			document.getElementById('hours').style.color = $("color1night").value;
 			document.getElementById('minutes').style.color = $("color2night").value;
 			document.getElementById('day').style.color = $("color5night").value;
@@ -348,10 +439,10 @@ function nightdojob(){
 tic = null;h = null;m = null;
 
 function test(){   
-if (twelfh.checked == true){startTime()}
+if(document.getElementById("twelfh").checked == true){startTime()}
 else{startTime()}
 
-if (nightmode.checked == true){
+if(document.getElementById("nightmode").checked == true){
 $("begintime").disabled = false;
 $("endtime").disabled = false;
 $("confirmtime").disabled = false;
@@ -382,73 +473,148 @@ document.getElementById('daynumber').style.fontFamily =e.options[e.selectedIndex
 }
 
 // Current year
-function yearnow() {
+function yearnow(){
 var today = new Date(); var y0 = today.getFullYear();$("yearnow").innerText = y0;
+}
+
+function checkdarkmode(){
+    chrome.storage.sync.get(['darkmode'], function(items){
+        darkmode = items['darkmode'];if(darkmode == null)darkmode = false; // default darkmode false
+
+        // dark mode
+        if(darkmode == true){
+            $('currentdarkmode').innerText = chrome.i18n.getMessage("titledarkmodeon");
+            document.body.className = 'dark';
+            $('headlamp').src = "icons/icon1@2x.png";
+            $('headlamp').srcset = "icons/icon1.png 1x, icons/icon1@2x.png 2x";
+        } else{
+            $('currentdarkmode').innerText = chrome.i18n.getMessage("titledarkmodeoff");
+            document.body.className = 'light';
+            $('headlamp').src = "icons/icon1@2x.png";
+            $('headlamp').srcset = "icons/icon1.png 1x, icons/icon1@2x.png 2x";
+        }
+    });
 }
 
 /* Option page body action */
 // Read current value settings
-window.addEventListener('load', function() {
-read_options();
-yearnow();
-// remove loading screen
-$('loading').style.display = "none";
+window.addEventListener('load', function(){
+    // remove loading screen
+    $('loading').style.display = "none";
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-// random generator
-var items = Array();
-function IsExist(extensionId,callback){chrome.runtime.sendMessage(extensionId,{message:"installed"},function(reply){if(reply){callback(true);}else{callback(false);}});}
-IsExist(idaa,function(installed){if(!installed){items.push(1)}});
-IsExist(idz,function(installed){if(!installed){items.push(2)}});
-IsExist(idtotl,function(installed){if(!installed){items.push(3)}});
-IsExist(idft,function(installed){if(!installed){items.push(4)}});
-IsExist(idpp,function(installed){if(!installed){items.push(5)}});
-IsExist(idfs,function(installed){if(!installed){items.push(6)}});
-IsExist(iddt,function(installed){if(!installed){items.push(7)}runinstalltest()});
+if(window.location.href != exoptionspage){
+    document.addEventListener('DOMContentLoaded', domcontentloaded);
+}else{
+    domcontentloaded();
+}
 
-function runinstalltest(){
-var numberpick = items[Math.floor(Math.random()*items.length)];
-// pick this extension
-if(numberpick == 1){
-  $("promotext").innerText = chrome.i18n.getMessage("promotext", "Ambient Aurea");
-  $("btnpromoaction").addEventListener('click', function() {window.open(ambientaureaproduct)});  
-} else if(numberpick == 2){
-  $("promotext").innerText = chrome.i18n.getMessage("promotext", "Zoom");
-  $("btnpromoaction").addEventListener('click', function() {window.open(datetodayproduct)});
-} else if(numberpick == 3){
-  $("promotext").innerText = chrome.i18n.getMessage("promotext", "Turn Off the Lights");
-  $("btnpromoaction").addEventListener('click', function() {window.open(turnoffthelightsproduct)});
-} else if(numberpick == 4){
-  $("promotext").innerText = chrome.i18n.getMessage("promotext", "Finance Toolbar");
-  $("btnpromoaction").addEventListener('click', function() {window.open(financetoolbarproduct)});
-} else if(numberpick == 5){
-  $("promotext").innerText = chrome.i18n.getMessage("promotext", "Proper Menubar");
-  $("btnpromoaction").addEventListener('click', function() {window.open(propermenubarproduct)});
-} else if(numberpick == 6){
-  $("promotext").innerText = chrome.i18n.getMessage("promotext", "Full Screen");
-  $("btnpromoaction").addEventListener('click', function() {window.open(fullscreenproduct)});
+function domcontentloaded(){
+checkdarkmode();
+
+if(window.location.href != exoptionspage){
+
+    var condition = navigator.onLine ? "online" : "offline";
+    if(condition == "online"){
+        fetch(developerwebsite).then(function(response) {
+            if(response.status === 200){
+                // website is online
+                // redirect to there
+                window.location.href = exoptionspage;
+            }
+            else{
+                throw new Error(response.statusText);
+            }
+
+        }).catch(e=>{
+        //is not there
+        // use offline page
+        // Add the YouTube player
+        $("dont-turn-off-the-lights").src = "https://www.youtube.com/embed/?listType=playlist&amp;list=PLfXHh3TKRb4aQO_0CqR8f31hNXK5FXa8e";
+        read_options();
+        yearnow();
+        });
+    }else{
+        // Add the YouTube player
+        $("dont-turn-off-the-lights").src = "https://www.youtube.com/embed/?listType=playlist&amp;list=PLfXHh3TKRb4aQO_0CqR8f31hNXK5FXa8e";
+        read_options();
+        yearnow();
+    }
+
 } else {
-  $("promotext").innerText = chrome.i18n.getMessage("donatetext");
-  $("spnpromoaction").innerText = chrome.i18n.getMessage("donatecalltoaction");
-  $("btnpromoaction").addEventListener('click', function() {window.open(donatewebsite)});
-}
+    // Add the YouTube player
+    $("dont-turn-off-the-lights").src = "https://www.youtube.com/embed/?listType=playlist&amp;list=PLfXHh3TKRb4aQO_0CqR8f31hNXK5FXa8e";
+    read_options();
+    yearnow();
 }
 
-// Remove remember
-$("skipremember").addEventListener('click', function() {$('remembershare').style.display = "none";});
-$("firstcheckboxskipremember").addEventListener('click', function() {if(firstcheckboxskipremember.checked == true){$('optionskipremember').checked = true;}save_options();});
-var sharetext = "I highly recommended Date Today. Download and try it yourself! www.stefanvd.net";
-var stefanvdurl = datetodayproduct;var stefanvdaacodeurl = encodeURIComponent(stefanvdurl);
-$("rememberboxrate").addEventListener("click", function() {window.open(writereview);});
-$("rememberboxyoutube").addEventListener("click", function() {if($('remyoutube').style.display == "block"){$('remyoutube').style.display = "none";}else{$('remyoutube').style.display = "block";}});
-$("rememberboxfacebook").addEventListener("click", function() {if($('remfacebook').style.display == "block"){$('remfacebook').style.display = "none";}else{$('remfacebook').style.display = "block";}});
-$("remclosethisdonate").addEventListener("click", function() {$('remclosethisdonate').style.display = "none";$('remdonate').style.display = "none";});
-
+var sharetext = chrome.i18n.getMessage("sharetextd");
+var stefanvdurl = datetodayproduct;
+var stefanvdaacodeurl = encodeURIComponent(stefanvdurl);
 $("shareboxgoogle").addEventListener("click", function() {window.open('https://plus.google.com/share?ur\l=' + stefanvdaacodeurl + '', 'Share to Google+','width=600,height=460,menubar=no,location=no,status=no');});
 $("shareboxfacebook").addEventListener("click", function() {window.open("https://www.facebook.com/sharer.php?u="+ stefanvdurl + "&t=" + sharetext + "", 'Share to Facebook','width=600,height=460,menubar=no,location=no,status=no');});
 $("shareboxtwitter").addEventListener("click", function() {window.open("https://twitter.com/share?url=" + stefanvdaacodeurl + "&text=" + sharetext + "", 'Share to Twitter','width=600,height=460,menubar=no,location=no,status=no');});
 
+var isMenuClick = false;
+var menu = document.getElementById('dotmenu');
+document.addEventListener('click',()=>{
+    if(!isMenuClick){
+       //Hide the menu here
+       $('dropmenu').className = "hide";
+    }
+    //Reset isMenuClick 
+    isMenuClick = false;
+})
+menu.addEventListener('click',()=>{
+    isMenuClick = true;
+})
+
+$("dotmenu").addEventListener('click', function() {
+    if($('dropmenu').className == "show"){
+        $('dropmenu').className = "hide";
+    }else{
+        $('dropmenu').className = "show";
+    }
+});
+
+$("darkpanel").addEventListener('click', function() {
+    $('menuToggle').click();
+});
+
+$("titleex").addEventListener('click', function() {
+    window.open(developerwebsite);
+});
+
+$("btnsupport").addEventListener('click', function() {
+    window.open(linksupport);$('dropmenu').className = "hide";
+});
+
+$("btnactivedarkmode").addEventListener('click', function() {
+    chrome.storage.sync.get(['darkmode'], function(items){
+        darkmode = items['darkmode'];if(darkmode == null)darkmode = false; // default darkmode false
+        // dark mode
+        if(darkmode == true){
+            $('currentdarkmode').innerText = chrome.i18n.getMessage("titledarkmodeoff");
+            $('dropmenu').className = "hide";
+            document.body.className = 'light';
+            $('headlamp').src = "icons/icon1@2x.png";
+            $('headlamp').srcset = "icons/icon1.png 1x, icons/icon1@2x.png 2x";
+            chrome.storage.sync.set({"darkmode":false});
+        } else{
+            $('currentdarkmode').innerText = chrome.i18n.getMessage("titledarkmodeon");
+            $('dropmenu').className = "hide";
+            document.body.className = 'dark';
+            $('headlamp').src = "icons/icon1@2x.png";
+            $('headlamp').srcset = "icons/icon1.png 1x, icons/icon1@2x.png 2x";
+            chrome.storage.sync.set({"darkmode":true});
+        }
+    });
+});
+
+// promotion
+$("promotext").innerText = chrome.i18n.getMessage("donatetext");
+$("spnpromoaction").innerText = chrome.i18n.getMessage("donatecalltoaction");
+$("btnpromoaction").addEventListener('click', function() {window.open(donatewebsite)});
 
 // Detect click / change to save the page and test it.
 var inputs = document.querySelectorAll('input');
@@ -469,14 +635,6 @@ $('daynumber').innerText = this_date;
 $('month').innerText = this_month_name_array[this_month];
 $('day').innerText = this_weekday_name_array[this_weekday];
 
-// Download Upgrade
-$("fndownload").addEventListener('click', function() {window.open(financetoolbarproduct);});
-$("ppdownload").addEventListener('click', function() {window.open(propermenubarproduct);});
-$("aadownload").addEventListener('click', function() {window.open(ambientaureaproduct)});
-$("totldownload").addEventListener('click', function() {window.open(turnoffthelightsproduct)});
-$("fsdownload").addEventListener('click', function() {window.open(fullscreenproduct)});
-$("zdownload").addEventListener('click', function() {window.open(zoomproduct)});
-
 // Save KB download
 $("tabbasic").addEventListener('click', function() {$('dont-turn-off-the-lights').src = "https://www.youtube.com/embed/?listType=playlist&amp;list=PLfXHh3TKRb4aQO_0CqR8f31hNXK5FXa8e";$('welcomeguide').src = "";$("managed-prefs-banner").style.display = "";});
 $("tabadvan").addEventListener('click', function() {$('dont-turn-off-the-lights').src = "";$('welcomeguide').src = "";$("managed-prefs-banner").style.display = "";});
@@ -494,14 +652,7 @@ $("confirmtime").addEventListener('click', function() {save_options();var option
 $("resetdatetoday").addEventListener('click', function() {chrome.storage.sync.clear();location.reload()});
 
 // Review box
-$("war").addEventListener('click', function() {window.open(writereview, "_blank");$("sectionreviewbox").style.display = "none";chrome.storage.sync.set({"reviewedlastonversion": chrome.runtime.getManifest().version})});
-$("nt").addEventListener('click', function() {$("sectionreviewbox").style.display = "none";chrome.storage.sync.set({"reviewedlastonversion": chrome.runtime.getManifest().version})});
+$("war").addEventListener('click', function() {window.open(writereview);$("sectionreviewbox").style.display = "none";chrome.storage.sync.set({"reviewedlastonversion": chrome.runtime.getManifest().version});});
+$("nt").addEventListener('click', function() {$("sectionreviewbox").style.display = "none";chrome.storage.sync.set({"reviewedlastonversion": chrome.runtime.getManifest().version});});
 
-// retina check
-if(window.devicePixelRatio >= 2) {
-$("loadinglamp").src = "icons/icon16@2x.png";$("loadinglamp").style.width = "16px"; $("loadinglamp").style.height = "16px";
-$("welcomelamp").src = "icons/icon16@2x.png";$("welcomelamp").style.width = "16px"; $("welcomelamp").style.height = "16px";
-$("rememberlamp").src = "icons/icon16@2x.png";$("rememberlamp").style.width = "16px"; $("rememberlamp").style.height = "16px";
-}
-
-});
+};

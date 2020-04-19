@@ -3,7 +3,7 @@
 
 Finance Toolbar
 Get real time stock market information about your favorite stocks. With mini-charts of the currency value.
-Copyright (C) 2016 Stefan vd
+Copyright (C) 2019 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or

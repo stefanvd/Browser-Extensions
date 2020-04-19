@@ -1,35 +1,37 @@
 {
   "manifest_version": 2,
   "name": "__MSG_name__",
-  "version": "2.3.11.0",
-  "short_name": "Zoom",   
+  "short_name": "Zoom",
+  "version": "2.5.3.0",
   "description": "__MSG_description__",
-  "homepage_url": "https://www.stefanvd.net",    
-  "icons": { "16": "icons/icon16.png",
-             "32": "icons/icon32.png",
-             "48": "icons/icon48.png",
-             "128": "icons/icon128.png"
-           },
+  "author": "Stefan vd",
+  "homepage_url": "https://www.stefanvd.net/support/",
+  "icons": {
+    "16": "icons/icon16.png",
+    "24": "icons/icon24.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "96": "icons/icon96.png",
+    "128": "icons/icon128.png"
+  },
   "default_locale": "en",
   "browser_action": {
-      "browser_style": false,
           "default_icon": {
-            "19": "icons/icon1.png",
-            "38": "icons/icon1@2x.png"
+            "16": "icons/iconstick16.png",
+            "19": "icons/iconstick19.png",
+            "20": "icons/iconstick20.png",
+            "32": "icons/iconstick32.png",
+            "38": "icons/iconstick38.png",
+            "40": "icons/iconstick40.png",
+            "64": "icons/iconstick64.png"
           },
-	"default_title": "__MSG_name__",
-    "default_popup": "popup.html"	
-  },  
+          "default_title": "__MSG_name__"
+  },
   "background": {
     "page": "background.html"
   },
+  "content_security_policy": "default-src 'self'; style-src 'unsafe-inline'; media-src https://www.stefanvd.net; child-src https://www.youtube.com https://www.stefanvd.net; connect-src https://www.stefanvd.net; script-src 'self'; img-src 'self' * data:; object-src 'none'",
   "commands": {
-    "_execute_browser_action": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+Z",
-        "mac": "MacCtrl+Shift+Z"
-      }
-    },
     "toggle-feature-zoomin": {
             "suggested_key": {
               "default": "Ctrl+Shift+1",
@@ -50,24 +52,37 @@
               "mac": "MacCtrl+Shift+0"
             },
             "description": "__MSG_titleshortzoomreset__"
+    },
+    "toggle-feature-magnify": {
+            "suggested_key": {
+              "default": "Ctrl+Shift+M",
+              "mac": "MacCtrl+Shift+M"
+            },
+            "description": "__MSG_titleshortzoommagnify__"
     }
   },
   "content_scripts": [
     {
-      "matches": ["*://*/*"],
+      "matches": ["<all_urls>"],
+      "exclude_matches": ["*://*.stefanvd.net/project/zoom/browser/options.html"],
       "js": ["js/constants.js","js/content.js"],
-      "run_at": "document_idle"
+      "run_at": "document_end"
+    },
+    {
+    "matches": ["*://*.stefanvd.net/project/zoom/browser/options.html"],
+    "js": ["js/constants.js","js/options.js"],
+    "run_at": "document_end"
     }
   ],
   "options_ui": {
     "page": "options.html",
     "open_in_tab": true
   },
-  "permissions": [ "contextMenus", "tabs", "<all_urls>", "storage", "notifications" ],
+  "permissions": [ "contextMenus", "tabs", "<all_urls>", "storage" ],
   "applications": {
     "gecko": {
       "id": "zoom@stefanvd.net",
-      "strict_min_version": "54.0"
+      "strict_min_version": "57.0"
     }
   }
 }

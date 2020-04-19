@@ -1,16 +1,17 @@
 {
   "manifest_version": 2,
-  "name": "__MSG_name__",
+  "name": "__MSG_namechrome__",
   "short_name": "AA",  
-  "version": "2.1.0.8",
+  "version": "2.2.5.0",
   "description": "__MSG_description__",
   "author": "Stefan vd",
-  "homepage_url": "https://www.stefanvd.net",  
-  "icons": { "16": "icons/icon16.png",
-             "32": "icons/icon32.png",
-             "48": "icons/icon48.png",
-             "128": "icons/icon128.png"
-           },
+  "homepage_url": "https://www.stefanvd.net/support/",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
   "default_locale": "en",
   "browser_action": {
           "default_icon": {
@@ -36,10 +37,16 @@
   ],
   "content_scripts": [
     {
-      "matches": ["http://*/*", "https://*/*"],
-      "css" : ["css/aa.css"],
+      "matches": ["*://*/*"],
+      "exclude_matches": ["*://*.stefanvd.net/project/ambient-aurea/browser/options.html"],
       "js": ["js/constants.js","js/content.js"],
+      "css" : ["css/aa.css"],
       "run_at": "document_end"
+    },
+    {
+    "matches": ["*://*.stefanvd.net/project/ambient-aurea/browser/options.html"],
+    "js": ["js/constants.js","js/options.js"],
+    "run_at": "document_end"
     }
   ],
  "commands": {
@@ -55,5 +62,6 @@
     "open_in_tab": true
   },
   "minimum_chrome_version": "20",
-  "permissions": [ "contextMenus", "tabs", "http://*/*", "https://*/*", "storage", "notifications" ]
+  "offline_enabled": true,
+  "permissions": [ "contextMenus", "tabs", "http://*/*", "https://*/*", "storage" ]
 }

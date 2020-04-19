@@ -1,139 +1,120 @@
 ﻿{
-   "name": {
-      "message": "Full Screen",
-	  "description": "Full Screen"
-   },
+  "name": {
+     "message": "Full Screen"
+  },
+  "namechrome": {
+   "message": "Full Screen for Google Chrome"
+ },
+ "namefirefox": {
+   "message": "Full Screen for Firefox"
+ },
+ "nameopera": {
+   "message": "Full Screen for Opera"
+ },
+ "nameedge": {
+   "message": "Full Screen for Microsoft Edge"
+ },
+ "namesafari": {
+   "message": "Full Screen for Safari"
+ },
    "description": {
-      "message": "Go full screen with one click on the button.",
-	  "description": "Go full screen with one click on the button."
+      "message": "Go full screen with one click on the full screen button. That includes also the full screen movies such as YouTube, Vimeo, etc."
    },
    "pageatitle": {
-      "message": "Full Screen",
-	  "description": "Full Screen"
+      "message": "Full Screen"
    },
    "textfoot": {
-      "message": "This software is licensed under the CC-GNU GPL. To view a copy of this license, visit",
-	  "description": "This software is licensed under the CC-GNU GPL. To view a copy of this license, visit"
+      "message": "This software is licensed under the CC-GNU GPL. To view a copy of this license, visit"
    },
    "titelcontextmenus": {
-      "message": "Context Menu",
-      "description": "Context Menu"
+      "message": "Context Menu"
    },
    "descontextmenus": {
-      "message": "Show the context menu for an item to go full screen",
-      "description": "Show the context menu for an item to go full screen"
+      "message": "Show the context menu for an item to go full screen"
    },
     "donatepromotext": {
-      "message": "If you can make a donation of any amount, I'd appreciate it immensely!",
-      "description": "If you can make a donation of any amount, I'd appreciate it immensely!"
+      "message": "If you can make a donation of any amount, I'd appreciate it immensely!"
    },
     "videotitle": {
-      "message": "Video go to full screen",
-      "description": "Video go to full screen"
+      "message": "Video go to full screen"
    },
     "imagetitle": {
-      "message": "Image go to full screen",
-      "description": "Image go to full screen"
+      "message": "Image go to full screen"
    },
    "pagetitle": {
-      "message": "Page go to full screen",
-      "description": "Page go to full screen"
+      "message": "Page go to full screen"
    },
     "changelog": {
-      "message": "Changelog",
-      "description": "Changelog"
+      "message": "Changelog"
    },
    "version": {
-      "message": "Version",
-      "description": "Version"
+      "message": "Version"
    },
    "pagehelp": {
-        "message": "help", 
-        "description": "help"
+        "message": "help"
     },
     "pagestillloading": {
-        "message": "The page is still loading?", 
-        "description": "The page is still loading?"
+        "message": "The page is still loading?"
     },
    "optionpagetitle": {
-      "message": "Full Screen - Options",
-      "description": "Full Screen - Options"
+      "message": "Full Screen - Options"
    },
    "reportbug": {
-      "message": "Report an Issue",
-      "description": "Report an Issue"
+      "message": "Report an Issue"
    },
    "titelicon": {
-      "message": "Pageaction Icon",
-      "description": "Pageaction Icon"
+      "message": "Pageaction Icon"
    },
    "desicon": {
-      "message": "Hide the pageaction icon in the omnibar",
-      "description": "Hide the pageaction icon in the omnibar"
+      "message": "Hide the pageaction icon in the omnibar"
    },
    "settings": {
-      "message": "Settings",
-      "description": "Settings"
+      "message": "Settings"
    },
    "basicsettings": {
-      "message": "Basics",
-      "description": "Basics"
+      "message": "Basics"
    },
    "titledonatebutton": {
-      "message": "Donate",
-	  "description": "Donate"
+      "message": "Donate"
    },
    "titleautofullscreen": {
-      "message": "Auto Full Screen",
-	  "description": "Auto Full Screen"
+      "message": "Auto Full Screen"
    },
    "desautofullscreen": {
-      "message": "When you click on the play button, it automatic bring the video to Full Screen",
-	  "description": "When you click on the play button, it automatic bring the video to Full Screen"
+      "message": "When you click on the play button, it automatic bring the video to Full Screen"
    },
   "design": {
-        "message": "Design", 
-        "description": "Design"
+        "message": "Design"
     },
    "advancedoptions":{
-    "message":"Advanced Options",
-    "description":"Advanced Options"
+    "message":"Advanced Options"
   },
   "guide": {
-        "message": "Full Screen Guide", 
-        "description": "Full Screen Guide"
+        "message": "Full Screen Guide"
     },
 "sharemenusharetitle":{
-    "message":"Share this",
-    "description":"Share this"
+    "message":"Share this"
   },
   "sharemenuwelcomeguidetitle":{
-    "message":"Welcome Guide",
-    "description":"Welcome Guide"
+    "message":"Welcome Guide"
   },
   "sharemenutellafriend":{
-    "message":"Tell a Friend",
-    "description":"Tell a Friend"
+    "message":"Tell a Friend"
   },
   "sharemenusendatweet":{
-    "message":"Send a Tweet",
-    "description":"Send a Tweet"
+    "message":"Send a Tweet"
   },
   "sharemenupostonfacebook":{
-    "message":"Post on Facebook",
-    "description":"Post on Facebook"
+    "message":"Post on Facebook"
   },
   "sharemenupostongoogleplus":{
-    "message":"Post on Google+",
-    "description":"Post on Google+"
+    "message":"Post on Google+"
   },
   "sharemenuratetitle":{
-    "message":"Rate this extension",
-    "description":"Rate this extension"
+    "message":"Rate this extension"
   },
   "sharemenudonatetitle":{
-    "message":"Support Development",
-    "description":"Support Development"
+    "message":"Support Development"
   },
   "help":{
     "message":"Help",
@@ -144,168 +125,127 @@
     "description":"About"
   },
   "upgradefbshare":{
-    "message":"Share on Facebook",
-    "description":"Share on Facebook"
+    "message":"Share on Facebook"
   },
   "upgradetwshare":{
-    "message":"Tweet",
-    "description":"Tweet"
+    "message":"Tweet"
   },
   "ratetitle":{
-    "message":"Please rate & review my extension",
-    "description":"Please rate & review my extension"
+    "message":"Please rate & review my extension"
   },
   "ratedes":{
-    "message":"And let everyone know about this great extension!",
-    "description":"And let everyone know about this great extension!"
+    "message":"And let everyone know about this great extension!"
   },
   "rateitema":{
-    "message":"Rate 5 stars",
-    "description":"Rate 5 stars"
+    "message":"Rate 5 stars"
   },
   "titelreset":{
-    "message":"Reset settings",
-    "description":"Reset settings"
+    "message":"Reset settings"
   },
   "resetbrowserextension":{
-    "message":"Reset the Full Screen settings",
-    "description":"Reset the Full Screen settings"
+    "message":"Reset the Full Screen settings"
   },
   "areyouhappy":{
-    "message":"Are you happy about Full Screen?",
-    "description":"Are you happy about Full Screen?"
+    "message":"Are you happy about Full Screen?"
   },
   "tellothers":{
-    "message":"Ensure that your opinion counts",
-    "description":"Ensure that your opinion counts"
+    "message":"Ensure that your opinion counts"
   },
   "nothanks":{
-    "message":"No thanks",
-    "description":"No thanks"
+    "message":"No thanks"
   },
   "writeareview":{
-    "message":"Write a review",
-    "description":"Write a review"
+    "message":"Write a review"
   },
   "desfinancetoolbar":{
-    "message":"Your personal stocks toolbar on your desktop is also available for your computer.",
-    "description":"our personal stocks toolbar on your desktop is also available for your computer."
+    "message":"Your personal stocks toolbar on your desktop is also available for your computer."
   },
   "downloadtheapp":{
-    "message":"Download the app now",
-    "description":"Download the app now"
+    "message":"Download the app now"
   },
   "titeldownloadaaupgrade":{
-    "message":"The upgrade adds support for focusing selected images, and will display a gallery of images on the site.",
-    "description":"The upgrade adds support for focusing selected images, and will display a gallery of images on the site."
+    "message":"The upgrade adds support for focusing selected images, and will display a gallery of images on the site."
   },
   "titeldownloadupgradepropermenubar":{
-    "message":"Add back the black menubar on the Google website.",
-    "description":"Add back the black menubar on the Google website."
+    "message":"Add back the black menubar on the Google website."
   },
   "titeldownloadupgradefinancetoolbar":{
-    "message":"This shows you the real time stock market information.",
-    "description":"This shows you the real time stock market information."
+    "message":"This shows you the real time stock market information."
   },
  "titeldownloadupgradefullscreen":{
-    "message":"With this extension you can easy go to full screen. This for image, video and webpage.",
-    "description":"With this extension you can easy go to full screen. This for image, video and webpage."
+    "message":"With this extension you can easy go to full screen. This for image, video and webpage."
   },
  "titeldownloadupgradezoom":{
-    "message":"Zoom in or out on web content using the zoom button for more comfortable reading.",
-    "description":"Zoom in or out on web content using the zoom button for more comfortable reading."
+    "message":"Zoom in or out on web content using the zoom button for more comfortable reading."
   },
  "titeldownloadupgradedatetoday":{
-    "message":"This extension show the analog clock in the menu bar. When you click on the icon, it shows you the current time; month and day of the week.",
-    "description":"This extension show the analog clock in the menu bar. When you click on the icon, it shows you the current time; month and day of the week."
+    "message":"This extension show the analog clock in the menu bar. When you click on the icon, it shows you the current time; month and day of the week."
   },
   "desrememberpage":{
-    "message":"If this option is enabled, it will not show you the reminder page",
-    "description":"If this option is enabled, it will not show you the reminder page"
+    "message":"If this option is enabled, it will not show you the reminder page"
   },
   "titelrememberpage":{
-    "message":"Reminder page",
-    "description":"Reminder page"
+    "message":"Reminder page"
   },
   "longdonatetext":{
-    "message":"I'd truly appreciate if you can donate me to keep this browser extension alive for other new users. Whether it's $$1 or $$100, your support is immensely appreciated!",
-    "description":"I'd truly appreciate if you can donate me to keep this browser extension alive for other new users. Whether it's $$1 or $$100, your support is immensely appreciated!"
+    "message":"I'd truly appreciate if you can donate me to keep this browser extension alive for other new users. Whether it's $$1 or $$100, your support is immensely appreciated!"
   },
   "enjoyshare":{
-    "message":"Enjoy this extension and share it with others who you think will appreciate it.",
-    "description":"Enjoy this extension and share it with others who you think will appreciate it."
+    "message":"Enjoy this extension and share it with others who you think will appreciate it."
   },
   "titeldownloadbutton":{
-    "message":"Download this Upgrade!",
-    "description":"Download this Upgrade!"
+    "message":"Download this Upgrade!"
   },
   "titelsync":{
-    "message":"Sync",
-    "description":"Sync"
+    "message":"Sync"
   },  
   "titelsyncbrowser":{
-    "message":"Sync the extension settings with your other browser.",
-    "description":"Sync the extension settings with your other browser."
+    "message":"Sync the extension settings with your other browser."
   },
   "titeldownloadupgrade":{
-    "message":"The entire page will be fading to dark, so you can watch the video as if you were in the cinema.",
-    "description":"The entire page will be fading to dark, so you can watch the video as if you were in the cinema."
+    "message":"The entire page will be fading to dark, so you can watch the video as if you were in the cinema."
   },
   "desproject":{
-    "message":"project",
-    "description":"project"
+    "message":"project"
   },
   "desbrowserextension":{
-    "message":"browser extension",
-    "description":"browser extension"
+    "message":"browser extension"
   },
   "translateme":{
-    "message":"Help Translate",
-    "description":"Help Translate"
+    "message":"Help Translate"
   },  
   "titelwebsite":{
-    "message":"Website",
-    "description":"Website"
+    "message":"Website"
   },
   "titeldeveloper":{
-    "message":"Developer",
-    "description":"Developer"
+    "message":"Developer"
   },
   "rememberrate":{
-    "message":"Rate",
-    "description":"Rate"
+    "message":"Rate"
   },
   "showremember":{
-    "message":"Do not show this reminder page again when I open the options page",
-    "description":"Do not show this reminder page again when I open the options page"
+    "message":"Do not show this reminder page again when I open the options page"
   },
   "skipremember":{
-    "message":"Skip this, and open now the options page",
-    "description":"Skip this, and open now the options page"
+    "message":"Skip this, and open now the options page"
   },
   "titelrightsreserved":{
-    "message":"Some rights reserved.",
-    "description":"Some rights reserved."
+    "message":"Some rights reserved."
   },
   "friendlyremember":{
-    "message":"Friendly Reminder...",
-    "description":"Friendly Reminder..."
+    "message":"Friendly Reminder..."
   },  
   "titelupgrade":{
-    "message":"Upgrade",
-    "description":"Upgrade"
+    "message":"Upgrade"
   }, 
  "welcomebasictext":{
-    "message":"Welcome on the Full Screen Browser extension. Here a brief video about how to use the Full Screen extension in your web browser.",
-    "description":"Welcome on the Full Screen Browser extension. Here a brief video about how to use the Full Screen extension in your web browser."
+    "message":"Welcome on the Full Screen Browser extension. Here a brief video about how to use the Full Screen extension in your web browser."
   },
   "promotitle":{
-    "message":"Tip of the day",
-    "description":"Tip of the day"
+    "message":"Tip of the day"
   },
  "promotext":{
     "message":"Want to use something new and amazing for your web browser? Try the $product$ Browser extension.",
-    "description":"Want to use something new and amazing for your web browser? Try the $product$ Browser extension.",
     "placeholders": {
           "product": {
             "content": "$1",
@@ -314,39 +254,69 @@
         }
   },
   "promocalltoaction":{
-    "message":"Download it Now!",
-    "description":"Download it Now!"
+    "message":"Download it Now!"
   },
   "donatetext":{
-    "message":"Due to the very small number of donations the project may be closed. Please support further development with a Donation.",
-    "description":"Due to the very small number of donations the project may be closed. Please support further development with a Donation."
+    "message":"Due to the very small number of donations the project may be closed. Please support further development with a Donation."
   },
   "donatecalltoaction":{
-    "message":"Donate Now!",
-    "description":"Donate Now!"
+    "message":"Donate Now!"
   },    
+  "sharetextd":{
+    "message":"Full Screen extension is the Best extension for my web browser. Download it and try it yourself!"
+  },
   "titelsharethis":{
-    "message":"Share this:",
-    "description":"Share this:"
+    "message":"Share this:"
   },
   "titelwelcome":{
-    "message":"Welcome and Hello",
-    "description":"Welcome and Hello"
+    "message":"Welcome and Hello"
   },
   "titelfullscreenaction":{
-    "message":"Button Action",
-    "description":"Button Action"
+    "message":"Button Action"
   },
  "desfullscreenweb":{
-    "message":"This opens the webpage in the full screen mode",
-    "description":"This opens the webpage in the full screen mode"
+    "message":"This opens the webpage in the full screen mode"
   },  
   "desfullscreenwindow":{
-    "message":"This maximized the browser window",
-    "description":"This maximized the browser window"
+    "message":"This maximized the browser window"
   },
    "desfullscreenvideo":{
-    "message":"This opens the video direct in the full screen mode (if video is available on this website)",
-    "description":"This opens the video direct in the full screen mode (if video is available on this website)"
+    "message":"This opens the video direct in the full screen mode (if video is available on this website)"
+  },
+  "titleok":{
+    "message":"OK"
+  }, 
+  "titlecancel":{
+    "message":"Cancel"
+  },
+  "titledarkmodeon":{
+    "message":"Dark Mode ON"
+  }, 
+  "titledarkmodeoff":{
+    "message":"Dark Mode OFF"
+  },
+  "titelpopupsupport":{
+    "message":"Support"
+  },
+  "titelpopupoptions":{
+    "message":"Options"
+  },
+  "titelintroduce":{
+    "message":"Introducing the new Full Screen!"
+  },
+  "desintroduce":{
+    "message":"All the features you're used to, with a brand new look and feel, and personalized to you."
+  },
+  "titlelratenow":{
+    "message":"Rate Now!"
+  },
+  "titleratelater":{
+    "message":"Later"
+  },
+    "desremrate":{
+    "message":"If you like Full Screen™, please do not hesitate to rate this extension to five stars now. This gives us courage to continue to maintain and improve this product for you. Writing a review is recommended, but not mandatory. If you do not have the time to write a review, you can rate it anonymously. It is important to give it ★★★★★. Thank you!"
+  },
+  "desremyoutube":{
+    "message":"Subscribe on YouTube"
   }
 }

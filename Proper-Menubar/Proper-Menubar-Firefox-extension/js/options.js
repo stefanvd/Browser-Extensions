@@ -2,8 +2,8 @@
 /*
 
 Proper Menubar
-Add the black menubar below the address bar. To get easy and fast access to all your Google products.
-Copyright (C) 2016 Stefan vd
+Add the best menu bar to get easy and fast access to all your useful browser options and internet products!
+Copyright (C) 2019 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -28,73 +28,117 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 
 function $(id) { return document.getElementById(id); }
 
+var youtubeembed = "https://www.youtube.com/embed/?listType=playlist&list=PLfXHh3TKRb4ZIWFeG31L_jRs5fRHtzYAc";
+
+window.addEventListener("message", (event) => {
+	if(event.origin == "https://www.stefanvd.net"){
+    if (event.source == window &&
+        event.data &&
+        event.data.direction == "from-page-script") {
+        //alert("Content script received message: \"" + event.data.message + "\"");
+        var myid = chrome.runtime.id;
+        var myversion = chrome.runtime.getManifest().version;
+        window.postMessage({
+            direction: "from-propermenubar-script",
+            message: myid,
+            version: myversion
+        }, "https://www.stefanvd.net");
+    }
+    }
+});
+
 // Option to save current value
 function save_options(){
-	// proper menu Excluded domains
-	var propermenuDomainsBox = $("propermenuDomainsBox");
-	var propermenuDomains = {};
-	for (var i = 0; i < propermenuDomainsBox.length; i++){propermenuDomains[propermenuDomainsBox.options[i].value] = true;}
+	// toolbar Excluded domains
+	var toolbarDomainsBox = $("toolbarDomainsBox");
+	var toolbarDomains = {};
+    for (var i = 0; i < toolbarDomainsBox.length; i++){toolbarDomains[toolbarDomainsBox.options[i].value] = true;}
 
-  	chrome.storage.local.set({"googleplus": $('googleplus').value, "opacity": $('opacity').value,"country":$('country').value, "backgroundhex":$('backgroundhex').value, "backgroundimagesource":$('backgroundimagesource').value,"backgroundcolor":$('backgroundcolor').checked,"backgroundimage":$('backgroundimage').checked,"dropshadow":$('dropshadow').checked,"link1a":$('link1a').checked,"link2a":$('link2a').checked,"link3a":$('link3a').checked,"link4a":$('link4a').checked,"link5a":$('link5a').checked,"link6a":$('link6a').checked,"link7a":$('link7a').checked,"link8a":$('link8a').checked,"link9a":$('link9a').checked,"link10a":$('link10a').checked,"link11a":$('link11a').checked,"link12a":$('link12a').checked,"link13a":$('link13a').checked,"link14a":$('link14a').checked,"link15a":$('link15a').checked,"link16a":$('link16a').checked,"link17a":$('link17a').checked,"link18a":$('link18a').checked,"link19a":$('link19a').checked,"link20a":$('link20a').checked,"link21a":$('link21a').checked,"link22a":$('link22a').checked,"link23a":$('link23a').checked,"link24a":$('link24a').checked,"link25a":$('link25a').checked,"link26a":$('link26a').checked,"link27a":$('link27a').checked,"link28a":$('link28a').checked,"allsites":$('allsites').checked,"fontcolor":$('fontcolor').value,"googlesites":$('googlesites').checked,"propermenuonly":$('propermenuonly').checked,"search":$('search').checked,"existingtab":$('existingtab').checked,"propermenuDomains": JSON.stringify(propermenuDomains),"optionskipremember":$('optionskipremember').checked,"display":$('display').value,"hovertextcolor":$('hovertextcolor').value,"hoverbackground":$('hoverbackground').value});
+    var googlebarDomainsBox = $("googlebarDomainsBox");
+	var googlebarDomains = {};
+    for (var i = 0; i < googlebarDomainsBox.length; i++){googlebarDomains[googlebarDomainsBox.options[i].value] = true;}
 
-//refresh toolbar
-    chrome.tabs.query({}, function (tabs) {
-        for (var i = 0; i < tabs.length; ++i) {
-            chrome.tabs.sendMessage(tabs[i].id, { action: "toolbarrefresh" });
-        }
-    });
+  	chrome.storage.sync.set({"opacity": $('opacity').value,"country":$('country').value, "backgroundhex":$('backgroundhex').value, "backgroundimagesource":$('backgroundimagesource').value,"backgroundcolor":$('backgroundcolor').checked,"backgroundimage":$('backgroundimage').checked,"dropshadow":$('dropshadow').checked,"allsites":$('allsites').checked,"fontcolor":$('fontcolor').value,"googlesites":$('googlesites').checked,"search":$('search').checked,"existingtab":$('existingtab').checked,"toolbarDomains": JSON.stringify(toolbarDomains),"optionskipremember":$('optionskipremember').checked,"display":$('display').value,"hovertextcolor":$('hovertextcolor').value,"hoverbackground":$('hoverbackground').value,"getpositiontop": $("getpositiontop").checked,'getpositionbottom': $("getpositionbottom").checked,"toolbarwhite": $("toolbarwhite").checked, "toolbarblack": $("toolbarblack").checked,"toolbaronly":$('toolbaronly').checked,"googleproducts":$("googleproducts").checked,"menuproducts":$("menuproducts").checked,"googlebarDomains": JSON.stringify(googlebarDomains)});
 }
 
 var firstdefaultvalues = {};
 // Option default value to read if there is no current value from chrome.storage AND init default value
-chrome.storage.local.get(['backgroundcolor','backgroundimage','googlesites','dropshadow','link1a','link2a','link3a','link4a','link5a','link6a','link7a','link8a','link9a','link10a','link11a','link12a','link13a','link14a','link15a','link16a','link17a','link18a','link19a','link20a','link21a','link22a','link23a','link24a','link25a','link26a','link27a','link28a','display','hovertextcolor','hoverbackground'], function(items){
+chrome.storage.sync.get(['backgroundcolor','backgroundimage','googlesites','allsites','dropshadow','display','search','hovertextcolor','hoverbackground','getpositiontop','getpositionbottom','toolbarwhite','toolbarblack','googleproducts','menuproducts'], function(items){
     // find no localstore zoomengine
 	  if(items['backgroundcolor'] == null && items['backgroundimage'] == null){firstdefaultvalues['backgroundcolor'] = true;firstdefaultvalues['backgroundimage'] = false}
-	  if(items['googlesites'] == null){firstdefaultvalues['googlesites'] = true}
+	  if(items['allsites'] == null){firstdefaultvalues['allsites'] = true}
 	  if(items['dropshadow'] == null){firstdefaultvalues['dropshadow'] = true}
-	  if(items['link1a'] == null){firstdefaultvalues['link1a'] = true}
-	  if(items['link2a'] == null){firstdefaultvalues['link2a'] = true}
-	  if(items['link3a'] == null){firstdefaultvalues['link3a'] = true}
-	  if(items['link4a'] == null){firstdefaultvalues['link4a'] = true}
-	  if(items['link5a'] == null){firstdefaultvalues['link5a'] = true}
-	  if(items['link6a'] == null){firstdefaultvalues['link6a'] = true}
-	  if(items['link7a'] == null){firstdefaultvalues['link7a'] = true}
-	  if(items['link8a'] == null){firstdefaultvalues['link8a'] = true}
-	  if(items['link9a'] == null){firstdefaultvalues['link9a'] = true}
-	  if(items['link10a'] == null){firstdefaultvalues['link10a'] = true}
-	  if(items['link11a'] == null){firstdefaultvalues['link11a'] = true}
-	  if(items['link12a'] == null){firstdefaultvalues['link12a'] = true}
-	  if(items['link13a'] == null){firstdefaultvalues['link13a'] = true}
-	  if(items['link14a'] == null){firstdefaultvalues['link14a'] = true}
-	  if(items['link15a'] == null){firstdefaultvalues['link15a'] = true}
-	  if(items['link16a'] == null){firstdefaultvalues['link16a'] = true}
-	  if(items['link17a'] == null){firstdefaultvalues['link17a'] = true}
-	  if(items['link18a'] == null){firstdefaultvalues['link18a'] = true}
-	  if(items['link19a'] == null){firstdefaultvalues['link19a'] = true}
-	  if(items['link20a'] == null){firstdefaultvalues['link20a'] = true}
-	  if(items['link21a'] == null){firstdefaultvalues['link21a'] = true}
-	  if(items['link22a'] == null){firstdefaultvalues['link22a'] = true}
-	  if(items['link23a'] == null){firstdefaultvalues['link23a'] = true}
-	  if(items['link24a'] == null){firstdefaultvalues['link24a'] = true}
-	  if(items['link25a'] == null){firstdefaultvalues['link25a'] = true}
-	  if(items['link26a'] == null){firstdefaultvalues['link26a'] = true}
-	  if(items['link27a'] == null){firstdefaultvalues['link27a'] = true}
-	  if(items['link28a'] == null){firstdefaultvalues['link28a'] = true}
-	  if(items['display'] == null){firstdefaultvalues['display'] = 13}
+      if(items['display'] == null){firstdefaultvalues['display'] = 13}
+      if(items['search'] == null){firstdefaultvalues['search'] = true}
 	  if(items['hovertextcolor'] == null){firstdefaultvalues['hovertextcolor'] = "#ffffff"}
 	  if(items['hoverbackground'] == null){firstdefaultvalues['hoverbackground'] = "#444444"}
+      if(items['getpositiontop'] == null && items['getpositionbottom'] == null){firstdefaultvalues['getpositiontop'] = true;firstdefaultvalues['getpositionbottom'] = false;}
+      if(items['toolbarwhite'] == null && items['toolbarblack'] == null){firstdefaultvalues['toolbarwhite'] = true;firstdefaultvalues['toolbarblack'] = false;}
+      if(items['googleproducts'] == null && items['menuproducts'] == null){firstdefaultvalues['googleproducts'] = false;firstdefaultvalues['menuproducts'] = true;}
 
     // find no localstore lightimage
     // Save the init value
-    chrome.storage.local.set(firstdefaultvalues, function() {
+    chrome.storage.sync.set(firstdefaultvalues, function() {
     //console.log('Settings saved');
     });
 });
 
 function read_options(){
-chrome.storage.local.get(['googleplus','opacity','country','backgroundhex','backgroundimagesource','backgroundcolor','backgroundimage','googlesites','dropshadow','link1a','link2a','link3a','link4a','link5a','link6a','link7a','link8a','link9a','link10a','link11a','link12a','link13a','link14a','link15a','link16a','link17a','link18a','link19a','link20a','link21a','link22a','link23a','link24a','link25a','link26a','link27a','link28a','allsites','fontcolor','propermenuonly','search','existingtab','propermenuDomains','countremember','optionskipremember','display','hovertextcolor','hoverbackground'], function(items){
-		if(items['googleplus']){$('googleplus').value = items['googleplus'];}
-		else {$('googleplus').value = 'You';}
+
+// rate
+$("materialModalRate").addEventListener('click', function(e){
+    closeMaterialRateAlert(e, false);
+});
+$("materialModalRateContent").addEventListener('click', function(e){
+    e.stopPropagation();
+});
+$("materialModalRateButtonOK").addEventListener('click', function(e){
+    closeMaterialRateAlert(e, true);
+    window.open(writereview);$("sectionreviewbox").style.display = "none";chrome.storage.sync.set({"reviewedlastonversion": chrome.runtime.getManifest().version});
+});
+$("materialModalRateButtonCANCEL").addEventListener('click', function(e){
+    closeMaterialRateAlert(e, false);
+});
+
+// introduce
+$("materialModalIntroduce").addEventListener('click', function(e){
+    closeMaterialIntroduceAlert(e, false);
+});
+$("materialModalIntroduceContent").addEventListener('click', function(e){
+    e.stopPropagation();
+});
+$("materialModalIntroduceButtonOK").addEventListener('click', function(e){
+    closeMaterialIntroduceAlert(e, true);
+});
+$("materialModalIntroduceButtonCANCEL").addEventListener('click', function(e){
+    closeMaterialIntroduceAlert(e, false);
+});
+
+// rate
+function materialRateAlert(callback){
+    document.getElementById('materialModalRate').className = 'show';
+    document.getElementById('materialModalRate').setAttribute('aria-disabled', "false");   
+}
+function closeMaterialRateAlert(e, result){
+    e.stopPropagation();
+    document.getElementById('materialModalRate').className = 'hide';
+    document.getElementById('materialModalRate').setAttribute('aria-disabled', "true");   
+}
+
+// introduce
+function materialIntroduceAlert(callback){
+    document.getElementById('materialModalIntroduceButtonCANCEL').style.display = 'none';
+    document.getElementById('materialModalIntroduce').className = 'show';
+    document.getElementById('materialModalIntroduce').setAttribute('aria-disabled', "false");   
+}
+function closeMaterialIntroduceAlert(e, result){
+    e.stopPropagation();
+    document.getElementById('materialModalIntroduce').className = 'hide';
+    document.getElementById('materialModalIntroduce').setAttribute('aria-disabled', "true");  
+}
+//---
+
+chrome.storage.sync.get(['firstDate','opacity','country','backgroundhex','backgroundimagesource','backgroundcolor','backgroundimage','googlesites','dropshadow','allsites','fontcolor','search','existingtab','propermenuDomains','countremember','optionskipremember','display','hovertextcolor','hoverbackground','firstsawrate','introduce','getpositiontop','getpositionbottom','toolbarwhite','toolbarblack','toolbaronly','googleproducts','menuproducts','googlebarDomains','toolbarDomains'], function(items){
 		if(items['opacity']){$('opacity').value = items['opacity'];}
 		else {$('opacity').value = '100';}
 		if(items['country']){$('country').value = items['country'];}
@@ -107,38 +151,10 @@ chrome.storage.local.get(['googleplus','opacity','country','backgroundhex','back
 		if(items['backgroundimage'] == true)$('backgroundimage').checked = true;
 		if(items['googlesites'] == true)$('googlesites').checked = true;
 		if(items['dropshadow'] == true)$('dropshadow').checked = true;
-		if(items['link1a'] == true)$('link1a').checked = true;
-		if(items['link2a'] == true)$('link2a').checked = true;
-		if(items['link3a'] == true)$('link3a').checked = true;
-		if(items['link4a'] == true)$('link4a').checked = true;
-		if(items['link5a'] == true)$('link5a').checked = true;
-		if(items['link6a'] == true)$('link6a').checked = true;
-		if(items['link7a'] == true)$('link7a').checked = true;
-		if(items['link8a'] == true)$('link8a').checked = true;
-		if(items['link9a'] == true)$('link9a').checked = true;
-		if(items['link10a'] == true)$('link10a').checked = true;
-		if(items['link11a'] == true)$('link11a').checked = true;
-		if(items['link12a'] == true)$('link12a').checked = true;
-		if(items['link13a'] == true)$('link13a').checked = true;
-		if(items['link14a'] == true)$('link14a').checked = true;
-		if(items['link15a'] == true)$('link15a').checked = true;
-		if(items['link16a'] == true)$('link16a').checked = true;
-		if(items['link17a'] == true)$('link17a').checked = true;
-		if(items['link18a'] == true)$('link18a').checked = true;
-		if(items['link19a'] == true)$('link19a').checked = true;
-		if(items['link20a'] == true)$('link20a').checked = true;
-		if(items['link21a'] == true)$('link21a').checked = true;
-		if(items['link22a'] == true)$('link22a').checked = true;
-		if(items['link23a'] == true)$('link23a').checked = true;
-		if(items['link24a'] == true)$('link24a').checked = true;
-		if(items['link25a'] == true)$('link25a').checked = true;
-		if(items['link26a'] == true)$('link26a').checked = true;
-		if(items['link27a'] == true)$('link27a').checked = true;
-		if(items['link28a'] == true)$('link28a').checked = true;
 		if(items['allsites'] == true)$('allsites').checked = true;
 		if(items['fontcolor']){$('fontcolor').value = items['fontcolor'];}
 		else {$('fontcolor').value = '#cccccc';}
-		if(items['propermenuonly'] == true)$('propermenuonly').checked = true;
+		if(items['toolbaronly'] == true)$('toolbaronly').checked = true;
 		if(items['search'] == true)$('search').checked = true;
 		if(items['existingtab'] == true)$('existingtab').checked = true;
 		if(items['optionskipremember'] == true){$('optionskipremember').checked = true;$('firstcheckboxskipremember').checked = true;}
@@ -146,17 +162,52 @@ chrome.storage.local.get(['googleplus','opacity','country','backgroundhex','back
 		if(items['hovertextcolor']){$('hovertextcolor').value = items['hovertextcolor'];}
 		else {$('hovertextcolor').value = '#ffffff';}
 		if(items['hoverbackground']){$('hoverbackground').value = items['hoverbackground'];}
-		else {$('hoverbackground').value = '#444444';}
+        else {$('hoverbackground').value = '#444444';}
+        if(items['getpositiontop'] == true)$('getpositiontop').checked = true;
+        if(items['getpositionbottom'] == true)$('getpositionbottom').checked = true;
+        if(items['toolbarwhite'] == true)$('toolbarwhite').checked = true;
+        if(items['toolbarblack'] == true)$('toolbarblack').checked = true;
+        if(items['googleproducts'] == true)$('googleproducts').checked = true;
+        if(items['menuproducts'] == true)$('menuproducts').checked = true;
+
+// show introduce
+if(items['introduce'] != true){
+    window.setTimeout(function () {
+        materialIntroduceAlert(function (result) { console.log(result) });
+    }, 2500);
+    chrome.storage.sync.set({"introduce": true});
+}
 
 // show remember page
-var countremember = items['countremember'];
-if(!countremember){countremember = 0;}
-countremember = parseInt(countremember) + 1;
-if($('optionskipremember').checked != true){
-	if(countremember >= 5) {$('remembershare').style.display = "";countremember = 0;}
-	else {$('remembershare').style.display = "none";}
-} else {$('remembershare').style.display = "none";}
-chrome.storage.local.set({"countremember": countremember});	
+var firstmonth = false;
+var currentDate = new Date().getTime();
+if(items['firstDate']){
+    var datestart = items['firstDate'];
+    var dateend = datestart + (30 * 24 * 60 * 60 * 1000);
+    if(currentDate>=dateend){firstmonth = false;}
+    else{firstmonth = true;}
+}else{
+    chrome.storage.sync.set({"firstDate": currentDate});
+    firstmonth = true;
+}
+
+if(firstmonth){
+// show nothing
+$("sectionreviewbox").style.display = "none";
+}else{
+    if($('optionskipremember').checked != true){
+        $("sectionreviewbox").style.display = "block"; // show now always the banner
+            if(items['firstsawrate'] != true){
+                window.setTimeout(function () {
+                    materialRateAlert(function(result){console.log(result)})
+                }, 2500);
+                chrome.storage.sync.set({"firstsawrate": true});
+            }
+        else{}
+    }else{
+        $("sectionreviewbox").style.display = "none";
+    }
+}
 
 	// load tab div
 	var tabListItems = document.getElementById('navbar').childNodes;
@@ -191,21 +242,35 @@ chrome.storage.local.set({"countremember": countremember});
     // display version number
 	var manifestData = chrome.runtime.getManifest();
 	$("version_number").innerText = manifestData.version;
-	
-// propermenu - Excluded domains - sort these alphabetically
-var propermenuDomains = items["propermenuDomains"];
-if(typeof propermenuDomains == "undefined")
-propermenuDomains = JSON.stringify({'https://www.google.com': true, 'https://www.youtube.com': true});
 
-if(typeof propermenuDomains == "string") {
-	propermenuDomains = JSON.parse(propermenuDomains);
+// toolbar - Excluded domains - sort these alphabetically
+var toolbarDomains = items["toolbarDomains"];
+if(typeof toolbarDomains == "undefined")
+toolbarDomains = JSON.stringify({'https://www.google.com': true, 'https://www.youtube.com': true});
+
+if(typeof toolbarDomains == "string") {
+	toolbarDomains = JSON.parse(toolbarDomains);
 	var abuf = [];
-	for(var domain in propermenuDomains)
+	for(var domain in toolbarDomains)
 		abuf.push(domain);
         abuf.sort();
 	for(var i = 0; i < abuf.length; i++)
-		appendToListBox("propermenuDomainsBox", abuf[i]);
+		appendToListBox("toolbarDomainsBox", abuf[i]);
     }
+    
+// google bar - Excluded domains - sort these alphabetically
+var googlebarDomains = items["googlebarDomains"];
+if(typeof googlebarDomains == "undefined")
+googlebarDomains = JSON.stringify({'link1a': true, 'link2a': true, 'link3a': true, 'link4a': true, 'link5a': true, 'link6a': true, 'link7a': true, 'link8a': true, 'link9a': true, 'link10a': true, 'link11a': true, 'link12a': true, 'link13a': true, 'link14a': true, 'link15a': true, 'link16a': true, 'link17a': true, 'link18a': true, 'link19a': true, 'link20a': true, 'link21a': true, 'link22a': true, 'link23a': true, 'link24a': true, 'link25a': true, 'link26a': true, 'link27a': true, 'link28a': true});
+
+if(typeof googlebarDomains == "string") {
+	googlebarDomains = JSON.parse(googlebarDomains);
+	var gbuf = [];
+	for(var domain in googlebarDomains)
+		gbuf.push(domain);
+	for(var i = 0; i < gbuf.length; i++)
+        tagappendToListBox("googlebarDomainsBox", gbuf[i]);
+	}
 
 	// retest the function
 	test();
@@ -215,6 +280,8 @@ if(typeof propermenuDomains == "string") {
 
 // Add a filter string to the list box.
 function appendToListBox(boxId, text) { var elt = document.createElement("option"); elt.text = text; elt.value = text; document.getElementById(boxId).add(elt, null); }
+
+function tagappendToListBox(boxId, text) { var elt = document.createElement("option"); var productname = chrome.i18n.getMessage(text); elt.text = productname; elt.value = text; document.getElementById(boxId).add(elt, null); document.getElementById("tag"+text).className = "hidden"; }
 
 // tabel script
     var tabLinks = new Array();
@@ -251,22 +318,90 @@ function appendToListBox(boxId, text) { var elt = document.createElement("option
     }
 
 // whitelist proper menu domain
-function propermenuaddWhitelistDomain() {
-    var domain = $("propermenuwebsiteurl").value;
-    appendToListBox("propermenuDomainsBox", domain);
+function toolbaraddWhitelistDomain() {
+    var domain = $("toolbarwebsiteurl").value;
+    appendToListBox("toolbarDomainsBox", domain);
     save_options();
 }
 
-function propermenuremoveSelectedExcludedDomain() {
-    var propermenuDomainsBox = $("propermenuDomainsBox");
-    for (var i = propermenuDomainsBox.length-1; i >= 0; i--) {
-        if (propermenuDomainsBox.options[i].selected)
-            propermenuDomainsBox.remove(i);
+function toolbarremoveSelectedExcludedDomain() {
+    var toolbarDomainsBox = $("toolbarDomainsBox");
+    for (var i = toolbarDomainsBox.length-1; i >= 0; i--) {
+        if (toolbarDomainsBox.options[i].selected)
+		toolbarDomainsBox.remove(i);
     }
     save_options();
 }
 
+function googlebarremoveSelectedExcludedDomain() {
+    var googlebarDomainsBox = $("googlebarDomainsBox");
+    for (var i = googlebarDomainsBox.length-1; i >= 0; i--) {
+        if (googlebarDomainsBox.options[i].selected){
+            $("tag"+googlebarDomainsBox.options[i].value).className = "tags";
+            googlebarDomainsBox.remove(i);
+        }
+    }
+    save_options();
+}
+
+function moveproductdown() {
+	var excludedstockBox = document.getElementById("googlebarDomainsBox");
+    var i = excludedstockBox.selectedIndex;
+    try{
+	var txt = excludedstockBox.options[i + 1].text
+	var val = excludedstockBox.options[i + 1].value
+	excludedstockBox.options[i + 1].text = excludedstockBox.options[i].text;
+	excludedstockBox.options[i + 1].value = excludedstockBox.options[i].value;
+	excludedstockBox.options[i].text = txt;
+	excludedstockBox.options[i].value = val;
+	excludedstockBox.selectedIndex = i + 1;
+    save_options();
+    }catch(e){}
+}
+
+function moveproductup() {
+	var excludedstockBox = document.getElementById("googlebarDomainsBox");
+    var i = excludedstockBox.selectedIndex;
+    try{
+	var txt = excludedstockBox.options[i - 1].text
+	var val = excludedstockBox.options[i - 1].value
+	excludedstockBox.options[i - 1].text = excludedstockBox.options[i].text;
+	excludedstockBox.options[i - 1].value = excludedstockBox.options[i].value;
+	excludedstockBox.options[i].text = txt;
+	excludedstockBox.options[i].value = val;
+	excludedstockBox.selectedIndex = i - 1;	
+    save_options();
+    }catch(e){}
+}
+
 function test(){
+    if(document.getElementById("toolbaronly").checked == true){
+        document.getElementById("toolbarwebsiteurl").disabled = false;
+        document.getElementById("toolbaraddbutton").disabled = false;
+        document.getElementById("toolbarremovebutton").disabled = false;
+        document.getElementById("toolbarDomainsBox").disabled = false;
+        document.getElementById("toolbarwhite").disabled = false;
+        document.getElementById("toolbarblack").disabled = false;
+    }else{
+        document.getElementById("toolbarwebsiteurl").disabled = true;
+        document.getElementById("toolbaraddbutton").disabled = true;
+        document.getElementById("toolbarremovebutton").disabled = true;
+        document.getElementById("toolbarDomainsBox").disabled = true;
+        document.getElementById("toolbarwhite").disabled = true;
+        document.getElementById("toolbarblack").disabled = true;
+    }
+
+    if(document.getElementById("googleproducts").checked == true){
+        document.getElementById("googlebarremovebutton").disabled = false;
+        document.getElementById("googlebarDomainsBox").disabled = false;
+        document.getElementById("googlebarupbutton").disabled = false;
+        document.getElementById("googlebardownbutton").disabled = false;
+    }else{
+        document.getElementById("googlebarremovebutton").disabled = true;
+        document.getElementById("googlebarDomainsBox").disabled = true;
+        document.getElementById("googlebarupbutton").disabled = true;
+        document.getElementById("googlebardownbutton").disabled = true;
+    }
 }
 
 function slidepreview1(){$("backgroundimagesource").value = chrome.extension.getURL('/images/slice1.png');save_options();}
@@ -277,84 +412,159 @@ function slidepreview5(){$("backgroundimagesource").value = chrome.extension.get
 function slidepreview6(){$("backgroundimagesource").value = chrome.extension.getURL('/images/slice6.png');save_options();}
 
 // Current year
-function yearnow() {
+function yearnow(){
 var today = new Date(); var y0 = today.getFullYear();$("yearnow").innerText = y0;
 }
 
-function detectExtension(extensionId, callback) { 
-  var img; 
-  img = new Image(); 
-  img.src = "chrome-extension://" + extensionId + "/icons/icon16.png"; 
-  img.onload = function() { 
-    callback(true); 
-  }; 
-  img.onerror = function() { 
-    callback(false); 
-  };
+function checkdarkmode(){
+    chrome.storage.sync.get(['darkmode'], function(items){
+        darkmode = items['darkmode'];if(darkmode == null)darkmode = false; // default darkmode false
+
+        // dark mode
+        if(darkmode == true){
+            $('currentdarkmode').innerText = chrome.i18n.getMessage("titledarkmodeon");
+            document.body.className = 'dark';
+            $('headlamp').src = "icons/icon16@2x.png";
+            $('headlamp').srcset = "icons/icon16.png 1x, icons/icon16@2x.png 2x";
+            $('headlamp').style.webkitFilter = "invert(1)";
+            $('headlamp').style.filter = "invert(1)";
+        } else{
+            $('currentdarkmode').innerText = chrome.i18n.getMessage("titledarkmodeoff");
+            document.body.className = 'light';
+            $('headlamp').src = "icons/icon16@2x.png";
+            $('headlamp').srcset = "icons/icon16.png 1x, icons/icon16@2x.png 2x";
+            $('headlamp').style.webkitFilter = "invert(0)";
+            $('headlamp').style.filter = "invert(0)";
+        }
+    });
 }
 
 /* Option page body action */
 // Read current value settings
-window.addEventListener('load', function() {
-read_options();
-yearnow();
-// remove loading screen
-$('loading').style.display = "none";
+window.addEventListener('load', function(){
+    // remove loading screen
+    $('loading').style.display = "none";
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-// random generator
-var items = Array();
-detectExtension(idaa,function(a){if(a != true){items.push(1)}});
-detectExtension(iddt,function(a){if(a != true){items.push(2)}});
-detectExtension(idtotl,function(a){if(a != true){items.push(3)}});
-detectExtension(idft,function(a){if(a != true){items.push(4)}});
-detectExtension(idpp,function(a){if(a != true){items.push(5)}});
-detectExtension(idfs,function(a){if(a != true){items.push(6)}});
-detectExtension(idz,function(a){if(a != true){items.push(7)}runinstalltest()});
-
-function runinstalltest(){
-var numberpick = items[Math.floor(Math.random()*items.length)];
-// pick this extension
-if(numberpick == 1){
-  $("promotext").innerText = chrome.i18n.getMessage("promotext", "Ambient Aurea");
-  $("btnpromoaction").addEventListener('click', function() {window.open(ambientaureaproduct)});  
-} else if(numberpick == 2){
-  $("promotext").innerText = chrome.i18n.getMessage("promotext", "Date Today");
-  $("btnpromoaction").addEventListener('click', function() {window.open(datetodayproduct)});
-} else if(numberpick == 3){
-  $("promotext").innerText = chrome.i18n.getMessage("promotext", "Turn Off the Lights");
-  $("btnpromoaction").addEventListener('click', function() {window.open(turnoffthelightsproduct)});
-} else if(numberpick == 4){
-  $("promotext").innerText = chrome.i18n.getMessage("promotext", "Finance Toolbar");
-  $("btnpromoaction").addEventListener('click', function() {window.open(financetoolbarproduct)});
-} else if(numberpick == 5){
-  $("promotext").innerText = chrome.i18n.getMessage("promotext", "Proper Menubar");
-  $("btnpromoaction").addEventListener('click', function() {window.open(propermenubarproduct)});
-} else if(numberpick == 6){
-  $("promotext").innerText = chrome.i18n.getMessage("promotext", "Full Screen");
-  $("btnpromoaction").addEventListener('click', function() {window.open(fullscreenproduct)});
-} else {
-  $("promotext").innerText = chrome.i18n.getMessage("donatetext");
-  $("spnpromoaction").innerText = chrome.i18n.getMessage("donatecalltoaction");
-  $("btnpromoaction").addEventListener('click', function() {window.open(donatewebsite)});
+if(window.location.href != exoptionspage){
+    document.addEventListener('DOMContentLoaded', domcontentloaded);
+}else{
+    domcontentloaded();
 }
+
+function domcontentloaded(){
+checkdarkmode();
+
+if(window.location.href != exoptionspage){
+    
+    var condition = navigator.onLine ? "online" : "offline";
+    if(condition == "online"){
+        fetch(developerwebsite).then(function(response) {
+            if(response.status === 200){
+                // website is online
+                // redirect to there
+                window.location.href = exoptionspage;
+            }
+            else{
+                throw new Error(response.statusText);
+            }
+
+        }).catch(e=>{
+        //is not there
+        // use offline page
+        // Add the YouTube player
+		$("dont-turn-off-the-lights").src = youtubeembed;
+        read_options();
+        yearnow();
+        });
+    }else{
+        // Add the YouTube player
+		$("dont-turn-off-the-lights").src = youtubeembed;
+        read_options();
+        yearnow();
+    }
+
+} else {
+    // Add the YouTube player
+    $("dont-turn-off-the-lights").src = youtubeembed;
+    read_options();
+    yearnow();
 }
 
 // Remove remember
-$("skipremember").addEventListener('click', function() {$('remembershare').style.display = "none";});
-$("firstcheckboxskipremember").addEventListener('click', function() {if(firstcheckboxskipremember.checked == true){$('optionskipremember').checked = true;}save_options();});
 var sharetext = "I highly recommended Proper Menubar. Download and try it yourself! www.stefanvd.net";
-var stefanvdurl = propermenubarproduct;var stefanvdaacodeurl = encodeURIComponent(stefanvdurl);
-$("rememberboxrate").addEventListener("click", function() {window.open(writereview);});
-$("rememberboxgoogle").addEventListener("click", function() {window.open('https://plus.google.com/share?ur\l=' + stefanvdaacodeurl + '', 'Share to Google+','width=600,height=460,menubar=no,location=no,status=no');});
-$("rememberboxfacebook").addEventListener("click", function() {window.open("https://www.facebook.com/sharer.php?u="+ stefanvdurl + "&t=" + sharetext + "", 'Share to Facebook','width=600,height=460,menubar=no,location=no,status=no');});
-$("rememberboxtwitter").addEventListener("click", function() {window.open("https://twitter.com/share?url=" + stefanvdaacodeurl + "&text=" + sharetext + "", 'Share to Twitter','width=600,height=460,menubar=no,location=no,status=no');});
+var stefanvdurl = propermenubarproduct;
+var stefanvdaacodeurl = encodeURIComponent(stefanvdurl);
 
-$("shareboxgoogle").addEventListener("click", function() {window.open('https://plus.google.com/share?ur\l=' + stefanvdaacodeurl + '', 'Share to Google+','width=600,height=460,menubar=no,location=no,status=no');});
+$("shareboxyoutube").addEventListener("click", function() {window.open(linkyoutube,"_blank");});
 $("shareboxfacebook").addEventListener("click", function() {window.open("https://www.facebook.com/sharer.php?u="+ stefanvdurl + "&t=" + sharetext + "", 'Share to Facebook','width=600,height=460,menubar=no,location=no,status=no');});
 $("shareboxtwitter").addEventListener("click", function() {window.open("https://twitter.com/share?url=" + stefanvdaacodeurl + "&text=" + sharetext + "", 'Share to Twitter','width=600,height=460,menubar=no,location=no,status=no');});
-	
+
+var isMenuClick = false;
+var menu = document.getElementById('dotmenu');
+document.addEventListener('click',()=>{
+    if(!isMenuClick){
+       //Hide the menu here
+       $('dropmenu').className = "hide";
+    }
+    //Reset isMenuClick 
+    isMenuClick = false;
+})
+menu.addEventListener('click',()=>{
+    isMenuClick = true;
+})
+
+$("dotmenu").addEventListener('click', function() {
+    if($('dropmenu').className == "show"){
+        $('dropmenu').className = "hide";
+    }else{
+        $('dropmenu').className = "show";
+    }
+});
+
+$("darkpanel").addEventListener('click', function() {
+    $('menuToggle').click();
+});
+
+$("titleex").addEventListener('click', function() {
+    window.open(developerwebsite);
+});
+
+$("btnsupport").addEventListener('click', function() {
+    window.open(linksupport);$('dropmenu').className = "hide";
+});
+
+$("btnactivedarkmode").addEventListener('click', function() {
+    chrome.storage.sync.get(['darkmode'], function(items){
+        darkmode = items['darkmode'];if(darkmode == null)darkmode = false; // default darkmode false
+        // dark mode
+        if(darkmode == true){
+            $('currentdarkmode').innerText = chrome.i18n.getMessage("titledarkmodeoff");
+            $('dropmenu').className = "hide";
+            document.body.className = 'light';
+            $('headlamp').src = "icons/icon16@2x.png";
+            $('headlamp').srcset = "icons/icon16.png 1x, icons/icon16@2x.png 2x";
+            $('headlamp').style.webkitFilter = "invert(0)";
+            $('headlamp').style.filter = "invert(0)";
+            chrome.storage.sync.set({"darkmode":false});
+        } else{
+            $('currentdarkmode').innerText = chrome.i18n.getMessage("titledarkmodeon");
+            $('dropmenu').className = "hide";
+            document.body.className = 'dark';
+            $('headlamp').src = "icons/icon16@2x.png";
+            $('headlamp').srcset = "icons/icon16.png 1x, icons/icon16@2x.png 2x";
+            $('headlamp').style.webkitFilter = "invert(1)";
+            $('headlamp').style.filter = "invert(1)";
+            chrome.storage.sync.set({"darkmode":true});
+        }
+    });
+});
+
+// promotion
+$("promotext").innerText = chrome.i18n.getMessage("donatetext");
+$("spnpromoaction").innerText = chrome.i18n.getMessage("donatecalltoaction");
+$("btnpromoaction").addEventListener('click', function() {window.open(donatewebsite)});
+
 // Detect click / change to save the page and test it.
 var inputs = document.querySelectorAll('input');
 for (var i = 0; i < inputs.length; i++) {inputs[i].addEventListener('change', test);inputs[i].addEventListener('change', save_options);}
@@ -364,6 +574,25 @@ for (var i = 0; i < select.length; i++) {select[i].addEventListener('change', te
 // Close yellow bar
 $("managed-prefs-text-close").addEventListener('click', function() {$("managed-prefs-banner").style.display = "none";});
 
+// Move up
+$("googlebarupbutton").addEventListener('click', function() {moveproductup();});
+
+// Move down
+$("googlebardownbutton").addEventListener('click', function() {moveproductdown();});
+
+var guidekb = true;
+function memguide(){
+    if(guidekb == true){
+        // already visible
+    }else{
+        $("managed-prefs-banner").style.display = "";
+    }
+}
+
+function mobilecheck(){
+    if(window.innerWidth < 480){$('menuToggle').click();}
+}
+
 $("slice1").addEventListener('click', function() {slidepreview1();});
 $("slice2").addEventListener('click', function() {slidepreview2();});
 $("slice3").addEventListener('click', function() {slidepreview3();});
@@ -371,39 +600,212 @@ $("slice4").addEventListener('click', function() {slidepreview4();});
 $("slice5").addEventListener('click', function() {slidepreview5();});
 $("slice6").addEventListener('click', function() {slidepreview6();});
 
-// proper menu Add website
-$("propermenuaddbutton").addEventListener('click', function() {propermenuaddWhitelistDomain();});
+// toolbar Add website
+$('formtoolbar').addEventListener("submit", function(e){e.preventDefault();toolbaraddWhitelistDomain();});
 
-// proper menu Remove website
-$("propermenuremovebutton").addEventListener('click', function() {propermenuremoveSelectedExcludedDomain();});
+// toolbar Remove website
+$("toolbarremovebutton").addEventListener('click', function() {toolbarremoveSelectedExcludedDomain();});
 
-// Download Upgrade
-$("aadownload").addEventListener('click', function() {window.open(ambientaureaproduct);});
-$("ftdownload").addEventListener('click', function() {window.open(financetoolbarproduct);});
-$("dtdownload").addEventListener('click', function() {window.open(datetodayproduct)});
-$("totldownload").addEventListener('click', function() {window.open(turnoffthelightsproduct)});
-$("fsdownload").addEventListener('click', function() {window.open(fullscreenproduct)});
-$("zdownload").addEventListener('click', function() {window.open(zoomproduct)});
-
-// Save KB download
-$("tabbasic").addEventListener('click', function() {$('dont-turn-off-the-lights').src = "https://www.youtube.com/embed/?listType=playlist&amp;list=PLfXHh3TKRb4ZIWFeG31L_jRs5fRHtzYAc";$('welcomeguide').src = "";});
-$("tabdesign").addEventListener('click', function() {$('dont-turn-off-the-lights').src = "";$('welcomeguide').src = "";});
-$("tabadvan").addEventListener('click', function() {$('dont-turn-off-the-lights').src = "";$('dont-turn-off-the-lights').src = "";$('welcomeguide').src = "";$("managed-prefs-banner").style.display = "";});
-$("tabguide").addEventListener('click', function() {$('dont-turn-off-the-lights').src = "";$('welcomeguide').src = linkguide;$("managed-prefs-banner").style.display = "none";});
-$("tabhelp").addEventListener('click', function() {$('dont-turn-off-the-lights').src = "";$('dont-turn-off-the-lights').src = "";$('welcomeguide').src = "";$("managed-prefs-banner").style.display = "";});
-
-// Reset settings
-$("resetpropermenubar").addEventListener('click', function() {chrome.storage.local.clear();location.reload();});
-
-// Review box
-$("war").addEventListener('click', function() {window.open(writereview, "_blank");$("sectionreviewbox").style.display = "none";chrome.storage.local.set({"reviewedlastonversion": chrome.runtime.getManifest().version})});
-$("nt").addEventListener('click', function() {$("sectionreviewbox").style.display = "none";chrome.storage.local.set({"reviewedlastonversion": chrome.runtime.getManifest().version})});
-
-// retina check
-if(window.devicePixelRatio >= 2) {
-$("loadinglamp").src = "icons/icon16@2x.png";$("loadinglamp").style.width = "16px"; $("loadinglamp").style.height = "16px";
-$("welcomelamp").src = "icons/icon16@2x.png";$("welcomelamp").style.width = "16px"; $("welcomelamp").style.height = "16px";
-$("rememberlamp").src = "icons/icon16@2x.png";$("rememberlamp").style.width = "16px"; $("rememberlamp").style.height = "16px";
+// googlebar Add product
+var inputs, index;
+inputs = $("tagbox").getElementsByClassName('tags');
+for (index = 0; index < inputs.length; ++index) {
+    inputs[index].addEventListener("click", function(event){
+        var prod = this.id; prod = prod.substr(3);
+        tagappendToListBox("googlebarDomainsBox", prod);
+        save_options();
+    },false);
 }
 
+// googlebar Remove website
+$("googlebarremovebutton").addEventListener('click', function() {googlebarremoveSelectedExcludedDomain();});
+
+$("removepermissioncopy").addEventListener('click', function() {
+chrome.permissions.remove({
+    permissions: ['clipboardWrite']
+  }, function(removed) {
+    if (removed) {
+        // The permissions have been removed.
+        var txtpermission = chrome.i18n.getMessage("wpermissionremoved");
+        window.alert(txtpermission);
+      } else {
+        // The permissions have not been removed (e.g., you tried to remove
+        // required permissions).
+        var txtpermission = chrome.i18n.getMessage("wpermissionnotremoved");
+        window.alert(txtpermission);
+      }
+  });
 });
+
+$("removepermissionpaste").addEventListener('click', function() {
+chrome.permissions.remove({
+    permissions: ['clipboardRead']
+  }, function(removed) {
+    if (removed) {
+        // The permissions have been removed.
+        var txtpermission = chrome.i18n.getMessage("wpermissionremoved");
+        window.alert(txtpermission);
+      } else {
+        // The permissions have not been removed (e.g., you tried to remove
+        // required permissions).
+        var txtpermission = chrome.i18n.getMessage("wpermissionnotremoved");
+        window.alert(txtpermission);
+      }
+  });
+});
+
+$("removepermissionmhtml").addEventListener('click', function() {
+chrome.permissions.remove({
+    permissions: ['pageCapture']
+  }, function(removed) {
+    if (removed) {
+      // The permissions have been removed.
+      var txtpermission = chrome.i18n.getMessage("wpermissionremoved");
+      window.alert(txtpermission);
+    } else {
+      // The permissions have not been removed (e.g., you tried to remove
+      // required permissions).
+      var txtpermission = chrome.i18n.getMessage("wpermissionnotremoved");
+      window.alert(txtpermission);
+    }
+  });
+});
+
+$("removepermissionbookmark").addEventListener('click', function() {
+chrome.permissions.remove({
+    permissions: ['bookmarks']
+  }, function(removed) {
+    if (removed) {
+        // The permissions have been removed.
+        var txtpermission = chrome.i18n.getMessage("wpermissionremoved");
+        window.alert(txtpermission);
+      } else {
+        // The permissions have not been removed (e.g., you tried to remove
+        // required permissions).
+        var txtpermission = chrome.i18n.getMessage("wpermissionnotremoved");
+        window.alert(txtpermission);
+      }
+  });
+});
+
+// Save KB download
+$("tabbasic").addEventListener('click', function() {Scrolltotop();ONworkaroundbugpreview();OFFworkaroundbugfromsafari();$('welcomeguide').src = "";memguide();guidekb = true;mobilecheck();});
+$("tabdesign").addEventListener('click', function() {Scrolltotop();ONworkaroundbugpreview();$('welcomeguide').src = "";memguide();guidekb = true;mobilecheck();});
+$("tabadvan").addEventListener('click', function() {Scrolltotop();ONworkaroundbugpreview();$('welcomeguide').src = "";memguide();guidekb = true;mobilecheck();});
+$("tabguide").addEventListener('click', function() {Scrolltotop();ONworkaroundbugpreview();$('welcomeguide').src = linkguide;$("managed-prefs-banner").style.display = "none";guidekb = false;mobilecheck();});
+$("tabhelp").addEventListener('click', function() {Scrolltotop();ONworkaroundbugpreview();$('welcomeguide').src = "";memguide();guidekb = true;mobilecheck();});
+
+$("buttonreportissue").addEventListener('click', function() {window.open(linksupport);});
+$("buttonchangelog").addEventListener('click', function() {window.open(linkchangelog);});
+$("buttontranslateme").addEventListener('click', function() {window.open(linktranslate);});
+
+// scroll to top
+function Scrolltotop(){$("mainview").scrollTop = 0;}
+
+// remove all videos
+function ONworkaroundbugpreview(){$("dont-turn-off-the-lights").src = "";}
+
+// add a video
+function OFFworkaroundbugfromsafari(){
+    $("dont-turn-off-the-lights").src = youtubeembed;
+}
+
+// Reset settings
+$("resetpropermenubar").addEventListener('click', function() {chrome.storage.sync.clear();location.reload();});
+
+// Review box
+$("war").addEventListener('click', function() {window.open(writereview, "_blank");$("sectionreviewbox").style.display = "none";chrome.storage.sync.set({"reviewedlastonversion": chrome.runtime.getManifest().version})});
+$("nt").addEventListener('click', function() {$("sectionreviewbox").style.display = "none";chrome.storage.sync.set({"reviewedlastonversion": chrome.runtime.getManifest().version})});
+
+// search
+var pageinsearch = false;
+function OnSearch(input) {
+  if(input.value == "") {
+    pageinsearch = false;
+    input.blur();
+
+    let sections = document.getElementsByTagName("section");
+    for (let x = 0; x < sections.length; x++) {
+      let section = sections[x];
+      section.classList.remove("searchfoundnothing");
+    }
+
+    // set view back to the current selected tab
+    // and hide back all videos
+    var y = document.getElementsByClassName('navbar-item-selected');
+    y[0].click();
+  }
+  else {
+    if(pageinsearch == false){
+        pageinsearch = true;
+        // load all the videos
+        OFFworkaroundbugfromsafari();
+    }
+
+    // receive the total tab pages
+    var tabListItems = $('navbar').childNodes;
+    for ( var i = 0; i < tabListItems.length; i++ ) {
+        if ( tabListItems[i].nodeName == 'LI' ) {
+        var tabLink = getFirstChildWithTagName( tabListItems[i], 'A' );
+        var id = getHash( tabLink.getAttribute('data-tab') );
+        contentDivs[id] = $( id );
+        }
+    }
+
+    // show all tab pages
+    var i = 0;
+    for ( var id in contentDivs ) {
+        if(id != "tab3"){
+        contentDivs[id].className = 'page';
+        }
+        i++;
+    }
+    //---
+    var searchword = input.value;
+
+    let sections = document.getElementsByTagName("section");
+    for (let x = 0; x < sections.length; x++) {
+        let section = sections[x];
+        let content = section.innerHTML;
+
+        if(content.search(new RegExp(searchword, "i")) < 1){
+            section.classList.add("searchfoundnothing");
+        }else{
+            section.classList.remove("searchfoundnothing");
+        }
+    }
+
+    // hide the h2 if there is no sections visible
+    let pages = document.getElementsByClassName("page");
+    for (let z = 0; z < pages.length; z++) {
+      let sections = pages[z].getElementsByTagName("section");
+      var countnothingcheck = 0;
+      for (let x = 0; x < sections.length; x++) {
+        let section = sections[x];
+
+        if (section.classList.contains('searchfoundnothing')) {
+          countnothingcheck += 1;
+        }
+
+      }
+      if(countnothingcheck == sections.length){
+        // total sections with nothing inside is the same as all the section -> hide the page
+        pages[z].classList.add("searchfoundnothing");
+      }
+      else{
+        pages[z].classList.remove("searchfoundnothing");
+      }
+   }
+
+
+  }
+}
+
+if(document.getElementById("appsearch")){
+    document.getElementById("appsearch").addEventListener("search", function(){OnSearch(this);}, false);
+    document.getElementById("appsearch").addEventListener("input", function(){OnSearch(this);}, false);
+    document.getElementById("btnsearchicon").addEventListener("input", function(){OnSearch(this);}, false);
+    document.getElementById("appsearch").placeholder = chrome.i18n.getMessage("searchplaceholder");
+}
+
+}

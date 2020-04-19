@@ -3,7 +3,7 @@
 
 Ambient Aurea
 Bring your image to an ambient lighting effect with just one click on the button.
-Copyright (C) 2016 Stefan vd
+Copyright (C) 2018 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -46,7 +46,7 @@ ambilight4color = response['ambilight4color'];if(ambilight4color == null)ambilig
 ambilightvarcolor = response['ambilightvarcolor'];if(ambilightvarcolor == null)ambilightvarcolor = true;
 ambilightcolorhex = response['ambilightcolorhex'];if(ambilightcolorhex == null)ambilightcolorhex = '#CCCCCC';
 ambilight1colorhex = response['ambilight1colorhex'];if(ambilight1colorhex == null)ambilight1colorhex = '#FF0000';
-ambilight2colorhex = response['ambilight2colorhex'];if(ambilight2colorhexv == null)ambilight2colorhex = '#FFEE00';
+ambilight2colorhex = response['ambilight2colorhex'];if(ambilight2colorhex == null)ambilight2colorhex = '#FFEE00';
 ambilight3colorhex = response['ambilight3colorhex'];if(ambilight3colorhex == null)ambilight3colorhex = '#00FF00';
 ambilight4colorhex = response['!ambilight4colorhex'];if(ambilight4colorhex == null)ambilight4colorhex = '#0000FF';
 sharebar = response['sharebar'];if(sharebar == null)sharebar = true;

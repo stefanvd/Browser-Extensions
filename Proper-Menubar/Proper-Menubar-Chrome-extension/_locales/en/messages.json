@@ -1,616 +1,269 @@
 {
-   "addbutton": {
-      "description": "Add",
-      "message": "Add"
-   },
-   "basicsettings": {
-      "description": "Basics",
-      "message": "Basics"
-   },
-   "changelog": {
-      "description": "changelog link",
-      "message": "Changelog"
-   },
-   "deletebutton": {
-      "description": "Delete",
-      "message": "Delete"
-   },
-   "desallsites": {
-      "description": "Show the bar on all websites included not Google sites",
-      "message": "Show the bar on all websites included not Google sites"
-   },
-   "desbackgroundcolor": {
-      "description": "Background Color",
-      "message": "Background Color"
-   },
-   "desbackgroundimage": {
-      "description": "Click below your favorite background image:",
-      "message": "Click below your favorite background image:"
-   },
-   "descountry": {
-      "description": "Type here your country website code (or 'com' for international):",
-      "message": "Type here your country website code (or 'com' for international):"
-   },
-   "description": {
-      "description": "Add the black menubar below the address bar. To get easy and fast access to all your Google products.",
-      "message": "Add the black menubar below the address bar. To get easy and fast access to all your Google products."
-   },
-   "desfontcolor": {
-      "description": "Change the color of the links",
-      "message": "Change the color of the links"
-   },
-   "desgooglesites": {
-      "description": "Show the bar only on Google websites (normal use)",
-      "message": "Show the bar only on Google websites (normal use)"
-   },
-   "designmenubar": {
-      "description": "Design",
-      "message": "Design"
-   },
-   "desmenubar": {
-      "description": "Menubar",
-      "message": "Check the following elements if you want to see this in the menubar:"
-   },
-   "desopacity": {
-      "description": "with an opacity of",
-      "message": "with an opacity of"
-   },
-   "despropermenuonly": {
-      "description": "Show the bar only on this websites:",
-      "message": "Show the bar only on this websites:"
-   },
-   "dessearch": {
-      "description": "Option to use the search keyword for other Google links",
-      "message": "Option to use the search keyword for other Google links"
-   },
-   "donatepromotext": {
-      "description": "If you can make a donation of any amount, I'd appreciate it immensely!",
-      "message": "If you can make a donation of any amount, I'd appreciate it immensely!"
-   },
-   "googletrademark": {
-      "description": "Note: Google is a trademark of Google Inc. Use of this trademark is subject to Google Permissions.",
-      "message": "Note: Google is a trademark of Google Inc. Use of this trademark is subject to Google Permissions."
-   },
-   "guide": {
-      "description": "Proper Menubar Guide",
-      "message": "Proper Menubar Guide"
-   },
-   "link10a": {
-      "description": "Calendar",
-      "message": "Calendar"
-   },
-   "link11a": {
-      "description": "Translate",
-      "message": "Translate"
-   },
-   "link12a": {
-      "description": "Mobile",
-      "message": "Mobile"
-   },
-   "link13a": {
-      "description": "Books",
-      "message": "Books"
-   },
-   "link14a": {
-      "description": "Docs",
-      "message": "Docs"
-   },
-   "link15a": {
-      "description": "Wallet",
-      "message": "Wallet"
-   },
-   "link16a": {
-      "description": "Shopping",
-      "message": "Shopping"
-   },
-   "link17a": {
-      "description": "Blogger",
-      "message": "Blogger"
-   },
-   "link18a": {
-      "description": "Finance",
-      "message": "Finance"
-   },
-   "link19a": {
-      "description": "Photos",
-      "message": "Photos"
-   },
-   "link1a": {
-      "description": "+You",
-      "message": "+You"
-   },
-   "link20a": {
-      "description": "Videos",
-      "message": "Videos"
-   },
-   "link21a": {
-      "description": "More Google...",
-      "message": "More Google..."
-   },
-   "link22a": {
-      "description": "Google Voice",
-      "message": "Google Voice"
-   },
-   "link23a": {
-      "description": "Contacts",
-      "message": "Contacts"
-   },
-   "link24a": {
-      "description": "Scholar",
-      "message": "Scholar"
-   },
-   "link25a": {
-      "description": "Google Keep",
-      "message": "Google Keep"
-   },
-   "link26a": {
-      "description": "Google Space",
-      "message": "Google Space"
-   },
-   "link27a": {
-      "description": "Google Groups",
-      "message": "Google Groups"
-   },
-   "link28a": {
-      "description": "Hangouts",
-      "message": "Hangouts"
-   },      
-   "link2a": {
-      "description": "Search",
-      "message": "Search"
-   },
-   "link3a": {
-      "description": "Images",
-      "message": "Images"
-   },
-   "link4a": {
-      "description": "Maps",
-      "message": "Maps"
-   },
-   "link5a": {
-      "description": "Play",
-      "message": "Play"
-   },
-   "link6a": {
-      "description": "YouTube",
-      "message": "YouTube"
-   },
-   "link7a": {
-      "description": "News",
-      "message": "News"
-   },
-   "link8a": {
-      "description": "Gmail",
-      "message": "Gmail"
-   },
-   "link9a": {
-      "description": "Drive",
-      "message": "Drive"
-   },
-   "linkmore": {
-      "description": "More...",
-      "message": "More..."
-   },
-   "menubar": {
-      "description": "Menubar",
-      "message": "Menubar"
-   },
-   "name": {
-      "description": "Proper Menubar",
-      "message": "Proper Menubar"
-   },
-   "optionpagetitle": {
-      "description": "Proper Menubar - Options",
-      "message": "Proper Menubar - Options"
-   },
-   "pagehelp": {
-      "description": "help",
-      "message": "help"
-   },
-   "pagestillloading": {
-      "description": "The page is still loading?",
-      "message": "The page is still loading?"
-   },
-   "popupdonate": {
-      "description": "Support my development",
-      "message": "Support my development"
-   },
-   "productshare": {
-      "description": "Share",
-      "message": "Share"
-   },
-   "reportbug": {
-      "description": "Report an Issue of my extension",
-      "message": "Report an Issue"
-   },
-   "settings": {
-      "description": "Settings",
-      "message": "Settings"
-   },
-   "textfoot": {
-      "description": "This software is licensed under the CC-GNU GPL. To view a copy of this license, visit",
-      "message": "This software is licensed under the CC-GNU GPL. To view a copy of this license, visit"
-   },
-   "titelallsites": {
-      "description": "Websites",
-      "message": "Websites"
-   },
-   "titelbackground": {
-      "description": "Background",
-      "message": "Background"
-   },
-   "titelcountry": {
-      "description": "Country",
-      "message": "Country"
-   },
-   "titelfontcolor": {
-      "description": "Font Color",
-      "message": "Font Color"
-   },
-   "titelsearch": {
-      "description": "Search keyword",
-      "message": "Search keyword"
-   },
-   "titledonatebutton": {
-      "description": "Donate",
-      "message": "Donate"
-   },
-   "version": {
-      "description": "Version",
-      "message": "Version"
-   },
-   "designmarquee": {
-      "description": "Design",
-      "message": "Design"
-   },
-   "titelexistingtab": {
-      "description": "Open Link",
-      "message": "Open Link"
-   }, 
-   "desexistingtab": {
-      "description": "If you enable this option, it will open the link in your existing tab",
-      "message": "If you enable this option, it will open the link in your existing tab"
-   },
-   "upgradecontexttitle": {
-      "description": "Improvement",
-      "message": "Improvement"
-   },
-   "upgradecontextmessage": {
-      "description": "for Google website",
-      "message": "for Google website"
-   }, 
-   "upgradecontextitemta": {
-      "description": "Improvement",
-      "message": "Improvement"
-   }, 
-   "upgradecontextitemma": {
-      "description": "for YouTube website",
-      "message": "for YouTube website"
-   }, 
-   "upgradecontextitemtb": {
-      "description": "Link",
-      "message": "Link"
-   }, 
-   "upgradecontextitemmb": {
-      "description": "Now you can open the link in your existing tab",
-      "message": "Now you can open the link in your existing tab"
-   },
-    "upgradefbshare": {
-        "message": "Facebook Share", 
-        "description": "Facebook Share"
-    },	
-    "upgradetwshare": {
-        "message": "Tweet", 
-        "description": "Tweet"
+    "addbutton": {"message": "Add"},
+    "basicsettings": {"message": "Basics"},
+    "changelog": {"message": "Changelog"},
+    "deletebutton": {"message": "Delete"},
+    "desallsites": {"message": "Show the bar on all websites"},
+    "desbackgroundcolor": {"message": "Background Color"},
+    "desbackgroundimage": {"message": "Click below your favorite background image:"},
+    "descountry": {"message": "Type here your country website code (or 'com' for international):"},
+    "description": {"message": "Add the best menu bar to get easy and fast access to all your useful browser options and internet products!"},
+    "desfontcolor": {"message": "Change the color of the links"},
+    "desgooglesites": {"message": "Show the bar only on Google websites (normal use)"},
+    "designmenubar": {"message": "Design"},
+    "desmenubar": {"message": "Check the following elements if you want to see this in the menubar:"},
+    "desopacity": {"message": "with an opacity of"},
+    "despropermenuonly": {"message": "Show the bar only on this websites:"},
+    "dessearch": {"message": "Keep your current search words when switching between Google products"},
+    "donatepromotext": {"message": "If you can make a donation of any amount, I'd appreciate it immensely!"},
+    "googletrademark": {"message": "Note: Google is a trademark of Google Inc. Use of this trademark is subject to Google Permissions."},
+    "guide": {"message": "Proper Menubar Guide"},
+    "link10a": {"message": "Calendar"},
+    "link11a": {"message": "Translate"},
+    "link12a": {"message": "Mobile"},
+    "link13a": {"message": "Books"},
+    "link14a": {"message": "Docs"},
+    "link15a": {"message": "Pay"},
+    "link16a": {"message": "Shopping"},
+    "link17a": {"message": "Blogger"},
+    "link18a": {"message": "Finance"},
+    "link19a": {"message": "Photos"},
+    "link1a": {"message": "Account"},
+    "link20a": {"message": "Videos"},
+    "link21a": {"message": "More Google..."},
+    "link22a": {"message": "Voice"},
+    "link23a": {"message": "Contacts"},
+    "link24a": {"message": "Scholar"},
+    "link25a": {"message": "Keep"},
+    "link26a": {"message": "Slides"},
+    "link27a": {"message": "Groups"},
+    "link28a": {"message": "Hangouts"},
+    "link29a": {"message": "AI"},
+    "link30a": {"message": "Arts & Culture"},
+    "link31a": {"message": "Play Music"},
+    "link32a": {"message": "Play Movies"},
+    "link33a": {"message": "Collection"},
+    "link34a": {"message": "My Business"},
+    "link35a": {"message": "Classroom"},
+    "link36a": {"message": "Earth"},
+    "link37a": {"message": "Jamboard"},
+    "link38a": {"message": "Support"},
+    "link39a": {"message": "Sites"},
+    "link40a": {"message": "Trends"},
+    "link41a": {"message": "Flights"},
+    "link42a": {"message": "Fit"},
+    "link43a": {"message": "Store"},
+    "link44a": {"message": "Cloud"},
+    "link45a": {"message": "Analytics"},
+    "link46a": {"message": "Ads"},
+    "link47a": {"message": "Search Console"},
+    "link48a": {"message": "Merchants"},
+    "link49a": {"message": "Adsense"},
+    "link50a": {"message": "Play Console"},
+    "link51a": {"message": "Chrome Web Store"},
+    "link52a": {"message": "Sheets"},
+    "link53a": {"message": "Forms"},
+    "link2a": {"message": "Search"},
+    "link3a": {"message": "Images"},
+    "link4a": {"message": "Maps"},
+    "link5a": {"message": "Play Store"},
+    "link6a": {"message": "YouTube"},
+    "link7a": {"message": "News"},
+    "link8a": {"message": "Gmail"},
+    "link9a": {"message": "Drive"},
+    "linkmore": {"message": "More..."},
+    "menubar": {"message": "Menubar"},
+    "name": {"message": "Proper Menubar"},
+    "namechrome": {"message": "Proper Menubar for Google Chrome"},
+    "optionpagetitle": {"message": "Proper Menubar - Options"},
+    "pagehelp": {"message": "help"},
+    "pagestillloading": {"message": "The page is still loading?"},
+    "popupdonate": {"message": "Support my development"},
+    "productshare": {"message": "Share"},
+    "reportbug": {"message": "Report an Issue"},
+    "settings": {"message": "Settings"},
+    "textfoot": {"message": "This software is licensed under the CC-GNU GPL. To view a copy of this license, visit"},
+    "titelallsites": {"message": "Websites"},
+    "titelbackground": {"message": "Background"},
+    "titelcountry": {"message": "Country"},
+    "titelfontcolor": {"message": "Font Color"},
+    "titelsearch": {"message": "Search keyword"},
+    "titledonatebutton": {"message": "Donate"},
+    "version": {"message": "Version"},
+    "designmarquee": {"message": "Design"},
+    "titelexistingtab": {"message": "Open Link"},
+    "desexistingtab": {"message": "If you enable this option, it will open the link in your existing tab"},
+    "upgradecontexttitle": {"message": "Improvement"},
+    "upgradecontextmessage": {"message": "for Google website"},
+    "upgradecontextitemta": {"message": "Improvement"},
+    "upgradecontextitemma": {"message": "for YouTube website"},
+    "upgradecontextitemtb": {"message": "Link"},
+    "upgradecontextitemmb": {"message": "Now you can open the link in your existing tab"},
+    "upgradefbshare": {"message": "Facebook Share"},
+    "upgradetwshare": {"message": "Tweet"},
+    "ratetitle": {"message": "Please rate & review my extension"},
+    "ratedes": {"message": "And let everyone know about this great extension!"},
+    "rateitema": {"message": "Rate 5 stars"},
+    "seelist": {"message": "(see list)"},
+    "helptranslate": {"message": "Help Translate"},
+    "sharemenusharetitle": {"message": "Share this"},
+    "sharemenuwelcomeguidetitle": {"message": "Welcome Guide"},
+    "sharemenutellafriend": {"message": "Tell a Friend"},
+    "sharemenusendatweet": {"message": "Send a Tweet"},
+    "sharemenupostonfacebook": {"message": "Post on Facebook"},
+    "sharemenuratetitle": {"message": "Rate this extension"},
+    "sharemenudonatetitle": {"message": "Support Development"},
+    "advancedoptions": {"message": "Advanced Options"},
+    "help": {"message": "Help"},
+    "about": {"message": "About"},
+    "titelreset": {"message": "Reset settings"},
+    "resetbrowserextension": {"message": "Reset the Proper Menubar settings"},
+    "areyouhappy": {"message": "Are you happy about Proper Menubar?"},
+    "tellothers": {"message": "Ensure that your opinion counts"},
+    "nothanks": {"message": "No thanks"},
+    "writeareview": {"message": "Write a review"},
+    "downloadtheapp": {"message": "Download the app now"},
+    "desrememberpage": {"message": "If this option is enabled, it will not show you the reminder page"},
+    "titelrememberpage": {"message": "Reminder page"},
+    "longdonatetext": {"message": "I'd truly appreciate if you can donate me to keep this browser extension alive for other new users. Whether it's $$1 or $$100, your support is immensely appreciated!"},
+    "enjoyshare": {"message": "Enjoy this extension and share it with others who you think will appreciate it."},
+    "titelsync": {"message": "Sync"},
+    "titelsyncbrowser": {"message": "Sync the extension settings with your other browser."},
+    "titeldownloadupgrade": {"message": "The entire page will be fading to dark, so you can watch the video as if you were in the cinema."},
+    "desproject": {"message": "project"},
+    "desbrowserextension": {"message": "browser extension"},
+    "translateme": {"message": "Help Translate"},
+    "titelwebsite": {"message": "Website"},
+    "titeldeveloper": {"message": "Developer"},
+    "rememberrate": {"message": "Rate"},
+    "showremember": {"message": "Do not show this reminder page again when I open the options page"},
+    "skipremember": {"message": "Skip this, and open now the options page"},
+    "titelrightsreserved": {"message": "Some rights reserved."},
+    "friendlyremember": {"message": "Friendly Reminder..."},
+    "welcomebasictext": {"message": "Welcome on the Proper Menubar Browser extension. Here a brief video about how to use the Proper Menubar extension in your web browser."},
+    "promotitle": {"message": "Tip of the day"},
+    "promotext": {
+        "message": "Want to use something new and amazing for your web browser? Try the $product$ Browser extension.",
+        "placeholders": {"product": {"content": "$1", "example": "Turn Off the Lights"}}
     },
-    "ratetitle": {
-        "message": "Please rate & review my extension", 
-        "description": "Please rate & review my extension"
-    },
-    "ratedes": {
-        "message": "And let everyone know about this great extension!", 
-        "description": "And let everyone know about this great extension!"
-    },
-    "rateitema": {
-        "message": "Rate 5 stars", 
-        "description": "Rate 5 stars"
-    },
-    "seelist": {
-        "message": "(see list)", 
-        "description": "(see list)"
-    }, 	
-    "helptranslate": {
-        "message": "Help Translate", 
-        "description": "Help Translate"
-    },
- "sharemenusharetitle":{
-    "message":"Share this",
-    "description":"Share this"
-  },
-  "sharemenuwelcomeguidetitle":{
-    "message":"Welcome Guide",
-    "description":"Welcome Guide"
-  },
-  "sharemenutellafriend":{
-    "message":"Tell a Friend",
-    "description":"Tell a Friend"
-  },
-  "sharemenusendatweet":{
-    "message":"Send a Tweet",
-    "description":"Send a Tweet"
-  },
-  "sharemenupostonfacebook":{
-    "message":"Post on Facebook",
-    "description":"Post on Facebook"
-  },
-  "sharemenupostongoogleplus":{
-    "message":"Post on Google+",
-    "description":"Post on Google+"
-  },
-  "sharemenuratetitle":{
-    "message":"Rate this extension",
-    "description":"Rate this extension"
-  },
-  "sharemenudonatetitle":{
-    "message":"Support Development",
-    "description":"Support Development"
-  },
-  "advancedoptions":{
-    "message":"Advanced Options",
-    "description":"Advanced Options"
-  },
-  "desatmosvivid":{
-    "message":"Vivid atmosphere effects",
-    "description":"Vivid atmosphere effects"
-  },
-  "help":{
-    "message":"Help",
-    "description":"Help"
-  },
-  "about":{
-    "message":"About",
-    "description":"About"
-  },
-  "titelreset":{
-    "message":"Reset settings",
-    "description":"Reset settings"
-  },
-  "resetbrowserextension":{
-    "message":"Reset the Proper Menubar settings",
-    "description":"Reset the Proper Menubar settings"
-  },
-  "areyouhappy":{
-    "message":"Are you happy about Proper Menubar?",
-    "description":"Are you happy about Proper Menubar?"
-  },
-  "tellothers":{
-    "message":"Ensure that your opinion counts",
-    "description":"Ensure that your opinion counts"
-  },
-  "nothanks":{
-    "message":"No thanks",
-    "description":"No thanks"
-  },
-  "writeareview":{
-    "message":"Write a review",
-    "description":"Write a review"
-  },
-  "desfinancetoolbar":{
-    "message":"Your personal stocks toolbar on your desktop is also available for your computer.",
-    "description":"our personal stocks toolbar on your desktop is also available for your computer."
-  },
-  "downloadtheapp":{
-    "message":"Download the app now",
-    "description":"Download the app now"
-  },
-  "titeldownloadaaupgrade":{
-    "message":"The upgrade adds support for focusing selected images, and will display a gallery of images on the site.",
-    "description":"The upgrade adds support for focusing selected images, and will display a gallery of images on the site."
-  },
-  "titeldownloadupgradepropermenubar":{
-    "message":"Add back the black menubar on the Google website.",
-    "description":"Add back the black menubar on the Google website."
-  },
-  "titeldownloadupgradefinancetoolbar":{
-    "message":"This shows you the real time stock market information.",
-    "description":"This shows you the real time stock market information."
-  },
- "titeldownloadupgradefullscreen":{
-    "message":"With this extension you can easy go to full screen. This for image, video and webpage.",
-    "description":"With this extension you can easy go to full screen. This for image, video and webpage."
-  },
- "titeldownloadupgradezoom":{
-    "message":"Zoom in or out on web content using the zoom button for more comfortable reading.",
-    "description":"Zoom in or out on web content using the zoom button for more comfortable reading."
-  },
- "titeldownloadupgradedatetoday":{
-    "message":"This extension show the analog clock in the menu bar. When you click on the icon, it shows you the current time; month and day of the week.",
-    "description":"This extension show the analog clock in the menu bar. When you click on the icon, it shows you the current time; month and day of the week."
-  },
-  "desrememberpage":{
-    "message":"If this option is enabled, it will not show you the reminder page",
-    "description":"If this option is enabled, it will not show you the reminder page"
-  },
-  "titelrememberpage":{
-    "message":"Reminder page",
-    "description":"Reminder page"
-  },
-  "longdonatetext":{
-    "message":"I'd truly appreciate if you can donate me to keep this browser extension alive for other new users. Whether it's $$1 or $$100, your support is immensely appreciated!",
-    "description":"I'd truly appreciate if you can donate me to keep this browser extension alive for other new users. Whether it's $$1 or $$100, your support is immensely appreciated!"
-  },
-  "enjoyshare":{
-    "message":"Enjoy this extension and share it with others who you think will appreciate it.",
-    "description":"Enjoy this extension and share it with others who you think will appreciate it."
-  },
-  "titeldownloadbutton":{
-    "message":"Download this Upgrade!",
-    "description":"Download this Upgrade!"
-  },
-  "titelsync":{
-    "message":"Sync",
-    "description":"Sync"
-  },  
-  "titelsyncbrowser":{
-    "message":"Sync the extension settings with your other browser.",
-    "description":"Sync the extension settings with your other browser."
-  },
-  "titeldownloadupgrade":{
-    "message":"The entire page will be fading to dark, so you can watch the video as if you were in the cinema.",
-    "description":"The entire page will be fading to dark, so you can watch the video as if you were in the cinema."
-  },
-  "desproject":{
-    "message":"project",
-    "description":"project"
-  },
-  "desbrowserextension":{
-    "message":"browser extension",
-    "description":"browser extension"
-  },
-  "translateme":{
-    "message":"Help Translate",
-    "description":"Help Translate"
-  },  
-  "titelwebsite":{
-    "message":"Website",
-    "description":"Website"
-  },
-  "titeldeveloper":{
-    "message":"Developer",
-    "description":"Developer"
-  },
-  "rememberrate":{
-    "message":"Rate",
-    "description":"Rate"
-  },
-  "showremember":{
-    "message":"Do not show this reminder page again when I open the options page",
-    "description":"Do not show this reminder page again when I open the options page"
-  },
-  "skipremember":{
-    "message":"Skip this, and open now the options page",
-    "description":"Skip this, and open now the options page"
-  },
-  "titelrightsreserved":{
-    "message":"Some rights reserved.",
-    "description":"Some rights reserved."
-  },
-  "friendlyremember":{
-    "message":"Friendly Reminder...",
-    "description":"Friendly Reminder..."
-  },  
-  "titelupgrade":{
-    "message":"Upgrade",
-    "description":"Upgrade"
-  }, 
- "welcomebasictext":{
-    "message":"Welcome on the Proper Menubar Browser extension. Here a brief video about how to use the Proper Menubar extension in your web browser.",
-    "description":"Welcome on the Proper Menubar Browser extension. Here a brief video about how to use the Proper Menubar extension in your web browser."
-  },
-  "promotitle":{
-    "message":"Tip of the day",
-    "description":"Tip of the day"
-  },
- "promotext":{
-    "message":"Want to use something new and amazing for your web browser? Try the $product$ Browser extension.",
-    "description":"Want to use something new and amazing for your web browser? Try the $product$ Browser extension.",
-    "placeholders": {
-          "product": {
-            "content": "$1",
-            "example": "Turn Off the Lights"
-          }
-        }
-  },
-  "promocalltoaction":{
-    "message":"Download it Now!",
-    "description":"Download it Now!"
-  },
-  "donatetext":{
-    "message":"Due to the very small number of donations the project may be closed. Please support further development with a Donation.",
-    "description":"Due to the very small number of donations the project may be closed. Please support further development with a Donation."
-  },
-  "donatecalltoaction":{
-    "message":"Donate Now!",
-    "description":"Donate Now!"
-  },    
-  "titelsharethis":{
-    "message":"Share this:",
-    "description":"Share this:"
-  },
-  "titelwelcome":{
-    "message":"Welcome and Hello",
-    "description":"Welcome and Hello"
-  },
-  "titelcolor": {
-      "message": "Color", 
-      "description": "Color"
-   },
-   "descolor": {
-      "message": "Change the background color of the toolbar", 
-      "description": "Change the background color of the toolbar"
-   },
-  "titeldropshadow": {
-      "message": "Drop shadow", 
-      "description": "Drop shadow"
-   },
-  "desdropshadow": {
-     "message": "Get a shadow effect below the toolbar", 
-      "description": "Get a shadow effect below the toolbar"
-   },
-  "titeltoolbaroff": {
-      "message": "Proper Menubar is OFF", 
-      "description": "Proper Menubar is OFF"
-   },
-  "titeltoolbaron": {
-      "message": "Proper Menubar is ON", 
-      "description": "Proper Menubar is ON"
-   },
-  "titelpopupoptions": {
-      "message": "Options", 
-      "description": "Options"
-   },
-  "titelpopupratestars": {
-      "message": "Rate 5 stars", 
-      "description": "Rate 5 stars"
-   },
-  "titelpopupsupport": {
-      "message": "Support", 
-      "description": "Support"
-   },
-  "titelpopupwelcomeguide":{
-    "message":"Welcome Guide",
-    "description":"Welcome Guide"
-   },
-  "titelpopupvideo":{
-    "message":"YouTube",
-    "description":"YouTube"
-  },
-  "titeldisplay":{
-    "message":"Display",
-    "description":"Display"
-  },
-  "desdisplay":{
-    "message":"Show the number of Google Product items in the toolbar",
-    "description":"Show the number of Google Product items in the toolbar"
-  },
-  "titelshortproper":{
-    "message":"Show or hide the Proper Menubar",
-    "description":"Show or hide the Proper Menubar"
-  },
-  "titelhovertextcolor":{
-    "message":"Text color on mouse hover",
-    "description":"Text color on mouse hover"
-  },
-  "deshovertextcolor":{
-    "message":"Change the font color when you mouse is over a link",
-    "description":"Change the font color when you mouse is over a link"
-  },
-  "titelhoverbackground":{
-    "message":"Background color on mouse hover",
-    "description":"Background color on mouse hover"
-  },
-  "deshoverbackground":{
-    "message":"Change the background color when you mouse is over a link",
-    "description":"Change the background color when you mouse is over a link"
-  }
+    "promocalltoaction": {"message": "Download it Now!"},
+    "donatetext": {"message": "Due to the very small number of donations the project may be closed. Please support further development with a Donation."},
+    "donatecalltoaction": {"message": "Donate Now!"},
+    "titelsharethis": {"message": "Share this:"},
+    "titelwelcome": {"message": "Welcome and Hello"},
+    "titelcolor": {"message": "Color"},
+    "descolor": {"message": "Change the background color of the toolbar"},
+    "titeldropshadow": {"message": "Drop shadow"},
+    "desdropshadow": {"message": "Get a shadow effect below the toolbar"},
+    "titeltoolbaroff": {"message": "Proper Menubar is OFF"},
+    "titeltoolbaron": {"message": "Proper Menubar is ON"},
+    "titelpopupoptions": {"message": "Options"},
+    "titelpopupratestars": {"message": "Rate 5 stars"},
+    "titelpopupsupport": {"message": "Support"},
+    "titelpopupwelcomeguide": {"message": "Welcome Guide"},
+    "titelpopupvideo": {"message": "YouTube"},
+    "titeldisplay": {"message": "Display"},
+    "desdisplay": {"message": "Show the number of Google Product items in the toolbar"},
+    "titelshortproper": {"message": "Show or hide the Proper Menubar"},
+    "titelhovertextcolor": {"message": "Text color on mouse hover"},
+    "deshovertextcolor": {"message": "Change the font color when you mouse is over a link"},
+    "titelhoverbackground": {"message": "Background color on mouse hover"},
+    "deshoverbackground": {"message": "Change the background color when you mouse is over a link"},
+    "titlelratenow": {"message": "Rate Now!"},
+    "titleratelater": {"message": "Later"},
+    "desremrate": {"message": "If you like Proper Menubar™, please do not hesitate to rate this extension to five stars now. This gives us courage to continue to maintain and improve this product for you. Writing a review is recommended, but not mandatory. If you do not have the time to write a review, you can rate it anonymously. It is important to give it ★★★★★. Thank you!"},
+    "titelintroduce": {"message": "Introducing the new Proper Menubar!"},
+    "desintroduce": {"message": "All the features you're used to, with a brand new look and feel, and personalized to you."},
+    "titleok": {"message": "OK"},
+    "titlecancel": {"message": "Cancel"},
+    "titledarkmodeon": {"message": "Dark Mode ON"},
+    "titledarkmodeoff": {"message": "Dark Mode OFF"},
+    "desremyoutube": {"message": "Subscribe on YouTube"},
+    "titeltoolbarwhitelist": {"message": "Whitelist"},
+    "titeltoolbarblacklist": {"message": "Blacklist"},
+    "titelpositionbar": {"message": "Position of the bar"},
+    "despositionbartop": {"message": "Top"},
+    "despositionbarbottom": {"message": "Bottom"},
+    "menufile": {"message": "File"},
+    "menuedit": {"message": "Edit"},
+    "menuview": {"message": "View"},
+    "menuhistory": {"message": "History"},
+    "menubookmarks": {"message": "Bookmarks"},
+    "menuwindow": {"message": "Window"},
+    "menuhelp": {"message": "Help"},
+    "menu1a": {"message": "New Tab"},
+    "menu2a": {"message": "New Window"},
+    "menu3a": {"message": "New Incognito Window"},
+    "menu4a": {"message": "Close Window"},
+    "menu5a": {"message": "Close Tab"},
+    "menu6a": {"message": "Print"},
+    "menu7a": {"message": "Cut"},
+    "menu8a": {"message": "Copy"},
+    "menu9a": {"message": "Paste"},
+    "menu10a": {"message": "Settings"},
+    "menu11a": {"message": "Select All"},
+    "menu12a": {"message": "Stop"},
+    "menu13a": {"message": "Home"},
+    "menu14a": {"message": "Bookmark Manager"},
+    "menu15a": {"message": "Select Next Tab"},
+    "menu16a": {"message": "Help"},
+    "menu17a": {"message": "About"},
+    "menu18a": {"message": "Bookmark This Page…"},
+    "menu19a": {"message": "Back"},
+    "menu20a": {"message": "Forward"},
+    "menu21a": {"message": "Downloads"},
+    "menu22a": {"message": "Extensions"},
+    "menu23a": {"message": "Policies"},
+    "menu24a": {"message": "Inspect"},
+    "menu25a": {"message": "Flags"},
+    "menu26a": {"message": "Show Full History"},
+    "menu27a": {"message": "Save Page As…"},
+    "menu28a": {"message": "Reload This Page"},
+    "menu29a": {"message": "Enter Full Screen"},
+    "menu30a": {"message": "Actual Size"},
+    "menu31a": {"message": "Zoom In"},
+    "menu32a": {"message": "Zoom Out"},
+    "menu33a": {"message": "Bookmark All Tabs…"},
+    "menu34a": {"message": "Select Previous Tab"},
+    "menu35a": {"message": "Duplicate Tab"},
+    "menu36a": {"message": "Pin Tab"},
+    "menu37a": {"message": "Mute Tab"},
+    "menu38a": {"message": "Mute Other Tabs"},
+    "menu39a": {"message": "Mute All Tabs"},
+    "menu40a": {"message": "Unmute Tab"},
+    "menu41a": {"message": "Unmute All Tabs"},
+    "menu42a": {"message": "Unmute Other Tab"},
+    "menu43a": {"message": "Minimize"},
+    "menu44a": {"message": "Maximize"},
+    "menu45a": {"message": "Exit"},
+    "menu46a": {"message": "Unpin Tab"},
+    "menu47a": {"message": "View Source"},
+    "titelgoogleproducts": {"message": "Show the Google Product names"},
+    "titelmenuproducts": {"message": "Show the browser menu bar"},
+    "titelchooseproduct": {"message": "Choose the products you want in your menu bar"},
+    "upbutton": {"message": "Up"},
+    "downbutton": {"message": "Down"},
+    "searchplaceholder": {"message": "Search"},
+    "permissionoption": {"message": "Permission must be enabled to use this feature."},
+    "titelpermission": {"message": "Permissions"},
+    "despermissioncopy": {"message": "Remove the cut and copy permission"},
+    "despermissionpaste": {"message": "Remove the paste permission"},
+    "despermissionmhtml": {"message": "Remove the save MHTML permission"},
+    "despermissionbookmark": {"message": "Remove the Bookmarks permission"},
+    "wpermissionremoved": {"message": "The permissions have been removed."},
+    "wpermissionnotremoved": {"message": "The permissions have not been removed"},
+    "sharetexta": {"message": "Get this Cool Proper Menubar Browser Extension"},
+    "sharetextb": {"message": "Hey, this is amazing! I tried the Proper Menubar browser extension just today."},
+    "sharetextc": {"message": "The Best and Amazing Proper Menubar Browser extension"},
+    "sharetextd": {"message": "Proper Menubar extension is the Best Useful Tool. Download it and try it yourself!"},
+    "permissionrequired": {"message": "Current Active Permissions"},
+    "permissionactivetab": {"message": "This will only manage the Proper Menubar of the web page on the currently open tab page."},
+    "permissiontabs": {"message": "This is needed for the following features: to show you the welcome and guide page, manage the Proper Menubar on all the open tabs, and to open the Options page."},
+    "permissioncontextmenu": {"message": "This to add all the Proper Menubar item in the web browser context menu."},
+    "permissionstorage": {"message": "This to save the settings on your local computer, and to sync it to your web browser account."},    
+    "permissionpagecapture": {"message": "This to save the currently open web page as an MHTML file type."},
+    "permissionclipwrite": {"message": "This to write the selected text with 'copy' or 'cut' function in your clipboard."},
+    "permissionclipread": {"message": "This to read the saved text in your clipboard."},
+    "permissionbookmarks": {"message": "This to create a custom bookmark in your bookmark manager page."},
+    "barnotvisible": {"message": "Proper Menubar doesn't work on this web page. Please try another page."}
 }

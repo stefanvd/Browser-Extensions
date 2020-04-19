@@ -1,34 +1,43 @@
 {
   "manifest_version": 2,
   "name": "__MSG_name__",
-  "short_name": "PMB",
-  "version": "1.1.0.9",
+  "short_name": "Proper Menubar",
+  "version": "1.2.11.0",
   "description": "__MSG_description__",
-  "homepage_url": "https://www.stefanvd.net",
-  "icons": { "16": "icons/icon16.png",
-             "32": "icons/icon32.png",
-             "48": "icons/icon48.png",
-             "128": "icons/icon128.png"
-           },
+  "author": "Stefan vd",
+  "homepage_url": "https://www.stefanvd.net/support/",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
   "default_locale": "en",
   "background": {
     "page": "background.html"
   },
+  "content_security_policy": "default-src 'self'; style-src 'unsafe-inline'; media-src https://www.stefanvd.net; child-src https://www.youtube.com https://www.stefanvd.net; connect-src https://www.stefanvd.net; script-src 'self'; img-src 'self' * data:; object-src 'none'",
   "web_accessible_resources": [
-    "images/slice1.png",
-    "images/slice2.png",
-    "images/slice3.png",
-    "images/slice4.png",
-    "images/slice5.png",
-    "images/slice6.png",
-    "icons/icon16.png"
+    "images/Slice1.png",
+    "images/Slice2.png",
+    "images/Slice3.png",
+    "images/Slice4.png",
+    "images/Slice5.png",
+    "images/Slice6.png",
+    "css/body.css"
   ],
   "content_scripts": [
     {
       "matches": ["*://*/*"],
-      "css" : ["css/toolbar.css"],
+      "exclude_matches": ["*://*.stefanvd.net/project/proper-menubar/browser/options.html"],
+      "css" : ["css/body.css"],
       "js": ["js/constants.js","js/content.js"],
       "run_at": "document_end"
+    },
+    {
+    "matches": ["*://*.stefanvd.net/project/proper-menubar/browser/options.html"],
+    "js": ["js/constants.js","js/options.js"],
+    "run_at": "document_end"
     }
   ],
   "commands": {
@@ -47,23 +56,33 @@
           }
   },
   "browser_action": {
-     "browser_style": true,
-          "default_icon": {
-            "19": "icons/icon1.png",
-            "38": "icons/icon1@2x.png"
-          },
-	"default_title": "__MSG_name__",
-    "default_popup": "popup.html"	
+    "browser_style": false,
+    "default_icon": {
+      "19": "icons/icon1.png",
+      "38": "icons/icon1@2x.png"
+    },
+	  "default_title": "__MSG_name__",
+    "default_popup": "popup.html",
+    "theme_icons": [{
+      "light": "icons/icon1-light.png",
+      "dark": "icons/icon1.png",
+      "size": 19
+    }, {
+      "light": "icons/icon1-light@2x.png",
+      "dark": "icons/icon1@2x.png",
+      "size": 38
+    }]
   },
   "options_ui": {
     "page": "options.html",
     "open_in_tab": true
   },
-  "permissions": [ "contextMenus", "tabs", "http://*/*", "https://*/*", "storage", "notifications" ],
+  "permissions": [ "contextMenus", "tabs", "http://*/*", "https://*/*", "storage" ],
+  "optional_permissions": [ "clipboardWrite","clipboardRead","bookmarks"],
   "applications": {
     "gecko": {
       "id": "propermenubar@stefanvd.net",
-      "strict_min_version": "49.0a1"
+      "strict_min_version": "57.0"
     }
   }
 }

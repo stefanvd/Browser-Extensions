@@ -1,0 +1,492 @@
+﻿{
+    "name": {
+        "message": "Finance Toolbar - Real Time Stock Tracker"
+    }, 
+    "description": {
+        "message": "Get real time stock market information about your favorite stocks. Such as Apple, Down Jones, Facebook, Google, Microsoft, etc."
+    },
+    "browserbutton": {
+        "message": "Finance Toolbar"
+    },
+    "optionpagetitle": {
+        "message": "Finance Toolbar - Options"
+    },
+    "settings": {
+        "message": "Settings"
+    }, 
+    "changelog": {
+        "message": "Changelog"
+    },
+    "textfoot": {
+        "message": "This software is licensed under the CC-GNU GPL. To view a copy of this license, visit"
+    }, 	
+    "reportbug": {
+        "message": "Report an Issue"
+    },
+    "titledonatebutton": {
+        "message": "Donate"
+    },	
+    "donatepromotext": {
+        "message": "If you can make a donation of any amount, I'd appreciate it immensely!"
+    },
+    "basicsettings": {
+        "message": "Basics"
+    },
+    "version": {
+        "message": "Version"
+    },
+    "titelquotes": {
+        "message": "Quotes"
+    },
+    "titelmarquee": {
+        "message": "Marquee"
+    },	
+    "direction": {
+        "message": "Direction"
+    },	
+    "scrollamount": {
+        "message": "Speed"
+    },
+    "marqueebehaviour": {
+        "message": "Marquee behaviour"
+    },
+    "stocks": {
+        "message": "Stocks"
+    },
+    "extrascrollamount": {
+        "message": "How lower the value, how faster it will move."
+    },
+    "titeljapan": {
+        "message": "Invert red/green"
+    },
+    "desjapan": {
+        "message": "Change the color for Asia users"
+    },
+    "titelxminutes": {
+        "message": "Refresh Data"
+    },
+    "desxminutes": {
+        "message": "Update the stock market information on the choosen seconds"
+    },
+    "designmarquee": {
+        "message": "Design"
+    },
+    "addbutton": {
+        "message": "Add"
+    },
+    "deletebutton": {
+        "message": "Delete"
+    },
+    "titelfavo": {
+        "message": "Currency"
+    },	
+    "destitelfavo": {
+        "message": "Show left the 4 favorite currencies in the bar."
+    },
+    "titelhoverpopup": {
+        "message": "Hover Popup"
+    },
+    "deshoverpopup": {
+        "message": "Show the popup image for that current stock, when i hover over the current value."
+    },
+    "example": {
+        "message": "Example"
+    },
+    "changepercent": {
+        "message": "Percent"
+    },
+    "changeprice": {
+        "message": "Price"
+    },
+    "marketcap": {
+        "message": "Market Capitalization"
+    },	
+    "guide": {
+        "message": "Finance Toolbar Guide"
+    },
+    "productshare": {
+        "message": "Share"
+    },
+    "titelfont": {
+        "message": "Font"
+    },	
+    "titelfontfamily": {
+        "message": "Font Family"
+    },
+    "desfontsize": {
+        "message": "Font size of the toolbar"
+    },
+    "moveupbutton": {
+        "message": "Move Up"
+    },
+    "movedownbutton": {
+        "message": "Move Down"
+    },
+    "pagestillloading": {
+        "message": "The page is still loading?"
+    },
+    "pagehelp": {
+        "message": "help"
+    },
+    "seelist": {
+        "message": "(see list)"
+    }, 	
+    "helptranslate": {
+        "message": "Help Translate"
+    },
+ "sharemenusharetitle":{
+    "message":"Share this"
+  },
+  "sharemenuwelcomeguidetitle":{
+    "message":"Welcome Guide"
+  },
+  "sharemenutellafriend":{
+    "message":"Tell a Friend"
+  },
+  "sharemenusendatweet":{
+    "message":"Send a Tweet"
+  },
+  "sharemenupostonfacebook":{
+    "message":"Post on Facebook"
+  },
+  "sharemenupostongoogleplus":{
+    "message":"Post on Google+"
+  },
+  "sharemenuratetitle":{
+    "message":"Rate this extension"
+  },
+  "sharemenudonatetitle":{
+    "message":"Support Development"
+  },
+  "advancedoptions":{
+    "message":"Advanced Options"
+  },
+  "help":{
+    "message":"Help"
+  },
+  "about":{
+    "message":"About"
+  },
+  "upgradefbshare":{
+    "message":"Share on Facebook"
+  },
+  "upgradetwshare":{
+    "message":"Tweet"
+  },
+  "ratetitle":{
+    "message":"Please rate & review my extension"
+  },
+  "ratedes":{
+    "message":"And let everyone know about this great extension!"
+  },
+  "rateitema":{
+    "message":"Rate 5 stars"
+  },
+  "titelreset":{
+    "message":"Reset settings"
+  },
+  "resetbrowserextension":{
+    "message":"Reset the Finance Toolbar settings"
+  },
+  "areyouhappy":{
+    "message":"Are you happy about Finance Toolbar?"
+  },
+  "tellothers":{
+    "message":"Ensure that your opinion counts"
+  },
+  "nothanks":{
+    "message":"No thanks"
+  },
+  "writeareview":{
+    "message":"Write a review"
+  },
+  "desfinancetoolbar":{
+    "message":"Your personal stocks toolbar on your desktop is also available for your computer."
+  },
+  "downloadtheapp":{
+    "message":"Download the app now"
+  },
+  "titeldownloadaaupgrade":{
+    "message":"The upgrade adds support for focusing selected images, and will display a gallery of images on the site."
+  },
+  "titeldownloadupgradepropermenubar":{
+    "message":"Add back the black menubar on the Google website."
+  },
+  "titeldownloadupgradefinancetoolbar":{
+    "message":"This shows you the real time stock market information."
+  },
+ "titeldownloadupgradefullscreen":{
+    "message":"With this extension you can easy go to full screen. This for image, video and webpage."
+  },
+ "titeldownloadupgradezoom":{
+    "message":"Zoom in or out on web content using the zoom button for more comfortable reading."
+  },
+ "titeldownloadupgradedatetoday":{
+    "message":"This extension show the analog clock in the menu bar. When you click on the icon, it shows you the current time; month and day of the week."
+  },
+  "desrememberpage":{
+    "message":"If this option is enabled, it will not show you the reminder page"
+  },
+  "titelrememberpage":{
+    "message":"Reminder page"
+  },
+  "longdonatetext":{
+    "message":"I'd truly appreciate if you can donate me to keep this browser extension alive for other new users. Whether it's $$1 or $$100, your support is immensely appreciated!"
+  },
+  "enjoyshare":{
+    "message":"Enjoy this extension and share it with others who you think will appreciate it."
+  },
+  "titeldownloadbutton":{
+    "message":"Download this Upgrade!"
+  },
+  "titelsync":{
+    "message":"Sync"
+  },  
+  "titelsyncbrowser":{
+    "message":"Sync the extension settings with your other browser."
+  },
+  "titeldownloadupgrade":{
+    "message":"The entire page will be fading to dark, so you can watch the video as if you were in the cinema."
+  },
+  "desproject":{
+    "message":"project"
+  },
+  "desbrowserextension":{
+    "message":"browser extension"
+  },
+  "translateme":{
+    "message":"Help Translate"
+  },  
+  "titelwebsite":{
+    "message":"Website"
+  },
+  "titeldeveloper":{
+    "message":"Developer"
+  },
+  "rememberrate":{
+    "message":"Rate"
+  },
+  "showremember":{
+    "message":"Do not show this reminder page again when I open the options page"
+  },
+  "skipremember":{
+    "message":"Skip this, and open now the options page"
+  },
+  "titelrightsreserved":{
+    "message":"Some rights reserved."
+  },
+  "friendlyremember":{
+    "message":"Friendly Reminder..."
+  },  
+  "titelupgrade":{
+    "message":"Upgrade"
+  }, 
+ "welcomebasictext":{
+    "message":"Welcome on the Finance Toolbar Browser extension. Here a brief video about how to use the Finance Toolbar extension in your web browser."
+  },
+  "promotitle":{
+    "message":"Tip of the day"
+  },
+ "promotext":{
+    "message":"Want to use something new and amazing for your web browser? Try the $product$ Browser extension.",
+    "description":"Want to use something new and amazing for your web browser? Try the $product$ Browser extension.",
+    "placeholders": {
+          "product": {
+            "content": "$1",
+            "example": "Turn Off the Lights"
+          }
+        }
+  },
+  "promocalltoaction":{
+    "message":"Download it Now!"
+  },
+  "donatetext":{
+    "message":"Due to the very small number of donations the project may be closed. Please support further development with a Donation."
+  },
+  "donatecalltoaction":{
+    "message":"Donate Now!"
+  },    
+  "titelsharethis":{
+    "message":"Share this:"
+  },
+  "titelwelcome":{
+    "message":"Welcome and Hello"
+  },
+  "titelcolor": {
+      "message": "Color"
+   },
+   "descolor": {
+      "message": "Change the background color of the toolbar"
+   },
+  "desredcolor": {
+      "message": "Change the red color of the toolbar"
+   },
+  "desgreencolor": {
+      "message": "Change the green color of the toolbar"
+   },
+  "destextcolor": {
+      "message": "Change the label color of the toolbar"
+   },
+  "titeldropshadow": {
+      "message": "Drop shadow"
+   },
+  "desdropshadow": {
+     "message": "Get a shadow effect below the toolbar"
+   },
+  "titeltoolbaroff": {
+      "message": "Finance Toolbar is OFF"
+   },
+  "titeltoolbaron": {
+      "message": "Finance Toolbar is ON"
+   },
+  "titelpopupratestars": {
+      "message": "Rate 5 stars"
+   },
+  "titelpopupwelcomeguide":{
+    "message":"Welcome Guide"
+   },
+  "titelpopupvideo":{
+    "message":"YouTube"
+  },
+  "titelshortfinance":{
+    "message":"Show or hide the Finance Toolbar"
+  },
+  "desallsites":{
+    "message":"Visible on all websites"
+  },
+  "destoolbaronly":{
+    "message":"Only visible on selected websites"
+  },
+  "titelallsites":{
+    "message":"All websites"
+  },
+  "titleok":{
+    "message":"OK"
+  }, 
+  "titlecancel":{
+    "message":"Cancel"
+  },
+  "titledarkmodeon":{
+    "message":"Dark Mode ON"
+  }, 
+  "titledarkmodeoff":{
+    "message":"Dark Mode OFF"
+  },
+  "titelpopupsupport":{
+    "message":"Support"
+  },
+  "titelpopupoptions":{
+    "message":"Options"
+  },
+  "titelintroduce":{
+    "message":"Introducing the new Finance Toolbar!"
+  },
+  "desintroduce":{
+    "message":"All the features you're used to, with a brand new look and feel, and personalized to you."
+  },
+  "titlelratenow":{
+    "message":"Rate Now!"
+  },
+  "titleratelater":{
+    "message":"Later"
+  },
+  "desremrate":{
+    "message":"If you like Finance Toolbar™, please do not hesitate to rate this extension to five stars now. This gives us courage to continue to maintain and improve this product for you. Writing a review is recommended, but not mandatory. If you do not have the time to write a review, you can rate it anonymously. It is important to give it ★★★★★. Thank you!"
+  },
+  "titeldoublebar":{
+    "message":"2th Finance Toolbar"
+  },
+  "desdoublebar":{
+    "message":"Add a second Finance Toolbar"
+  },
+  "titelpositionbar":{
+    "message":"Position of the bar"
+  },
+  "despositionbartop":{
+    "message":"Top"
+  },
+  "despositionbarbottom":{
+    "message":"Bottom"
+  },
+  "titeltypebar":{
+    "message":"Type bar"
+  },
+  "desstaticbar":{
+    "message":"Static bar"
+  },
+  "desscrollbar":{
+    "message":"Scrolling bar"
+  },
+  "titelfillchange":{
+    "message":"Change value"
+  },
+  "desfillchange":{
+    "message":"Fill rectangle with the color of the result of that stock value change"
+  },
+  "titeltoolbarwhitelist":{
+    "message":"Whitelist"
+  },
+  "titeltoolbarblacklist":{
+    "message":"Blacklist"
+  },
+  "titelworldmap":{
+    "message":"World Map"
+  },
+  "desworldmapcolor":{
+    "message":"Change the color of the world map icon"
+  },
+  "desworldmaphide":{
+    "message":"Hide the world map icon in the toolbar"
+  },
+  "desworldmapopacity":{
+    "message":"Choose the opacity value for the world map icon in the toolbar"
+  },
+  "stockfullvalue":{
+    "message":"Price and (Percent)"
+  },
+  "titelfullname":{
+    "message":"Full name"
+  },
+  "desfullname":{
+    "message":"Show the name you want to display for that stock"
+  },
+  "desfullnamearea":{
+    "message":"Type the stockname and with a equality that replace this text"
+  },
+  "titelsearch":{
+    "message":"Search"
+  },
+  "dessearchbehaviour":{
+    "message":"Search engine for that stock name"
+  },
+  "titelopenmarket":{
+    "message":"Bell Sound"
+  },
+  "desbellmarket":{
+    "message":"Hear the opening and closing bell from the stock market"
+  },
+  "desopen":{
+    "message":"Opening time"
+  },
+  "desclose":{
+    "message":"Closing time"
+  },
+  "dessimultan":{
+    "message":"Scroll simultaneously with every tick of the clock"
+  },
+  "titeldatabar":{
+    "message":"Data engine"
+  },
+  "titeldatabarlicense":{
+    "message":"Paste here your API code in this text box:"
+  },
+  "desgetaplphaapi":{
+    "message":"You can get the FREE API on this website"
+  },
+  "extrafavonote":{
+    "message":"To use this feature enable the Alpha Vantage API from the 'Advanced Options' tab"
+  }, 
+  "desremyoutube":{
+    "message":"Subscribe on YouTube"
+  }
+}

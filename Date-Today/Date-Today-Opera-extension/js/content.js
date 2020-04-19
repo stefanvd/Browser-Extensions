@@ -3,7 +3,7 @@
 
 Date Today
 The best clock to see in one glance the current day and time. With an option to see the digital clock in the browser toolbar.
-Copyright (C) 2017 Stefan vd
+Copyright (C) 2018 Stefan vd
 www.stefanvd.net
  
 This program is free software; you can redistribute it and/or

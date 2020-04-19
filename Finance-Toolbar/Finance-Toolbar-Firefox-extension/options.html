@@ -8,7 +8,7 @@
 
 Finance Toolbar
 Get real time stock market information about your favorite stocks. With mini-charts of the currency value.
-Copyright (C) 2016 Stefan vd
+Copyright (C) 2018 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -35,141 +35,224 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 <link rel="stylesheet" type="text/css" href="css/options.css">
 <script type="text/javascript" src="js/constants.js"></script>
 <script type="text/javascript" src="js/options.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
-<body>
-<script type="text/javascript" src="js/analytics.js"></script>
-
-<div id="remembershare">
-<div id="productrememberimage"><img id="rememberlamp" alt="Finance Toolbar" src="icons/icon16.png">Finance Toolbar™</div>
-<div id="remembersharecenter">
-<h2><span data-i18n="friendlyremember"></span></h2>
-<div class="remembertext"><span data-i18n="longdonatetext"></span></div>
-<a href="https://www.stefanvd.net/donate.htm" target="_blank" id="rememberboxdonate" data-i18n="titledonatebutton"></a>
-<br>
-<br>
-<br>
-<div class="remembertext"><span data-i18n="enjoyshare"></span></div>
-<a id="rememberboxrate" target="_blank"><span data-i18n="rememberrate"></span> 5 &#9733;</a>
-<a id="rememberboxgoogle" target="_blank">Google+</a>
-<a id="rememberboxfacebook" target="_blank">Facebook</a>
-<a id="rememberboxtwitter" target="_blank">Twitter</a>
-<br><br><br>
-<br><br><br>
-<br><br><br>
-<div id="divcheckboxskipremember">
-	<input id="firstcheckboxskipremember" type="checkbox"><span data-i18n="showremember"></span> <button id="skipremember" data-i18n="skipremember"></button>
-</div>
-</div>
-</div>
-
+<body class="light">
 
 <div id="loading">
-<div id="loadingcenter">
-<div id="productwelcomeimageload"><img id="loadinglamp" alt="Finance Toolbar" src="icons/icon16.png">Finance Toolbar™</div>
-<div id="progressbar"><div id="progress"><div id="pbaranim"></div></div></div>
-</div>
-<span id="loadinghelp"><span data-i18n="pagestillloading"></span> <a href="https://www.stefanvd.net/support/" target="blank" data-i18n="pagehelp"></a>!</span>
-</div>
+	<div id="loadingcenter">
+	<div id="productwelcomeimageload">
+		<div class="icon">
+			<img id="loadinglamp" alt="Finance Toolbar" width="16" height="16" src="icons/icon16.png" srcset="icons/icon16.png 1x, icons/icon16@2x.png 2x">Finance Toolbar™</div>
+	</div>
+	<div id="progressbar"><div id="progress"><div id="pbaranim"></div></div></div>
+	</div>
+	<span id="loadinghelp"><span data-i18n="pagestillloading"></span> <a href="https://www.stefanvd.net/support/" target="_blank" data-i18n="pagehelp" rel="noopener"></a>!</span>
+	</div>
+	
+<div id="main-content" role="main">
+	<header>
+		<div class="messagehead">
+		</div>
+		<div class="masterhead">
+			<div class="title" id="titleex">
+				<div class="icon">
+					<img id="headlamp" width="16" height="16" alt="Finance Toolbar Browser extension">
+				</div>
+				Finance Toolbar™</div>
+			<div class="rightmenu" id="dotmenu">
+				<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+				width="24" height="24"
+				viewBox="0 0 24 24"><g><path d="M 12 3 C 10.894531 3 10 3.894531 10 5 C 10 6.105469 10.894531 7 12 7 C 13.105469 7 14 6.105469 14 5 C 14 3.894531 13.105469 3 12 3 Z M 12 10 C 10.894531 10 10 10.894531 10 12 C 10 13.105469 10.894531 14 12 14 C 13.105469 14 14 13.105469 14 12 C 14 10.894531 13.105469 10 12 10 Z M 12 17 C 10.894531 17 10 17.894531 10 19 C 10 20.105469 10.894531 21 12 21 C 13.105469 21 14 20.105469 14 19 C 14 17.894531 13.105469 17 12 17 Z "></path></g></svg>
+			</div>
+		</div>
+	</header>
+	<input type="checkbox" id="reveal-menu" role="button">
+	
+	<div id="md-home">
+			<label for="reveal-menu" id="menu">
+			<div id="menuToggle">
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</label>
+	</div>
 
-<div id="main-content">
+	<aside id="darkpanel"></aside>
+
 	<div id="navbar-container">
-	<br>
-	<a href="https://www.stefanvd.net/project/finance-toolbar/browser" target="blank" class="brand"><div id="productwelcomeimage"><img id="welcomelamp" alt="Finance Toolbar" src="icons/icon16.png">Finance Toolbar™</div></a>
-	<div id="productsettingtitel" data-i18n="settings"></div>
-	<br><br><br>	
 	<ul id="navbar">
-		<li><a id="tabbasic" data-tab="#tab1" class="navbar-item navbar-item-selected"><span data-i18n="basicsettings"></span></a></li>
-		<li><a id="tabdesign" data-tab="#tab2" class="navbar-item"><span data-i18n="designmarquee"></span></a></li>
-		<li><a id="tabadvan" data-tab="#tab4" class="navbar-item"><span data-i18n="advancedoptions"></span></a></li>		
-		<li><a id="tabguide" data-tab="#tab3" class="navbar-item"><span data-i18n="guide"></span></a></li>
-		<li><a id="tabhelp" data-tab="#tab5" class="navbar-item"><span data-i18n="help"></span></a></li>
+		<li><a id="tabbasic" accesskey="b" data-tab="#tab1" class="navbar-item navbar-item-selected">
+			<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+			width="16" height="16"
+			viewBox="0 0 24 24"><g><path d="M 10.699219 1.101563 C 5.699219 1.699219 1.601563 5.699219 1 10.800781 C 0.300781 17.398438 5.5 23 12 23 C 12.601563 23 13.199219 22.898438 13.699219 22.699219 C 16.199219 22 17.300781 18.898438 15.800781 16.699219 C 15 15.601563 15.898438 14 17.300781 14 L 21 14 C 22.101563 14 23 13.101563 23 12 C 23 5.5 17.398438 0.300781 10.699219 1.101563 Z M 12 21 C 10.898438 21 10 20.101563 10 19 C 10 17.898438 10.898438 17 12 17 C 13.101563 17 14 17.898438 14 19 C 14 20.101563 13.101563 21 12 21 Z M 18.5 11 C 17.699219 11 17 10.300781 17 9.5 C 17 8.699219 17.699219 8 18.5 8 C 19.300781 8 20 8.699219 20 9.5 C 20 10.300781 19.300781 11 18.5 11 Z M 14.5 7 C 13.699219 7 13 6.300781 13 5.5 C 13 4.699219 13.699219 4 14.5 4 C 15.300781 4 16 4.699219 16 5.5 C 16 6.300781 15.300781 7 14.5 7 Z M 9.5 7 C 8.699219 7 8 6.300781 8 5.5 C 8 4.699219 8.699219 4 9.5 4 C 10.300781 4 11 4.699219 11 5.5 C 11 6.300781 10.300781 7 9.5 7 Z M 5.5 10 C 4.699219 10 4 9.300781 4 8.5 C 4 7.699219 4.699219 7 5.5 7 C 6.300781 7 7 7.699219 7 8.5 C 7 9.300781 6.300781 10 5.5 10 Z M 4.5 15 C 3.699219 15 3 14.300781 3 13.5 C 3 12.699219 3.699219 12 4.5 12 C 5.300781 12 6 12.699219 6 13.5 C 6 14.300781 5.300781 15 4.5 15 Z "></path></g></svg>
+			<span data-i18n="basicsettings"></span></a>
+		</li>
+		<li><a id="tabdesign" accesskey="v" data-tab="#tab2" class="navbar-item">
+				<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+				width="16" height="16"
+				 viewBox="0 0 24 24"><g><path d="M 4 4 C 2.898438 4 2 4.898438 2 6 L 2 18 C 2 19.101563 2.898438 20 4 20 L 20 20 C 21.101563 20 22 19.101563 22 18 L 22 6 C 22 4.898438 21.101563 4 20 4 Z M 4 6 L 20 6 L 20 18 L 4 18 Z M 5 7 L 5 17 L 19 17 L 19 7 Z M 7 9 L 17 9 L 17 15 L 7 15 Z "></path></g></svg>
+				<span data-i18n="designmarquee"></span></a>
+		</li>
+		<li><a id="tabadvan" accesskey="o" data-tab="#tab4" class="navbar-item">
+			<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+			width="16" height="16"
+			viewBox="0 0 24 24"><g><path d="M 8.40625 2 C 8.207031 2 8 2.207031 8 2.40625 L 7.8125 4.40625 C 7.3125 4.605469 6.804688 4.886719 6.40625 5.1875 L 4.40625 4.40625 C 4.207031 4.304688 4.007813 4.394531 3.90625 4.59375 L 2.3125 7.40625 C 2.210938 7.605469 2.207031 7.804688 2.40625 7.90625 L 4.09375 9.09375 C 3.992188 9.394531 4 9.699219 4 10 C 4 10.300781 3.992188 10.613281 4.09375 10.8125 L 2.40625 12 C 2.207031 12.101563 2.210938 12.300781 2.3125 12.5 L 3.90625 15.3125 C 4.007813 15.511719 4.207031 15.5 4.40625 15.5 L 6.3125 14.59375 C 6.710938 14.894531 7.1875 15.207031 7.6875 15.40625 L 8 17.59375 C 8 17.792969 8.207031 18 8.40625 18 L 10 18 L 10 13.1875 C 8.199219 13.1875 6.8125 11.800781 6.8125 10 C 6.8125 8.199219 8.199219 6.8125 10 6.8125 C 11.800781 6.8125 13.1875 8.199219 13.1875 10 L 16 10 C 16 9.699219 16.007813 9.386719 15.90625 9.1875 L 17.59375 8 C 17.792969 7.898438 17.789063 7.699219 17.6875 7.5 L 16.09375 4.6875 C 15.992188 4.488281 15.792969 4.5 15.59375 4.5 L 13.6875 5.40625 C 13.289063 5.105469 12.8125 4.792969 12.3125 4.59375 L 12 2.40625 C 12 2.207031 11.792969 2 11.59375 2 Z M 13 11 C 12.476563 11 11.941406 11.183594 11.5625 11.5625 C 11.183594 11.941406 11 12.476563 11 13 L 11 20 C 11 20.523438 11.183594 21.058594 11.5625 21.4375 C 11.941406 21.816406 12.476563 22 13 22 L 20 22 C 20.523438 22 21.058594 21.816406 21.4375 21.4375 C 21.816406 21.058594 22 20.523438 22 20 L 22 13 C 22 12.476563 21.816406 11.941406 21.4375 11.5625 C 21.058594 11.183594 20.523438 11 20 11 Z M 13 15 L 20 15 L 20 20 L 13 20 Z M 17.5625 15.875 L 16 17.4375 L 15.34375 16.78125 L 14.28125 17.84375 L 16 19.5625 L 18.625 16.9375 Z "></path></g></svg>
+			<span data-i18n="advancedoptions"></span></a>
+		</li>
+		<li><a id="tabguide" accesskey="g" data-tab="#tab3" class="navbar-item">
+			<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+			width="16" height="16"
+			viewBox="0 0 24 24"><g><path d="M 5 4 L 5 22 L 12 19 L 19 22 L 19 4 C 19 2.898438 18.101563 2 17 2 L 7 2 C 5.898438 2 5 2.898438 5 4 Z "></path></g></svg>
+			<span data-i18n="guide"></span></a>
+		</li>
+		<li><a id="tabhelp" accesskey="h" data-tab="#tab5" class="navbar-item">
+			<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+			width="16" height="16"
+			viewBox="0 0 24 24"><g><path d="M 12 2 C 6.5 2 2 6.5 2 12 C 2 17.5 6.5 22 12 22 C 17.5 22 22 17.5 22 12 C 22 6.5 17.5 2 12 2 Z M 12 4 C 16.398438 4 20 7.601563 20 12 C 20 16.398438 16.398438 20 12 20 C 7.601563 20 4 16.398438 4 12 C 4 7.601563 7.601563 4 12 4 Z M 11.90625 7 C 8.605469 7 9 10 9 10 L 11 10 C 11 8.601563 11.699219 8.5 12 8.5 C 12.800781 8.5 13 9.414063 13 9.8125 C 13 11.914063 11 11.398438 11 14 L 13 14 C 13 12.300781 15 12.210938 15 9.8125 C 15 8.914063 14.507813 7 11.90625 7 Z M 11 15 L 11 17 L 13 17 L 13 15 Z "></path></g></svg>
+			<span data-i18n="help"></span></a>
+		</li>
 	</ul>
 	</div>
 	<div id="mainview">
-	<div id="managed-prefs-banner">
-		<span id="managed-prefs-icon">
-			<a class="donatebutton" href="https://www.stefanvd.net/donate.htm" target="_blank" data-i18n="titledonatebutton"></a>
-		</span>
-		<span id="managed-prefs-text" data-i18n="donatepromotext"></span>
-		<div id="managed-prefs-text-close"><span style="display:none;">Close</span></div>
-    </div>
+		<div id="managed-prefs-banner">
+			<span id="managed-prefs-icon">
+				<a class="donatebutton" target="_blank" href="https://www.stefanvd.net/donate.htm" data-i18n="titledonatebutton" rel="noopener"></a>
+			</span>
+			<span id="managed-prefs-text" data-i18n="donatepromotext"></span>
+			<div id="managed-prefs-text-close">x</div>
+		</div>
 		<div id="mainview-content">
 			<div id="tab1" class="page">
-			<h1 data-i18n="basicsettings"></h1>			
-			<header>
-				<div data-i18n="titelsharethis"></div> <div id="shareboxgoogle"></div> <div id="shareboxfacebook"></div> <div id="shareboxtwitter"></div>
-			</header>
+			<h1 data-i18n="basicsettings"></h1>
+			<div class="sharemenu">
+				<div data-i18n="titelsharethis"></div> <div id="shareboxyoutube"></div> <div id="shareboxfacebook"></div> <div id="shareboxtwitter"></div>
+			</div>
 			<br>
 			<section>
-			<table class="youtubepreview">
-					<tbody><tr>
-						<td class="viewpanel">
-						<iframe id="dont-turn-off-the-lights" class="youtube-player" type="text/html" width="480" height="270" src="https://www.youtube.com/embed/?listType=playlist&amp;list=PLfXHh3TKRb4YpNSpneMPXqqghriKws079" frameborder="0" allowfullscreen=""></iframe>
-						</td>
-						<td class="suggpanel">
-						<h3><span data-i18n="titelwelcome"></span></h3>
-						<span data-i18n="welcomebasictext"></span>
+				<div class="videopreview">
+					<iframe id="dont-turn-off-the-lights" class="dont-turn-off-the-lights" title="YouTube video" type="text/html" width="auto" height="auto" src="https://www.youtube.com/embed/?listType=playlist&amp;list=PLfXHh3TKRb4YpNSpneMPXqqghriKws079" frameborder="0" allowfullscreen=""></iframe>
+				</div>
+				<div class="suggpanel">
+					<div class="profile">
+						<div class="primarytitle">
+							<span data-i18n="titelwelcome"></span>
+							<div class="introworks">
+								<div class="step">
+									<div class="stepdescription"><span data-i18n="welcomebasictext"></span></div>
+								</div>
+							</div>
 						</div>
-						</td>
-					</tr>
-				</tbody></table>
+							<div class="cardactionbox">
+				
+							</div>
+					</div>
+				</div>
 				</section>
 				<section>
-					<div class="promobox"><span data-i18n="promotitle"></span></div>
-					<div class="promoboxtext">
+					<div class="probox"><span data-i18n="promotitle"></span></div>
+					<div class="proboxtext">
 					<span id="promotext"></span>
 					<br><br>
-					<button id="btnpromoaction" class="promoboxbutton">⇩ <span id="spnpromoaction" data-i18n="promocalltoaction"></span></button>
+					<button id="btnpromoaction" class="proboxbutton">⇩ <span id="spnpromoaction" data-i18n="promocalltoaction"></span></button>
 					</div>
 				</section>
 				<section>
-				<h3 data-i18n="example"></h3>
+				<h3 id="fnengine" data-i18n="example"></h3>
 				<div>
 					<div id="examplebar">
 					<div class="world"></div>
 					<div id="favorite">
-						<span id="samplefavo1"></span><img id="samplefavo1img" src="" border="0" alt="" height="15px">
-						<span id="samplefavo2"></span><img id="samplefavo2img" src="" border="0" alt="" height="15px">
-						<span id="samplefavo3"></span><img id="samplefavo3img" src="" border="0" alt="" height="15px">
-						<span id="samplefavo4"></span><img id="samplefavo4img" src="" border="0" alt="" height="15px">
+						<div id="stefanvdfinancefavo">
+							<div>EUR-USD<div id="currencyEURUSD">1.17283893</div><div id="diffEURUSD" class="green">+0.002</div></div>
+							<div>USD-JPY<div id="currencyUSDJPY">109.63172000</div><div id="diffUSDJPY" class="green">+0.097</div></div>
+							<div>GBP-USD<div id="currencyGBPUSD">1.33957396</div><div id="diffGBPUSD" class="green">+0.003</div></div>
+							<div>BTC-USD<div id="currencyBTCUSD">7587.86553430</div><div id="diffBTCUSD" class="red">-4.585</div></div>
+						</div>
 					</div>
 					<div id="arrowleft" class="arrowleft">&lt;</div>
 					<div id="arrowright" class="arrowright">&gt;</div>
 					<div id="stefanvdfinancemarquee">
 						<div class="moveeffect">
-							<div><a href="http://finance.yahoo.com/q?s=AAPL">AAPL</a>
-							<span id="AAPLAsk"><a href="http://finance.yahoo.com/q?s=AAPL">471.00</a></span>
-							<span id="AAPLChange" class="green"><a href="http://finance.yahoo.com/q?s=AAPL">+5.12%</a></span>
+							<div><a href="#">AAPL</a>
+							<span id="AAPLAsk"><a href="#">471.00</a></span>
+							<span id="AAPLChange" class="green"><a href="#">+5.12%</a></span>
 							</div>
-							<div><a href="http://finance.yahoo.com/q?s=GOOG">GOOG</a>
-							<span id="GOOGAsk"><a href="http://finance.yahoo.com/q?s=GOOG">608.69</a></span>
-							<span id="GOOGChange" class="green"><a href="http://finance.yahoo.com/q?s=GOOG">+2.31%</a></span>
+							<div><a href="#">GOOG</a>
+							<span id="GOOGAsk"><a href="#">608.69</a></span>
+							<span id="GOOGChange" class="green"><a href="#">+2.31%</a></span>
 							</div>
-							<div><a href="http://finance.yahoo.com/q?s=MSFT">MSFT</a>
-							<span id="MSFTAsk"><a href="http://finance.yahoo.com/q?s=MSFT">30.52</a></span>
-							<span id="MSFTChange" class="red"><a href="http://finance.yahoo.com/q?s=MSFT">-3.70%</a></span>
+							<div><a href="#">MSFT</a>
+							<span id="MSFTAsk"><a href="#">30.52</a></span>
+							<span id="MSFTChange" class="red"><a href="#">-3.70%</a></span>
 							</div>
-							<div><a href="http://finance.yahoo.com/q?s=YHOO">YHOO</a>
-							<span id="YHOOAsk"><a href="http://finance.yahoo.com/q?s=YHOO">15.99</a></span>
-							<span id="YHOOChange" class="red"><a href="http://finance.yahoo.com/q?s=YHOO">-2.98%</a></span>
+							<div><a href="#">DIA</a>
+							<span id="DIAAsk"><a href="#">15.99</a></span>
+							<span id="DIAChange" class="red"><a href="#">-2.98%</a></span>
 							</div>
 						</div>
 					</div>
 				</div>
 				<br>
-				<div>
-				<label class="checkbox"><input id="getinfovaluepercent" type="radio" name="getinfovalue" value="percent"><span data-i18n="changepercent"></span></label>
-				<label class="checkbox"><input id="getinfovaluestock" type="radio" name="getinfovalue" value="stock"><span data-i18n="changeprice"></span></label>
-				<label class="checkbox"><input id="getinfovaluemc" type="radio" name="getinfovalue" value="mld"><span data-i18n="marketcap"></span></label>
+				<div role="radiogroup" aria-labelledby="fnengine">
+					<div class="md-radio">
+						<input id="getinfovaluepercent" type="radio" name="getinfovalue" value="percent" role="radio" aria-labelledby="fnengine">
+						<label for="getinfovaluepercent"><div><span data-i18n="changepercent"></span></div></label>
+					</div>
+					<div class="md-radio">
+						<input id="getinfovaluestock" type="radio" name="getinfovalue" value="stock" role="radio" aria-labelledby="fnengine">
+						<label for="getinfovaluestock"><div><span data-i18n="changeprice"></span></div></label>
+					</div>
+					<div class="md-radio">
+						<input id="getinfovaluemc" type="radio" name="getinfovalue" value="market" role="radio" aria-labelledby="fnengine">
+						<label for="getinfovaluemc"><div><span data-i18n="marketcap"></span></div></label>
+					</div>
+					<div class="md-radio">
+						<input id="getfullvaluedata" type="radio" name="getinfovalue" value="full" role="radio" aria-labelledby="fnengine">
+						<label for="getfullvaluedata"><div><span data-i18n="stockfullvalue"></span></div></label>
+					</div>
 				</div>
 				</section>
 				<section>
 				<h3 data-i18n="titelcolor"></h3>
 				<div>
-				<label class="checkbox"><input id="lightcolor" type="color" class="color"> <span data-i18n="descolor"></span></label>
-				<label class="checkbox"><input id="redcolor" type="color" class="color"> <span data-i18n="desredcolor"></span></label>
-				<label class="checkbox"><input id="greencolor" type="color" class="color"> <span data-i18n="desgreencolor"></span></label>
-				<label class="checkbox"><input id="textcolor" type="color" class="color"> <span data-i18n="destextcolor"></span></label>
+					<div class="md-color">
+						<div class="input-color-container">
+							<input id="lightcolor" type="color" class="color" list="datalightcolor">
+						</div>
+						<label for="lightcolor"><div><span data-i18n="descolor"></span></div></label>
+					</div>
+					<div class="md-color">
+						<div class="input-color-container">
+							<input id="redcolor" type="color" class="color" list="datalightcolor">
+						</div>
+						<label for="redcolor"><div><span data-i18n="desredcolor"></span></div></label>
+					</div>
+					<div class="md-color">
+						<div class="input-color-container">
+							<input id="greencolor" type="color" class="color" list="datalightcolor">
+						</div>
+						<label for="greencolor"><div><span data-i18n="desgreencolor"></span></div></label>
+					</div>
+					<div class="md-color">
+						<div class="input-color-container">
+							<input id="textcolor" type="color" class="color" list="datalightcolor">
+						</div>
+						<label for="textcolor"><div><span data-i18n="destextcolor"></span></div></label>
+					</div>
+					<datalist id="datalightcolor">
+						<option>#FFFFFF</option>
+						<option>#FF0000</option>
+						<option>#FF7700</option>
+						<option>#FFEE00</option>
+						<option>#00FF00</option>
+						<option>#008000</option>
+						<option>#3CB4FE</option>
+						<option>#0000FF</option>
+						<option>#808080</option>
+						<option>#000000</option>
+					</datalist>
 				</div>
 				</section>
 				<section>
@@ -178,22 +261,45 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				<table id="Stocklist">
  				   <tr>
  				     <td><span data-i18n="stocks"></span>:</td>
-  				     <td><input id="websiteurl" type="url" required placeholder="GOOG  or  GOOG,MSFT,AAPL"></td>
- 				     <td><button id="addbutton" name="add"><span data-i18n="addbutton"></span></button></td>
+  				     <td><input id="websiteurl" type="url" required placeholder="GOOG  or  GOOG,MSFT,AAPL" aria-label="The text box to type a stock for the Finance feature"></td>
+ 				     <td><button type="submit" id="addbutton" name="add"><span data-i18n="addbutton"></span></button></td>
  				   </tr>
  				   <tr>
-				      <td colspan="2"><select id="excludedstockBox" name="entryList" size="10" multiple=""></select></td>
-				      <td valign="center">
-						<button id="removebutton" name="delete"><span data-i18n="deletebutton"></span></button>
-						<br>
-						<button id="moveupbutton" name="moveup"><span data-i18n="moveupbutton"></span></button>
-						<br>
-						<button id="movedownbutton" name="movedown"><span data-i18n="movedownbutton"></span></button>
+				      <td colspan="2"><select id="excludedstockBox" name="entryList" size="10" multiple="" aria-label="The stocks from toolbar 1"></select></td>
+				      <td valign="top">
+						<button type="button" id="removebutton" name="delete"><span data-i18n="deletebutton"></span></button>
+						<br><br>
+						<button type="button" id="moveupbutton" name="moveup"><span data-i18n="moveupbutton"></span></button>
+						<br><br>
+						<button type="button" id="movedownbutton" name="movedown"><span data-i18n="movedownbutton"></span></button>
 					  </td>					  
 				    </tr>
 				</table>
 				<br>
-				<div class="grey-text">Yahoo&#174; Finance<br>&nbsp;&nbsp;^DJX  =  DOW JONES INDUSTRIAL AVER<br>&nbsp;&nbsp;^GSPC  =  S&P 500</div>
+				<div class="md-checkbox">
+					<input id="doublebar" type="checkbox">
+					<label for="doublebar"><div><span data-i18n="desdoublebar"></span></div></label>
+				</div>
+				<table id="Stocklistdouble">
+					<tr>
+						<td><span data-i18n="stocks"></span>:</td>
+						<td><input id="websiteurldouble" type="url" required placeholder="GOOG  or  GOOG,MSFT,AAPL" aria-label="The text box to type a stock for the Finance feature"></td>
+						<td><button type="submit" id="addbuttondouble" name="add"><span data-i18n="addbutton"></span></button></td>
+					</tr>
+					<tr>
+						<td colspan="2"><select id="excludedstockBoxdouble" name="entryList" size="10" multiple="" aria-label="The stocks from toolbar 2"></select></td>
+						<td valign="top">
+						<button type="button" id="removebuttondouble" name="delete"><span data-i18n="deletebutton"></span></button>
+						<br><br>
+						<button type="button" id="moveupbuttondouble" name="moveup"><span data-i18n="moveupbutton"></span></button>
+						<br><br>
+						<button type="button" id="movedownbuttondouble" name="movedown"><span data-i18n="movedownbutton"></span></button>
+						</td>					  
+					</tr>
+				</table>
+				<br>
+				<div class="grey-text">Trading<br>&nbsp;&nbsp;DIA = Dow Jones Industrial Average<br>&nbsp;&nbsp;AAPL = Apple Inc.<br>&nbsp;&nbsp;TSLA = Tessla Inc.</div>
+				</div>
 				</section>
 				<section id="sectionreviewbox">			
 				<div id="reviewextensionbox">
@@ -205,21 +311,97 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				</div>
 				</section>
 				<section>
-				<h3 data-i18n="titelxminutes"></h3>
+				<h3 data-i18n="titelfavo"></h3>
 				<div>
-				<label class="checkbox"><input type="number" id="xminutes" min="1" max="100" step="1" value="0" maxlength="3" size="4"> <span data-i18n="desxminutes"></span></label>
+					<div class="md-checkbox">
+						<input id="favoritestock" type="checkbox">
+						<label for="favoritestock"><div><span data-i18n="destitelfavo"></span></div></label>
+					</div>
+					<div class="md-number md-subgroup">
+						<label><input type="text" id="favo1"> - </label>
+					</div>
+					<div class="md-number md-subgroup">
+						<label><input type="text" id="favo1b"></label>
+					</div>
+					<br>
+					<div class="md-number md-subgroup">
+						<label><input type="text" id="favo2"> -</label>
+					</div>
+					<div class="md-number md-subgroup">
+						<label><input type="text" id="favo2b"></label>
+					</div>
+					<br>
+					<div class="md-number md-subgroup">
+						<label><input type="text" id="favo3"> -</label>
+					</div>
+					<div class="md-number md-subgroup">
+						<label><input type="text" id="favo3b"></label>
+					</div>
+					<br>
+					<div class="md-number md-subgroup">
+						<label><input type="text" id="favo4"> -</label>
+					</div>
+					<div class="md-number md-subgroup">
+						<label><input type="text" id="favo4b"></label>
+					</div>
 				</div>
 				</section>
 				<section>
-				<h3 data-i18n="titelfavo"></h3>
-				<div>
-				<label class="checkbox"><input id="favoritestock" type="checkbox"><span data-i18n="destitelfavo"></span></label>
-				<input id="favo1">
-				<input id="favo2">
-				<br>
-				<input id="favo3">
-				<input id="favo4">
-				</div>
+					<h3 id="typebarengine" data-i18n="titeltypebar"></h3>
+					<div>
+						<div role="radiogroup" aria-labelledby="typebarengine">
+							<div class="md-radio">
+								<input id="scrollbar" type="radio" name="typebar" value="" role="radio" aria-labelledby="typebarengine">
+								<label for="scrollbar"><div><span data-i18n="desscrollbar"></span></div></label>
+							</div>
+							<div class="md-radio">
+								<input id="staticbar" type="radio" name="typebar" value="" role="radio" aria-labelledby="typebarengine">
+								<label for="staticbar"><div><span data-i18n="desstaticbar"></span></div></label>
+							</div>
+							<div class="md-radio">
+								<input id="simultan" type="radio" name="typebar" value="" role="radio" aria-labelledby="typebarengine">
+								<label for="simultan"><div><span data-i18n="dessimultan"></span></div></label>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3 id="websiteengine" data-i18n="titelallsites"></h3>
+					<div>
+						<div role="radiogroup" aria-labelledby="websiteengine">
+							<div class="md-radio">
+								<input id="allsites" type="radio" name="pmw" value="" role="radio" aria-labelledby="websiteengine">
+								<label for="allsites"><div><span data-i18n="desallsites"></span></div></label>
+							</div>
+							<div class="md-radio">
+								<input id="toolbaronly" type="radio" name="pmw" value="" role="radio" aria-labelledby="websiteengine">
+								<label for="toolbaronly"><div><span data-i18n="destoolbaronly"></span></div></label>
+							</div>
+						</div>
+					<form id="formtoolbar">
+					<table id="toolbarwhitelist">
+						<tr>
+						  <td><span data-i18n="titelwebsite"></span>:</td>
+						   <td><input id="toolbarwebsiteurl"  type="url" required pattern="(https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*))|((https?|ftp)://)?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})" placeholder="https://www.example.com"  aria-label="The URL box to type a website for the Finance feature"></td>
+						  <td><button type="submit" id="toolbaraddbutton" name="add"><span data-i18n="addbutton"></span></button></td>
+						</tr>
+						<tr>
+						  <td colspan="2"><select id="toolbarDomainsBox" name="toolbarentryList" size="3" multiple="" aria-label="The website URLs in the box"></select></td>
+						  <td valign="top"><button type="button" id="toolbarremovebutton" name="delete"><span data-i18n="deletebutton"></span></button></td>					  
+						</tr>
+					</table>
+					</form>
+					<div role="radiogroup" aria-labelledby="toolbaronly">
+						<div class="md-radio md-subin">
+							<input id="toolbarwhite" type="radio" name="toolbarlist" value="true" role="radio" aria-labelledby="toolbaronly">
+							<label for="toolbarwhite"><div><span data-i18n="titeltoolbarwhitelist"></span></div></label>
+						</div>
+						<div class="md-radio md-subin">
+							<input id="toolbarblack" type="radio" name="toolbarlist" value="black" role="radio" aria-labelledby="toolbaronly">
+							<label for="toolbarblack"><div><span data-i18n="titeltoolbarblacklist"></span></div></label>
+						</div>
+					</div>
+					</div>
 				</section>
 			</div>
 			<div id="tab2" class="page hidden">
@@ -227,108 +409,201 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				<section>
 				<h3 data-i18n="titelmarquee"></h3>
 				<div>
-				<span data-i18n="marqueebehaviour"></span>
-				<select id="marqueebehaviour">
-					<option value="scroll">Scroll</option>
-					<option value="alternate">Bounce</option>
-				</select>
-				<br>
-				<span data-i18n="direction"></span>
-				<select id="direction">
-					<option value="left">left</option>
-					<option value="right">right</option>
-				</select>
-				<br>
-				<span data-i18n="scrollamount"></span>
-				<input type="number" id="scrollamount" min="0" max="100" step="1" value="0" maxlength="3" size="4">
-				<div class="grey-text" data-i18n="extrascrollamount"></div>
+					<div class="conboxselectionmax">
+						<span data-i18n="marqueebehaviour"></span>
+						<div class="md-selectfield">
+							<label><span data-i18n="marqueebehaviour"></span></label>
+							<select id="marqueebehaviour" class="browser-default" aria-label="Choose your bar animation">
+									<option value="scroll">Scroll</option>
+									<option value="alternate">Bounce</option>
+							</select>
+						</div>
+					</div>
+					<div class="conboxselectionmax">
+						<span data-i18n="direction"></span>
+						<div class="md-selectfield">
+							<label><span data-i18n="direction"></span></label>
+							<select id="direction" class="browser-default" aria-label="Choose your direction">
+									<option value="left">left</option>
+									<option value="right">right</option>
+							</select>
+						</div>
+					</div>
+					<div class="md-number">
+						<label><span data-i18n="scrollamount"></span> <input type="number" id="scrollamount" min="10" max="100" step="1" value="0" maxlength="3" size="4"></label>
+					</div>
+					<div class="grey-text" data-i18n="extrascrollamount"></div>
 				</div>
 				</section>
+				<section id="sectionfinancetoolbarappbox">			
+					<div id="financetoolbarappbox">
+						<div id="apicon"><img id="financetoolbaricon" src="images/finance-toolbar_32x32@2x.png" srcset="images/finance-toolbar_32x32.png 1x, images/finance-toolbar_32x32@2x.png 2x"  width="32" height="32"></div>
+						<div id="apname"><span>Finance Toolbar</span></div>
+						<div id="aptllo"><span data-i18n="desfinancetoolbar"></span></div>
+						<div id="apnt"><span data-i18n="nothanks"></span></div>
+						<div id="apgetapp"><span data-i18n="downloadtheapp"></span></div>
+					</div>
+				</section>	
 				<section>
 				<h3 data-i18n="titelfont"></h3>
 				<div>
-				<label class="checkbox"><span data-i18n="titelfontfamily"></span>
-				<select id="getfontfamily">
-					<option value="jd_lcd_roundedregular">jd_lcd_roundedregular</option>
-					<option value="Arial">Arial</option>
-					<option value="Impact">Impact</option>
-					<option value="Sans-serif">Sans-serif</option>					
-					<option value="Times New Roman">Times New Roman</option>
-					<option value="Verdana">Verdana</option>
-					<option value="Wallstreet">Wallstreet</option>
-				</select>
-				</label>
-				<span data-i18n="desfontsize"></span> <input type="number" id="getfontsize" min="10" max="100" step="1" value="0" maxlength="3" size="4"> px
+					<div class="conboxselection">
+						<div class="md-selectfield">
+							<label><span data-i18n="titelfontfamily"></span></label>
+							<select id="getfontfamily" class="browser-default" aria-label="Choose your font familly">
+								<option value="jd_lcd_roundedregular">jd_lcd_roundedregular</option>
+								<option value="Arial">Arial</option>
+								<option value="Impact">Impact</option>
+								<option value="Sans-serif">Sans-serif</option>					
+								<option value="Times New Roman">Times New Roman</option>
+								<option value="Verdana">Verdana</option>
+								<option value="Wallstreet">Wallstreet</option>
+							</select>
+						</div>
+					</div>
+					<div class="md-number">
+						<label><span data-i18n="desfontsize"></span> <input type="number" id="getfontsize" min="10" max="100" step="1" value="0" maxlength="3" size="4"> px</label>
+					</div>
 				</div>
 				</section>
 				<section>
 				<h3 data-i18n="titeljapan"></h3>
 				<div>
-				<label class="checkbox"><input id="japan" type="checkbox"><span data-i18n="desjapan"></span></label>
+					<div class="md-checkbox">
+						<input id="japan" type="checkbox">
+						<label for="japan"><div><span data-i18n="desjapan"></span></div></label>
+					</div>
 				</div>
+				</section>
+				<section>
+					<h3 data-i18n="titelfillchange"></h3>
+					<div>
+						<div class="md-checkbox">
+							<input id="fillchange" type="checkbox">
+							<label for="fillchange"><div><span data-i18n="desfillchange"></span></div></label>
+						</div>
+					</div>
 				</section>
 				<section>
 				<h3 data-i18n="titeldropshadow"></h3>
 				<div>
-				<label class="checkbox"><input id="dropshadow" type="checkbox"><span data-i18n="desdropshadow"></span></label>
+					<div class="md-checkbox">
+						<input id="dropshadow" type="checkbox">
+						<label for="dropshadow"><div><span data-i18n="desdropshadow"></span></div></label>
+					</div>
 				</div>
 				</section>
-				<section id="sectionfinancetoolbarappbox">			
-				<div id="financetoolbarappbox">
-					<div id="apicon"><img id="financetoolbaricon" src="images/finance-toolbar_32x32.png" width="32px" height="32px"></div>
-					<div id="apname"><span>Finance Toolbar</span></div>
-					<div id="aptllo"><span data-i18n="desfinancetoolbar"></span></div>
-					<div id="apnt"><span data-i18n="nothanks"></span></div>
-					<div id="apgetapp"><span data-i18n="downloadtheapp"></span></div>
+				<section>
+				<h3 data-i18n="titelworldmap"></h3>
+				<div>
+					<div class="md-color">
+						<div class="input-color-container">
+							<input id="worldmapcolor" type="color" class="color" list="datalightcolor">
+						</div>
+						<label for="worldmapcolor"><div><span data-i18n="desworldmapcolor"></span></div></label>
+					</div>
+					<div class="md-number">
+						<label><span data-i18n="desworldmapopacity"></span> <input type="number" id="worldmapopacity" min="0" max="100" step="1" value="0" maxlength="3" size="4"> %</label>
+					</div>
+					<div class="md-checkbox">
+						<input id="hideworldmap" type="checkbox">
+						<label for="hideworldmap"><div><span data-i18n="desworldmaphide"></span></div></label>
+					</div>
 				</div>
-				</section>		
+				</section>
 			</div>
 			<div id="tab4" class="page hidden">
 				<h1 data-i18n="advancedoptions"></h1>
 				<section>
 				<h3 data-i18n="titelrememberpage"></h3>
-				<div><label class="checkbox"><input id="optionskipremember" type="checkbox"><span data-i18n="desrememberpage"></span></label></div>
-				</section>						
+				<div>
+					<div class="md-checkbox">
+						<input id="optionskipremember" type="checkbox">
+						<label for="optionskipremember"><div><span data-i18n="desrememberpage"></span></div></label>
+					</div>
+				</section>
+				<section>		
+					<h3 id="dataengine" data-i18n="titeldatabar"></h3>
+					<div>
+						<div role="radiogroup" aria-labelledby="dataengine">
+							<div class="md-radio">
+								<input id="fromiexe" type="radio" name="fromdataengine" value="top" role="radio" aria-labelledby="dataengine">
+								<label for="fromiexe"><div><span>IEX Trading API</span></div></label>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3 data-i18n="titelxminutes"></h3>
+					<div>
+						<div class="md-number">
+							<label><input type="number" id="xminutes" min="1" max="100" step="1" value="0" maxlength="3" size="4"> <span data-i18n="desxminutes"></span></label>
+						</div>
+					</div>
+				</section>
+				<section>		
+				<h3 id="positionengine" data-i18n="titelpositionbar"></h3>
+				<div>
+					<div role="radiogroup" aria-labelledby="positionengine">
+						<div class="md-radio">
+							<input id="getpositiontop" type="radio" name="getpositionbar" value="top" role="radio" aria-labelledby="positionengine">
+							<label for="getpositiontop"><div><span data-i18n="despositionbartop"></span></div></label>
+						</div>
+						<div class="md-radio">
+							<input id="getpositionbottom" type="radio" name="getpositionbar" value="bottom" role="radio" aria-labelledby="positionengine">
+							<label for="getpositionbottom"><div><span data-i18n="despositionbarbottom"></span></div></label>
+						</div>
+					</div>
+				</div>
+				</section>
+				<section>
+				<h3 data-i18n="titelfullname"></h3>
+				<div>
+					<div class="md-checkbox">
+						<input id="fullname" type="checkbox">
+						<label for="fullname"><div><span data-i18n="desfullname"></span></div></label>
+					</div>
+					<div>
+						<label><span data-i18n="desfullnamearea"></span><br><br><textarea id="fullnamearea" rows="10" cols="50"></textarea></label>
+					</div>
+				</div>
+				</section>
+
+				<section>
+				<h3 data-i18n="titelsearch"></h3>
+				<div>
+					<div class="conboxselectionmax">
+						<span data-i18n="dessearchbehaviour"></span>
+						<div class="md-selectfield">
+							<label><span data-i18n="dessearchbehaviour"></span></label>
+							<select id="searchbehaviour" class="browser-default" aria-label="Choose your search engine">
+								<option value="Google">Google</option>
+								<option value="Yahoo">Yahoo</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				</section>
+				<section>
+				<h3 data-i18n="titelopenmarket"></h3>
+				<div>
+					<div class="md-checkbox">
+						<input id="bellmarket" type="checkbox">
+						<label for="bellmarket"><div><span data-i18n="desbellmarket"></span></div></label>
+					</div>
+					<div class="md-number">
+						<label><input type="time" id="opentime" value="09:30" maxlength="3" size="4"> <span data-i18n="desopen"></span></label>
+					</div>
+					<div class="md-number">
+						<label><input type="time" id="closetime" value="16:00" maxlength="3" size="4"> <span data-i18n="desclose"></span></label>
+					</div>
+				</div>
+				</section>
 				<section>
 				<h3 data-i18n="titelsync"></h3>
 				<div class="grey-text"><span data-i18n="titelsyncbrowser"></span></div>
 				</section>
-				<section>			
-				<h3 data-i18n="titelupgrade"></h3>
-				<div>
-					<label class="checkbox"><span class="item">Ambient Aurea browser extension</span><br><span data-i18n="titeldownloadaaupgrade"></span></label>
-					<p>
-					<button id="aadownload" data-i18n="titeldownloadbutton"></button>
-					<span class="grey-text"><span data-i18n="desproject"></span> <a href="https://www.stefanvd.net/project/ambient-aurea/browser/" target="blank">Ambient Aurea</a> <span data-i18n="desbrowserextension"></span>.</span>
-					</p>
-					<label class="checkbox"><span class="item">Proper Menubar browser extension</span><br><span data-i18n="titeldownloadupgradepropermenubar"></span></label>
-					<p>
-					<button id="ppdownload" data-i18n="titeldownloadbutton"></button>
-					<span class="grey-text"><span data-i18n="desproject"></span> <a href="https://www.stefanvd.net/project/proper-menubar/browser/" target="blank">Proper Menubar</a> <span data-i18n="desbrowserextension"></span>.</span>
-					</p>
-					<label class="checkbox"><span class="item">Zoom browser extension</span><br><span data-i18n="titeldownloadupgradezoom"></span></label>
-					<p>
-					<button id="zdownload" data-i18n="titeldownloadbutton"></button>
-					<span class="grey-text"><span data-i18n="desproject"></span> <a href="https://www.stefanvd.net/project/zoom/browser/" target="blank">Zoom</a> <span data-i18n="desbrowserextension"></span>.</span>
-					</p>
-					<label class="checkbox"><span class="item">Turn Off the Lights browser extension</span><br><span data-i18n="titeldownloadupgrade"></span></label>
-					<p>
-					<button id="totldownload" data-i18n="titeldownloadbutton"></button>
-					<span class="grey-text"><span data-i18n="desproject"></span> <a href="https://www.turnoffthelights.com" target="blank">Turn Off the Lights</a> <span data-i18n="desbrowserextension"></span>.</span>
-					</p>
-					<label class="checkbox"><span class="item">Full Screen browser extension</span><br><span data-i18n="titeldownloadupgradefullscreen"></span></label>
-					<p>
-					<button id="fsdownload" data-i18n="titeldownloadbutton"></button>
-					<span class="grey-text"><span data-i18n="desproject"></span> <a href="https://www.stefanvd.net/project/full-screen/browser/" target="blank">Full Screen</a> <span data-i18n="desbrowserextension"></span>.</span>
-					</p>
-					<label class="checkbox"><span class="item">Date Today browser extension</span><br><span data-i18n="titeldownloadupgradedatetoday"></span></label>
-					<p>
-					<button id="dtdownload" data-i18n="titeldownloadbutton"></button>
-					<span class="grey-text"><span data-i18n="desproject"></span> <a href="https://www.stefanvd.net/project/date-today/browser/" target="blank">Date Today</a> <span data-i18n="desbrowserextension"></span>.</span>
-					</p>
-				</div>
-				</section>
-				<section>			
+				<section>
 				<h3 data-i18n="titelreset"></h3>
 				<div>
 					<label class="checkbox"><button id="resetfinancetoolbar" data-i18n="resetbrowserextension"></button></label>
@@ -339,15 +614,20 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 			<h1 data-i18n="about"></h1>
 			<section>
 				<div>
-				<label class="checkbox"><h4>Finance Toolbar™</h4>
-						<span data-i18n="version"></span> <span id="version_number"></span>
-						<br><span data-i18n="description"></span>
-				</label>
+				<h4>Finance Toolbar™</h4>
+				<span data-i18n="version"></span> <span id="version_number"></span>
 				<br>
-				<label class="checkbox"><span data-i18n="titelwebsite"></span>: <a href="https://www.stefanvd.net/project/finance-toolbar/browser/" target="_blank">www.stefanvd.net/project/finance-toolbar/browser/</a></label>
-				<label class="checkbox"><span data-i18n="titeldeveloper"></span>: <a href="https://www.stefanvd.net" target="_blank">www.stefanvd.net</a></label>
+				<span data-i18n="description"></span>
 				<br>
-				<button id="buttonreportissue" data-i18n="reportbug"></button><button id="buttonchangelog" data-i18n="changelog"></button><button id="buttontranslateme" data-i18n="translateme"></button>
+				<br>
+				<span data-i18n="titelwebsite"></span>: <a href="https://www.stefanvd.net/project/finance-toolbar/browser/"  target="_blank" rel="noopener">www.stefanvd.net/project/finance-toolbar/browser/</a>
+				<br>
+				<span data-i18n="titeldeveloper"></span>: <a href="https://www.stefanvd.net" target="_blank" rel="noopener">www.stefanvd.net</a>
+				<br>
+				<br>
+				<div class="aboutbuttons">
+					<button id="buttonreportissue" class="btnspace" data-i18n="reportbug"></button><button id="buttonchangelog" class="btnspace" data-i18n="changelog"></button><button id="buttontranslateme" class="btnspace" data-i18n="translateme"></button>
+				</div>
 				<br><br><br><br><br><br>
 				<div class="grey-text">
 				Finance Toolbar<br>
@@ -361,6 +641,52 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 			<div id="tab3" class="page hidden">
 				<iframe id="welcomeguide" src="" width="100%" height="100%" frameBorder="0" scrolling="no"></iframe>
 			</div>
+		</div>
+<!-- dialog -->
+<div id="materialModalRate" class="hide" role="dialog" aria-label="Review this extension" aria-describedby="materialModalRateTitle" aria-disabled="true">
+		<div id="materialModalRateCentered">
+			<div id="materialModalRateContent">
+				<img src="images/star.svg" alt="Review Finance Toolbar to 5 stars">
+				<div id="materialModalRateTitle"><span data-i18n="friendlyremember"></span></div>
+				<div id="materialModalRateText">
+					<span data-i18n="desremrate"></span>
+				</div>
+				<div id="materialModalRateButtons">
+				<div id="materialModalRateButtonOK" class="materialModalButton"><span data-i18n="titlelratenow"></span></div>
+				<div id="materialModalRateButtonCANCEL" class="materialModalButton"><span data-i18n="titleratelater"></span></div>
+				</div>
+			</div>
+		</div>
+</div>
+<div id="materialModalIntroduce" class="hide" role="dialog" aria-label="Introduce the new design" aria-describedby="materialModalIntroduceTitle" aria-disabled="true">
+	<div id="materialModalIntroduceCentered">
+		<div id="materialModalIntroduceContent">
+			<img src="images/introduce.svg" alt="Introducing Finance Toolbar">
+			<div id="materialModalIntroduceTitle"><span data-i18n="titelintroduce"></span></div>
+			<div id="materialModalIntroduceText">
+				<span data-i18n="desintroduce"></span>
+			</div>
+			<div id="materialModalIntroduceButtons">
+			<div id="materialModalIntroduceButtonOK" class="materialModalButton"><span data-i18n="titleok"></span></div>
+			<div id="materialModalIntroduceButtonCANCEL" class="materialModalButton"><span data-i18n="titlecancel"></span></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="dropmenu" class="hide">
+<ul><li id="btnactivedarkmode">
+	<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+	width="16" height="16"
+	viewBox="0 0 30 30">
+	<path d="M22,21c-6.627,0-12-5.373-12-12c0-1.95,0.475-3.785,1.3-5.412C6.485,5.148,3,9.665,3,15c0,6.627,5.373,12,12,12 c4.678,0,8.72-2.682,10.7-6.588C24.534,20.79,23.292,21,22,21z"></path></svg>
+	<span id="currentdarkmode" data-i18n="titledarkmodeoff"></span></li></ul>
+<ul><li id="btnsupport">
+		<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+		width="16" height="16"
+		viewBox="0 0 24 24"><g><path d="M 20 2 L 4 2 C 2.894531 2 2 2.894531 2 4 L 2 22 L 6 18 L 20 18 C 21.105469 18 22 17.105469 22 16 L 22 4 C 22 2.894531 21.105469 2 20 2 Z M 13 14 L 11 14 L 11 12 L 13 12 Z M 15 9 C 15 9.378906 14.789063 9.71875 14.449219 9.890625 L 13 10.621094 L 13 11 L 11 11 L 11 10 C 11 9.621094 11.210938 9.28125 11.550781 9.109375 L 13 8.378906 L 13 7 L 11 7 L 11 8.078125 L 9 8.078125 L 9 6 C 9 5.449219 9.449219 5 10 5 L 14 5 C 14.550781 5 15 5.449219 15 6 Z "></path></g></svg>
+		<span data-i18n="titelpopupsupport"></span></li></ul>
+</div>
+</div>
 <script type="text/javascript" src="js/translate.js"></script>
 </body>
 </html>

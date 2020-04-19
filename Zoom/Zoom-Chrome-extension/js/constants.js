@@ -7,20 +7,14 @@ if (window.location.href.match(/http:\/\/(.*stefanvd\.net\/.*|www\.stefanvd\.net
 	}
 }
 var developerwebsite = "https://www.stefanvd.net";
+var exoptionspage = "https://www.stefanvd.net/project/zoom/browser/options.html";
 var ambientaureaproduct = "https://chrome.google.com/webstore/detail/ambient-aurea/pkaglmndhfgdaiaccjglghcbnfinfffa";
-var idaa = "pkaglmndhfgdaiaccjglghcbnfinfffa";
 var datetodayproduct = "https://chrome.google.com/webstore/detail/date-today/mhgknbehalhkedjgfhiaindklahhkccc";
-var iddt = "mhgknbehalhkedjgfhiaindklahhkccc";
 var turnoffthelightsproduct = "https://chrome.google.com/webstore/detail/turn-off-the-lights/bfbmjmiodbnnpllbbbfblcplfjjepjdn";
-var idtotl = "bfbmjmiodbnnpllbbbfblcplfjjepjdn";
 var financetoolbarproduct = "https://chrome.google.com/webstore/detail/finance-toolbar/cichbngoomgnobmmjpagmbkimbamigie";
-var idft = "cichbngoomgnobmmjpagmbkimbamigie";
 var propermenubarproduct = "https://chrome.google.com/webstore/detail/proper-menubar/egclcjdpndeoioimlbbbmdhcaopnedkp";
-var idpp = "egclcjdpndeoioimlbbbmdhcaopnedkp";
 var fullscreenproduct = "https://chrome.google.com/webstore/detail/full-screen/gmimocjjppdelmhpcmpkhekmpoddgima";
-var idfs = "gmimocjjppdelmhpcmpkhekmpoddgima";
 var zoomproduct = "https://chrome.google.com/webstore/detail/zoom/lajondecmobodlejlcjllhojikagldgd";
-var idz = "lajondecmobodlejlcjllhojikagldgd";
 var donatewebsite = "https://www.stefanvd.net/donate.htm";
 var writereview = "https://chrome.google.com/webstore/detail/zoom/lajondecmobodlejlcjllhojikagldgd/reviews";
 var linkchangelog = "https://www.stefanvd.net/project/zoom/browser/google-chrome/changelog.htm";
@@ -30,3 +24,7 @@ var linkguide = "https://www.stefanvd.net/project/zoom/browser/google-chrome/gui
 var linkwelcomepage = "https://www.stefanvd.net/project/zoom/browser/google-chrome/welcome.htm";
 var linkuninstall = "https://www.stefanvd.net/project/zoom/browser/google-chrome/uninstall.htm";
 var zoomwebsite = "https://www.stefanvd.net/project/zoom/browser/";
+var browsernewtab = "chrome://newtab/";
+var browserstore = "https://chrome.google.com";
+var linkyoutube = "https://www.youtube.com/c/stefanvandamme?sub_confirmation=1";
+var devmode = false;

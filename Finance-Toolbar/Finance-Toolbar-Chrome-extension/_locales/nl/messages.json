@@ -4,8 +4,7 @@
     "description":"Finance Toolbar"
   },
   "description":{
-    "message":"Real-time beurs informatie opvragen over uw favoriete aandelen. Met mini-grafieken van de waarde van de munt.",
-    "description":"Get real time stock market information about your favorite stocks. With mini-charts of the currency value."
+    "message":"Get real time stock market information about your favorite stocks."
   },
   "browserbutton":{
     "message":"Finance Toolbar",

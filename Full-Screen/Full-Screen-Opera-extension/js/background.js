@@ -3,7 +3,7 @@
 
 Full Screen
 Go full screen with one click on the button.
-Copyright (C) 2016 Stefan vd
+Copyright (C) 2018 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -35,25 +35,64 @@ if (request.name == "youtubefullscreen") {
         }
     );
 }
+else if (request.name == "sendautoplay") {
+    
+        var oReq = new XMLHttpRequest();
+        oReq.onreadystatechange = function (e) { if (oReq.readyState == 4) {chrome.tabs.sendMessage(sender.tab.id, {name: "injectvideostatus",message: oReq.responseText});} };
+        oReq.open("GET","/js/injected.js",true);oReq.send();
+        
+}
 // contextmenu
 else if (request.name == "contextmenuon") {checkcontextmenus();}
 else if (request.name == "contextmenuoff") {removecontexmenus()}
 });
 
+var oldwindowstatus;
+var fullscreenweb = null, fullscreenwindow = null, fullscreenvideo = null;
 chrome.browserAction.onClicked.addListener(function(tab) {
   chrome.windows.getCurrent(null, function(window) {
     chrome.storage.sync.get(['fullscreenweb','fullscreenwindow','fullscreenvideo'], function(items){
-      if(items['fullscreenweb'] == true){chrome.tabs.executeScript(tab.id, {file: "js/fullscreen.js"});}
-      else if(items['fullscreenwindow'] == true){chrome.windows.update(window.id, {state: "fullscreen"});}
-      else if(items['fullscreenvideo'] == true){chrome.tabs.executeScript(tab.id, {file: "js/video.js"});}
-      else{chrome.tabs.executeScript(tab.id, {file: "js/fullscreen.js"});}
+      fullscreenweb = items['fullscreenweb'];if(fullscreenweb == null)fullscreenweb = true;
+      fullscreenwindow = items['fullscreenwindow'];
+      fullscreenvideo = items['fullscreenvideo'];
+
+      if(fullscreenweb == true){
+        if(window.state=="fullscreen"){
+            chrome.windows.update(window.id, { state: oldwindowstatus });
+        }else{
+            chrome.windows.update(window.id, { state: "fullscreen" });
+            oldwindowstatus = window.state;
+        }
+      }
+      else if(fullscreenwindow == true){
+        if(window.state=="maximized"){
+            chrome.windows.update(window.id, { state: "normal" });
+        }else{
+            chrome.windows.update(window.id, { state: "maximized" });
+        }
+      }
+      else if(fullscreenvideo == true){chrome.tabs.executeScript(tab.id, {file: "js/video.js"});}
     });
   });
 });
 
 // contextMenus
+
+
 function onClickHandler(info, tab) {
-if (info.menuItemId == "fsvideo" || info.menuItemId == "fsimage" || info.menuItemId == "fspage") {chrome.tabs.sendMessage(tab.id, { action: "gofullscreen" });}
+if (info.menuItemId == "fsvideo" || info.menuItemId == "fsimage") {chrome.tabs.sendMessage(tab.id, { name: "gofullscreen" });}
+else if (info.menuItemId == "fspage") {
+    chrome.windows.getCurrent(null, function(window) {
+        if(window.state=="fullscreen"){
+            chrome.windows.update(window.id, { state: oldwindowstatus });
+        }
+        else{
+            chrome.windows.update(window.id, { state: "fullscreen" });
+            oldwindowstatus = window.state;
+        }
+    });
+
+}
 else if (info.menuItemId == "totlguideemenu") {window.open(linkguide, "_blank");}
 else if (info.menuItemId == "totldevelopmenu") {window.open(donatewebsite, "_blank");}
 else if (info.menuItemId == "totlratemenu") {window.open(writereview, "_blank");}
@@ -62,6 +101,7 @@ else if (info.menuItemId == "totlshareemail") {window.open("mailto:youremail?sub
 else if (info.menuItemId == "totlsharetwitter") {var sfullscreenproductcodeurl = encodeURIComponent("The Best and Amazing Full Screen Browser extension "+fullscreenproduct+"");window.open("https://twitter.com/home?status="+sfullscreenproductcodeurl+"", "_blank");}
 else if (info.menuItemId == "totlsharefacebook") {window.open("https://www.facebook.com/sharer/sharer.php?u="+fullscreenproduct, "_blank");}
 else if (info.menuItemId == "totlsharegoogleplus") {window.open("https://plus.google.com/share?url="+fullscreenproduct, "_blank");}
+else if (info.menuItemId == "totlsubscribe") {chrome.tabs.create({url: linkyoutube, active:true})}
 }
 
 // check to remove all contextmenus
@@ -78,24 +118,63 @@ var sharemenupostonfacebook = chrome.i18n.getMessage("sharemenupostonfacebook");
 var sharemenupostongoogleplus = chrome.i18n.getMessage("sharemenupostongoogleplus");
 var sharemenuratetitle = chrome.i18n.getMessage("sharemenuratetitle");
 var sharemenudonatetitle = chrome.i18n.getMessage("sharemenudonatetitle");
+var sharemenusubscribetitle = chrome.i18n.getMessage("desremyoutube");
 
-var contexts = ["browser_action"];
-chrome.contextMenus.create({"title": sharemenuwelcomeguidetitle, "type":"normal", "id": "totlguideemenu", "contexts":contexts});
-chrome.contextMenus.create({"title": sharemenudonatetitle, "type":"normal", "id": "totldevelopmenu", "contexts":contexts});
-chrome.contextMenus.create({"title": sharemenuratetitle, "type":"normal", "id": "totlratemenu", "contexts":contexts});
+var contexts = ["page_action", "browser_action"];
+try{
+    // try show web browsers that do support "icons"
+    // Firefox, Opera, Microsoft Edge
+    chrome.contextMenus.create({"title": sharemenuwelcomeguidetitle, "type":"normal", "id": "totlguideemenu", "contexts": contexts, "icons": {"16": "images/IconGuide.png","32": "images/IconGuide@2x.png"}});
+    chrome.contextMenus.create({"title": sharemenudonatetitle, "type":"normal", "id": "totldevelopmenu", "contexts": contexts, "icons": {"16": "images/IconDonate.png","32": "images/IconDonate@2x.png"}});
+    chrome.contextMenus.create({"title": sharemenuratetitle, "type":"normal", "id": "totlratemenu", "contexts": contexts, "icons": {"16": "images/IconStar.png","32": "images/IconStar@2x.png"}});
+}
+catch(e){
+    // catch web browsers that do NOT show the icon
+    // Google Chrome
+    chrome.contextMenus.create({"title": sharemenuwelcomeguidetitle, "type":"normal", "id": "totlguideemenu", "contexts": contexts});
+    chrome.contextMenus.create({"title": sharemenudonatetitle, "type":"normal", "id": "totldevelopmenu", "contexts": contexts});
+    chrome.contextMenus.create({"title": sharemenuratetitle, "type":"normal", "id": "totlratemenu", "contexts": contexts});
+}
 
 // Create a parent item and two children.
-var parent = chrome.contextMenus.create({"title": sharemenusharetitle, "id": "totlsharemenu", "contexts":contexts});
-var child1 = chrome.contextMenus.create({"title": sharemenutellafriend, "id": "totlshareemail", "parentId": parent});
-var child2 = chrome.contextMenus.create({"title": sharemenusendatweet, "id": "totlsharetwitter", "parentId": parent});
-var child2 = chrome.contextMenus.create({"title": sharemenupostonfacebook, "id": "totlsharefacebook", "parentId": parent});
-var child2 = chrome.contextMenus.create({"title": sharemenupostongoogleplus, "id": "totlsharegoogleplus", "parentId": parent});
+try{
+    // try show web browsers that do support "icons"
+    // Firefox, Opera, Microsoft Edge
+    var parent = chrome.contextMenus.create({"title": sharemenusharetitle, "id": "totlsharemenu", "contexts": contexts, "icons": {"16": "images/IconShare.png","32": "images/IconShare@2x.png"}});
+    var child1 = chrome.contextMenus.create({"title": sharemenutellafriend, "id": "totlshareemail", "contexts": contexts, "parentId": parent, "icons": {"16": "images/IconEmail.png","32": "images/IconEmail@2x.png"}});
+    chrome.contextMenus.create({"title": "", "type":"separator", "id": "totlsepartorshare", "contexts": contexts, "parentId": parent});
+    var child2 = chrome.contextMenus.create({"title": sharemenusendatweet, "id": "totlsharetwitter", "contexts": contexts, "parentId": parent, "icons": {"16": "images/IconTwitter.png","32": "images/IconTwitter@2x.png"}});
+    var child3 = chrome.contextMenus.create({"title": sharemenupostonfacebook, "id": "totlsharefacebook", "contexts": contexts, "parentId": parent, "icons": {"16": "images/IconFacebook.png","32": "images/IconFacebook@2x.png"}});
+    var child4 = chrome.contextMenus.create({"title": sharemenupostongoogleplus, "id": "totlsharegoogleplus", "contexts": contexts, "parentId": parent, "icons": {"16": "images/IconGoogle.png","32": "images/IconGoogle@2x.png"}});
+}
+catch(e){
+    // catch web browsers that do NOT show the icon
+    // Google Chrome
+    var parent = chrome.contextMenus.create({"title": sharemenusharetitle, "id": "totlsharemenu", "contexts": contexts});
+    var child1 = chrome.contextMenus.create({"title": sharemenutellafriend, "id": "totlshareemail", "contexts": contexts, "parentId": parent});
+    chrome.contextMenus.create({"title": "", "type":"separator", "id": "totlsepartorshare", "contexts": contexts, "parentId": parent});
+    var child2 = chrome.contextMenus.create({"title": sharemenusendatweet, "id": "totlsharetwitter", "contexts": contexts, "parentId": parent});
+    var child3 = chrome.contextMenus.create({"title": sharemenupostonfacebook, "id": "totlsharefacebook", "contexts": contexts, "parentId": parent});
+    var child4 = chrome.contextMenus.create({"title": sharemenupostongoogleplus, "id": "totlsharegoogleplus", "contexts": contexts, "parentId": parent});
+}
+
+chrome.contextMenus.create({"title": "", "type":"separator", "id": "totlsepartor", "contexts": contexts});
+try{
+    // try show web browsers that do support "icons"
+    // Firefox, Opera, Microsoft Edge
+    chrome.contextMenus.create({"title": sharemenusubscribetitle, "type":"normal", "id": "totlsubscribe", "contexts":contexts, "icons": {"16": "images/IconYouTube.png","32": "images/IconYouTube@2x.png"}});
+}
+catch(e){
+    // catch web browsers that do NOT show the icon
+    // Google Chrome
+    chrome.contextMenus.create({"title": sharemenusubscribetitle, "type":"normal", "id": "totlsubscribe", "contexts":contexts});
+}
+
+chrome.contextMenus.onClicked.addListener(onClickHandler);
 
 chrome.storage.sync.get(['contextmenus'], function(items){
     if(items['contextmenus']){checkcontextmenus();}
 });
-
-chrome.contextMenus.onClicked.addListener(onClickHandler);
 
 // context menu for page and video
 var menuvideo = null; var menuimage = null; var menupage = null;
@@ -173,13 +252,12 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
     }
 })
 
-try{ chrome.runtime.setUninstallUrl(linkuninstall); }
-catch(e){}
+chrome.runtime.setUninstallURL(linkuninstall);
 
 chrome.storage.sync.get(['firstRun'], function(chromeset){
-if ((chromeset["firstRun"]!="false") && (chromeset["firstRun"]!=false)){
-  chrome.tabs.create({url: linkwelcomepage})
-  chrome.storage.sync.set({"firstRun": "false"});
-  chrome.storage.sync.set({"version": "0.1"});
+    if ((chromeset["firstRun"]!="false") && (chromeset["firstRun"]!=false)){
+    chrome.tabs.create({url: linkwelcomepage});
+    var crrinstall = new Date().getTime();
+    chrome.storage.sync.set({"firstRun": false, "version": "0.1", "firstDate": crrinstall});  
 }
 });

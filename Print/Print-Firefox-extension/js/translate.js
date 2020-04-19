@@ -1,9 +1,9 @@
 ﻿//================================================
 /*
 
-Ambient Aurea
-Bring your image to an ambient lighting effect with just one click on the button.
-Copyright (C) 2016 Stefan vd
+Print
+Print the current page you see.
+Copyright (C) 2018 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or

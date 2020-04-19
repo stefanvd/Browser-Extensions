@@ -1,8 +1,22 @@
 ﻿{
-   "name": {
-      "message": "Drucken",
-	  "description": "Print"
-   },
+  "name": {
+    "message": "Drucken"
+  },
+  "namechrome": {
+    "message": "Drucken für Google Chrome"
+  },
+  "namefirefox": {
+    "message": "Drucken für Firefox"
+  },
+  "nameopera": {
+    "message": "Drucken für Opera"
+  },
+  "nameedge": {
+    "message": "Drucken für Microsoft Edge"
+  },
+  "namesafari": {
+    "message": "Drucken für Safari"
+  },
    "description": {
       "message": "Drucken Sie die aktuelle Seite sehen.",
 	  "description": "Print the current page you see."

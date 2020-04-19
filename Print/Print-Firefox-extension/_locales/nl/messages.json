@@ -1,50 +1,323 @@
 ﻿{
    "name": {
-      "message": "Afdrukken",
-	  "description": "Print"
+      "message": "Afdrukken"
    },
+   "namechrome": {
+    "message": "Afdrukken voor Google Chrome"
+  },
+  "namefirefox": {
+    "message": "Afdrukken voor Firefox"
+  },
+  "nameopera": {
+    "message": "Afdrukken voor Opera"
+  },
+  "nameedge": {
+    "message": "Afdrukken voor Microsoft Edge"
+  },
+  "namesafari": {
+    "message": "Afdrukken voor Safari"
+  },
    "description": {
-      "message": "Print de huidige pagina die je ziet.",
-	  "description": "Print the current page you see."
+      "message": "Print de huidige pagina die u ziet met een enkele klik. Dat voor allerlei soorten fotoafdrukken, posters, visitekaartjes, enz."
    },
+   "pageatitle": {
+    "message": "Afdrukken"
+  },
    "head1": {
-      "message": "Afdrukopties",
-	  "description": "Print Options"
+      "message": "Afdrukopties"
    },
    "head2": {
-      "message": "Kies uw favoriete print icoon:",
-	  "description": "Choose your favorite print icon:"
+      "message": "Kies uw favoriete print icoon:"
    },
    "textfoot": {
-      "message": "Deze software is beschikbaar onder de CC-GNU GPL. Als u een kopie wilt zien van deze licentie, bezoek",
-	  "description": "This software is licensed under the CC-GNU GPL. To view a copy of this license, visit"
+      "message": "Deze software is beschikbaar onder de CC-GNU GPL. Als u een kopie wilt zien van deze licentie, bezoek"
    },
    "donatepromotext": {
-      "message": "Als je kan doneren voor een bedrag, dan zou ik dat enorm waarderen!",
-      "description": "If you can make a donation of any amount, I'd appreciate it immensely!"
+      "message": "Als je kan doneren voor een bedrag, dan zou ik dat enorm waarderen!"
    },
    "changelog": {
-      "message": "Wijzigingen",
-      "description": "changelog link"
+      "message": "Wijzigingen"
    },
    "version": {
-      "message": "Versie",
-      "description": "Version number text"
+      "message": "Versie"
    },
    "optionpagetitle": {
-      "message": "Afdrukken - Opties",
-      "description": "Option page title"
+      "message": "Afdrukken - Opties"
    },
    "reportbug": {
-      "message": "Rapporteert een Bug",
-      "description": "Report an Issue of my extension"
+      "message": "Rapporteert een Bug"
    },
    "settings": {
-      "message": "Opties",
-      "description": "Settings"
+      "message": "Opties"
    },
    "basicsettings": {
-      "message": "Basisinstellingen",
-      "description": "Basics"
+      "message": "Basisinstellingen"
+   },
+   "advancedoptions": {
+     "message": "Geavanceerde opties"
+   },
+   "titledonatebutton": {
+     "message": "Doneer"
+   },
+   "pagestillloading": {
+     "message": "De pagina nog altijd aan laden?"
+   },
+   "pagehelp": {
+     "message": "help"
+   },
+   "seelist": {
+     "message": "(zie lijst)"
+   },
+   "helptranslate": {
+     "message": "Help Vertaling"
+   },
+   "sharemenusharetitle": {
+     "message": "Deel dit"
+   },
+   "sharemenuwelcomeguidetitle": {
+     "message": "Welkom Gids"
+   },
+   "sharemenutellafriend": {
+     "message": "Vertel een vriend"
+   },
+   "sharemenusendatweet": {
+     "message": "Verzend een tweet"
+   },
+   "sharemenupostonfacebook": {
+     "message": "Post op Facebook"
+   },
+   "sharemenupostongoogleplus": {
+     "message": "Post op Google+"
+   },
+   "sharemenuratetitle": {
+     "message": "Beoordeel deze extension"
+   },
+   "sharemenudonatetitle": {
+     "message": "Ondersteun Ontwikkeling"
+   },
+   "help": {
+     "message": "Help"
+   },
+   "about": {
+     "message": "Over"
+   },
+   "upgradefbshare": {
+     "message": "Deel op Facebook"
+   },
+   "upgradetwshare": {
+     "message": "Tweet"
+   },
+   "ratetitle": {
+     "message": "Stem en beoordeel mijn extensie"
+   },
+   "ratedes": {
+     "message": "En laat iedereen op de hoogte van deze geweldige extensie!"
+   },
+   "rateitema": {
+     "message": "Stem 5 sterren"
+   },
+   "titelreset": {
+     "message": "Reset instellingen"
+   },
+   "resetbrowserextension": {
+     "message": "Reset de afdrukinstellingen"
+   },
+   "areyouhappy": {
+     "message": "Ben je tevreden over Print?"
+   },
+   "tellothers": {
+     "message": "Zorg ervoor dat uw mening telt"
+   },
+   "nothanks": {
+     "message": "Nee, dank u wel"
+   },
+   "writeareview": {
+     "message": "Schrijf een recensie"
+   },
+   "desfinancetoolbar": {
+     "message": "Uw persoonlijke beurs aandelen op uw bureaublad is ook beschikbaar voor uw computer."
+   },
+   "downloadtheapp": {
+     "message": "Download de app nu"
+   },
+   "titeldownloadaaupgrade": {
+     "message": "De upgrade voegt ondersteuning toe voor het scherpstellen van geselecteerde afbeeldingen en geeft een galerij met afbeeldingen weer op de site."
+   },
+   "titeldownloadupgradepropermenubar": {
+     "message": "Voeg de zwarte menubalk toe op de Google-website."
+   },
+   "titeldownloadupgradefinancetoolbar": {
+     "message": "Dit toont u de real-time beursinformatie."
+   },
+   "titeldownloadupgradefullscreen": {
+     "message": "Met deze extensie kunt u eenvoudig naar volledig scherm gaan. Dit voor afbeelding, video en webpagina."
+   },
+   "titeldownloadupgradezoom": {
+     "message": "Zoom in of uit op webcontent met de zoomknop voor comfortabel lezen."
+   },
+   "titeldownloadupgradedatetoday": {
+     "message": "Deze extensie toont de analoge klok in de menubalk. Wanneer u op het pictogram klikt, wordt de huidige tijd weergegeven; maand en dag van de week."
+   },
+   "desrememberpage": {
+     "message": "Als deze optie is ingeschakeld, wordt de herinneringspagina niet weergegeven"
+   },
+   "titelrememberpage": {
+     "message": "Herinneringspagina"
+   },
+   "longdonatetext": {
+     "message": "Ik zou het echt op prijs stellen als je me kunt doneren om deze browserextensie levend te houden voor andere nieuwe gebruikers. Of het nu gaat om $$1 of $$100, uw steun wordt enorm op prijs gesteld!"
+   },
+   "enjoyshare": {
+     "message": "Geniet van deze extensie en deel deze met anderen waarvan jij denkt dat ze het zullen waarderen."
+   },
+   "titeldownloadbutton": {
+     "message": "Download deze Upgrade!"
+   },
+   "titelsync": {
+     "message": "Synchroniseren"
+   },
+   "titelsyncbrowser": {
+     "message": "Synchroniseer de extensie-instellingen met uw andere browser."
+   },
+   "titeldownloadupgrade": {
+     "message": "De hele pagina zal donker worden, zodat je de video kunt bekijken alsof je in de bioscoop bent."
+   },
+   "desproject": {
+     "message": "project"
+   },
+   "desbrowserextension": {
+     "message": "browser extensie"
+   },
+   "translateme": {
+     "message": "Help Veraling"
+   },
+   "titelwebsite": {
+     "message": "Website"
+   },
+   "titeldeveloper": {
+     "message": "Ontwikkelaar"
+   },
+   "rememberrate": {
+     "message": "Stem"
+   },
+   "showremember": {
+     "message": "Deze herinneringspagina niet meer weergeven wanneer ik de optiespagina open"
+   },
+   "skipremember": {
+     "message": "Sla dit over en open nu de optiespagina"
+   },
+   "titelrightsreserved": {
+     "message": "Sommige rechten voorbehouden."
+   },
+   "friendlyremember": {
+     "message": "Vriendelijke herinnering ..."
+   },
+   "titelupgrade": {
+     "message": "Upgrade"
+   },
+   "welcomebasictext": {
+     "message": "Welkom bij de extensie van de Print Browser. Hier een korte video over het gebruik van de Print-extensie in uw webbrowser."
+   },
+   "promotitle": {
+     "message": "Tip van de dag"
+   },
+   "promotext": {
+     "message": "Wilt u iets nieuws en geweldigs gebruiken voor uw webbrowser? Probeer de $product$ browserextensie.",
+     "placeholders": {
+       "product": {
+         "content": "$1",
+         "example": "Turn Off the Lights"
+       }
+     }
+   },
+   "promocalltoaction": {
+     "message": "Download het nu!"
+   },
+   "donatetext": {
+     "message": "Vanwege het zeer kleine aantal donaties kan het project worden gesloten. Ondersteun verdere ontwikkeling met een donatie."
+   },
+   "donatecalltoaction": {
+     "message": "Doneer nu!"
+   },
+   "sharetextd":{
+     "message":"Zoom extensie is de beste extensie voor mijn webbrowser. Download het en probeer het zelf!"
+   },
+   "titelsharethis": {
+     "message": "Deel dit:"
+   },
+   "titelwelcome": {
+     "message": "Welkom en Hallo"
+   },
+   "titeldesign": {
+     "message": "Ontwerp"
+   },
+   "titeloriginal": {
+     "message": "Origineel"
+   },
+   "titelgooglemd": {
+     "message": "Material Design"
+   },
+   "titelcontextmenu": {
+     "message": "Context Menu"
+   },
+   "descontextmenu": {
+     "message": "Schakel het rechtsklikmenu in om de huidige webpagina af te drukken"
+   },
+   "printpagetitle": {
+     "message": "Print deze pagina"
+   },
+   "printimagetitle": {
+     "message": "Print deze afbeelding"
+   },
+   "titlesavethatpage": {
+     "message": "Bewaar huidige pagina"
+   },
+   "titleprintthatpage": {
+     "message": "Print huidige pagina"
+   },
+   "titlecolor": {
+     "message": "Kleur"
+   },
+   "titleblackwhite": {
+     "message": "Zwart en wit"
+   },
+   "titeldoesntwork": {
+     "message": "Afdrukken werkt niet op deze webpagina. Probeer alstublieft een andere pagina."
+   },
+   "titelah": {
+     "message": "Mens en dier"
+   },
+   "titleok":{
+     "message":"OK"
+   }, 
+   "titlecancel":{
+     "message":"Annuleer"
+   },
+   "titledarkmodeon":{
+     "message":"Donkere Mode AAN"
+   }, 
+   "titledarkmodeoff":{
+     "message":"Donkere Mode UIT"
+   },
+   "titelpopupsupport":{
+     "message":"Ondersteuning"
+   },
+   "titelpopupoptions":{
+     "message":"Opties"
+   },
+   "titelintroduce":{
+     "message":"Introductie van de nieuwe Print!"
+   },
+   "desintroduce":{
+     "message":"Alle functies die u gewend bent, met een geheel nieuwe look en feel, en gepersonaliseerd voor u."
+   },
+   "titlelratenow":{
+     "message":"Beoordeel nu!"
+   },
+   "titleratelater":{
+     "message":"Later"
+   },
+   "desremrate":{
+     "message":"Als u van Print ™ houdt, aarzel dan niet om deze extensie nu te waarderen tot vijf sterren. Dit geeft ons moed om dit product voor u te blijven onderhouden en verbeteren. Een beoordeling schrijven wordt aanbevolen, maar niet verplicht. Als u geen tijd heeft om een recensie te schrijven, kunt u deze anoniem beoordelen. Het is belangrijk om het ★★★★★ te geven. Dank je!"
    }
 }

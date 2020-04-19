@@ -3,7 +3,7 @@
 
 Zoom
 Zoom in or out on web content using the zoom button for more comfortable reading.
-Copyright (C) 2017 Stefan vd
+Copyright (C) 2019 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -26,8 +26,21 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 //================================================
 */
 
+.dark{
+--totl-primary-background:#232323;
+--totl-primary-font-color:#fff;
+--totl-body-background:#111111;
+}
+.light{
+--totl-primary-background:#fff;
+--totl-primary-font-color:#000;
+--totl-body-background:#fff;
+}
+
 /* large */
 .large html,.large body{font-family:sans-serif,'Lucida Grande','Helvetica Neue';font-size:13px;margin:0;padding:0;width:297px;height:35px}
+body{background:var(--totl-body-background);color:var(--totl-primary-font-color)}
+*{outline:0}
 .large input[type=range]{background:transparent;-webkit-appearance:none;-moz-appearance:none;outline:none;border:none;color:#555;font-size:inherit;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap;height:35px;width:125px;margin:0;position:absolute;top:0;left:0}
 .large input[type=range]::-moz-range-track{background-color:rgba(255,255,255,0)}
 .large input[type=range]:focus{outline:none}
@@ -36,8 +49,8 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 .large #zoompopup div{display:inline-block;vertical-align:top;position:relative;height:35px;cursor:pointer;float:left}
 .large ul{padding:0;list-style:none;overflow:hidden;margin:0;height:35px;width:100%}
 .large ul li{height:35px;float:left;overflow:hidden}
-.large ul li .btnregular{user-select:none;-webkit-user-select:none;padding:0px 12px;line-height:35px;color:#000;text-decoration:none;display:inline-block;height:35px;width:11px;text-align:center}
-.large ul li .btnreset{user-select:none;-webkit-user-select:none;padding:0px 12px;line-height:35px;color:#000;text-decoration:none;display:inline-block;height:35px;width:33px;text-align:center}
+.large ul li .btnregular{user-select:none;-webkit-user-select:none;padding:0px 12px;line-height:35px;color:var(--totl-primary-font-color);text-decoration:none;display:inline-block;height:35px;width:11px;text-align:center}
+.large ul li .btnreset{user-select:none;-webkit-user-select:none;padding:0px 12px;line-height:35px;color:var(--totl-primary-font-color);text-decoration:none;display:inline-block;height:35px;width:33px;text-align:center}
 .large ul li:hover *,input[type=range]:hover,input[type=number]:hover{background:rgb(66,120,245);color:white;}
 .large .dvnumber{margin-left:125px}
 .large input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;height:35px;width:14px;background:#ddd;cursor:pointer}
@@ -53,8 +66,8 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 .small #zoompopup div{display:inline-block;vertical-align:top;position:relative;height:25px;cursor:pointer;float:left}
 .small ul{padding:0;list-style:none;overflow:hidden;margin:0;height:25px;width:100%}
 .small ul li{height:35px;float:left;overflow:hidden}
-.small ul li .btnregular{user-select:none;-webkit-user-select:none;padding:0px 12px;line-height:25px;color:#000;text-decoration:none;display:inline-block;height:25px;width:11px;text-align:center}
-.small ul li .btnreset{user-select:none;-webkit-user-select:none;padding:0px 12px;line-height:25px;color:#000;text-decoration:none;display:inline-block;height:25px;width:33px;text-align:center}
+.small ul li .btnregular{user-select:none;-webkit-user-select:none;padding:0px 12px;line-height:25px;color:var(--totl-primary-font-color);text-decoration:none;display:inline-block;height:25px;width:11px;text-align:center}
+.small ul li .btnreset{user-select:none;-webkit-user-select:none;padding:0px 12px;line-height:25px;color:var(--totl-primary-font-color);text-decoration:none;display:inline-block;height:25px;width:33px;text-align:center}
 .small ul li:hover *,input[type=range]:hover,input[type=number]:hover{background:rgb(66,120,245);color:white;}
 .small .dvnumber{margin-left:113px}
 .small input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;height:25px;width:14px;background:#ddd;cursor:pointer}

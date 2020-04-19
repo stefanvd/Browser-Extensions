@@ -3,7 +3,7 @@
 
 Date Today
 The best clock to see in one glance the current day and time. With an option to see the digital clock in the browser toolbar.
-Copyright (C) 2017 Stefan vd
+Copyright (C) 2018 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -32,10 +32,11 @@ var color1;var color2;var color3;var color4;var color5;var color6;var color7;
 var twelfh;var begintime;var endtime;
 var color1night;var color2night;var color3night;var color4night;var color5night;var color6night;var color7night;
 var firstDate;var fboptionskipremember;
-var stamptypeA;var stamptypeB;var stamptypeC;var stamptypeD;
+var stamptypeA;var stamptypeB;var stamptypeC;var stamptypeD;var stamptypeE;
+var getfontfamily;
 // Read current value settings
 document.addEventListener('DOMContentLoaded', function () {
-chrome.storage.sync.get(['firstDate','fboptionskipremember','optionskipremember','countremember','color1','color2','color3','color4','color5','color6','color7','twelfh','begintime','endtime','nightmode','color1night','color2night','color3night','color4night','color5night','color6night','color7night','stamptypeA','stamptypeB','stamptypeC','stamptypeD'], function(response){
+chrome.storage.sync.get(['firstDate','fboptionskipremember','optionskipremember','countremember','color1','color2','color3','color4','color5','color6','color7','twelfh','begintime','endtime','nightmode','color1night','color2night','color3night','color4night','color5night','color6night','color7night','stamptypeA','stamptypeB','stamptypeC','stamptypeD','getfontfamily','stamptypeE'], function(response){
 color1 = response.color1;if(color1 == null)color1 = 'Gray';
 color2 = response.color2;if(color2 == null)color2 = 'Black';
 color3 = response.color3;if(color3 == null)color3 = 'Gray';
@@ -58,8 +59,10 @@ stamptypeA = response.stamptypeA;if(stamptypeA == null)stamptypeA = true;
 stamptypeB = response.stamptypeB;if(stamptypeB == null)stamptypeB = false;
 stamptypeC = response.stamptypeC;if(stamptypeC == null)stamptypeC = false;
 stamptypeD = response.stamptypeD;if(stamptypeD == null)stamptypeD = false;
+stamptypeE = response.stamptypeE;if(stamptypeE == null)stamptypeE = false;
 firstDate = response.firstDate;
 fboptionskipremember = response.fboptionskipremember;
+getfontfamily = response.getfontfamily;if(getfontfamily == null)getfontfamily = "Arial";
 
 		var hours = $('hours');
 		if(hours){
@@ -69,9 +72,9 @@ fboptionskipremember = response.fboptionskipremember;
         hours.style.left = "6px"; 
         hours.style.top = "1px"; 
         hours.style.position = "absolute";
-        hours.style.fontSize = "70pt";
+		hours.style.fontSize = "70pt";
         hours.style.textAlign = "right";
-        hours.style.fontFamily = "arial";
+        hours.style.fontFamily = getfontfamily;
         hours.style.color = color1;
         }
 
@@ -83,9 +86,9 @@ fboptionskipremember = response.fboptionskipremember;
         minutes.style.left = "128px"; 
         minutes.style.top = "1px"; 
         minutes.style.position = "absolute";
-        minutes.style.fontSize = "70pt";
+		minutes.style.fontSize = "70pt";
         minutes.style.textAlign = "center";
-        minutes.style.fontFamily = "arial";
+        minutes.style.fontFamily = getfontfamily;
         minutes.style.color = color2;
         }
 
@@ -99,7 +102,7 @@ fboptionskipremember = response.fboptionskipremember;
         daynumber.style.position = "absolute";
         daynumber.style.fontSize = "32pt";
         daynumber.style.textAlign = "center";
-        daynumber.style.fontFamily = "arial";
+        daynumber.style.fontFamily = getfontfamily;
         daynumber.style.color = color3;
         }
         
@@ -112,7 +115,7 @@ fboptionskipremember = response.fboptionskipremember;
         month.style.position = "absolute";
         month.style.fontSize = "23pt";
         month.style.textAlign = "";
-        month.style.fontFamily = "arial";
+        month.style.fontFamily = getfontfamily;
         month.style.color = color4;
         }
         
@@ -125,7 +128,7 @@ fboptionskipremember = response.fboptionskipremember;
         day.style.position = "absolute";
         day.style.fontSize = "25pt";
         day.style.textAlign = "";
-        day.style.fontFamily = "arial";
+        day.style.fontFamily = getfontfamily;
         day.style.color = color5;
         }
 
@@ -278,10 +281,11 @@ chrome.storage.sync.set({"countremember": countremember});
 var copydone = chrome.i18n.getMessage('titlecopydone');
 $("datetoday").addEventListener('click', function() {
 	var copytext = $("copytext");
-	if(stamptypeA == true){copytext.value = document.getElementById('hours').innerText + ":" + document.getElementById('minutes').innerText + document.getElementById('tic').innerText + " " + $('daynumber').innerText + " " + $('month').innerText + " " + this_year;}
-	else if(stamptypeB == true){copytext.value = document.getElementById('hours').innerText + ":" + document.getElementById('minutes').innerText + document.getElementById('tic').innerText + " " + $('day').innerText + " " + $('daynumber').innerText + " " + $('month').innerText + " " + this_year;}
-	else if(stamptypeC == true){copytext.value = document.getElementById('hours').innerText + ":" + document.getElementById('minutes').innerText + " " + $('daynumber').innerText + "/" + parseInt(this_month + 1) + "/" + this_year;}
-	else if(stamptypeD == true){copytext.value = document.getElementById('hours').innerText + ":" + document.getElementById('minutes').innerText + document.getElementById('tic').innerText + " " + parseInt(this_month + 1) + "/" +$('daynumber').innerText + "/" + this_year;}
+	if(stamptypeA == true){copytext.value = $('daynumber').innerText + " " + $('month').innerText + " " + this_year + " " + document.getElementById('hours').innerText + ":" + document.getElementById('minutes').innerText + document.getElementById('tic').innerText;}
+	else if(stamptypeB == true){copytext.value = $('day').innerText + " " + $('daynumber').innerText + " " + $('month').innerText + " " + this_year + " " + document.getElementById('hours').innerText + ":" + document.getElementById('minutes').innerText + document.getElementById('tic').innerText;}
+	else if(stamptypeC == true){copytext.value = $('daynumber').innerText + "/" + parseInt(this_month + 1) + "/" + this_year + " " + document.getElementById('hours').innerText + ":" + document.getElementById('minutes').innerText + document.getElementById('tic').innerText;}
+	else if(stamptypeD == true){copytext.value = parseInt(this_month + 1) + "/" +$('daynumber').innerText + "/" + this_year + " " + document.getElementById('hours').innerText + ":" + document.getElementById('minutes').innerText + document.getElementById('tic').innerText;}
+	else if(stamptypeE == true){copytext.value = $('day').innerText + ", " + $('month').innerText + " " +$('daynumber').innerText + ", " + this_year + " " + document.getElementById('hours').innerText + ":" + document.getElementById('minutes').innerText + document.getElementById('tic').innerText;}
 	copytext.select();
 
 	if($("flasheffect")){

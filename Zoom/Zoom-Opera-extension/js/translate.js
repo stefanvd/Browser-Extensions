@@ -3,7 +3,7 @@
 
 Zoom
 Zoom in or out on web content using the zoom button for more comfortable reading.
-Copyright (C) 2016 Stefan vd
+Copyright (C) 2019 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or

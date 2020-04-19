@@ -1,460 +1,414 @@
 ﻿{
-  "name":{
-    "message":"Ambiant Aurea",
-    "description":"Ambiant Aurea"
-  },
-  "description":{
-    "message":"Donne un effet d'éclairage d'ambiance autour de votre image par un simple clic sur le bouton.",
-    "description":"Donne un effet d'éclairage d'ambiance autour de votre image par un simple clic sur le bouton."
-  },
-  "browserbutton":{
-    "message":"Ambiant Aurea",
-    "description":"Ambiant Aurea"
-  },
-  "textfoot":{
-    "message":"Ce logiciel est sous licence CC-GNU GPL. Pour obtenir une copie de cette licence, rendez-vous sur",
-    "description":"Cette application est sous licence CC-GNU GPL. Pour en voir une copie, visitez"
-  },
-  "titelcontextmenus":{
-    "message":"Menu contextuel",
-    "description":"Menu contextuel"
-  },
-  "descontextmenus":{
-    "message":"Afficher le menu contextuel pour Ambiant Aurea.",
-    "description":"Afficher le menu contextuel pour Ambiant Aurea"
-  },
-  "donatepromotext":{
-    "message":"Si vous pouviez faire un don, quel qu’en soit le montant, j’apprécierais grandement !",
-    "description":"Si vous pouviez faire un don, quel qu’en soit le montant, j’apprécierais grandement!"
-  },
-  "imagetitle":{
-    "message":"Active Ambient Aurea autour de l'image",
-    "description":"Les images vont pour Ambient Aurea"
-  },
-  "changelog":{
-    "message":"Changelog",
-    "description":"Nouveautés"
-  },
-  "version":{
-    "message":"Version",
-    "description":"Version"
-  },
-  "optionpagetitle":{
-    "message":"Ambiant Aurea - Options",
-    "description":"Ambiant Aurea - Options"
-  },
-  "reportbug":{
-    "message":"Signaler un problème",
-    "description":"Signaler un problème"
-  },
-  "titelicon":{
-    "message":"Icône PageAction",
-    "description":"Icône PageAction"
-  },
-  "desicon":{
-    "message":"Masquer l'icône Page Action dans l'omnibarre",
-    "description":"Masquer l'icône Page Action dans l'omnibarre"
-  },
-  "settings":{
-    "message":"Paramètres",
-    "description":"Paramètres"
-  },
-  "basicsettings":{
-    "message":"Paramètres de base",
-    "description":"Paramètres de base"
-  },
-  "titledonatebutton":{
-    "message":"Faire un don",
-    "description":"Faire un don"
-  },
-  "visualeffects":{
-    "message":"Effets visuels",
-    "description":"Effets visuels"
-  },
-  "titelfadein":{
-    "message":"Effet de transition en diminuant la luminosité",
-    "description":"Effet de transition en diminuant la luminosité"
-  },
-  "desfadein":{
-    "message":"Activer les effets de transition lorsque la luminosité baisse.",
-    "description":"Afficher l'effet de la transition"
-  },
-  "titelfadeout":{
-    "message":"Effet de transition en rétablissant la luminosité",
-    "description":"Effet de transition en rétablissant la luminosité"
-  },
-  "desfadeout":{
-    "message":"Activer les effets de transition lorsque la luminosité se rétablie.",
-    "description":"Afficher les effets lorsque la luminosité se rétablie"
-  },
-  "titelambilight":{
-    "message":"Éclairage d'ambiance",
-    "description":"Éclairage d'ambiance"
-  },
-  "desambilight":{
-    "message":"Montrer l'effet d'éclairage d'ambiance sur la présente image.",
-    "description":"Montrer l'effet d'éclairage d'ambiance sur l'image présente"
-  },
-  "desambilightfixcolor":{
-    "message":"Une couleur unique :",
-    "description":"Une couleur unie :"
-  },
-  "desambilight4color":{
-    "message":"Choisissez 4 couleurs à afficher autour de l'image :",
-    "description":"4 couleurs choisies autour de l'image :"
-  },
-  "desambilightvarcolor":{
-    "message":"Extrayez les couleurs contenues dans l'image.",
-    "description":"Extrayez les couleurs contenues dans l'image."
-  },
-  "titelspreadradius":{
-    "message":"Effet de pixellisation:",
-    "description":"Effet de pixellisation:"
-  },
-  "desambilightrangespreadradius":{
-    "message":"Les valeurs positives permettent d'augmenter l'assombrissement, tandis que celles négatives le font diminuer.",
-    "description":"Les valeurs positives permettent d'augmenter l'assombrissement, tandis que celles négatives le font diminuer."
-  },
-  "titelblurradius":{
-    "message":"Effet de flou:",
-    "description":"Effet de flou:"
-  },
-  "desambilightrangeblurradius":{
-    "message":"Moins la valeur indiquée sera importante, moins l'ombre sera intense ; plus la valeur sera élevée, plus l'ombre sera troublée.",
-    "description":"Moins la valeur indiquée sera importante, moins l'ombre sera intense ; plus la valeur sera élevée, plus l'ombre sera troublée."
-  },
-  "titelon":{
-    "message":"Activer",
-    "description":"Activer"
-  },
-  "titeloff":{
-    "message":"Désactiver",
-    "description":"Désactiver"
-  },
-  "left":{
-    "message":"A gauche:",
-    "description":"A gauche:"
-  },
-  "right":{
-    "message":"A droite:",
-    "description":"A droite:"
-  },
-  "top":{
-    "message":"En haut:",
-    "description":"En haut:"
-  },
-  "bottom":{
-    "message":"En bas:",
-    "description":"En bas:"
-  },
-  "guide":{
-    "message":"Guide pour bien débuter avec Ambient Aurea",
-    "description":"Guide de bienvenue AA"
-  },
-  "titelcolor":{
-    "message":"Couleur",
-    "description":"Couleur"
-  },
-  "descolor":{
-    "message":"La couleur d'arrière-plan de l'extérieur du cadre",
-    "description":"La couleur d'arrière-plan de l'extérieur du cadre"
-  },
-  "titelopacity":{
-    "message":"Opacité",
-    "description":"Opacité"
-  },
-  "desopacity":{
-    "message":"Choisissez le niveau d'opacité en dehors du cadre.",
-    "description":"Choisissez le niveau d'opacité en dehors du cadre."
-  },
-  "titelsharebar":{
-    "message":"Barre de partage",
-    "description":"Barre de partage"
-  },
-  "dessharebar":{
-    "message":"Cette option permet de montrer la barre de partage sur la présente image.",
-    "description":"Cette option permet de montrer la barre de partage sur l'image présente."
-  },
-  "titelcount":{
-    "message":"Ensemble des images trouvées",
-    "description":"Ensemble des images trouvées"
-  },
-  "descount":{
-    "message":"Est montré en bas à droite le nombre total d'images contenues dans la galerie.",
-    "description":"Ceci montre juste en dessous le nombre de pages total trouvées dans la galerie."
-  },
-  "titelslideshow":{
-    "message":"Diaporama",
-    "description":"Diaporama"
-  },
-  "desslideshow":{
-    "message":"permet d'ajouter un bouton de lecture supplémentaire en haut de la fenêtre pour que vous puissiez commencer le diaporama depuis cette galerie.",
-    "description":"Cela permet d'ajouter un bouton de lecture supplémentaire en haut de la fenêtre pour que vous puissiez commencer le diaporama depuis cette galerie."
-  },
-  "desslideshowrefresh":{
-    "message":"pour afficher l'image suivante.",
-    "description":"pour afficher l'image suivante."
-  },
-  "pagehelp":{
-    "message":"Besoin d’aide",
-    "description":"aide"
-  },
-  "pagestillloading":{
-    "message":"La page est-elle encore en train de se charger?",
-    "description":"La page est-elle encore en train de se charger?"
-  },
-  "seelist":{
-    "message":"(voir la liste complète)",
-    "description":"(voir la liste complète)"
-  },
-  "helptranslate":{
-    "message":"Aidez-nous à traduire",
-    "description":"Aidez-nous à traduire"
-  },
-  "productshare":{
-    "message":"Partager",
-    "description":"Partager"
-  },
-  "sharemenusharetitle":{
-    "message":"Partager ceci",
-    "description":"Partager ceci"
-  },
-  "sharemenuwelcomeguidetitle":{
-    "message":"Guide de bienvenue",
-    "description":"Guide de bienvenue"
-  },
-  "sharemenutellafriend":{
-    "message":"Parlez-en à un ami",
-    "description":"Parlez-en à un ami"
-  },
-  "sharemenusendatweet":{
-    "message":"Envoyez un Tweet",
-    "description":"Envoyez un Tweet"
-  },
-  "sharemenupostonfacebook":{
-    "message":"Post sur Facebook",
-    "description":"Post sur Facebook"
-  },
-  "sharemenupostongoogleplus":{
-    "message":"Post sur Google +",
-    "description":"Post sur Google +"
-  },
-  "sharemenuratetitle":{
-    "message":"Notez cette extension",
-    "description":"Notez cette extension"
-  },
-  "sharemenudonatetitle":{
-    "message":"Soutenir le développement",
-    "description":"Soutenir le développement"
-  },
-  "advancedoptions":{
-    "message":"Options Avancées",
-    "description":"Options Avancées"
-  },
-  "desatmosvivid":{
-    "message":"Effets de l'atmosphère vivante",
-    "description":"Effets de l'atmosphère vivante"
-  },
-  "help":{
-    "message":"Aide",
-    "description":"Aide"
-  },
-  "about":{
-    "message":"A propos",
-    "description":"A propos"
-  },
-  "upgradefbshare":{
-    "message":"Partager sur Facebook",
-    "description":"Partager sur Facebook"
-  },
-  "upgradetwshare":{
-    "message":"Tweet",
-    "description":"Tweet"
-  },
-  "ratetitle":{
-    "message":"S'il vous plaît notez et commentez mon extension",
-    "description":"S'il vous plaît notez et commentez mon extension"
-  },
-  "ratedes":{
-    "message":"Et faites connaitre cette formidable extension à tout le monde!",
-    "description":"Et faites connaitre cette formidable extension à tout le monde!"
-  },
-  "rateitema":{
-    "message":"Noter 5 étoiles",
-    "description":"Noter 5 étoiles"
-  },
-  "titelreset":{
-    "message":"Rétablir les paramètres par défaut",
-    "description":"Rétablir les paramètres par défaut"
-  },
-  "resetbrowserextension":{
-    "message":"Réinitialiser les paramètres d'ambiant Aurea",
-    "description":"Réinitialiser les paramètres d'ambiant Aurea"
-  },
-  "areyouhappy":{
-    "message":"Êtes-vous satisfaits de Aurea Ambiant?",
-    "description":"Êtes-vous contents de Aurea Ambiant ?"
-  },
-  "tellothers":{
-    "message":"Soyez assuré que votre avis compte",
-    "description":"Soyez assuré que votre avis compte"
-  },
-  "nothanks":{
-    "message":"Non merci",
-    "description":"Non merci"
-  },
-  "writeareview":{
-    "message":"Écrire un commentaire",
-    "description":"Écrire un commentaire"
-  },
-  "desambientaurea":{
-    "message":"Où vos photos prennent vie est également disponible pour votre ordinateur.",
-    "description":"Où vos photos prennent vie est également disponible pour votre ordinateur."
-  },
-  "downloadtheapp":{
-    "message":"Téléchargez l'application dès maintenant",
-    "description":"Téléchargez l'application dès maintenant"
-  },
-  "titeldownloadaaupgrade":{
-    "message":"The upgrade adds support for focusing selected images, and will display a gallery of images on the site.",
-    "description":"The upgrade adds support for focusing selected images, and will display a gallery of images on the site."
-  },
-  "titeldownloadupgradepropermenubar":{
-    "message":"Ajouter à nouveau la barre de menu noire sur le site web de Google.",
-    "description":"Ajouter à nouveau la barre de menu noire sur le site web de Google."
-  },
-  "titeldownloadupgradefinancetoolbar":{
-    "message":"Ceci vous montre en temps réel le stock restant sur le marché.",
-    "description":"Ceci vous montre en temps réel le stock restant sur le marché."
-  },
-  "titeldownloadupgradefullscreen":{
-    "message":"With this extension you can easy go to full screen. This for image, video and webpage.",
-    "description":"With this extension you can easy go to full screen. This for image, video and webpage."
-  },
-  "titeldownloadupgradezoom":{
-    "message":"Zoomez ou dézoomez sur un contenu web en utilisant le bouton de zoom pour une lecture plus confortable.",
-    "description":"Zoomez ou dézoomez sur un contenu web en utilisant le bouton de zoom pour une lecture plus confortable."
-  },
-  "titeldownloadupgradedatetoday":{
-    "message":"This extension show the analog clock in the menu bar. When you click on the icon, it shows you the current time; month and day of the week.",
-    "description":"This extension show the analog clock in the menu bar. When you click on the icon, it shows you the current time; month and day of the week."
-  },
-  "desrememberpage":{
-    "message":"Si cette option est activée, elle vous montrera pas la page de rappel.",
-    "description":"Si cette option est activée, elle vous montrera pas la page de rappel."
-  },
-  "titelrememberpage":{
-    "message":"Page de rappel",
-    "description":"Page de rappel"
-  },
-  "longdonatetext":{
-    "message":"Je vous serais plus que reconnaissant si vous pouviez me faire un don pour que je puisse continuer à développer cette extension, pour vous et pour les utilisateurs qui la choisiront comme vous. Qu'il soit de 1€ ou de 100€, votre soutien est toujours plus qu'apprécié!",
-    "description":"Je vous serais plus que reconnaissant si vous pouviez me faire un don pour que je puisse continuer à développer cette extension, pour vous et pour les utilisateurs qui la choisiront comme vous. Qu'il soit de 1€ ou de 100€, votre soutien est toujours plus qu'apprécié!"
-  },
-  "enjoyshare":{
-    "message":"Appréciez cette extension et partagez-la avec d'autres qui selon vous pourront l'apprécier.",
-    "description":"Appréciez cette extension et partagez-la avec d'autres qui selon vous pourront l'apprécier."
-  },
-  "titeldownloadbutton":{
-    "message":"Téléchargez cette mise à jour !",
-    "description":"Téléchargez cette mise à jour!"
-  },
-  "titelsync":{
-    "message":"Synchroniser",
-    "description":"Synchroniser"
-  },
-  "titelsyncbrowser":{
-    "message":"Synchroniser les paramètres de l'extension avec la fonctionnalité de synchronisation proposée par votre navigateur web (ex: Firefox Sync).",
-    "description":"Synchroniser les paramètres de l'extension avec la fonctionnalité de synchronisation proposée par votre navigateur web (ex: Firefox Sync)."
-  },
-  "titeldownloadupgrade":{
-    "message":"Toute la page de votre navigateur va s’assombrir, pour que vous puissiez regarder votre vidéo comme si vous étiez au cinéma.",
-    "description":"Toute la page de votre navigateur va s’assombrir, pour que vous puissiez regarder votre vidéo comme si vous étiez au cinéma."
-  },
-  "desproject":{
-    "message":"projet",
-    "description":"projet"
-  },
-  "desbrowserextension":{
-    "message":"extension de navigateur",
-    "description":"extension de navigateur"
-  },
-  "translateme":{
-    "message":"Aidez-nous à traduire",
-    "description":"Aidez-nous à traduire"
-  },
-  "titelwebsite":{
-    "message":"Site web",
-    "description":"Site web"
-  },
-  "titeldeveloper":{
-    "message":"Développeur",
-    "description":"Développeur"
-  },
-  "rememberrate":{
-    "message":"Évaluer",
-    "description":"Évaluer"
-  },
-  "showremember":{
-    "message":"Ne pas rafficher cette page de rappel quand j'ouvre les options",
-    "description":"Ne pas rafficher cette page de rappel quand j'ouvre les options"
-  },
-  "skipremember":{
-    "message":"Passer cette page, pour accéder directement aux Options de l'extension",
-    "description":"Passer cette page, pour accéder directement aux Options de l'extension"
-  },
-  "titelrightsreserved":{
-    "message":"Certains droits réservés.",
-    "description":"Certains droits réservés."
-  },
-  "friendlyremember":{
-    "message":"Rappel Amical...",
-    "description":"Rappel Amical..."
-  },
-  "imagesembedobject":{
-    "message":"Prise en charge : <img>.",
-    "description":"Prise en charge : <img>."
-  },
-  "titelupgrade":{
-    "message":"Mettre a niveau",
-    "description":"Mettre a niveau"
-  },
-  "welcomebasictext":{
-    "message":"Welcome on the Ambient Aurea Browser extension. Here a brief video about how to use the Ambient Aurea extension in your web browser.",
-    "description":"Welcome on the Ambient Aurea Browser extension. Here a brief video about how to use the Ambient Aurea extension in your web browser."
-  },
-  "promotitle":{
-    "message":"Tip of the day",
-    "description":"Tip of the day"
-  },
-  "promotext":{
-    "message":"Want to use something new and amazing for your web browser? Try the $product$ Browser extension.",
-    "description":"Want to use something new and amazing for your web browser? Try the $product$ Browser extension.",
-    "placeholders":{
-      "product":{
-        "content":"$1",
-        "example":"Turn Off the Lights"
+  "name": {
+    "message": "Ambiant Aurea"
+  },
+  "namechrome": {
+    "message": "Ambient Aurea for Google Chrome"
+  },
+  "namefirefox": {
+    "message": "Ambient Aurea for Firefox"
+  },
+  "nameopera": {
+    "message": "Ambient Aurea for Opera"
+  },
+  "nameedge": {
+    "message": "Ambient Aurea for Microsoft Edge"
+  },
+  "namesafari": {
+    "message": "Ambient Aurea for Safari"
+  },
+  "description": {
+    "message": "The best way to focus that photo or image and add it to one photo gallery with ambient lighting effects."
+  },
+  "browserbutton": {
+    "message": "Ambiant Aurea"
+  },
+  "textfoot": {
+    "message": "Ce logiciel est sous licence CC-GNU GPL. Pour obtenir une copie de cette licence, rendez-vous sur"
+  },
+  "titelcontextmenus": {
+    "message": "Menu contextuel"
+  },
+  "descontextmenus": {
+    "message": "Afficher le menu contextuel pour Ambiant Aurea."
+  },
+  "donatepromotext": {
+    "message": "Si vous pouviez faire un don, quel qu’en soit le montant, j’apprécierais grandement !"
+  },
+  "imagetitle": {
+    "message": "Active Ambient Aurea autour de l'image"
+  },
+  "changelog": {
+    "message": "Changelog"
+  },
+  "version": {
+    "message": "Version"
+  },
+  "optionpagetitle": {
+    "message": "Ambiant Aurea - Options"
+  },
+  "reportbug": {
+    "message": "Signaler un problème"
+  },
+  "titelicon": {
+    "message": "Icône PageAction"
+  },
+  "desicon": {
+    "message": "Masquer l'icône Page Action dans l'omnibarre"
+  },
+  "settings": {
+    "message": "Paramètres"
+  },
+  "basicsettings": {
+    "message": "Paramètres de base"
+  },
+  "titledonatebutton": {
+    "message": "Faire un don"
+  },
+  "visualeffects": {
+    "message": "Effets visuels"
+  },
+  "titelfadein": {
+    "message": "Effet de transition en diminuant la luminosité",
+    "description": "Effet de transition en diminuant la luminosité"
+  },
+  "desfadein": {
+    "message": "Activer les effets de transition lorsque la luminosité baisse."
+  },
+  "titelfadeout": {
+    "message": "Effet de transition en rétablissant la luminosité"
+  },
+  "desfadeout": {
+    "message": "Activer les effets de transition lorsque la luminosité se rétablie."
+  },
+  "titelambilight": {
+    "message": "Éclairage d'ambiance"
+  },
+  "desambilight": {
+    "message": "Montrer l'effet d'éclairage d'ambiance sur la présente image."
+  },
+  "desambilightfixcolor": {
+    "message": "Une couleur unique :"
+  },
+  "desambilight4color": {
+    "message": "Choisissez 4 couleurs à afficher autour de l'image :"
+  },
+  "desambilightvarcolor": {
+    "message": "Extrayez les couleurs contenues dans l'image."
+  },
+  "titelspreadradius": {
+    "message": "Effet de pixellisation:"
+  },
+  "desambilightrangespreadradius": {
+    "message": "Les valeurs positives permettent d'augmenter l'assombrissement, tandis que celles négatives le font diminuer."
+  },
+  "titelblurradius": {
+    "message": "Effet de flou:"
+  },
+  "desambilightrangeblurradius": {
+    "message": "Moins la valeur indiquée sera importante, moins l'ombre sera intense ; plus la valeur sera élevée, plus l'ombre sera troublée."
+  },
+  "titelon": {
+    "message": "Activer"
+  },
+  "titeloff": {
+    "message": "Désactiver"
+  },
+  "left": {
+    "message": "A gauche:"
+  },
+  "right": {
+    "message": "A droite:"
+  },
+  "top": {
+    "message": "En haut:"
+  },
+  "bottom": {
+    "message": "En bas:"
+  },
+  "guide": {
+    "message": "Guide pour bien débuter avec Ambient Aurea"
+  },
+  "titelcolor": {
+    "message": "Couleur"
+  },
+  "descolor": {
+    "message": "La couleur d'arrière-plan de l'extérieur du cadre"
+  },
+  "titelopacity": {
+    "message": "Opacité"
+  },
+  "desopacity": {
+    "message": "Choisissez le niveau d'opacité en dehors du cadre."
+  },
+  "titelsharebar": {
+    "message": "Barre de partage"
+  },
+  "dessharebar": {
+    "message": "Cette option permet de montrer la barre de partage sur la présente image."
+  },
+  "titelcount": {
+    "message": "Ensemble des images trouvées"
+  },
+  "descount": {
+    "message": "Est montré en bas à droite le nombre total d'images contenues dans la galerie."
+  },
+  "titelslideshow": {
+    "message": "Diaporama"
+  },
+  "desslideshow": {
+    "message": "permet d'ajouter un bouton de lecture supplémentaire en haut de la fenêtre pour que vous puissiez commencer le diaporama depuis cette galerie."
+  },
+  "desslideshowrefresh": {
+    "message": "pour afficher l'image suivante."
+  },
+  "pagehelp": {
+    "message": "Besoin d’aide"
+  },
+  "pagestillloading": {
+    "message": "La page est-elle encore en train de se charger?"
+  },
+  "seelist": {
+    "message": "(voir la liste complète)"
+  },
+  "helptranslate": {
+    "message": "Aidez-nous à traduire"
+  },
+  "productshare": {
+    "message": "Partager"
+  },
+  "sharemenusharetitle": {
+    "message": "Partager ceci"
+  },
+  "sharemenuwelcomeguidetitle": {
+    "message": "Guide de bienvenue"
+  },
+  "sharemenutellafriend": {
+    "message": "Parlez-en à un ami"
+  },
+  "sharemenusendatweet": {
+    "message": "Envoyez un Tweet"
+  },
+  "sharemenupostonfacebook": {
+    "message": "Post sur Facebook"
+  },
+  "sharemenupostongoogleplus": {
+    "message": "Post sur Google +"
+  },
+  "sharemenuratetitle": {
+    "message": "Notez cette extension"
+  },
+  "sharemenudonatetitle": {
+    "message": "Soutenir le développement"
+  },
+  "advancedoptions": {
+    "message": "Options Avancées"
+  },
+  "desatmosvivid": {
+    "message": "Effets de l'atmosphère vivante"
+  },
+  "help": {
+    "message": "Aide"
+  },
+  "about": {
+    "message": "A propos"
+  },
+  "upgradefbshare": {
+    "message": "Partager sur Facebook"
+  },
+  "upgradetwshare": {
+    "message": "Tweet"
+  },
+  "ratetitle": {
+    "message": "S'il vous plaît notez et commentez mon extension"
+  },
+  "ratedes": {
+    "message": "Et faites connaitre cette formidable extension à tout le monde!"
+  },
+  "rateitema": {
+    "message": "Noter 5 étoiles"
+  },
+  "titelreset": {
+    "message": "Rétablir les paramètres par défaut"
+  },
+  "resetbrowserextension": {
+    "message": "Réinitialiser les paramètres d'ambiant Aurea"
+  },
+  "areyouhappy": {
+    "message": "Êtes-vous satisfaits de Aurea Ambiant?"
+  },
+  "tellothers": {
+    "message": "Soyez assuré que votre avis compte"
+  },
+  "nothanks": {
+    "message": "Non merci"
+  },
+  "writeareview": {
+    "message": "Écrire un commentaire"
+  },
+  "desambientaurea": {
+    "message": "Où vos photos prennent vie est également disponible pour votre ordinateur."
+  },
+  "downloadtheapp": {
+    "message": "Téléchargez l'application dès maintenant"
+  },
+  "titeldownloadaaupgrade": {
+    "message": "The upgrade adds support for focusing selected images, and will display a gallery of images on the site."
+  },
+  "titeldownloadupgradepropermenubar": {
+    "message": "Ajouter à nouveau la barre de menu noire sur le site web de Google."
+  },
+  "titeldownloadupgradefinancetoolbar": {
+    "message": "Ceci vous montre en temps réel le stock restant sur le marché."
+  },
+  "titeldownloadupgradefullscreen": {
+    "message": "With this extension you can easy go to full screen. This for image, video and webpage."
+  },
+  "titeldownloadupgradezoom": {
+    "message": "Zoomez ou dézoomez sur un contenu web en utilisant le bouton de zoom pour une lecture plus confortable."
+  },
+  "titeldownloadupgradedatetoday": {
+    "message": "This extension show the analog clock in the menu bar. When you click on the icon, it shows you the current time; month and day of the week."
+  },
+  "desrememberpage": {
+    "message": "Si cette option est activée, elle vous montrera pas la page de rappel."
+  },
+  "titelrememberpage": {
+    "message": "Page de rappel"
+  },
+  "longdonatetext": {
+    "message": "Je vous serais plus que reconnaissant si vous pouviez me faire un don pour que je puisse continuer à développer cette extension, pour vous et pour les utilisateurs qui la choisiront comme vous. Qu'il soit de 1€ ou de 100€, votre soutien est toujours plus qu'apprécié!"
+  },
+  "enjoyshare": {
+    "message": "Appréciez cette extension et partagez-la avec d'autres qui selon vous pourront l'apprécier."
+  },
+  "titeldownloadbutton": {
+    "message": "Téléchargez cette mise à jour !"
+  },
+  "titelsync": {
+    "message": "Synchroniser"
+  },
+  "titelsyncbrowser": {
+    "message": "Synchroniser les paramètres de l'extension avec la fonctionnalité de synchronisation proposée par votre navigateur web (ex: Firefox Sync)."
+  },
+  "titeldownloadupgrade": {
+    "message": "Toute la page de votre navigateur va s’assombrir, pour que vous puissiez regarder votre vidéo comme si vous étiez au cinéma."
+  },
+  "desproject": {
+    "message": "projet"
+  },
+  "desbrowserextension": {
+    "message": "extension de navigateur"
+  },
+  "translateme": {
+    "message": "Aidez-nous à traduire"
+  },
+  "titelwebsite": {
+    "message": "Site web"
+  },
+  "titeldeveloper": {
+    "message": "Développeur"
+  },
+  "rememberrate": {
+    "message": "Évaluer"
+  },
+  "showremember": {
+    "message": "Ne pas rafficher cette page de rappel quand j'ouvre les options"
+  },
+  "skipremember": {
+    "message": "Passer cette page, pour accéder directement aux Options de l'extension"
+  },
+  "titelrightsreserved": {
+    "message": "Certains droits réservés."
+  },
+  "friendlyremember": {
+    "message": "Rappel Amical..."
+  },
+  "imagesembedobject": {
+    "message": "Prise en charge : <img>."
+  },
+  "titelupgrade": {
+    "message": "Mettre a niveau"
+  },
+  "welcomebasictext": {
+    "message": "Welcome on the Ambient Aurea Browser extension. Here a brief video about how to use the Ambient Aurea extension in your web browser."
+  },
+  "promotitle": {
+    "message": "Tip of the day"
+  },
+  "promotext": {
+    "message": "Want to use something new and amazing for your web browser? Try the $product$ Browser extension.",
+    "placeholders": {
+      "product": {
+        "content": "$1",
+        "example": "Turn Off the Lights"
       }
     }
   },
-  "promocalltoaction":{
-    "message":"Download it Now!",
-    "description":"Download it Now!"
+  "promocalltoaction": {
+    "message": "Download it Now!"
   },
-  "donatetext":{
-    "message":"Due to the very small number of donations the project may be closed. Please support further development with a Donation.",
-    "description":"Due to the very small number of donations the project may be closed. Please support further development with a Donation."
+  "donatetext": {
+    "message": "Due to the very small number of donations the project may be closed. Please support further development with a Donation."
   },
-  "donatecalltoaction":{
-    "message":"Donate Now!",
-    "description":"Donate Now!"
+  "donatecalltoaction": {
+    "message": "Donate Now!"
   },
-  "titelsharethis":{
-    "message":"Share this:",
-    "description":"Share this:"
+  "sharetextd": {
+    "message": "Ambient Aurea extension is the Best extension for my web browser. Download it and try it yourself!"
   },
-  "titelwelcome":{
-    "message":"Welcome and Hello",
-    "description":"Welcome and Hello"
+  "titelsharethis": {
+    "message": "Share this:"
+  },
+  "titeldoesntwork": {
+    "message": "Ambient Aurea doesn't work on this web page. Please try another page."
+  },
+  "titelpopupvideo": {
+    "message": "YouTube"
+  },
+  "titelpopupwelcomeguide": {
+    "message": "Welcome Guide"
+  },
+  "titelpopupratestars": {
+    "message": "Rate 5 stars"
+  },
+  "titelwelcome": {
+    "message": "Welcome and Hello"
+  },
+  "titleok": {
+    "message": "OK"
+  },
+  "titlecancel": {
+    "message": "Cancel"
+  },
+  "titledarkmodeon": {
+    "message": "Dark Mode ON"
+  },
+  "titledarkmodeoff": {
+    "message": "Dark Mode OFF"
+  },
+  "titelpopupsupport": {
+    "message": "Support"
+  },
+  "titelpopupoptions": {
+    "message": "Options"
+  },
+  "titelintroduce": {
+    "message": "Introducing the new Ambient Aurea!"
+  },
+  "desintroduce": {
+    "message": "All the features you're used to, with a brand new look and feel, and personalized to you."
+  },
+  "titlelratenow": {
+    "message": "Rate Now!"
+  },
+  "titleratelater": {
+    "message": "Later"
+  },
+  "desremrate": {
+    "message": "If you like Ambient Aurea™, please do not hesitate to rate this extension to five stars now. This gives us courage to continue to maintain and improve this product for you. Writing a review is recommended, but not mandatory. If you do not have the time to write a review, you can rate it anonymously. It is important to give it ★★★★★. Thank you!"
+  },
+  "desatmossolidcolor": {
+    "message": "Choose your one solid glow effect color"
   }
 }

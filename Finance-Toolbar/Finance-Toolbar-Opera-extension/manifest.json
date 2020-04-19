@@ -1,28 +1,26 @@
 {
   "manifest_version": 2,
   "name": "__MSG_name__",
-  "short_name": "FT",  
-  "version": "0.4.0.3",
+  "short_name": "Finance Toolbar",  
+  "version": "0.5.25.0",
   "description": "__MSG_description__",
   "author": "Stefan vd",
-  "homepage_url": "https://www.stefanvd.net",  
-  "icons": { "16": "icons/icon16.png",
-             "32": "icons/icon32.png",
-             "48": "icons/icon48.png",
-             "128": "icons/icon128.png"
-           },
+  "homepage_url": "https://www.stefanvd.net/support/",
+  "icons": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+  },
   "default_locale": "en",
   "background": {
     "page": "background.html",
-	  "persistent": false
+	  "persistent": true
   },
-  "content_security_policy": "script-src 'self' https://ssl.google-analytics.com https://platform.twitter.com https://apis.google.com; img-src *; object-src 'self'",
+  "content_security_policy": "script-src 'self'; img-src *; object-src 'self'",
   "web_accessible_resources": [
-    "icons/icon16.png",
     "js/toolbar.js",
-    "toolbar.html",
-    "images/slice.png",
-    "images/worldmap.png"
+    "toolbar.html"
   ],
   "commands": {
     "_execute_browser_action": {
@@ -50,14 +48,22 @@
   "content_scripts": [
     {
       "matches": ["*://*/*"],
+      "exclude_matches": ["*://*.stefanvd.net/project/finance-toolbar/browser/options.html"],
+      "css": ["css/body.css"],
       "js": ["js/constants.js","js/content.js"],
       "run_at": "document_end"
+    },
+    {
+    "matches": ["*://*.stefanvd.net/project/finance-toolbar/browser/options.html"],
+    "js": ["js/constants.js","js/options.js"],
+    "run_at": "document_end"
     }
   ],
   "options_ui": {
     "page": "options.html",
     "open_in_tab": true
   },
+  "offline_enabled": true,
   "minimum_chrome_version": "18",
-  "permissions": [ "contextMenus", "tabs", "http://*/*", "https://*/*", "storage", "notifications" ]
+  "permissions": [ "contextMenus", "tabs", "http://*/*", "https://*/*", "storage", "alarms"]
 }

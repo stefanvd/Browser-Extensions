@@ -3,7 +3,7 @@
 
 Ambient Aurea
 Bring your image to an ambient lighting effect with just one click on the button.
-Copyright (C) 2016 Stefan vd
+Copyright (C) 2018 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -30,7 +30,7 @@ function $(id) { return document.getElementById(id); }
 // settings
 var default_opacity = null, interval = null, fadein = null, fadeout = null, lightcolor = null, ambilight = null, ambilightrangeblurradius = null, ambilightrangespreadradius = null, ambilightfixcolor = null, ambilight4color = null, ambilightvarcolor = null, ambilightcolorhex = null, ambilight1colorhex = null, ambilight2colorhex = null, ambilight3colorhex = null, ambilight4colorhex = null, sharebar = null, count = null, slideshow = null, slideshowrefresh = null, atmosvivid = null;
 
-chrome.storage.sync.get(['interval', 'fadein', 'fadeout', 'lightcolor', 'ambilight', 'ambilightrangeblurradius', 'ambilightrangespreadradius', 'ambilightfixcolor', 'ambilightvarcolor', 'ambilightcolorhex', 'ambilight4color', 'ambilight1colorhex', 'ambilight2colorhex', 'ambilight3colorhex', 'ambilight4colorhex', 'sharebar', 'atmosvivid'], function(response){
+chrome.storage.sync.get(['interval','fadein','fadeout','lightcolor','ambilight','ambilightrangeblurradius','ambilightrangespreadradius','ambilightfixcolor','ambilightvarcolor','ambilightcolorhex','ambilight4color','ambilight1colorhex','ambilight2colorhex','ambilight3colorhex','ambilight4colorhex','sharebar','atmosvivid','slideshow'], function(response){
 interval = response['interval'];if(interval == null)interval = 80; default_opacity = interval; // default interval 80%
 fadein = response['fadein'];if(fadein == null)fadein = true;
 fadeout = response['fadeout'];if(fadeout == null)fadeout = true;

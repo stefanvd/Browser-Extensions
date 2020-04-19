@@ -8,7 +8,7 @@
 
 Zoom
 Zoom in or out on web content using the zoom button for more comfortable reading.
-Copyright (C) 2017 Stefan vd
+Copyright (C) 2019 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -35,318 +35,480 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 <link rel="stylesheet" type="text/css" href="css/options.css">
 <script type="text/javascript" src="js/constants.js"></script>
 <script type="text/javascript" src="js/options.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
-<body>
-<script type="text/javascript" src="js/analytics.js"></script>
-
-<div id="remembershare">
-<div id="productrememberimage"><img id="rememberlamp" alt="Zoom" width="16" height="16" src="icons/icon16.png" srcset="icons/icon16.png 1x, icons/icon16@2x.png 2x">Zoom™</div>
-	<div id="remembersharecenter">
-	<h2><span data-i18n="friendlyremember"></span></h2>
-	<div class="remembertext"><span data-i18n="enjoyshare"></span></div>
-	<br>
-	<div class="remgroup">
-		<a id="rememberboxyoutube"><span data-i18n="desremyoutube"></span></a><br>
-		<div id="remyoutube">
-			<iframe id="addyoutubebutton" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" tabindex="0" vspace="0" width="200" height="25" src="https://www.youtube.com/subscribe_embed?bsv&amp;usegapi=1&amp;channelid=UCNjCSr589GFD0JVmxF7eUoA&amp;theme=light&amp;layout=default&amp;hl=en-US&amp;origin=http%3A%2F%2Fstefanvd.net&amp;ic=1&amp;jsh=m%3B%2F_%2Fscs%2Fapps-static%2F_%2Fjs%2Fk%3Doz.gapi.en.Hm9QrP5wPuw.O%2Fm%3D__features__%2Fam%3DEQ%2Frt%3Dj%2Fd%3D1%2Frs%3DAItRSTOJmMfO7AjAhJbN5yM-BshnzKg53Q#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled%2Conload&amp;id=I0_1371683853533&amp;parent=http%3A%2F%2Fstefanvd.net&amp;rpctoken=33681162" data-gapiattached="true"></iframe>
-		</div>
-	</div>
-	<div class="remgroup">
-		<a id="rememberboxrate"><span data-i18n="rememberrate"></span> 5 &#9733;</a>
-	</div>
-	<div class="remgroup">
-		<a id="rememberboxfacebook"><span data-i18n="desremfacebook"></span></a><br>
-		<div id="remfacebook">
-			<iframe id="addrecommendbutton" src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FZoomExtension&width=118&layout=button_count&action=recommend&size=small&show_faces=false&share=false&height=21&appId=1542940745981253" width="200" height="25" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
-		</div>
-	</div>
-	<br><br><br>
-	<br><br><br>
-	<br><br><br>
-	<a id="skipremember" class="continuebutton">&gt;</a>
-	<br><br><br>
-	<span id="buttoncontinuetip" data-i18n="skipremember"></span>
-	</div>
-	<div id="divcheckboxskipremember">
-		<input id="firstcheckboxskipremember" type="checkbox"><span data-i18n="showremember"></span>
-	</div>
-	<div id="remdonate">
-		<div id="remclosethisdonate">X</div>
-		<div class="promobox"><span data-i18n="promotitle"></span></div>
-		<div>
-			<div data-i18n="longdonatetext"></div> <a href="https://www.stefanvd.net/donate.htm" target="_blank" id="rememberboxdonate" data-i18n="titledonatebutton"></a>
-		</div>
-	</div>
-</div>
+<body class="light">
 
 <div id="loading">
 <div id="loadingcenter">
-<div id="productwelcomeimageload"><img id="loadinglamp" alt="Zoom" src="icons/icon16.png">Zoom™</div>
+<div id="productwelcomeimageload">
+	<div class="icon">
+		<img id="loadinglamp" alt="Z" width="16" height="16" src="icons/icon16.png" srcset="icons/icon16.png 1x, icons/icon16@2x.png 2x">Zoom™</div>
+</div>
 <div id="progressbar"><div id="progress"><div id="pbaranim"></div></div></div>
 </div>
-<span id="loadinghelp"><span data-i18n="pagestillloading"></span> <a href="https://www.stefanvd.net/support/" target="blank" data-i18n="pagehelp"></a>!</span>
+<span id="loadinghelp"><span data-i18n="pagestillloading"></span> <a href="https://www.stefanvd.net/support/" target="_blank" data-i18n="pagehelp" rel="noopener"></a>!</span>
 </div>
 
-<div id="main-content">
+<div id="main-content" role="main">
+	<header>
+		<div class="messagehead">
+		</div>
+		<div class="masterhead">
+			<div class="title" id="titleex">
+				<div class="icon">
+					<img id="headlamp" width="16" height="16" alt="Zoom Browser extension">
+				</div>
+				Zoom™</div>
+			<div class="search">
+				<div class="searchicon"><svg id="btnsearchicon" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false"><g><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></g></svg>
+				</div>
+				<input type="search" id="appsearch" placeholder="" name="q" autocomplete="off" aria-label="Search through site content">
+			</div>
+			<div class="rightmenu" id="dotmenu">
+				<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+				width="24" height="24"
+				viewBox="0 0 24 24"><g><path d="M 12 3 C 10.894531 3 10 3.894531 10 5 C 10 6.105469 10.894531 7 12 7 C 13.105469 7 14 6.105469 14 5 C 14 3.894531 13.105469 3 12 3 Z M 12 10 C 10.894531 10 10 10.894531 10 12 C 10 13.105469 10.894531 14 12 14 C 13.105469 14 14 13.105469 14 12 C 14 10.894531 13.105469 10 12 10 Z M 12 17 C 10.894531 17 10 17.894531 10 19 C 10 20.105469 10.894531 21 12 21 C 13.105469 21 14 20.105469 14 19 C 14 17.894531 13.105469 17 12 17 Z "></path></g></svg>
+			</div>
+		</div>
+	</header>
+	<input type="checkbox" id="reveal-menu" role="checkbox" aria-checked="false" aria-label="The button to open the 3 dots menu">
+	
+	<div id="md-home">
+			<label for="reveal-menu" id="menu">
+			<div id="menuToggle">
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</label>
+	</div>
+
+	<aside id="darkpanel"></aside>
+
 	<div id="navbar-container">
-	<br>
-	<a href="https://www.stefanvd.net/project/zoom/browser/" target="blank" class="brand"><div id="productwelcomeimage"><img id="welcomelamp" alt="Lamp" src="icons/icon16.png">Zoom™</div></a>
-	<div id="productsettingtitel" data-i18n="settings"></div>
-	<br><br><br>	
 	<ul id="navbar">
-		<li><a id="tabbasic" data-tab="#tab1" class="navbar-item navbar-item-selected"><span data-i18n="basicsettings"></span></a></li>
-		<li><a id="tabadvan" data-tab="#tab2" class="navbar-item"><span data-i18n="advancedoptions"></span></a></li>		
-		<li><a id="tabguide" data-tab="#tab3" class="navbar-item"><span data-i18n="guide"></span></a></li>
-		<li><a id="tabhelp" data-tab="#tab4" class="navbar-item"><span data-i18n="help"></span></a></li>
+		<li><a id="tabbasic" accesskey="b" data-tab="#tab1" class="navbar-item navbar-item-selected">
+			<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+			width="16" height="16"
+			viewBox="0 0 24 24"><g><path d="M 10.699219 1.101563 C 5.699219 1.699219 1.601563 5.699219 1 10.800781 C 0.300781 17.398438 5.5 23 12 23 C 12.601563 23 13.199219 22.898438 13.699219 22.699219 C 16.199219 22 17.300781 18.898438 15.800781 16.699219 C 15 15.601563 15.898438 14 17.300781 14 L 21 14 C 22.101563 14 23 13.101563 23 12 C 23 5.5 17.398438 0.300781 10.699219 1.101563 Z M 12 21 C 10.898438 21 10 20.101563 10 19 C 10 17.898438 10.898438 17 12 17 C 13.101563 17 14 17.898438 14 19 C 14 20.101563 13.101563 21 12 21 Z M 18.5 11 C 17.699219 11 17 10.300781 17 9.5 C 17 8.699219 17.699219 8 18.5 8 C 19.300781 8 20 8.699219 20 9.5 C 20 10.300781 19.300781 11 18.5 11 Z M 14.5 7 C 13.699219 7 13 6.300781 13 5.5 C 13 4.699219 13.699219 4 14.5 4 C 15.300781 4 16 4.699219 16 5.5 C 16 6.300781 15.300781 7 14.5 7 Z M 9.5 7 C 8.699219 7 8 6.300781 8 5.5 C 8 4.699219 8.699219 4 9.5 4 C 10.300781 4 11 4.699219 11 5.5 C 11 6.300781 10.300781 7 9.5 7 Z M 5.5 10 C 4.699219 10 4 9.300781 4 8.5 C 4 7.699219 4.699219 7 5.5 7 C 6.300781 7 7 7.699219 7 8.5 C 7 9.300781 6.300781 10 5.5 10 Z M 4.5 15 C 3.699219 15 3 14.300781 3 13.5 C 3 12.699219 3.699219 12 4.5 12 C 5.300781 12 6 12.699219 6 13.5 C 6 14.300781 5.300781 15 4.5 15 Z "></path></g></svg>
+			<span data-i18n="basicsettings"></span></a>
+		</li>
+		<li><a id="tabadvan" accesskey="o" data-tab="#tab2" class="navbar-item">
+			<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+			width="16" height="16"
+			viewBox="0 0 24 24"><g><path d="M 8.40625 2 C 8.207031 2 8 2.207031 8 2.40625 L 7.8125 4.40625 C 7.3125 4.605469 6.804688 4.886719 6.40625 5.1875 L 4.40625 4.40625 C 4.207031 4.304688 4.007813 4.394531 3.90625 4.59375 L 2.3125 7.40625 C 2.210938 7.605469 2.207031 7.804688 2.40625 7.90625 L 4.09375 9.09375 C 3.992188 9.394531 4 9.699219 4 10 C 4 10.300781 3.992188 10.613281 4.09375 10.8125 L 2.40625 12 C 2.207031 12.101563 2.210938 12.300781 2.3125 12.5 L 3.90625 15.3125 C 4.007813 15.511719 4.207031 15.5 4.40625 15.5 L 6.3125 14.59375 C 6.710938 14.894531 7.1875 15.207031 7.6875 15.40625 L 8 17.59375 C 8 17.792969 8.207031 18 8.40625 18 L 10 18 L 10 13.1875 C 8.199219 13.1875 6.8125 11.800781 6.8125 10 C 6.8125 8.199219 8.199219 6.8125 10 6.8125 C 11.800781 6.8125 13.1875 8.199219 13.1875 10 L 16 10 C 16 9.699219 16.007813 9.386719 15.90625 9.1875 L 17.59375 8 C 17.792969 7.898438 17.789063 7.699219 17.6875 7.5 L 16.09375 4.6875 C 15.992188 4.488281 15.792969 4.5 15.59375 4.5 L 13.6875 5.40625 C 13.289063 5.105469 12.8125 4.792969 12.3125 4.59375 L 12 2.40625 C 12 2.207031 11.792969 2 11.59375 2 Z M 13 11 C 12.476563 11 11.941406 11.183594 11.5625 11.5625 C 11.183594 11.941406 11 12.476563 11 13 L 11 20 C 11 20.523438 11.183594 21.058594 11.5625 21.4375 C 11.941406 21.816406 12.476563 22 13 22 L 20 22 C 20.523438 22 21.058594 21.816406 21.4375 21.4375 C 21.816406 21.058594 22 20.523438 22 20 L 22 13 C 22 12.476563 21.816406 11.941406 21.4375 11.5625 C 21.058594 11.183594 20.523438 11 20 11 Z M 13 15 L 20 15 L 20 20 L 13 20 Z M 17.5625 15.875 L 16 17.4375 L 15.34375 16.78125 L 14.28125 17.84375 L 16 19.5625 L 18.625 16.9375 Z "></path></g></svg>
+			<span data-i18n="advancedoptions"></span></a>
+		</li>
+		<li><a id="tabguide" accesskey="g" data-tab="#tab3" class="navbar-item">
+			<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+			width="16" height="16"
+			viewBox="0 0 24 24"><g><path d="M 5 4 L 5 22 L 12 19 L 19 22 L 19 4 C 19 2.898438 18.101563 2 17 2 L 7 2 C 5.898438 2 5 2.898438 5 4 Z "></path></g></svg>
+			<span data-i18n="guide"></span></a>
+		</li>
+		<li><a id="tabhelp" accesskey="h" data-tab="#tab4" class="navbar-item">
+			<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+			width="16" height="16"
+			viewBox="0 0 24 24"><g><path d="M 12 2 C 6.5 2 2 6.5 2 12 C 2 17.5 6.5 22 12 22 C 17.5 22 22 17.5 22 12 C 22 6.5 17.5 2 12 2 Z M 12 4 C 16.398438 4 20 7.601563 20 12 C 20 16.398438 16.398438 20 12 20 C 7.601563 20 4 16.398438 4 12 C 4 7.601563 7.601563 4 12 4 Z M 11.90625 7 C 8.605469 7 9 10 9 10 L 11 10 C 11 8.601563 11.699219 8.5 12 8.5 C 12.800781 8.5 13 9.414063 13 9.8125 C 13 11.914063 11 11.398438 11 14 L 13 14 C 13 12.300781 15 12.210938 15 9.8125 C 15 8.914063 14.507813 7 11.90625 7 Z M 11 15 L 11 17 L 13 17 L 13 15 Z "></path></g></svg>
+			<span data-i18n="help"></span></a>
+		</li>
 	</ul>
 	</div>
 	<div id="mainview">
-	<div id="managed-prefs-banner">
-		<span id="managed-prefs-icon">
-			<a class="donatebutton" href="https://www.stefanvd.net/donate.htm" target="_blank" data-i18n="titledonatebutton"></a>
-		</span>
-		<span id="managed-prefs-text" data-i18n="donatepromotext"></span>
-		<div id="managed-prefs-text-close"><span style="display:none;">Close</span></div>
-    </div>
+		<h1 class="hidden"><span data-i18n="optionpagetitle"></span></h1>
+		<div id="managed-prefs-banner">
+			<span id="managed-prefs-icon">
+				<a class="donatebutton" target="_blank" href="https://www.stefanvd.net/donate.htm" data-i18n="titledonatebutton" rel="noopener"></a>
+			</span>
+			<span id="managed-prefs-text" data-i18n="donatepromotext"></span>
+			<div id="managed-prefs-text-close">x</div>
+		</div>
 		<div id="mainview-content">
 			<div id="tab1" class="page">
-			<h1 data-i18n="basicsettings"></h1>			
-			<header>
-				<div data-i18n="titelsharethis"></div> <div id="shareboxgoogle"></div> <div id="shareboxfacebook"></div> <div id="shareboxtwitter"></div>
-			</header>
+			<h2 data-i18n="basicsettings"></h2>
+			<div class="sharemenu">
+				<div data-i18n="titelsharethis"></div> <div id="shareboxyoutube"></div> <div id="shareboxfacebook"></div> <div id="shareboxtwitter"></div>
+			</div>
 			<br>
 			<section>
-			<table class="youtubepreview">
-					<tbody><tr>
-						<td class="viewpanel">
-						<iframe id="dont-turn-off-the-lights" class="youtube-player" type="text/html" width="480" height="270" src="https://www.youtube.com/embed/?listType=playlist&amp;list=PLfXHh3TKRb4ZRrIhSRo6cWEJVeS3_M5Yb" frameborder="0" allowfullscreen=""></iframe>
-						</td>
-						<td class="suggpanel">
-						<h3><span data-i18n="titelwelcome"></span></h3>
-						<span data-i18n="welcomebasictext"></span>
+				<div class="videopreview">
+					<iframe id="dont-turn-off-the-lights" class="dont-turn-off-the-lights" title="YouTube video" type="text/html" width="auto" height="auto" src="https://www.youtube.com/embed/?listType=playlist&amp;list=PLfXHh3TKRb4ZRrIhSRo6cWEJVeS3_M5Yb" frameborder="0" allowfullscreen=""></iframe>
+				</div>
+				<div class="suggpanel">
+					<div class="profile">
+						<div class="primarytitle">
+							<span data-i18n="titelwelcome"></span>
+							<div class="introworks">
+								<div class="step">
+									<div class="stepdescription"><span data-i18n="welcomebasictext"></span></div>
+								</div>
+							</div>
 						</div>
-						</td>
-					</tr>
-				</tbody></table>
-				</section>
-				<section>
-					<div class="probox"><span data-i18n="promotitle"></span></div>
-					<div class="proboxtext">
-					<span id="promotext"></span>
-					<br><br>
-					<button id="btnpromoaction" class="proboxbutton">⇩ <span id="spnpromoaction" data-i18n="promocalltoaction"></span></button>
+							<div class="cardactionbox">
+				
+							</div>
 					</div>
-				</section>
-				<section>
-				<h3 data-i18n="titelzoomengine"></h3>
-				<div>
-					<label class="radio"><input id="zoomchrome" type="radio" name="zoomengine" value="chrome"><span data-i18n="deszoomchrome"></span></label>					
-					<label class="radio"><input id="zoomweb" type="radio" name="zoomengine" value="web"><span data-i18n="deszoomweb"></span></label>
 				</div>
-				</section>
-				<section>					
-				<h3 data-i18n="titelbadge"></h3>
-				<div><label class="checkbox"><input id="badge" type="checkbox"> <span data-i18n="desbadge"></span></label>
-				<label class="checkbox"><span data-i18n="titelbadgecolor"></span> <input id="lightcolor" type="color" class="color" list="datalightcolor">
-                                <datalist id="datalightcolor">
-                                <option>#FFFFFF</option>
-                                <option>#FF0000</option>
-                                <option>#FF7700</option>
-                                <option>#FFEE00</option>
-                                <option>#00FF00</option>
-                                <option>#008000</option>
-                                <option>#3CB4FE</option>
-                                <option>#0000FF</option>
-                                <option>#808080</option>
-                                <option>#000000</option>
-                                </datalist>
-				</label>
+			</section>
+			<section>
+				<div class="probox"><span data-i18n="promotitle"></span></div>
+				<div class="proboxtext">
+				<span id="promotext"></span>
+				<br><br>
+				<button id="btnpromoaction" class="proboxbutton">⇩ <span id="spnpromoaction" data-i18n="promocalltoaction"></span></button>
 				</div>
-				</section>
-				<section>
-				<h3 data-i18n="titelcontextmenu"></h3>
-				<div><label class="checkbox"><input id="contextmenus" type="checkbox"> <span data-i18n="descontextmenu"></span></label></div>
-				</section>
-				<section id="sectionreviewbox">			
-				<div id="reviewextensionbox">
-					<div class="stars">★★★★★</div>
-					<div id="ayh"><span data-i18n="areyouhappy"></span></div>
-					<div id="tllo"><span data-i18n="tellothers"></span></div>
-					<div id="nt"><span data-i18n="nothanks"></span></div>
-					<div id="war"><span data-i18n="writeareview"></span></div>
+			</section>
+			<section>
+			<h3 id="zoomengine" data-i18n="titelzoomengine"></h3>
+			<div role="radiogroup" aria-labelledby="zoomengine">
+				<div class="md-radio">
+					<input id="zoomchrome" type="radio" name="zoomengine" value="chrome" role="radio" aria-checked="false" aria-labelledby="zoomengine">
+					<label for="zoomchrome"><div><span data-i18n="deszoomchrome"></span></div></label>
 				</div>
-				</section>
-				<section>
-				<h3 data-i18n="titelzoomsteps"></h3>
-				<div><label class="checkbox"><span data-i18n="deszoomsteps"></span> <input id="steps" type="number" required placeholder="10" min="1" step="1" max="100"></label></div>
-				</section>
-				<section>
-				<h3 data-i18n="titeldefaultzoomvalue"></h3>
-				<div>
-					<label class="radio"><input id="defaultallscreen" type="radio" name="byscreen" value="allscreen"><span data-i18n="desallscreen"></span></label>
-					<label class="checkbox"><span data-i18n="desdefaultzoomvalue"></span> <input id="slider" type="range" min="1" max="400" value="100" step="5"/><input id="allzoomvalue" type="number" required placeholder="100" min="1" step="1" max="400"></label>
-					<label class="radio"><input id="defaultsinglescreen" type="radio" name="byscreen" value="singlescreen"><span data-i18n="dessinglescreen"></span></label>
-					<label class="checkbox">
-					<table id="screenzoom">
-						<tr>
-							<td>
-								<span data-i18n="titelscreen"></span><br>
-								<input id="screenzoomname" type="text" required placeholder="1440x900"><button id="detectscreensize" name="screendetect"><span data-i18n="titelscreendetect"></span></button>
-							</td>
-							<td>
-								<span data-i18n="screenzoomvalue"></span><br>
-								<input id="screenzoomnumber" type="number" required placeholder="100" min="0" step="1" max="400" value="100">
-							</td>
-							<td>
-								<button id="screenzoomaddbutton" name="add"><span data-i18n="titeladd"></span></button>
-							</td>
-						</tr>
-						<tr>
-							<td colspan="2">
-								<select id="screenzoomBox" name="screenzoomentryList" size="3" multiple=""></select>
-								<select id="screenzoomnumberBox" name="screenzoomnumberentryList" size="3" multiple=""></select>
-							</td>
-							<td valign="top">
-								<button id="screenzoomremovebutton" name="delete"><span data-i18n="titelremove"></span></button>
-							</td>
-						</tr>
-					</table>
-					</label>
+				<div class="md-radio">
+					<input id="zoomweb" type="radio" name="zoomengine" value="web" role="radio" aria-checked="true" aria-labelledby="zoomengine">
+					<label for="zoomweb"><div><span data-i18n="deszoomweb"></span></div></label>
 				</div>
-				</section>
-				<section>
-				<h3 data-i18n="titelallzoom"></h3>
-				<div>
-				<label class="checkbox"><input id="allzoom" type="checkbox"><span data-i18n="desallzoom"></span>
-				<label class="checkbox">
-				<form id="formwebsitezoom">
-				<table id="websitezoom">
+				<div class="md-radio">
+					<input id="zoomfont" type="radio" name="zoomengine" value="font" role="radio" aria-checked="false" aria-labelledby="zoomengine">
+					<label for="zoomfont"><div><span data-i18n="deszoomfont"></span></div></label>
+				</div>
+			</div>
+			</section>
+			<section>
+			<h3 data-i18n="titelbadge"></h3>
+			<div>
+				<div class="md-checkbox">
+					<input id="badge" type="checkbox" role="checkbox" aria-checked="false" aria-labelledby="badge">
+					<label for="badge"><div><span data-i18n="desbadge"></span></div></label>
+				</div>
+				<div class="md-color">
+					<div class="input-color-container">
+						<input id="lightcolor" type="color" class="color" list="datalightcolor">
+					</div>
+					<label for="lightcolor"><div><span data-i18n="titelbadgecolor"></span></div></label>
+				</div>
+				<datalist id="datalightcolor">
+					<option>#FFFFFF</option>
+					<option>#FF0000</option>
+					<option>#FF7700</option>
+					<option>#FFEE00</option>
+					<option>#00FF00</option>
+					<option>#008000</option>
+					<option>#3CB4FE</option>
+					<option>#0000FF</option>
+					<option>#808080</option>
+					<option>#000000</option>
+				</datalist>
+			</div>
+			</section>
+			<section>
+			<h3 data-i18n="titelcontextmenu"></h3>
+			<div>
+				<div class="md-checkbox">
+					<input id="contextmenus" type="checkbox" role="checkbox" aria-checked="false" aria-labelledby="contextmenus">
+					<label for="contextmenus"><div><span data-i18n="descontextmenu"></span></div></label>
+				</div>
+			</div>
+			</section>
+			<section id="sectionreviewbox">			
+			<div id="reviewextensionbox">
+				<div class="stars">★★★★★</div>
+				<div id="ayh"><span data-i18n="areyouhappy"></span></div>
+				<div id="tllo"><span data-i18n="tellothers"></span></div>
+				<div id="nt"><span data-i18n="nothanks"></span></div>
+				<div id="war"><span data-i18n="writeareview"></span></div>
+			</div>
+			</section>
+			<section>
+			<h3 data-i18n="titelzoomsteps"></h3>
+			<div>
+				<div class="md-number">
+					<label><span data-i18n="deszoomsteps"></span> <input type="number" id="steps" min="1" max="100" step="1" value="10" maxlength="3" size="4" required></label>
+				</div>
+			</div>
+			</section>
+			<section>
+			<h3 id="defaultzoomvalue" data-i18n="titeldefaultzoomvalue"></h3>
+			<div>
+				<div role="radiogroup" aria-labelledby="defaultzoomvalue">
+					<div class="md-radio">
+						<input id="defaultallscreen" type="radio" name="byscreen" value="allscreen" role="radio" aria-checked="false" aria-labelledby="defaultzoomvalue">
+						<label for="defaultallscreen"><div><span data-i18n="desallscreen"></span></div></label>
+					</div>
+
+					<div class="dimrange">
+						<div>
+							<span data-i18n="desdefaultzoomvalue"></span>:
+						</div>
+						<div class="tabopacityslider">
+							<input type="range" id="slider" min="0" max="400" step="5" value="100" aria-label="The default zoom value from the slider" aria-valuemin="1" aria-valuemax="400" aria-valuenow="100">
+						</div>
+						<div>
+							<input type="number" id="allzoomvalue" min="0" max="400" step="1" value="100" maxlength="3" size="4" aria-label="The zoom value from the number box" aria-valuemin="1" aria-valuemax="400" aria-valuenow="100">
+						</div>
+					</div>
+
+					<div class="md-radio">
+						<input id="defaultsinglescreen" type="radio" name="byscreen" value="singlescreen" role="radio" aria-checked="false" aria-labelledby="defaultzoomvalue">
+						<label for="defaultsinglescreen"><div><span data-i18n="dessinglescreen"></span></div></label>
+					</div>
+				</div>
+				<span id="bytitelscreen" data-i18n="titelscreen" class="hidden"></span>
+				<span id="byscreenzoomvalue" data-i18n="screenzoomvalue" class="hidden"></span>
+				<form id="formscreenzoom">
+				<table id="screenzoom">
 					<tr>
 						<td>
-							<span data-i18n="titelwebsite"></span><br>
-							<input id="websitezoomname" type="url" required pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)" placeholder="https://www.example.com">
+							<input id="screenzoomname" type="text" required pattern="[0-9]{1,5}x[0-9]{1,5}" placeholder="1440x900" aria-labelledby="bytitelscreen"><button type="button" id="detectscreensize" name="screendetect"><span data-i18n="titelscreendetect"></span></button>
 						</td>
 						<td>
-							<span data-i18n="websitezoomvalue"></span><br>
-							<input id="websitezoomnumber" type="number" required placeholder="100" min="0" step="1" max="400" value="100">
+							<input id="screenzoomnumber" type="number" required placeholder="100" min="0" step="1" max="400" value="100" aria-labelledby="byscreenzoomvalue">
 						</td>
 						<td>
-							<button type="submit" id="websitezoomaddbutton" name="add"><span data-i18n="titeladd"></span></button>
+							<button type="submit" id="screenzoomaddbutton" name="add"><span data-i18n="titeladd"></span></button>
 						</td>
 					</tr>
 					<tr>
 						<td colspan="2">
-							<select id="websitezoomBox" name="websitezoomentryList" size="10" multiple=""></select>
-							<select id="websitezoomnumberBox" name="websitezoomnumberentryList" size="10" multiple=""></select>
+							<select id="screenzoomBox" name="screenzoomentryList" size="3" multiple="" aria-label="The screen sizes in the box"></select>
+							<select id="screenzoomnumberBox" name="screenzoomnumberentryList" size="3" multiple="" aria-label="The zoom values in the box"></select>
 						</td>
 						<td valign="top">
-							<button type="button" id="websitezoomremovebutton" name="delete"><span data-i18n="titelremove"></span></button>
+							<button type="button" id="screenzoomremovebutton" name="delete"><span data-i18n="titelremove"></span></button>
 						</td>
 					</tr>
 				</table>
 				</form>
-				</label>
-				<label class="radio"><input id="zoombydomain" type="radio" name="pagezoom" value="domain"><span data-i18n="deszoombydomain"></span></label>					
-				<label class="radio"><input id="zoombypage" type="radio" name="pagezoom" value="page"><span data-i18n="deszoombypage"></span></label>
+			</div>
+			</section>
+			<section>
+			<h3 data-i18n="titelallzoom"></h3>
+			<div>
+				<div class="md-checkbox">
+					<input id="allzoom" type="checkbox" role="checkbox" aria-checked="true" aria-labelledby="allzoom">
+					<label for="allzoom"><div><span data-i18n="desallzoom"></span></div></label>
 				</div>
-				</section>
+
+			<label class="checkbox">
+			<form id="formwebsitezoom">
+			<table id="websitezoom">
+				<tr>
+					<td>
+						<input id="websitezoomname" type="url" required pattern="(https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*))|((https?|f(https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*))|((https?|ftp)://)?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})tp)://)?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*))|https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)|file?:\/\/\/{1,256}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)" placeholder="https://www.example.com" aria-label="The URL box to type a website for the Zoom feature">
+					</td>
+					<td>
+						<input id="websitezoomnumber" type="number" required placeholder="100" min="0" step="1" max="400" value="100" aria-label="Choose the zoom value in the number box">
+					</td>
+					<td>
+						<button type="submit" id="websitezoomaddbutton" name="add"><span data-i18n="titeladd"></span></button>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<select id="websitezoomBox" name="websitezoomentryList" size="10" multiple="" aria-label="The website URLs in the box"></select>
+						<select id="websitezoomnumberBox" name="websitezoomnumberentryList" size="10" multiple="" aria-label="The zoom values in the box"></select>
+					</td>
+					<td valign="top">
+						<button type="button" id="websitezoomremovebutton" name="delete"><span data-i18n="titelremove"></span></button>
+					</td>
+				</tr>
+			</table>
+			</form>
+			</label>
+				<div role="radiogroup" aria-labelledby="websitezoom">
+					<div class="md-radio">
+						<input id="zoombydomain" type="radio" name="pagezoom" value="domain" role="radio" aria-checked="true" aria-labelledby="websitezoom">
+						<label for="zoombydomain"><div><span data-i18n="deszoombydomain"></span></div></label>
+					</div>
+					<div class="md-radio">
+						<input id="zoombypage" type="radio" name="pagezoom" value="page" role="radio" aria-checked="false" aria-labelledby="websitezoom">
+						<label for="zoombypage"><div><span data-i18n="deszoombypage"></span></div></label>
+					</div>
+				</div>
+			</div>
+			</section>
 			</div>
 			<div id="tab2" class="page hidden">
-				<h1 data-i18n="advancedoptions"></h1>
+				<h2 data-i18n="advancedoptions"></h2>
 				<section>
 				<h3 data-i18n="titelzoommousescroll"></h3>
 				<div>
-					<label class="checkbox"><input id="zoommousescroll" type="checkbox"> <span data-i18n="deszoommousescroll"></span></label>
-					<label class="radio"><input id="zoommousebuttonleft" type="radio" name="zoommouse" value="left"><span data-i18n="deszoommouseleft"></span></label>
-					<label class="radio"><input id="zoommousebuttonright" type="radio" name="zoommouse" value="right"><span data-i18n="deszoommouseright"></span></label>
+					<div class="md-checkbox">
+						<input id="zoommousescroll" type="checkbox" role="checkbox" aria-checked="false" aria-labelledby="zoommousescroll">
+						<label for="zoommousescroll"><div><span data-i18n="deszoommousescroll"></span></div></label>
+					</div>
+					<div role="radiogroup" aria-labelledby="kindzoommouse">
+						<div class="md-radio">
+							<input id="zoommousebuttonleft" type="radio" name="zoommouse" value="left" role="radio" aria-checked="true" aria-labelledby="kindzoommouse">
+							<label for="zoommousebuttonleft"><div><span data-i18n="deszoommouseleft"></span></div></label>
+						</div>
+						<div class="md-radio">
+							<input id="zoommousebuttonright" type="radio" name="zoommouse" value="right" role="radio" aria-checked="false" aria-labelledby="kindzoommouse">
+							<label for="zoommousebuttonright"><div><span data-i18n="deszoommouseright"></span></div></label>
+						</div>
+					</div>
 					<br>
-					<label class="radio"><input id="zoommousescrollup" type="radio" name="zoommousescroll" value="left"><span data-i18n="deszoommousedirectionup"></span></label>
-					<label class="radio"><input id="zoommousescrolldown" type="radio" name="zoommousescroll" value="right"><span data-i18n="deszoommousedirectiondown"></span></label>
+					<div role="radiogroup" aria-labelledby="kindzoomscroll">
+						<div class="md-radio">
+							<input id="zoommousescrollup" type="radio" name="zoommousescroll" value="left" role="radio" aria-checked="true" aria-labelledby="kindzoomscroll">
+							<label for="zoommousescrollup"><div><span data-i18n="deszoommousedirectionup"></span></div></label>
+						</div>
+						<div class="md-radio">
+							<input id="zoommousescrolldown" type="radio" name="zoommousescroll" value="right" role="radio" aria-checked="false" aria-labelledby="kindzoomscroll">
+							<label for="zoommousescrolldown"><div><span data-i18n="deszoommousedirectiondown"></span></div></label>
+						</div>
+					</div>
 				</div>
 				</section>
 				<section>
 				<h3 data-i18n="titelzoomdoubleclick"></h3>
-				<div><label class="checkbox"><input id="zoomdoubleclick" type="checkbox"> <span data-i18n="deszoomdoubleclick"></span></label></div>
+				<div>
+					<div role="radiogroup" aria-labelledby="kindzoomclick">
+						<div class="md-radio">
+							<input id="zoomsingleclick" type="radio" name="zoomclick" value="single" role="radio" aria-checked="true" aria-labelledby="kindzoomclick">
+							<label for="zoomsingleclick"><div><span data-i18n="deszoomsingleclick"></span></div></label>
+						</div>
+						<div class="md-radio">
+							<input id="zoomnewsingleclick" type="radio" name="zoomclick" value="new" role="radio" aria-checked="false" aria-labelledby="kindzoomclick">
+							<label for="zoomnewsingleclick"><div><span data-i18n="deszoomnewsingleclick"></span></div></label>
+						</div>
+						<div class="md-radio">
+							<input id="zoomdoubleclick" type="radio" name="zoomclick" value="double" role="radio" aria-checked="false" aria-labelledby="kindzoomclick">
+							<label for="zoomdoubleclick"><div><span data-i18n="deszoomdoubleclick"></span></div></label>
+						</div>
+					</div>
+				</div>
+				</section>
+				<section>
+					<h3 data-i18n="titelmagnifyingglass"></h3>
+					<div>
+						<div role="radiogroup" aria-labelledby="kindzoommagshape">
+							<div class="md-radio">
+								<input id="zoommagcircle" type="radio" name="zoommagshape" value="circle" role="radio" aria-checked="true" aria-labelledby="kindzoommagshape">
+								<label for="zoommagcircle"><div><span data-i18n="deszoommagcircle"></span></div></label>
+							</div>
+							<div class="md-radio">
+								<input id="zoommagsquare" type="radio" name="zoommagshape" value="square" role="radio" aria-checked="false" aria-labelledby="kindzoommagshape">
+								<label for="zoommagsquare"><div><span data-i18n="deszoommagsquare"></span></div></label>
+							</div>
+						</div>
+						<div class="md-number">
+							<label><span data-i18n="deszoommagszoomlevel"></span> <input type="number" id="zoommagszoomlevel" min="1" max="100" step="1" value="2" maxlength="3" size="4" required=""></label>
+						</div>
+						<div class="md-number">
+							<label><span data-i18n="deszoommagszoomsize"></span> <input type="number" id="zoommagszoomsize" min="1" max="500" step="1" value="200" maxlength="3" size="4" required=""></label>
+						</div>
+					</div>
 				</section>
 				<section>
 				<h3 data-i18n="titellargepopup"></h3>
-				<div><label class="checkbox"><input id="largepopup" type="checkbox"><span data-i18n="deslargepopup"></span></label></div>
+				<div>
+					<div class="md-checkbox">
+						<input id="largepopup" type="checkbox" role="checkbox" aria-checked="false" aria-labelledby="largepopup">
+						<label for="largepopup"><div><span data-i18n="deslargepopup"></span></div></label>
+					</div>
+				</div>
 				</section>
 				<section>
 				<h3 data-i18n="titelrememberpage"></h3>
-				<div><label class="checkbox"><input id="optionskipremember" type="checkbox"><span data-i18n="desrememberpage"></span></label></div>
+				<div>
+					<div class="md-checkbox">
+						<input id="optionskipremember" type="checkbox" role="checkbox" aria-checked="false" aria-labelledby="optionskipremember">
+						<label for="optionskipremember"><div><span data-i18n="desrememberpage"></span></div></label>
+					</div>
+				</div>
 				</section>
 				<section>
 				<h3 data-i18n="titelsync"></h3>
 				<div class="grey-text"><span data-i18n="titelsyncbrowser"></span></div>
 				</section>
 				<section>
-				<h3 data-i18n="titelupgrade"></h3>
-				<div>
-					<label class="checkbox"><span class="item">Finance Toolbar browser extension</span><br><span data-i18n="titeldownloadupgradefinancetoolbar"></span></label>
-					<p>
-					<button id="fndownload" data-i18n="titeldownloadbutton"></button>
-					<span class="grey-text"><span data-i18n="desproject"></span> <a href="https://www.stefanvd.net/project/finance-toolbar/browser/" target="blank">Finance Toolbar</a> <span data-i18n="desbrowserextension"></span>.</span>
-					</p>
-					<label class="checkbox"><span class="item">Proper Menubar browser extension</span><br><span data-i18n="titeldownloadupgradepropermenubar"></span></label>
-					<p>
-					<button id="ppdownload" data-i18n="titeldownloadbutton"></button>
-					<span class="grey-text"><span data-i18n="desproject"></span> <a href="https://www.stefanvd.net/project/proper-menubar/browser/" target="blank">Proper Menubar</a> <span data-i18n="desbrowserextension"></span>.</span>
-					</p>
-					<label class="checkbox"><span class="item">Ambient Aurea browser extension</span><br><span data-i18n="titeldownloadaaupgrade"></span></label>
-					<p>
-					<button id="aadownload" data-i18n="titeldownloadbutton"></button>
-					<span class="grey-text"><span data-i18n="desproject"></span> <a href="https://www.stefanvd.net/project/ambient-aurea/browser/" target="blank">Ambient Aurea</a> <span data-i18n="desbrowserextension"></span>.</span>
-					</p>
-					<label class="checkbox"><span class="item">Turn Off the Lights browser extension</span><br><span data-i18n="titeldownloadupgrade"></span></label>
-					<p>
-					<button id="totldownload" data-i18n="titeldownloadbutton"></button>
-					<span class="grey-text"><span data-i18n="desproject"></span> <a href="https://www.turnoffthelights.com" target="blank">Turn Off the Lights</a> <span data-i18n="desbrowserextension"></span>.</span>
-					</p>
-					<label class="checkbox"><span class="item">Full Screen browser extension</span><br><span data-i18n="titeldownloadupgradefullscreen"></span></label>
-					<p>
-					<button id="fsdownload" data-i18n="titeldownloadbutton"></button>
-					<span class="grey-text"><span data-i18n="desproject"></span> <a href="https://www.stefanvd.net/project/full-screen/browser/" target="blank">Full Screen</a> <span data-i18n="desbrowserextension"></span>.</span>
-					</p>
-					<label class="checkbox"><span class="item">Date Today browser extension</span><br><span data-i18n="titeldownloadupgradedatetoday"></span></label>
-					<p>
-					<button id="dtdownload" data-i18n="titeldownloadbutton"></button>
-					<span class="grey-text"><span data-i18n="desproject"></span> <a href="https://www.stefanvd.net/project/date-today/browser/" target="blank">Date Today</a> <span data-i18n="desbrowserextension"></span>.</span>
-					</p>
-				</div>
-				</section>
-				<section>			
 				<h3 data-i18n="titelreset"></h3>
 				<div>
-					<label class="checkbox"><button id="resetzoom" data-i18n="resetbrowserextension"></button></label>
+					<label><button id="resetzoom" data-i18n="resetbrowserextension"></button></label>
 				</div>
 				</section>
-			</div>			
+			</div>
 			<div id="tab4" class="page hidden">
-			<h1 data-i18n="about"></h1>
+			<h2 data-i18n="about"></h2>
 			<section>
 				<div>
-				<label class="checkbox"><h4>Zoom™</h4>
-						<span data-i18n="version"></span> <span id="version_number"></span>
-						<br><span data-i18n="description"></span>
-				</label>
+				<h4>Zoom™</h4>
+				<span data-i18n="version"></span> <span id="version_number"></span>
 				<br>
-				<label class="checkbox"><span data-i18n="titelwebsite"></span>: <a href="https://www.stefanvd.net/project/zoom/browser/" target="_blank">www.stefanvd.net/project/zoom/browser/</a></label>
-				<label class="checkbox"><span data-i18n="titeldeveloper"></span>: <a href="https://www.stefanvd.net" target="_blank">www.stefanvd.net</a></label>
+				<span data-i18n="description"></span>
 				<br>
-				<button id="buttonreportissue" data-i18n="reportbug"></button><button id="buttonchangelog" data-i18n="changelog"></button><button id="buttontranslateme" data-i18n="translateme"></button>
-				<br><br><br><br><br><br>
-				<div class="grey-text">Zoom<br>
-				<span class="style_bold">&copy; <span id="yearnow"></span> Stefan vd. <span data-i18n="titelrightsreserved"></span></span><br>
-				<span class="license" data-i18n="textfoot"></span> <a href="http://creativecommons.org/licenses/GPL/2.0/">GPL 2.0</a>.
+				<br>
+				<span data-i18n="titelwebsite"></span>: <a href="https://www.stefanvd.net/project/zoom/browser/" target="_blank" rel="noopener">www.stefanvd.net/project/zoom/browser/</a>
+				<br>
+				<span data-i18n="titeldeveloper"></span>: <a href="https://www.stefanvd.net" target="_blank" rel="noopener">www.stefanvd.net</a>
+				<br>
+				<br>
+				<div class="aboutbuttons">
+					<button id="buttonreportissue" class="btnspace" data-i18n="reportbug"></button><button id="buttonchangelog" class="btnspace" data-i18n="changelog"></button><button id="buttontranslateme" class="btnspace" data-i18n="translateme"></button>
+				</div>
+				<br>
+				<div id="permissionlist"></div>
+				<br><br><br><br><br>
+				<div class="grey-text">
+				Zoom<br>
+				<span>&copy; <span id="yearnow"></span> Stefan vd. <span data-i18n="titelrightsreserved"></span></span><br>
+				<span data-i18n="textfoot"></span> <a href="http://creativecommons.org/licenses/GPL/2.0/">GPL 2.0</a>.
 				</div>
 				</div>
 			</section>
 			</div>
-		</div>
+			</div>
 			<div id="tab3" class="page hidden">
 				<iframe id="welcomeguide" src="" width="100%" height="100%" frameBorder="0" scrolling="no"></iframe>
 			</div>
+		</div>
+<!-- dialog -->
+			<div id="materialModalRate" class="hide" role="dialog" aria-label="Review this extension" aria-describedby="materialModalRateTitle" aria-disabled="true">
+						<div id="materialModalRateCentered">
+							<div id="materialModalRateContent">
+								<img src="images/star.svg" alt="Review Zoom to 5 stars">
+								<div id="materialModalRateTitle"><span data-i18n="friendlyremember"></span></div>
+								<div id="materialModalRateText">
+									<span data-i18n="desremrate"></span>
+								</div>
+								<div id="materialModalRateButtons">
+								<div id="materialModalRateButtonOK" class="materialModalButton"><span data-i18n="titlelratenow"></span></div>
+								<div id="materialModalRateButtonCANCEL" class="materialModalButton"><span data-i18n="titleratelater"></span></div>
+								</div>
+							</div>
+						</div>
+			</div>
+			<div id="materialModalIntroduce" class="hide" role="dialog" aria-label="Introduce the new design" aria-describedby="materialModalIntroduceTitle" aria-disabled="true">
+					<div id="materialModalIntroduceCentered">
+						<div id="materialModalIntroduceContent">
+							<img src="images/introduce.svg" alt="Introducing Zoom">
+							<div id="materialModalIntroduceTitle"><span data-i18n="titelintroduce"></span></div>
+							<div id="materialModalIntroduceText">
+								<span data-i18n="desintroduce"></span>
+							</div>
+							<div id="materialModalIntroduceButtons">
+							<div id="materialModalIntroduceButtonOK" class="materialModalButton"><span data-i18n="titleok"></span></div>
+							<div id="materialModalIntroduceButtonCANCEL" class="materialModalButton"><span data-i18n="titlecancel"></span></div>
+							</div>
+						</div>
+					</div>
+			</div>
+			<div id="dropmenu" class="hide">
+				<ul><li id="btnactivedarkmode">
+					<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+					width="16" height="16"
+					viewBox="0 0 30 30">
+					<path d="M22,21c-6.627,0-12-5.373-12-12c0-1.95,0.475-3.785,1.3-5.412C6.485,5.148,3,9.665,3,15c0,6.627,5.373,12,12,12 c4.678,0,8.72-2.682,10.7-6.588C24.534,20.79,23.292,21,22,21z"></path></svg>
+					<span id="currentdarkmode" data-i18n="titledarkmodeoff"></span></li></ul>
+				<ul><li id="btnsupport">
+						<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+						width="16" height="16"
+						viewBox="0 0 24 24"><g><path d="M 20 2 L 4 2 C 2.894531 2 2 2.894531 2 4 L 2 22 L 6 18 L 20 18 C 21.105469 18 22 17.105469 22 16 L 22 4 C 22 2.894531 21.105469 2 20 2 Z M 13 14 L 11 14 L 11 12 L 13 12 Z M 15 9 C 15 9.378906 14.789063 9.71875 14.449219 9.890625 L 13 10.621094 L 13 11 L 11 11 L 11 10 C 11 9.621094 11.210938 9.28125 11.550781 9.109375 L 13 8.378906 L 13 7 L 11 7 L 11 8.078125 L 9 8.078125 L 9 6 C 9 5.449219 9.449219 5 10 5 L 14 5 C 14.550781 5 15 5.449219 15 6 Z "></path></g></svg>
+						<span data-i18n="titelpopupsupport"></span></li></ul>
+			</div>
+		</div>
 <script type="text/javascript" src="js/translate.js"></script>
 </body>
 </html>

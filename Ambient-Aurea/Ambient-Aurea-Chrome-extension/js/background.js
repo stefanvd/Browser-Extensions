@@ -3,7 +3,7 @@
 
 Ambient Aurea
 Bring your image to an ambient lighting effect with just one click on the button.
-Copyright (C) 2016 Stefan vd
+Copyright (C) 2018 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -35,8 +35,50 @@ else if (request.name == "contextmenuon") {checkcontextmenus();}
 else if (request.name == "contextmenuoff") {removecontexmenus()}
 });
 
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+        if(tab.url){
+        if((tab.url.match(/^http/i)||tab.url.match(/^file/i)||tab.url==browsernewtab)) {
+            chrome.browserAction.setPopup({tabId : tabId, popup:''});
+            if(tabId != null){
+                if((new URL(tab.url)).origin==browserstore||(new URL(tab.url))==exoptionspage){
+                    chrome.browserAction.setPopup({tabId : tabId, popup:'popup.html'});
+                }
+            }
+        }
+        }else{
+            if(tabId != null){
+            chrome.browserAction.setPopup({tabId : tabId, popup:'popup.html'});
+            }
+        }
+});
+
+chrome.tabs.onHighlighted.addListener(function(o) { tabId = o.tabIds[0];
+    chrome.tabs.get(tabId, function(tab) {
+        if(tab.url){
+			if((tab.url.match(/^http/i)||tab.url.match(/^file/i)||tab.url==browsernewtab)) {
+				chrome.browserAction.setPopup({tabId : tabId, popup:''});
+                if(tabId != null){
+                    if((new URL(tab.url)).origin==browserstore||(new URL(tab.url))==exoptionspage){
+                        chrome.browserAction.setPopup({tabId : tabId, popup:'popup.html'});
+                    }
+				}
+            }
+        }else{
+                if(tabId != null){
+                chrome.browserAction.setPopup({tabId : tabId, popup:'popup.html'});
+				}
+            }
+    });
+});
+
 // browser button
-chrome.browserAction.onClicked.addListener(function(tab) {chrome.tabs.executeScript(tab.id, {file: "js/aaselector.js"});});
+chrome.browserAction.onClicked.addListener(function(tabs) {
+    if((tabs.url.match(/^http/i)||tabs.url.match(/^file/i)||tabs.url==browsernewtab)){
+        chrome.tabs.executeScript(tabs.id, {file: "js/aaselector.js"});
+    } else{
+        chrome.browserAction.setPopup({tabId: tabs.id, popup:"popup.html"});
+    }
+});
 
 // contextMenus
 function onClickHandler(info, tab) {
@@ -73,10 +115,10 @@ chrome.contextMenus.create({"title": sharemenuratetitle, "type":"normal", "id": 
 
 // Create a parent item and two children.
 var parent = chrome.contextMenus.create({"title": sharemenusharetitle, "id": "totlsharemenu", "contexts":contexts});
-var child1 = chrome.contextMenus.create({"title": sharemenutellafriend, "id": "totlshareemail", "parentId": parent});
-var child2 = chrome.contextMenus.create({"title": sharemenusendatweet, "id": "totlsharetwitter", "parentId": parent});
-var child2 = chrome.contextMenus.create({"title": sharemenupostonfacebook, "id": "totlsharefacebook", "parentId": parent});
-var child2 = chrome.contextMenus.create({"title": sharemenupostongoogleplus, "id": "totlsharegoogleplus", "parentId": parent});
+var child1 = chrome.contextMenus.create({"title": sharemenutellafriend, "id": "totlshareemail", "contexts": contexts, "parentId": parent});
+var child2 = chrome.contextMenus.create({"title": sharemenusendatweet, "id": "totlsharetwitter", "contexts": contexts, "parentId": parent});
+var child3 = chrome.contextMenus.create({"title": sharemenupostonfacebook, "id": "totlsharefacebook", "contexts": contexts, "parentId": parent});
+var child4 = chrome.contextMenus.create({"title": sharemenupostongoogleplus, "id": "totlsharegoogleplus", "contexts": contexts, "parentId": parent});
 
 chrome.storage.sync.get(['contextmenus'], function(items){
     if(items['contextmenus']){checkcontextmenus();}
@@ -127,8 +169,9 @@ chrome.runtime.setUninstallURL(linkuninstall);
 
 chrome.storage.sync.get(['firstRun'], function(chromeset){
 if ((chromeset["firstRun"]!="false") && (chromeset["firstRun"]!=false)){
-  chrome.tabs.create({url: linkwelcomepage})
-  chrome.storage.sync.set({"firstRun": "false"});
-  chrome.storage.sync.set({"version": "2.0"});
+  chrome.tabs.create({url: linkwelcomepage, active:true});
+  chrome.tabs.create({url: linkguide, active:false});
+  var crrinstall = new Date().getTime();
+  chrome.storage.sync.set({"firstRun": false, "version": "2.0", "firstDate": crrinstall});
 }
 });

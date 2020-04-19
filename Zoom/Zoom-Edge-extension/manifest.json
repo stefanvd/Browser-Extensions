@@ -1,0 +1,85 @@
+{
+  "manifest_version": 2,
+  "name": "__MSG_nameedge__",
+  "short_name": "Zoom",
+  "version": "2.5.6.0",
+  "description": "__MSG_description__",
+  "author": "Stefan vd",
+  "homepage_url": "https://www.stefanvd.net/support/",
+  "icons": {
+    "16": "icons/icon16.png",
+    "24": "icons/icon24.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "96": "icons/icon96.png",
+    "128": "icons/icon128.png"
+  },
+  "default_locale": "en",
+  "browser_action": {
+          "default_icon": {
+            "16": "icons/iconstick16.png",
+            "19": "icons/iconstick19.png",
+            "20": "icons/iconstick20.png",
+            "32": "icons/iconstick32.png",
+            "38": "icons/iconstick38.png",
+            "40": "icons/iconstick40.png",
+            "64": "icons/iconstick64.png"
+          },
+          "default_title": "__MSG_name__"
+  },  
+  "background": {
+    "page": "background.html",
+	  "persistent": false
+  },
+  "content_security_policy": "default-src 'self'; style-src 'unsafe-inline'; media-src https://www.stefanvd.net; child-src https://www.youtube.com https://www.stefanvd.net; connect-src https://www.stefanvd.net; script-src 'self'; img-src 'self' * data:; object-src 'none'",
+  "commands": {
+    "toggle-feature-zoomin": {
+            "suggested_key": {
+              "default": "Ctrl+Shift+1",
+              "mac": "MacCtrl+Shift+1"
+            },
+            "description": "__MSG_titleshortzoomin__"
+    },
+    "toggle-feature-zoomout": {
+            "suggested_key": {
+              "default": "Ctrl+Shift+2",
+              "mac": "MacCtrl+Shift+2"
+            },
+            "description": "__MSG_titleshortzoomout__"
+    },
+    "toggle-feature-zoomreset": {
+            "suggested_key": {
+              "default": "Ctrl+Shift+0",
+              "mac": "MacCtrl+Shift+0"
+            },
+            "description": "__MSG_titleshortzoomreset__"
+    },
+    "toggle-feature-magnify": {
+            "suggested_key": {
+              "default": "Ctrl+Shift+M",
+              "mac": "MacCtrl+Shift+M"
+            },
+            "description": "__MSG_titleshortzoommagnify__"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "exclude_matches": ["*://*.stefanvd.net/project/zoom/browser/options.html"],
+      "js": ["js/constants.js","js/content.js"],
+      "run_at": "document_end"
+    },
+    {
+    "matches": ["*://*.stefanvd.net/project/zoom/browser/options.html"],
+    "js": ["js/constants.js","js/options.js"],
+    "run_at": "document_end"
+    }
+  ],
+  "minimum_chrome_version": "43",
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "offline_enabled": true,
+  "permissions": [ "contextMenus", "tabs", "<all_urls>", "storage", "system.display" ]
+}

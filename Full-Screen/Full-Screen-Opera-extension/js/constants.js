@@ -3,23 +3,18 @@ function $(id) { return document.getElementById(id); }
 if (window.location.href.match(/http:\/\/(.*stefanvd\.net\/.*|www\.stefanvd\.net\/.*\/.*)/i)){
 	if ($('full-screen-opera-install-button')) {
 		$('full-screen-opera-install-button').style.display = 'none';
-		$('full-screen-opera-thanks-button').style.display = '';
+		$('full-screen-opera-thanks-button').style.display = 'block';
 	}
 }
+var developerwebsite = "https://www.stefanvd.net";
+var exoptionspage = "https://www.stefanvd.net/project/full-screen/browser/options.html";
 var ambientaureaproduct = "https://addons.opera.com/extensions/details/ambient-aurea/";
-var idaa = "nmnhcielcdnkiaonbpdjmccclbhmejba";
 var datetodayproduct = "https://addons.opera.com/extensions/details/date-today/";
-var iddt = "kmmoagblhjcpjphddefmeilhobmdhica";
 var turnoffthelightsproduct = "https://addons.opera.com/extensions/details/turn-off-the-lights/";
-var idtotl = "ccbdoklfbpcifppcfahmmpmbkfdjjccm";
 var financetoolbarproduct = "https://addons.opera.com/extensions/details/finance-toolbar/";
-var idft = "bkolejhblonecomnblbhojjjllbmhicj";
 var propermenubarproduct = "https://addons.opera.com/extensions/details/proper-menubar/";
-var idpp = "nlgffdljekdinjgdnhcegnhgmeaihifa";
 var fullscreenproduct = "https://addons.opera.com/extensions/details/full-screen/";
-var idfs = "cglldighaohibhhehmibonhdjompidpj";
 var zoomproduct = "https://addons.opera.com/extensions/details/zoom/";
-var idz = "agocngbnphnfdhpacecdpcpfphhdmoff";
 var donatewebsite = "https://www.stefanvd.net/donate.htm";
 var writereview = "https://addons.opera.com/extensions/details/full-screen/";
 var linkchangelog = "https://www.stefanvd.net/project/full-screen/browser/opera/changelog.htm";
@@ -29,3 +24,6 @@ var linkguide = "https://www.stefanvd.net/project/full-screen/browser/opera/guid
 var linkwelcomepage = "https://www.stefanvd.net/project/full-screen/browser/opera/welcome.htm";
 var linkuninstall = "https://www.stefanvd.net/";
 var fullscreenwebsite = "https://www.stefanvd.net/project/full-screen/browser/";
+var browsernewtab = "chrome://newtab/";
+var browserstore = "https://chrome.google.com";
+var linkyoutube = "https://www.youtube.com/c/stefanvandamme?sub_confirmation=1";

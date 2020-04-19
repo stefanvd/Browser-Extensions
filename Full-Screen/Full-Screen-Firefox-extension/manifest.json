@@ -1,33 +1,47 @@
 {
   "manifest_version": 2,
   "name": "__MSG_name__",
-  "short_name": "FS",  
-  "version": "1.3.0.11",
+  "short_name": "Full Screen",  
+  "version": "1.4.10.0",
   "description": "__MSG_description__",
-  "homepage_url": "https://www.stefanvd.net",  
-  "icons": { "16": "icons/icon16.png",
-             "32": "icons/icon32.png",
-             "48": "icons/icon48.png",
-             "128": "icons/icon128.png" },
-  "permissions": [ "contextMenus", "tabs", "http://*/*", "https://*/*", "storage", "notifications" ],
+  "author": "Stefan vd",
+  "homepage_url": "https://www.stefanvd.net/support/",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
   "default_locale": "en",
   "browser_action": {
-      "browser_style": true,
+      "browser_style": false,
       "default_title": "__MSG_pageatitle__",
       "default_icon": {
-            "19": "icons/icon1.png",
-            "38": "icons/icon1@2x.png"
-          }
+        "19": "icons/icon1.png",
+        "38": "icons/icon1@2x.png"
+      },
+      "theme_icons": [{
+        "light": "icons/icon1-light.png",
+        "dark": "icons/icon1.png",
+        "size": 19
+      }, {
+        "light": "icons/icon1-light@2x.png",
+        "dark": "icons/icon1@2x.png",
+        "size": 38
+      }]
   },
-  "web_accessible_resources": [
-    "icons/icon16.png",
-	  "js/injected.js"
-  ],
   "content_scripts": [
     {
-      "matches": ["http://*/*", "https://*/*"],
-      "js": ["js/content.js"],
+      "matches": ["*://*/*"],
+      "exclude_matches": ["*://*.stefanvd.net/project/full-screen/browser/options.html"],
+      "js": ["js/constants.js","js/content.js"],
+      "css" : ["css/fs.css"],
       "run_at": "document_end"
+    },
+    {
+    "matches": ["*://*.stefanvd.net/project/full-screen/browser/options.html"],
+    "js": ["js/constants.js","js/options.js"],
+    "run_at": "document_end"
     }
   ],
   "background": {
@@ -42,13 +56,15 @@
     }
   },
   "options_ui": {
+    "browser_style": false,
     "page": "options.html",
     "open_in_tab": true
   },
   "applications": {
     "gecko": {
       "id": "fullscreen@stefanvd.net",
-      "strict_min_version": "49.0a1"
+      "strict_min_version": "57.0"
     }
-  }
+  },
+  "permissions": [ "contextMenus", "tabs", "http://*/*", "https://*/*", "storage" ]
 }
