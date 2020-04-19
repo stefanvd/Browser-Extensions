@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "__MSG_namechrome__",
   "short_name": "Zoom",
-  "version": "2.5.6.0",
+  "version": "2.5.7.0",
   "description": "__MSG_description__",
   "author": "Stefan vd",
   "homepage_url": "https://www.stefanvd.net/support/",
@@ -81,5 +81,5 @@
     "open_in_tab": true
   },
   "offline_enabled": true,
-  "permissions": [ "contextMenus", "tabs", "<all_urls>", "storage", "system.display" ]
+  "permissions": [ "contextMenus", "tabs", "<all_urls>", "storage"]
 }

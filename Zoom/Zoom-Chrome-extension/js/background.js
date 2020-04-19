@@ -3,7 +3,7 @@
 
 Zoom
 Zoom in or out on web content using the zoom button for more comfortable reading.
-Copyright (C) 2019 Stefan vd
+Copyright (C) 2020 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -30,9 +30,7 @@ var currentURL;var allzoom;var allzoomvalue;var badge;var lightcolor;var zoomchr
 chrome.runtime.onMessage.addListener(function request(request,sender,sendResponse){
 if(request.action == 'getallRatio'){
 currentURL = request.website;
-chrome.system.display.getInfo(screens => {
-    chromedisplay = screens[0].bounds.width+"x"+screens[0].bounds.height;
-});
+chromedisplay = request.screen;
 chrome.storage.sync.get(['allzoom','allzoomvalue','websitezoom','badge','lightcolor','zoomchrome','zoomweb','zoombydomain','zoombypage','defaultallscreen','defaultsinglescreen','screenzoom','zoomfont',], function(response){
 allzoom = response.allzoom;if(allzoom == null)allzoom = false; // default allzoom false
 allzoomvalue = response.allzoomvalue;if(allzoomvalue == null)allzoomvalue = 1; // default allzoomvalue value
@@ -100,7 +98,7 @@ if(allzoom == true){
                                         }
                                     });
                                 }else{
-                                    chrome.tabs.executeScript(opentab.id,{code:"document.body.style.transformOrigin='left top';document.body.style.transform='scale(" + allzoomvalue + ")'"},function(info){
+                                    chrome.tabs.executeScript(opentab.id,{code:"document.body.style.transformOrigin='center top';document.body.style.transform='scale(" + allzoomvalue + ")'"},function(info){
                                         if(chrome.runtime.lastError){
                                         // if current tab do not have the content.js and can not send the message to local chrome:// page.
                                         // The line will excute, and log 'ERROR:  {message: "Could not establish connection. Receiving end does not exist."}' 
@@ -143,7 +141,8 @@ else{
               function(tabs){
                   tabs.forEach(function(tab){
                         var tor = tab.url;
-                        if(zoombydomain == true){var webtor = tor.match(/^[\w-]+:\/*\[?([\w\.:-]+)\]?(?::\d+)?/)[0];}
+                        var filtermatch = tor.match(/^[\w-]+:\/*\[?([\w\.:-]+)\]?(?::\d+)?/);
+                        if(zoombydomain == true){if(filtermatch){webtor = filtermatch[0];}}
                         else{var webtor = tor;}
                         if(webtor == tempatbbuf){
                             if(zoomchrome == true){
@@ -166,7 +165,7 @@ else{
                                 if(supportsZoom){
                                     chrome.tabs.executeScript(tab.id,{code:"document.body.style.zoom=" + editzoom});
                                 }else{
-                                    chrome.tabs.executeScript(tab.id,{code:"document.body.style.transformOrigin='left top';document.body.style.transform='scale(" + editzoom + ")'"});
+                                    chrome.tabs.executeScript(tab.id,{code:"document.body.style.transformOrigin='center top';document.body.style.transform='scale(" + editzoom + ")'"});
                                 }
                             }else if(zoomfont == true){
                                 chrome.tabs.sendMessage(tab.id,{text:'setfontsize'});
@@ -184,6 +183,8 @@ else{
         goturlinside = true;
       }
     }
+
+// URL is not in the table, so use the default zoom value (that by screen size)
 // reset got inside
   if(goturlinside == true){}
   else{
@@ -191,7 +192,6 @@ else{
   chrome.tabs.query({active: true, currentWindow: true},
     function(tabs){
         chrome.tabs.getZoom(sender.tab.id, function(zoomFactor){
-            //console.log("Stefan zoom is now:"+zoomFactor + " "+allzoomvalue);
             if(zoomFactor != allzoomvalue){
                 if(zoomchrome == true){
                     // this to keep to zoom level by tab and not the whole domain (= automatic)
@@ -208,7 +208,7 @@ else{
                     if(supportsZoom){
                         chrome.tabs.executeScript(sender.tab.id,{code:"document.body.style.zoom=" + allzoomvalue});
                     }else{
-                        chrome.tabs.executeScript(sender.tab.id,{code:"document.body.style.transformOrigin='left top';document.body.style.transform='scale(" + allzoomvalue + ")'"});
+                        chrome.tabs.executeScript(sender.tab.id,{code:"document.body.style.transformOrigin='center top';document.body.style.transform='scale(" + allzoomvalue + ")'"});
                     }
                 }else if(zoomfont == true){
                     chrome.tabs.sendMessage(sender.tab.id,{text:'setfontsize'});
@@ -216,14 +216,14 @@ else{
                 }
                 if(badge == true){
                     chrome.browserAction.setBadgeBackgroundColor({color:lightcolor}); 
-                    chrome.browserAction.setBadgeText({text:""+Math.round(allzoomvalue*100)+""});
+                    chrome.browserAction.setBadgeText({text:""+Math.round(allzoomvalue*100)+"", tabId: sender.tab.id});
                 }else{
                     chrome.browserAction.setBadgeText({text:""});
                 }
             }else{
                 if(badge == true){
                     chrome.browserAction.setBadgeBackgroundColor({color:lightcolor}); 
-                    chrome.browserAction.setBadgeText({text:""+Math.round(allzoomvalue*100)+""});
+                    chrome.browserAction.setBadgeText({text:""+Math.round(allzoomvalue*100)+"", tabId: sender.tab.id});
                 }else{
                     chrome.browserAction.setBadgeText({text:""});
                 }
@@ -294,7 +294,7 @@ function zoomtab(a,b){
                             if(supportsZoom){
                                 chrome.tabs.executeScript(tab.id,{code:"document.body.style.zoom=" + b});
                             }else{
-                                chrome.tabs.executeScript(tab.id,{code:"document.body.style.transformOrigin='left top';document.body.style.transform='scale(" + b + ")'"});
+                                chrome.tabs.executeScript(tab.id,{code:"document.body.style.transformOrigin='center top';document.body.style.transform='scale(" + b + ")'"});
                             }
                         }
                         catch(e){}
@@ -309,7 +309,8 @@ function zoomtab(a,b){
                 function(tabs){
                     tabs.forEach(function(tab){
                         var pop = tab.url;
-                        if(zoombydomain == true){var webpop = pop.match(/^[\w-]+:\/*\[?([\w\.:-]+)\]?(?::\d+)?/)[0];}
+                        var filtermatch = pop.match(/^[\w-]+:\/*\[?([\w\.:-]+)\]?(?::\d+)?/);
+                        if(zoombydomain == true){if(filtermatch){webpop = filtermatch[0];}}
                         else{var webpop = pop;}
                         if(webpop == webjob){
                             try{
@@ -317,7 +318,7 @@ function zoomtab(a,b){
                                 if(supportsZoom){
                                     chrome.tabs.executeScript(tab.id,{code:"document.body.style.zoom=" + b});
                                 }else{
-                                    chrome.tabs.executeScript(tab.id,{code:"document.body.style.transformOrigin='left top';document.body.style.transform='scale(" + b + ")'"});
+                                    chrome.tabs.executeScript(tab.id,{code:"document.body.style.transformOrigin='center top';document.body.style.transform='scale(" + b + ")'"});
                                 }
                             }
                             catch(e){}
@@ -346,7 +347,8 @@ function zoomtab(a,b){
             function(tabs){
                 tabs.forEach(function(tab){
                     var pop = tab.url;
-                    if(zoombydomain == true){var webpop = pop.match(/^[\w-]+:\/*\[?([\w\.:-]+)\]?(?::\d+)?/)[0];}
+                    var filtermatch = pop.match(/^[\w-]+:\/*\[?([\w\.:-]+)\]?(?::\d+)?/);
+                    if(zoombydomain == true){if(filtermatch){webpop = filtermatch[0];}}
                     else{var webpop = pop;}
                     if(webpop == webjob){
                             chrome.tabs.sendMessage(tab.id,{text: 'changefontsize', value: Math.round(b*100)});
@@ -499,7 +501,8 @@ websitezoom = JSON.parse(websitezoom);
     function(tabs){
         if(tabs[0]){
         var job = tabs[0].url;
-        if(zoombydomain == true){webjob = job.match(/^[\w-]+:\/*\[?([\w\.:-]+)\]?(?::\d+)?/)[0];}
+        var filtermatch = job.match(/^[\w-]+:\/*\[?([\w\.:-]+)\]?(?::\d+)?/);
+        if(zoombydomain == true){if(filtermatch){webjob = filtermatch[0];}}
         else{webjob = job;}
         if(zoomchrome == true){
             chrome.tabs.getZoom(tabs[0].id,function(zoomFactor){
@@ -568,16 +571,6 @@ chrome.tabs.onHighlighted.addListener(function(){
     backgroundrefreshzoom();
 });
 
-// update when screen changed
-chrome.system.display.onDisplayChanged.addListener(function(){
-    chrome.tabs.query({},
-        function(tabs){
-            tabs.forEach(function(tab){
-                chrome.tabs.sendMessage(tab.id,{text:'refreshscreen'});
-            });
-    });
-});
-
 chrome.commands.onCommand.addListener(function(command){
 if(command == "toggle-feature-zoomin"){
     zoomview(+1);
@@ -617,7 +610,7 @@ if(respage == "zoompage"){
             if(supportsZoom){
                  chrome.tabs.executeScript(tabs[0].id,{code:"document.body.style.zoom=" + czl/100});
             }else{
-                chrome.tabs.executeScript(tabs[0].id,{code:"document.body.style.transformOrigin='left top';document.body.style.transform='scale(" + czl/100 + ")'"});
+                chrome.tabs.executeScript(tabs[0].id,{code:"document.body.style.transformOrigin='center top';document.body.style.transform='scale(" + czl/100 + ")'"});
             }
         }else if(zoomfont == true){
             chrome.tabs.sendMessage(sender.tab.id,{text: 'setfontsize' });
@@ -628,7 +621,8 @@ if(respage == "zoompage"){
             chrome.browserAction.setBadgeText({text:""+Math.round(czl)+""});}else{chrome.browserAction.setBadgeText({text:""});
         }
         var job = tabs[0].url;
-        if(zoombydomain == true){var webjob = job.match(/^[\w-]+:\/*\[?([\w\.:-]+)\]?(?::\d+)?/)[0];}
+        var filtermatch = job.match(/^[\w-]+:\/*\[?([\w\.:-]+)\]?(?::\d+)?/);
+        if(zoombydomain == true){if(filtermatch){webjob = filtermatch[0];}}
         else{var webjob = job;}
         if(allzoom == true){
             // save for all zoom feature
@@ -667,6 +661,21 @@ else if(info.menuItemId == "totlshareemail"){window.open("mailto:youremail?subje
 else if(info.menuItemId == "totlsharetwitter"){var szoomproductcodeurl = encodeURIComponent("The Best and Amazing Zoom Browser extension "+zoomproduct+"");window.open("https://twitter.com/home?status="+szoomproductcodeurl+"", "_blank");}
 else if(info.menuItemId == "totlsharefacebook"){window.open("https://www.facebook.com/sharer/sharer.php?u="+zoomproduct, "_blank");}
 else if(info.menuItemId == "totlsubscribe"){chrome.tabs.create({url: linkyoutube, active:true})}
+else if(info.menuItemId == "totlapplyresetzoom"){
+// Apply reset zoom to all tabs and in all windwow
+chrome.tabs.query({}, function(tabs){
+    var i;
+    var l = tabs.length;
+    for(i = 0; i < l; i++){
+        if(chrome.runtime.lastError){
+        // if current tab do not have the content.js and can not send the message to local chrome:// page.
+        // The line will excute, and log 'ERROR:  {message: "Could not establish connection. Receiving end does not exist."}' 
+        //console.log('ERROR: ', chrome.runtime.lastError);
+        }
+        chrome.tabs.sendMessage(tabs[i].id,{text: 'refreshscreen' },function(info){});
+    }
+});
+}
 }
 
 // check to remove all contextmenus
@@ -683,11 +692,15 @@ var sharemenupostonfacebook = chrome.i18n.getMessage("sharemenupostonfacebook");
 var sharemenuratetitle = chrome.i18n.getMessage("sharemenuratetitle");
 var sharemenudonatetitle = chrome.i18n.getMessage("sharemenudonatetitle");
 var sharemenusubscribetitle = chrome.i18n.getMessage("desremyoutube");
-
+var sharemenuapplyzoomresettitle = chrome.i18n.getMessage("desapplyzoomreset");
 var contexts = ["page_action", "browser_action"];
+
+chrome.contextMenus.create({"title": sharemenuapplyzoomresettitle, "type":"normal", "id": "totlapplyresetzoom", "contexts": contexts});
+
 try{
     // try show web browsers that do support "icons"
     // Firefox, Opera, Microsoft Edge
+
     chrome.contextMenus.create({"title": sharemenuwelcomeguidetitle, "type":"normal", "id": "totlguideemenu", "contexts": contexts, "icons":{"16": "images/IconGuide.png","32": "images/IconGuide@2x.png"}});
     chrome.contextMenus.create({"title": sharemenudonatetitle, "type":"normal", "id": "totldevelopmenu", "contexts": contexts, "icons":{"16": "images/IconDonate.png","32": "images/IconDonate@2x.png"}});
     chrome.contextMenus.create({"title": sharemenuratetitle, "type":"normal", "id": "totlratemenu", "contexts": contexts, "icons":{"16": "images/IconStar.png","32": "images/IconStar@2x.png"}});

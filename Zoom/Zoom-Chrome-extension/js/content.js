@@ -3,7 +3,7 @@
 
 Zoom
 Zoom in or out on web content using the zoom button for more comfortable reading.
-Copyright (C) 2019 Stefan vd
+Copyright (C) 2020 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -47,7 +47,12 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse){
         }
     }
     else if(msg.text === 'refreshscreen'){
-        chrome.runtime.sendMessage({action: "getallRatio", website: window.location.href});
+        currentscreen = screen.width+"x"+screen.height;
+        // reload page to get the curretn web page zoom
+        location.reload();
+        // because send message will overwrite if use many tabs and the last tab will be only send
+        // runtime.sendMessage can be used only for one-time requests
+        //chrome.runtime.sendMessage({action: "getallRatio", website: window.location.href, screen: currentscreen});
     }
     else if(msg.text === 'setfontsize'){
         setdefaultfontsize();
