@@ -27,3 +27,4 @@ var zoomwebsite = "https://www.stefanvd.net/project/zoom/browser/";
 var browsernewtab = "opera://newtab/";
 var browserstore = "https://addons.opera.com";
 var linkyoutube = "https://www.youtube.com/c/stefanvandamme?sub_confirmation=1";
+var devmode = false;

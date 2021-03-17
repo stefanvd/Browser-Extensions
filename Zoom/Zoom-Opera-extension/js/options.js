@@ -3,7 +3,7 @@
 
 Zoom
 Zoom in or out on web content using the zoom button for more comfortable reading.
-Copyright (C) 2019 Stefan vd
+Copyright (C) 2020 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -27,12 +27,12 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 //================================================
 
 function $(id) { return document.getElementById(id); }
-
 var youtubeembed = "https://www.youtube.com/embed/?listType=playlist&amp;list=PLfXHh3TKRb4ZRrIhSRo6cWEJVeS3_M5Yb";
+var darkmode = false;
 
 window.addEventListener("message", (event) => {
 	if(event.origin == "https://www.stefanvd.net"){
-    if (event.source == window &&
+    if(event.source == window &&
         event.data &&
         event.data.direction == "from-page-script") {
         //alert("Content script received message: \"" + event.data.message + "\"");
@@ -49,26 +49,32 @@ window.addEventListener("message", (event) => {
 
 // Option to save current value
 function save_options(){
-  var websitezoomBox = $("websitezoomBox");
-  var websitezoomnumberBox = $("websitezoomnumberBox");
-  var websitezoom = {};
-  for (var i = 0; i < websitezoomBox.length; i++){
+    chrome.runtime.sendMessage({name: "getallpermissions"});
+
+    var websitezoomBox = $("websitezoomBox");
+    var websitezoomnumberBox = $("websitezoomnumberBox");
+    var websitezoom = {};
+    var i;
+    var l = websitezoomBox.length;
+    for (i = 0; i < l; i++){
     var getnumber = websitezoomnumberBox.options[i].text;
-	  websitezoom[websitezoomBox.options[i].value] = getnumber;
-  }
-  var screenzoomBox = $("screenzoomBox");
-  var screenzoomnumberBox = $("screenzoomnumberBox");
-  var screenzoom = {};
-  for (var i = 0; i < screenzoomBox.length; i++){
+        websitezoom[websitezoomBox.options[i].value] = getnumber;
+    }
+    var screenzoomBox = $("screenzoomBox");
+    var screenzoomnumberBox = $("screenzoomnumberBox");
+    var screenzoom = {};
+    var i;
+    var l = screenzoomBox.length;
+    for (i = 0; i < l; i++){
     var getsnumber = screenzoomnumberBox.options[i].text;
-	  screenzoom[screenzoomBox.options[i].value] = getsnumber;
-  }
-  chrome.storage.sync.set({ "allzoom": $('allzoom').checked, "optionskipremember": $('optionskipremember').checked, "contextmenus": $('contextmenus').checked, "badge": $('badge').checked, "steps": $('steps').value, "lightcolor": $('lightcolor').value, "zoomchrome": $('zoomchrome').checked, "zoomweb": $('zoomweb').checked, "websitezoom": JSON.stringify(websitezoom), "zoomdoubleclick": $('zoomdoubleclick').checked, "zoomnewsingleclick": $('zoomnewsingleclick').checked, "zoomsingleclick": $('zoomsingleclick').checked, "zoommousescroll": $('zoommousescroll').checked, "zoommousebuttonleft": $('zoommousebuttonleft').checked, "zoommousebuttonright": $('zoommousebuttonright').checked, "zoommousescrollup": $('zoommousescrollup').checked, "zoommousescrolldown": $('zoommousescrolldown').checked, "largepopup": $('largepopup').checked, "zoombydomain": $('zoombydomain').checked, "zoombypage": $('zoombypage').checked, "allzoomvalue": $('allzoomvalue').value/100, "defaultallscreen": $('defaultallscreen').checked, "defaultsinglescreen": $('defaultsinglescreen').checked, "screenzoom": JSON.stringify(screenzoom),"zoomfont": $('zoomfont').checked,"zoommagcircle": $('zoommagcircle').checked,"zoommagsquare": $('zoommagsquare').checked,"zoommagszoomlevel": $('zoommagszoomlevel').value,"zoommagszoomsize": $('zoommagszoomsize').value});
+        screenzoom[screenzoomBox.options[i].value] = getsnumber;
+    }
+    chrome.storage.sync.set({ "allzoom": $('allzoom').checked, "optionskipremember": $('optionskipremember').checked, "contextmenus": $('contextmenus').checked, "badge": $('badge').checked, "steps": $('steps').value, "lightcolor": $('lightcolor').value, "zoomchrome": $('zoomchrome').checked, "zoomweb": $('zoomweb').checked, "websitezoom": JSON.stringify(websitezoom), "zoomdoubleclick": $('zoomdoubleclick').checked, "zoomnewsingleclick": $('zoomnewsingleclick').checked, "zoomsingleclick": $('zoomsingleclick').checked, "zoommousescroll": $('zoommousescroll').checked, "zoommousebuttonleft": $('zoommousebuttonleft').checked, "zoommousebuttonright": $('zoommousebuttonright').checked, "zoommousescrollup": $('zoommousescrollup').checked, "zoommousescrolldown": $('zoommousescrolldown').checked, "largepopup": $('largepopup').checked, "zoombydomain": $('zoombydomain').checked, "zoombypage": $('zoombypage').checked, "allzoomvalue": $('allzoomvalue').value/100, "defaultallscreen": $('defaultallscreen').checked, "defaultsinglescreen": $('defaultsinglescreen').checked, "screenzoom": JSON.stringify(screenzoom),"zoomfont": $('zoomfont').checked,"zoommagcircle": $('zoommagcircle').checked,"zoommagsquare": $('zoommagsquare').checked,"zoommagszoomlevel": $('zoommagszoomlevel').value,"zoommagszoomsize": $('zoommagszoomsize').value,"contexta": $('contexta').checked,"contextb": $('contextb').checked});
 }
 
 var firstdefaultvalues = {};
 // Option default value to read if there is no current value from chrome.storage AND init default value
-chrome.storage.sync.get(['zoomchrome', 'zoomweb','zoommousebuttonleft','zoommousebuttonright','zoommousescrollup','zoommousescrolldown','zoombydomain','zoombypage','defaultallscreen','defaultsinglescreen','zoomfont','zoomdoubleclick','zoomnewsingleclick','zoomsingleclick','zoommagcircle','zoommagsquare'], function(items){
+chrome.storage.sync.get(['zoomchrome', 'zoomweb','zoommousebuttonleft','zoommousebuttonright','zoommousescrollup','zoommousescrolldown','zoombydomain','zoombypage','defaultallscreen','defaultsinglescreen','zoomfont','zoomdoubleclick','zoomnewsingleclick','zoomsingleclick','zoommagcircle','zoommagsquare','contexta','contextb'], function(items){
     // find no localstore zoomengine
 	if(items['zoomchrome'] == null && items['zoomweb'] == null){firstdefaultvalues['zoomweb'] = true;firstdefaultvalues['zoomchrome'] = false;firstdefaultvalues['zoomfont'] = false;}
     if(items['zoommousebuttonleft'] == null && items['zoommousebuttonright'] == null){firstdefaultvalues['zoommousebuttonleft'] = true;firstdefaultvalues['zoommousebuttonright'] = false;}
@@ -77,6 +83,7 @@ chrome.storage.sync.get(['zoomchrome', 'zoomweb','zoommousebuttonleft','zoommous
     if(items['defaultallscreen'] == null && items['defaultsinglescreen'] == null){firstdefaultvalues['defaultallscreen'] = true;firstdefaultvalues['defaultsinglescreen'] = false;}
     if(items['zoomdoubleclick'] == null && items['zoomnewsingleclick'] == null && items['zoomsingleclick'] == null){firstdefaultvalues['zoomdoubleclick'] = false;firstdefaultvalues['zoomnewsingleclick'] = false;firstdefaultvalues['zoomsingleclick'] = true;}
     if(items['zoommagcircle'] == null && items['zoommagsquare'] == null){firstdefaultvalues['zoommagcircle'] = true;firstdefaultvalues['zoommagsquare'] = false;}
+    if(items['contexta'] == null && items['contextb'] == null){firstdefaultvalues['contexta'] = true;firstdefaultvalues['contextb'] = false;}
     // find no localstore lightimage
     // Save the init value
     chrome.storage.sync.set(firstdefaultvalues, function() {
@@ -115,18 +122,6 @@ $("materialModalIntroduceButtonCANCEL").addEventListener('click', function(e){
     closeMaterialIntroduceAlert(e, false);
 });
 
-// dialog
-function materialAlert(callback){
-    document.getElementById('materialModalButtonCANCEL').style.display = 'none';
-    document.getElementById('materialModal').className = 'show';
-    document.getElementById('materialModal').setAttribute('aria-disabled', "false");   
-}
-function closeMaterialAlert(e, result){
-    e.stopPropagation();
-    document.getElementById('materialModal').className = 'hide';
-    document.getElementById('materialModal').setAttribute('aria-disabled', "true");   
-}
-
 // rate
 function materialRateAlert(callback){
     document.getElementById('materialModalRate').className = 'show';
@@ -151,7 +146,7 @@ function closeMaterialIntroduceAlert(e, result){
 }
 //---
 
-chrome.storage.sync.get(['firstDate','optionskipremember','countremember','allzoom','websitezoom','allzoomvalue','contextmenus','badge','steps','lightcolor','zoomweb','zoomchrome','zoomdoubleclick','zoomnewsingleclick','zoomsingleclick','zoommousescroll','zoommousebuttonleft','zoommousebuttonright','zoommousescrollup','zoommousescrolldown','largepopup','zoombydomain','zoombypage','defaultallscreen','defaultsinglescreen','screenzoom','firstsawrate','introduce','zoomfont','zoommagcircle','zoommagsquare','zoommagszoomlevel','zoommagszoomsize'], function(items){
+chrome.storage.sync.get(['firstDate','optionskipremember','countremember','allzoom','websitezoom','allzoomvalue','contextmenus','badge','steps','lightcolor','zoomweb','zoomchrome','zoomdoubleclick','zoomnewsingleclick','zoomsingleclick','zoommousescroll','zoommousebuttonleft','zoommousebuttonright','zoommousescrollup','zoommousescrolldown','largepopup','zoombydomain','zoombypage','defaultallscreen','defaultsinglescreen','screenzoom','firstsawrate','introduce','zoomfont','zoommagcircle','zoommagsquare','zoommagszoomlevel','zoommagszoomsize','contexta','contextb'], function(items){
     if(items['allzoomvalue']){$('allzoomvalue').value = Math.round(items['allzoomvalue']*100);$('slider').value = Math.round(items['allzoomvalue']*100);}
     else{$('allzoomvalue').value = 100;$('slider').value = 100;}
     if(items['steps']){$('steps').value = items['steps'];}
@@ -184,6 +179,8 @@ chrome.storage.sync.get(['firstDate','optionskipremember','countremember','allzo
     else $('zoommagszoomlevel').value = 3;
     if(items['zoommagszoomsize']){$('zoommagszoomsize').value = items['zoommagszoomsize'];}
     else $('zoommagszoomsize').value = 200; 
+    if(items['contexta'] == true)$('contexta').checked = true;
+    if(items['contextb'] == true)$('contextb').checked = true;
 
 // show introduce
 if(items['introduce'] != true){
@@ -236,8 +233,10 @@ if(typeof websitezoom == "string") {
 	for(var domain in websitezoom)
 		atbbuf.push(domain);
         atbbuf.sort();
-        
-	for(var i = 0; i < atbbuf.length; i++){
+    
+    var i;
+    var l = atbbuf.length;
+	for(i = 0; i < l; i++){
 		appendToListBox("websitezoomBox", atbbuf[i],websitezoom[''+atbbuf[i]+'']);
     }
 }
@@ -253,16 +252,20 @@ if(typeof screenzoom == "string") {
 	for(var sdomain in screenzoom)
 		satbbuf.push(sdomain);
         satbbuf.sort();
-        
-	for(var i = 0; i < satbbuf.length; i++){
+    
+    var i;
+    var l = satbbuf.length;
+	for(i = 0; i < l; i++){
 		screenappendToListBox("screenzoomBox", satbbuf[i],screenzoom[''+satbbuf[i]+'']);
     }
 }
 
 	// load tab div
-	var tabListItems = document.getElementById('navbar').childNodes;
-	for ( var i = 0; i < tabListItems.length; i++ ) {
-		if ( tabListItems[i].nodeName == 'LI' ) {
+    var tabListItems = document.getElementById('navbar').childNodes;
+    var i;
+    var l = tabListItems.length;
+	for(i = 0; i < l; i++){
+		if(tabListItems[i].nodeName == 'LI'){
 		var tabLink = getFirstChildWithTagName( tabListItems[i], 'A' );
 		var id = getHash( tabLink.getAttribute('data-tab') );
 		tabLinks[id] = tabLink;
@@ -274,18 +277,18 @@ if(typeof screenzoom == "string") {
     // highlight the first tab
     var i = 0;
  
-    for ( var id in tabLinks ) {
+    for(var id in tabLinks){
     	tabLinks[id].onclick = showTab;
 		tabLinks[id].onfocus = function() { this.blur() };
-		if ( i == 0 ) tabLinks[id].className = 'navbar-item-selected';
+		if(i == 0) tabLinks[id].className = 'navbar-item-selected';
 		i++;
     }
     
     // Hide all content divs except the first
     var i = 0;
  
-    for ( var id in contentDivs ) {
-    	if ( i != 0 ) contentDivs[id].className = 'page hidden';
+    for(var id in contentDivs){
+    	if(i != 0) contentDivs[id].className = 'page hidden';
         i++;
     }
 
@@ -320,10 +323,12 @@ if(typeof screenzoom == "string") {
       return false;
     }
  
-    function getFirstChildWithTagName( element, tagName ) {
-      for ( var i = 0; i < element.childNodes.length; i++ ) {
-        if ( element.childNodes[i].nodeName == tagName ) return element.childNodes[i];
-      }
+    function getFirstChildWithTagName(element,tagName) {
+        var i;
+        var l = element.childNodes.length;
+        for(i = 0; i < l; i++){
+            if(element.childNodes[i].nodeName == tagName) return element.childNodes[i];
+        }
     }
  
     function getHash( url ) {
@@ -359,6 +364,7 @@ function websitezoomadd() {
     if(domain == ""){return;}
     if(number == ""){return;}
     appendToListBox("websitezoomBox", domain, number);
+    ariacheck();
     save_options();
 }
 
@@ -371,6 +377,7 @@ function websitezoomremoveSelectedExcludedDomain() {
             websitezoomphoneBox.remove(i);
         }
     }
+    ariacheck();
     save_options();
 }
 
@@ -403,6 +410,7 @@ function screenzoomadd() {
     if(domain == ""){return;}
     if(number == ""){return;}
     screenappendToListBox("screenzoomBox", domain, number);
+    ariacheck();
     save_options();
 }
 
@@ -415,6 +423,7 @@ function screenzoomremoveSelectedExcludedDomain() {
             screenzoomphoneBox.remove(i);
         }
     }
+    ariacheck();
     save_options();
 }
 
@@ -455,6 +464,29 @@ function test(){
     $("screenzoomremovebutton").disabled = false;
     $("detectscreensize").disabled = false;
   }
+
+  if($('contextmenus').checked){
+    $("contexta").disabled = false;
+    $("contextb").disabled = false;
+  }else{
+    $("contexta").disabled = true;
+    $("contextb").disabled = true;
+  }
+}
+
+function ariacheck(){
+    var inputs = document.querySelectorAll('input');
+    var i;
+    var l = inputs.length;
+    for(i = 0; i < l; i++){
+        if(inputs[i].getAttribute("role") == "radio" || inputs[i].getAttribute("role") == "checkbox"){
+            if(inputs[i].checked == true){
+                inputs[i].setAttribute("aria-checked", true);
+            }else{
+                inputs[i].setAttribute("aria-checked", false);
+            }
+        }
+    }
 }
 
 // Current year
@@ -485,6 +517,54 @@ function checkdarkmode(){
     });
 }
 
+// Listen for messages
+chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse){
+    // If the received message has the expected format...
+    if(msg.text === 'receiveallpermissions'){
+    // empty ul first
+    if($("permullist")){
+        var lis = document.querySelectorAll('#permullist li');
+        var i;
+        var li;
+        for(i = 0; li = lis[i]; i++){
+            li.parentNode.removeChild(li);
+        }
+    }
+    var perm = msg.value;
+    perm.forEach(function(x){
+        if($("permissionlist")){
+            if($("permullist")){}else{
+                var newpermtitle = document.createElement('h4');
+                newpermtitle.textContent = chrome.i18n.getMessage("permissionrequired");
+                $("permissionlist").appendChild(newpermtitle);
+
+                var newpermul = document.createElement('ul');
+                newpermul.setAttribute('id','permullist');
+                $("permissionlist").appendChild(newpermul);
+            }
+
+            var newperm = document.createElement('li');
+            $("permullist").appendChild(newperm);
+
+            var newpermspan = document.createElement('span');
+            newpermspan.textContent = x + ": ";
+            newperm.appendChild(newpermspan);
+            
+            var textperm = "";
+            var newpermspandes = document.createElement('span');
+            if(x == "activeTab"){textperm = chrome.i18n.getMessage("permissionactivetab");}
+            else if(x == "contextMenus"){textperm = chrome.i18n.getMessage("permissioncontextmenu");}
+            else if(x == "storage"){textperm = chrome.i18n.getMessage("permissionstorage");}
+            else if(x == "tabs"){textperm = chrome.i18n.getMessage("permissiontabs");}
+            else if(x == "webNavigation"){textperm = chrome.i18n.getMessage("permissionwebnavigation");}
+            newpermspandes.textContent = textperm;
+            newpermspandes.className = "item";
+            newperm.appendChild(newpermspandes);
+        }
+    });
+    }
+});
+
 /* Option page body action */
 // Read current value settings
 window.addEventListener('load', function(){
@@ -501,7 +581,7 @@ if(window.location.href != exoptionspage){
 function domcontentloaded(){
 checkdarkmode();
 
-if(window.location.href != exoptionspage){
+if((window.location.href != exoptionspage) && devmode == false){
 
     var condition = navigator.onLine ? "online" : "offline";
     if(condition == "online"){
@@ -540,9 +620,16 @@ if(window.location.href != exoptionspage){
 var sharetext = chrome.i18n.getMessage("sharetextd");
 var stefanvdurl = zoomproduct;
 var stefanvdaacodeurl = encodeURIComponent(stefanvdurl);
-$("shareboxyoutube").addEventListener("click", function() {window.open(linkyoutube,"_blank");});
-$("shareboxfacebook").addEventListener("click", function() {window.open("https://www.facebook.com/sharer.php?u="+ stefanvdurl + "&t=" + sharetext + "", 'Share to Facebook','width=600,height=460,menubar=no,location=no,status=no');});
-$("shareboxtwitter").addEventListener("click", function() {window.open("https://twitter.com/share?url=" + stefanvdaacodeurl + "&text=" + sharetext + "", 'Share to Twitter','width=600,height=460,menubar=no,location=no,status=no');});
+
+if($("shareboxyoutube")){
+    $("shareboxyoutube").addEventListener("click", function() {window.open(linkyoutube,"_blank");});
+}
+if($("shareboxfacebook")){
+    $("shareboxfacebook").addEventListener("click", function() {window.open("https://www.facebook.com/sharer.php?u="+ stefanvdurl + "&t=" + sharetext + "", 'Share to Facebook','width=600,height=460,menubar=no,location=no,status=no');});
+}
+if($("shareboxtwitter")){
+    $("shareboxtwitter").addEventListener("click", function() {window.open("https://twitter.com/share?url=" + stefanvdaacodeurl + "&text=" + sharetext + "", 'Share to Twitter','width=600,height=460,menubar=no,location=no,status=no');});
+}
 
 var isMenuClick = false;
 var menu = document.getElementById('dotmenu');
@@ -611,11 +698,16 @@ $("btnpromoaction").addEventListener('click', function() {window.open(donatewebs
 
 // Detect click / change to save the page and test it.
 var inputs = document.querySelectorAll('input');
-for (var i = 0; i < inputs.length; i++) {inputs[i].addEventListener('change', test);inputs[i].addEventListener('change', save_options);}
+var i;
+var l = inputs.length;
+for(i = 0; i < l; i++){inputs[i].addEventListener('change', test);inputs[i].addEventListener('change', ariacheck);inputs[i].addEventListener('change', save_options);}
 
-$("slider").addEventListener('change', function() {$("allzoomvalue").value=this.value;save_options();});
-$("slider").addEventListener('input', function() {$("allzoomvalue").value=this.value;save_options();});
-$("allzoomvalue").addEventListener('change', function() {$("slider").value=this.value;save_options();});
+// show all the active permissions in a list
+chrome.runtime.sendMessage({name: "getallpermissions"});
+
+$("slider").addEventListener('change', function() {$("allzoomvalue").value=this.value;ariacheck();save_options();});
+$("slider").addEventListener('input', function() {$("allzoomvalue").value=this.value;ariacheck();save_options();});
+$("allzoomvalue").addEventListener('change', function() {$("slider").value=this.value;ariacheck();save_options();});
 
 // Close yellow bar
 $("managed-prefs-text-close").addEventListener('click', function() {$("managed-prefs-banner").style.display = "none";});
@@ -683,14 +775,16 @@ $("nt").addEventListener('click', function() {$("sectionreviewbox").style.displa
 
 // search
 var pageinsearch = false;
-function OnSearch(input) {
-  if(input.value == "") {
+function OnSearch(input){
+  if(input.value == ""){
     pageinsearch = false;
     input.blur();
 
-    let sections = document.getElementsByTagName("section");
-    for (let x = 0; x < sections.length; x++) {
-      let section = sections[x];
+    var sections = document.getElementsByTagName("section");
+    var x;
+    var l = sections.length;
+    for(x = 0; x < l; x++){
+      var section = sections[x];
       section.classList.remove("searchfoundnothing");
     }
 
@@ -708,17 +802,20 @@ function OnSearch(input) {
 
     // receive the total tab pages
     var tabListItems = $('navbar').childNodes;
-    for ( var i = 0; i < tabListItems.length; i++ ) {
-        if ( tabListItems[i].nodeName == 'LI' ) {
-        var tabLink = getFirstChildWithTagName( tabListItems[i], 'A' );
-        var id = getHash( tabLink.getAttribute('data-tab') );
-        contentDivs[id] = $( id );
+    var i;
+    var l = tabListItems.length;
+    for(i = 0; i < l; i++){
+        if(tabListItems[i].nodeName == 'LI'){
+        var tabLink = getFirstChildWithTagName(tabListItems[i],'A');
+        var id = getHash(tabLink.getAttribute('data-tab'));
+        contentDivs[id] = $(id);
         }
     }
 
     // show all tab pages
     var i = 0;
-    for ( var id in contentDivs ) {
+    var id;
+    for(id in contentDivs){
         if(id != "tab3"){
         contentDivs[id].className = 'page';
         }
@@ -727,10 +824,12 @@ function OnSearch(input) {
     //---
     var searchword = input.value;
 
-    let sections = document.getElementsByTagName("section");
-    for (let x = 0; x < sections.length; x++) {
-        let section = sections[x];
-        let content = section.innerHTML;
+    var sections = document.getElementsByTagName("section");
+    var x;
+    var l = sections.length;
+    for(x = 0; x < l; x++){
+        var section = sections[x];
+        var content = section.innerHTML;
 
         if(content.search(new RegExp(searchword, "i")) < 1){
             section.classList.add("searchfoundnothing");
@@ -740,14 +839,18 @@ function OnSearch(input) {
     }
 
     // hide the h2 if there is no sections visible
-    let pages = document.getElementsByClassName("page");
-    for (let z = 0; z < pages.length; z++) {
-      let sections = pages[z].getElementsByTagName("section");
+    var pages = document.getElementsByClassName("page");
+    var z;
+    var l = pages.length;
+    for(z = 0; z < l; z++){
+      var sections = pages[z].getElementsByTagName("section");
       var countnothingcheck = 0;
-      for (let x = 0; x < sections.length; x++) {
-        let section = sections[x];
+      var x;
+      var q = sections.length;
+      for(x = 0; x < q; x++){
+        var section = sections[x];
 
-        if (section.classList.contains('searchfoundnothing')) {
+        if(section.classList.contains('searchfoundnothing')){
           countnothingcheck += 1;
         }
 

@@ -3,7 +3,7 @@
 
 Finance Toolbar
 Get real time stock market information about your favorite stocks. With mini-charts of the currency value.
-Copyright (C) 2018 Stefan vd
+Copyright (C) 2019 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -27,6 +27,8 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 //================================================
 
 function $(id) { return document.getElementById(id); }
+
+var youtubeembed = "https://www.youtube.com/embed/?listType=playlist&amp;list=PLfXHh3TKRb4YpNSpneMPXqqghriKws079";
 
 window.addEventListener("message", (event) => {
 	if(event.origin == "https://www.stefanvd.net"){
@@ -67,12 +69,12 @@ function save_options(){
 	var excludedstockdouble = {};
 	for (var i = 0; i < excludedstockBoxdouble.length; i++){excludedstockdouble[excludedstockBoxdouble.options[i].value] = true;}
 
-  chrome.storage.sync.set({ "marqueebehaviour": em.options[em.selectedIndex].value, "direction": ed.options[ed.selectedIndex].value, "scrollamount": $('scrollamount').value, "japan": $('japan').checked, "xminutes": $('xminutes').value, "favoritestock": $('favoritestock').checked, "favo1": $('favo1').value, "favo2": $('favo2').value, "favo3": $('favo3').value, "favo4": $('favo4').value, "getinfovaluepercent": $('getinfovaluepercent').checked, "getinfovaluestock": $('getinfovaluestock').checked, "getinfovaluemc": $('getinfovaluemc').checked, "getfontfamily": eg.options[eg.selectedIndex].value, "getfontsize": $('getfontsize').value, "excludedstock": JSON.stringify(excludedstock),"optionskipremember": $('optionskipremember').checked, "lightcolor": $('lightcolor').value, "redcolor": $('redcolor').value, "greencolor": $('greencolor').value,"textcolor": $('textcolor').value, "dropshadow": $("dropshadow").checked,"toolbarDomains": JSON.stringify(toolbarDomains), "allsites": $("allsites").checked, "toolbaronly": $("toolbaronly").checked,"excludedstockdouble": JSON.stringify(excludedstockdouble),"doublebar": $("doublebar").checked, "getpositiontop": $("getpositiontop").checked,'getpositionbottom': $("getpositionbottom").checked, 'scrollbar': $("scrollbar").checked, 'staticbar': $("staticbar").checked,"favo1b": $('favo1b').value, "favo2b": $('favo2b').value, "favo3b": $('favo3b').value, "favo4b": $('favo4b').value, "fillchange": $("fillchange").checked, "toolbarwhite": $("toolbarwhite").checked, "toolbarblack": $("toolbarblack").checked, "worldmapcolor": $('worldmapcolor').value, "worldmapopacity": $('worldmapopacity').value, "hideworldmap": $('hideworldmap').checked, "getfullvaluedata": $('getfullvaluedata').checked, "fullname": $('fullname').checked, "fullnamearea": $('fullnamearea').value, "searchbehaviour": se.options[se.selectedIndex].value, "bellmarket": $("bellmarket").checked, "opentime": $('opentime').value, "closetime": $('closetime').value, "simultan": $("simultan").checked, "fromiexe": $("fromiexe").checked});
+  chrome.storage.sync.set({ "marqueebehaviour": em.options[em.selectedIndex].value, "direction": ed.options[ed.selectedIndex].value, "scrollamount": $('scrollamount').value, "japan": $('japan').checked, "xminutes": $('xminutes').value, "favoritestock": $('favoritestock').checked, "favo1": $('favo1').value, "favo2": $('favo2').value, "favo3": $('favo3').value, "favo4": $('favo4').value, "getinfovaluepercent": $('getinfovaluepercent').checked, "getinfovaluestock": $('getinfovaluestock').checked, "getinfovaluemc": $('getinfovaluemc').checked, "getfontfamily": eg.options[eg.selectedIndex].value, "getfontsize": $('getfontsize').value, "excludedstock": JSON.stringify(excludedstock),"optionskipremember": $('optionskipremember').checked, "lightcolor": $('lightcolor').value, "redcolor": $('redcolor').value, "greencolor": $('greencolor').value,"textcolor": $('textcolor').value, "dropshadow": $("dropshadow").checked,"toolbarDomains": JSON.stringify(toolbarDomains), "allsites": $("allsites").checked, "toolbaronly": $("toolbaronly").checked,"excludedstockdouble": JSON.stringify(excludedstockdouble),"doublebar": $("doublebar").checked, "getpositiontop": $("getpositiontop").checked,'getpositionbottom': $("getpositionbottom").checked, 'scrollbar': $("scrollbar").checked, 'staticbar': $("staticbar").checked,"favo1b": $('favo1b').value, "favo2b": $('favo2b').value, "favo3b": $('favo3b').value, "favo4b": $('favo4b').value, "fillchange": $("fillchange").checked, "toolbarwhite": $("toolbarwhite").checked, "toolbarblack": $("toolbarblack").checked, "worldmapcolor": $('worldmapcolor').value, "worldmapopacity": $('worldmapopacity').value, "hideworldmap": $('hideworldmap').checked, "getfullvaluedata": $('getfullvaluedata').checked, "fullname": $('fullname').checked, "fullnamearea": $('fullnamearea').value, "searchbehaviour": se.options[se.selectedIndex].value, "bellmarket": $("bellmarket").checked, "opentime": $('opentime').value, "closetime": $('closetime').value, "simultan": $("simultan").checked, "fromfinanceapi": $("fromfinanceapi").checked,"apikey": $('apikey').value});
 }
 
 var firstdefaultvalues = {};
 // Option default value to read if there is no current value from chrome.storage AND init default value
-chrome.storage.sync.get(['getinfovaluepercent','getinfovaluestock','getinfovaluepercent','dropshadow','allsites','getpositiontop','getpositionbottom','scrollbar','staticbar','favoritestock','toolbarwhite','toolbarblack','getfullvaluedata','simultan','fromiexe'], function(items){
+chrome.storage.sync.get(['getinfovaluepercent','getinfovaluestock','getinfovaluepercent','dropshadow','allsites','getpositiontop','getpositionbottom','scrollbar','staticbar','favoritestock','toolbarwhite','toolbarblack','getfullvaluedata','simultan','fromfinanceapi'], function(items){
     // find no localstore zoomengine
 	if(items['getinfovaluepercent'] == null && items['getinfovaluestock'] == null && items['getinfovaluemc'] == null && items['getfullvaluedata'] == null){firstdefaultvalues['getinfovaluepercent'] = true;firstdefaultvalues['getinfovaluestock'] = false;firstdefaultvalues['getinfovaluemc'] = false;firstdefaultvalues['getfullvaluedata'] = false;}
     if(items['dropshadow'] == null){firstdefaultvalues['dropshadow'] = true}
@@ -81,7 +83,7 @@ chrome.storage.sync.get(['getinfovaluepercent','getinfovaluestock','getinfovalue
     if(items['scrollbar'] == null && items['staticbar'] == null && items['simultan'] == null){firstdefaultvalues['scrollbar'] = true;firstdefaultvalues['staticbar'] = false;firstdefaultvalues['simultan'] = false;}
     if(items['favoritestock'] == null){firstdefaultvalues['favoritestock'] = false}
     if(items['toolbarwhite'] == null && items['toolbarblack'] == null){firstdefaultvalues['toolbarwhite'] = true;firstdefaultvalues['toolbarblack'] = false;}
-    if(items['fromiexe'] == null){firstdefaultvalues['fromiexe'] = true;}
+    if(items['fromfinanceapi'] == null){firstdefaultvalues['fromfinanceapi'] = true;}
     // find no localstore lightimage
     // Save the init value
     chrome.storage.sync.set(firstdefaultvalues, function() {
@@ -156,7 +158,7 @@ function closeMaterialIntroduceAlert(e, result){
 }
 //---
 
-chrome.storage.sync.get(['firstDate','optionskipremember','countremember','marqueebehaviour','direction','scrollamount','japan','xminutes','favoritestock','favo1','favo2','favo3','favo4','getinfovaluestock','getinfovaluepercent','getinfovaluemc','getfontfamily','getfontsize','excludedstock','lightcolor','redcolor','greencolor','textcolor','dropshadow','toolbarDomains','allsites','toolbaronly','introduce','excludedstockdouble','doublebar','getpositiontop','getpositionbottom','scrollbar','staticbar','favo1b','favo2b','favo3b','favo4b','fillchange','toolbarwhite','toolbarblack','worldmapcolor','worldmapopacity','hideworldmap','getfullvaluedata','fullname','fullnamearea','searchbehaviour','bellmarket','opentime','closetime','simultan','firstsawrate','fromiexe'], function(items){
+chrome.storage.sync.get(['firstDate','optionskipremember','countremember','marqueebehaviour','direction','scrollamount','japan','xminutes','favoritestock','favo1','favo2','favo3','favo4','getinfovaluestock','getinfovaluepercent','getinfovaluemc','getfontfamily','getfontsize','excludedstock','lightcolor','redcolor','greencolor','textcolor','dropshadow','toolbarDomains','allsites','toolbaronly','introduce','excludedstockdouble','doublebar','getpositiontop','getpositionbottom','scrollbar','staticbar','favo1b','favo2b','favo3b','favo4b','fillchange','toolbarwhite','toolbarblack','worldmapcolor','worldmapopacity','hideworldmap','getfullvaluedata','fullname','fullnamearea','searchbehaviour','bellmarket','opentime','closetime','simultan','firstsawrate','fromfinanceapi','apikey'], function(items){
 		if(items['marqueebehaviour']){$('marqueebehaviour').value = items['marqueebehaviour'];}
 		else {$('marqueebehaviour').value = "scroll";}
 		if(items['direction']){$('direction').value = items['direction'];}
@@ -170,19 +172,19 @@ chrome.storage.sync.get(['firstDate','optionskipremember','countremember','marqu
 		if(items['favo1']){$('favo1').value = items['favo1'];}
 		else {$('favo1').value = 'EUR';}
 		if(items['favo2']){$('favo2').value = items['favo2'];}
-		else {$('favo2').value = 'JPY';}
+		else {$('favo2').value = 'USD';}
 		if(items['favo3']){$('favo3').value = items['favo3'];}
 		else {$('favo3').value = 'GBP';}
 		if(items['favo4']){$('favo4').value = items['favo4'];}
-        else {$('favo4').value = 'BTC';}
+        else {$('favo4').value = 'USD';}
 		if(items['favo1b']){$('favo1b').value = items['favo1b'];}
 		else {$('favo1b').value = 'USD';}
 		if(items['favo2b']){$('favo2b').value = items['favo2b'];}
-		else {$('favo2b').value = 'USD';}
+		else {$('favo2b').value = 'JPY';}
 		if(items['favo3b']){$('favo3b').value = items['favo3b'];}
 		else {$('favo3b').value = 'USD';}
 		if(items['favo4b']){$('favo4b').value = items['favo4b'];}
-        else {$('favo4b').value = 'USD';}
+        else {$('favo4b').value = 'CAD';}
 		if(items['getinfovaluestock'] == true)$('getinfovaluestock').checked = true;
 		if(items['getinfovaluepercent'] == true)$('getinfovaluepercent').checked = true;
 		if(items['getinfovaluemc'] == true)$('getinfovaluemc').checked = true;
@@ -227,7 +229,8 @@ chrome.storage.sync.get(['firstDate','optionskipremember','countremember','marqu
         if(items['closetime']){$('closetime').value = items['closetime'];}
         else {$('closetime').value = '16:00';}
         if(items['simultan'] == true)$('simultan').checked = true;
-        if(items['fromiexe'] == true)$('fromiexe').checked = true;
+        if(items['fromfinanceapi'] == true)$('fromfinanceapi').checked = true;
+        if(items['apikey']){$('apikey').value = items['apikey'];}
 
 // show introduce
 if(items['introduce'] != true){
@@ -715,7 +718,7 @@ if(window.location.href != exoptionspage){
 function domcontentloaded(){
 checkdarkmode();
 
-if(window.location.href != exoptionspage){
+if((window.location.href != exoptionspage) && devmode == false){
 
     var condition = navigator.onLine ? "online" : "offline";
     if(condition == "online"){
@@ -733,20 +736,20 @@ if(window.location.href != exoptionspage){
         //is not there
         // use offline page
         // Add the YouTube player
-        $("dont-turn-off-the-lights").src = "https://www.youtube.com/embed/?listType=playlist&amp;list=PLfXHh3TKRb4YpNSpneMPXqqghriKws079";
+        $("dont-turn-off-the-lights").src = youtubeembed;
         read_options();
         yearnow();
         });
     }else{
         // Add the YouTube player
-        $("dont-turn-off-the-lights").src = "https://www.youtube.com/embed/?listType=playlist&amp;list=PLfXHh3TKRb4YpNSpneMPXqqghriKws079";
+        $("dont-turn-off-the-lights").src = youtubeembed;
         read_options();
         yearnow();
     }
 
 } else {
     // Add the YouTube player
-    $("dont-turn-off-the-lights").src = "https://www.youtube.com/embed/?listType=playlist&amp;list=PLfXHh3TKRb4YpNSpneMPXqqghriKws079";
+    $("dont-turn-off-the-lights").src = youtubeembed;
     read_options();
     yearnow();
 }
@@ -892,7 +895,7 @@ function mobilecheck(){
 }
 
 // Save KB download
-$("tabbasic").addEventListener('click', function() {Scrolltotop();$('dont-turn-off-the-lights').src = "https://www.youtube.com/embed/?listType=playlist&amp;list=PLfXHh3TKRb4YpNSpneMPXqqghriKws079";$('welcomeguide').src = "";memguide();guidekb = true;mobilecheck();});
+$("tabbasic").addEventListener('click', function() {Scrolltotop();$('dont-turn-off-the-lights').src = youtubeembed;$('welcomeguide').src = "";memguide();guidekb = true;mobilecheck();});
 $("tabdesign").addEventListener('click', function() {Scrolltotop();$('dont-turn-off-the-lights').src = "";$('welcomeguide').src = "";memguide();guidekb = true;mobilecheck();});
 $("tabadvan").addEventListener('click', function() {Scrolltotop();$('dont-turn-off-the-lights').src = "";$('dont-turn-off-the-lights').src = "";$('welcomeguide').src = "";memguide();guidekb = true;mobilecheck();});
 $("tabguide").addEventListener('click', function() {Scrolltotop();$('dont-turn-off-the-lights').src = "";$('welcomeguide').src = linkguide;$("managed-prefs-banner").style.display = "none";guidekb = false;mobilecheck();});
@@ -907,7 +910,7 @@ function Scrolltotop(){$("mainview").scrollTop = 0;}
 
 // Reset settings
 $("resetfinancetoolbar").addEventListener('click', function() {chrome.storage.sync.clear();
-    chrome.runtime.sendMessage({name: "refreshbackground"}, function(response) {location.reload();});
+    chrome.runtime.sendMessage({name: "refreshbackground"}, function() {location.reload();});
 });
 
 // Review box
@@ -917,5 +920,96 @@ $("nt").addEventListener('click', function() {$("sectionreviewbox").style.displa
 // Finance Toolbar app box
 $("apgetapp").addEventListener('click', function() {window.open(financetoolbarapp);$("sectionfinancetoolbarappbox").style.display = "none";chrome.storage.sync.set({"applastonversion": chrome.runtime.getManifest().version});});
 $("apnt").addEventListener('click', function() {$("sectionfinancetoolbarappbox").style.display = "none";chrome.storage.sync.set({"applastonversion": chrome.runtime.getManifest().version});});
+
+// search
+var pageinsearch = false;
+function OnSearch(input) {
+  if(input.value == "") {
+    pageinsearch = false;
+    input.blur();
+
+    let sections = document.getElementsByTagName("section");
+    for (let x = 0; x < sections.length; x++) {
+      let section = sections[x];
+      section.classList.remove("searchfoundnothing");
+    }
+
+    // set view back to the current selected tab
+    // and hide back all videos
+    var y = document.getElementsByClassName('navbar-item-selected');
+    y[0].click();
+  }
+  else {
+    if(pageinsearch == false){
+        pageinsearch = true;
+        // load all the videos
+        OFFworkaroundbugfromsafari();
+    }
+
+    // receive the total tab pages
+    var tabListItems = $('navbar').childNodes;
+    for ( var i = 0; i < tabListItems.length; i++ ) {
+        if ( tabListItems[i].nodeName == 'LI' ) {
+        var tabLink = getFirstChildWithTagName( tabListItems[i], 'A' );
+        var id = getHash( tabLink.getAttribute('data-tab') );
+        contentDivs[id] = $( id );
+        }
+    }
+
+    // show all tab pages
+    var i = 0;
+    for ( var id in contentDivs ) {
+        if(id != "tab3"){
+        contentDivs[id].className = 'page';
+        }
+        i++;
+    }
+    //---
+    var searchword = input.value;
+
+    let sections = document.getElementsByTagName("section");
+    for (let x = 0; x < sections.length; x++) {
+        let section = sections[x];
+        let content = section.innerHTML;
+
+        if(content.search(new RegExp(searchword, "i")) < 1){
+            section.classList.add("searchfoundnothing");
+        }else{
+            section.classList.remove("searchfoundnothing");
+        }
+    }
+
+    // hide the h2 if there is no sections visible
+    let pages = document.getElementsByClassName("page");
+    for (let z = 0; z < pages.length; z++) {
+      let sections = pages[z].getElementsByTagName("section");
+      var countnothingcheck = 0;
+      for (let x = 0; x < sections.length; x++) {
+        let section = sections[x];
+
+        if (section.classList.contains('searchfoundnothing')) {
+          countnothingcheck += 1;
+        }
+
+      }
+      if(countnothingcheck == sections.length){
+        // total sections with nothing inside is the same as all the section -> hide the page
+        pages[z].classList.add("searchfoundnothing");
+      }
+      else{
+        pages[z].classList.remove("searchfoundnothing");
+      }
+   }
+
+
+  }
+}
+
+if(document.getElementById("appsearch")){
+    document.getElementById("appsearch").addEventListener("search", function(){OnSearch(this);}, false);
+    document.getElementById("appsearch").addEventListener("input", function(){OnSearch(this);}, false);
+    document.getElementById("btnsearchicon").addEventListener("input", function(){OnSearch(this);}, false);
+    document.getElementById("appsearch").placeholder = chrome.i18n.getMessage("searchplaceholder");
+}
 
 };

@@ -196,7 +196,7 @@ body{min-width:1150px;min-height:800px;background:var(--totl-body-background);co
 ul#navbar li a{display:flex;align-items:center;margin-right:0;padding:12px 24px 12px 24px;font-size:105%;cursor:pointer}
 ul#navbar li a svg{margin-right:24px;fill:var(--totl-sidebar-icon-background)}
 #settings{-webkit-padding-end:24px;-webkit-user-select:none;-moz-user-select:none;user-select:none;color:#333;cursor:pointer;font-size:200%;font-weight:400;margin:0;padding-bottom:14px;padding-top:13px;text-align:end}
-.page h1{-webkit-padding-end:24px;-webkit-user-select:none;-moz-user-select:none;user-select:none;color:var(--totl-title-color);font-size:200%;font-weight:400;margin:0;padding-bottom:4px;padding-top:13px}
+.page h2{-webkit-padding-end:24px;-webkit-user-select:none;-moz-user-select:none;user-select:none;color:var(--totl-title-color);font-size:200%;font-weight:400;margin:0;padding-bottom:4px;padding-top:13px}
 .page{height:100%;width:100%;position:relative}
 section{position:relative;-webkit-box-orient:horizontal;border-bottom:var(--totl-section-border);display:-webkit-box;margin-top:17px;padding-bottom:20px;width:100%}
 section>h3{font-size:105%;font-weight:700;margin:0;vertical-align:middle;width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -212,6 +212,13 @@ section>div:only-of-type{-webkit-box-flex:1}
 .item{font-style:italic}
 .conboxselectionmax{width:200px;height:60px}
 .conboxselection{width:200px;height:25px}
+/* Search */
+.search{position:relative;display:flex;width:100%;-webkit-user-select:none;-moz-user-select:none;user-select:none;margin-left:247px;margin-right:65px;font-size:18px;cursor:pointer;outline:none}
+.search input{color:var(--totl-primary-font-color);background:var(--totl-primary-sidebar-background);border:0;border-radius:5px;height:35px;padding:10px 10px 10px 40px;box-sizing:border-box;outline:none;width:100%;max-width:975px}
+.searchicon{position:absolute;top:5px;left:5px;height:20px;width:20px;padding:3px;border-radius:20px}
+.searchicon:hover{background:var(--totl-svg-fill-color-hover);cursor:pointer}
+.searchicon svg{fill:var(--totl-sidebar-icon-background)}
+.searchfoundnothing{display:none}
 /* Finance Toolbar app */
 #financetoolbarappbox{height:75px;position:relative;background:#333333;border-radius:2px}
 #apicon{position:absolute;top:18px;left:30px}
@@ -247,11 +254,12 @@ section>div:only-of-type{-webkit-box-flex:1}
 #examplebar #stefanvdfinancemarquee .orange a:link,#examplebar #stefanvdfinancemarquee .orange a:visited,#examplebar #stefanvdfinancemarquee .orange a:hover,#examplebar #stefanvdfinancemarquee .orange a:active,#examplebar #favorite div .orange{color:orange}
 #examplebar #stefanvdfinancemarquee .white a:link,#examplebar #stefanvdfinancemarquee .white a:visited,#examplebar #stefanvdfinancemarquee .white a:hover,#examplebar #stefanvdfinancemarquee .white a:active,#examplebar #favorite div .white{color:white}
 #examplebar #stefanvdfinancemarquee .yellow a:link,#examplebar #stefanvdfinancemarquee .yellow a:visited,#examplebar #stefanvdfinancemarquee .yellow a:hover,#examplebar #stefanvdfinancemarquee .yellow a:active,#examplebar #favorite div .yellow{color:#FFCC00}
-/* propermenu only */
+/* financetoolbar only */
 #toolbarwhitelist{margin-left:30px}
 #toolbarwhitelist input[type=url]{width:360px;float:left}
 #toolbarwhitelist select{width:437px;margin-right:16px}
 textarea{background-color:var(--totl-checkbox-label-background);border:var(--totl-checkbox-label-border);user-select:none;color:var(--totl-title-color);outline:none}
+#fromfinanceapi{width:300px}
 /* html */
 .sharemenu{position:absolute;right:0;margin-top:-27px;color:#666;font-size:11px}
 .sharemenu div{display:inline-block;vertical-align:middle}
@@ -279,7 +287,7 @@ textarea{background-color:var(--totl-checkbox-label-background);border:var(--tot
 /* share box */
 #shareboxyoutube{background:url(../images/youtube@2x.png)left top no-repeat;background:-webkit-image-set(url(../images/youtube.png) 1x,url(../images/youtube@2x.png) 2x);width:25px;height:18px;display:inline-block;background-size:cover;margin-left:10px;margin-right:10px;cursor:pointer}
 #shareboxfacebook{background:url(../images/facebook@2x.png)left top no-repeat;background:-webkit-image-set(url(../images/facebook.png) 1x,url(../images/facebook@2x.png) 2x);width:18px;height:18px;display:inline-block;background-size:cover;margin-right:10px;cursor:pointer}
-#shareboxtwitter{background:url(../images/twitter@2x.png)left top no-repeat;background:-webkit-image-set(url(../images/twitter.png) 1x,url(../images/twitter@2x.png) 2x);width:21px;height:18px;display:inline-block;background-size:cover;cursor:pointer}
+#shareboxtwitter{background:url(../images/twitter@2x.png)left top no-repeat;background:-webkit-image-set(url(../images/twitter.png) 1x,url(../images/twitter@2x.png) 2x);width:18px;height:18px;display:inline-block;background-size:cover;cursor:pointer}
 #shareboxrate:hover,#shareboxyoutube:hover,#shareboxfacebook:hover,#shareboxtwitter:hover{opacity:.8;cursor:pointer}
 .probox{top:-18px;position:absolute;background:#FDD835;color:black;font-size:12px;padding:2px 12px;border-radius:2px;display:inline-block}
 .proboxtext{display:inline-flex;line-height:18px;padding:15px 15px 10px}

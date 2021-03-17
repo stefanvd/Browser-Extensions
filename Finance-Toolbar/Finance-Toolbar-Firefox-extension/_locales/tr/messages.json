@@ -4,8 +4,7 @@
         "description": "Finance Toolbar"
     },
     "description": {
-        "message": "Favori hisselerinizin gerçek borsa bilgilerini alın. Mevcut değerin mini tabloları ile görebilirsiniz.",
-        "description": "Get real time stock market information about your favorite stocks. With mini-charts of the currency value."
+        "message": "Get real time stock market information about your favorite stocks."
     },
     "browserbutton": {
         "message": "Finance Toolbar",

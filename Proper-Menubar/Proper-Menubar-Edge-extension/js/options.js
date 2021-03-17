@@ -507,6 +507,15 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse){
             newperm.appendChild(newpermspandes);            
         }
     });
+    }else if(msg.text === 'receiveremovepermission'){
+        // The permissions have been removed.
+        var txtpermission = chrome.i18n.getMessage("wpermissionremoved");
+        window.alert(txtpermission);
+    }else if(msg.text === 'receivenoremovepermission'){
+        // The permissions have not been removed (e.g., you tried to remove
+        // required permissions).
+        var txtpermission = chrome.i18n.getMessage("wpermissionnotremoved");
+        window.alert(txtpermission);
     }
 });
 
@@ -702,71 +711,20 @@ for (index = 0; index < inputs.length; ++index){
 $("googlebarremovebutton").addEventListener('click', function(){googlebarremoveSelectedExcludedDomain();});
 
 $("removepermissioncopy").addEventListener('click', function(){
-chrome.permissions.remove({
-    permissions: ['clipboardWrite']
-  }, function(removed){
-    if(removed){
-        // The permissions have been removed.
-        var txtpermission = chrome.i18n.getMessage("wpermissionremoved");
-        window.alert(txtpermission);
-      } else {
-        // The permissions have not been removed (e.g., you tried to remove
-        // required permissions).
-        var txtpermission = chrome.i18n.getMessage("wpermissionnotremoved");
-        window.alert(txtpermission);
-      }
-  });
+chrome.runtime.sendMessage({name: "removeclipboardwritepermission"});
 });
 
 $("removepermissionpaste").addEventListener('click', function(){
-chrome.permissions.remove({
-    permissions: ['clipboardRead']
-  }, function(removed){
-    if(removed){
-        // The permissions have been removed.
-        var txtpermission = chrome.i18n.getMessage("wpermissionremoved");
-        window.alert(txtpermission);
-      } else {
-        // The permissions have not been removed (e.g., you tried to remove
-        // required permissions).
-        var txtpermission = chrome.i18n.getMessage("wpermissionnotremoved");
-        window.alert(txtpermission);
-      }
-  });
+chrome.runtime.sendMessage({name: "removeclipboardreadpermission"});
 });
 
 $("removepermissionmhtml").addEventListener('click', function(){
-chrome.permissions.remove({
-    permissions: ['pageCapture']
-  }, function(removed){
-    if(removed){
-      // The permissions have been removed.
-      var txtpermission = chrome.i18n.getMessage("wpermissionremoved");
-      window.alert(txtpermission);
-    } else {
-      // The permissions have not been removed (e.g., you tried to remove
-      // required permissions).
-      var txtpermission = chrome.i18n.getMessage("wpermissionnotremoved");
-      window.alert(txtpermission);
-    }
-  });
+chrome.runtime.sendMessage({name: "removepagecapturepermission"});
 });
 
 $("removepermissionbookmark").addEventListener('click', function(){
-chrome.permissions.remove({
-    permissions: ['bookmarks']
-  }, function(removed){
-    if(removed){
-        // The permissions have been removed.
-        var txtpermission = chrome.i18n.getMessage("wpermissionremoved");
-        window.alert(txtpermission);
-      } else {
-        // The permissions have not been removed (e.g., you tried to remove
-        // required permissions).
-        var txtpermission = chrome.i18n.getMessage("wpermissionnotremoved");
-        window.alert(txtpermission);
-      }
-  });
+// show all the active permissions in a list
+chrome.runtime.sendMessage({name: "removebookmarkpermission"});
 });
 
 // Save KB download

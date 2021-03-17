@@ -176,13 +176,17 @@ else if(request.name == "stefanbookmarkadd") {
 else if(request.name == "stefanbookmarkaddall") {
     // Permissions must be requested from inside a user gesture
     chrome.permissions.request({
-        permissions: ['bookmarks']
+        permissions: ['bookmarks','tabs']
         }, function(granted) {
         // The callback argument will be true if the user granted the permissions.
         if(granted) {
             chrome.tabs.query({currentWindow:true}, function (tabs) {
                 for (var i = 0; i < tabs.length; i++) {
-                    chrome.bookmarks.create({title: tabs[i].title, url: tabs[i].url});
+                    console.log("1before tabs[i].url :"+tabs[i].url+ " and = "+tabs[i].title)
+                    if(typeof tabs[i].url != 'undefined'){
+                        chrome.bookmarks.create({title: tabs[i].title, url: tabs[i].url});
+                        console.log("2stefan tabs[i].url :"+tabs[i].url+ " and = "+tabs[i].title)
+                    }
                 }
             });
         } else {
@@ -380,6 +384,54 @@ else if(request.name == "stefanswitchtableft") {
        result = permissions.permissions;
        chrome.tabs.sendMessage(sender.tab.id,{text: 'receiveallpermissions', value: result});
     });   
+}else if(request.name == "removebookmarkpermission"){
+    chrome.permissions.remove({
+        permissions: ['bookmarks','tabs']
+      }, function(removed){
+        if(removed){
+            chrome.tabs.sendMessage(sender.tab.id,{text: 'receiveremovepermission'});
+          } else {
+            // The permissions have not been removed (e.g., you tried to remove
+            // required permissions).
+            chrome.tabs.sendMessage(sender.tab.id,{text: 'receivenoremovepermission'});
+          }
+      });
+}else if(request.name == "removepagecapturepermission"){
+    chrome.permissions.remove({
+        permissions: ['pageCapture']
+      }, function(removed){
+        if(removed){
+            chrome.tabs.sendMessage(sender.tab.id,{text: 'receiveremovepermission'});
+          } else {
+            // The permissions have not been removed (e.g., you tried to remove
+            // required permissions).
+            chrome.tabs.sendMessage(sender.tab.id,{text: 'receivenoremovepermission'});
+          }
+      });
+}else if(request.name == "removeclipboardreadpermission"){
+    chrome.permissions.remove({
+        permissions: ['clipboardRead']
+      }, function(removed){
+        if(removed){
+            chrome.tabs.sendMessage(sender.tab.id,{text: 'receiveremovepermission'});
+          } else {
+            // The permissions have not been removed (e.g., you tried to remove
+            // required permissions).
+            chrome.tabs.sendMessage(sender.tab.id,{text: 'receivenoremovepermission'});
+          }
+      });
+}else if(request.name == "removeclipboardwritepermission"){
+    chrome.permissions.remove({
+        permissions: ['clipboardWrite']
+      }, function(removed){
+        if(removed){
+            chrome.tabs.sendMessage(sender.tab.id,{text: 'receiveremovepermission'});
+          } else {
+            // The permissions have not been removed (e.g., you tried to remove
+            // required permissions).
+            chrome.tabs.sendMessage(sender.tab.id,{text: 'receivenoremovepermission'});
+          }
+      });
 }
 });
 

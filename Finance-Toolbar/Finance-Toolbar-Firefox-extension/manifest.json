@@ -2,19 +2,22 @@
   "manifest_version": 2,
   "name": "__MSG_name__",
   "short_name": "Finance Toolbar",  
-  "version": "0.5.25.0",
+  "version": "1.0.0.6",
   "description": "__MSG_description__",
+  "author": "Stefan vd",
   "homepage_url": "https://www.stefanvd.net/support/",
   "icons": {
-    "16": "icons/icon16.png",
-    "32": "icons/icon32.png",
-    "48": "icons/icon48.png",
-    "128": "icons/icon128.png"
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
   },
   "default_locale": "en",
   "background": {
-    "page": "background.html"
+    "page": "background.html",
+	  "persistent": true
   },
+  "content_security_policy": "script-src 'self'; img-src *; object-src 'self'",
   "web_accessible_resources": [
     "js/toolbar.js",
     "toolbar.html"
@@ -27,15 +30,14 @@
       }
     },
     "toggle-feature-financetoolbar": {
-            "suggested_key": {
-              "default": "Ctrl+Shift+P",
-              "mac": "MacCtrl+Shift+P"
-            },
-            "description": "__MSG_titelshortfinance__"
-          }
+      "suggested_key": {
+        "default": "Ctrl+Shift+P",
+        "mac": "MacCtrl+Shift+P"
+      },
+      "description": "__MSG_titelshortfinance__"
+    }
   },
   "browser_action": {
-    "browser_style": false,
       "default_icon": {
             "19": "icons/icon1.png",
             "38": "icons/icon1@2x.png"
@@ -58,15 +60,10 @@
     }
   ],
   "options_ui": {
-    "browser_style": false,
     "page": "options.html",
     "open_in_tab": true
   },
-  "permissions": [ "contextMenus", "tabs", "http://*/*", "https://*/*", "storage", "alarms"],
-  "applications": {
-    "gecko": {
-      "id": "financetoolbar@stefanvd.net",
-      "strict_min_version": "49.0a1"
-    }
-  }
+  "offline_enabled": true,
+  "minimum_chrome_version": "18",
+  "permissions": [ "contextMenus", "tabs", "http://*/*", "https://*/*", "storage", "alarms"]
 }

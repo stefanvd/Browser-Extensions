@@ -27,8 +27,8 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 //================================================
 
 function $(id) { return document.getElementById(id); }
-
 var youtubeembed = "https://www.youtube.com/embed/?listType=playlist&amp;list=PLfXHh3TKRb4ZRrIhSRo6cWEJVeS3_M5Yb";
+var darkmode = false;
 
 window.addEventListener("message", (event) => {
 	if(event.origin == "https://www.stefanvd.net"){
@@ -69,12 +69,12 @@ function save_options(){
     var getsnumber = screenzoomnumberBox.options[i].text;
         screenzoom[screenzoomBox.options[i].value] = getsnumber;
     }
-    chrome.storage.sync.set({ "allzoom": $('allzoom').checked, "optionskipremember": $('optionskipremember').checked, "contextmenus": $('contextmenus').checked, "badge": $('badge').checked, "steps": $('steps').value, "lightcolor": $('lightcolor').value, "zoomchrome": $('zoomchrome').checked, "zoomweb": $('zoomweb').checked, "websitezoom": JSON.stringify(websitezoom), "zoomdoubleclick": $('zoomdoubleclick').checked, "zoomnewsingleclick": $('zoomnewsingleclick').checked, "zoomsingleclick": $('zoomsingleclick').checked, "zoommousescroll": $('zoommousescroll').checked, "zoommousebuttonleft": $('zoommousebuttonleft').checked, "zoommousebuttonright": $('zoommousebuttonright').checked, "zoommousescrollup": $('zoommousescrollup').checked, "zoommousescrolldown": $('zoommousescrolldown').checked, "largepopup": $('largepopup').checked, "zoombydomain": $('zoombydomain').checked, "zoombypage": $('zoombypage').checked, "allzoomvalue": $('allzoomvalue').value/100, "defaultallscreen": $('defaultallscreen').checked, "defaultsinglescreen": $('defaultsinglescreen').checked, "screenzoom": JSON.stringify(screenzoom),"zoomfont": $('zoomfont').checked,"zoommagcircle": $('zoommagcircle').checked,"zoommagsquare": $('zoommagsquare').checked,"zoommagszoomlevel": $('zoommagszoomlevel').value,"zoommagszoomsize": $('zoommagszoomsize').value});
+    chrome.storage.sync.set({ "allzoom": $('allzoom').checked, "optionskipremember": $('optionskipremember').checked, "contextmenus": $('contextmenus').checked, "badge": $('badge').checked, "steps": $('steps').value, "lightcolor": $('lightcolor').value, "zoomchrome": $('zoomchrome').checked, "zoomweb": $('zoomweb').checked, "websitezoom": JSON.stringify(websitezoom), "zoomdoubleclick": $('zoomdoubleclick').checked, "zoomnewsingleclick": $('zoomnewsingleclick').checked, "zoomsingleclick": $('zoomsingleclick').checked, "zoommousescroll": $('zoommousescroll').checked, "zoommousebuttonleft": $('zoommousebuttonleft').checked, "zoommousebuttonright": $('zoommousebuttonright').checked, "zoommousescrollup": $('zoommousescrollup').checked, "zoommousescrolldown": $('zoommousescrolldown').checked, "largepopup": $('largepopup').checked, "zoombydomain": $('zoombydomain').checked, "zoombypage": $('zoombypage').checked, "allzoomvalue": $('allzoomvalue').value/100, "defaultallscreen": $('defaultallscreen').checked, "defaultsinglescreen": $('defaultsinglescreen').checked, "screenzoom": JSON.stringify(screenzoom),"zoomfont": $('zoomfont').checked,"zoommagcircle": $('zoommagcircle').checked,"zoommagsquare": $('zoommagsquare').checked,"zoommagszoomlevel": $('zoommagszoomlevel').value,"zoommagszoomsize": $('zoommagszoomsize').value,"contexta": $('contexta').checked,"contextb": $('contextb').checked});
 }
 
 var firstdefaultvalues = {};
 // Option default value to read if there is no current value from chrome.storage AND init default value
-chrome.storage.sync.get(['zoomchrome', 'zoomweb','zoommousebuttonleft','zoommousebuttonright','zoommousescrollup','zoommousescrolldown','zoombydomain','zoombypage','defaultallscreen','defaultsinglescreen','zoomfont','zoomdoubleclick','zoomnewsingleclick','zoomsingleclick','zoommagcircle','zoommagsquare'], function(items){
+chrome.storage.sync.get(['zoomchrome', 'zoomweb','zoommousebuttonleft','zoommousebuttonright','zoommousescrollup','zoommousescrolldown','zoombydomain','zoombypage','defaultallscreen','defaultsinglescreen','zoomfont','zoomdoubleclick','zoomnewsingleclick','zoomsingleclick','zoommagcircle','zoommagsquare','contexta','contextb'], function(items){
     // find no localstore zoomengine
 	if(items['zoomchrome'] == null && items['zoomweb'] == null){firstdefaultvalues['zoomweb'] = true;firstdefaultvalues['zoomchrome'] = false;firstdefaultvalues['zoomfont'] = false;}
     if(items['zoommousebuttonleft'] == null && items['zoommousebuttonright'] == null){firstdefaultvalues['zoommousebuttonleft'] = true;firstdefaultvalues['zoommousebuttonright'] = false;}
@@ -83,6 +83,7 @@ chrome.storage.sync.get(['zoomchrome', 'zoomweb','zoommousebuttonleft','zoommous
     if(items['defaultallscreen'] == null && items['defaultsinglescreen'] == null){firstdefaultvalues['defaultallscreen'] = true;firstdefaultvalues['defaultsinglescreen'] = false;}
     if(items['zoomdoubleclick'] == null && items['zoomnewsingleclick'] == null && items['zoomsingleclick'] == null){firstdefaultvalues['zoomdoubleclick'] = false;firstdefaultvalues['zoomnewsingleclick'] = false;firstdefaultvalues['zoomsingleclick'] = true;}
     if(items['zoommagcircle'] == null && items['zoommagsquare'] == null){firstdefaultvalues['zoommagcircle'] = true;firstdefaultvalues['zoommagsquare'] = false;}
+    if(items['contexta'] == null && items['contextb'] == null){firstdefaultvalues['contexta'] = true;firstdefaultvalues['contextb'] = false;}
     // find no localstore lightimage
     // Save the init value
     chrome.storage.sync.set(firstdefaultvalues, function() {
@@ -145,7 +146,7 @@ function closeMaterialIntroduceAlert(e, result){
 }
 //---
 
-chrome.storage.sync.get(['firstDate','optionskipremember','countremember','allzoom','websitezoom','allzoomvalue','contextmenus','badge','steps','lightcolor','zoomweb','zoomchrome','zoomdoubleclick','zoomnewsingleclick','zoomsingleclick','zoommousescroll','zoommousebuttonleft','zoommousebuttonright','zoommousescrollup','zoommousescrolldown','largepopup','zoombydomain','zoombypage','defaultallscreen','defaultsinglescreen','screenzoom','firstsawrate','introduce','zoomfont','zoommagcircle','zoommagsquare','zoommagszoomlevel','zoommagszoomsize'], function(items){
+chrome.storage.sync.get(['firstDate','optionskipremember','countremember','allzoom','websitezoom','allzoomvalue','contextmenus','badge','steps','lightcolor','zoomweb','zoomchrome','zoomdoubleclick','zoomnewsingleclick','zoomsingleclick','zoommousescroll','zoommousebuttonleft','zoommousebuttonright','zoommousescrollup','zoommousescrolldown','largepopup','zoombydomain','zoombypage','defaultallscreen','defaultsinglescreen','screenzoom','firstsawrate','introduce','zoomfont','zoommagcircle','zoommagsquare','zoommagszoomlevel','zoommagszoomsize','contexta','contextb'], function(items){
     if(items['allzoomvalue']){$('allzoomvalue').value = Math.round(items['allzoomvalue']*100);$('slider').value = Math.round(items['allzoomvalue']*100);}
     else{$('allzoomvalue').value = 100;$('slider').value = 100;}
     if(items['steps']){$('steps').value = items['steps'];}
@@ -178,6 +179,8 @@ chrome.storage.sync.get(['firstDate','optionskipremember','countremember','allzo
     else $('zoommagszoomlevel').value = 3;
     if(items['zoommagszoomsize']){$('zoommagszoomsize').value = items['zoommagszoomsize'];}
     else $('zoommagszoomsize').value = 200; 
+    if(items['contexta'] == true)$('contexta').checked = true;
+    if(items['contextb'] == true)$('contextb').checked = true;
 
 // show introduce
 if(items['introduce'] != true){
@@ -230,8 +233,10 @@ if(typeof websitezoom == "string") {
 	for(var domain in websitezoom)
 		atbbuf.push(domain);
         atbbuf.sort();
-        
-	for(var i = 0; i < atbbuf.length; i++){
+    
+    var i;
+    var l = atbbuf.length;
+	for(i = 0; i < l; i++){
 		appendToListBox("websitezoomBox", atbbuf[i],websitezoom[''+atbbuf[i]+'']);
     }
 }
@@ -247,16 +252,20 @@ if(typeof screenzoom == "string") {
 	for(var sdomain in screenzoom)
 		satbbuf.push(sdomain);
         satbbuf.sort();
-        
-	for(var i = 0; i < satbbuf.length; i++){
+    
+    var i;
+    var l = satbbuf.length;
+	for(i = 0; i < l; i++){
 		screenappendToListBox("screenzoomBox", satbbuf[i],screenzoom[''+satbbuf[i]+'']);
     }
 }
 
 	// load tab div
-	var tabListItems = document.getElementById('navbar').childNodes;
-	for ( var i = 0; i < tabListItems.length; i++ ) {
-		if ( tabListItems[i].nodeName == 'LI' ) {
+    var tabListItems = document.getElementById('navbar').childNodes;
+    var i;
+    var l = tabListItems.length;
+	for(i = 0; i < l; i++){
+		if(tabListItems[i].nodeName == 'LI'){
 		var tabLink = getFirstChildWithTagName( tabListItems[i], 'A' );
 		var id = getHash( tabLink.getAttribute('data-tab') );
 		tabLinks[id] = tabLink;
@@ -268,18 +277,18 @@ if(typeof screenzoom == "string") {
     // highlight the first tab
     var i = 0;
  
-    for ( var id in tabLinks ) {
+    for(var id in tabLinks){
     	tabLinks[id].onclick = showTab;
 		tabLinks[id].onfocus = function() { this.blur() };
-		if ( i == 0 ) tabLinks[id].className = 'navbar-item-selected';
+		if(i == 0) tabLinks[id].className = 'navbar-item-selected';
 		i++;
     }
     
     // Hide all content divs except the first
     var i = 0;
  
-    for ( var id in contentDivs ) {
-    	if ( i != 0 ) contentDivs[id].className = 'page hidden';
+    for(var id in contentDivs){
+    	if(i != 0) contentDivs[id].className = 'page hidden';
         i++;
     }
 
@@ -314,10 +323,12 @@ if(typeof screenzoom == "string") {
       return false;
     }
  
-    function getFirstChildWithTagName( element, tagName ) {
-      for ( var i = 0; i < element.childNodes.length; i++ ) {
-        if ( element.childNodes[i].nodeName == tagName ) return element.childNodes[i];
-      }
+    function getFirstChildWithTagName(element,tagName) {
+        var i;
+        var l = element.childNodes.length;
+        for(i = 0; i < l; i++){
+            if(element.childNodes[i].nodeName == tagName) return element.childNodes[i];
+        }
     }
  
     function getHash( url ) {
@@ -453,6 +464,14 @@ function test(){
     $("screenzoomremovebutton").disabled = false;
     $("detectscreensize").disabled = false;
   }
+
+  if($('contextmenus').checked){
+    $("contexta").disabled = false;
+    $("contextb").disabled = false;
+  }else{
+    $("contexta").disabled = true;
+    $("contextb").disabled = true;
+  }
 }
 
 function ariacheck(){
@@ -507,7 +526,7 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse){
         var lis = document.querySelectorAll('#permullist li');
         var i;
         var li;
-        for(i = 0; li = lis[i]; i++) {
+        for(i = 0; li = lis[i]; i++){
             li.parentNode.removeChild(li);
         }
     }
@@ -537,9 +556,10 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse){
             else if(x == "contextMenus"){textperm = chrome.i18n.getMessage("permissioncontextmenu");}
             else if(x == "storage"){textperm = chrome.i18n.getMessage("permissionstorage");}
             else if(x == "tabs"){textperm = chrome.i18n.getMessage("permissiontabs");}
+            else if(x == "webNavigation"){textperm = chrome.i18n.getMessage("permissionwebnavigation");}
             newpermspandes.textContent = textperm;
             newpermspandes.className = "item";
-            newperm.appendChild(newpermspandes);            
+            newperm.appendChild(newpermspandes);
         }
     });
     }
@@ -755,14 +775,16 @@ $("nt").addEventListener('click', function() {$("sectionreviewbox").style.displa
 
 // search
 var pageinsearch = false;
-function OnSearch(input) {
-  if(input.value == "") {
+function OnSearch(input){
+  if(input.value == ""){
     pageinsearch = false;
     input.blur();
 
-    let sections = document.getElementsByTagName("section");
-    for (let x = 0; x < sections.length; x++) {
-      let section = sections[x];
+    var sections = document.getElementsByTagName("section");
+    var x;
+    var l = sections.length;
+    for(x = 0; x < l; x++){
+      var section = sections[x];
       section.classList.remove("searchfoundnothing");
     }
 
@@ -780,17 +802,20 @@ function OnSearch(input) {
 
     // receive the total tab pages
     var tabListItems = $('navbar').childNodes;
-    for ( var i = 0; i < tabListItems.length; i++ ) {
-        if ( tabListItems[i].nodeName == 'LI' ) {
-        var tabLink = getFirstChildWithTagName( tabListItems[i], 'A' );
-        var id = getHash( tabLink.getAttribute('data-tab') );
-        contentDivs[id] = $( id );
+    var i;
+    var l = tabListItems.length;
+    for(i = 0; i < l; i++){
+        if(tabListItems[i].nodeName == 'LI'){
+        var tabLink = getFirstChildWithTagName(tabListItems[i],'A');
+        var id = getHash(tabLink.getAttribute('data-tab'));
+        contentDivs[id] = $(id);
         }
     }
 
     // show all tab pages
     var i = 0;
-    for ( var id in contentDivs ) {
+    var id;
+    for(id in contentDivs){
         if(id != "tab3"){
         contentDivs[id].className = 'page';
         }
@@ -799,10 +824,12 @@ function OnSearch(input) {
     //---
     var searchword = input.value;
 
-    let sections = document.getElementsByTagName("section");
-    for (let x = 0; x < sections.length; x++) {
-        let section = sections[x];
-        let content = section.innerHTML;
+    var sections = document.getElementsByTagName("section");
+    var x;
+    var l = sections.length;
+    for(x = 0; x < l; x++){
+        var section = sections[x];
+        var content = section.innerHTML;
 
         if(content.search(new RegExp(searchword, "i")) < 1){
             section.classList.add("searchfoundnothing");
@@ -812,12 +839,16 @@ function OnSearch(input) {
     }
 
     // hide the h2 if there is no sections visible
-    let pages = document.getElementsByClassName("page");
-    for (let z = 0; z < pages.length; z++) {
-      let sections = pages[z].getElementsByTagName("section");
+    var pages = document.getElementsByClassName("page");
+    var z;
+    var l = pages.length;
+    for(z = 0; z < l; z++){
+      var sections = pages[z].getElementsByTagName("section");
       var countnothingcheck = 0;
-      for (let x = 0; x < sections.length; x++) {
-        let section = sections[x];
+      var x;
+      var q = sections.length;
+      for(x = 0; x < q; x++){
+        var section = sections[x];
 
         if(section.classList.contains('searchfoundnothing')){
           countnothingcheck += 1;

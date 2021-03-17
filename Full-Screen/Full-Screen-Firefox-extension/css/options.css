@@ -3,7 +3,7 @@
 
 Full Screen
 Go full screen with one click on the button.
-Copyright (C) 2018 Stefan vd
+Copyright (C) 2020 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -25,6 +25,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 
 //================================================
 */
+
 
 .dark{
 --totl-primary-background:#232323;
@@ -182,7 +183,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 html{overflow:hidden}
 body{min-width:1150px;min-height:800px;background:var(--totl-body-background);color:var(--totl-primary-font-color);font-family:Arial,sans-serif;cursor:default;font-size:13px}
 #main-content{display:-webkit-box;position:absolute;left:0;right:0;top:0;bottom:0}
-#mainview{padding-left:240px;margin:0;position:absolute;left:0;right:0;top:0;bottom:0;z-index:1;overflow:auto;margin-top:56px}
+#mainview{padding-left:240px;margin:0;position:fixed;left:0;right:0;top:0;bottom:0;z-index:1;overflow:auto;margin-top:56px}
 #mainview-content{box-sizing:border-box;max-width:1020px;min-width:600px;padding:0 24px;position:relative}
 #managed-prefs-banner{background:#FFF59D;height:31px;width:100%;margin:0;padding:0;-webkit-user-select:none;-moz-user-select:none;user-select:none;color:black;position:relative;display:flex;align-items:center}
 #managed-prefs-icon{float:left;display:inline-block;padding:8px 12px 2px 12px;height:21px;vertical-align:middle}
@@ -196,7 +197,7 @@ body{min-width:1150px;min-height:800px;background:var(--totl-body-background);co
 ul#navbar li a{display:flex;align-items:center;margin-right:0;padding:12px 24px 12px 24px;font-size:105%;cursor:pointer}
 ul#navbar li a svg{margin-right:24px;fill:var(--totl-sidebar-icon-background)}
 #settings{-webkit-padding-end:24px;-webkit-user-select:none;-moz-user-select:none;user-select:none;color:#333;cursor:pointer;font-size:200%;font-weight:400;margin:0;padding-bottom:14px;padding-top:13px;text-align:end}
-.page h1{-webkit-padding-end:24px;-webkit-user-select:none;-moz-user-select:none;user-select:none;color:var(--totl-title-color);font-size:200%;font-weight:400;margin:0;padding-bottom:4px;padding-top:13px}
+.page h2{-webkit-padding-end:24px;-webkit-user-select:none;-moz-user-select:none;user-select:none;color:var(--totl-title-color);font-size:200%;font-weight:400;margin:0;padding-bottom:4px;padding-top:13px}
 .page{height:100%;width:100%;position:relative}
 section{position:relative;-webkit-box-orient:horizontal;border-bottom:var(--totl-section-border);display:-webkit-box;margin-top:17px;padding-bottom:20px;width:100%}
 section>h3{font-size:105%;font-weight:700;margin:0;vertical-align:middle;width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -210,6 +211,13 @@ section>div:only-of-type{-webkit-box-flex:1}
 .grey-text{color:grey}
 .hidden{display:none}
 .item{font-style:italic}
+/* Search */
+.search{position:relative;display:flex;width:100%;-webkit-user-select:none;-moz-user-select:none;user-select:none;margin-left:247px;margin-right:65px;font-size:18px;cursor:pointer;outline:none}
+.search input{color:var(--totl-primary-font-color);background:var(--totl-primary-sidebar-background);border:0;border-radius:5px;height:35px;padding:10px 10px 10px 40px;box-sizing:border-box;outline:none;width:100%;max-width:975px;-webkit-appearance:none;-moz-appearance:none;appearance:none}
+.searchicon{position:absolute;top:5px;left:5px;height:20px;width:20px;padding:3px;border-radius:20px}
+.searchicon:hover{background:var(--totl-svg-fill-color-hover);cursor:pointer}
+.searchicon svg{fill:var(--totl-sidebar-icon-background)}
+.searchfoundnothing{display:none}
 /* html */
 .sharemenu{position:absolute;right:0;margin-top:-27px;color:#666;font-size:11px}
 .sharemenu div{display:inline-block;vertical-align:middle}
@@ -221,7 +229,7 @@ section>div:only-of-type{-webkit-box-flex:1}
 #productwelcomeimageload .icon{display:flex;align-items:center;justify-content:center}
 /* loading bar */
 #loadinghelp{bottom:10px;position:absolute;right:15px}
-#loading{position:fixed;width:100%;height:100%;z-index:500;background:rgba(255,255,255,1);margin:0;padding:0;left:0;top:0}
+#loading{position:fixed;width:100%;height:100%;z-index:500;background:var(--totl-body-background);margin:0;padding:0;left:0;top:0}
 #loadingcenter{margin:20% auto;width:500px}
 #progressbar{width:500px;height:5px;background-color:rgba(33,150,243,0.5);clear:both;margin:5px 0}
 #progress{background:rgb(33,150,243);height:5px;width:0;max-width:100%;float:left;animation:progress 2s 1 forwards}
@@ -235,10 +243,10 @@ section>div:only-of-type{-webkit-box-flex:1}
 /* lamp */
 #loadinglamp{margin-right:5px;vertical-align:-2px}
 /* share box */
-#shareboxgoogle{background:url(../images/googleplus@2x.png)left top no-repeat;background:-webkit-image-set(url(../images/googleplus.png) 1x,url(../images/googleplus@2x.png) 2x);width:28px;height:18px;display:inline-block;background-size:cover;margin-left:10px;margin-right:10px;cursor:pointer}
+#shareboxyoutube{background:url(../images/youtube@2x.png)left top no-repeat;background:-webkit-image-set(url(../images/youtube.png) 1x,url(../images/youtube@2x.png) 2x);width:25px;height:18px;display:inline-block;background-size:cover;margin-left:10px;margin-right:10px;cursor:pointer}
 #shareboxfacebook{background:url(../images/facebook@2x.png)left top no-repeat;background:-webkit-image-set(url(../images/facebook.png) 1x,url(../images/facebook@2x.png) 2x);width:18px;height:18px;display:inline-block;background-size:cover;margin-right:10px;cursor:pointer}
-#shareboxtwitter{background:url(../images/twitter@2x.png)left top no-repeat;background:-webkit-image-set(url(../images/twitter.png) 1x,url(../images/twitter@2x.png) 2x);width:21px;height:18px;display:inline-block;background-size:cover;cursor:pointer}
-#shareboxrate:hover,#shareboxgoogle:hover,#shareboxfacebook:hover,#shareboxtwitter:hover{opacity:.8;cursor:pointer}
+#shareboxtwitter{background:url(../images/twitter@2x.png)left top no-repeat;background:-webkit-image-set(url(../images/twitter.png) 1x,url(../images/twitter@2x.png) 2x);width:18px;height:18px;display:inline-block;background-size:cover;cursor:pointer}
+#shareboxrate:hover,#shareboxyoutube:hover,#shareboxfacebook:hover,#shareboxtwitter:hover{opacity:.8;cursor:pointer}
 .probox{top:-18px;position:absolute;background:#FDD835;color:black;font-size:12px;padding:2px 12px;border-radius:2px;display:inline-block}
 .proboxtext{display:inline-flex;line-height:18px;padding:15px 15px 10px}
 .proboxbutton,.proboxbutton:hover{background:#4285f4;color:white;margin-left:25px}

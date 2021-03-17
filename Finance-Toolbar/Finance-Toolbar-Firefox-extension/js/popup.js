@@ -3,7 +3,7 @@
 
 Finance Toolbar
 Get real time stock market information about your favorite stocks. With mini-charts of the currency value.
-Copyright (C) 2018 Stefan vd
+Copyright (C) 2019 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -59,6 +59,7 @@ var fillchange = null;
 var fullname = null;
 var fullnamearea = null;
 var searchbehaviour = null;
+var apikey = null;
 
 function toggleoff(){
   chrome.tabs.query({active: true}, function (tabs) {
@@ -85,7 +86,7 @@ function toggleon(){
             );
 }
 document.addEventListener('DOMContentLoaded', function () {
-chrome.storage.sync.get(['addbar','darkmode','japan','xminutes','favoritestock','favo1','favo1b','favo2','favo2b','favo3','favo3b','favo4','favo4b','getinfovaluestock','getinfovaluepercent','getinfovaluemc','getfontfamily','getfontsize','redcolor','greencolor','textcolor','excludedstock','doublebar','excludedstockdouble','fillchange','getfullvaluedata','fullname','fullnamearea','searchbehaviour'], function(items){
+chrome.storage.sync.get(['addbar','darkmode','japan','xminutes','favoritestock','favo1','favo1b','favo2','favo2b','favo3','favo3b','favo4','favo4b','getinfovaluestock','getinfovaluepercent','getinfovaluemc','getfontfamily','getfontsize','redcolor','greencolor','textcolor','excludedstock','doublebar','excludedstockdouble','fillchange','getfullvaluedata','fullname','fullnamearea','searchbehaviour','apikey'], function(items){
 darkmode = items['darkmode'];if(darkmode == null)darkmode = false; // default darkmode false
 if(items['addbar']){addbar = items['addbar'];}if(!addbar)addbar = false;
 // dark mode
@@ -109,12 +110,12 @@ xminutes = items['xminutes'];if(xminutes == null)xminutes = '60';
 favoritestock = items['favoritestock'];if(favoritestock == null)favoritestock = false;
 favo1 = items['favo1'];if(favo1 == null)favo1 = 'EUR';
 favo1b = items['favo1b'];if(favo1b == null)favo1b = 'USD';
-favo2 = items['favo2'];if(favo2 == null)favo2 = 'JPY';
-favo2b = items['favo2b'];if(favo2b == null)favo2b = 'USD';
+favo2 = items['favo2'];if(favo2 == null)favo2 = 'USD';
+favo2b = items['favo2b'];if(favo2b == null)favo2b = 'JPY';
 favo3 = items['favo3'];if(favo3 == null)favo3 = 'GBP';
 favo3b = items['favo3b'];if(favo3b == null)favo3b = 'USD';
-favo4 = items['favo4'];if(favo4 == null)favo4 = 'BTC';
-favo4b = items['favo4b'];if(favo4b == null)favo4b = 'USD';
+favo4 = items['favo4'];if(favo4 == null)favo4 = 'USD';
+favo4b = items['favo4b'];if(favo4b == null)favo4b = 'CAD';
 getinfovaluestock = items['getinfovaluestock'];if(getinfovaluestock == null)getinfovaluestock = false;
 getinfovaluepercent = items['getinfovaluepercent'];if(getinfovaluepercent == null)getinfovaluepercent = true;
 getinfovaluemc = items['getinfovaluemc'];if(getinfovaluemc == null)getinfovaluemc = false;
@@ -131,6 +132,25 @@ getfullvaluedata = items['getfullvaluedata'];if(getfullvaluedata == null)getfull
 fullname = items['fullname'];if(fullname == null)fullname = false;
 fullnamearea = items['fullnamearea'];if(fullnamearea == null)fullnamearea = '^DJI=Dow Jones Industrial Average';
 searchbehaviour = items['searchbehaviour'];if(searchbehaviour == null)searchbehaviour = 'Google';
+apikey = items['apikey'];if(apikey == null)apikey = '';
+
+
+if(apikey == ""){
+  var textnotsupported = chrome.i18n.getMessage("extrafavonote");
+  var noapidiv = document.createElement("div");
+  noapidiv.setAttribute('id','infoapi');
+  noapidiv.textContent = textnotsupported;
+  noapidiv.style.background = "#ad0000";
+  noapidiv.style.zIndex = "99999999999";
+  noapidiv.style.position = "fixed";
+  noapidiv.style.top = "0";
+  noapidiv.style.left = "0";
+  noapidiv.style.height = "60px";
+  noapidiv.style.width = "100%";
+  noapidiv.style.color = "white";
+  noapidiv.style.padding = "6px";
+  document.body.appendChild(noapidiv);
+}
 
 var thesearchurl;var thesearchurlcurrency;
 if(searchbehaviour == "Google"){
@@ -408,7 +428,8 @@ var ctext = "";
     chrome.runtime.sendMessage({name: "barvalue", type:"oldprice", stock: a}, function(response) {
       if(undefined == response){}else{
       var stockclose = response.thatask;
-      var oldstockclose = response.thatoldprice;
+      var changes = response.thatchanges;
+      var changesPercentage = response.thatchangesPercentage;
       var marketcap = response.thatmarketcap;
 //---
       ctext = stockclose;
@@ -427,48 +448,17 @@ var ctext = "";
         tempaclink.appendChild(tempaclinktext);
       }
     
-      var stockchange = stockclose - oldstockclose;
-            
       //-- correct format
       if(element == "change"){
-        atext = stockchange;
-        atext = parseFloat(Math.round(atext * 100) / 100).toFixed(2); // 2 numbers after the comma
-
-        // if no negative value, add the plus character
-        if(atext.substring(0, 1) == '-') {}
-        else if(atext.substring(0, 1) == '-') {}
-        else{ atext = "+"+atext; }
+        atext = changes;
       }
       else if(element == "changePercent"){
-        atext = (stockchange/oldstockclose)*100;
-        atext = parseFloat(Math.round(atext * 100) / 100).toFixed(2); // 2 numbers after the comma
-        atext = atext +"%";
-
-        // if no negative value, add the plus character
-        if(atext.substring(0, 1) == '-') {}
-        else if(atext.substring(0, 1) == '-') {}
-        else{ atext = "+"+atext; }
+        atext = changesPercentage;
       }
       else if(element == "getfullvaluedata"){
-        atextparta = stockchange;
-        atextparta = parseFloat(Math.round(atextparta * 100) / 100).toFixed(2); // 2 numbers after the comma
-
-        // if no negative value, add the plus character
-        if(atextparta.substring(0, 1) == '-') {}
-        else if(atextparta.substring(0, 1) == '-') {}
-        else{ atextparta = "+"+atextparta; }
-
-        atextpartb = (stockchange/oldstockclose)*100;
-        atextpartb = parseFloat(Math.round(atextpartb * 100) / 100).toFixed(2); // 2 numbers after the comma
-        atextpartb = atextpartb +"%";
-
-        // if no negative value, add the plus character
-        if(atextpartb.substring(0, 1) == '-') {}
-        else if(atextpartb.substring(0, 1) == '-') {}
-        else{ atextpartb = "+"+atextpartb; }
-        atextpartb = "("+atextpartb+")";
-
-        atext = atextparta + " " + atextpartb;
+        atextparta = changes;
+        atextpartb = changesPercentage;
+        atext = atextparta + " " + "("+atextpartb+")";
       }
       else if(element == "marketCap"){
         try {
@@ -644,8 +634,8 @@ $("openwelcomeguide").addEventListener('click', function() {window.open(linkguid
 $("openyoutube").addEventListener('click', function() {window.open(linkyoutube)});
 
 var currentencodeurl = encodeURIComponent(financetoolbarproduct);
-$("opengoogleplus").addEventListener('click', function() {window.open('https://plus.google.com/share?ur\l=' + currentencodeurl + '', 'Share to Google+','width=600,height=460,menubar=no,location=no,status=no')});
-$("openfacebook").addEventListener('click', function() {window.open("https://www.facebook.com/sharer.php?u="+ financetoolbarproduct + "&t=Try this out, I check my stocks with this Finance Toolbar browser extension!", 'Share to Facebook','width=600,height=460,menubar=no,location=no,status=no')});
-$("opentwitter").addEventListener('click', function() {window.open("https://twitter.com/share?url=" + currentencodeurl + "&text=Try this out, I check my stocks with this Finance Toolbar browser extension!", 'Share to Twitter','width=600,height=460,menubar=no,location=no,status=no')});
+$("openemail").addEventListener('click', function() {var sfinancetoolbarmail = "mailto:your@email.com?subject="+chrome.i18n.getMessage("sharetexta")+"&body="+chrome.i18n.getMessage("sharetextb")+" "+financetoolbarproduct;chrome.tabs.create({url: sfinancetoolbarmail, active:true})});
+$("openfacebook").addEventListener('click', function() {window.open("https://www.facebook.com/sharer.php?u="+ financetoolbarproduct + "&t="+chrome.i18n.getMessage("sharemessage")+"", 'Share to Facebook','width=600,height=460,menubar=no,location=no,status=no')});
+$("opentwitter").addEventListener('click', function() {window.open("https://twitter.com/share?url=" + currentencodeurl + "&text="+chrome.i18n.getMessage("sharemessage")+"", 'Share to Twitter','width=600,height=460,menubar=no,location=no,status=no')});
 
 });

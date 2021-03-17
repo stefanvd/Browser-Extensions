@@ -37,8 +37,9 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 --totl-body-background:#fff;
 }
 
+#hund{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 /* large */
-.large html,.large body{font-family:sans-serif,'Lucida Grande','Helvetica Neue';font-size:13px;margin:0;padding:0;width:297px;height:35px}
+.large html,.large body{font-family:sans-serif,'Lucida Grande','Helvetica Neue';font-size:13px;margin:0;padding:0;width:319px;height:35px}
 body{background:var(--totl-body-background);color:var(--totl-primary-font-color)}
 *{outline:0}
 .large input[type=range]{background:transparent;-webkit-appearance:none;-moz-appearance:none;outline:none;border:none;color:#555;font-size:inherit;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap;height:35px;width:125px;margin:0;position:absolute;top:0;left:0}
@@ -50,14 +51,14 @@ body{background:var(--totl-body-background);color:var(--totl-primary-font-color)
 .large ul{padding:0;list-style:none;overflow:hidden;margin:0;height:35px;width:100%}
 .large ul li{height:35px;float:left;overflow:hidden}
 .large ul li .btnregular{user-select:none;-webkit-user-select:none;padding:0px 12px;line-height:35px;color:var(--totl-primary-font-color);text-decoration:none;display:inline-block;height:35px;width:11px;text-align:center}
-.large ul li .btnreset{user-select:none;-webkit-user-select:none;padding:0px 12px;line-height:35px;color:var(--totl-primary-font-color);text-decoration:none;display:inline-block;height:35px;width:33px;text-align:center}
+.large ul li .btnreset{user-select:none;-webkit-user-select:none;padding:0px 12px;line-height:35px;color:var(--totl-primary-font-color);text-decoration:none;display:inline-block;height:35px;width:55px;text-align:center}
 .large ul li:hover *,input[type=range]:hover,input[type=number]:hover{background:rgb(66,120,245);color:white;}
 .large .dvnumber{margin-left:125px}
 .large input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;height:35px;width:14px;background:#ddd;cursor:pointer}
 .large input[type=range]::-moz-range-thumb{height:35px;width:14px;background:#ddd;cursor:pointer}
 .large input[type=range]::-ms-thumb{height:35px;width:14px;background:#ddd;cursor:pointer}
 /* small */
-.small html,.small body{font-family:sans-serif,'Lucida Grande','Helvetica Neue';font-size:11px;margin:0;padding:0;width:285px;height:25px}
+.small html,.small body{font-family:sans-serif,'Lucida Grande','Helvetica Neue';font-size:11px;margin:0;padding:0;width:297px;height:25px}
 .small input[type=range]{background:transparent;-webkit-appearance:none;-moz-appearance:none;outline:none;border:none;color:#555;font-size:inherit;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap;height:25px;width:113px;margin:0;position:absolute;top:0;left:0}
 .small input[type=range]::-moz-range-track{background-color:rgba(255,255,255,0)}
 .small input[type=range]:focus{outline:none}
@@ -67,7 +68,7 @@ body{background:var(--totl-body-background);color:var(--totl-primary-font-color)
 .small ul{padding:0;list-style:none;overflow:hidden;margin:0;height:25px;width:100%}
 .small ul li{height:35px;float:left;overflow:hidden}
 .small ul li .btnregular{user-select:none;-webkit-user-select:none;padding:0px 12px;line-height:25px;color:var(--totl-primary-font-color);text-decoration:none;display:inline-block;height:25px;width:11px;text-align:center}
-.small ul li .btnreset{user-select:none;-webkit-user-select:none;padding:0px 12px;line-height:25px;color:var(--totl-primary-font-color);text-decoration:none;display:inline-block;height:25px;width:33px;text-align:center}
+.small ul li .btnreset{user-select:none;-webkit-user-select:none;padding:0px 12px;line-height:25px;color:var(--totl-primary-font-color);text-decoration:none;display:inline-block;height:25px;width:45px;text-align:center}
 .small ul li:hover *,input[type=range]:hover,input[type=number]:hover{background:rgb(66,120,245);color:white;}
 .small .dvnumber{margin-left:113px}
 .small input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;height:25px;width:14px;background:#ddd;cursor:pointer}

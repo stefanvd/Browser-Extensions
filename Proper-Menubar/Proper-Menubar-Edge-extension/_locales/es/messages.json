@@ -75,6 +75,7 @@
     "menubar": {"message": "Menubar"},
     "name": {"message": "Proper Menubar"},
     "namechrome": {"message": "Proper Menubar for Google Chrome"},
+    "nameedge": {"message": "Proper Menubar for Microsoft Edge"},
     "optionpagetitle": {"message": "Proper Menubar - Options"},
     "pagehelp": {"message": "help"},
     "pagestillloading": {"message": "The page is still loading?"},

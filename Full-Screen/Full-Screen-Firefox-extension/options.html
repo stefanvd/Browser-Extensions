@@ -8,7 +8,7 @@
 
 Full Screen
 Go full screen with one click on the button.
-Copyright (C) 2018 Stefan vd
+Copyright (C) 2020 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -60,6 +60,11 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 					<img id="headlamp" width="16" height="16" alt="Full Screen Browser extension">
 				</div>
 				Full Screen™</div>
+			<div class="search">
+				<div class="searchicon"><svg id="btnsearchicon" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false"><g><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></g></svg>
+				</div>
+				<input type="search" id="appsearch" placeholder="" name="q" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="Search through site content">
+			</div>
 			<div class="rightmenu" id="dotmenu">
 				<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
 				width="24" height="24"
@@ -67,7 +72,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 			</div>
 		</div>
 	</header>
-	<input type="checkbox" id="reveal-menu" role="button">
+	<input type="checkbox" id="reveal-menu" role="checkbox" aria-checked="false" aria-label="The button to open the 3 dots menu">
 	
 	<div id="md-home">
 			<label for="reveal-menu" id="menu">
@@ -115,6 +120,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 	</ul>
 	</div>
 	<div id="mainview">
+		<h1 data-i18n="optionpagetitle" class="hidden"></h1>
 		<div id="managed-prefs-banner">
 			<span id="managed-prefs-icon">
 				<a class="donatebutton" target="_blank" href="https://www.stefanvd.net/donate.htm" data-i18n="titledonatebutton" rel="noopener"></a>
@@ -124,9 +130,9 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 		</div>
 		<div id="mainview-content">
 			<div id="tab1" class="page">
-			<h1 data-i18n="basicsettings"></h1>
+			<h2 data-i18n="basicsettings"></h2>
 			<div class="sharemenu">
-				<div data-i18n="titelsharethis"></div> <div id="shareboxfacebook"></div> <div id="shareboxtwitter"></div>
+				<div data-i18n="titelsharethis"></div> <div id="shareboxyoutube"></div> <div id="shareboxfacebook"></div> <div id="shareboxtwitter"></div>
 			</div>
 			<br>
 			<section>
@@ -161,7 +167,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				<h3 data-i18n="titelcontextmenus"></h3>
 				<div>
 					<div class="md-checkbox">
-						<input id="contextmenus" type="checkbox">
+						<input id="contextmenus" type="checkbox" role="checkbox" aria-checked="false" aria-labelledby="contextmenus">
 						<label for="contextmenus"><div><span data-i18n="descontextmenus"></span></div></label>
 					</div>
 					<div class="grey-text">Support: &lt;img&gt;, &lt;video&gt;, &lt;page&gt;.</div>
@@ -171,7 +177,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				<h3 data-i18n="titleautofullscreen"></h3>
 				<div>
 					<div class="md-checkbox">
-						<input id="autofullscreen" type="checkbox">
+						<input id="autofullscreen" type="checkbox" role="checkbox" aria-checked="false" aria-labelledby="autofullscreen">
 						<label for="autofullscreen"><div><span data-i18n="desautofullscreen"></span></div></label>
 					</div>
 				</div>
@@ -187,7 +193,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				</section>		
 			</div>
 			<div id="tab2" class="page hidden">
-			<h1 data-i18n="design"></h1>
+			<h2 data-i18n="design"></h2>
 				<section>
 				<h3 data-i18n="titelfullscreenaction"></h3>
 				<div>
@@ -201,20 +207,42 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 							<label for="fullscreenwindow"><div><span data-i18n="desfullscreenwindow"></span></div></label>
 						</div>
 						<div class="md-radio">
+							<input id="fullscreenpopup" type="radio" name="fullscreenaction" value="popup" role="radio" aria-labelledby="defaultfullscreenvalue">
+							<label for="fullscreenpopup"><div><span data-i18n="desfullscreenpopup"></span></div></label>
+						</div>
+						<div class="md-radio">
 							<input id="fullscreenvideo" type="radio" name="fullscreenaction" value="video" role="radio" aria-labelledby="defaultfullscreenvalue">
 							<label for="fullscreenvideo"><div><span data-i18n="desfullscreenvideo"></span></div></label>
 						</div>
 					</div>
+					<div class="md-subin" role="radiogroup" aria-labelledby="defaultvideowindow">
+						<div class="md-radio">
+							<input id="videoinwindow" type="radio" name="videoaction" value="in" role="radio" aria-labelledby="defaultvideowindow">
+							<label for="videoinwindow"><div><span data-i18n="desvideoinwindow"></span></div></label>
+						</div>
+						<div class="md-radio">
+							<input id="videooutwindow" type="radio" name="videoaction" value="out" role="radio" aria-labelledby="defaultvideowindow">
+							<label for="videooutwindow"><div><span data-i18n="desvideooutwindow"></span></div></label>
+						</div>
+					</div>
 				</div>
-				</section>	
+				</section>
+				<section>
+				<h3 data-i18n="titelallwindows"></h3>
+				<div>
+					<div class="md-checkbox">
+						<input id="allwindows" type="checkbox" role="checkbox" aria-checked="false" aria-labelledby="allwindows">
+						<label for="allwindows"><div><span data-i18n="desallwindows"></span></div></label>
+					</div>
+				</section>
 			</div>
 			<div id="tab4" class="page hidden">
-				<h1 data-i18n="advancedoptions"></h1>
+				<h2 data-i18n="advancedoptions"></h2>
 				<section>
 				<h3 data-i18n="titelrememberpage"></h3>
 				<div>
 					<div class="md-checkbox">
-						<input id="optionskipremember" type="checkbox">
+						<input id="optionskipremember" type="checkbox" role="checkbox" aria-checked="false" aria-labelledby="optionskipremember">
 						<label for="optionskipremember"><div><span data-i18n="desrememberpage"></span></div></label>
 					</div>
 				</section>						
@@ -230,7 +258,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				</section>
 			</div>	
 			<div id="tab5" class="page hidden">
-			<h1 data-i18n="about"></h1>
+			<h2 data-i18n="about"></h2>
 			<section>
 				<div>
 				<h4>Full Screen™</h4>
@@ -247,11 +275,13 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				<div class="aboutbuttons">
 					<button id="buttonreportissue" class="btnspace" data-i18n="reportbug"></button><button id="buttonchangelog" class="btnspace" data-i18n="changelog"></button><button id="buttontranslateme" class="btnspace" data-i18n="translateme"></button>
 				</div>
-				<br><br><br><br><br><br>
+				<br>
+				<div id="permissionlist"></div>
+				<br><br><br><br><br>
 				<div class="grey-text">
 				Full Screen<br>
-				<span class="style_bold">&copy; <span id="yearnow"></span> Stefan vd. <span data-i18n="titelrightsreserved"></span></span><br>
-				<span class="license" data-i18n="textfoot"></span> <a href="http://creativecommons.org/licenses/GPL/2.0/">GPL 2.0</a>.
+				<span>&copy; <span id="yearnow"></span> Stefan vd. <span data-i18n="titelrightsreserved"></span></span><br>
+				<span data-i18n="textfoot"></span> <a href="http://creativecommons.org/licenses/GPL/2.0/">GPL 2.0</a>.
 				</div>
 				</div>
 			</section>

@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "__MSG_namechrome__",
   "short_name": "Full Screen",  
-  "version": "1.4.8.0",
+  "version": "1.6.0.0",
   "description": "__MSG_description__",
   "author": "Stefan vd",
   "homepage_url": "https://www.stefanvd.net/support/",
@@ -38,7 +38,7 @@
     "page": "background.html",
 	  "persistent": false
   },
-  "content_security_policy": "default-src 'self'; style-src 'unsafe-inline'; media-src https://www.stefanvd.net; child-src https://www.youtube.com https://www.stefanvd.net; connect-src https://www.stefanvd.net; script-src 'self'; img-src 'self' * data:; object-src 'none'",
+  "content_security_policy": "default-src 'none'; style-src 'self'; media-src https://www.stefanvd.net; child-src https://www.youtube.com https://www.stefanvd.net; connect-src https://www.stefanvd.net; script-src 'self'; img-src 'self' * data:; object-src 'none'",
   "commands": {
     "_execute_browser_action": {
       "suggested_key": {

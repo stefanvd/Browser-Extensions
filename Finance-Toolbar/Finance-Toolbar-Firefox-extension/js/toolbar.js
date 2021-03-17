@@ -3,7 +3,7 @@
 
 Finance Toolbar
 Get real time stock market information about your favorite stocks. With mini-charts of the currency value.
-Copyright (C) 2018 Stefan vd
+Copyright (C) 2019 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -28,7 +28,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 
 function $(id) { return document.getElementById(id); }
 // settings
-var marqueebehaviour = null, direction = null, scrollamount = null, japan = null, xminutes = null, excludedstock = null, favoritestock = null, favo1 = null, favo2 = null, favo3 = null, favo4 = null, getinfovaluestock = null, getinfovaluepercent = null, getinfovaluemc = null, getfontfamily = null, getfontsize = null, lightcolor = null, redcolor = null, greencolor = null, textcolor = null, doublebar = null, scrollbar = null, staticbar = null, favo1b = null, favo2b = null, favo3b = null, favo4b = null, excludedstockdouble = null, fillchange = null, worldmapcolor = null, worldmapopacity = null, hideworldmap = null, getfullvaluedata = null, fullname = null, fullnamearea = null, searchbehaviour = null, simultan = null;
+var marqueebehaviour = null, direction = null, scrollamount = null, japan = null, xminutes = null, excludedstock = null, favoritestock = null, favo1 = null, favo2 = null, favo3 = null, favo4 = null, getinfovaluestock = null, getinfovaluepercent = null, getinfovaluemc = null, getfontfamily = null, getfontsize = null, lightcolor = null, redcolor = null, greencolor = null, textcolor = null, doublebar = null, scrollbar = null, staticbar = null, favo1b = null, favo2b = null, favo3b = null, favo4b = null, excludedstockdouble = null, fillchange = null, worldmapcolor = null, worldmapopacity = null, hideworldmap = null, getfullvaluedata = null, fullname = null, fullnamearea = null, searchbehaviour = null, simultan = null, apikey = null;
 
 // prevent right click
 document.addEventListener('contextmenu', event => event.preventDefault());
@@ -52,7 +52,7 @@ document.getElementsByTagName("head")[0].appendChild(css);
 catch(e) {}
 
 /////////// Option page settings
-chrome.storage.sync.get(['marqueebehaviour','direction','scrollamount','japan','xminutes','favoritestock','favo1','favo2','favo3','favo4','getinfovaluestock','getinfovaluepercent','getinfovaluemc','getfontfamily','getfontsize','excludedstock','countremember','optionskipremember','lightcolor','redcolor','greencolor','textcolor','doublebar','scrollbar','staticbar','favo1b','favo2b','favo3b','favo4b','excludedstockdouble','fillchange','worldmapcolor','worldmapopacity','hideworldmap','getfullvaluedata','fullname','fullnamearea','searchbehaviour','simultan'], function(items){
+chrome.storage.sync.get(['marqueebehaviour','direction','scrollamount','japan','xminutes','favoritestock','favo1','favo2','favo3','favo4','getinfovaluestock','getinfovaluepercent','getinfovaluemc','getfontfamily','getfontsize','excludedstock','countremember','optionskipremember','lightcolor','redcolor','greencolor','textcolor','doublebar','scrollbar','staticbar','favo1b','favo2b','favo3b','favo4b','excludedstockdouble','fillchange','worldmapcolor','worldmapopacity','hideworldmap','getfullvaluedata','fullname','fullnamearea','searchbehaviour','simultan','apikey'], function(items){
 		marqueebehaviour = items['marqueebehaviour'];if(marqueebehaviour == null)marqueebehaviour = 'scroll';
 		direction = items['direction'];if(direction == null)direction = 'left';
 		scrollamount = items['scrollamount'];if(scrollamount == null)scrollamount = '35';
@@ -90,6 +90,25 @@ chrome.storage.sync.get(['marqueebehaviour','direction','scrollamount','japan','
 		fullnamearea = items['fullnamearea'];if(fullnamearea == null)fullnamearea = '^DJI=Dow Jones Industrial Average';
 		searchbehaviour = items['searchbehaviour'];if(searchbehaviour == null)searchbehaviour = 'Google';
 		simultan = items['simultan'];if(simultan == null)simultan = false;
+		apikey = items['apikey'];if(apikey == null)apikey = '';
+
+
+		if(apikey == ""){
+			var textnotsupported = chrome.i18n.getMessage("extrafavonote");
+			var noapidiv = document.createElement("div");
+			noapidiv.setAttribute('id','infoapi');
+			noapidiv.textContent = textnotsupported;
+			noapidiv.style.background = "#ad0000";
+			noapidiv.style.zIndex = "99999999999";
+			noapidiv.style.position = "fixed";
+			noapidiv.style.top = "0";
+			noapidiv.style.left = "0";
+			noapidiv.style.height = "30px";
+			noapidiv.style.width = "100%";
+			noapidiv.style.color = "white";
+			noapidiv.style.padding = "6px";
+			document.body.appendChild(noapidiv);
+		}
 
 var thesearchurl;var thesearchurlcurrency;
 if(searchbehaviour == "Google"){
@@ -120,14 +139,14 @@ if (scrollbar == true) {
 	if (fillchange == true) {
 		fncss = '#stefanvdfinance #stefanvdfinancemarquee .moveeffect,#stefanvdfinancetwo #stefanvdfinancemarqueetwo .moveeffect{animation:marquee ' + timecredit + 's linear infinite ' + beginbeh + '} #stefanvdfinancemarquee div a,#stefanvdfinancemarqueetwo div a{color: ' + textcolor + '!important} #stefanvdfinancefavo .green{background:' + greencolor + '!important} #stefanvdfinancemarquee .green a, #stefanvdfinancemarqueetwo .green a{background:' + greencolor + '!important;border-radius:2px!important;padding:0px 3px!important} #stefanvdfinancefavo .red{background:' + redcolor + '!important} #stefanvdfinancemarquee .red a,#stefanvdfinancemarqueetwo .red a{background:' + redcolor + '!important;border-radius:2px!important;padding:0px 3px!important} @keyframes marquee{0%{transform:translateX(' + posbegin + ')}100%{transform:translateX(' + posend + ')}}';
 	} else {
-		fncss = '#stefanvdfinance #stefanvdfinancemarquee .moveeffect,#stefanvdfinancetwo #stefanvdfinancemarqueetwo .moveeffect{animation:marquee ' + timecredit + 's linear infinite ' + beginbeh + '} #stefanvdfinancemarquee div a,#stefanvdfinancemarqueetwo div a{color: ' + textcolor + '!important} #stefanvdfinance .green,#stefanvdfinancetwo .green{color:' + greencolor + '!important} #stefanvdfinancemarquee .green a, #stefanvdfinancemarqueetwo .green a{color:' + greencolor + '!important} #stefanvdfinancemarquee .red a,#stefanvdfinancemarqueetwo .red a{color:' + redcolor + '!important} #stefanvdfinancemarquee .red,#stefanvdfinancemarqueetwo .red{color:' + redcolor + '!important} @keyframes marquee{0%{transform:translateX(' + posbegin + ')}100%{transform:translateX(' + posend + ')}}';
+		fncss = '#stefanvdfinance #stefanvdfinancemarquee .moveeffect,#stefanvdfinancetwo #stefanvdfinancemarqueetwo .moveeffect{animation:marquee ' + timecredit + 's linear infinite ' + beginbeh + '} #stefanvdfinancemarquee div a,#stefanvdfinancemarqueetwo div a{color: ' + textcolor + '!important} #stefanvdfinance .green,#stefanvdfinancetwo .green{color:' + greencolor + '!important} #stefanvdfinancemarquee .green a, #stefanvdfinancemarqueetwo .green a{color:' + greencolor + '!important} #stefanvdfinancemarquee .red a,#stefanvdfinancemarqueetwo .red a{color:' + redcolor + '!important} #stefanvdfinance .red,#stefanvdfinancetwo .red{color:' + redcolor + '!important} @keyframes marquee{0%{transform:translateX(' + posbegin + ')}100%{transform:translateX(' + posend + ')}}';
 	}
 }
 else if (simultan == true) {
 	if (fillchange == true) {
 		fncss = '#stefanvdfinancemarquee div a,#stefanvdfinancemarqueetwo div a{color: ' + textcolor + '!important} #stefanvdfinancefavo .green{background:' + greencolor + '!important} #stefanvdfinancemarquee .green a, #stefanvdfinancemarqueetwo .green a{background:' + greencolor + '!important;border-radius:2px!important;padding:0px 3px!important} #stefanvdfinancefavo .red{background:' + redcolor + '!important} #stefanvdfinancemarquee .red a,#stefanvdfinancemarqueetwo .red a{background:' + redcolor + '!important;border-radius:2px!important;padding:0px 3px!important} @keyframes marquee{0%{transform:translateX(' + posbegin + ')}100%{transform:translateX(' + posend + ')}}';
 	} else {
-		fncss = '#stefanvdfinancemarquee div a,#stefanvdfinancemarqueetwo div a{color: ' + textcolor + '!important} #stefanvdfinance .green,#stefanvdfinancetwo .green{color:' + greencolor + '!important} #stefanvdfinancemarquee .green a, #stefanvdfinancemarqueetwo .green a{color:' + greencolor + '!important} #stefanvdfinancemarquee .red a,#stefanvdfinancemarqueetwo .red a{color:' + redcolor + '!important} #stefanvdfinancemarquee .red a,#stefanvdfinancemarqueetwo .red a{color:' + redcolor + '!important}';
+		fncss = '#stefanvdfinancemarquee div a,#stefanvdfinancemarqueetwo div a{color: ' + textcolor + '!important} #stefanvdfinance .green,#stefanvdfinancetwo .green{color:' + greencolor + '!important} #stefanvdfinancemarquee .green a, #stefanvdfinancemarqueetwo .green a{color:' + greencolor + '!important} #stefanvdfinance .red,#stefanvdfinancetwo .red{color:' + redcolor + '!important} #stefanvdfinancemarquee .red a,#stefanvdfinancemarqueetwo .red a{color:' + redcolor + '!important}';
 	}
 }
 else if (staticbar == true) {
@@ -536,7 +555,8 @@ var ctext = "";
 	chrome.runtime.sendMessage({name: "barvalue", type:"oldprice", stock: a}, function(response) {
 		if(undefined == response){}else{
 		var stockclose = response.thatask;
-		var oldstockclose = response.thatoldprice;
+		var changes = response.thatchanges;
+		var changesPercentage = response.thatchangesPercentage;
 		var marketcap = response.thatmarketcap;
 //---
 		var textnotsupported = chrome.i18n.getMessage("desstocknotsupported");
@@ -562,56 +582,23 @@ var ctext = "";
 				tempaclink.appendChild(tempaclinktext);
 			}
 		}
-
-		var stockchange = stockclose - oldstockclose;
 		
 		//-- correct format
 		if(element == "change"){
-			atext = stockchange;
-			atext = parseFloat(Math.round(atext * 100) / 100).toFixed(2); // 2 numbers after the comma
-
-			// if no negative value, add the plus character
-			if(atext.substring(0, 1) == '-') {}
-			else if(atext.substring(0, 1) == '-') {}
-			else{ atext = "+"+atext; }
+			atext = changes;
 		}
 		else if(element == "changePercent"){
-			atext = (stockchange/oldstockclose)*100;
-			atext = parseFloat(Math.round(atext * 100) / 100).toFixed(2); // 2 numbers after the comma
-			atext = atext +"%";
-
-			// if no negative value, add the plus character
-			if(atext.substring(0, 1) == '-') {}
-			else if(atext.substring(0, 1) == '-') {}
-			else{ atext = "+"+atext; }
+			atext = changesPercentage;
 		}
 		else if(element == "getfullvaluedata"){
-			atextparta = stockchange;
-			atextparta = parseFloat(Math.round(atextparta * 100) / 100).toFixed(2); // 2 numbers after the comma
-
-			// if no negative value, add the plus character
-			if(atextparta.substring(0, 1) == '-') {}
-			else if(atextparta.substring(0, 1) == '-') {}
-			else{ atextparta = "+"+atextparta; }
-
-			atextpartb = (stockchange/oldstockclose)*100;
-			atextpartb = parseFloat(Math.round(atextpartb * 100) / 100).toFixed(2); // 2 numbers after the comma
-			atextpartb = atextpartb +"%";
-
-			// if no negative value, add the plus character
-			if(atextpartb.substring(0, 1) == '-') {}
-			else if(atextpartb.substring(0, 1) == '-') {}
-			else{ atextpartb = "+"+atextpartb; }
-			atextpartb = "("+atextpartb+")";
-
-			atext = atextparta + " " + atextpartb;
+			atextparta = changes;
+			atextpartb = changesPercentage;
+			atext = atextparta + " " + "("+atextpartb+")";
 		}
 		else if(element == "marketCap"){
 			try {
 				var marketcapvalue = marketcap;
 				atext = marketcapvalue;
-				atext = parseFloat(Math.round(atext) / 1000000000).toFixed(2); // 2 numbers after the comma
-				atext = atext +"B";
 			}
 			catch(e){
 				atext = "";

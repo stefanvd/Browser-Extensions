@@ -3,7 +3,7 @@
 
 Zoom
 Zoom in or out on web content using the zoom button for more comfortable reading.
-Copyright (C) 2019 Stefan vd
+Copyright (C) 2020 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -36,6 +36,9 @@ currentRatio = ratio / 100;
 chrome.tabs.query({ active: true, currentWindow: true}, function(tabs){zoomtab(tabs[0].id,currentRatio);});
 }
 
+// Setup isScrolling variable
+var isScrolling;
+
 function zoomtab(a,b){
     document.getElementById("number").value=Math.round(b*100);
     document.getElementById("range").value=Math.round(b*100);
@@ -46,7 +49,11 @@ function zoomtab(a,b){
                     tabs.forEach(function(tab){
                         // only on http, https and ftp website (and not the chrome:extension url)
                         if(/^(f|ht)tps?:\/\//i.test(tab.url)){
-                        chrome.tabs.setZoom(tab.id, b);
+                        chrome.tabs.setZoom(tab.id, b, function(){
+                              if(chrome.runtime.lastError){
+                              //console.log('[ZoomDemoExtension] doSetMode() error: ' + chrome.runtime.lastError.message);
+                              }
+                            });
                         if(badge == true){
                             chrome.browserAction.setBadgeBackgroundColor({color:lightcolor}); 
                             chrome.browserAction.setBadgeText({text:""+document.getElementById("number").value+"", tabId: tab.id });}
@@ -57,7 +64,11 @@ function zoomtab(a,b){
                 });
         }else{
             try{
-                chrome.tabs.setZoom(a, b);
+                chrome.tabs.setZoom(a, b, function(){
+                      if(chrome.runtime.lastError){
+                      //console.log('[ZoomDemoExtension] doSetMode() error: ' + chrome.runtime.lastError.message);
+                      }
+                    });
                 if(badge == true){
                     chrome.browserAction.setBadgeBackgroundColor({color:lightcolor}); 
                     chrome.browserAction.setBadgeText({text:""+document.getElementById("number").value+"", tabId: a});}
@@ -75,9 +86,17 @@ function zoomtab(a,b){
                             if(/^(f|ht)tps?:\/\//i.test(tab.url)){
                             var supportsZoom = 'zoom' in document.body.style;
                             if(supportsZoom){
-                                chrome.tabs.executeScript(tab.id,{code:"document.body.style.zoom=" + b});
+                                chrome.tabs.executeScript(tab.id,{code:"document.body.style.zoom=" + b}, function(){
+                                    if(chrome.runtime.lastError){
+                                    //console.log('[ZoomDemoExtension] doSetMode() error: ' + chrome.runtime.lastError.message);
+                                    }
+                                  });
                             }else{
-                                chrome.tabs.executeScript(tab.id,{code:"document.body.style.transformOrigin='left top';document.body.style.transform='scale(" + b + ")'"});
+                                chrome.tabs.executeScript(tab.id,{code:"document.body.style.transformOrigin='left top';document.body.style.transform='scale(" + b + ")'"}, function(){
+                                    if(chrome.runtime.lastError){
+                                    //console.log('[ZoomDemoExtension] doSetMode() error: ' + chrome.runtime.lastError.message);
+                                    }
+                                  });
                             }
                             }
                         }
@@ -93,15 +112,24 @@ function zoomtab(a,b){
                 function(tabs){
                     tabs.forEach(function(tab){
                         var pop = tab.url;
+                        if(typeof pop !== "undefined"){
                         if(zoombydomain == true){var webpop = pop.match(/^[\w-]+:\/*\[?([\w\.:-]+)\]?(?::\d+)?/)[0];}
                         else{var webpop = pop;}
                         if(webpop == webjob){// in current tab and not in popup window
                             try{
                                 var supportsZoom = 'zoom' in document.body.style;
                                 if(supportsZoom){
-                                    chrome.tabs.executeScript(tab.id,{code:"document.body.style.zoom=" + b});
+                                    chrome.tabs.executeScript(tab.id,{code:"document.body.style.zoom=" + b}, function(){
+                                        if(chrome.runtime.lastError){
+                                        //console.log('[ZoomDemoExtension] doSetMode() error: ' + chrome.runtime.lastError.message);
+                                        }
+                                      });
                                 }else{
-                                    chrome.tabs.executeScript(tab.id,{code:"document.body.style.transformOrigin='left top';document.body.style.transform='scale(" + b + ")'"});
+                                    chrome.tabs.executeScript(tab.id,{code:"document.body.style.transformOrigin='left top';document.body.style.transform='scale(" + b + ")'"}, function(){
+                                        if(chrome.runtime.lastError){
+                                        //console.log('[ZoomDemoExtension] doSetMode() error: ' + chrome.runtime.lastError.message);
+                                        }
+                                      });
                                 }
                             }
                             catch(e){}
@@ -109,6 +137,7 @@ function zoomtab(a,b){
                                chrome.browserAction.setBadgeBackgroundColor({color:lightcolor}); 
                                chrome.browserAction.setBadgeText({text:""+document.getElementById("number").value+"", tabId: tab.id});}
                             else{chrome.browserAction.setBadgeText({text:""});}
+                        }
                         }
                     });
                 });
@@ -134,6 +163,7 @@ function zoomtab(a,b){
                 function(tabs){
                     tabs.forEach(function(tab){
                         var pop = tab.url;
+                        if(typeof pop !== "undefined"){
                         if(zoombydomain == true){var webpop = pop.match(/^[\w-]+:\/*\[?([\w\.:-]+)\]?(?::\d+)?/)[0];}
                         else{var webpop = pop;}
                         if(webpop == webjob){// in current tab and not in popup window
@@ -144,6 +174,7 @@ function zoomtab(a,b){
                             chrome.browserAction.setBadgeText({text:""+document.getElementById("number").value+"", tabId: tab.id});}
                             else{chrome.browserAction.setBadgeText({text:""});}
                         }
+                        }
                     });
                 });
         }
@@ -151,8 +182,19 @@ function zoomtab(a,b){
 
     // saving feature
     if(allzoom == true){
-        // save for all zoom feature
-        chrome.storage.sync.set({"allzoomvalue": b});
+        // Clear our timeout throughout the scroll
+        //console.log("update the zoom " +document.getElementById("number").value)
+        window.clearTimeout(isScrolling);
+        var counter = 0; //should be out of your function scope
+        isScrolling = setTimeout(function(){
+            counter +=1;
+            if(counter == 1){
+            // Run the callback    
+            //console.log( 'Scrolling has stopped.' );
+            // save for all zoom feature
+            chrome.storage.sync.set({"allzoomvalue": b});
+            }
+        },250);
     }else{
     // website own zoom value
     // (and skip the saving in browser built-in zoom table => use own table)
@@ -170,27 +212,41 @@ function zoomtab(a,b){
                     atbbuf = websitezoom;
                     // save for zoom feature
                     chrome.storage.sync.set({ "websitezoom": JSON.stringify(websitezoom) });
+                    break; // go out of the loop because it found the current web page to save the new zoom value
                 }else{
-                    // update ratio
+                    // update ratio from 1 to 400 (and not the 100%)
                     websitezoom['' + atbbuf[i] + ''] = document.getElementById("number").value;
-                    // save for zoom feature
-                    chrome.storage.sync.set({ "websitezoom": JSON.stringify(websitezoom) });
+
+                    // Clear our timeout throughout the scroll
+                    //console.log("update the zoom " +document.getElementById("number").value)
+                    window.clearTimeout(isScrolling);
+                    var counter = 0; //should be out of your function scope
+                    isScrolling = setTimeout(function(){
+                        counter +=1;
+                        if(counter == 1){
+                        // Run the callback    
+                        //console.log( 'Scrolling has stopped.' );
+                        // save for zoom feature
+                        chrome.storage.sync.set({ "websitezoom": JSON.stringify(websitezoom) });
+                        }
+                    },250);
+
+                    break; // go out of the loop because it found the current web page to save the new zoom value
                 }
-            }else{
-                    // The box is not empty -> but website is not inside
-                    // add to list
-                    websitezoom['' + webjob + ''] = document.getElementById("number").value;
-                    // save for zoom feature
-                    chrome.storage.sync.set({ "websitezoom": JSON.stringify(websitezoom) });
             }
         }
         // The box is empty -> so the list is really empty, then add this website in the list
-        if(atbbuf.length == 0){
+        // Or -> but website is not inside
+        //console.log("dodo: "+atbbuf.includes(webjob));
+        try{    
+            if(atbbuf.length == 0 || (atbbuf.includes(webjob) != true)){
                 // add to list
                 websitezoom['' + webjob + ''] = document.getElementById("number").value;
                 // save for zoom feature
                 chrome.storage.sync.set({ "websitezoom": JSON.stringify(websitezoom) });
+            }
         }
+        catch(e){}
     }
     else if(zoomweb == true){
             var atbbuf = [];
@@ -204,29 +260,44 @@ function zoomtab(a,b){
                         // remove from list
                         delete websitezoom['' + atbbuf[i] + ''];
                         atbbuf = websitezoom;
+
                         // save for zoom feature
                         chrome.storage.sync.set({ "websitezoom": JSON.stringify(websitezoom) });
+                        break; // go out of the loop because it found the current web page to save the new zoom value
                     }else{
-                        // update ratio
+                        // update ratio from 1 to 400 (and not the 100%)
                         websitezoom['' + atbbuf[i] + ''] = document.getElementById("number").value;
-                        // save for zoom feature
-                        chrome.storage.sync.set({ "websitezoom": JSON.stringify(websitezoom) });
+
+                        // Clear our timeout throughout the scroll
+                        //console.log("update the zoom " +document.getElementById("number").value)
+                        window.clearTimeout(isScrolling);
+                        var counter = 0; //should be out of your function scope
+                        isScrolling = setTimeout(function(){
+                            counter +=1;
+                            if(counter == 1){
+                            // Run the callback    
+                            //console.log( 'Scrolling has stopped.' );
+                            // save for zoom feature
+                            chrome.storage.sync.set({ "websitezoom": JSON.stringify(websitezoom) });
+                            }
+                        },250);
+
+                        break; // go out of the loop because it found the current web page to save the new zoom value
                     }
-                }else{
-                        // The box is not empty -> but website is not inside
-                        // add to list
-                        websitezoom['' + webjob + ''] = document.getElementById("number").value;
-                        // save for zoom feature
-                        chrome.storage.sync.set({ "websitezoom": JSON.stringify(websitezoom) });
                 }
             }
             // The box is empty -> so the list is really empty, then add this website in the list
-            if(atbbuf.length == 0){
+            // Or -> but website is not inside
+            //console.log("dodo: "+atbbuf.includes(webjob));
+            try{    
+                if(atbbuf.length == 0 || (atbbuf.includes(webjob) != true)){
                     // add to list
                     websitezoom['' + webjob + ''] = document.getElementById("number").value;
                     // save for zoom feature
                     chrome.storage.sync.set({ "websitezoom": JSON.stringify(websitezoom) });
+                }
             }
+            catch(e){}
     }else if(zoomfont == true){
         var atbbuf = [];
         var domain;
@@ -241,27 +312,42 @@ function zoomtab(a,b){
                     atbbuf = websitezoom;
                     // save for zoom feature
                     chrome.storage.sync.set({ "websitezoom": JSON.stringify(websitezoom) });
+                    break; // go out of the loop because it found the current web page to save the new zoom value
                 }else{
-                    // update ratio
+                    // update ratio from 1 to 400 (and not the 100%)
                     websitezoom['' + atbbuf[i] + ''] = document.getElementById("number").value;
-                    // save for zoom feature
-                    chrome.storage.sync.set({ "websitezoom": JSON.stringify(websitezoom) });
+
+                    // Clear our timeout throughout the scroll
+                    //console.log("update the zoom " +document.getElementById("number").value)
+                    window.clearTimeout(isScrolling);
+                    var counter = 0; //should be out of your function scope
+                    isScrolling = setTimeout(function(){
+                        counter +=1;
+                        if(counter == 1){
+                        // Run the callback    
+                        //console.log( 'Scrolling has stopped.' );
+                        // save for zoom feature
+                        chrome.storage.sync.set({ "websitezoom": JSON.stringify(websitezoom) });
+                        }
+                    },250);
+
+                    break; // go out of the loop because it found the current web page to save the new zoom value
                 }
-            }else{
-                    // The box is not empty -> but website is not inside
-                    // add to list
-                    websitezoom['' + webjob + ''] = document.getElementById("number").value;
-                    // save for zoom feature
-                    chrome.storage.sync.set({ "websitezoom": JSON.stringify(websitezoom) });
             }
         }
         // The box is empty -> so the list is really empty, then add this website in the list
-        if(atbbuf.length == 0){
+        // Or -> but website is not inside
+        //console.log("dodo: "+atbbuf.includes(webjob));
+        try{    
+            if(atbbuf.length == 0 || (atbbuf.includes(webjob) != true)){
                 // add to list
                 websitezoom['' + webjob + ''] = document.getElementById("number").value;
                 // save for zoom feature
                 chrome.storage.sync.set({ "websitezoom": JSON.stringify(websitezoom) });
+            }
         }
+        catch(e){}
+
     }
     }
 }
@@ -302,9 +388,17 @@ function wheel(event){
 }
 
 document.addEventListener('DOMContentLoaded', function(){
+// set tooltip
+$("hund").title = chrome.i18n.getMessage("titleshortzoomreset");
+$("minus").title = chrome.i18n.getMessage("titleshortzoomout");
+$("plus").title = chrome.i18n.getMessage("titleshortzoomin");
+
+// disable right click menu
+document.addEventListener('contextmenu', event => event.preventDefault());
+
 // default settings
 function displayinput(newValue){document.getElementById("number").value=parseInt(newValue);}
-function showValue(newValue){document.getElementById("range").innerHTML=parseInt(newValue);document.getElementById("number").value=parseInt(newValue);zoom(newValue);}
+function showValue(newValue){document.getElementById("range").value=parseInt(newValue);document.getElementById("number").value=parseInt(newValue);zoom(newValue);}
 $("range").addEventListener('change', function(){showValue(this.value);});
 $("range").addEventListener('input', function(){showValue(this.value);});
 $("number").addEventListener('change', function(){showValue(this.value);});
@@ -313,7 +407,7 @@ $("minus").addEventListener('click', function(){zoomview(-1);});
 $("plus").addEventListener('click', function(){zoomview(+1);});
 
 // mouse scroll
-window.addEventListener('wheel', wheel); // for modern
+window.addEventListener("wheel", wheel,{passive: false}); // for modern
 
 chrome.storage.sync.get(['darkmode','firstDate','allzoom','allzoomvalue','websitezoom','badge','steps','lightcolor','zoomchrome','zoomweb','largepopup','zoombydomain','zoombypage','defaultallscreen','defaultsinglescreen','screenzoom','zoomfont'], function(response){
 darkmode = response.darkmode;if(darkmode == null)darkmode = false; // default darkmode false
@@ -371,6 +465,7 @@ websitezoom = JSON.parse(websitezoom);
     chrome.tabs.query({ active: true, currentWindow: true},
     function(tabs){
         var job = tabs[0].url;
+        if(typeof job !== "undefined"){
         if(zoombydomain == true){webjob = job.match(/^[\w-]+:\/*\[?([\w\.:-]+)\]?(?::\d+)?/)[0];}
         else{webjob = job;}
         if (zoomchrome == true){
@@ -412,6 +507,7 @@ websitezoom = JSON.parse(websitezoom);
                 document.getElementById("number").value = Math.round(ratio * 100);
                 document.getElementById("range").value = Math.round(ratio * 100);
             });
+        }
         }
     });
 

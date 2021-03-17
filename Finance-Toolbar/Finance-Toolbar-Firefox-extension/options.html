@@ -8,7 +8,7 @@
 
 Finance Toolbar
 Get real time stock market information about your favorite stocks. With mini-charts of the currency value.
-Copyright (C) 2018 Stefan vd
+Copyright (C) 2019 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -31,6 +31,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 -->
+
 <title data-i18n="optionpagetitle"></title>
 <link rel="stylesheet" type="text/css" href="css/options.css">
 <script type="text/javascript" src="js/constants.js"></script>
@@ -60,7 +61,12 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 					<img id="headlamp" width="16" height="16" alt="Finance Toolbar Browser extension">
 				</div>
 				Finance Toolbar™</div>
-			<div class="rightmenu" id="dotmenu">
+				<div class="search">
+					<div class="searchicon"><svg id="btnsearchicon" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false"><g><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></g></svg>
+					</div>
+					<input type="search" id="appsearch" placeholder="" name="q" autocomplete="off" aria-label="Search through site content">
+				</div>
+				<div class="rightmenu" id="dotmenu">
 				<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
 				width="24" height="24"
 				viewBox="0 0 24 24"><g><path d="M 12 3 C 10.894531 3 10 3.894531 10 5 C 10 6.105469 10.894531 7 12 7 C 13.105469 7 14 6.105469 14 5 C 14 3.894531 13.105469 3 12 3 Z M 12 10 C 10.894531 10 10 10.894531 10 12 C 10 13.105469 10.894531 14 12 14 C 13.105469 14 14 13.105469 14 12 C 14 10.894531 13.105469 10 12 10 Z M 12 17 C 10.894531 17 10 17.894531 10 19 C 10 20.105469 10.894531 21 12 21 C 13.105469 21 14 20.105469 14 19 C 14 17.894531 13.105469 17 12 17 Z "></path></g></svg>
@@ -116,6 +122,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 	</ul>
 	</div>
 	<div id="mainview">
+		<h1 class="hidden"><span data-i18n="optionpagetitle"></span></h1>
 		<div id="managed-prefs-banner">
 			<span id="managed-prefs-icon">
 				<a class="donatebutton" target="_blank" href="https://www.stefanvd.net/donate.htm" data-i18n="titledonatebutton" rel="noopener"></a>
@@ -125,7 +132,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 		</div>
 		<div id="mainview-content">
 			<div id="tab1" class="page">
-			<h1 data-i18n="basicsettings"></h1>
+			<h2 data-i18n="basicsettings"></h2>
 			<div class="sharemenu">
 				<div data-i18n="titelsharethis"></div> <div id="shareboxyoutube"></div> <div id="shareboxfacebook"></div> <div id="shareboxtwitter"></div>
 			</div>
@@ -405,7 +412,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				</section>
 			</div>
 			<div id="tab2" class="page hidden">
-			<h1 data-i18n="designmarquee"></h1>
+			<h2 data-i18n="designmarquee"></h2>
 				<section>
 				<h3 data-i18n="titelmarquee"></h3>
 				<div>
@@ -513,7 +520,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				</section>
 			</div>
 			<div id="tab4" class="page hidden">
-				<h1 data-i18n="advancedoptions"></h1>
+				<h2 data-i18n="advancedoptions"></h2>
 				<section>
 				<h3 data-i18n="titelrememberpage"></h3>
 				<div>
@@ -527,8 +534,13 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 					<div>
 						<div role="radiogroup" aria-labelledby="dataengine">
 							<div class="md-radio">
-								<input id="fromiexe" type="radio" name="fromdataengine" value="top" role="radio" aria-labelledby="dataengine">
-								<label for="fromiexe"><div><span>IEX Trading API</span></div></label>
+								<input id="fromfinanceapi" type="radio" name="fromdataengine" value="top" role="radio" aria-labelledby="dataengine">
+								<label for="fromfinanceapi"><div><span>Stefan vd - Finance API</span></div></label>
+							</div>
+							<div>
+								<label><span data-i18n="titeldatabarlicense"></span><br><br><input id="apikey" type="text" placeholder="PASTE API TOKEN HERE"></input></label>
+								<br><br>
+								<label><div><span data-i18n="desgetaplphaapi"></span>: <a href="https://iexcloud.io" target="_blank">https://iexcloud.io</a></div></label>
 							</div>
 						</div>
 					</div>
@@ -611,7 +623,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				</section>
 			</div>	
 			<div id="tab5" class="page hidden">
-			<h1 data-i18n="about"></h1>
+			<h2 data-i18n="about"></h2>
 			<section>
 				<div>
 				<h4>Finance Toolbar™</h4>

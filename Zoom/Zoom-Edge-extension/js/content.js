@@ -3,7 +3,7 @@
 
 Zoom
 Zoom in or out on web content using the zoom button for more comfortable reading.
-Copyright (C) 2019 Stefan vd
+Copyright (C) 2020 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -47,7 +47,12 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse){
         }
     }
     else if(msg.text === 'refreshscreen'){
-        chrome.runtime.sendMessage({action: "getallRatio", website: window.location.href});
+        currentscreen = screen.width+"x"+screen.height;
+        // reload page to get the curretn web page zoom
+        location.reload();
+        // because send message will overwrite if use many tabs and the last tab will be only send
+        // runtime.sendMessage can be used only for one-time requests
+        //chrome.runtime.sendMessage({action: "getallRatio", website: window.location.href, screen: currentscreen});
     }
     else if(msg.text === 'setfontsize'){
         setdefaultfontsize();
@@ -63,7 +68,9 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse){
             document.body.appendChild(div);
         }
         var q = document.getElementsByTagName('*');
-        for(var i = 0; i < q.length; i++ ){
+        var i;
+        var l = q.length;
+        for(i = 0; i < l; i++){
             if(q[i].hasAttribute("data-default-fontsize")){
                 var tempcurrent = q[i].getAttribute("data-default-fontsize")
                 tempcurrent = tempcurrent.replace('px','');
@@ -77,6 +84,29 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse){
         chrome.runtime.sendMessage({name: "getscreenshot"});
     }else if(msg.text === 'showmagnifyglass'){
         showmagnify(msg.value);
+    }else if(msg.text === 'setbodycsszoom'){
+        if(document.body){
+            // Check for transform support so that we can fallback otherwise
+            var supportsZoom = 'zoom' in document.body.style;
+            if(supportsZoom){
+                document.body.style.zoom = msg.value;
+            }else{
+                document.body.style.transformOrigin='center top';document.body.style.transform='scale(' + msg.value + ')';
+            }
+        }else{
+            var bodyInterval = window.setInterval(function () {
+                if(document.body){
+                    // Check for transform support so that we can fallback otherwise
+                    var supportsZoom = 'zoom' in document.body.style;
+                    if(supportsZoom){
+                        document.body.style.zoom = msg.value;
+                    }else{
+                        document.body.style.transformOrigin='center top';document.body.style.transform='scale(' + msg.value + ')';
+                    }
+                    window.clearInterval(bodyInterval);
+                }
+            }, 20);
+        }
     }
 });
 
@@ -196,7 +226,9 @@ function moveSpot(e){
 
 function setdefaultfontsize(){
     var q = document.getElementsByTagName('*');
-    for(var i = 0; i < q.length; i++){
+    var i;
+    var l = q.length;
+    for(i = 0; i < l; i++){
         if(q[i].currentStyle){
             var y = q[i].currentStyle["font-size"];
         }

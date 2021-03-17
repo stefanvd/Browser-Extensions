@@ -3,7 +3,7 @@
         "message": "Finance Toolbar - Real Time Stock Tracker"
     }, 
     "description": {
-        "message": "Get real time stock market information about your favorite stocks. Such as Apple, Down Jones, Facebook, Google, Microsoft, etc."
+        "message": "Get real time stock market information about your favorite stocks."
     },
     "browserbutton": {
         "message": "Finance Toolbar"
@@ -478,15 +478,18 @@
     "message":"Data engine"
   },
   "titeldatabarlicense":{
-    "message":"Paste here your API code in this text box:"
+    "message":"Paste here your API token in this text box:"
   },
   "desgetaplphaapi":{
-    "message":"You can get the FREE API on this website"
+    "message":"You can get the FREE API token on this website"
   },
   "extrafavonote":{
-    "message":"To use this feature enable the Alpha Vantage API from the 'Advanced Options' tab"
+    "message":"To use this browser extension, please paste the Finance API in the 'Finance Toolbar Options page' in the 'Advanced Options' tab"
   }, 
   "desremyoutube":{
     "message":"Subscribe on YouTube"
+  },
+  "desstocknotsupported":{
+    "message":"Stock Not Supported"
   }
 }

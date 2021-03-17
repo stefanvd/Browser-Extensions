@@ -4,8 +4,7 @@
         "description": "Finance Toolbar"
     },
     "description": {
-        "message": "获取有关你最喜欢的股票的实时股市信息。与迷你图表的货币值。",
-        "description": "Get real time stock market information about your favorite stocks. With mini-charts of the currency value."
+        "message": "Get real time stock market information about your favorite stocks."
     },
     "browserbutton": {
         "message": "金融工具栏",

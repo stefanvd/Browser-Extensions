@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "__MSG_nameedge__",
   "short_name": "Proper Menubar",
-  "version": "1.2.11.0",
+  "version": "1.2.12.0",
   "description": "__MSG_description__",
   "author": "Stefan vd",
   "homepage_url": "https://www.stefanvd.net/support/",
@@ -71,5 +71,5 @@
   "minimum_chrome_version": "20",
   "offline_enabled": true,
   "permissions": [ "contextMenus", "activeTab", "storage"],
-  "optional_permissions": [ "pageCapture","clipboardWrite","clipboardRead","bookmarks"]
+  "optional_permissions": [ "pageCapture","clipboardWrite","clipboardRead","bookmarks","tabs"]
 }

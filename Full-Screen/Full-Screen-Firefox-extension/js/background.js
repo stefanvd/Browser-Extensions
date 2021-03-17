@@ -3,7 +3,7 @@
 
 Full Screen
 Go full screen with one click on the button.
-Copyright (C) 2018 Stefan vd
+Copyright (C) 2020 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -36,60 +36,385 @@ if (request.name == "youtubefullscreen") {
     );
 }
 else if (request.name == "sendautoplay") {
-    
-        var oReq = new XMLHttpRequest();
-        oReq.onreadystatechange = function (e) { if (oReq.readyState == 4) {chrome.tabs.sendMessage(sender.tab.id, {name: "injectvideostatus",message: oReq.responseText});} };
-        oReq.open("GET","/js/injected.js",true);oReq.send();
-        
+    var oReq = new XMLHttpRequest();
+    oReq.onreadystatechange = function (e) { if (oReq.readyState == 4) {chrome.tabs.sendMessage(sender.tab.id, {name: "injectvideostatus",message: oReq.responseText});} };
+    oReq.open("GET","/js/injected.js",true);oReq.send();
 }
 // contextmenu
 else if (request.name == "contextmenuon") {checkcontextmenus();}
 else if (request.name == "contextmenuoff") {removecontexmenus()}
-});
-
-var oldwindowstatus;
-var fullscreenweb = null, fullscreenwindow = null, fullscreenvideo = null;
-chrome.browserAction.onClicked.addListener(function(tab) {
-  chrome.windows.getCurrent(null, function(window) {
-    chrome.storage.sync.get(['fullscreenweb','fullscreenwindow','fullscreenvideo'], function(items){
-      fullscreenweb = items['fullscreenweb'];if(fullscreenweb == null)fullscreenweb = true;
-      fullscreenwindow = items['fullscreenwindow'];
-      fullscreenvideo = items['fullscreenvideo'];
-
-      if(fullscreenweb == true){
+else if(request.name == "getallpermissions"){
+    var result = "";
+    chrome.permissions.getAll(function(permissions){
+       result = permissions.permissions;
+       chrome.tabs.sendMessage(sender.tab.id,{text: 'receiveallpermissions', value: result});
+    });
+}
+else if(request.name == "sendcurrentmaximize"){
+    chrome.windows.getCurrent(function(window){
+        if(window.state=="maximized"){
+            chrome.windows.update(window.id, { state: oldwindowstatus });
+        }else{
+            oldwindowstatus = window.state;
+            chrome.windows.update(window.id, { state: "maximized" });
+        }
+    });
+}
+else if(request.name == "sendallmaximize"){
+    chrome.windows.getAll({},function(windows){
+        windows.forEach(function(window){
+            if(window.state=="maximized"){
+                chrome.windows.update(window.id, { state: "normal" });
+            }else{
+                chrome.windows.update(window.id, { state: "maximized" });
+            }
+        });
+    });
+}
+else if(request.name == "sendcurrentfullscreen"){
+    chrome.windows.getCurrent(function(window){
         if(window.state=="fullscreen"){
             chrome.windows.update(window.id, { state: oldwindowstatus });
         }else{
-            chrome.windows.update(window.id, { state: "fullscreen" });
             oldwindowstatus = window.state;
+            chrome.windows.update(window.id, { state: "fullscreen" });
         }
-      }
-      else if(fullscreenwindow == true){
-        if(window.state=="maximized"){
-            chrome.windows.update(window.id, { state: "normal" });
-        }else{
-            chrome.windows.update(window.id, { state: "maximized" });
-        }
-      }
-      else if(fullscreenvideo == true){chrome.tabs.executeScript(tab.id, {file: "js/video.js"});}
     });
-  });
+}
+else if(request.name == "sendallfullscreen"){
+    chrome.windows.getAll({},function(windows){
+        windows.forEach(function(window){
+            if(window.state=="fullscreen"){
+                chrome.windows.update(window.id, { state: oldwindowstatus });
+            }else{
+                chrome.windows.update(window.id, { state: "fullscreen" });
+                oldwindowstatus = window.state;
+            }
+        });
+    });
+}
+else if(request.name == "sendcurrentpopup"){
+    chrome.tabs.query({currentWindow: true, active: true}, function (tabs) {
+        // close current tab
+        var websiteurl = tabs[0].url;
+        if(tabs[0]){
+            chrome.tabs.remove(tabs[0].id);
+        }
+        // open popup window
+        chrome.tabs.create({
+            url: websiteurl,
+            active: false
+        }, function(tab) {
+            // After the tab has been created, open a window to inject the tab
+            chrome.windows.create({
+                tabId: tab.id,
+                type: 'popup',
+                focused: true,
+                state:"maximized"
+            });
+        });
+    }
+);
+}
+else if(request.name == "updateContextMenu"){
+    renewcontextmenu();
+}
+else if(request.name == "sendalltabspopup"){
+    chrome.tabs.query({currentWindow: true}, function (tabs) {
+        
+
+        var screenWidth = screen.availWidth;
+        var screenHeight = screen.availHeight;
+
+        var i = 0;
+        var l = tabs.length;
+        for(i; i < l; i++){
+            // support up to 2x2 matrix
+            // example: 2 popup windows
+            if(l == 2){
+                var left = (screenWidth/2);
+                var top = (screenHeight/2);
+                var w = (screenWidth/2);
+                var h = (screenHeight);
+                var websiteurl = tabs[i].url;
+                if(tabs[i]){
+                    chrome.tabs.remove(tabs[i].id);
+                }
+                chrome.windows.create({url: websiteurl, type: 'popup', width: w, height: h, left: i * left, top: 0}, function(window) {});
+            }else if(l == 3){
+                var left = (screenWidth/2);
+                var top = (screenHeight/2);
+                var w = (screenWidth/2);
+                var h = (screenHeight/2);
+                var websiteurl = tabs[i].url;
+                if(tabs[i]){
+                    chrome.tabs.remove(tabs[i].id);
+                }
+                if(i==2){
+                    chrome.windows.create({url: websiteurl, type: 'popup', width: w, height: screenHeight, left: 0, top: 0}, function(window) {});
+                }else{
+                    chrome.windows.create({url: websiteurl, type: 'popup', width: w, height: h, left: left, top: i * top}, function(window) {});
+                }
+            }else if(l == 4){
+                var left = (screenWidth/2);
+                var top = (screenHeight/2);
+                var w = (screenWidth/2);
+                var h = (screenHeight/2);
+                var websiteurl = tabs[i].url;
+                if(tabs[i]){
+                    chrome.tabs.remove(tabs[i].id);
+                }
+                if(i==0){
+                    chrome.windows.create({url: websiteurl, type: 'popup', width: w, height: h, left: 0, top: 0}, function(window) {});
+                }else if(i==1){
+                    chrome.windows.create({url: websiteurl, type: 'popup', width: w, height: h, left: 0, top: top}, function(window) {});
+                }else if(i==2){
+                    chrome.windows.create({url: websiteurl, type: 'popup', width: w, height: h, left: left, top: 0}, function(window) {});
+                }else if(i==3){
+                    chrome.windows.create({url: websiteurl, type: 'popup', width: w, height: h, left: left, top: top}, function(window) {});
+                }
+            }else{
+                // regular open tab in background popup window
+                var websiteurl = tabs[i].url;
+                if(tabs[i]){
+                    chrome.tabs.remove(tabs[i].id);
+                }
+                // open popup window
+                chrome.tabs.create({
+                    url: websiteurl,
+                    active: false
+                }, function(tab) {
+                    // After the tab has been created, open a window to inject the tab
+                    chrome.windows.create({
+                        tabId: tab.id,
+                        type: 'popup',
+                        focused: true,
+                        state:"maximized"
+                    });
+                });
+            }
+        }
+
+
+    }
+);
+}
+});
+
+function renewcontextmenu(){
+    chrome.windows.getCurrent(null, function (window) {
+        if(window.type=="popup"){
+            var backpopuptitle = chrome.i18n.getMessage("backpopuptitle");
+            chrome.contextMenus.update("fspage",{'title': backpopuptitle});
+        }else{
+            var pagetitle = chrome.i18n.getMessage("pagetitle");
+            chrome.contextMenus.update("fspage",{'title': pagetitle});
+        }
+    });
+}
+
+// update when click on the tab
+chrome.tabs.onHighlighted.addListener(function(){
+    renewcontextmenu();
+});
+
+// focus window changed (from popup to window)
+chrome.windows.onFocusChanged.addListener(function(){
+    renewcontextmenu();
+});
+
+// browser check
+var nAgt = navigator.userAgent;
+var browserName;
+var urlbrowservendor = window.navigator.vendor;
+if((nAgt.indexOf("OPR/"))!=-1){browserName = "Opera";}
+else if(urlbrowservendor.search("Safari") >= 0){browserName = "Safari";}
+else if(urlbrowservendor.search("Yandex") >= 0){browserName = "Yandex";}
+else if(urlbrowservendor.search("Google") >= 0){browserName = "Google Chrome";}
+else if(navigator.appCodeName == "Mozilla"){browserName = "Firefox";}
+else if((nAgt.indexOf("Maxthon/"))!=-1){browserName = "Maxthon";}
+
+var oldwindowstatus;
+var fullscreenweb = null, fullscreenwindow = null, fullscreenpopup = null, fullscreenvideo = null, allwindows = null;
+
+// Set click to false at beginning
+var alreadyClicked = false;
+// Declare a timer variable
+var timer;
+var popupcreated = false;
+chrome.browserAction.onClicked.addListener(function(tabs){
+
+        // Check for previous click
+        if(alreadyClicked){
+            // console.log("Doubleclick");
+            // Yes, Previous Click Detected
+            // Clear timer already set in earlier Click
+            window.clearTimeout(timer);
+            // Show the popup window
+            // Clear all Clicks
+            alreadyClicked = false;
+            chrome.browserAction.setPopup({tabId: tabs.id, popup:""});
+            return;
+        }
+
+
+        //Set Click to  true
+        alreadyClicked = true;
+        chrome.browserAction.setPopup({tabId: tabs.id, popup:"palette.html"});
+
+        // Add a timer to detect next click to a sample of 250
+        timer = window.setTimeout(function(){
+            // console.log("Singelclick");
+            var popups = chrome.extension.getViews({type: "popup"});
+            if(popups.length != 0){ // popup exist
+
+            }else{ // not exist
+                
+                chrome.windows.getCurrent(function(window){
+                    chrome.storage.sync.get(['fullscreenweb','fullscreenwindow','fullscreenpopup','fullscreenvideo','allwindows'], function(items){
+                      fullscreenweb = items['fullscreenweb'];if(fullscreenweb == null)fullscreenweb = true;
+                      fullscreenwindow = items['fullscreenwindow'];
+                      fullscreenpopup = items['fullscreenpopup'];
+                      fullscreenvideo = items['fullscreenvideo'];
+                      allwindows = items['allwindows'];
+                
+                        if(fullscreenweb == true){
+                            if(allwindows == true){
+                                chrome.windows.getAll({},function(windows){
+                                    windows.forEach(function(window){
+                                        if(window.state=="fullscreen"){
+                                            chrome.windows.update(window.id, { state: oldwindowstatus });
+                                        }else{
+                                            oldwindowstatus = window.state;
+                                            chrome.windows.update(window.id, { state: "fullscreen" });
+                                        }
+                                    });
+                                });
+                            }else{
+                                // Firefox extension do not use the Full Screen API, permission issue. So use the Chrome window method
+                                // Bug Chrome: do not restore previous state
+                                if(window.state=="fullscreen"){
+                                    chrome.windows.update(window.id, { state: oldwindowstatus });
+                                }else{
+                                    oldwindowstatus = window.state;
+                                    chrome.windows.update(window.id, { state: "fullscreen" });
+                                }
+                
+                                // Chromium web browsers
+                                // Old way
+                                //if(tab.url.match(/^http/i)||tab.url.match(/^file/i)){
+                                //    chrome.tabs.executeScript(tab.id, { file: "js/fullscreen.js" });
+                                //}
+                            }
+                        }
+                        else if(fullscreenwindow == true){
+                            if(allwindows == true){
+                                chrome.windows.getAll({},function(windows){
+                                    windows.forEach(function(window){
+                                        if(window.state=="maximized"){
+                                            chrome.windows.update(window.id, { state: "normal" });
+                                        }else{
+                                            chrome.windows.update(window.id, { state: "maximized" });
+                                        }
+                                    });
+                                });
+                            }else{
+                                if(window.state=="maximized"){
+                                    chrome.windows.update(window.id, { state: "normal" });
+                                }else{
+                                    chrome.windows.update(window.id, { state: "maximized" });
+                                }
+                            }
+                        }
+                        else if(fullscreenpopup == true){
+                            chrome.tabs.query({currentWindow: true, active: true}, function (tabs) {
+                                // close current tab
+                                var websiteurl = tabs[0].url;
+                                if(tabs[0]){
+                                    chrome.tabs.remove(tabs[0].id);
+                                }
+                                // open popup window
+                                chrome.tabs.create({
+                                    url: websiteurl,
+                                    active: false
+                                }, function(tab) {
+                                    // After the tab has been created, open a window to inject the tab
+                                    chrome.windows.create({
+                                        tabId: tab.id,
+                                        type: 'popup',
+                                        focused: true,
+                                        state:"maximized"
+                                    });
+                                });
+                            });
+                        }
+                        else if(fullscreenvideo == true){
+                            if(allwindows == true){
+                                chrome.tabs.query({}, function(tabs){
+                                    var i;
+                                    var l = tabs.length;
+                                    for(i = 0; i < l; i++){
+                                        chrome.tabs.executeScript(tabs[i].id, {file: "js/video.js"}, function(){if(chrome.runtime.lastError){
+                                            // console.error(chrome.runtime.lastError.message);
+                                        }});
+                                    }
+                                }
+                                );
+                            }else{
+                                chrome.tabs.executeScript(tabs.id, {file: "js/video.js"}, function(){if(chrome.runtime.lastError){
+                                    // console.error(chrome.runtime.lastError.message);
+                                }});
+                            }
+                        }
+                    });
+                  });
+
+            }
+
+            // Clear all timers
+            window.clearTimeout(timer);
+            // Ignore clicks
+            alreadyClicked = false;
+            chrome.browserAction.setPopup({tabId: tabs.id, popup:""});
+        }, 250);
+
 });
 
 // contextMenus
 function onClickHandler(info, tab) {
 if (info.menuItemId == "fsvideo" || info.menuItemId == "fsimage") {chrome.tabs.sendMessage(tab.id, { name: "gofullscreen" });}
-else if (info.menuItemId == "fspage") {
-    chrome.windows.getCurrent(null, function(window) {
-        if(window.state=="fullscreen"){
-            chrome.windows.update(window.id, { state: oldwindowstatus });
+else if(info.menuItemId == "fspage"){
+    chrome.windows.getCurrent(null, function (window) {
+        // Firefox extension do not use the Full Screen API, permission issue. So use the Chrome window method
+        // Bug Chrome: do not restore previous state
+        if(window.type=="popup"){
+            chrome.tabs.query({currentWindow: true, active: true}, function (tabs) {
+                // close current pop window
+                var websiteurl = tabs[0].url;
+                if(tabs[0]){
+                    chrome.tabs.remove(tabs[0].id);
+                    //and create tab
+                    chrome.tabs.create({url: websiteurl, active:true})
+                }
+            });
+            // add back the regular page title
+            var pagetitle = chrome.i18n.getMessage("pagetitle");
+            chrome.contextMenus.update("fspage",{'title': pagetitle});
+        }else{
+            if(window.state=="fullscreen"){
+                chrome.windows.update(window.id, { state: oldwindowstatus });
+            }else{
+                oldwindowstatus = window.state;
+                chrome.windows.update(window.id, { state: "fullscreen" });
+            }
         }
-        else{
-            chrome.windows.update(window.id, { state: "fullscreen" });
-            oldwindowstatus = window.state;
-        }
+        
+        // Chromium web browsers
+        // Old way
+        //if(tab.url.match(/^http/i)||tab.url.match(/^file/i)){
+        //    chrome.tabs.executeScript(tab.id, { file: "js/fullscreen.js" });
+        //}
     });
-
 }
 else if (info.menuItemId == "totlguideemenu") {window.open(linkguide, "_blank");}
 else if (info.menuItemId == "totldevelopmenu") {window.open(donatewebsite, "_blank");}
@@ -240,9 +565,25 @@ function removecontexmenus(){
 }
 
 chrome.storage.onChanged.addListener(function(changes, namespace) {
-   for (key in changes) {
-          var storageChange = changes[key];
-          if(changes['contextmenus']){if(changes['contextmenus'].newValue == true){checkcontextmenus()}else{removecontexmenus()}}
+    if(changes['contextmenus']){if(changes['contextmenus'].newValue == true){checkcontextmenus()}else{removecontexmenus()}}
+    if(changes['videoinwindow']){
+        // change for videoinwindow and videooutwindow
+        chrome.tabs.query({}, function(tabs){
+            var i;
+            var l = tabs.length;
+            for(i = 0; i < l; i++){
+                chrome.tabs.sendMessage(tabs[i].id, { name: "gorefreshvideoinwindow" });
+            }
+        });
+    }
+    if(changes['autofullscreen']){
+        chrome.tabs.query({}, function(tabs){
+            var i;
+            var l = tabs.length;
+            for(i = 0; i < l; i++){
+                chrome.tabs.sendMessage(tabs[i].id, { name: "gorefreshautofullscreen" });
+            }
+        });
     }
 })
 

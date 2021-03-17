@@ -29,3 +29,15 @@ var financetoolbarapp = "https://www.stefanvd.net/project/finance-toolbar/"
 var browsernewtab = "chrome://newtab/";
 var browserstore = "https://chrome.google.com";
 var linkyoutube = "https://www.youtube.com/c/stefanvandamme?sub_confirmation=1";
+var devmode = false;
+if(devmode == true){
+	var getstockurl = "https://sandbox.iexapis.com/stable/stock/market/batch?symbols=";
+	var getstockapi = "&types=quote&token=Tsk_81963986030a48be9785546985179fd2";
+	var getcurrencyurl = "https://sandbox.iexapis.com/stable/fx/latest?symbols=";
+	var getcurrencyapi = "&token=Tsk_81963986030a48be9785546985179fd2";
+}else{
+	var getstockurl = "https://cloud.iexapis.com/stable/stock/market/batch?symbols=";
+	var getstockapi = "&types=quote&token=";
+	var getcurrencyurl = "https://cloud.iexapis.com/stable/fx/latest?symbols=";
+	var getcurrencyapi = "&token=";
+}

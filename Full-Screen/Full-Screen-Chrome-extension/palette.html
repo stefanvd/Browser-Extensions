@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!--
+//================================================
+/*
+
+Full Screen
+Go full screen with one click on the button.
+Copyright (C) 2020 Stefan vd
+www.stefanvd.net
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+
+To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.0/
+
+*/
+//================================================
+-->
+<link rel="stylesheet" type="text/css" href="css/palette.css">
+<script type="text/javascript" src="js/palette.js"></script>
+<script type="text/javascript" src="js/constants.js"></script>
+<body>
+
+                <div class="tabbar">
+                    <a href="#" id="tab1" class="tabbutton tabhighlight">
+                        <div class="tabicon">
+                                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                width="24" height="24"
+                                viewBox="0 0 30 30"
+                                fill="#000000"><path d="M 4 5 C 2.9069372 5 2 5.9069372 2 7 L 2 23 C 2 24.093063 2.9069372 25 4 25 L 26 25 C 27.093063 25 28 24.093063 28 23 L 28 7 C 28 5.9069372 27.093063 5 26 5 L 4 5 z M 4 7 L 26 7 L 26 23 L 17 23 L 17 17.414062 L 22.207031 12.207031 L 24 14 L 24 9 L 19 9 L 20.792969 10.792969 L 15.585938 16 L 4 16 L 4 7 z"></path></svg>
+                        </div>
+                    </a>
+                    <a href="#" id="tab2" class="tabbutton">
+                        <div class="tabicon">
+                                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                width="24" height="24"
+                                viewBox="0 0 48 48"
+                                fill="#000000"><path fill="#CFD8DC" d="M42,26H6v-4h36V26z M42,8H6v4h36V8z M42,36H6v4h36V36z"></path><path fill="#448aff" d="M18,12H6V8h12V12z M14,36H6v4h8V36z M31,22H6v4h25V22z"></path><path fill="#448aff" d="M20,14h-3c-0.5,0-1-0.4-1-1V7c0-0.6,0.5-1,1-1h3c0.5,0,1,0.4,1,1v6C21,13.6,20.5,14,20,14z M17,41v-6c0-0.5-0.5-1-1-1h-3c-0.6,0-1,0.5-1,1v6c0,0.5,0.4,1,1,1h3C16.5,42,17,41.5,17,41z M34,27v-6c0-0.5-0.5-1-1-1h-3c-0.5,0-1,0.5-1,1v6c0,0.5,0.5,1,1,1h3C33.5,28,34,27.5,34,27z"></path></svg>
+                        </div>
+                    </a>
+                </div>
+                <div id="basicspanel" class="">
+                        <div class="palette">
+                                <button id="btncurrentmaximize"><span data-i18n="palbtncurrentmaximize"></span></button>
+                        </div>
+                        <div class="palette">
+                                <button id="btnallmaximize"><span data-i18n="palbtnallmaximize"></span></button>
+                        </div>
+                        <hr>
+                        <div class="palette">
+                                <button id="btncurrentfullscreen"><span data-i18n="palbtncurrentfullscreen"></span></button>
+                        </div>
+                        <div class="palette">
+                                <button id="btnallfullscreen"><span data-i18n="palbtnallfullscreen"></span></button>
+                        </div>
+                        <hr>
+                        <div class="palette">
+                                <button id="btncurrentpopup"><span data-i18n="palbtncurrentpopup"></span></button>
+                        </div>
+                        <div class="palette">
+                                <button id="btnalltabspopup"><span data-i18n="palbtnalltabspopup"></span></button>
+                        </div>
+                        <hr>
+                        <div class="palette center">
+                        <button id="btnoptions"><span data-i18n="titelpopupoptions"></span></button>
+                        <button class="btnacc" id="btndonate"><span data-i18n="titledonatebutton"></span></button>
+                        </div>
+                </div>
+                <div id="morepanel" class="hidden">
+                        <div class="nightheader">
+                                <video width="300" height="200" poster="/images/darknight.png" loop muted autoplay>
+                                        <source src="images/darknight.mp4" type="video/mp4">Your browser does not support the video tag.
+                                </video>
+                            <span data-i18n="titelfullscreenaction"></span>
+                        </div>
+                        <div class="palette">
+                                <div role="radiogroup" aria-labelledby="defaultfullscreenvalue">
+                                        <div class="md-radio">
+                                                <input id="fullscreenweb" type="radio" name="fullscreenaction" value="web" role="radio" aria-labelledby="defaultfullscreenvalue">
+                                                <label for="fullscreenweb"><div><span data-i18n="desfullscreenweb"></span></div></label>
+                                        </div>
+                                        <div class="md-radio">
+                                                <input id="fullscreenwindow" type="radio" name="fullscreenaction" value="window" role="radio" aria-labelledby="defaultfullscreenvalue">
+                                                <label for="fullscreenwindow"><div><span data-i18n="desfullscreenwindow"></span></div></label>
+                                        </div>
+                                        <div class="md-radio">
+                                                <input id="fullscreenpopup" type="radio" name="fullscreenaction" value="popup" role="radio" aria-labelledby="defaultfullscreenvalue">
+                                                <label for="fullscreenpopup"><div><span data-i18n="desfullscreenpopup"></span></div></label>
+                                        </div>
+                                        <div class="md-radio">
+                                                <input id="fullscreenvideo" type="radio" name="fullscreenaction" value="video" role="radio" aria-labelledby="defaultfullscreenvalue">
+                                                <label for="fullscreenvideo"><div><span data-i18n="desfullscreenvideo"></span></div></label>
+                                        </div>
+                                </div>
+                                <div class="md-subin" role="radiogroup" aria-labelledby="defaultvideowindow">
+                                        <div class="md-radio">
+                                                <input id="videoinwindow" type="radio" name="videoaction" value="in" role="radio" aria-labelledby="defaultvideowindow">
+                                                <label for="videoinwindow"><div><span data-i18n="desvideoinwindow"></span></div></label>
+                                        </div>
+                                        <div class="md-radio">
+                                                <input id="videooutwindow" type="radio" name="videoaction" value="out" role="radio" aria-labelledby="defaultvideowindow">
+                                                <label for="videooutwindow"><div><span data-i18n="desvideooutwindow"></span></div></label>
+                                        </div>
+                                </div>
+                        </div>
+            </div>
+<div id="materialModalRate" class="hide" role="dialog" aria-label="Review this extension" aria-describedby="materialModalRateTitle" aria-disabled="true">
+        <div id="materialModalRateContent">
+                <img src="images/star.svg" alt="Review Turn Off the Lights to 5 stars">
+                <div id="materialModalRateTitle"><span data-i18n="friendlyremember"></span></div>
+                <div id="materialModalRateText">
+                        <span data-i18n="desremrate"></span>
+                </div>
+                <div id="materialModalRateButtons">
+                <div id="materialModalRateButtonOK" class="materialModalButton"><span data-i18n="titlelratenow"></span></div>
+                <div id="materialModalRateButtonCANCEL" class="materialModalButton"><span data-i18n="titleratelater"></span></div>
+                </div>
+        </div>
+</div>
+<script type="text/javascript" src="js/translate.js"></script>
+</body>
+</html>

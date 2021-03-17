@@ -3,7 +3,7 @@
 
 Zoom
 Zoom in or out on web content using the zoom button for more comfortable reading.
-Copyright (C) 2019 Stefan vd
+Copyright (C) 2020 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -26,20 +26,19 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-function $(id) { return document.getElementById(id); }
+function $(id){ return document.getElementById(id); }
 
 var currentscreen = screen.width+"x"+screen.height;
-chrome.runtime.sendMessage({action: "getallRatio", website: window.location.href, screen: currentscreen });
+chrome.runtime.sendMessage({action: "getallRatio", website: window.location.href, screen: currentscreen});
 
 // Listen for messages
-chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
-    // If the received message has the expected format...
-    if (msg.text === 'getwebzoom') {
+chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse){
+    if(msg.text === 'getwebzoom'){
         // Call the specified callback, passing
         // the web-page's DOM content as argument
         sendResponse(document.body.style.zoom);
     }
-    else if (msg.text === 'getfontsize') {
+    else if(msg.text === 'getfontsize'){
         // Call the specified callback, passing
         // the web-page's DOM content as argument
         if($('stefanvdzoomextension')){
@@ -47,13 +46,17 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
             sendResponse(currentfontsizezoom/100);
         }
     }
-    else if (msg.text === 'refreshscreen') {
-        var currentscreen = screen.width+"x"+screen.height;
-        chrome.runtime.sendMessage({action: "getallRatio", website: window.location.href, screen: currentscreen });
+    else if(msg.text === 'refreshscreen'){
+        currentscreen = screen.width+"x"+screen.height;
+        // reload page to get the curretn web page zoom
+        location.reload();
+        // because send message will overwrite if use many tabs and the last tab will be only send
+        // runtime.sendMessage can be used only for one-time requests
+        //chrome.runtime.sendMessage({action: "getallRatio", website: window.location.href, screen: currentscreen});
     }
-    else if (msg.text === 'setfontsize') {
+    else if(msg.text === 'setfontsize'){
         setdefaultfontsize();
-    }else if (msg.text === 'changefontsize') {
+    }else if(msg.text === 'changefontsize'){
         var newfontsize = msg.value;
         if($('stefanvdzoomextension')){
             $('stefanvdzoomextension').setAttribute('data-current-zoom',newfontsize);
@@ -65,7 +68,9 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
             document.body.appendChild(div);
         }
         var q = document.getElementsByTagName('*');
-        for(var i = 0; i < q.length; i++ ) {
+        var i;
+        var l = q.length;
+        for(i = 0; i < l; i++){
             if(q[i].hasAttribute("data-default-fontsize")){
                 var tempcurrent = q[i].getAttribute("data-default-fontsize")
                 tempcurrent = tempcurrent.replace('px','');
@@ -74,11 +79,34 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
             q[i].style.setProperty("font-size", finalfontsize, "important");
             }
         }
-    }else if (msg.text === 'enablemagnifyingglass') {
+    }else if(msg.text === 'enablemagnifyingglass'){
         magnifyenabled = true;
         chrome.runtime.sendMessage({name: "getscreenshot"});
-    }else if (msg.text === 'showmagnifyglass') {
+    }else if(msg.text === 'showmagnifyglass'){
         showmagnify(msg.value);
+    }else if(msg.text === 'setbodycsszoom'){
+        if(document.body){
+            // Check for transform support so that we can fallback otherwise
+            var supportsZoom = 'zoom' in document.body.style;
+            if(supportsZoom){
+                document.body.style.zoom = msg.value;
+            }else{
+                document.body.style.transformOrigin='center top';document.body.style.transform='scale(' + msg.value + ')';
+            }
+        }else{
+            var bodyInterval = window.setInterval(function () {
+                if(document.body){
+                    // Check for transform support so that we can fallback otherwise
+                    var supportsZoom = 'zoom' in document.body.style;
+                    if(supportsZoom){
+                        document.body.style.zoom = msg.value;
+                    }else{
+                        document.body.style.transformOrigin='center top';document.body.style.transform='scale(' + msg.value + ')';
+                    }
+                    window.clearInterval(bodyInterval);
+                }
+            }, 20);
+        }
     }
 });
 
@@ -104,14 +132,14 @@ function showmagnify(image){
 
     window.addEventListener("mousemove", moveSpot, { passive: true });
     window.addEventListener("touchmove", moveSpot, { passive: true });
-    window.addEventListener('scroll', function ( event ) {
+    window.addEventListener('scroll', function(event){
         if(magnifyenabled == true){
         clearmagnify();
         // Clear our timeout throughout the scroll
         window.clearTimeout( isScrolling );
 
         // Set a timeout to run after scrolling ends
-        isScrolling = setTimeout(function() {
+        isScrolling = setTimeout(function(){
 
             // Run the callback
             //console.log( 'Scrolling has stopped.' ); 
@@ -166,7 +194,7 @@ function addmanify(image){
 
 var glass;
 var w; var h;
-function moveSpot(e) {
+function moveSpot(e){
     var x = 0; var y = 0;
     if (!e) e = window.event;
 
@@ -198,7 +226,9 @@ function moveSpot(e) {
 
 function setdefaultfontsize(){
     var q = document.getElementsByTagName('*');
-    for(var i = 0; i < q.length; i++ ) {
+    var i;
+    var l = q.length;
+    for(i = 0; i < l; i++){
         if(q[i].currentStyle){
             var y = q[i].currentStyle["font-size"];
         }
@@ -230,38 +260,58 @@ zoommagszoomlevel = response.zoommagszoomlevel;if(zoommagszoomlevel == null)zoom
 zoommagszoomsize = response.zoommagszoomsize;if(zoommagszoomsize == null)zoommagszoomsize = 200;
 
 if(zoommousescroll == true){
-    document.body.addEventListener("mousedown", function(e) {
+    // add CSS
+    var css = '.stefanvdstopscrolling{height:100%!important;overflow:hidden!important}',
+    head = document.head || document.getElementsByTagName('head')[0],
+    style = document.createElement('style');
+    style.type = 'text/css';
+    style.setAttribute("id", "szoomstyle");
+    if(style.styleSheet){
+    style.styleSheet.cssText = css;
+    }else{
+    style.appendChild(document.createTextNode(css));
+    }
+    head.appendChild(style);
+
+    document.body.addEventListener("mousedown", function(e){
         e = e || window.event;
         if(zoommousebuttonleft == true){
             if(e.which == 1){
             rightmousehold = true;
+            // prevent scrolling
+            document.body.classList.add("stefanvdstopscrolling");
             }
         }else{
             if(e.which == 3){
             rightmousehold = true;
+            // prevent scrolling
+            document.body.classList.add("stefanvdstopscrolling");
             }
         }
     });
-    document.body.addEventListener("mouseup", function(e) {
+    document.body.addEventListener("mouseup", function(e){
         rightmousehold = false;
+        if(document.body.classList.contains("stefanvdstopscrolling")){
+            document.body.classList.remove("stefanvdstopscrolling");
+        }
     });
 
-    window.addEventListener('wheel', function(e) {
+    window.addEventListener('wheel', function(e){
         if(zoommousescrollup == true){
-            if (e.deltaY < 0 && rightmousehold == true) {
+            if(e.deltaY < 0 && rightmousehold == true){
                 //console.log('scrolling up');
                 chrome.runtime.sendMessage({name: "contentzoomout"});
             }
-            if (e.deltaY > 0 && rightmousehold == true) {
+            if(e.deltaY > 0 && rightmousehold == true){
                 //console.log('scrolling down');
                 chrome.runtime.sendMessage({name: "contentzoomin"});
             }
         } else{
-            if (e.deltaY < 0 && rightmousehold == true) {
+            if(e.deltaY < 0 && rightmousehold == true){
                 //console.log('scrolling up');
                 chrome.runtime.sendMessage({name: "contentzoomin"});
             }
-            if (e.deltaY > 0 && rightmousehold == true) {
+            if(e.deltaY > 0 && rightmousehold == true){
                 //console.log('scrolling down');
                 chrome.runtime.sendMessage({name: "contentzoomout"});
             }

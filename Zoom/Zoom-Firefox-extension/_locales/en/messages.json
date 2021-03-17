@@ -146,5 +146,17 @@
     "permissiontabs": {"message": "This is needed for the following features: to show you the welcome and guide page, manage the zoom on all the open tabs, and to open the Options page."},
     "permissioncontextmenu": {"message": "This to add all the Zoom percentage level in the web browser context menu."},
     "permissionstorage": {"message": "This to save the settings on your local computer, and to sync it to your web browser account."},
-    "permissionallurl": {"message": "This to control the Z button on all websites that include http, https, file, and ftp."}
+    "permissionallurl": {"message": "This to control the Z button on all websites that include http, https, file, and ftp."},
+    "desapplyzoomreset": {"message": "Apply reset zoom value to all tabs"},
+    "permissionwebnavigation": {"message": "This is needed to instantly set the zoom value on the current web page before the web page loaded."},
+    "titlezoomin": {"message": "Zoom In"},
+    "titlezoomout": {"message": "Zoom Out"},
+    "titlezoomreset": {"message": "Reset"},
+    "titlezoomstylea": {"message": "Zoom level actions"},
+    "titlezoomstyleb": {"message": "Zoom button actions"},
+    "titelpermission": {"message": "Permissions"},
+    "despermissiontab": {"message": "Remove the tab permission"},
+    "wpermissionremoved": {"message": "The permissions have been removed."},
+    "wpermissionnotremoved": {"message": "The permissions have already been removed"},
+    "permissionoption":{"message": "Permission must be enabled to use this feature."}
 }

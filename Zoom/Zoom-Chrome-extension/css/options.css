@@ -261,6 +261,12 @@ section>div:only-of-type{-webkit-box-flex:1}
 .proboxtext{display:inline-flex;line-height:18px;padding:15px 15px 10px}
 .proboxbutton,.proboxbutton:hover{background:#4285f4;color:white;margin-left:25px}
 .proboxbutton:hover{opacity:.8}
+/* Context Menu */
+.contextmenu ul{line-height:28px;list-style:none;margin:0;padding:0}
+.contextmenu{box-shadow:0 2px 4px 0 rgba(0,0,0,0.16),0 2px 8px 0 rgba(0,0,0,0.12);position:relative;width:200px;z-index:800;background:var(--totl-primary-background);padding:6px 0px}
+.contextmenu ul li{height:28px;user-select:none;padding:0px 16px;color:var(--totl-primary-font-color);cursor:pointer}
+.contextmenu ul li:hover{background-color:var(--totl-dropmenu-li-background-hover)}
+.contextmenu ul li:active{background-color:var(--totl-dropmenu-li-background-active)}
 /* Review box */
 #reviewextensionbox{height:75px;position:relative;-webkit-user-select:none;-moz-user-select:none;user-select:none}
 .stars{position:absolute;color:#ffce32;font-size:38px;top:0;left:30px}
