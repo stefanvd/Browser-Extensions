@@ -1,0 +1,251 @@
+﻿{
+  "name": {
+    "message": "Print"
+  },
+  "namechrome": {
+    "message": "Print for Google Chrome"
+  },
+  "namefirefox": {
+    "message": "Print for Firefox"
+  },
+  "nameopera": {
+    "message": "Print for Opera"
+  },
+  "nameedge": {
+    "message": "Print for Microsoft Edge"
+  },
+  "namesafari": {
+    "message": "Print for Safari"
+  },
+   "description": {
+      "message": "Print the current page you see with one single click. And that for all kinds of photo printing, poster printing, brochure printer, newspaper printing, business cards and more."
+   },
+   "pageatitle": {
+      "message": "Print"
+   },
+   "head1": {
+      "message": "Print Options"
+   },
+   "head2": {
+      "message": "Choose your favorite print icon:"
+   },
+   "textfoot": {
+      "message": "This software is licensed under the CC-GNU GPL. To view a copy of this license, visit"
+   },
+   "donatepromotext": {
+      "message": "If you can make a donation of any amount, I'd appreciate it immensely!"
+   },
+   "changelog": {
+      "message": "Changelog"
+   },
+   "version": {
+      "message": "Version"
+   },
+   "optionpagetitle": {
+      "message": "Print - Options"
+   },
+   "reportbug": {
+      "message": "Report an Issue"
+   },
+   "settings": {
+      "message": "Settings"
+   },
+   "basicsettings": {
+      "message": "Basics"
+   },
+   "advancedoptions":{
+    "message":"Advanced Options"
+  },
+   "titledonatebutton": {
+      "message": "Donate"
+   },
+"sharemenusharetitle":{
+    "message":"Share this"
+  },
+  "sharemenuwelcomeguidetitle":{
+    "message":"Welcome Guide"
+  },
+  "sharemenutellafriend":{
+    "message":"Tell a Friend"
+  },
+  "sharemenusendatweet":{
+    "message":"Send a Tweet"
+  },
+  "sharemenupostonfacebook":{
+    "message":"Post on Facebook"
+  },
+  "sharemenupostongoogleplus":{
+    "message":"Post on Google+"
+  },
+  "sharemenuratetitle":{
+    "message":"Rate this extension"
+  },
+  "sharemenudonatetitle":{
+    "message":"Support Development"
+  },
+  "help":{
+    "message":"Help"
+  },
+  "about":{
+    "message":"About"
+  },
+  "upgradefbshare":{
+    "message":"Share on Facebook"
+  },
+  "upgradetwshare":{
+    "message":"Tweet"
+  },
+  "ratetitle":{
+    "message":"Please rate & review my extension"
+  },
+  "ratedes":{
+    "message":"And let everyone know about this great extension!"
+  },
+  "rateitema":{
+    "message":"Rate 5 stars"
+  },
+  "titelreset":{
+    "message":"Reset settings"
+  },
+  "resetbrowserextension":{
+    "message":"Reset the Print settings"
+  },
+  "areyouhappy":{
+    "message":"Are you happy about Print?"
+  },
+  "tellothers":{
+    "message":"Ensure that your opinion counts"
+  },
+  "nothanks":{
+    "message":"No thanks"
+  },
+  "writeareview":{
+    "message":"Write a review"
+  },
+  "desfinancetoolbar":{
+    "message":"Your personal stocks toolbar on your desktop is also available for your computer."
+  },
+  "downloadtheapp":{
+    "message":"Download the app now"
+  },
+  "desrememberpage":{
+    "message":"If this option is enabled, it will not show you the reminder page"
+  },
+  "titelrememberpage":{
+    "message":"Reminder page"
+  },
+  "longdonatetext":{
+    "message":"I'd truly appreciate if you can donate me to keep this browser extension alive for other new users. Whether it's $$1 or $$100, your support is immensely appreciated!"
+  },
+  "enjoyshare":{
+    "message":"Enjoy this extension and share it with others who you think will appreciate it."
+  },
+  "titeldownloadbutton":{
+    "message":"Download this Upgrade!"
+  },
+  "titelsync":{
+    "message":"Sync"
+  },  
+  "titelsyncbrowser":{
+    "message":"Sync the extension settings with your other browser."
+  },
+  "titeldownloadupgrade":{
+    "message":"The entire page will be fading to dark, so you can watch the video as if you were in the cinema."
+  },
+  "desproject":{
+    "message":"project"
+  },
+  "desbrowserextension":{
+    "message":"browser extension"
+  },
+  "translateme":{
+    "message":"Help Translate"
+  },  
+  "titelwebsite":{
+    "message":"Website"
+  },
+  "titeldeveloper":{
+    "message":"Developer"
+  },
+  "rememberrate":{
+    "message":"Rate"
+  },
+  "showremember":{
+    "message":"Do not show this reminder page again when I open the options page"
+  },
+  "skipremember":{
+    "message":"Skip this, and open now the options page"
+  },
+  "titelrightsreserved":{
+    "message":"Some rights reserved."
+  },
+  "friendlyremember":{
+    "message":"Friendly Reminder..."
+  },  
+  "titelupgrade":{
+    "message":"Upgrade"
+  }, 
+ "welcomebasictext":{
+    "message":"Welcome on the Print Browser extension. Here a brief video about how to use the Print extension in your web browser."
+  },
+  "promotitle":{
+    "message":"Tip of the day"
+  },
+ "promotext":{
+    "message":"Want to use something new and amazing for your web browser? Try the $product$ Browser extension.",
+    "placeholders": {
+          "product": {
+            "content": "$1",
+            "example": "Turn Off the Lights"
+          }
+        }
+  },
+  "promocalltoaction":{
+    "message":"Download it Now!"
+  },
+  "donatetext":{
+    "message":"Due to the very small number of donations the project may be closed. Please support further development with a Donation."
+  },
+  "donatecalltoaction":{
+    "message":"Donate Now!"
+  },    
+  "titelsharethis":{
+    "message":"Share this:"
+  },
+  "titelwelcome":{
+    "message":"Welcome and Hello"
+  },
+  "titeldesign":{
+    "message":"Design"
+  },
+  "titeloriginal":{
+    "message":"Original"
+  },
+  "titelgooglemd":{
+    "message":"Material Design"
+  },
+  "titelcontextmenu":{
+    "message":"Context Menu"
+  },
+  "descontextmenu":{
+    "message":"Enable the right click menu to print the current web page"
+  },
+  "printpagetitle":{
+    "message":"Print this page"
+  },
+  "printimagetitle":{
+    "message":"Print this image"
+  },
+  "titlesavethatpage":{
+    "message":"Save current page"
+  },
+  "titleprintthatpage":{
+    "message":"Print current page"
+  },
+  "titeldoesntwork":{
+    "message":"Print doesn't work on this web page. Please try another page."
+  },
+  "titelah":{
+    "message":"Human and Animal"
+  }
+}
