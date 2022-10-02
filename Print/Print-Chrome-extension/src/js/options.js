@@ -611,7 +611,7 @@ function domcontentloaded(){
 	}
 
 	// Reset settings
-	$("resetprint").addEventListener("click", function(){ chrome.storage.sync.clear(); location.reload(); });
+	$("resetprint").addEventListener("click", function(){ chrome.storage.sync.clear(); chrome.runtime.sendMessage({name: "bckreload"}); location.reload(); });
 
 	// Review box
 	$("war").addEventListener("click", function(){ window.open(writereview, "_blank"); $("sectionreviewbox").style.display = "none"; chrome.storage.sync.set({"reviewedlastonversion": chrome.runtime.getManifest().version}); });

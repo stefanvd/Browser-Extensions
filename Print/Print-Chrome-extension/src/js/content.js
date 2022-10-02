@@ -35,3 +35,14 @@ if(window.location.href.match(/^http(s)?:\/\/(www\.)?stefanvd.net/i)){
 		$("print-" + exbrowser + "-thanks-button").style.display = "block";
 	}
 }
+
+let redirectionHosts = [linkredirectionoptions];
+if(redirectionHosts.includes(window.location.href)){
+	if($("allowpermission")){
+		$("allowpermission").className = "";
+		chrome.runtime.sendMessage({name: "redirectionoptions"});
+	}
+	if($("disallowpermission")){
+		$("disallowpermission").className = "hidden";
+	}
+}

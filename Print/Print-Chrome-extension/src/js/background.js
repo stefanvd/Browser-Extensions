@@ -32,6 +32,15 @@ importScripts("constants.js");
 
 chrome.runtime.onMessage.addListener(function request(request, sender){
 	switch(request.name){
+	case"bckreload":
+		installation();
+		break;
+	case"redirectionoptions":
+		chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
+			chrome.tabs.remove(tabs[0].id);
+			chrome.runtime.openOptionsPage();
+		});
+		break;
 	case"getallpermissions":
 		var result = "";
 		chrome.permissions.getAll(function(permissions){
@@ -115,8 +124,6 @@ function onClickHandler(info, tab){
 			target: {tabId: tab.id},
 			files: ["js/print.js"]
 		});
-		break;
-	case(str.includes("extguideemenu")): chrome.tabs.create({url: linkguide, active:true});
 		break;
 	case(str.includes("extdevelopmenu")): chrome.tabs.create({url: linkdonate, active:true});
 		break;
@@ -297,10 +304,20 @@ chrome.storage.onChanged.addListener(function(changes){
 
 chrome.runtime.setUninstallURL(linkuninstall);
 
-chrome.storage.sync.get(["firstRun"], function(chromeset){
-	if((chromeset["firstRun"] != "false") && (chromeset["firstRun"] != false)){
-		chrome.tabs.create({url: linkwelcome});
-		var crrinstall = new Date().getTime();
-		chrome.storage.sync.set({"firstRun": false, "version": "0.1", "firstDate": crrinstall});
-	}
+function initwelcome(){
+	chrome.storage.sync.get(["firstRun"], function(chromeset){
+		if((chromeset["firstRun"] != "false") && (chromeset["firstRun"] != false)){
+			chrome.tabs.create({url: linkwelcome});
+			var crrinstall = new Date().getTime();
+			chrome.storage.sync.set({"firstRun": false, "version": "0.1", "firstDate": crrinstall});
+		}
+	});
+}
+
+function installation(){
+	initwelcome();
+}
+
+chrome.runtime.onInstalled.addListener(function(){
+	installation();
 });

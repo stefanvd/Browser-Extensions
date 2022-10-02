@@ -49,8 +49,6 @@
         "linksupport": "writable",
         "linkwelcome": "writable",
         "linkuninstall": "writable",
-        "linkguide": "writable",
-        "linkshare": "writable",
         "linkproductdescription": "writable",
         "browsernewtab": "writable",
         "browserstore": "writable",

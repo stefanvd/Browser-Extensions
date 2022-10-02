@@ -29,7 +29,6 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 function action1(){ chrome.tabs.create({url: linkyoutube, active:true}); }
 function action2(){ chrome.runtime.openOptionsPage(); }
 function action3(){ chrome.tabs.create({url: linksupport, active:true}); }
-function action4(){ chrome.tabs.create({url: linkguide, active:true}); }
 
 function eventFunc(selector, event, callback){
 	document.getElementById(selector).addEventListener(event, function(){
@@ -64,5 +63,4 @@ document.addEventListener("DOMContentLoaded", function(){
 	eventFunc("opentrywebsite", "click", action1);
 	eventFunc("openoptions", "click", action2);
 	eventFunc("opensupport", "click", action3);
-	eventFunc("openwelcomeguide", "click", action4);
 });
