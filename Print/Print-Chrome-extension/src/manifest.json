@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "__MSG_namechrome__",
   "short_name": "Print",
-  "version": "2.3.1.0",
+  "version": "2.3.2.0",
   "description": "__MSG_description__",
   "author": "Stefan vd",
   "homepage_url": "https://www.stefanvd.net/support/",
@@ -30,7 +30,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
+      "matches": ["*://*.stefanvd.net/*"],
       "js": ["js/constants.js", "js/content.js"],
       "run_at": "document_end"
     }
