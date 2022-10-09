@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "__MSG_namechrome__",
   "short_name": "Zoom",
-  "version": "2.6.3.0",
+  "version": "2.6.4.0",
   "description": "__MSG_description__",
   "author": "Stefan vd",
   "homepage_url": "https://www.stefanvd.net/support/",

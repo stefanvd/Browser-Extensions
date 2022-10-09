@@ -91,7 +91,7 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse){
             if(supportsZoom){
                 document.body.style.zoom = msg.value;
             }else{
-                document.body.style.transformOrigin='center top';document.body.style.transform='scale(' + msg.value + ')';
+                document.body.style.transformOrigin='left top';document.body.style.transform='scale(' + msg.value + ')';
             }
         }else{
             var bodyInterval = window.setInterval(function () {
@@ -101,7 +101,7 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse){
                     if(supportsZoom){
                         document.body.style.zoom = msg.value;
                     }else{
-                        document.body.style.transformOrigin='center top';document.body.style.transform='scale(' + msg.value + ')';
+                        document.body.style.transformOrigin='left top';document.body.style.transform='scale(' + msg.value + ')';
                     }
                     window.clearInterval(bodyInterval);
                 }

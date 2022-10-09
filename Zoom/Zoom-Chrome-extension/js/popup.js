@@ -92,7 +92,7 @@ function zoomtab(a,b){
                                     }
                                   });
                             }else{
-                                chrome.tabs.executeScript(tab.id,{code:"document.body.style.transformOrigin='center top';document.body.style.transform='scale(" + b + ")'"}, function(){
+                                chrome.tabs.executeScript(tab.id,{code:"document.body.style.transformOrigin='left top';document.body.style.transform='scale(" + b + ")'"}, function(){
                                     if(chrome.runtime.lastError){
                                     //console.log('[ZoomDemoExtension] doSetMode() error: ' + chrome.runtime.lastError.message);
                                     }
@@ -125,7 +125,7 @@ function zoomtab(a,b){
                                         }
                                       });
                                 }else{
-                                    chrome.tabs.executeScript(tab.id,{code:"document.body.style.transformOrigin='center top';document.body.style.transform='scale(" + b + ")'"}, function(){
+                                    chrome.tabs.executeScript(tab.id,{code:"document.body.style.transformOrigin='left top';document.body.style.transform='scale(" + b + ")'"}, function(){
                                         if(chrome.runtime.lastError){
                                         //console.log('[ZoomDemoExtension] doSetMode() error: ' + chrome.runtime.lastError.message);
                                         }
