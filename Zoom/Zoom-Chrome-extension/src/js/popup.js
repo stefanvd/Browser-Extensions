@@ -72,7 +72,9 @@ function zoomtab(a, b){
 					chrome.browserAction.setBadgeBackgroundColor({color:lightcolor});
 					chrome.browserAction.setBadgeText({text:"" + document.getElementById("number").value + "", tabId: a});
 				}else{ chrome.browserAction.setBadgeText({text:""}); }
-			}catch(e){}
+			}catch(e){
+				// console.log(e);
+			}
 		}
 	}else if(zoomweb == true){
 		if(allzoom == true){
@@ -97,7 +99,9 @@ function zoomtab(a, b){
 									});
 								}
 							}
-						}catch(e){}
+						}catch(e){
+							console.log(e);
+						}
 						if(badge == true){
 							chrome.browserAction.setBadgeBackgroundColor({color:lightcolor});
 							chrome.browserAction.setBadgeText({text:"" + document.getElementById("number").value + ""});
@@ -110,7 +114,7 @@ function zoomtab(a, b){
 					tabs.forEach(function(tab){
 						var pop = tab.url;
 						if(typeof pop !== "undefined"){
-							if(zoombydomain == true){ var webpop = pop.match(/^[\w-]+:\/*\[?([\w\.:-]+)\]?(?::\d+)?/)[0]; }else{ var webpop = pop; }
+							if(zoombydomain == true){ var webpop = pop.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0][0]; }else{ var webpop = pop; }
 							if(webpop == webjob){ // in current tab and not in popup window
 								try{
 									var supportsZoom = "zoom" in document.body.style;
@@ -127,7 +131,9 @@ function zoomtab(a, b){
 											}
 										});
 									}
-								}catch(e){}
+								}catch(e){
+									console.log(e);
+								}
 								if(badge == true){
 									chrome.browserAction.setBadgeBackgroundColor({color:lightcolor});
 									chrome.browserAction.setBadgeText({text:"" + document.getElementById("number").value + "", tabId: tab.id});
@@ -159,7 +165,7 @@ function zoomtab(a, b){
 					tabs.forEach(function(tab){
 						var pop = tab.url;
 						if(typeof pop !== "undefined"){
-							if(zoombydomain == true){ var webpop = pop.match(/^[\w-]+:\/*\[?([\w\.:-]+)\]?(?::\d+)?/)[0]; }else{ var webpop = pop; }
+							if(zoombydomain == true){ var webpop = pop.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0][0]; }else{ var webpop = pop; }
 							if(webpop == webjob){ // in current tab and not in popup window
 								chrome.tabs.sendMessage(tab.id, {text: "setfontsize"});
 								chrome.tabs.sendMessage(tab.id, {text: "changefontsize", value: document.getElementById("number").value});
@@ -195,7 +201,7 @@ function zoomtab(a, b){
 		if(zoomchrome == true){
 			var atbbuf = [];
 			var domain;
-			for(domain in websitezoom){ atbbuf.push(domain);atbbuf.sort(); }
+			for(domain in websitezoom){ atbbuf.push(domain); atbbuf.sort(); }
 			var i;
 			var l = atbbuf.length;
 			for(i = 0; i < l; i++){
@@ -239,11 +245,13 @@ function zoomtab(a, b){
 					// save for zoom feature
 					chrome.storage.sync.set({"websitezoom": JSON.stringify(websitezoom)});
 				}
-			}catch(e){}
+			}catch(e){
+				console.log(e);
+			}
 		}else if(zoomweb == true){
 			var atbbuf = [];
 			var domain;
-			for(domain in websitezoom){ atbbuf.push(domain);atbbuf.sort(); }
+			for(domain in websitezoom){ atbbuf.push(domain); atbbuf.sort(); }
 			var i;
 			var l = atbbuf.length;
 			for(i = 0; i < l; i++){
@@ -292,7 +300,7 @@ function zoomtab(a, b){
 		}else if(zoomfont == true){
 			var atbbuf = [];
 			var domain;
-			for(domain in websitezoom){ atbbuf.push(domain);atbbuf.sort(); }
+			for(domain in websitezoom){ atbbuf.push(domain); atbbuf.sort(); }
 			var i;
 			var l = atbbuf.length;
 			for(i = 0; i < l; i++){
@@ -336,8 +344,9 @@ function zoomtab(a, b){
 					// save for zoom feature
 					chrome.storage.sync.set({"websitezoom": JSON.stringify(websitezoom)});
 				}
-			}catch(e){}
-
+			}catch(e){
+				console.log(e);
+			}
 		}
 	}
 }
@@ -349,9 +358,9 @@ function nextratio(ratio, direction){
 	var prevratio = parseInt(ratio) - parseInt(steps);
 	var nextratio = parseInt(ratio) + parseInt(steps);
 	if(direction == -1){
-		if(ratio == 10){ prevratio = 100;nextratio = 100; }
+		if(ratio == 10){ prevratio = 100; nextratio = 100; }
 	}else{
-		if(ratio == 400){ prevratio = 100;nextratio = 100; }
+		if(ratio == 400){ prevratio = 100; nextratio = 100; }
 	}
 	return(direction == -1) ? prevratio : nextratio;
 }
@@ -363,7 +372,7 @@ function handle(delta){
 		tempcurrentpopupzoom -= Number(1);
 		if(tempcurrentpopupzoom != 0 && tempcurrentpopupzoom >= 1){ document.getElementById("number").value = tempcurrentpopupzoom; zoom(tempcurrentpopupzoom); }
 	}else{
-		if(tempcurrentpopupzoom != 0 && tempcurrentpopupzoom < 400){ tempcurrentpopupzoom = Number(tempcurrentpopupzoom) + Number(1);document.getElementById("number").value = tempcurrentpopupzoom; zoom(tempcurrentpopupzoom); }
+		if(tempcurrentpopupzoom != 0 && tempcurrentpopupzoom < 400){ tempcurrentpopupzoom = Number(tempcurrentpopupzoom) + Number(1); document.getElementById("number").value = tempcurrentpopupzoom; zoom(tempcurrentpopupzoom); }
 	}
 	tempcurrentpopupzoom = ""; // reset
 }
@@ -383,16 +392,18 @@ document.addEventListener("DOMContentLoaded", function(){
 	$("minus").title = chrome.i18n.getMessage("titleshortzoomout");
 	$("plus").title = chrome.i18n.getMessage("titleshortzoomin");
 
-	// disable right click menu
-	document.addEventListener("contextmenu", event => event.preventDefault());
+	// disable context menu
+	document.addEventListener("contextmenu", function(e){
+		e.preventDefault();
+	}, false);
 
 	// default settings
 	function displayinput(newValue){ document.getElementById("number").value = parseInt(newValue); }
-	function showValue(newValue){ document.getElementById("range").value = parseInt(newValue);document.getElementById("number").value = parseInt(newValue);zoom(newValue); }
+	function showValue(newValue){ document.getElementById("range").value = parseInt(newValue); document.getElementById("number").value = parseInt(newValue); zoom(newValue); }
 	$("range").addEventListener("change", function(){ showValue(this.value); });
 	$("range").addEventListener("input", function(){ showValue(this.value); });
 	$("number").addEventListener("change", function(){ showValue(this.value); });
-	$("hund").addEventListener("click", function(){ zoom(allzoomvalue * 100);displayinput(allzoomvalue * 100); });
+	$("hund").addEventListener("click", function(){ zoom(allzoomvalue * 100); displayinput(allzoomvalue * 100); });
 	$("minus").addEventListener("click", function(){ zoomview(-1); });
 	$("plus").addEventListener("click", function(){ zoomview(+1); });
 
@@ -400,19 +411,19 @@ document.addEventListener("DOMContentLoaded", function(){
 	window.addEventListener("wheel", wheel, {passive: false}); // for modern
 
 	chrome.storage.sync.get(["darkmode", "firstDate", "allzoom", "allzoomvalue", "websitezoom", "badge", "steps", "lightcolor", "zoomchrome", "zoomweb", "largepopup", "zoombydomain", "zoombypage", "defaultallscreen", "defaultsinglescreen", "screenzoom", "zoomfont"], function(response){
-		darkmode = response.darkmode;if(darkmode == null)darkmode = false; // default darkmode false
-		allzoom = response.allzoom;if(allzoom == null)allzoom = false; // default allzoom false
-		allzoomvalue = response.allzoomvalue;if(allzoomvalue == null)allzoomvalue = 1; // default allzoomvalue value
-		badge = response.badge;if(badge == null)badge = false;
-		lightcolor = response.lightcolor;if(lightcolor == null)lightcolor = "#3cb4fe";
-		steps = response.steps;if(steps == null)steps = 10;
-		zoomchrome = response.zoomchrome;if(zoomchrome == null)zoomchrome = false;
-		zoomweb = response.zoomweb;if(zoomweb == null)zoomweb = true;
-		zoomfont = response.zoomfont;if(zoomfont == null)zoomfont = false;
+		darkmode = response.darkmode; if(darkmode == null)darkmode = false; // default darkmode false
+		allzoom = response.allzoom; if(allzoom == null)allzoom = false; // default allzoom false
+		allzoomvalue = response.allzoomvalue; if(allzoomvalue == null)allzoomvalue = 1; // default allzoomvalue value
+		badge = response.badge; if(badge == null)badge = false;
+		lightcolor = response.lightcolor; if(lightcolor == null)lightcolor = "#3cb4fe";
+		steps = response.steps; if(steps == null)steps = 10;
+		zoomchrome = response.zoomchrome; if(zoomchrome == null)zoomchrome = false;
+		zoomweb = response.zoomweb; if(zoomweb == null)zoomweb = true;
+		zoomfont = response.zoomfont; if(zoomfont == null)zoomfont = false;
 		websitezoom = response.websitezoom;
 		largepopup = response.largepopup;
-		zoombydomain = response.zoombydomain;if(zoombydomain == null)zoombydomain = true;
-		zoombypage = response.zoombypage;if(zoombypage == null)zoombypage = false;
+		zoombydomain = response.zoombydomain; if(zoombydomain == null)zoombydomain = true;
+		zoombypage = response.zoombypage; if(zoombypage == null)zoombypage = false;
 
 		// dark mode
 		if(darkmode == true){
@@ -456,7 +467,9 @@ document.addEventListener("DOMContentLoaded", function(){
 			function(tabs){
 				var job = tabs[0].url;
 				if(typeof job !== "undefined"){
-					if(zoombydomain == true){ webjob = job.match(/^[\w-]+:\/*\[?([\w\.:-]+)\]?(?::\d+)?/)[0]; }else{ webjob = job; }
+					if(zoombydomain == true){
+						webjob = job.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0];
+					}else{ webjob = job; }
 					if(zoomchrome == true){
 						chrome.tabs.getZoom(tabs[0].id, function(zoomFactor){
 							if(chrome.runtime.lastError){

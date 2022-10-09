@@ -41,7 +41,7 @@ chrome.runtime.onMessage.addListener(function request(request, sender, sendRespo
 			zoomfont = response.zoomfont; if(zoomfont == null)zoomfont = false;
 			zoombydomain = response.zoombydomain; if(zoombydomain == null)zoombydomain = true;
 			zoombypage = response.zoombypage; if(zoombypage == null)zoombypage = false;
-			if(zoombydomain == true){ currentURL = currentURL.match(/^[\w-]+:\/*\[?([\w\.:-]+)\]?(?::\d+)?/)[0]; }else{ currentURL = currentURL; }
+			if(zoombydomain == true){ currentURL = currentURL.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0][0]; }else{ currentURL = currentURL; }
 			defaultallscreen = response.defaultallscreen; if(defaultallscreen == null)defaultallscreen = true;
 			defaultsinglescreen = response.defaultsinglescreen; if(defaultsinglescreen == null)defaultsinglescreen = false;
 			websitezoom = response["websitezoom"];
@@ -126,7 +126,7 @@ chrome.runtime.onMessage.addListener(function request(request, sender, sendRespo
 								tabs.forEach(function(tab){
 									var tor = tab.url;
 									if(typeof tor !== "undefined"){
-										var filtermatch = tor.match(/^[\w-]+:\/*\[?([\w\.:-]+)\]?(?::\d+)?/);
+										var filtermatch = tor.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0];
 										if(zoombydomain == true){ if(filtermatch){ webtor = filtermatch[0]; } }else{ var webtor = tor; }
 										if(webtor == tempatbbuf){
 											if(zoomchrome == true){
@@ -320,7 +320,7 @@ function zoomtab(a, b){
 					tabs.forEach(function(tab){
 						var pop = tab.url;
 						if(typeof pop !== "undefined"){
-							var filtermatch = pop.match(/^[\w-]+:\/*\[?([\w\.:-]+)\]?(?::\d+)?/);
+							var filtermatch = pop.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0];
 							if(zoombydomain == true){ if(filtermatch){ webpop = filtermatch[0]; } }else{ var webpop = pop; }
 							if(webpop == webjob){
 								try{
@@ -353,7 +353,7 @@ function zoomtab(a, b){
 					tabs.forEach(function(tab){
 						var pop = tab.url;
 						if(typeof pop !== "undefined"){
-							var filtermatch = pop.match(/^[\w-]+:\/*\[?([\w\.:-]+)\]?(?::\d+)?/);
+							var filtermatch = pop.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0];
 							if(zoombydomain == true){ if(filtermatch){ webpop = filtermatch[0]; } }else{ var webpop = pop; }
 							if(webpop == webjob){
 								chrome.tabs.sendMessage(tab.id, {text: "changefontsize", value: Math.round(b * 100)});
@@ -439,7 +439,7 @@ var openactiondoubleclick = function(tabs){
 	// Set Click to  true
 	alreadyClicked = true;
 	if(zoomdoubleclick == true){}
-    else if(zoomnewsingleclick == true){
+	else if(zoomnewsingleclick == true){
 		chrome.browserAction.setPopup({tabId: tabs.id, popup:"popup.html"});
 	}
 
@@ -504,7 +504,7 @@ function backgroundrefreshzoom(){
 				if(tabs[0]){
 					var job = tabs[0].url;
 					if(typeof job !== "undefined"){
-						var filtermatch = job.match(/^[\w-]+:\/*\[?([\w\.:-]+)\]?(?::\d+)?/);
+						var filtermatch = job.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0];
 						if(zoombydomain == true){ if(filtermatch){ webjob = filtermatch[0]; } }else{ webjob = job; }
 						if(zoomchrome == true){
 							chrome.tabs.getZoom(tabs[0].id, function(zoomFactor){
@@ -622,7 +622,7 @@ function onClickHandler(info, tab){
 				}
 				var job = tabs[0].url;
 				if(typeof job !== "undefined"){
-					var filtermatch = job.match(/^[\w-]+:\/*\[?([\w\.:-]+)\]?(?::\d+)?/);
+					var filtermatch = job.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0];
 					if(zoombydomain == true){ if(filtermatch){ webjob = filtermatch[0]; } }else{ var webjob = job; }
 					if(allzoom == true){
 						// save for all zoom feature
@@ -655,34 +655,42 @@ function onClickHandler(info, tab){
 				}
 			});
 		});
-	}else if(reszoomin == "ctzoomin"){ zoomview(+1); }
-    else if(reszoomout == "ctzoomout"){ zoomview(-1); }
-    else if(reszoomreset == "ctzoomreset"){ zoom(allzoomvalue * 100); }
-    else if(info.menuItemId == "totlguideemenu"){ window.open(linkguide, "_blank"); }
-    else if(info.menuItemId == "totldevelopmenu"){ window.open(donatewebsite, "_blank"); }
-    else if(info.menuItemId == "totlratemenu"){ window.open(writereview, "_blank"); }
-    else if(info.menuItemId == "totlsharemenu"){ window.open(zoomwebsite, "_blank"); }
-    else if(info.menuItemId == "totlshareemail"){ window.open("mailto:youremail?subject=Zoom extension&body=Hé, This is amazing. I just tried today this Zoom Browser extension" + zoomproduct + "", "_blank"); }
-    else if(info.menuItemId == "totlsharetwitter"){ var szoomproductcodeurl = encodeURIComponent("The Best and Amazing Zoom Browser extension " + zoomproduct + ""); window.open("https://twitter.com/home?status=" + szoomproductcodeurl + "", "_blank"); }
-    else if(info.menuItemId == "totlsharefacebook"){ window.open("https://www.facebook.com/sharer/sharer.php?u=" + zoomproduct, "_blank"); }
-    else if(info.menuItemId == "totlsubscribe"){ chrome.tabs.create({url: linkyoutube, active:true}); }
-    else if(info.menuItemId == "totlapplyresetzoom"){
-		function applyallresetzoom(){
-			// Apply reset zoom to all tabs and in all window
-			chrome.tabs.query({}, function(tabs){
-				var i;
-				var l = tabs.length;
-				for(i = 0; i < l; i++){
-					if(chrome.runtime.lastError){
-						// if current tab do not have the content.js and can not send the message to local chrome:// page.
-						// The line will excute, and log 'ERROR:  {message: "Could not establish connection. Receiving end does not exist."}'
-						// console.log('ERROR: ', chrome.runtime.lastError);
-					}
-					chrome.tabs.sendMessage(tabs[i].id, {text: "refreshscreen"}, function(info){});
+	}else if(reszoomin == "ctzoomin"){
+		zoomview(+1);
+	}else if(reszoomout == "ctzoomout"){
+		zoomview(-1);
+	}else if(reszoomreset == "ctzoomreset"){
+		zoom(allzoomvalue * 100);
+	}else if(info.menuItemId == "totlguideemenu"){
+		window.open(linkguide, "_blank");
+	}else if(info.menuItemId == "totldevelopmenu"){
+		window.open(donatewebsite, "_blank");
+	}else if(info.menuItemId == "totlratemenu"){
+		window.open(writereview, "_blank");
+	}else if(info.menuItemId == "totlsharemenu"){
+		window.open(zoomwebsite, "_blank");
+	}else if(info.menuItemId == "totlshareemail"){
+		window.open("mailto:youremail?subject=Zoom extension&body=Hé, This is amazing. I just tried today this Zoom Browser extension" + zoomproduct + "", "_blank");
+	}else if(info.menuItemId == "totlsharetwitter"){
+		var szoomproductcodeurl = encodeURIComponent("The Best and Amazing Zoom Browser extension " + zoomproduct + ""); window.open("https://twitter.com/home?status=" + szoomproductcodeurl + "", "_blank");
+	}else if(info.menuItemId == "totlsharefacebook"){
+		window.open("https://www.facebook.com/sharer/sharer.php?u=" + zoomproduct, "_blank");
+	}else if(info.menuItemId == "totlsubscribe"){
+		chrome.tabs.create({url: linkyoutube, active:true});
+	}else if(info.menuItemId == "totlapplyresetzoom"){
+		// Apply reset zoom to all tabs and in all window
+		chrome.tabs.query({}, function(tabs){
+			var i;
+			var l = tabs.length;
+			for(i = 0; i < l; i++){
+				if(chrome.runtime.lastError){
+					// if current tab do not have the content.js and can not send the message to local chrome:// page.
+					// The line will excute, and log 'ERROR:  {message: "Could not establish connection. Receiving end does not exist."}'
+					// console.log('ERROR: ', chrome.runtime.lastError);
 				}
-			});
-		}
-		applyallresetzoom();
+				chrome.tabs.sendMessage(tabs[i].id, {text: "refreshscreen"});
+			}
+		});
 	}
 }
 

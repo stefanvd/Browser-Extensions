@@ -28,6 +28,11 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 
 function $(id){ return document.getElementById(id); }
 
+// disable context menu
+document.addEventListener("contextmenu", function(e){
+	e.preventDefault();
+}, false);
+
 document.addEventListener("DOMContentLoaded", function(){
 	$("btnsavepage").addEventListener("click", function(){
 		chrome.tabs.query({active: true, currentWindow: true}, function(arrayOfTabs){
