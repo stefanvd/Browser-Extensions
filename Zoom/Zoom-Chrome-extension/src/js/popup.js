@@ -11,7 +11,7 @@ modify it under the terms of the GNU General Public License
 as published by the Free Software Foundation; either version 2
 of the License, or (at your option) any later version.
 
-This program is distributed in the hope that it will be useful,
+This program is distributed in the hope that it will be useful,job
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
@@ -28,8 +28,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 
 function $(id){ return document.getElementById(id); }
 var currentRatio = 1; var ratio = 1; var job = null;
-var darkmode; var allzoom; var allzoomvalue; var webjob; var websitezoom; var badge; var steps; var lightcolor; var zoomchrome; var zoomweb; var largepopup; var zoombydomain; var zoombypage; var defaultallscreen; var defaultsinglescreen; var zoomfont;
-var firstDate;
+var darkmode; var allzoom; var allzoomvalue; var webjob; var websitezoom; var badge; var steps; var lightcolor; var zoomchrome; var zoomweb; var largepopup; var zoombydomain; var zoombypage; var defaultsinglescreen; var zoomfont; var counter;
 
 function zoom(ratio){
 	currentRatio = ratio / 100;
@@ -114,7 +113,7 @@ function zoomtab(a, b){
 					tabs.forEach(function(tab){
 						var pop = tab.url;
 						if(typeof pop !== "undefined"){
-							if(zoombydomain == true){ var webpop = pop.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0][0]; }else{ var webpop = pop; }
+							if(zoombydomain == true){ var webpop = pop.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0][0]; }else{ webpop = pop; }
 							if(webpop == webjob){ // in current tab and not in popup window
 								try{
 									var supportsZoom = "zoom" in document.body.style;
@@ -165,7 +164,7 @@ function zoomtab(a, b){
 					tabs.forEach(function(tab){
 						var pop = tab.url;
 						if(typeof pop !== "undefined"){
-							if(zoombydomain == true){ var webpop = pop.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0][0]; }else{ var webpop = pop; }
+							if(zoombydomain == true){ pop = pop.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0][0]; }else{ var webpop = pop; }
 							if(webpop == webjob){ // in current tab and not in popup window
 								chrome.tabs.sendMessage(tab.id, {text: "setfontsize"});
 								chrome.tabs.sendMessage(tab.id, {text: "changefontsize", value: document.getElementById("number").value});
@@ -185,7 +184,7 @@ function zoomtab(a, b){
 		// Clear our timeout throughout the scroll
 		// console.log("update the zoom " +document.getElementById("number").value)
 		window.clearTimeout(isScrolling);
-		var counter = 0; // should be out of your function scope
+		counter = 0; // should be out of your function scope
 		isScrolling = setTimeout(function(){
 			counter += 1;
 			if(counter == 1){
@@ -220,7 +219,7 @@ function zoomtab(a, b){
 						// Clear our timeout throughout the scroll
 						// console.log("update the zoom " +document.getElementById("number").value)
 						window.clearTimeout(isScrolling);
-						var counter = 0; // should be out of your function scope
+						counter = 0; // should be out of your function scope
 						isScrolling = setTimeout(function(){
 							counter += 1;
 							if(counter == 1){
@@ -249,29 +248,29 @@ function zoomtab(a, b){
 				console.log(e);
 			}
 		}else if(zoomweb == true){
-			var atbbuf = [];
-			var domain;
-			for(domain in websitezoom){ atbbuf.push(domain); atbbuf.sort(); }
-			var i;
-			var l = atbbuf.length;
-			for(i = 0; i < l; i++){
-				if(atbbuf[i] == webjob){ // update
+			var atbbufzw = [];
+			var domainzw;
+			for(domainzw in websitezoom){ atbbufzw.push(domainzw); atbbufzw.sort(); }
+			var izw;
+			var lzw = atbbufzw.length;
+			for(izw = 0; izw < lzw; izw++){
+				if(atbbufzw[i] == webjob){ // update
 					if(b == 1){
 						// remove from list
-						delete websitezoom["" + atbbuf[i] + ""];
-						atbbuf = websitezoom;
+						delete websitezoom["" + atbbufzw[izw] + ""];
+						atbbufzw = websitezoom;
 
 						// save for zoom feature
 						chrome.storage.sync.set({"websitezoom": JSON.stringify(websitezoom)});
 						break; // go out of the loop because it found the current web page to save the new zoom value
 					}else{
 						// update ratio from 1 to 400 (and not the 100%)
-						websitezoom["" + atbbuf[i] + ""] = document.getElementById("number").value;
+						websitezoom["" + atbbufzw[izw] + ""] = document.getElementById("number").value;
 
 						// Clear our timeout throughout the scroll
 						// console.log("update the zoom " +document.getElementById("number").value)
 						window.clearTimeout(isScrolling);
-						var counter = 0; // should be out of your function scope
+						counter = 0; // should be out of your function scope
 						isScrolling = setTimeout(function(){
 							counter += 1;
 							if(counter == 1){
@@ -288,38 +287,40 @@ function zoomtab(a, b){
 			}
 			// The box is empty -> so the list is really empty, then add this website in the list
 			// Or -> but website is not inside
-			// console.log("dodo: "+atbbuf.includes(webjob));
+			// console.log("dodo: "+atbbufzw.includes(webjob));
 			try{
-				if(atbbuf.length == 0 || (atbbuf.includes(webjob) != true)){
+				if(atbbufzw.length == 0 || (atbbufzw.includes(webjob) != true)){
 					// add to list
 					websitezoom["" + webjob + ""] = document.getElementById("number").value;
 					// save for zoom feature
 					chrome.storage.sync.set({"websitezoom": JSON.stringify(websitezoom)});
 				}
-			}catch(e){}
+			}catch(e){
+				// console.log(e);
+			}
 		}else if(zoomfont == true){
-			var atbbuf = [];
-			var domain;
-			for(domain in websitezoom){ atbbuf.push(domain); atbbuf.sort(); }
-			var i;
-			var l = atbbuf.length;
-			for(i = 0; i < l; i++){
-				if(atbbuf[i] == webjob){ // update
+			var atbbuff = [];
+			var domainf;
+			for(domainf in websitezoom){ atbbuff.push(domainf); atbbuff.sort(); }
+			var ifn;
+			var lfn = atbbuff.length;
+			for(ifn = 0; ifn < lfn; ifn++){
+				if(atbbuff[ifn] == webjob){ // update
 					if(b == 1){
 						// remove from list
-						delete websitezoom["" + atbbuf[i] + ""];
-						atbbuf = websitezoom;
+						delete websitezoom["" + atbbuff[ifn] + ""];
+						atbbuff = websitezoom;
 						// save for zoom feature
 						chrome.storage.sync.set({"websitezoom": JSON.stringify(websitezoom)});
 						break; // go out of the loop because it found the current web page to save the new zoom value
 					}else{
 						// update ratio from 1 to 400 (and not the 100%)
-						websitezoom["" + atbbuf[i] + ""] = document.getElementById("number").value;
+						websitezoom["" + atbbuff[ifn] + ""] = document.getElementById("number").value;
 
 						// Clear our timeout throughout the scroll
 						// console.log("update the zoom " +document.getElementById("number").value)
 						window.clearTimeout(isScrolling);
-						var counter = 0; // should be out of your function scope
+						counter = 0; // should be out of your function scope
 						isScrolling = setTimeout(function(){
 							counter += 1;
 							if(counter == 1){
@@ -336,9 +337,9 @@ function zoomtab(a, b){
 			}
 			// The box is empty -> so the list is really empty, then add this website in the list
 			// Or -> but website is not inside
-			// console.log("dodo: "+atbbuf.includes(webjob));
+			// console.log("dodo: "+atbbuff.includes(webjob));
 			try{
-				if(atbbuf.length == 0 || (atbbuf.includes(webjob) != true)){
+				if(atbbuff.length == 0 || (atbbuff.includes(webjob) != true)){
 					// add to list
 					websitezoom["" + webjob + ""] = document.getElementById("number").value;
 					// save for zoom feature
@@ -410,7 +411,7 @@ document.addEventListener("DOMContentLoaded", function(){
 	// mouse scroll
 	window.addEventListener("wheel", wheel, {passive: false}); // for modern
 
-	chrome.storage.sync.get(["darkmode", "firstDate", "allzoom", "allzoomvalue", "websitezoom", "badge", "steps", "lightcolor", "zoomchrome", "zoomweb", "largepopup", "zoombydomain", "zoombypage", "defaultallscreen", "defaultsinglescreen", "screenzoom", "zoomfont"], function(response){
+	chrome.storage.sync.get(["darkmode", "allzoom", "allzoomvalue", "websitezoom", "badge", "steps", "lightcolor", "zoomchrome", "zoomweb", "largepopup", "zoombydomain", "zoombypage", "defaultallscreen", "defaultsinglescreen", "screenzoom", "zoomfont"], function(response){
 		darkmode = response.darkmode; if(darkmode == null)darkmode = false; // default darkmode false
 		allzoom = response.allzoom; if(allzoom == null)allzoom = false; // default allzoom false
 		allzoomvalue = response.allzoomvalue; if(allzoomvalue == null)allzoomvalue = 1; // default allzoomvalue value
@@ -437,10 +438,8 @@ document.addEventListener("DOMContentLoaded", function(){
 		}else{
 			document.getElementsByTagName("html")[0].className = "small";
 		}
-		defaultallscreen = response.defaultallscreen;
 		defaultsinglescreen = response.defaultsinglescreen;
-		if(defaultallscreen == true){} // no change
-		else if(defaultsinglescreen == true){
+		if(defaultsinglescreen == true){
 			var screenzoom = response["screenzoom"];
 			screenzoom = JSON.parse(screenzoom);
 			var satbbuf = [];
@@ -465,7 +464,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 		chrome.tabs.query({active: true, currentWindow: true},
 			function(tabs){
-				var job = tabs[0].url;
+				job = tabs[0].url;
 				if(typeof job !== "undefined"){
 					if(zoombydomain == true){
 						webjob = job.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0];

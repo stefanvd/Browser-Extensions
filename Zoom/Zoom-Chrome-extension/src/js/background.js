@@ -27,7 +27,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 //================================================
 
 var currentURL; var allzoom; var allzoomvalue; var badge; var lightcolor; var zoomchrome; var zoomweb; var backgroundnumber; var zoombydomain; var zoombypage; var defaultallscreen; var defaultsinglescreen; var websitezoom; var zoomfont; var goturlinside = false; var currentscreen; var chromedisplay; var screenzoom; var zoomsingleclick; var zoomnewsingleclick; var zoomdoubleclick; var contexta; var contextb;
-chrome.runtime.onMessage.addListener(function request(request, sender, sendResponse){
+chrome.runtime.onMessage.addListener(function request(request, sender){
 	if(request.action == "getallRatio"){
 		currentURL = request.website;
 		chromedisplay = request.screen;
@@ -41,7 +41,9 @@ chrome.runtime.onMessage.addListener(function request(request, sender, sendRespo
 			zoomfont = response.zoomfont; if(zoomfont == null)zoomfont = false;
 			zoombydomain = response.zoombydomain; if(zoombydomain == null)zoombydomain = true;
 			zoombypage = response.zoombypage; if(zoombypage == null)zoombypage = false;
-			if(zoombydomain == true){ currentURL = currentURL.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0][0]; }else{ currentURL = currentURL; }
+			if(zoombydomain == true){
+				currentURL = currentURL.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0];
+			}
 			defaultallscreen = response.defaultallscreen; if(defaultallscreen == null)defaultallscreen = true;
 			defaultsinglescreen = response.defaultsinglescreen; if(defaultsinglescreen == null)defaultsinglescreen = false;
 			websitezoom = response["websitezoom"];
@@ -262,7 +264,7 @@ function webNavigation_committed(data){
 	});
 }
 
-function setTabView(tabId, url){
+function setTabView(tabId){
 	if(tabId >= 0){
 		chrome.tabs.executeScript(tabId, {file: "js/content.js", runAt: "document_start"}, function(){
 			if(chrome.runtime.lastError){
@@ -298,7 +300,9 @@ function zoomtab(a, b){
 		}else{
 			try{
 				chrome.tabs.setZoom(a, b);
-			}catch(e){}
+			}catch(e){
+				// console.log(e);
+			}
 		}
 	}else if(zoomweb == true){
 		if(allzoom == true){
@@ -307,7 +311,9 @@ function zoomtab(a, b){
 					tabs.forEach(function(tab){
 						try{
 							chrome.tabs.sendMessage(tab.id, {text:"setbodycsszoom", value:b});
-						}catch(e){}
+						}catch(e){
+							// console.log(e);
+						}
 						if(badge == true){
 							chrome.browserAction.setBadgeBackgroundColor({color:lightcolor});
 							chrome.browserAction.setBadgeText({text:"" + parseInt(b * 100) + ""});
@@ -728,23 +734,24 @@ try{
 	chrome.contextMenus.create({"title": sharemenuratetitle, "type":"normal", "id": "totlratemenu", "contexts": contexts});
 }
 
+var parent, child1, child2, child3;
 // Create a parent item and two children.
 try{
 	// try show web browsers that do support "icons"
 	// Firefox, Opera, Microsoft Edge
-	var parent = chrome.contextMenus.create({"title": sharemenusharetitle, "id": "totlsharemenu", "contexts": contexts, "icons":{"16": "images/IconShare.png", "32": "images/IconShare@2x.png"}});
-	var child1 = chrome.contextMenus.create({"title": sharemenutellafriend, "id": "totlshareemail", "contexts": contexts, "parentId": parent, "icons":{"16": "images/IconEmail.png", "32": "images/IconEmail@2x.png"}});
+	parent = chrome.contextMenus.create({"title": sharemenusharetitle, "id": "totlsharemenu", "contexts": contexts, "icons":{"16": "images/IconShare.png", "32": "images/IconShare@2x.png"}});
+	child1 = chrome.contextMenus.create({"title": sharemenutellafriend, "id": "totlshareemail", "contexts": contexts, "parentId": parent, "icons":{"16": "images/IconEmail.png", "32": "images/IconEmail@2x.png"}});
 	chrome.contextMenus.create({"title": "", "type":"separator", "id": "totlsepartorshare", "contexts": contexts, "parentId": parent});
-	var child2 = chrome.contextMenus.create({"title": sharemenusendatweet, "id": "totlsharetwitter", "contexts": contexts, "parentId": parent, "icons":{"16": "images/IconTwitter.png", "32": "images/IconTwitter@2x.png"}});
-	var child3 = chrome.contextMenus.create({"title": sharemenupostonfacebook, "id": "totlsharefacebook", "contexts": contexts, "parentId": parent, "icons":{"16": "images/IconFacebook.png", "32": "images/IconFacebook@2x.png"}});
+	child2 = chrome.contextMenus.create({"title": sharemenusendatweet, "id": "totlsharetwitter", "contexts": contexts, "parentId": parent, "icons":{"16": "images/IconTwitter.png", "32": "images/IconTwitter@2x.png"}});
+	child3 = chrome.contextMenus.create({"title": sharemenupostonfacebook, "id": "totlsharefacebook", "contexts": contexts, "parentId": parent, "icons":{"16": "images/IconFacebook.png", "32": "images/IconFacebook@2x.png"}});
 }catch(e){
 	// catch web browsers that do NOT show the icon
 	// Google Chrome
-	var parent = chrome.contextMenus.create({"title": sharemenusharetitle, "id": "totlsharemenu", "contexts": contexts});
-	var child1 = chrome.contextMenus.create({"title": sharemenutellafriend, "id": "totlshareemail", "contexts": contexts, "parentId": parent});
+	parent = chrome.contextMenus.create({"title": sharemenusharetitle, "id": "totlsharemenu", "contexts": contexts});
+	child1 = chrome.contextMenus.create({"title": sharemenutellafriend, "id": "totlshareemail", "contexts": contexts, "parentId": parent});
 	chrome.contextMenus.create({"title": "", "type":"separator", "id": "totlsepartorshare", "contexts": contexts, "parentId": parent});
-	var child2 = chrome.contextMenus.create({"title": sharemenusendatweet, "id": "totlsharetwitter", "contexts": contexts, "parentId": parent});
-	var child3 = chrome.contextMenus.create({"title": sharemenupostonfacebook, "id": "totlsharefacebook", "contexts": contexts, "parentId": parent});
+	child2 = chrome.contextMenus.create({"title": sharemenusendatweet, "id": "totlsharetwitter", "contexts": contexts, "parentId": parent});
+	child3 = chrome.contextMenus.create({"title": sharemenupostonfacebook, "id": "totlsharefacebook", "contexts": contexts, "parentId": parent});
 }
 
 chrome.contextMenus.create({"title": "", "type":"separator", "id": "totlsepartor", "contexts": contexts});
@@ -788,7 +795,7 @@ function checkcontextmenus(){
 
 		contextdefault = allzoomvalue * 100;// get the default zoom value for that screen
 
-		var currentscreen = screen.width + "x" + screen.height;
+		currentscreen = screen.width + "x" + screen.height;
 
 		if(defaultallscreen == true){} // no change
 		else if(defaultsinglescreen == true){
@@ -946,7 +953,7 @@ document.addEventListener("DOMContentLoaded", function(){
 	});
 });
 
-chrome.storage.onChanged.addListener(function(changes, namespace){
+chrome.storage.onChanged.addListener(function(changes){
 	if(changes["steps"]){ if(changes["steps"].newValue){ steps = changes["steps"].newValue; refreshcontexmenus(); } }
 	if(changes["allzoomvalue"]){ if(changes["allzoomvalue"].newValue){ allzoomvalue = changes["allzoomvalue"].newValue; refreshcontexmenus(); } }
 	if(changes["contexta"]){ if(changes["contexta"].newValue == true){ contexta = true; contextb = false; refreshcontexmenus(); } }
@@ -999,7 +1006,7 @@ chrome.storage.local.get(["firstRun", "version"], function(chromeset){
 function initwelcome(){
 	chrome.storage.sync.get(["firstRun"], function(chromeset){
 		if((chromeset["firstRun"] != "false") && (chromeset["firstRun"] != false)){
-			chrome.tabs.create({url: linkwelcomepage});
+			chrome.tabs.create({url: linkwelcome});
 			var crrinstall = new Date().getTime();
 			chrome.storage.sync.set({"firstRun": false, "version": "2.1", "firstDate": crrinstall});
 		}
