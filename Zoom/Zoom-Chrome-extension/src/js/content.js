@@ -28,6 +28,14 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 
 function $(id){ return document.getElementById(id); }
 
+// Install on www.stefanvd.net
+if(window.location.href.match(/^http(s)?:\/\/(www\.)?stefanvd.net/i)){
+	if($("zoom-" + exbrowser + "-install-button")){
+		$("zoom-" + exbrowser + "-install-button").style.display = "none";
+		$("zoom-" + exbrowser + "-thanks-button").style.display = "block";
+	}
+}
+
 var currentscreen = screen.width + "x" + screen.height;
 chrome.runtime.sendMessage({action: "getallRatio", website: window.location.href, screen: currentscreen});
 
@@ -75,7 +83,7 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse){
 			if(q[i].hasAttribute("data-default-fontsize")){
 				var tempcurrent = q[i].getAttribute("data-default-fontsize");
 				tempcurrent = tempcurrent.replace("px", "");
-				finalfontsize = tempcurrent * (newfontsize / 100);
+				var finalfontsize = tempcurrent * (newfontsize / 100);
 				finalfontsize = finalfontsize + "px";
 				q[i].style.setProperty("font-size", finalfontsize, "important");
 			}
@@ -133,7 +141,7 @@ function showmagnify(image){
 
 	window.addEventListener("mousemove", moveSpot, {passive: true});
 	window.addEventListener("touchmove", moveSpot, {passive: true});
-	window.addEventListener("scroll", function(event){
+	window.addEventListener("scroll", function(){
 		if(magnifyenabled == true){
 			clearmagnify();
 			// Clear our timeout throughout the scroll
@@ -163,7 +171,7 @@ function addmanify(image){
 	div.style.border = "3px solid #000";
 	if(zoommagcircle == true){
 		div.style.borderRadius = "50%";
-	}else{}
+	}
 	div.style.cursor = "none";
 	div.style.width = circlewidth + "px";
 	div.style.height = circlewidth + "px";
@@ -195,6 +203,7 @@ function addmanify(image){
 
 var glass;
 var w; var h;
+var topsign;
 function moveSpot(e){
 	var x = 0; var y = 0;
 	if(!e) e = window.event;
@@ -229,24 +238,24 @@ function setdefaultfontsize(){
 	var q = document.getElementsByTagName("*");
 	var i;
 	var l = q.length;
+	var fntsz;
 	for(i = 0; i < l; i++){
 		if(q[i].currentStyle){
-			var y = q[i].currentStyle["font-size"];
-		}
-		else if(window.getComputedStyle){
+			fntsz = q[i].currentStyle["font-size"];
+		}else if(window.getComputedStyle){
 			var st = document.defaultView.getComputedStyle(q[i], null);
-			var y = st.getPropertyValue("font-size");
+			fntsz = st.getPropertyValue("font-size");
 		}
 
 		if(q[i].hasAttribute("data-default-fontsize")){
 			// already got the default font size
 		}else{
-			q[i].setAttribute("data-default-fontsize", y);
+			q[i].setAttribute("data-default-fontsize", fntsz);
 		}
 	}
 }
 
-var zoommousescroll; var zoommousebuttonleft; var zoommousescrollup; var zoommousescrolldown;
+var zoommousescroll; var zoommousebuttonleft; var zoommousebuttonright; var zoommousescrollup; var zoommousescrolldown;
 var rightmousehold = false;
 var zoommagcircle; var zoommagsquare; var zoommagszoomlevel; var zoommagszoomsize;
 chrome.storage.sync.get(["zoommousescroll", "zoommousebuttonleft", "zoommousebuttonright", "zoommousescrollup", "zoommousescrolldown", "zoommagcircle", "zoommagsquare", "zoommagszoomlevel", "zoommagszoomsize"], function(response){
@@ -290,7 +299,7 @@ chrome.storage.sync.get(["zoommousescroll", "zoommousebuttonleft", "zoommousebut
 				}
 			}
 		});
-		document.body.addEventListener("mouseup", function(e){
+		document.body.addEventListener("mouseup", function(){
 			rightmousehold = false;
 			if(document.body.classList.contains("stefanvdstopscrolling")){
 				document.body.classList.remove("stefanvdstopscrolling");
