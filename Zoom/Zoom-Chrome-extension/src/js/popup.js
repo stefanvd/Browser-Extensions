@@ -37,6 +37,13 @@ function zoom(ratio){
 
 // Setup isScrolling variable
 var isScrolling;
+function codebodyzoom(b){
+	document.body.style.zoom = b;
+}
+
+function codebodyzoomleft(b){
+	document.body.style.transformOrigin = "left top"; document.body.style.transform = "scale(" + b + ")";
+}
 
 function zoomtab(a, b){
 	document.getElementById("number").value = Math.round(b * 100);
@@ -54,9 +61,9 @@ function zoomtab(a, b){
 								}
 							});
 							if(badge == true){
-								chrome.browserAction.setBadgeBackgroundColor({color:lightcolor});
-								chrome.browserAction.setBadgeText({text:"" + document.getElementById("number").value + "", tabId: tab.id});
-							}else{ chrome.browserAction.setBadgeText({text:""}); }
+								chrome.action.setBadgeBackgroundColor({color:lightcolor});
+								chrome.action.setBadgeText({text:"" + document.getElementById("number").value + "", tabId: tab.id});
+							}else{ chrome.action.setBadgeText({text:""}); }
 						}
 					});
 				});
@@ -68,9 +75,9 @@ function zoomtab(a, b){
 					}
 				});
 				if(badge == true){
-					chrome.browserAction.setBadgeBackgroundColor({color:lightcolor});
-					chrome.browserAction.setBadgeText({text:"" + document.getElementById("number").value + "", tabId: a});
-				}else{ chrome.browserAction.setBadgeText({text:""}); }
+					chrome.action.setBadgeBackgroundColor({color:lightcolor});
+					chrome.action.setBadgeText({text:"" + document.getElementById("number").value + "", tabId: a});
+				}else{ chrome.action.setBadgeText({text:""}); }
 			}catch(e){
 				// console.log(e);
 			}
@@ -85,13 +92,21 @@ function zoomtab(a, b){
 							if(/^(f|ht)tps?:\/\//i.test(tab.url)){
 								var supportsZoom = "zoom" in document.body.style;
 								if(supportsZoom){
-									chrome.tabs.executeScript(tab.id, {code:"document.body.style.zoom=" + b}, function(){
+									chrome.scripting.executeScript({
+										target: {tabId: tab.id},
+										func: codebodyzoom,
+										args: [b]
+									}, function(){
 										if(chrome.runtime.lastError){
 											// console.log('[ZoomDemoExtension] doSetMode() error: ' + chrome.runtime.lastError.message);
 										}
 									});
 								}else{
-									chrome.tabs.executeScript(tab.id, {code:"document.body.style.transformOrigin='left top';document.body.style.transform='scale(" + b + ")'"}, function(){
+									chrome.scripting.executeScript({
+										target: {tabId: tab.id},
+										func: codebodyzoomleft(b),
+										args: [b]
+									}, function(){
 										if(chrome.runtime.lastError){
 											// console.log('[ZoomDemoExtension] doSetMode() error: ' + chrome.runtime.lastError.message);
 										}
@@ -99,12 +114,12 @@ function zoomtab(a, b){
 								}
 							}
 						}catch(e){
-							console.log(e);
+							// console.log(e);
 						}
 						if(badge == true){
-							chrome.browserAction.setBadgeBackgroundColor({color:lightcolor});
-							chrome.browserAction.setBadgeText({text:"" + document.getElementById("number").value + ""});
-						}else{ chrome.browserAction.setBadgeText({text:""}); }
+							chrome.action.setBadgeBackgroundColor({color:lightcolor});
+							chrome.action.setBadgeText({text:"" + document.getElementById("number").value + ""});
+						}else{ chrome.action.setBadgeText({text:""}); }
 					});
 				});
 		}else{
@@ -113,30 +128,38 @@ function zoomtab(a, b){
 					tabs.forEach(function(tab){
 						var pop = tab.url;
 						if(typeof pop !== "undefined"){
-							if(zoombydomain == true){ var webpop = pop.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0][0]; }else{ webpop = pop; }
+							if(zoombydomain == true){ var webpop = pop.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0]; }else{ webpop = pop; }
 							if(webpop == webjob){ // in current tab and not in popup window
 								try{
 									var supportsZoom = "zoom" in document.body.style;
 									if(supportsZoom){
-										chrome.tabs.executeScript(tab.id, {code:"document.body.style.zoom=" + b}, function(){
+										chrome.scripting.executeScript({
+											target: {tabId: tab.id},
+											func: codebodyzoom,
+											args: [b]
+										}, function(){
 											if(chrome.runtime.lastError){
 												// console.log('[ZoomDemoExtension] doSetMode() error: ' + chrome.runtime.lastError.message);
 											}
 										});
 									}else{
-										chrome.tabs.executeScript(tab.id, {code:"document.body.style.transformOrigin='left top';document.body.style.transform='scale(" + b + ")'"}, function(){
+										chrome.scripting.executeScript({
+											target: {tabId: tab.id},
+											func: codebodyzoomleft,
+											args: [b]
+										}, function(){
 											if(chrome.runtime.lastError){
 												// console.log('[ZoomDemoExtension] doSetMode() error: ' + chrome.runtime.lastError.message);
 											}
 										});
 									}
 								}catch(e){
-									console.log(e);
+									// console.log(e);
 								}
 								if(badge == true){
-									chrome.browserAction.setBadgeBackgroundColor({color:lightcolor});
-									chrome.browserAction.setBadgeText({text:"" + document.getElementById("number").value + "", tabId: tab.id});
-								}else{ chrome.browserAction.setBadgeText({text:""}); }
+									chrome.action.setBadgeBackgroundColor({color:lightcolor});
+									chrome.action.setBadgeText({text:"" + document.getElementById("number").value + "", tabId: tab.id});
+								}else{ chrome.action.setBadgeText({text:""}); }
 							}
 						}
 					});
@@ -153,9 +176,9 @@ function zoomtab(a, b){
 							chrome.tabs.sendMessage(tab.id, {text: "changefontsize", value: document.getElementById("number").value});
 						}
 						if(badge == true){
-							chrome.browserAction.setBadgeBackgroundColor({color:lightcolor});
-							chrome.browserAction.setBadgeText({text:"" + document.getElementById("number").value + ""});
-						}else{ chrome.browserAction.setBadgeText({text:""}); }
+							chrome.action.setBadgeBackgroundColor({color:lightcolor});
+							chrome.action.setBadgeText({text:"" + document.getElementById("number").value + ""});
+						}else{ chrome.action.setBadgeText({text:""}); }
 					});
 				});
 		}else{
@@ -164,14 +187,14 @@ function zoomtab(a, b){
 					tabs.forEach(function(tab){
 						var pop = tab.url;
 						if(typeof pop !== "undefined"){
-							if(zoombydomain == true){ pop = pop.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0][0]; }else{ var webpop = pop; }
+							if(zoombydomain == true){ pop = pop.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0]; }else{ var webpop = pop; }
 							if(webpop == webjob){ // in current tab and not in popup window
 								chrome.tabs.sendMessage(tab.id, {text: "setfontsize"});
 								chrome.tabs.sendMessage(tab.id, {text: "changefontsize", value: document.getElementById("number").value});
 								if(badge == true){
-									chrome.browserAction.setBadgeBackgroundColor({color:lightcolor});
-									chrome.browserAction.setBadgeText({text:"" + document.getElementById("number").value + "", tabId: tab.id});
-								}else{ chrome.browserAction.setBadgeText({text:""}); }
+									chrome.action.setBadgeBackgroundColor({color:lightcolor});
+									chrome.action.setBadgeText({text:"" + document.getElementById("number").value + "", tabId: tab.id});
+								}else{ chrome.action.setBadgeText({text:""}); }
 							}
 						}
 					});
@@ -245,7 +268,7 @@ function zoomtab(a, b){
 					chrome.storage.sync.set({"websitezoom": JSON.stringify(websitezoom)});
 				}
 			}catch(e){
-				console.log(e);
+				// console.log(e);
 			}
 		}else if(zoomweb == true){
 			var atbbufzw = [];
@@ -254,7 +277,7 @@ function zoomtab(a, b){
 			var izw;
 			var lzw = atbbufzw.length;
 			for(izw = 0; izw < lzw; izw++){
-				if(atbbufzw[i] == webjob){ // update
+				if(atbbufzw[izw] == webjob){ // update
 					if(b == 1){
 						// remove from list
 						delete websitezoom["" + atbbufzw[izw] + ""];
@@ -346,7 +369,7 @@ function zoomtab(a, b){
 					chrome.storage.sync.set({"websitezoom": JSON.stringify(websitezoom)});
 				}
 			}catch(e){
-				console.log(e);
+				// console.log(e);
 			}
 		}
 	}
@@ -387,8 +410,14 @@ function wheel(event){
 	event.returnValue = false;
 }
 
+async function getCurrentTab(){
+	let queryOptions = {active: true, currentWindow: true};
+	let tabs = await chrome.tabs.query(queryOptions);
+	return tabs[0];
+}
+
 document.addEventListener("DOMContentLoaded", function(){
-// set tooltip
+	// set tooltip
 	$("hund").title = chrome.i18n.getMessage("titleshortzoomreset");
 	$("minus").title = chrome.i18n.getMessage("titleshortzoomout");
 	$("plus").title = chrome.i18n.getMessage("titleshortzoomin");
@@ -462,55 +491,53 @@ document.addEventListener("DOMContentLoaded", function(){
 		}
 		websitezoom = JSON.parse(websitezoom);
 
-		chrome.tabs.query({active: true, currentWindow: true},
-			function(tabs){
-				job = tabs[0].url;
-				if(typeof job !== "undefined"){
-					if(zoombydomain == true){
-						webjob = job.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0];
-					}else{ webjob = job; }
-					if(zoomchrome == true){
-						chrome.tabs.getZoom(tabs[0].id, function(zoomFactor){
-							if(chrome.runtime.lastError){
-								// if current tab do not have the content.js and can not send the message to local chrome:// page.
-								// The line will excute, and log 'ERROR:  {message: "Could not establish connection. Receiving end does not exist."}'
-								// console.log('ERROR: ', chrome.runtime.lastError);
-							}
-							ratio = zoomFactor;
-							if(ratio == null){ ratio = 1; }
-							currentRatio = ratio;
-							document.getElementById("number").value = Math.round(ratio * 100);
-							document.getElementById("range").value = Math.round(ratio * 100);
-						});
-					}else if(zoomweb == true){
-						chrome.tabs.sendMessage(tabs[0].id, {text: "getwebzoom"}, function(info){
-							if(chrome.runtime.lastError){
-								// if current tab do not have the content.js and can not send the message to local chrome:// page.
-								// The line will excute, and log 'ERROR:  {message: "Could not establish connection. Receiving end does not exist."}'
-								// console.log('ERROR: ', chrome.runtime.lastError);
-							}
-							if(info == null || info == ""){ info = 1; }
-							ratio = info;
-							currentRatio = ratio;
-							document.getElementById("number").value = Math.round(ratio * 100);
-							document.getElementById("range").value = Math.round(ratio * 100);
-						});
-					}else if(zoomfont == true){
-						chrome.tabs.sendMessage(tabs[0].id, {text: "getfontsize"}, function(info){
-							if(chrome.runtime.lastError){
-								// if current tab do not have the content.js and can not send the message to local chrome:// page.
-								// The line will excute, and log 'ERROR:  {message: "Could not establish connection. Receiving end does not exist."}'
-								// console.log('ERROR: ', chrome.runtime.lastError);
-							}
-							if(info == null || info == ""){ info = 1; }
-							ratio = info;
-							currentRatio = ratio;
-							document.getElementById("number").value = Math.round(ratio * 100);
-							document.getElementById("range").value = Math.round(ratio * 100);
-						});
-					}
+		getCurrentTab().then((thattab) => {
+			job = thattab.url;
+			if(typeof job !== "undefined"){
+				if(zoombydomain == true){
+					webjob = job.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0];
+				}else{ webjob = job; }
+				if(zoomchrome == true){
+					chrome.tabs.getZoom(thattab.id, function(zoomFactor){
+						if(chrome.runtime.lastError){
+							// if current tab do not have the content.js and can not send the message to local chrome:// page.
+							// The line will excute, and log 'ERROR:  {message: "Could not establish connection. Receiving end does not exist."}'
+							// console.log('ERROR: ', chrome.runtime.lastError);
+						}
+						ratio = zoomFactor;
+						if(ratio == null){ ratio = 1; }
+						currentRatio = ratio;
+						document.getElementById("number").value = Math.round(ratio * 100);
+						document.getElementById("range").value = Math.round(ratio * 100);
+					});
+				}else if(zoomweb == true){
+					chrome.tabs.sendMessage(thattab.id, {text: "getwebzoom"}, function(info){
+						if(chrome.runtime.lastError){
+							// if current tab do not have the content.js and can not send the message to local chrome:// page.
+							// The line will excute, and log 'ERROR:  {message: "Could not establish connection. Receiving end does not exist."}'
+							// console.log('ERROR: ', chrome.runtime.lastError);
+						}
+						if(info == null || info == ""){ info = 1; }
+						ratio = info;
+						currentRatio = ratio;
+						document.getElementById("number").value = Math.round(ratio * 100);
+						document.getElementById("range").value = Math.round(ratio * 100);
+					});
+				}else if(zoomfont == true){
+					chrome.tabs.sendMessage(thattab.id, {text: "getfontsize"}, function(info){
+						if(chrome.runtime.lastError){
+							// if current tab do not have the content.js and can not send the message to local chrome:// page.
+							// The line will excute, and log 'ERROR:  {message: "Could not establish connection. Receiving end does not exist."}'
+							// console.log('ERROR: ', chrome.runtime.lastError);
+						}
+						if(info == null || info == ""){ info = 1; }
+						ratio = info;
+						currentRatio = ratio;
+						document.getElementById("number").value = Math.round(ratio * 100);
+						document.getElementById("range").value = Math.round(ratio * 100);
+					});
 				}
-			});
-
+			}
+		});
 	});
 });

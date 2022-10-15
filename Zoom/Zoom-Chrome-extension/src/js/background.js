@@ -26,12 +26,19 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-var currentURL; var allzoom; var allzoomvalue; var badge; var lightcolor; var zoomchrome; var zoomweb; var backgroundnumber; var zoombydomain; var zoombypage; var defaultallscreen; var defaultsinglescreen; var websitezoom; var zoomfont; var goturlinside = false; var currentscreen; var chromedisplay; var screenzoom; var zoomsingleclick; var zoomnewsingleclick; var zoomdoubleclick; var contexta; var contextb;
+// Importing the constants
+// eslint-disable-next-line no-undef
+importScripts("constants.js");
+
+var currentURL; var allzoom; var allzoomvalue; var zoombydomain; var zoombypage; var defaultallscreen; var defaultsinglescreen; var goturlinside = false; var currentscreen; var chromedisplay; var screenzoom; var zoomsingleclick; var zoomnewsingleclick; var zoomdoubleclick; var contexta; var contextb;
+var currentRatio = 1; var ratio = 1; var job = null;
+var webjob; var websitezoom = {}; var badge; var steps; var lightcolor; var zoomchrome; var zoomweb; var zoomfont;
+
 chrome.runtime.onMessage.addListener(function request(request, sender){
 	if(request.action == "getallRatio"){
 		currentURL = request.website;
 		chromedisplay = request.screen;
-		chrome.storage.sync.get(["allzoom", "allzoomvalue", "websitezoom", "badge", "lightcolor", "zoomchrome", "zoomweb", "zoombydomain", "zoombypage", "defaultallscreen", "defaultsinglescreen", "screenzoom", "zoomfont", ], function(response){
+		chrome.storage.sync.get(["allzoom", "allzoomvalue", "websitezoom", "badge", "lightcolor", "zoomchrome", "zoomweb", "zoombydomain", "zoombypage", "defaultallscreen", "defaultsinglescreen", "screenzoom", "zoomfont"], function(response){
 			allzoom = response.allzoom; if(allzoom == null)allzoom = false; // default allzoom false
 			allzoomvalue = response.allzoomvalue; if(allzoomvalue == null)allzoomvalue = 1; // default allzoomvalue value
 			badge = response.badge; if(badge == null)badge = false;
@@ -54,8 +61,7 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 			websitezoom = JSON.parse(websitezoom);
 
 			//---
-			if(defaultallscreen == true){} // no change
-			else if(defaultsinglescreen == true){
+			if(defaultsinglescreen == true){
 
 				var screenzoom = response["screenzoom"];
 				screenzoom = JSON.parse(screenzoom);
@@ -100,35 +106,35 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 										chrome.tabs.sendMessage(tabs[0].id, {text:"changefontsize", value: Math.round(allzoomvalue * 100)});
 									}
 									if(badge == true){
-										chrome.browserAction.setBadgeBackgroundColor({color:lightcolor});
-										chrome.browserAction.setBadgeText({text:"" + Math.round(allzoomvalue * 100) + ""});
+										chrome.action.setBadgeBackgroundColor({color:lightcolor});
+										chrome.action.setBadgeText({text:"" + Math.round(allzoomvalue * 100) + ""});
 									}else{
-										chrome.browserAction.setBadgeText({text:""});
+										chrome.action.setBadgeText({text:""});
 									}
 								}else{
 									// Needed if the zoom value is the same, update the badge value
-									chrome.browserAction.setBadgeBackgroundColor({color:lightcolor});
-									chrome.browserAction.setBadgeText({text:"" + Math.round(allzoomvalue * 100) + ""});
+									chrome.action.setBadgeBackgroundColor({color:lightcolor});
+									chrome.action.setBadgeText({text:"" + Math.round(allzoomvalue * 100) + ""});
 								}
 							});
 						}
 					});
 			}else{
 				var atbbuf = [];
-				var domain;
-				for(domain in websitezoom){ atbbuf.push(domain); atbbuf.sort(); }
-				var i;
-				var l = atbbuf.length;
-				for(i = 0; i < l; i++){
-					if(atbbuf[i] == currentURL){
-						var tempatbbuf = atbbuf[i];
-						var editzoom = websitezoom[atbbuf[i]] / 100;
+				var domainsv;
+				for(domainsv in websitezoom){ atbbuf.push(domainsv); atbbuf.sort(); }
+				var isv;
+				var lsv = atbbuf.length;
+				for(isv = 0; isv < lsv; isv++){
+					if(atbbuf[isv] == currentURL){
+						var tempatbbuf = atbbuf[isv];
+						var editzoom = websitezoom[atbbuf[isv]] / 100;
 						chrome.tabs.query({},
 							function(tabs){
 								tabs.forEach(function(tab){
 									var tor = tab.url;
 									if(typeof tor !== "undefined"){
-										var filtermatch = tor.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0];
+										var filtermatch = tor.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/);
 										if(zoombydomain == true){ if(filtermatch){ webtor = filtermatch[0]; } }else{ var webtor = tor; }
 										if(webtor == tempatbbuf){
 											if(zoomchrome == true){
@@ -163,10 +169,10 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 												chrome.tabs.sendMessage(tab.id, {text:"changefontsize", value: Math.round(editzoom * 100)});
 											}
 											if(badge == true){
-												chrome.browserAction.setBadgeBackgroundColor({color:lightcolor});
-												chrome.browserAction.setBadgeText({text:"" + Math.round(editzoom * 100) + "", tabId: tab.id});
+												chrome.action.setBadgeBackgroundColor({color:lightcolor});
+												chrome.action.setBadgeText({text:"" + Math.round(editzoom * 100) + "", tabId: tab.id});
 											}else{
-												chrome.browserAction.setBadgeText({text:""});
+												chrome.action.setBadgeText({text:""});
 											}
 										}
 									}
@@ -178,10 +184,10 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 
 				// URL is not in the table, so use the default zoom value (that by screen size)
 				// reset got inside
-				if(goturlinside == true){}else{
+				if(goturlinside != true){
 					// use default zoom from the Options page -- normal is 100%
 					chrome.tabs.query({active: true, currentWindow: true},
-						function(tabs){
+						function(){
 							chrome.tabs.getZoom(sender.tab.id, function(zoomFactor){
 								if(zoomFactor != allzoomvalue){
 									if(zoomchrome == true){
@@ -212,17 +218,17 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 										chrome.tabs.sendMessage(sender.tab.id, {text:"changefontsize", value: Math.round(allzoomvalue * 100)});
 									}
 									if(badge == true){
-										chrome.browserAction.setBadgeBackgroundColor({color:lightcolor});
-										chrome.browserAction.setBadgeText({text:"" + Math.round(allzoomvalue * 100) + "", tabId: sender.tab.id});
+										chrome.action.setBadgeBackgroundColor({color:lightcolor});
+										chrome.action.setBadgeText({text:"" + Math.round(allzoomvalue * 100) + "", tabId: sender.tab.id});
 									}else{
-										chrome.browserAction.setBadgeText({text:""});
+										chrome.action.setBadgeText({text:""});
 									}
 								}else{
 									if(badge == true){
-										chrome.browserAction.setBadgeBackgroundColor({color:lightcolor});
-										chrome.browserAction.setBadgeText({text:"" + Math.round(allzoomvalue * 100) + "", tabId: sender.tab.id});
+										chrome.action.setBadgeBackgroundColor({color:lightcolor});
+										chrome.action.setBadgeText({text:"" + Math.round(allzoomvalue * 100) + "", tabId: sender.tab.id});
 									}else{
-										chrome.browserAction.setBadgeText({text:""});
+										chrome.action.setBadgeText({text:""});
 									}
 								}
 							});
@@ -232,11 +238,15 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 			}
 
 		});
-	}
-	// contextmenu
-	else if(request.name == "contextmenuon"){ checkcontextmenus(); }else if(request.name == "contextmenuoff"){ removecontexmenus(); }
-	// from context
-	else if(request.name == "contentzoomin"){ zoomview(+1); }else if(request.name == "contentzoomout"){ zoomview(-1); }else if(request.name == "getscreenshot"){
+	}else if(request.name == "contextmenuon"){
+		checkcontextmenus();
+	}else if(request.name == "contextmenuoff"){
+		removecontexmenus();
+	}else if(request.name == "contentzoomin"){
+		zoomview(+1);
+	}else if(request.name == "contentzoomout"){
+		zoomview(-1);
+	}else if(request.name == "getscreenshot"){
 		chrome.tabs.captureVisibleTab(null, {"format": "png"}, function(dataURI){
 			if(typeof dataURI !== "undefined"){
 				chrome.tabs.sendMessage(sender.tab.id, {text: "showmagnifyglass", value: dataURI});
@@ -251,44 +261,39 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 	}
 });
 
-chrome.webNavigation.onCommitted.addListener(webNavigation_committed);
+chrome.webNavigation.onCommitted.addListener(({tabId, frameId, url}) => {
+	// Filter out non main window events.
+	if(frameId !== 0)return;
+	setTabView(tabId, url);
+});
 
-function webNavigation_committed(data){
-	if(data.frameId !== 0){
-		return;
-	}
-	chrome.tabs.get(data.tabId, function(tab){
-		if(!chrome.runtime.lastError){
-			setTabView(tab.id, tab.url);
-		}
-	});
-}
-
-function setTabView(tabId){
+function setTabView(tabId, url){
 	if(tabId >= 0){
-		chrome.tabs.executeScript(tabId, {file: "js/content.js", runAt: "document_start"}, function(){
-			if(chrome.runtime.lastError){
-				// if current tab do not have the content.js and can not send the message to local chrome:// page.
-				// The line will excute, and log 'ERROR:  {message: "Could not establish connection. Receiving end does not exist."}'
-				// console.log('ERROR: ', chrome.runtime.lastError);
-			}
-			// viewController.setactionzoom(tabId, viewSettings)
-		});
+		if(url.match(/^http/i) || url.match(/^file/i)){
+			chrome.scripting.executeScript({
+				target: {tabId: tabId},
+				files: ["js/zoom.js"],
+				injectImmediately: true
+			}, function(){
+				if(chrome.runtime.lastError){
+					// if current tab do not have the content.js and can not send the message to local chrome:// page.
+					// The line will excute, and log 'ERROR:  {message: "Could not establish connection. Receiving end does not exist."}'
+					// console.log("ERROR: ", chrome.runtime.lastError);
+				}
+				// viewController.setactionzoom(tabId, viewSettings)
+			});
+		}
 	}
 }
 
 // Begin zoom engine ---
-var currentRatio = 1; var ratio = 1; var job = null;
-var allzoom; var allzoomvalue; var webjob; var websitezoom = {}; var badge; var steps; var lightcolor; var zoomchrome; var zoomweb; var zoomfont;
-
 function zoom(ratio){
 	currentRatio = ratio / 100;
 	chrome.tabs.query({active: true, currentWindow: true}, function(tabs){ zoomtab(tabs[0].id, currentRatio); });
 }
 
 function zoomtab(a, b){
-	backgroundnumber = Math.round(b * 100);
-
+	// console.log(Math.round(b * 100));
 	if(zoomchrome == true){
 		if(allzoom == true){
 			chrome.tabs.query({},
@@ -315,9 +320,9 @@ function zoomtab(a, b){
 							// console.log(e);
 						}
 						if(badge == true){
-							chrome.browserAction.setBadgeBackgroundColor({color:lightcolor});
-							chrome.browserAction.setBadgeText({text:"" + parseInt(b * 100) + ""});
-						}else{ chrome.browserAction.setBadgeText({text:""}); }
+							chrome.action.setBadgeBackgroundColor({color:lightcolor});
+							chrome.action.setBadgeText({text:"" + parseInt(b * 100) + ""});
+						}else{ chrome.action.setBadgeText({text:""}); }
 					});
 				});
 		}else{
@@ -326,16 +331,18 @@ function zoomtab(a, b){
 					tabs.forEach(function(tab){
 						var pop = tab.url;
 						if(typeof pop !== "undefined"){
-							var filtermatch = pop.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0];
+							var filtermatch = pop.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/);
 							if(zoombydomain == true){ if(filtermatch){ webpop = filtermatch[0]; } }else{ var webpop = pop; }
 							if(webpop == webjob){
 								try{
 									chrome.tabs.sendMessage(tab.id, {text:"setbodycsszoom", value:b});
-								}catch(e){}
+								}catch(e){
+									// console.log(e);
+								}
 								if(badge == true){
-									chrome.browserAction.setBadgeBackgroundColor({color:lightcolor});
-									chrome.browserAction.setBadgeText({text:"" + parseInt(b * 100) + "", tabId: tab.id} );
-								}else{ chrome.browserAction.setBadgeText({text:""}); }
+									chrome.action.setBadgeBackgroundColor({color:lightcolor});
+									chrome.action.setBadgeText({text:"" + parseInt(b * 100) + "", tabId: tab.id});
+								}else{ chrome.action.setBadgeText({text:""}); }
 							}
 						}
 					});
@@ -348,9 +355,9 @@ function zoomtab(a, b){
 					tabs.forEach(function(tab){
 						chrome.tabs.sendMessage(tab.id, {text: "changefontsize", value: Math.round(b * 100)});
 						if(badge == true){
-							chrome.browserAction.setBadgeBackgroundColor({color:lightcolor});
-							chrome.browserAction.setBadgeText({text:"" + parseInt(b * 100) + ""});
-						}else{ chrome.browserAction.setBadgeText({text:""}); }
+							chrome.action.setBadgeBackgroundColor({color:lightcolor});
+							chrome.action.setBadgeText({text:"" + parseInt(b * 100) + ""});
+						}else{ chrome.action.setBadgeText({text:""}); }
 					});
 				});
 		}else{
@@ -359,14 +366,14 @@ function zoomtab(a, b){
 					tabs.forEach(function(tab){
 						var pop = tab.url;
 						if(typeof pop !== "undefined"){
-							var filtermatch = pop.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0];
+							var filtermatch = pop.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/);
 							if(zoombydomain == true){ if(filtermatch){ webpop = filtermatch[0]; } }else{ var webpop = pop; }
 							if(webpop == webjob){
 								chrome.tabs.sendMessage(tab.id, {text: "changefontsize", value: Math.round(b * 100)});
 								if(badge == true){
-									chrome.browserAction.setBadgeBackgroundColor({color:lightcolor});
-									chrome.browserAction.setBadgeText({text:"" + parseInt(b * 100) + "", tabId: tab.id});
-								}else{ chrome.browserAction.setBadgeText({text:""}); }
+									chrome.action.setBadgeBackgroundColor({color:lightcolor});
+									chrome.action.setBadgeText({text:"" + parseInt(b * 100) + "", tabId: tab.id});
+								}else{ chrome.action.setBadgeText({text:""}); }
 							}
 						}
 					});
@@ -418,72 +425,53 @@ function nextratio(ratio, direction){
 }
 // End zoom engine ---
 
-// Set click to false at beginning
-var alreadyClicked = false;
+// Set click to zero at beginning
+let clickbutton = 0;
 // Declare a timer variable
-var timer;
-
-var openactiondoubleclick = function(tabs){
-	// Check for previous click
-	if(alreadyClicked){
-		// console.log("Doubleclick");
-		// Yes, Previous Click Detected
-		// Clear timer already set in earlier Click
-		window.clearTimeout(timer);
-		if(zoomdoubleclick == true){
-			// zoom in
-			zoomview(+1);
-		}else if(zoomnewsingleclick == true){
-			chrome.browserAction.setPopup({tabId: tabs.id, popup:""});
-		}
-
-		// Clear all Clicks
-		alreadyClicked = false;
-		return;
-	}
-
-	// Set Click to  true
-	alreadyClicked = true;
-	if(zoomdoubleclick == true){}
-	else if(zoomnewsingleclick == true){
-		chrome.browserAction.setPopup({tabId: tabs.id, popup:"popup.html"});
-	}
-
-	// Add a timer to detect next click to a sample of 250
-	timer = window.setTimeout(function(){
-		// console.log("Singelclick");
-		// No more clicks so, this is a single click
-		if(zoomdoubleclick == true){
-			// zoom out
-			zoomview(-1);
-		}else if(zoomnewsingleclick == true){
-			var popups = chrome.extension.getViews({type:"popup"});
-			if(popups.length != 0){ // popup exist
-
-			}else{ // not exist
-				chrome.tabs.sendMessage(tabs.id, {text:"enablemagnifyingglass"});
+let timer;
+var openactiondoubleclick = function(tab){
+	// console.log("CLICK zoomdoubleclick= " + zoomdoubleclick + " zoomnewsingleclick= " + zoomnewsingleclick + " zoomsingleclick=" + zoomsingleclick);
+	if(zoomdoubleclick == true || zoomnewsingleclick == true){
+		clickbutton += 1;
+		if(clickbutton == 2){
+			// console.log("Doubleclick");
+			clearTimeout(timer);
+			if(zoomdoubleclick == true){
+				// zoom in
+				zoomview(+1);
+			}else if(zoomnewsingleclick == true){
+				chrome.action.setPopup({tabId: tab.id, popup:"popup.html"});
+				chrome.action.openPopup();
 			}
 		}
 
-		// Clear all timers
-		window.clearTimeout(timer);
-		// Ignore clicks
-		alreadyClicked = false;
-		if(zoomnewsingleclick == true){
-			chrome.browserAction.setPopup({tabId: tabs.id, popup:""});
-		}
-	}, 250);
+		timer = setTimeout(function(){
+			// console.log("Singelclick");
+			if(clickbutton == 1){
+				if(zoomdoubleclick == true){
+					// zoom out
+					zoomview(-1);
+				}else if(zoomnewsingleclick == true){
+					chrome.tabs.sendMessage(tab.id, {text:"enablemagnifyingglass"});
+				}
+			}
+			clickbutton = 0;
+			// Clear all timers
+			clearTimeout(timer);
+			chrome.action.setPopup({tabId: tab.id, popup:""});
+		}, 250);
+	}else{
+		chrome.action.setPopup({tabId: tab.id, popup:"popup.html"});
+		chrome.action.openPopup();
+		chrome.action.setPopup({tabId: tab.id, popup:""});
+	}
 };
+chrome.action.onClicked.addListener(openactiondoubleclick);
 
-function doubleclickaction(){
-	chrome.browserAction.setPopup({popup:""});
-	if(chrome.browserAction.onClicked.hasListener(openactiondoubleclick)){ chrome.browserAction.onClicked.removeListener(openactiondoubleclick); }
-	chrome.browserAction.onClicked.addListener(openactiondoubleclick);
-}
-
-function regularaction(){
-	if(chrome.browserAction.onClicked.hasListener(openactiondoubleclick)){ chrome.browserAction.onClicked.removeListener(openactiondoubleclick); }
-	chrome.browserAction.setPopup({popup:"popup.html"});
+async function getCurrentTab(){
+	let queryOptions = {active: true, currentWindow: true};
+	let tabs = await chrome.tabs.query(queryOptions);
+	return tabs[0];
 }
 
 function backgroundrefreshzoom(){
@@ -505,68 +493,61 @@ function backgroundrefreshzoom(){
 		}
 		websitezoom = JSON.parse(websitezoom);
 
-		chrome.tabs.query({active: true, currentWindow: true},
-			function(tabs){
-				if(tabs[0]){
-					var job = tabs[0].url;
-					if(typeof job !== "undefined"){
-						var filtermatch = job.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0];
-						if(zoombydomain == true){ if(filtermatch){ webjob = filtermatch[0]; } }else{ webjob = job; }
-						if(zoomchrome == true){
-							chrome.tabs.getZoom(tabs[0].id, function(zoomFactor){
-								if(chrome.runtime.lastError){
-									// if current tab do not have the content.js and can not send the message to local chrome:// page.
-									// The line will excute, and log 'ERROR:  {message: "Could not establish connection. Receiving end does not exist."}'
-									// console.log('ERROR: ', chrome.runtime.lastError);
-								}
-								ratio = zoomFactor;
-								if(ratio == null){ ratio = 1; }
-								currentRatio = ratio;
-								backgroundnumber = Math.round(ratio * 100);
-								if(badge == true){
-									chrome.browserAction.setBadgeBackgroundColor({color:lightcolor});
-									chrome.browserAction.setBadgeText({text:"" + Math.round(currentRatio * 100) + "", tabId: tabs[0].id});
-								}else{ chrome.browserAction.setBadgeText({text:""}); }
-							});
-						}else if(zoomweb == true){
-							chrome.tabs.sendMessage(tabs[0].id, {text: "getwebzoom"}, function(info){
-								if(chrome.runtime.lastError){
-									// if current tab do not have the content.js and can not send the message to local chrome:// page.
-									// The line will excute, and log 'ERROR:  {message: "Could not establish connection. Receiving end does not exist."}'
-									// console.log('ERROR: ', chrome.runtime.lastError);
-								}
-								if(info == null || info == ""){ info = 1; }
-								ratio = info;
-								currentRatio = ratio;
-								backgroundnumber = Math.round(ratio * 100);
-								if(badge == true){
-									chrome.browserAction.setBadgeBackgroundColor({color:lightcolor});
-									chrome.browserAction.setBadgeText({text:"" + Math.round(currentRatio * 100) + "", tabId: tabs[0].id} );
-								}else{ chrome.browserAction.setBadgeText({text:""}); }
-							});
-						}else if(zoomfont == true){
-							chrome.tabs.sendMessage(tabs[0].id, {text: "getfontsize"}, function(info){
-								if(chrome.runtime.lastError){
-									// if current tab do not have the content.js and can not send the message to local chrome:// page.
-									// The line will excute, and log 'ERROR:  {message: "Could not establish connection. Receiving end does not exist."}'
-									// console.log('ERROR: ', chrome.runtime.lastError);
-								}
-								if(info == null || info == ""){ info = 1; }
-								ratio = info;
-								currentRatio = ratio;
-								backgroundnumber = Math.round(ratio * 100);
-								if(badge == true){
-									chrome.browserAction.setBadgeBackgroundColor({color:lightcolor});
-									chrome.browserAction.setBadgeText({text:"" + Math.round(currentRatio * 100) + "", tabId: tabs[0].id});
-								}else{ chrome.browserAction.setBadgeText({text:""}); }
-							});
-						}
+		getCurrentTab().then((thattab) => {
+			if(thattab){
+				job = thattab.url;
+				if(typeof job !== "undefined"){
+					var filtermatch = job.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/);
+					if(zoombydomain == true){ if(filtermatch){ webjob = filtermatch[0]; } }else{ webjob = job; }
+					if(zoomchrome == true){
+						chrome.tabs.getZoom(thattab.id, function(zoomFactor){
+							if(chrome.runtime.lastError){
+								// if current tab do not have the content.js and can not send the message to local chrome:// page.
+								// The line will excute, and log 'ERROR:  {message: "Could not establish connection. Receiving end does not exist."}'
+								// console.log("ERROR: ", chrome.runtime.lastError);
+							}
+							ratio = zoomFactor;
+							if(ratio == null){ ratio = 1; }
+							currentRatio = ratio;
+							if(badge == true){
+								chrome.action.setBadgeBackgroundColor({color:lightcolor});
+								chrome.action.setBadgeText({text:"" + Math.round(currentRatio * 100) + "", tabId: thattab.id});
+							}else{ chrome.action.setBadgeText({text:""}); }
+						});
+					}else if(zoomweb == true){
+						chrome.tabs.sendMessage(thattab.id, {text: "getwebzoom"}, function(info){
+							if(chrome.runtime.lastError){
+								// if current tab do not have the content.js and can not send the message to local chrome:// page.
+								// The line will excute, and log 'ERROR:  {message: "Could not establish connection. Receiving end does not exist."}'
+								// console.log("ERROR: ", chrome.runtime.lastError);
+							}
+							if(info == null || info == ""){ info = 1; }
+							ratio = info;
+							currentRatio = ratio;
+							if(badge == true){
+								chrome.action.setBadgeBackgroundColor({color:lightcolor});
+								chrome.action.setBadgeText({text:"" + Math.round(ratio * 100) + "", tabId: thattab.id});
+							}else{ chrome.action.setBadgeText({text:""}); }
+						});
+					}else if(zoomfont == true){
+						chrome.tabs.sendMessage(thattab.id, {text: "getfontsize"}, function(info){
+							if(chrome.runtime.lastError){
+								// if current tab do not have the content.js and can not send the message to local chrome:// page.
+								// The line will excute, and log 'ERROR:  {message: "Could not establish connection. Receiving end does not exist."}'
+								// console.log("ERROR: ", chrome.runtime.lastError);
+							}
+							if(info == null || info == ""){ info = 1; }
+							ratio = info;
+							currentRatio = ratio;
+							if(badge == true){
+								chrome.action.setBadgeBackgroundColor({color:lightcolor});
+								chrome.action.setBadgeText({text:"" + Math.round(currentRatio * 100) + "", tabId: thattab.id});
+							}else{ chrome.action.setBadgeText({text:""}); }
+						});
 					}
 				}
-
-
-			});
-
+			}
+		});
 	});
 }
 
@@ -598,7 +579,7 @@ chrome.commands.onCommand.addListener(function(command){
 });
 
 // contextMenus
-function onClickHandler(info, tab){
+function onClickHandler(info){
 	var str = info.menuItemId; var respage = str.substring(0, 8); var czl = str.substring(8); var reszoomin = str.substring(0, 8); var reszoomout = str.substring(0, 9); var reszoomreset = str.substring(0, 11);
 	if(respage == "zoompage"){
 		chrome.storage.sync.get(["allzoom", "allzoomvalue", "badge", "zoomchrome", "zoomweb", "websitezoom", "zoombydomain", "zoombypage", "zoomfont"], function(response){
@@ -617,18 +598,18 @@ function onClickHandler(info, tab){
 				}else if(zoomweb == true){
 					chrome.tabs.sendMessage(tabs[0].id, {text:"setbodycsszoom", value:czl / 100});
 				}else if(zoomfont == true){
-					chrome.tabs.sendMessage(sender.tab.id, {text: "setfontsize"});
-					chrome.tabs.sendMessage(sender.tab.id, {text: "changefontsize", value: Math.round(czl)});
+					chrome.tabs.sendMessage(tabs[0].id, {text: "setfontsize"});
+					chrome.tabs.sendMessage(tabs[0].id, {text: "changefontsize", value: Math.round(czl)});
 				}
 				if(badge == true){
-					chrome.browserAction.setBadgeBackgroundColor({color:lightcolor});
-					chrome.browserAction.setBadgeText({text:"" + Math.round(czl) + ""});
+					chrome.action.setBadgeBackgroundColor({color:lightcolor});
+					chrome.action.setBadgeText({text:"" + Math.round(czl) + ""});
 				}else{
-					chrome.browserAction.setBadgeText({text:""});
+					chrome.action.setBadgeText({text:""});
 				}
-				var job = tabs[0].url;
+				job = tabs[0].url;
 				if(typeof job !== "undefined"){
-					var filtermatch = job.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0];
+					var filtermatch = job.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/);
 					if(zoombydomain == true){ if(filtermatch){ webjob = filtermatch[0]; } }else{ var webjob = job; }
 					if(allzoom == true){
 						// save for all zoom feature
@@ -668,21 +649,27 @@ function onClickHandler(info, tab){
 	}else if(reszoomreset == "ctzoomreset"){
 		zoom(allzoomvalue * 100);
 	}else if(info.menuItemId == "totlguideemenu"){
-		window.open(linkguide, "_blank");
+		chrome.tabs.create({url: linkguide, active:true});
 	}else if(info.menuItemId == "totldevelopmenu"){
-		window.open(donatewebsite, "_blank");
+		chrome.tabs.create({url: linkdonate, active:true});
 	}else if(info.menuItemId == "totlratemenu"){
-		window.open(writereview, "_blank");
-	}else if(info.menuItemId == "totlsharemenu"){
-		window.open(zoomwebsite, "_blank");
+		chrome.tabs.create({url: writereview, active:true});
 	}else if(info.menuItemId == "totlshareemail"){
-		window.open("mailto:youremail?subject=Zoom extension&body=Hé, This is amazing. I just tried today this Zoom Browser extension" + zoomproduct + "", "_blank");
+		var sturnoffthelightemail = "mailto:your@email.com?subject=" + chrome.i18n.getMessage("sharetexta") + "&body=" + chrome.i18n.getMessage("sharetextb") + " " + linkproduct; chrome.tabs.create({url: sturnoffthelightemail, active:true});
 	}else if(info.menuItemId == "totlsharetwitter"){
-		var szoomproductcodeurl = encodeURIComponent("The Best and Amazing Zoom Browser extension " + zoomproduct + ""); window.open("https://twitter.com/home?status=" + szoomproductcodeurl + "", "_blank");
+		var slinkproductcodeurl = encodeURIComponent(chrome.i18n.getMessage("sharetextd") + " " + linkproduct); chrome.tabs.create({url: "https://twitter.com/intent/tweet?text=" + slinkproductcodeurl, active:true});
 	}else if(info.menuItemId == "totlsharefacebook"){
-		window.open("https://www.facebook.com/sharer/sharer.php?u=" + zoomproduct, "_blank");
+		chrome.tabs.create({url: "https://www.facebook.com/sharer/sharer.php?u=" + linkproduct, active:true});
 	}else if(info.menuItemId == "totlsubscribe"){
 		chrome.tabs.create({url: linkyoutube, active:true});
+	}else if(info.menuItemId == "totlshareqq"){
+		chrome.tabs.create({url: "https://connect.qq.com/widget/shareqq/index.html?url=" + encodeURIComponent(linkproduct) + "&title=" + encodeURIComponent(chrome.i18n.getMessage("sharetextd")), active:true});
+	}else if(info.menuItemId == "totlshareweibo"){
+		chrome.tabs.create({url: "https://service.weibo.com/share/share.php?url=" + linkproduct + "&title=" + encodeURIComponent(chrome.i18n.getMessage("sharetextd")), active:true});
+	}else if(info.menuItemId == "totlsharevkontakte"){
+		chrome.tabs.create({url: "https://vk.com/share.php?url=" + linkproduct, active:true});
+	}else if(info.menuItemId == "totlsharewhatsapp"){
+		chrome.tabs.create({url: "https://api.whatsapp.com/send?text=" + chrome.i18n.getMessage("sharetextd") + "%0a" + linkproduct, active:true});
 	}else if(info.menuItemId == "totlapplyresetzoom"){
 		// Apply reset zoom to all tabs and in all window
 		chrome.tabs.query({}, function(tabs){
@@ -692,7 +679,7 @@ function onClickHandler(info, tab){
 				if(chrome.runtime.lastError){
 					// if current tab do not have the content.js and can not send the message to local chrome:// page.
 					// The line will excute, and log 'ERROR:  {message: "Could not establish connection. Receiving end does not exist."}'
-					// console.log('ERROR: ', chrome.runtime.lastError);
+					// console.log("ERROR: ", chrome.runtime.lastError);
 				}
 				chrome.tabs.sendMessage(tabs[i].id, {text: "refreshscreen"});
 			}
@@ -701,11 +688,12 @@ function onClickHandler(info, tab){
 }
 
 // check to remove all contextmenus
-chrome.contextMenus.removeAll(function(){
-// console.log("contextMenus.removeAll callback");
-});
+if(chrome.contextMenus){
+	chrome.contextMenus.removeAll(function(){
+	// console.log("contextMenus.removeAll callback");
+	});
+}
 
-// pageaction
 var sharemenusharetitle = chrome.i18n.getMessage("sharemenusharetitle");
 var sharemenuwelcomeguidetitle = chrome.i18n.getMessage("sharemenuwelcomeguidetitle");
 var sharemenutellafriend = chrome.i18n.getMessage("sharemenutellafriend");
@@ -714,55 +702,73 @@ var sharemenupostonfacebook = chrome.i18n.getMessage("sharemenupostonfacebook");
 var sharemenuratetitle = chrome.i18n.getMessage("sharemenuratetitle");
 var sharemenudonatetitle = chrome.i18n.getMessage("sharemenudonatetitle");
 var sharemenusubscribetitle = chrome.i18n.getMessage("desremyoutube");
+var sharemenupostonweibo = chrome.i18n.getMessage("sharemenupostonweibo");
+var sharemenupostonvkontakte = chrome.i18n.getMessage("sharemenupostonvkontakte");
+var sharemenupostonwhatsapp = chrome.i18n.getMessage("sharemenupostonwhatsapp");
+var sharemenupostonqq = chrome.i18n.getMessage("sharemenupostonqq");
 var sharemenuapplyzoomresettitle = chrome.i18n.getMessage("desapplyzoomreset");
-var contexts = ["page_action", "browser_action"];
 
-chrome.contextMenus.create({"title": sharemenuapplyzoomresettitle, "type":"normal", "id": "totlapplyresetzoom", "contexts": contexts});
-
-try{
-	// try show web browsers that do support "icons"
-	// Firefox, Opera, Microsoft Edge
-
-	chrome.contextMenus.create({"title": sharemenuwelcomeguidetitle, "type":"normal", "id": "totlguideemenu", "contexts": contexts, "icons":{"16": "images/IconGuide.png", "32": "images/IconGuide@2x.png"}});
-	chrome.contextMenus.create({"title": sharemenudonatetitle, "type":"normal", "id": "totldevelopmenu", "contexts": contexts, "icons":{"16": "images/IconDonate.png", "32": "images/IconDonate@2x.png"}});
-	chrome.contextMenus.create({"title": sharemenuratetitle, "type":"normal", "id": "totlratemenu", "contexts": contexts, "icons":{"16": "images/IconStar.png", "32": "images/IconStar@2x.png"}});
-}catch(e){
-	// catch web browsers that do NOT show the icon
-	// Google Chrome
-	chrome.contextMenus.create({"title": sharemenuwelcomeguidetitle, "type":"normal", "id": "totlguideemenu", "contexts": contexts});
-	chrome.contextMenus.create({"title": sharemenudonatetitle, "type":"normal", "id": "totldevelopmenu", "contexts": contexts});
-	chrome.contextMenus.create({"title": sharemenuratetitle, "type":"normal", "id": "totlratemenu", "contexts": contexts});
+function browsercontext(a, b, c, d){
+	var item = {"title": a, "type": "normal", "id": b, "contexts": contexts};
+	var newitem;
+	if(d != ""){
+		item = Object.assign({}, item, {parentId: d});
+	}
+	if(c != ""){
+		newitem = Object.assign({}, item, {icons: c});
+	}
+	try{
+		// try show web browsers that do support "icons"
+		// Firefox, Opera, Microsoft Edge
+		return chrome.contextMenus.create(newitem);
+	}catch(e){
+		// catch web browsers that do NOT show the icon
+		// Google Chrome
+		return chrome.contextMenus.create(item);
+	}
 }
 
-var parent, child1, child2, child3;
-// Create a parent item and two children.
-try{
-	// try show web browsers that do support "icons"
-	// Firefox, Opera, Microsoft Edge
-	parent = chrome.contextMenus.create({"title": sharemenusharetitle, "id": "totlsharemenu", "contexts": contexts, "icons":{"16": "images/IconShare.png", "32": "images/IconShare@2x.png"}});
-	child1 = chrome.contextMenus.create({"title": sharemenutellafriend, "id": "totlshareemail", "contexts": contexts, "parentId": parent, "icons":{"16": "images/IconEmail.png", "32": "images/IconEmail@2x.png"}});
-	chrome.contextMenus.create({"title": "", "type":"separator", "id": "totlsepartorshare", "contexts": contexts, "parentId": parent});
-	child2 = chrome.contextMenus.create({"title": sharemenusendatweet, "id": "totlsharetwitter", "contexts": contexts, "parentId": parent, "icons":{"16": "images/IconTwitter.png", "32": "images/IconTwitter@2x.png"}});
-	child3 = chrome.contextMenus.create({"title": sharemenupostonfacebook, "id": "totlsharefacebook", "contexts": contexts, "parentId": parent, "icons":{"16": "images/IconFacebook.png", "32": "images/IconFacebook@2x.png"}});
-}catch(e){
-	// catch web browsers that do NOT show the icon
-	// Google Chrome
-	parent = chrome.contextMenus.create({"title": sharemenusharetitle, "id": "totlsharemenu", "contexts": contexts});
-	child1 = chrome.contextMenus.create({"title": sharemenutellafriend, "id": "totlshareemail", "contexts": contexts, "parentId": parent});
-	chrome.contextMenus.create({"title": "", "type":"separator", "id": "totlsepartorshare", "contexts": contexts, "parentId": parent});
-	child2 = chrome.contextMenus.create({"title": sharemenusendatweet, "id": "totlsharetwitter", "contexts": contexts, "parentId": parent});
-	child3 = chrome.contextMenus.create({"title": sharemenupostonfacebook, "id": "totlsharefacebook", "contexts": contexts, "parentId": parent});
-}
+var actionmenuadded = false;
+if(chrome.contextMenus){
+	if(actionmenuadded == false){
+		actionmenuadded = true;
 
-chrome.contextMenus.create({"title": "", "type":"separator", "id": "totlsepartor", "contexts": contexts});
-try{
-	// try show web browsers that do support "icons"
-	// Firefox, Opera, Microsoft Edge
-	chrome.contextMenus.create({"title": sharemenusubscribetitle, "type":"normal", "id": "totlsubscribe", "contexts":contexts, "icons":{"16": "images/IconYouTube.png", "32": "images/IconYouTube@2x.png"}});
-}catch(e){
-	// catch web browsers that do NOT show the icon
-	// Google Chrome
-	chrome.contextMenus.create({"title": sharemenusubscribetitle, "type":"normal", "id": "totlsubscribe", "contexts":contexts});
+		var contexts = ["action"];
+		browsercontext(sharemenuapplyzoomresettitle, "totlapplyresetzoom", "");
+
+		browsercontext(sharemenuwelcomeguidetitle, "totlguideemenu", {"16": "images/IconGuide.png", "32": "images/IconGuide@2x.png"});
+		browsercontext(sharemenudonatetitle, "totldevelopmenu", {"16": "images/IconDonate.png", "32": "images/IconDonate@2x.png"});
+		browsercontext(sharemenuratetitle, "totlratemenu", {"16": "images/IconStar.png", "32": "images/IconStar@2x.png"});
+
+		// Create a parent item and two children.
+		var parent = null;
+		parent = browsercontext(sharemenusharetitle, "totlsharemenu", {"16": "images/IconShare.png", "32": "images/IconShare@2x.png"});
+		browsercontext(sharemenutellafriend, "totlshareemail", {"16": "images/IconEmail.png", "32": "images/IconEmail@2x.png"}, parent);
+		chrome.contextMenus.create({"title": "", "type":"separator", "id": "totlsepartorshare", "contexts": contexts, "parentId": parent});
+
+		var uiLanguage = chrome.i18n.getUILanguage();
+		if(uiLanguage.includes("zh")){
+			// Chinese users
+			browsercontext(sharemenupostonweibo, "totlshareweibo", {"16": "images/IconWeibo.png", "32": "images/IconWeibo@2x.png"}, parent);
+			browsercontext(sharemenupostonqq, "totlshareqq", {"16": "images/IconQQ.png", "32": "images/IconQQ@2x.png"}, parent);
+		}else if(uiLanguage.includes("ru")){
+			// Russian users
+			browsercontext(sharemenupostonvkontakte, "totlsharevkontakte", {"16": "images/IconVkontakte.png", "32": "images/IconVkontakte@2x.png"}, parent);
+			browsercontext(sharemenupostonfacebook, "totlsharefacebook", {"16": "images/IconFacebook.png", "32": "images/IconFacebook@2x.png"}, parent);
+			browsercontext(sharemenupostonwhatsapp, "totlsharewhatsapp", {"16": "images/IconWhatsApp.png", "32": "images/IconWhatsApp@2x.png"}, parent);
+			browsercontext(sharemenusendatweet, "totlsharetwitter", {"16": "images/IconTwitter.png", "32": "images/IconTwitter@2x.png"}, parent);
+		}else{
+			// all users
+			browsercontext(sharemenupostonfacebook, "totlsharefacebook", {"16": "images/IconFacebook.png", "32": "images/IconFacebook@2x.png"}, parent);
+			browsercontext(sharemenupostonwhatsapp, "totlsharewhatsapp", {"16": "images/IconWhatsApp.png", "32": "images/IconWhatsApp@2x.png"}, parent);
+			browsercontext(sharemenusendatweet, "totlsharetwitter", {"16": "images/IconTwitter.png", "32": "images/IconTwitter@2x.png"}, parent);
+		}
+
+		chrome.contextMenus.create({"title": "", "type":"separator", "id": "totlsepartor", "contexts": contexts});
+		browsercontext(sharemenusubscribetitle, "totlsubscribe", {"16": "images/IconYouTube.png", "32": "images/IconYouTube@2x.png"});
+
+		chrome.contextMenus.onClicked.addListener(onClickHandler);
+	}
 }
 
 chrome.contextMenus.onClicked.addListener(onClickHandler);
@@ -783,6 +789,12 @@ var contextzoomin = null;
 var contextzoomout = null;
 var contextzoomreset = null;
 
+function getcurrentscreensize(){
+	chrome.system.display.getInfo(function(display_properties){
+		return(display_properties[0].bounds.width + "x" + display_properties[0].bounds.height);
+	});
+}
+
 function checkcontextmenus(){
 	//---
 	chrome.storage.sync.get(["allzoomvalue", "screenzoom", "defaultallscreen", "defaultsinglescreen", "contexta", "contextb"], function(items){
@@ -795,10 +807,9 @@ function checkcontextmenus(){
 
 		contextdefault = allzoomvalue * 100;// get the default zoom value for that screen
 
-		currentscreen = screen.width + "x" + screen.height;
+		currentscreen = getcurrentscreensize();
 
-		if(defaultallscreen == true){} // no change
-		else if(defaultsinglescreen == true){
+		if(defaultsinglescreen == true){
 			screenzoom = JSON.parse(screenzoom);
 			var satbbuf = [];
 			var domain;
@@ -818,8 +829,6 @@ function checkcontextmenus(){
 		if(contextmenuadded == false){
 			contextmenuadded = true;
 			var contexts = ["page", "selection", "link", "editable", "image", "audio", "video"];
-			var pagetitle = chrome.i18n.getMessage("name");
-
 			if(contexta == true){
 				book = Array();
 
@@ -840,19 +849,19 @@ function checkcontextmenus(){
 				// else add this value in the context menu
 				var mySet = new Set(book);
 				var hascont = mySet.has(parseInt(contextdefault, 10)); // true
-				if(hascont){}else{
+				if(!hascont){
 					book.push(contextdefault);
 				}
 
 				book.sort(function(a, b){ return b - a; });
 
-				var i;
-				var l = book.length;
-				for(i = 0; i < l; i++){
-					if(contextdefault && contextdefault == book[i]){
-						menupage = chrome.contextMenus.create({"type":"radio", "checked" : true, "id": "zoompage" + book[i] + "", "title": "Zoom: " + book[i] + "%", "contexts":contexts});
+				var izoom;
+				var lzoom = book.length;
+				for(izoom = 0; izoom < lzoom; izoom++){
+					if(contextdefault && contextdefault == book[izoom]){
+						menupage = chrome.contextMenus.create({"type":"radio", "checked" : true, "id": "zoompage" + book[izoom] + "", "title": "Zoom: " + book[izoom] + "%", "contexts":contexts});
 					}else{
-						menupage = chrome.contextMenus.create({"type":"radio", "id": "zoompage" + book[i] + "", "title": "Zoom: " + book[i] + "%", "contexts":contexts});
+						menupage = chrome.contextMenus.create({"type":"radio", "id": "zoompage" + book[izoom] + "", "title": "Zoom: " + book[izoom] + "%", "contexts":contexts});
 					}
 				}
 				contextarraypage.push(menupage);
@@ -934,23 +943,17 @@ function handleZoomed(zoomChangeInfo){
 			if(badge == true){
 				// zoom changed
 				// set the badge for the browser built-in zoom
-				chrome.browserAction.setBadgeText({text:"" + Math.round(zoomChangeInfo.newZoomFactor * 100) + "", tabId: zoomChangeInfo.tabId});
+				chrome.action.setBadgeText({text:"" + Math.round(zoomChangeInfo.newZoomFactor * 100) + "", tabId: zoomChangeInfo.tabId});
 			}
 		}
 	});
 }
 chrome.tabs.onZoomChange.addListener(handleZoomed);
 
-document.addEventListener("DOMContentLoaded", function(){
-	chrome.storage.sync.get(["zoomdoubleclick", "zoomnewsingleclick", "zoomsingleclick"], function(response){
-		zoomdoubleclick = response.zoomdoubleclick; if(zoomdoubleclick == null)zoomdoubleclick = false; // default zoomdoubleclick false
-		zoomnewsingleclick = response.zoomnewsingleclick; if(zoomnewsingleclick == null)zoomnewsingleclick = false; // default zoomnewsingleclick false
-		zoomsingleclick = response.zoomsingleclick; if(zoomsingleclick == null)zoomsingleclick = true; // default zoomsingleclick true
-
-		if(zoomdoubleclick == true){ doubleclickaction(); }else if(zoomnewsingleclick == true){ doubleclickaction(); }else if(zoomsingleclick == true){ regularaction(); }
-		backgroundrefreshzoom();
-
-	});
+chrome.storage.sync.get(["zoomdoubleclick", "zoomnewsingleclick", "zoomsingleclick"], function(response){
+	zoomdoubleclick = response.zoomdoubleclick; if(zoomdoubleclick == null)zoomdoubleclick = false; // default zoomdoubleclick false
+	zoomnewsingleclick = response.zoomnewsingleclick; if(zoomnewsingleclick == null)zoomnewsingleclick = false; // default zoomnewsingleclick false
+	zoomsingleclick = response.zoomsingleclick; if(zoomsingleclick == null)zoomsingleclick = true; // default zoomsingleclick true
 });
 
 chrome.storage.onChanged.addListener(function(changes){
@@ -974,14 +977,26 @@ chrome.storage.onChanged.addListener(function(changes){
 		}
 	}
 	if(changes["badge"]){
-		if(changes["badge"].newValue == true){ chrome.browserAction.setBadgeText({text:"100"}); chrome.browserAction.setBadgeBackgroundColor({color:lightcolor}); }else{ chrome.browserAction.setBadgeText({text:""}); }
+		if(changes["badge"].newValue == true){ chrome.action.setBadgeText({text:"100"}); chrome.action.setBadgeBackgroundColor({color:lightcolor}); }else{ chrome.action.setBadgeText({text:""}); }
 	}
 	if(changes["lightcolor"]){
-		if(changes["lightcolor"].newValue){ chrome.browserAction.setBadgeBackgroundColor({color:changes["lightcolor"].newValue}); }
+		if(changes["lightcolor"].newValue){ chrome.action.setBadgeBackgroundColor({color:changes["lightcolor"].newValue}); }
 	}
-	if(changes["zoomdoubleclick"]){ if(changes["zoomdoubleclick"].newValue == true){ zoomsingleclick = false; zoomnewsingleclick = false; zoomdoubleclick = true; doubleclickaction(); backgroundrefreshzoom(); } }
-	if(changes["zoomnewsingleclick"]){ if(changes["zoomnewsingleclick"].newValue == true){ zoomsingleclick = false; zoomnewsingleclick = true; zoomdoubleclick = false; doubleclickaction(); backgroundrefreshzoom(); } }
-	if(changes["zoomsingleclick"]){ if(changes["zoomsingleclick"].newValue == true){ zoomsingleclick = true; zoomnewsingleclick = false; zoomdoubleclick = false; regularaction(); backgroundrefreshzoom(); } }
+	if(changes["zoomdoubleclick"]){
+		if(changes["zoomdoubleclick"].newValue == true){
+			zoomsingleclick = false; zoomnewsingleclick = false; zoomdoubleclick = true;
+		}
+	}
+	if(changes["zoomnewsingleclick"]){
+		if(changes["zoomnewsingleclick"].newValue == true){
+			zoomsingleclick = false; zoomnewsingleclick = true; zoomdoubleclick = false;
+		}
+	}
+	if(changes["zoomsingleclick"]){
+		if(changes["zoomsingleclick"].newValue == true){
+			zoomsingleclick = true; zoomnewsingleclick = false; zoomdoubleclick = false;
+		}
+	}
 });
 
 chrome.runtime.setUninstallURL(linkuninstall);

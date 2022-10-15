@@ -545,23 +545,22 @@ function seticonstyle(a, b, c){
 
 function checkdarkmode(){
 	chrome.storage.sync.get(["darkmode"], function(items){
-		darkmode = items["darkmode"]; if(darkmode == null)darkmode = false; // default darkmode false
+		darkmode = items["darkmode"]; if(darkmode == null)darkmode = 2; // default Operating System
 
 		// dark mode
-		if(darkmode == true){
-			$("currentdarkmode").innerText = chrome.i18n.getMessage("titledarkmodeon");
-			document.body.className = "dark";
-			$("headlamp").src = "icons/icon16@2x.png";
-			$("headlamp").srcset = "icons/icon16.png 1x, icons/icon16@2x.png 2x";
-			$("headlamp").style.webkitFilter = "invert(1)";
-			$("headlamp").style.filter = "invert(1)";
-		}else{
-			$("currentdarkmode").innerText = chrome.i18n.getMessage("titledarkmodeoff");
-			document.body.className = "light";
-			$("headlamp").src = "icons/icon16@2x.png";
-			$("headlamp").srcset = "icons/icon16.png 1x, icons/icon16@2x.png 2x";
-			$("headlamp").style.webkitFilter = "invert(0)";
-			$("headlamp").style.filter = "invert(0)";
+		if(darkmode == 1){
+			godarkmode();
+			seticonstyle(0, 0, 1);
+		}else if(darkmode == 0){
+			golightmode();
+			seticonstyle(0, 1, 0);
+		}else if(darkmode == 2){
+			if(window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches){
+				godarkmode();
+			}else{
+				golightmode();
+			}
+			seticonstyle(1, 0, 0);
 		}
 	});
 }

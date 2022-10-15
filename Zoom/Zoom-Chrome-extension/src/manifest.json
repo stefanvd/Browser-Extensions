@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "__MSG_namechrome__",
   "short_name": "Zoom",
   "version": "2.7.0.0",
@@ -15,7 +15,8 @@
     "128": "icons/icon128.png"
   },
   "default_locale": "en",
-  "browser_action": {
+  "action": {
+    "default_title": "__MSG_name__",
     "default_icon": {
       "16": "icons/iconstick16.png",
       "19": "icons/iconstick19.png",
@@ -24,14 +25,14 @@
       "38": "icons/iconstick38.png",
       "40": "icons/iconstick40.png",
       "64": "icons/iconstick64.png"
-    },
-    "default_title": "__MSG_name__"
+    }
   },
   "background": {
-    "scripts": ["js/constants.js","js/background.js"],
-    "persistent": false
+    "service_worker": "js/background.js"
   },
-  "content_security_policy": "default-src 'none'; style-src 'self'; media-src https://www.stefanvd.net; child-src https://www.youtube.com https://www.stefanvd.net; connect-src https://www.stefanvd.net; script-src 'self'; img-src 'self' * data:; object-src 'none'",
+  "content_security_policy": {
+    "extension_pages": "default-src 'none'; style-src 'self'; media-src https://www.stefanvd.net; child-src https://www.youtube.com https://www.stefanvd.net; connect-src https://www.stefanvd.net; script-src 'self'; img-src 'self' https://www.stefanvd.net * data:; object-src 'none'"
+  },
   "commands": {
     "toggle-feature-zoomin": {
       "suggested_key": {
@@ -62,11 +63,17 @@
       "description": "__MSG_titleshortzoommagnify__"
     }
   },
-  "minimum_chrome_version": "103",
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["js/constants.js", "js/content.js"],
+    "run_at": "document_start"
+  }],
   "options_ui": {
     "page": "options.html",
     "open_in_tab": true
   },
   "offline_enabled": true,
-  "permissions": [ "tabs", "<all_urls>", "contextMenus", "storage", "webNavigation"]
+  "minimum_chrome_version": "103",
+  "permissions": ["tabs", "contextMenus", "storage", "scripting", "webNavigation", "system.display"],
+  "host_permissions": ["<all_urls>"]
 }

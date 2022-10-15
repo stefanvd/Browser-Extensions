@@ -220,8 +220,7 @@ section>div:only-of-type{-webkit-box-flex:1}
 .item{font-style:italic}
 .donate-content{display:flex;align-items:center;height:100%}
 /* html */
-.sharemenu{position:absolute;right:0;margin-top:-27px;color:#666;font-size:11px}
-.sharemenu div{display:inline-block;vertical-align:middle}
+.sharemenu{position:absolute;right:0;margin-top:-27px;color:var(--totl-gray-text);font-size:11px;display:flex;align-items:center}
 /* donation button */
 .donatebutton{background:#FDD835;-webkit-user-select:none;-moz-user-select:none;user-select:none;color:#000;font-size:12px;min-width:7em;padding:2px 10px;text-decoration:none;text-transform:uppercase;box-shadow:0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2)}
 .donatebutton:hover{background:rgba(253,216,53,.6)}

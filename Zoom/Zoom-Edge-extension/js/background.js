@@ -205,6 +205,7 @@ else{
                     }
                     chrome.tabs.setZoom(sender.tab.id, allzoomvalue); // needed for the default zoom value such as 110%
                 }else if(zoomweb == true){
+                    console.log("abc regular zoom")
                     // inject only if different than 1
                     if(allzoomvalue != 1){
                         chrome.tabs.sendMessage(sender.tab.id,{text:'setbodycsszoom',value:allzoomvalue});
@@ -312,6 +313,7 @@ function zoomtab(a,b){
         }
     }else if(zoomweb == true){
         if(allzoom == true){
+            console.log("alll load")
                 chrome.tabs.query({},
                 function(tabs){
                     tabs.forEach(function(tab){
@@ -326,6 +328,7 @@ function zoomtab(a,b){
                     });
                 });
         }else{
+            console.log("reuglar load")
             chrome.tabs.query({},
                 function(tabs){
                     tabs.forEach(function(tab){
