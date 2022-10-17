@@ -3,7 +3,7 @@
 
 Full Screen
 Go full screen with one click on the button.
-Copyright (C) 2020 Stefan vd
+Copyright (C) 2022 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -26,12 +26,10 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-function $(id) { return document.getElementById(id); }
-
-if (document.documentElement.requestFullScreen) {
-document.documentElement.requestFullScreen();
-} else if (document.documentElement.mozRequestFullScreen) {
-document.documentElement.mozRequestFullScreen();
-} else if (document.documentElement.webkitRequestFullScreen) {
-document.documentElement.webkitRequestFullScreen();
+if(document.documentElement.requestFullScreen){
+	document.documentElement.requestFullScreen();
+}else if(document.documentElement.mozRequestFullScreen){
+	document.documentElement.mozRequestFullScreen();
+}else if(document.documentElement.webkitRequestFullScreen){
+	document.documentElement.webkitRequestFullScreen();
 }

@@ -1001,23 +1001,6 @@ chrome.storage.onChanged.addListener(function(changes){
 
 chrome.runtime.setUninstallURL(linkuninstall);
 
-// convert from the chrome.local to chrome.sync
-chrome.storage.local.get(["firstRun", "version"], function(chromeset){
-	// if yes, it use the chrome.local setting
-	if(chromeset["firstRun"] == "false"){
-		// move all settings from the local to sync
-		if(chromeset["firstRun"] == "false"){ chrome.storage.sync.set({"firstRun": false}); }
-		if(chromeset["version"] == "2.1"){ chrome.storage.sync.set({"version": "2.1"}); }
-
-		// when done, clear the local
-		chrome.storage.local.clear();
-	}else{
-		// already done converting the 'firstrun' (from chrome.local to chrome.sync) to false
-		// or no firstrun found in chrome.local (empty value), then do the 'welcome page'
-		initwelcome();
-	}
-});
-
 function initwelcome(){
 	chrome.storage.sync.get(["firstRun"], function(chromeset){
 		if((chromeset["firstRun"] != "false") && (chromeset["firstRun"] != false)){
@@ -1027,3 +1010,11 @@ function initwelcome(){
 		}
 	});
 }
+
+function installation(){
+	initwelcome();
+}
+
+chrome.runtime.onInstalled.addListener(function(){
+	installation();
+});
