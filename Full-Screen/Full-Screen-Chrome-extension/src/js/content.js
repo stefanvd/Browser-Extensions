@@ -198,33 +198,43 @@ function startvideostatus(){
 	chrome.runtime.sendMessage({name: "sendautoplay"});
 	window.addEventListener("keyup", function(e){ if(e.keyCode == 27){ if(videowindow == true){ windowfullaction(); } } }, false);
 
-	startautoplay = setInterval(function(){
+	startautoplay = window.setInterval(function(){
 		try{
 			var youtubeplayer = $("movie_player") || null;
 			var htmlplayer = document.getElementsByTagName("video") || null;
-			if(youtubeplayer !== null){ // youtube video element
-				if(youtubeplayer.pauseVideo){ playerReady(youtubeplayer); }
-			}else if(htmlplayer !== null){ // html5 video elements
-				for(var j = 0; j < htmlplayer.length; j++){
+
+			// check first for the HTML5 player
+			// if nothing then try the flash for YouTube
+			if(htmlplayer !== null){ // html5 video elements
+				var j;
+				var l = htmlplayer.length;
+				for(j = 0; j < l; j++){
 					if(htmlplayer[j].pause){ playerReady(htmlplayer[j]); }
 				}
+			}else{
+				if(youtubeplayer !== null){ // youtube video element
+					if(youtubeplayer.pauseVideo){ playerReady(youtubeplayer); }
+				}
 			}
-		}catch(err){
-			// console.log(e);
-		} // i see nothing, that is good
+		}catch(e){ console.log(e); } // I see nothing, that is good
 	}, 1000); // 1000 refreshing it
 
-	// injected code messaging
-	var bodytag = document.getElementsByTagName("body")[0], message = document.createElement("div");
-	message.setAttribute("id", "stefanvdfullscreencinemamessage");
-	message.style.display = "none";
-	bodytag.appendChild(message);
-	$(message.id).addEventListener(message.id, function(){
-		if(autofullscreen == true){
-			var eventData = $(message.id).innerText;
+	var cinemahandler;
+	var messagediv = $("stefanvdfullscreenmessage");
+	if(messagediv == null){
+		// injected code messaging
+		var message = document.createElement("div");
+		var bt = document.getElementsByTagName("body"); if(!bt.length)return;
+		message.setAttribute("id", "stefanvdfullscreenmessage");
+		message.style.display = "none";
+		if(!bt.length)return;
+		bt[0].appendChild(message);
+		cinemahandler = function(){
+			var eventData = $(message.id).textContent;
 			trigger(eventData);
-		}
-	});
+		};
+		$(message.id).addEventListener(message.id, cinemahandler, false);
+	}
 }
 
 var last_target = null;
@@ -233,9 +243,8 @@ document.addEventListener("mousedown", function(event){
 		return false;
 	}
 	last_target = event.target;
-	chrome.extension.sendMessage({name: "updateContextMenu"});
+	chrome.runtime.sendMessage({name: "updateContextMenu"});
 }, true);
-
 
 function exitFullscreen(){
 	if(document.exitFullscreen){

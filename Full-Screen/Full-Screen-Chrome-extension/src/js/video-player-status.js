@@ -29,9 +29,9 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 var fsCinema;
 (fsCinema = {
 	players: {objs: [], active: 0},
-	messageEvent: new Event("stefanvdfullscreencinemamessage"),
+	messageEvent: new Event("stefanvdfullscreenmessage"),
 	playerStateChange: function(stateId){
-		var message = document.getElementById("stefanvdfullscreencinemamessage"),
+		var message = document.getElementById("stefanvdfullscreenmessage"),
 			stateIO = "playerStateChange:".concat(stateId);
 		// console.log("Debug " + message.textContent + " " +stateIO);
 		if(message && message.textContent !== stateIO){

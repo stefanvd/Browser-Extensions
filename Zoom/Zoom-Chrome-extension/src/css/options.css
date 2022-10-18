@@ -500,11 +500,22 @@ only screen and (max-device-width:480px){
   .stars{font-size:24px;top:14px;left:15px}
   #nt{left:15px}
   #war{right:15px}
-  #materialModalCentered,#materialModalRateCentered{padding:0}
-  #materialModalContent,#materialModalRateContent{max-width:none;height:100%;border-radius:0}
+  #materialModal.hide #materialModalCentered,#materialModalRate.hide #materialModalRateCentered,#materialModalYouTube.hide #materialModalYouTubeCentered{transform:translateY(200px);transition:transform 0.2s ease-out}
+  #materialModalCentered,#materialModalRateCentered,#materialModalYouTubeCentered{padding:0}
+  #materialModalContent,#materialModalRateContent,#materialModalYouTubeContent{max-width:none;width:100vw;margin-top:5vh;left:0;bottom:0;position:absolute;border-radius:25px 25px 0 0}
+  #materialModal.show #materialModalCentered,#materialModalRate.show #materialModalRateCentered{transform:translateY(0px);transition:transform 0.2s ease-in}
   .dimrange{width:100%}
   .aboutbuttons button{margin:15px 0;display:block}
+  #managed-prefs-banner{height:52px}
+  .donatebutton{padding:8px 16px}
   /* for mobile only */
   input[type=checkbox]:checked ~ #navbar-container{display:block;animation:slide-in 0.5s ease;animation-fill-mode:forwards}
   input[type=checkbox]:checked ~ #darkpanel{opacity:1;display:block;pointer-events:auto}
+}
+@media only screen and (max-height:330px){
+  #navbar-container{overflow:scroll}
+}
+@media only screen and (max-width:480px),
+only screen and (max-device-width:480px) and (orientation:portrait){
+  #dont-turn-off-the-lights{width:100%;height:auto;aspect-ratio:16/9}
 }

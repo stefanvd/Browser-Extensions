@@ -35,6 +35,11 @@ function save_options(){
 }
 
 document.addEventListener("DOMContentLoaded", function(){
+	// disable context menu
+	document.addEventListener("contextmenu", function(e){
+		e.preventDefault();
+	}, false);
+
 	chrome.storage.sync.get(["darkmode", "firstDate", "optionskipremember", "firstsawrate", "fullscreenweb", "fullscreenwindow", "fullscreenpopup", "fullscreenvideo", "videoinwindow", "videooutwindow"], function(items){
 		darkmode = items["darkmode"]; if(darkmode == null)darkmode = false; // default false
 		fullscreenweb = items["fullscreenweb"]; if(fullscreenweb == null)fullscreenweb = false; // default true
@@ -82,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function(){
 		}else{
 			if(optionskipremember != true){
 				if(firstsawrate != true){
-					materialRateAlert(function(result){ console.log(result); });
+					materialRateAlert();
 					chrome.storage.sync.set({"firstsawrate": true});
 				}
 			}
@@ -130,7 +135,7 @@ document.addEventListener("DOMContentLoaded", function(){
 		chrome.runtime.sendMessage({name: "sendalltabspopup"});
 	});
 
-	$("btnoptions").addEventListener("click", function(){ chrome.tabs.create({url: chrome.extension.getURL("options.html"), active:true}); });
+	$("btnoptions").addEventListener("click", function(){ chrome.tabs.create({url: chrome.runtime.getURL("options.html"), active:true}); });
 	$("btndonate").addEventListener("click", function(){ chrome.tabs.create({url: linkdonate, active:true}); });
 
 	// rate

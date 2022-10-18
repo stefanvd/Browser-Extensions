@@ -34,15 +34,22 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 	if(request.name == "youtubefullscreen"){
 		chrome.tabs.query({active: true}, function(tabs){
 			for(var i = 0; i < tabs.length; i++){
-				chrome.tabs.executeScript(tabs[i].id, {file: "js/video.js"});
+				chrome.scripting.executeScript({
+					target: {tabId: tabs[i].id},
+					files: ["js/video.js"]
+				});
 			}
 		}
 		);
 	}else if(request.name == "sendautoplay"){
 		var oReq = new XMLHttpRequest();
 		oReq.onreadystatechange = function(){ if(oReq.readyState == 4){ chrome.tabs.sendMessage(sender.tab.id, {name: "injectvideostatus", message: oReq.responseText}); } };
-		oReq.open("GET", "/js/injected.js", true); oReq.send();
-	}else if(request.name == "contextmenuon"){ checkcontextmenus(); }else if(request.name == "contextmenuoff"){ removecontexmenus(); }else if(request.name == "getallpermissions"){
+		oReq.open("GET", "/js/video-player-status.js", true); oReq.send();
+	}else if(request.name == "contextmenuon"){
+		checkcontextmenus();
+	}else if(request.name == "contextmenuoff"){
+		removecontexmenus();
+	}else if(request.name == "getallpermissions"){
 		var result = "";
 		chrome.permissions.getAll(function(permissions){
 			result = permissions.permissions;
@@ -217,38 +224,22 @@ chrome.windows.onFocusChanged.addListener(function(){
 var oldwindowstatus;
 var fullscreenweb = null, fullscreenwindow = null, fullscreenpopup = null, fullscreenvideo = null, allwindows = null;
 
-// Set click to false at beginning
-var alreadyClicked = false;
+// Set click to zero at beginning
+let clickbutton = 0;
 // Declare a timer variable
-var timer;
-chrome.action.onClicked.addListener(function(tabs){
-
-	// Check for previous click
-	if(alreadyClicked){
+let timer;
+var openactionclick = function(tab){
+	clickbutton += 1;
+	if(clickbutton == 2){
 		// console.log("Doubleclick");
-		// Yes, Previous Click Detected
-		// Clear timer already set in earlier Click
 		clearTimeout(timer);
-		// Show the popup window
-		// Clear all Clicks
-		alreadyClicked = false;
-		chrome.action.setPopup({tabId: tabs.id, popup:""});
-		return;
+		chrome.action.setPopup({tabId: tab.id, popup:"palette.html"});
+		chrome.action.openPopup();
 	}
 
-
-	// Set Click to  true
-	alreadyClicked = true;
-	chrome.action.setPopup({tabId: tabs.id, popup:"palette.html"});
-
-	// Add a timer to detect next click to a sample of 250
 	timer = setTimeout(function(){
 		// console.log("Singelclick");
-		var popups = chrome.extension.getViews({type: "popup"});
-		if(popups.length != 0){ // popup exist
-
-		}else{ // not exist
-
+		if(clickbutton == 1){
 			chrome.windows.getCurrent(function(window){
 				chrome.storage.sync.get(["fullscreenweb", "fullscreenwindow", "fullscreenpopup", "fullscreenvideo", "allwindows"], function(items){
 					fullscreenweb = items["fullscreenweb"]; if(fullscreenweb == null)fullscreenweb = true;
@@ -282,7 +273,10 @@ chrome.action.onClicked.addListener(function(tabs){
 							// Chromium web browsers
 							// Old way
 							// if(tab.url.match(/^http/i)||tab.url.match(/^file/i)){
-							//    chrome.tabs.executeScript(tab.id, { file: "js/fullscreen.js" });
+							// chrome.scripting.executeScript({
+							// 	target: {tabId: tab.id},
+							//	files: ["js/fullscreen.js"]
+							// });
 							// }
 						}
 					}else if(fullscreenwindow == true){
@@ -290,21 +284,18 @@ chrome.action.onClicked.addListener(function(tabs){
 					}else if(fullscreenpopup == true){
 						setfullscreenpopup();
 					}else if(fullscreenvideo == true){
-						setfullscreenvideo(tabs);
+						setfullscreenvideo(tab);
 					}
 				});
 			});
-
 		}
-
+		clickbutton = 0;
 		// Clear all timers
 		clearTimeout(timer);
-		// Ignore clicks
-		alreadyClicked = false;
-		chrome.action.setPopup({tabId: tabs.id, popup:""});
+		chrome.action.setPopup({tabId: tab.id, popup:""});
 	}, 250);
-
-});
+};
+chrome.action.onClicked.addListener(openactionclick);
 
 function setfullscreenpopup(){
 	chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
@@ -335,7 +326,10 @@ function setfullscreenvideo(tabs){
 			var i;
 			var l = tabs.length;
 			for(i = 0; i < l; i++){
-				chrome.tabs.executeScript(tabs[i].id, {file: "js/video.js"}, function(){
+				chrome.scripting.executeScript({
+					target: {tabId: tabs[i].id},
+					files: ["js/video.js"]
+				}, function(){
 					if(chrome.runtime.lastError){
 						// console.error(chrome.runtime.lastError.message);
 					}
@@ -344,7 +338,10 @@ function setfullscreenvideo(tabs){
 		}
 		);
 	}else{
-		chrome.tabs.executeScript(tabs.id, {file: "js/video.js"}, function(){
+		chrome.scripting.executeScript({
+			target: {tabId: tabs.id},
+			files: ["js/video.js"]
+		}, function(){
 			if(chrome.runtime.lastError){
 				// console.error(chrome.runtime.lastError.message);
 			}
@@ -405,7 +402,10 @@ function onClickHandler(info, tab){
 			// Chromium web browsers
 			// Old way
 			// if(tab.url.match(/^http/i)||tab.url.match(/^file/i)){
-			//    chrome.tabs.executeScript(tab.id, { file: "js/fullscreen.js" });
+			// chrome.scripting.executeScript({
+			// 	target: {tabId: tab.id},
+			//	files: ["js/fullscreen.js"]
+			// });
 			// }
 		});
 	}else if(info.menuItemId == "totlguideemenu"){
@@ -527,67 +527,46 @@ var contextmenuadded = false;
 var contextarrayvideo = [];
 var contextarrayimage = [];
 var contextarraypage = [];
+var contextsvideo = [];
+var contextsimage = [];
+var contextspage = [];
 
+var videotitle = chrome.i18n.getMessage("videotitle");
+var imagetitle = chrome.i18n.getMessage("imagetitle");
+var pagetitle = chrome.i18n.getMessage("pagetitle");
 function checkcontextmenus(){
 	if(contextmenuadded == false){
 		contextmenuadded = true;
 
 		// video
 		var contextsvideo = ["video"];
-		for(var i = 0; i < contextsvideo.length; i++){
-			var contextvideo = contextsvideo[i];
-			var videotitle = chrome.i18n.getMessage("videotitle");
-			menuvideo = chrome.contextMenus.create({"title": videotitle, "type":"normal", "id": "fsvideo", "contexts":[contextvideo]});
-			contextarrayvideo.push(menuvideo);
-		}
-
+		menuvideo = chrome.contextMenus.create({"title": videotitle, "type":"normal", "id": "fsvideo", "contexts":contextsvideo});
+		contextarrayvideo.push(menuvideo);
 		// image
 		var contextsimage = ["image"];
-		for(var j = 0; j < contextsimage.length; j++){
-			var contextimage = contexts[j];
-			var imagetitle = chrome.i18n.getMessage("imagetitle");
-			menuimage = chrome.contextMenus.create({"title": imagetitle, "type":"normal", "id": "fsimage", "contexts":[contextimage]});
-			contextarrayimage.push(menuimage);
-		}
+		menuimage = chrome.contextMenus.create({"title": imagetitle, "type":"normal", "id": "fsimage", "contexts":contextsimage});
+		contextarrayimage.push(menuimage);
 
 		// page
 		var contextspage = ["page"];
-		for(var k = 0; k < contextspage.length; k++){
-			var context = contexts[k];
-			var pagetitle = chrome.i18n.getMessage("pagetitle");
-			menupage = chrome.contextMenus.create({"title": pagetitle, "type":"normal", "id": "fspage", "contexts":[context]});
-			contextarraypage.push(menupage);
-		}
-
+		menupage = chrome.contextMenus.create({"title": pagetitle, "type":"normal", "id": "fspage", "contexts":contextspage});
+		contextarraypage.push(menupage);
 	}
 }
 
 function removecontexmenus(){
-    // todo
-	if(contextarrayvideo.length > 0){
-		for(var i = 0; i < contextarrayvideo.length; i++){
-			if(contextarrayvideo[i] === undefined || contextarrayvideo[i] === null){}else{
-				chrome.contextMenus.remove(contextarrayvideo[i]);
-			}
-		}
+	if(contextsvideo != null){
+		chrome.contextMenus.remove("fsvideo");
 	}
-	if(contextarrayimage.length > 0){
-		for(var i = 0; i < contextarrayimage.length; i++){
-			if(contextarrayimage[i] === undefined || contextarrayimage[i] === null){}else{
-				chrome.contextMenus.remove(contextarrayimage[i]);
-			}
-		}
+	if(contextsimage != null){
+		chrome.contextMenus.remove("fsimage");
 	}
-	if(contextarraypage.length > 0){
-		for(var i = 0; i < contextarraypage.length; i++){
-			if(contextarraypage[i] === undefined || contextarraypage[i] === null){}else{
-				chrome.contextMenus.remove(contextarraypage[i]);
-			}
-		}
+	if(contextspage != null){
+		chrome.contextMenus.remove("fspage");
 	}
-	contextarrayvideo = [];
-	contextarrayimage = [];
-	contextarraypage = [];
+	contextsvideo = null;
+	contextsimage = null;
+	contextspage = null;
 	contextmenuadded = false;
 }
 
@@ -642,8 +621,5 @@ chrome.runtime.onInstalled.addListener(function(){
 
 /* todo
 + fspage context menu
-+ check css and image in options.html
-+ translation i18n check
-
 
 */

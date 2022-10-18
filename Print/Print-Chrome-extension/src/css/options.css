@@ -486,13 +486,15 @@ only screen and (max-device-width:480px){
   #materialModalCentered,#materialModalRateCentered,#materialModalYouTubeCentered{padding:0}
   #materialModalContent,#materialModalRateContent,#materialModalYouTubeContent{max-width:none;width:100vw;margin-top:5vh;left:0;bottom:0;position:absolute;border-radius:25px 25px 0 0}
   #materialModal.show #materialModalCentered,#materialModalRate.show #materialModalRateCentered{transform:translateY(0px);transition:transform 0.2s ease-in}
-  .aboutbuttons button{margin:15px 0;display:block}
   .printpreview{table-layout:fixed}
   .printpreview td{overflow:hidden;text-overflow:ellipsis;word-wrap:break-word}
   .printpreview .columnA{float:left;width:100%}
   .printpreview .columnB{float:left;width:100%}
   .printpreview .printbtn{padding-top:18px;padding-left:205px}
   .browserpreview{height:95px;width:260px}
+  .aboutbuttons button{margin:15px 0;display:block}
+  #managed-prefs-banner{height:52px}
+  .donatebutton{padding:8px 16px}
   /* for mobile only */
   input[type=checkbox]:checked ~ #navbar-container{display:block;animation:slide-in 0.5s ease;animation-fill-mode:forwards}
   input[type=checkbox]:checked ~ #darkpanel{opacity:1;display:block;pointer-events:auto}
