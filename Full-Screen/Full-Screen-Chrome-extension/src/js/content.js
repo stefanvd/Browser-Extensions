@@ -107,6 +107,7 @@ function playerReady(player){
 var videowindow = false;
 var checktheatermode;
 var initialtheatermode = false;
+var thatPrevControlEnabled = false;
 function windowfullaction(){
 	if(document.getElementsByTagName("video")[0]){
 		if(window.location.href.match(/^http(s)?:\/\/(www\.)?youtube.com/i)){
@@ -151,10 +152,19 @@ function windowfullaction(){
 			var stefanvdregularhtmlplayerb = document.getElementsByClassName("stefanvdvideowindow")[0];
 			if(stefanvdregularhtmlplayerb){
 				document.getElementsByTagName("video")[0].classList.remove("stefanvdvideowindow");
+				if(thatPrevControlEnabled == true){
+					document.getElementsByTagName("video")[0].controls = true;
+				}else{
+					document.getElementsByTagName("video")[0].controls = false;
+				}
 				videowindow = false;
 				removeexitshortcut();
 			}else{
 				document.getElementsByTagName("video")[0].classList.add("stefanvdvideowindow");
+				if(document.getElementsByTagName("video")[0].hasAttribute("controls")){
+					thatPrevControlEnabled = true;
+				}
+				document.getElementsByTagName("video")[0].controls = true;
 				videowindow = true;
 				setexitshortcut();
 			}
