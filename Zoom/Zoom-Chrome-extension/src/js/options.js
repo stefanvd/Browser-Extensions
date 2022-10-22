@@ -165,7 +165,7 @@ function read_options(){
 		showhidemodal("materialModalYouTube", "hide", "true");
 	}
 
-	chrome.storage.sync.get(["firstDate", "optionskipremember", "countremember", "allzoom", "websitezoom", "allzoomvalue", "contextmenus", "badge", "steps", "lightcolor", "zoomweb", "zoomchrome", "zoomdoubleclick", "zoomnewsingleclick", "zoomsingleclick", "zoommousescroll", "zoommousebuttonleft", "zoommousebuttonright", "zoommousescrollup", "zoommousescrolldown", "largepopup", "zoombydomain", "zoombypage", "defaultallscreen", "defaultsinglescreen", "screenzoom", "firstsawrate", "introduce", "zoomfont", "zoommagcircle", "zoommagsquare", "zoommagszoomlevel", "zoommagszoomsize", "contexta", "contextb"], function(items){
+	chrome.storage.sync.get(["firstDate", "optionskipremember", "countremember", "allzoom", "websitezoom", "allzoomvalue", "contextmenus", "badge", "steps", "lightcolor", "zoomweb", "zoomchrome", "zoomdoubleclick", "zoomnewsingleclick", "zoomsingleclick", "zoommousescroll", "zoommousebuttonleft", "zoommousebuttonright", "zoommousescrollup", "zoommousescrolldown", "largepopup", "zoombydomain", "zoombypage", "defaultallscreen", "defaultsinglescreen", "screenzoom", "firstsawrate", "zoomfont", "zoommagcircle", "zoommagsquare", "zoommagszoomlevel", "zoommagszoomsize", "contexta", "contextb"], function(items){
 		if(items["allzoomvalue"]){ $("allzoomvalue").value = Math.round(items["allzoomvalue"] * 100); $("slider").value = Math.round(items["allzoomvalue"] * 100); }else{ $("allzoomvalue").value = 100; $("slider").value = 100; }
 		if(items["steps"]){ $("steps").value = items["steps"]; }else $("steps").value = 10;
 		if(items["lightcolor"]){ $("lightcolor").value = items["lightcolor"]; }else $("lightcolor").value = "#3cb4fe";

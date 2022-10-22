@@ -38,16 +38,17 @@ function defaultgetsettings(){
 function save_options(){
 	chrome.runtime.sendMessage({name: "getallpermissions"});
 
-	chrome.storage.sync.set({"contextmenus":$("contextmenus").checked, "autofullscreen":$("autofullscreen").checked, "optionskipremember":$("optionskipremember").checked, "fullscreenweb":$("fullscreenweb").checked, "fullscreenwindow":$("fullscreenwindow").checked, "fullscreenpopup":$("fullscreenpopup").checked, "fullscreenvideo":$("fullscreenvideo").checked, "allwindows":$("allwindows").checked, "videoinwindow":$("videoinwindow").checked, "videooutwindow":$("videooutwindow").checked});
+	chrome.storage.sync.set({"contextmenus":$("contextmenus").checked, "mediafullscreen":$("mediafullscreen").checked, "optionskipremember":$("optionskipremember").checked, "fullscreenweb":$("fullscreenweb").checked, "fullscreenwindow":$("fullscreenwindow").checked, "fullscreenpopup":$("fullscreenpopup").checked, "fullscreenvideo":$("fullscreenvideo").checked, "allwindows":$("allwindows").checked, "videoinwindow":$("videoinwindow").checked, "videooutwindow":$("videooutwindow").checked, "autostartup":$("autostartup").checked, "startupallwindow":$("startupallwindow").checked, "startupcurrentwindow":$("startupcurrentwindow").checked});
 }
 
 var firstdefaultvalues = {};
 // Option default value to read if there is no current value from chrome.storage AND init default value
-chrome.storage.sync.get(["contextmenus", "fullscreenweb", "fullscreenwindow", "fullscreenpopup", "fullscreenvideo", "videoinwindow", "videooutwindow"], function(items){
+chrome.storage.sync.get(["contextmenus", "fullscreenweb", "fullscreenwindow", "fullscreenpopup", "fullscreenvideo", "videoinwindow", "videooutwindow", "startupallwindow", "startupcurrentwindow"], function(items){
 	// find no localstore zoomengine
 	if(items["contextmenus"] == null){ firstdefaultvalues["contextmenus"] = true; }
 	if(items["fullscreenweb"] == null && items["fullscreenwindow"] == null && items["fullscreenvideo"] == null){ firstdefaultvalues["fullscreenweb"] = true; firstdefaultvalues["fullscreenwindow"] = false; firstdefaultvalues["fullscreenpopup"] = false; firstdefaultvalues["fullscreenvideo"] = false; }
 	if(items["videoinwindow"] == null && items["videooutwindow"] == null){ firstdefaultvalues["videoinwindow"] = true; firstdefaultvalues["videooutwindow"] = false; }
+	if(items["startupallwindow"] == null && items["startupcurrentwindow"] == null){ firstdefaultvalues["startupallwindow"] = true; firstdefaultvalues["startupcurrentwindow"] = false; }
 	// find no localstore lightimage
 	// Save the init value
 	chrome.storage.sync.set(firstdefaultvalues, function(){
@@ -143,9 +144,9 @@ function read_options(){
 		showhidemodal("materialModalYouTube", "hide", "true");
 	}
 
-	chrome.storage.sync.get(["firstDate", "contextmenus", "autofullscreen", "countremember", "optionskipremember", "fullscreenweb", "fullscreenwindow", "fullscreenpopup", "fullscreenvideo", "allwindows", "videoinwindow", "videooutwindow", "firstsawrate", "introduce"], function(items){
+	chrome.storage.sync.get(["firstDate", "contextmenus", "mediafullscreen", "countremember", "optionskipremember", "fullscreenweb", "fullscreenwindow", "fullscreenpopup", "fullscreenvideo", "allwindows", "videoinwindow", "videooutwindow", "firstsawrate", "autostartup", "startupallwindow", "startupcurrentwindow"], function(items){
 		if(items["contextmenus"] == true)$("contextmenus").checked = true;
-		if(items["autofullscreen"] == true)$("autofullscreen").checked = true;
+		if(items["mediafullscreen"] == true)$("mediafullscreen").checked = true;
 		if(items["optionskipremember"] == true)$("optionskipremember").checked = true;
 		if(items["fullscreenweb"] == true)$("fullscreenweb").checked = true;
 		if(items["fullscreenwindow"] == true)$("fullscreenwindow").checked = true;
@@ -154,6 +155,9 @@ function read_options(){
 		if(items["videoinwindow"] == true)$("videoinwindow").checked = true;
 		if(items["videooutwindow"] == true)$("videooutwindow").checked = true;
 		if(items["fullscreenpopup"] == true)$("fullscreenpopup").checked = true;
+		if(items["autostartup"] == true)$("autostartup").checked = true;
+		if(items["startupallwindow"] == true)$("startupallwindow").checked = true;
+		if(items["startupcurrentwindow"] == true)$("startupcurrentwindow").checked = true;
 
 		// show remember page
 		var firstmonth = false;
@@ -288,7 +292,23 @@ function getHash(url){
 	return url.substring(hashPos + 1);
 }
 
-function test(){}
+function test(){
+	if($("autostartup").checked){
+		$("startupallwindow").disabled = false;
+		$("startupcurrentwindow").disabled = false;
+	}else{
+		$("startupallwindow").disabled = true;
+		$("startupcurrentwindow").disabled = true;
+	}
+
+	if($("fullscreenvideo").checked){
+		$("videoinwindow").disabled = false;
+		$("videooutwindow").disabled = false;
+	}else{
+		$("videoinwindow").disabled = true;
+		$("videooutwindow").disabled = true;
+	}
+}
 
 function ariacheck(){
 	var inputs = document.querySelectorAll("input");

@@ -178,4 +178,11 @@ chrome.storage.onChanged.addListener(function(changes){
 });
 
 function test(){
+	if($("fullscreenvideo").checked){
+		$("videoinwindow").disabled = false;
+		$("videooutwindow").disabled = false;
+	}else{
+		$("videoinwindow").disabled = true;
+		$("videooutwindow").disabled = true;
+	}
 }

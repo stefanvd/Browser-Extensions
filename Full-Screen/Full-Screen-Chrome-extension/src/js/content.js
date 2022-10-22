@@ -37,18 +37,18 @@ if(window.location.href.match(/^http(s)?:\/\/(www\.)?stefanvd.net/i)){
 }
 
 // settings
-var startautoplay = null, contextmenus = null, autofullscreen = null, videoinwindow = null, videooutwindow = null;
+var startautoplay = null, contextmenus = null, mediafullscreen = null, videoinwindow = null, videooutwindow = null;
 
-chrome.storage.sync.get(["contextmenus", "autofullscreen", "videoinwindow", "videooutwindow"], function(items){
+chrome.storage.sync.get(["contextmenus", "mediafullscreen", "videoinwindow", "videooutwindow"], function(items){
 	contextmenus = items["contextmenus"]; if(contextmenus == null)contextmenus = true;
-	autofullscreen = items["autofullscreen"]; if(autofullscreen == null)autofullscreen = false;
+	mediafullscreen = items["mediafullscreen"]; if(mediafullscreen == null)mediafullscreen = false;
 	videoinwindow = items["videoinwindow"]; if(videoinwindow == null)videoinwindow = true;
 	videooutwindow = items["videooutwindow"]; if(videooutwindow == null)videooutwindow = false;
 
 	// auto bring the html5 or youtube video to fullscreen
-	if(autofullscreen == true){
+	if(mediafullscreen == true){
 		startvideostatus();
-	} // option autofullscreen on end
+	} // option mediafullscreen on end
 });
 
 var gracePeriod = 250, lastEvent = null, timeout = null;
@@ -105,48 +105,51 @@ function playerReady(player){
 }
 
 var videowindow = false;
-var stefanvdregularhtmlplayer;
-var stefanyoutubecontrols;
+var checktheatermode;
+var initialtheatermode = false;
 function windowfullaction(){
 	if(document.getElementsByTagName("video")[0]){
 		if(window.location.href.match(/^http(s)?:\/\/(www\.)?youtube.com/i)){
-		// YouTube website
-			var ytplayerapi = document.getElementById("player-api");
+			// YouTube website
+			var playertheater = document.getElementById("player-theater-container");
+			var playercontrols = document.getElementsByClassName("ytp-chrome-bottom")[0];
 			var playercontainer = document.getElementById("player-container");
 
-			var pagemanager = $("page-manager");
-			if(pagemanager)$("page-manager").style.cssText = "z-index:auto !important";
-
 			if(playercontainer){
-				stefanvdregularhtmlplayer = document.getElementsByClassName("stefanvdvideowindow")[0];
-				stefanyoutubecontrols = document.getElementsByClassName("ytp-chrome-bottom")[0];
+				var stefanvdregularhtmlplayer = document.getElementsByClassName("stefanvdvideowindow")[0];
+				var original = document.getElementsByClassName("ytp-size-button")[0];
+				var watchContainer = document.querySelector("ytd-watch") || document.querySelector("ytd-watch-flexy");
 				if(stefanvdregularhtmlplayer){
+					if(!initialtheatermode){
+						original.click();
+					}
 					playercontainer.classList.remove("stefanvdvideowindow");
+					playertheater.classList.remove("stefanvdvideotheather");
+					playercontrols.classList.remove("stefanvdvideocontrols");
 					document.getElementsByTagName("video")[0].classList.remove("stefanvdvideowindow");
 					videowindow = false;
 				}else{
-					if(document.getElementsByTagName("video")[0].paused == false){
-						playercontainer.classList.add("stefanvdvideowindow");
-						document.getElementsByTagName("video")[0].classList.add("stefanvdvideowindow");
-						stefanyoutubecontrols.style.cssText = "width:100% !important";
-						videowindow = true;
+					checktheatermode = watchContainer ? watchContainer.hasAttribute("theater") : true;
+					initialtheatermode = checktheatermode;
+					if(!checktheatermode){
+						original.click();
+						checktheatermode = true;
 					}
+					playercontainer.classList.add("stefanvdvideowindow");
+					playertheater.classList.add("stefanvdvideotheather");
+					playercontrols.classList.add("stefanvdvideocontrols");
+					document.getElementsByTagName("video")[0].classList.add("stefanvdvideowindow");
+					videowindow = true;
 				}
-			}else if(ytplayerapi){
-				stefanvdregularhtmlplayer = document.getElementsByClassName("stefanvdvideowindow")[0];
-				stefanyoutubecontrols = document.getElementsByClassName("ytp-chrome-bottom")[0];
-				if(stefanvdregularhtmlplayer){
-					ytplayerapi.classList.remove("stefanvdvideowindow");
-					document.getElementsByTagName("video")[0].classList.remove("stefanvdvideowindow");
-					videowindow = false;
-				}else{
-					if(document.getElementsByTagName("video")[0].paused == false){
-						ytplayerapi.classList.add("stefanvdvideowindow");
-						document.getElementsByTagName("video")[0].classList.add("stefanvdvideowindow");
-						stefanyoutubecontrols.style.width = "98%";
-						videowindow = true;
-					}
-				}
+			}
+		}else{
+			var stefanvdregularhtmlplayerb = document.getElementsByClassName("stefanvdvideowindow")[0];
+			if(stefanvdregularhtmlplayerb){
+				document.getElementsByTagName("video")[0].classList.remove("stefanvdvideowindow");
+				videowindow = false;
+			}else{
+				document.getElementsByTagName("video")[0].classList.add("stefanvdvideowindow");
+				videowindow = true;
 			}
 		}
 	}
@@ -157,7 +160,7 @@ function shadesOff(player){
 		// Failed to execute 'requestFullscreen' on 'Element': API can only be initiated by a user gesture.
 		// skip it and use => videoinwindow
 		// if(videoinwindow == true){
-		if(window.location.href.match(/((http:\/\/(.*youtube\.com\/.*))|(https:\/\/(.*youtube\.com\/.*)))/i)){
+		if(window.location.href.match(/^http(s)?:\/\/(www\.)?youtube.com/i)){
 			windowfullaction(player);
 		}else{
 			player.classList.remove("stefanvdvideowindow");
@@ -173,7 +176,7 @@ function shadesOn(player){
 		// Failed to execute 'requestFullscreen' on 'Element': API can only be initiated by a user gesture.
 		// skip it and use => videoinwindow
 		// if(videoinwindow == true){
-		if(window.location.href.match(/((http:\/\/(.*youtube\.com\/.*))|(https:\/\/(.*youtube\.com\/.*)))/i)){
+		if(window.location.href.match(/^http(s)?:\/\/(www\.)?youtube.com/i)){
 			windowfullaction(player);
 		}else{
 			player.classList.add("stefanvdvideowindow");
@@ -192,11 +195,21 @@ function shadesOn(player){
 	}
 }
 
+function setexitshortcut(){
+	window.addEventListener("keyup", function(e){
+		if(e.keyCode == 27){
+			if(videowindow == true){
+				windowfullaction();
+			}
+		}
+	}, false);
+}
+setexitshortcut();
+
 // player ready check
 function startvideostatus(){
-	// inject script for autofullscreen
+	// inject script for mediafullscreen
 	chrome.runtime.sendMessage({name: "sendautoplay"});
-	window.addEventListener("keyup", function(e){ if(e.keyCode == 27){ if(videowindow == true){ windowfullaction(); } } }, false);
 
 	startautoplay = window.setInterval(function(){
 		try{
@@ -272,6 +285,8 @@ chrome.runtime.onMessage.addListener(function(request){
 			// Cancel fullscreen for web browser
 			exitFullscreen();
 		}
+	}else if(request.name == "govideoinwindow"){
+		windowfullaction();
 	}else if(request.name == "injectvideostatus"){
 		var script = document.createElement("script"); script.type = "text/javascript"; script.textContent = request.message; document.getElementsByTagName("head")[0].appendChild(script);
 	}else if(request.name == "gorefreshvideoinwindow"){
@@ -279,11 +294,10 @@ chrome.runtime.onMessage.addListener(function(request){
 			videoinwindow = items["videoinwindow"];
 			videooutwindow = items["videooutwindow"];
 		});
-	}else if(request.name == "gorefreshautofullscreen"){
-		chrome.storage.sync.get(["autofullscreen"], function(items){
-			autofullscreen = items["autofullscreen"];
-			console.log("autofullscreen=" + autofullscreen);
-			if(autofullscreen == true){
+	}else if(request.name == "gorefreshmediafullscreen"){
+		chrome.storage.sync.get(["mediafullscreen"], function(items){
+			mediafullscreen = items["mediafullscreen"];
+			if(mediafullscreen == true){
 				startvideostatus();
 			}else{
 				window.clearInterval(startautoplay);

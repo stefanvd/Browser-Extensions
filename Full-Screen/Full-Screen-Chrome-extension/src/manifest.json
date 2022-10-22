@@ -55,6 +55,6 @@
   }],
   "offline_enabled": true,
   "minimum_chrome_version": "103",
-  "permissions": [ "contextMenus", "tabs", "storage", "scripting"],
+  "permissions": [ "contextMenus", "activeTab", "storage", "scripting", "system.display"],
   "host_permissions": ["<all_urls>"]
 }

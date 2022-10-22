@@ -142,7 +142,7 @@ function read_options(){
 		showhidemodal("materialModalYouTube", "hide", "true");
 	}
 
-	chrome.storage.sync.get(["firstDate", "icon", "countremember", "optionskipremember", "contextmenus", "firstsawrate", "introduce"], function(items){
+	chrome.storage.sync.get(["firstDate", "icon", "countremember", "optionskipremember", "contextmenus", "firstsawrate"], function(items){
 		if(items["icon"]){ $("btnpreview").src = items["icon"]; }
 		if(items["optionskipremember"] == true)$("optionskipremember").checked = true;
 		if(items["contextmenus"] == true)$("contextmenus").checked = true;
