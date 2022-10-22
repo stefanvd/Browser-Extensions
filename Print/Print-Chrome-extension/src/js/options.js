@@ -204,6 +204,7 @@ function read_options(){
 		// donation bar
 		if(devdonate == true){
 			$("managed-prefs-banner").className = "hidden";
+			$("donateproject").className = "hidden";
 		}
 
 		// load tab div
