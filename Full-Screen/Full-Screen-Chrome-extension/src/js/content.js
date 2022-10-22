@@ -115,6 +115,9 @@ function windowfullaction(){
 			var playercontrols = document.getElementsByClassName("ytp-chrome-bottom")[0];
 			var playercontainer = document.getElementById("player-container");
 
+			var masthead = $("masthead-container");
+			if(masthead)masthead.style.cssText = "z-index:auto !important";
+
 			if(playercontainer){
 				var stefanvdregularhtmlplayer = document.getElementsByClassName("stefanvdvideowindow")[0];
 				var original = document.getElementsByClassName("ytp-size-button")[0];
@@ -128,6 +131,7 @@ function windowfullaction(){
 					playercontrols.classList.remove("stefanvdvideocontrols");
 					document.getElementsByTagName("video")[0].classList.remove("stefanvdvideowindow");
 					videowindow = false;
+					removeexitshortcut();
 				}else{
 					checktheatermode = watchContainer ? watchContainer.hasAttribute("theater") : true;
 					initialtheatermode = checktheatermode;
@@ -140,6 +144,7 @@ function windowfullaction(){
 					playercontrols.classList.add("stefanvdvideocontrols");
 					document.getElementsByTagName("video")[0].classList.add("stefanvdvideowindow");
 					videowindow = true;
+					setexitshortcut();
 				}
 			}
 		}else{
@@ -147,12 +152,28 @@ function windowfullaction(){
 			if(stefanvdregularhtmlplayerb){
 				document.getElementsByTagName("video")[0].classList.remove("stefanvdvideowindow");
 				videowindow = false;
+				removeexitshortcut();
 			}else{
 				document.getElementsByTagName("video")[0].classList.add("stefanvdvideowindow");
 				videowindow = true;
+				setexitshortcut();
 			}
 		}
 	}
+}
+
+function shortcut(e){
+	if(e.keyCode == 27){
+		if(videowindow == true){
+			windowfullaction();
+		}
+	}
+}
+function removeexitshortcut(){
+	window.removeEventListener("keyup", shortcut, false);
+}
+function setexitshortcut(){
+	window.addEventListener("keyup", shortcut, false);
 }
 
 function shadesOff(player){
@@ -194,17 +215,6 @@ function shadesOn(player){
 		// }
 	}
 }
-
-function setexitshortcut(){
-	window.addEventListener("keyup", function(e){
-		if(e.keyCode == 27){
-			if(videowindow == true){
-				windowfullaction();
-			}
-		}
-	}, false);
-}
-setexitshortcut();
 
 // player ready check
 function startvideostatus(){
