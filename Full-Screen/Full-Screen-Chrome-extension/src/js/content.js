@@ -149,6 +149,7 @@ function windowfullaction(){
 				}
 			}
 		}else{
+			// regular HTML5 video
 			var stefanvdregularhtmlplayerb = document.getElementsByClassName("stefanvdvideowindow")[0];
 			if(stefanvdregularhtmlplayerb){
 				document.getElementsByTagName("video")[0].classList.remove("stefanvdvideowindow");
