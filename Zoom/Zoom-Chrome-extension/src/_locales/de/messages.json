@@ -83,7 +83,7 @@
     "titelzoomengine": {"message": "Zoom Engine"},
     "deszoomchrome": {"message": "Use the built-in browser zoom"},
     "deszoomweb": {"message": "Use the web CSS zoom"},
-    "welcomebasictext": {"message": "Welcome on the Zoom Browser extension. Here a brief video about how to use the Zoom extension in your web browser."},
+    "welcomebasictext": {"message": "Welcome on the Zoom browser extension. Here a brief video about how to use the Zoom extension in your web browser."},
     "promotitle": {"message": "Tip of the day"},
     "promotext": {
         "message": "Want to use something new and amazing for your web browser? Try the $product$ Browser extension.",

@@ -253,6 +253,7 @@ function read_options(){
 		// donation bar
 		if(devdonate == true){
 			$("managed-prefs-banner").className = "hidden";
+			$("donateproject").className = "hidden";
 		}
 
 		// if empty use this
