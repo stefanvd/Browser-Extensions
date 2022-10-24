@@ -104,7 +104,7 @@ function zoomtab(a, b){
 								}else{
 									chrome.scripting.executeScript({
 										target: {tabId: tab.id},
-										func: codebodyzoomleft(b),
+										func: codebodyzoomleft,
 										args: [b]
 									}, function(){
 										if(chrome.runtime.lastError){
