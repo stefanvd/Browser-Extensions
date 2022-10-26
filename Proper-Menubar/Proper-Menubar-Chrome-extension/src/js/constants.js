@@ -1,49 +1,40 @@
-function $(id) { return document.getElementById(id); }
-// Install on www.stefanvd.net
-if (window.location.href.match(/http:\/\/(.*stefanvd\.net\/.*|www\.stefanvd\.net\/.*\/.*)/i)){
-	if ($('proper-menubar-chrome-install-button')) {
-		$('proper-menubar-chrome-install-button').style.display = 'none';
-		$('proper-menubar-chrome-thanks-button').style.display = 'block';
-	}
-}
-var developerwebsite = "https://www.stefanvd.net";
-var exoptionspage = "https://www.stefanvd.net/project/proper-menubar/browser/options.html";
-var ambientaureaproduct = "https://chrome.google.com/webstore/detail/ambient-aurea/pkaglmndhfgdaiaccjglghcbnfinfffa";
-var datetodayproduct = "https://chrome.google.com/webstore/detail/date-today/mhgknbehalhkedjgfhiaindklahhkccc";
-var turnoffthelightsproduct = "https://chrome.google.com/webstore/detail/turn-off-the-lights/bfbmjmiodbnnpllbbbfblcplfjjepjdn";
-var financetoolbarproduct = "https://chrome.google.com/webstore/detail/finance-toolbar/cichbngoomgnobmmjpagmbkimbamigie";
-var propermenubarproduct = "https://chrome.google.com/webstore/detail/proper-menubar/egclcjdpndeoioimlbbbmdhcaopnedkp";
-var fullscreenproduct = "https://chrome.google.com/webstore/detail/full-screen/gmimocjjppdelmhpcmpkhekmpoddgima";
-var zoomproduct = "https://chrome.google.com/webstore/detail/zoom/lajondecmobodlejlcjllhojikagldgd";
-var donatewebsite = "https://www.stefanvd.net/donate.htm";
-var writereview = "https://chrome.google.com/webstore/detail/proper-menubar/egclcjdpndeoioimlbbbmdhcaopnedkp/reviews";
-var linkchangelog = "https://www.stefanvd.net/project/proper-menubar/browser/google-chrome/changelog.htm";
-var linktranslate = "https://www.stefanvd.net/project/translate.htm";
-var linksupport = "https://www.stefanvd.net/support/";
-var linkguide = "https://www.stefanvd.net/project/proper-menubar/browser/google-chrome/guide.htm";
-var linkwelcomepage = "https://www.stefanvd.net/project/proper-menubar/browser/google-chrome/welcome.htm";
-var linkuninstall = "https://www.stefanvd.net/project/proper-menubar/browser/google-chrome/uninstall.htm";
-var propermenubarwebsite = "https://www.stefanvd.net/project/proper-menubar/browser/";
-var browsernewtab = "chrome://newtab/";
-var browserextensions = "chrome://extensions/";
-var browsersettings = "chrome://settings/";
-var browserstore = "https://chrome.google.com";
-var linkyoutube = "https://www.youtube.com/c/stefanvandamme?sub_confirmation=1";
-var newtaburl = "chrome://newtab";
-var newdownloads = "chrome://downloads";
-var newextensions = "chrome://extensions";
-var newpolicy = "chrome://policy";
-var newinspect = "chrome://inspect";
-var newflags = "chrome://flags";
-var newabout = "chrome://chrome";
-var newbookmarks = "chrome://bookmarks";
-var newhistory =  "chrome://history";
-var newsettings = "chrome://settings";
+/* eslint-disable no-unused-vars */
+const exbrowser = "chrome";
+// values: "chrome", "safari", "edge", "firefox", "opera", "yandex", "whale"
+const linkredirectionoptions = "https://www.stefanvd.net/project/proper-menubar/browser/options/";
+const linkdeveloperwebsite = "https://www.stefanvd.net";
+const linkproduct = "https://chrome.google.com/webstore/detail/proper-menubar/egclcjdpndeoioimlbbbmdhcaopnedkp";
+const linkdonate = "https://www.stefanvd.net/donate/";
+const writereview = "https://chrome.google.com/webstore/detail/proper-menubar/egclcjdpndeoioimlbbbmdhcaopnedkp/reviews";
+const linkchangelog = "https://www.stefanvd.net/project/proper-menubar/browser/google-chrome/changelog/";
+const linktranslate = "https://www.stefanvd.net/project/translate/";
+const linksupport = "https://www.stefanvd.net/support/";
+const linkwelcome = "https://www.stefanvd.net/project/proper-menubar/browser/google-chrome/welcome/";
+const linkuninstall = "https://www.stefanvd.net/project/proper-menubar/browser/google-chrome/uninstall/";
+const linkguide = "https://www.stefanvd.net/project/proper-menubar/browser/google-chrome/guide/";
+const linkproductdescription = "https://www.stefanvd.net/project/proper-menubar/browser/";
+const browsernewtab = "chrome://newtab/";
+const browserstore = "https://chrome.google.com";
+const linkyoutube = "https://www.youtube.com/c/stefanvandamme?sub_confirmation=1";
+const devmode = true;
+const devdonate = false;
+
+const browserextensions = "chrome://extensions/";
+const browsersettings = "chrome://settings/";
+const newdownloads = "chrome://downloads";
+const newextensions = "chrome://extensions";
+const newpolicy = "chrome://policy";
+const newinspect = "chrome://inspect";
+const newflags = "chrome://flags";
+const newabout = "chrome://chrome";
+const newbookmarks = "chrome://bookmarks";
+const newhistory = "chrome://history";
+const newsettings = "chrome://settings";
 
 var country = null;
 var keyword = "";
 if(country == null){
-var userLang = navigator.language || navigator.userLanguage; 
+const userLang = navigator.language || navigator.userLanguage;
 if(userLang == "en-US"){country = "com"}
 else if(userLang == "en-UK"){country = "co.uk"}
 else if(userLang == "en-US"){country = "com"}
@@ -71,30 +62,30 @@ else if(userLang == "tr-TR"){country = "tr"}
 else {country = "com";}
 }
 
-var productlink1 = "https://www.google."+country+"/account";
-var productlink2 = "https://www.google."+country+"";
-var productlink3 = "https://images.google."+country+"";
-var productlink4 = "https://maps.google."+country+"";
-var productlink5 = "https://play.google."+country+"";
-var productlink6 = "https://www.youtube."+country+"";
-var productlink7 = "https://news.google."+country+"";
-var productlink8 = "https://mail.google."+country+"";
-var productlink9 = "https://drive.google."+country+"";
-var productlink10 = "https://calendar.google."+country+"";
-var productlink11 = "https://translate.google."+country+"";
-var productlink12 = "https://mobile.google."+country+"";
-var productlink13 = "https://books.google."+country+"";
-var productlink14 = "https://docs.google."+country+"";
-var productlink15 = "https://pay.google."+country+"";
-var productlink16 = "https://shopping.google."+country+"";
-var productlink17 = "https://www.blogger."+country+"";
-var productlink18 = "https://finance.google."+country+"";
-var productlink19 = "https://photos.google."+country+"";
-var productlink20 = "https://www.google."+country+"/?tbm=vid";
-var productlink21 = 'https://www.google.com/intl/'+country+'/about/products';
+var productlink1 = "https://www.google." + country + "/account";
+var productlink2 = "https://www.google." + country + "";
+var productlink3 = "https://images.google." + country + "";
+var productlink4 = "https://maps.google." + country + "";
+var productlink5 = "https://play.google." + country + "";
+var productlink6 = "https://www.youtube." + country + "";
+var productlink7 = "https://news.google." + country + "";
+var productlink8 = "https://mail.google." + country + "";
+var productlink9 = "https://drive.google." + country + "";
+var productlink10 = "https://calendar.google." + country + "";
+var productlink11 = "https://translate.google." + country + "";
+var productlink12 = "https://mobile.google." + country + "";
+var productlink13 = "https://books.google." + country + "";
+var productlink14 = "https://docs.google." + country + "";
+var productlink15 = "https://pay.google." + country + "";
+var productlink16 = "https://shopping.google." + country + "";
+var productlink17 = "https://www.blogger." + country + "";
+var productlink18 = "https://finance.google." + country + "";
+var productlink19 = "https://photos.google." + country + "";
+var productlink20 = "https://www.google." + country + "/?tbm=vid";
+var productlink21 = "https://www.google.com/intl/" + country + "/about/products";
 var productlink22 = "https://www.google.com/voice";
-var productlink23 = "https://www.google.com/contacts/#contacts"
-var productlink24 = "https://scholar.google."+country+"";
+var productlink23 = "https://www.google.com/contacts/#contacts";
+var productlink24 = "https://scholar.google." + country + "";
 var productlink25 = "https://keep.google.com";
 var productlink26 = "https://docs.google.com/presentation";
 var productlink27 = "https://groups.google.com";
@@ -125,30 +116,30 @@ var productlink51 = "https://chrome.google.com/webstore";
 var productlink52 = "https://docs.google.com/spreadsheets";
 var productlink53 = "https://docs.google.com/forms";
 
-var productlinksearch1 = function(a,b){return"https://www.google."+a+"/account"};
-var productlinksearch2 = function(a,b){return"https://www.google."+a+"/search?q="+b+""};
-var productlinksearch3 = function(a,b){return"https://www.google."+a+"/search?tbm=isch&q="+b+""};
-var productlinksearch4 = function(a,b){return"https://www.google."+a+"/maps/search/"+b};
-var productlinksearch5 = function(a,b){return"https://play.google.com/store/search?q="+b};
-var productlinksearch6 = function(a,b){return"https://www.youtube."+a+"/results?search_query="+b};
-var productlinksearch7 = function(a,b){return"https://www.google."+a+"/search?q="+b+"&source=lnms&tbm=nws"};
-var productlinksearch8 = function(a,b){return"https://mail.google."+a+""};
-var productlinksearch9 = function(a,b){return"https://drive.google."+a+""};
-var productlinksearch10 = function(a,b){return"https://calendar.google."+a+""};
-var productlinksearch11 = function(a,b){return"https://translate.google."+a+"/#auto/"+b};
-var productlinksearch12 = function(a,b){return"https://mobile.google."+a+""};
-var productlinksearch13 = function(a,b){return"https://www.google."+a+"/search?tbm=bks&q="+b+""};
-var productlinksearch14 = function(a,b){return"https://docs.google."+a+""};
-var productlinksearch15 = function(a,b){return"https://pay.google."+a+""};
-var productlinksearch16 = function(a,b){return"https://shopping.google."+a+"search?tbm=shop&q="+b+""};
-var productlinksearch17 = function(a,b){return"https://www.blogger."+a+""};
-var productlinksearch18 = function(a,b){return"https://finance.google.com/finance?q="+b};
-var productlinksearch19 = function(a,b){return"https://photos.google."+a+""};
-var productlinksearch20 = function(a,b){return"https://www.google."+a+"/search?tbm=vid&source=hp&q="+b};
-var productlinksearch21 = function(a,b){return"https://www.google.com/intl/"+a+"/about/products"};
+var productlinksearch1 = function(a,b){return"https://www.google." + a + "/account"};
+var productlinksearch2 = function(a,b){return"https://www.google." + a + "/search?q=" + b + ""};
+var productlinksearch3 = function(a,b){return"https://www.google." + a + "/search?tbm=isch&q=" + b + ""};
+var productlinksearch4 = function(a,b){return"https://www.google." + a + "/maps/search/" + b};
+var productlinksearch5 = function(a,b){return"https://play.google.com/store/search?q=" + b};
+var productlinksearch6 = function(a,b){return"https://www.youtube." + a + "/results?search_query=" + b};
+var productlinksearch7 = function(a,b){return"https://www.google." + a + "/search?q=" + b + "&source=lnms&tbm=nws"};
+var productlinksearch8 = function(a,b){return"https://mail.google." + a + ""};
+var productlinksearch9 = function(a,b){return"https://drive.google." + a + ""};
+var productlinksearch10 = function(a,b){return"https://calendar.google." + a + "" };
+var productlinksearch11 = function(a,b){return"https://translate.google." + a + "/#auto/" + b};
+var productlinksearch12 = function(a,b){return"https://mobile.google." + a + ""};
+var productlinksearch13 = function(a,b){return"https://www.google." + a + "/search?tbm=bks&q=" + b + ""};
+var productlinksearch14 = function(a,b){return"https://docs.google." + a + ""};
+var productlinksearch15 = function(a,b){return"https://pay.google." + a + ""};
+var productlinksearch16 = function(a,b){return"https://shopping.google." + a + "search?tbm=shop&q=" + b + ""};
+var productlinksearch17 = function(a,b){return"https://www.blogger." + a + ""};
+var productlinksearch18 = function(a,b){return"https://finance.google.com/finance?q=" + b};
+var productlinksearch19 = function(a,b){return"https://photos.google." + a + ""};
+var productlinksearch20 = function(a,b){return"https://www.google." + a + "/search?tbm=vid&source=hp&q=" + b};
+var productlinksearch21 = function(a,b){return"https://www.google.com/intl/" + a + "/about/products"};
 var productlinksearch22 = function(a,b){return"https://www.google.com/voice"};
 var productlinksearch23 = function(a,b){return"https://www.google.com/contacts/#contacts‎"};
-var productlinksearch24 = function(a,b){return"https://scholar.google."+a+""};
+var productlinksearch24 = function(a,b){return"https://scholar.google." + a + ""};
 var productlinksearch25 = function(a,b){return"https://keep.google.com"};
 var productlinksearch26 = function(a,b){return"https://docs.google.com/presentation"};
 var productlinksearch27 = function(a,b){return"https://groups.google.com"};
@@ -157,7 +148,7 @@ var productlinksearch29 = function(a,b){return"https://ai.google"};
 var productlinksearch30 = function(a,b){return"https://artsandculture.google.com"};
 var productlinksearch31 = function(a,b){return"https://play.google.com/music"};
 var productlinksearch32 = function(a,b){return"https://play.google.com/movies"};
-var productlinksearch33 = function(a,b){return"https://www.google."+a+"/save"};
+var productlinksearch33 = function(a,b){return"https://www.google." + a + "/save"};
 var productlinksearch34 = function(a,b){return"https://business.google.com"};
 var productlinksearch35 = function(a,b){return"https://classroom.google.com"};
 var productlinksearch36 = function(a,b){return"https://earth.google.com/web"};

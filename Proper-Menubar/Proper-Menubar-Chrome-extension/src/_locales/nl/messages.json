@@ -251,8 +251,8 @@
     "despermissionbookmark": {"message": "Remove the Bookmarks permission"},
     "wpermissionremoved": {"message": "The permissions have been removed."},
     "wpermissionnotremoved": {"message": "The permissions have not been removed"},
-    "sharetexta": {"message": "Get this Cool Proper Menubar Browser Extension"},
+    "sharetexta": {"message": "Get this Cool Proper Menubar browser extension"},
     "sharetextb": {"message": "Hey, this is amazing! I tried the Proper Menubar browser extension just today."},
-    "sharetextc": {"message": "The Best and AmazingProper Menubar Browser extension"},
+    "sharetextc": {"message": "The Best and AmazingProper Menubar browser extension"},
     "sharetextd": {"message": "Proper Menubar extension is the Best Useful Tool. Download it and try it yourself!"}
 }

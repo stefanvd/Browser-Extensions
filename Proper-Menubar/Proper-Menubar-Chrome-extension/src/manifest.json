@@ -1,46 +1,53 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "__MSG_namechrome__",
   "short_name": "Proper Menubar",
-  "version": "1.2.11.0",
+  "version": "1.3.0.0",
   "description": "__MSG_description__",
   "author": "Stefan vd",
   "homepage_url": "https://www.stefanvd.net/support/",
   "icons": {
     "16": "icons/icon16.png",
+    "24": "icons/icon24.png",
     "32": "icons/icon32.png",
     "48": "icons/icon48.png",
+    "96": "icons/icon96.png",
     "128": "icons/icon128.png"
   },
   "default_locale": "en",
-  "background": {
-    "page": "background.html",
-	  "persistent": false
+  "action": {
+    "default_icon": {
+      "19": "icons/icon19.png",
+      "38": "icons/icon38.png"
+    },
+    "default_title": "__MSG_name__",
+    "default_popup": "popup.html"	
   },
-  "content_security_policy": "default-src 'self'; style-src 'unsafe-inline'; media-src https://www.stefanvd.net; child-src https://www.youtube.com https://www.stefanvd.net; connect-src https://www.stefanvd.net; script-src 'self'; img-src 'self' * data:; object-src 'none'",
-  "web_accessible_resources": [
-    "images/Slice1.png",
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "css" : ["css/body.css"],
+      "js": ["js/constants.js","js/content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "service_worker": "js/background.js"
+  },
+  "content_security_policy": {
+    "extension_pages": "default-src 'none'; style-src 'self'; media-src https://www.stefanvd.net; child-src https://www.youtube.com https://www.stefanvd.net; connect-src https://www.stefanvd.net; script-src 'self'; img-src 'self' https://www.stefanvd.net * data:; object-src 'none'"
+  },
+  "web_accessible_resources": [{
+    "resources": [ "images/Slice1.png",
     "images/Slice2.png",
     "images/Slice3.png",
     "images/Slice4.png",
     "images/Slice5.png",
     "images/Slice6.png",
-    "css/body.css"
-  ],
-  "content_scripts": [
-    {
-      "matches": ["*://*/*"],
-      "exclude_matches": ["*://*.stefanvd.net/project/proper-menubar/browser/options.html"],
-      "css" : ["css/body.css"],
-      "js": ["js/constants.js","js/content.js"],
-      "run_at": "document_end"
-    },
-    {
-    "matches": ["*://*.stefanvd.net/project/proper-menubar/browser/options.html"],
-    "js": ["js/constants.js","js/options.js"],
-    "run_at": "document_end"
-    }
-  ],
+    "css/body.css"],
+    "matches": ["<all_urls>"],
+    "use_dynamic_url": true
+  }],
   "commands": {
     "_execute_browser_action": {
       "suggested_key": {
@@ -56,19 +63,11 @@
             "description": "__MSG_titelshortproper__"
           }
   },
-  "browser_action": {
-          "default_icon": {
-            "19": "icons/icon1.png",
-            "38": "icons/icon1@2x.png"
-          },
-	"default_title": "__MSG_name__",
-    "default_popup": "popup.html"	
-  },
   "options_ui": {
     "page": "options.html",
     "open_in_tab": true
   },
-  "minimum_chrome_version": "20",
+  "minimum_chrome_version": "103",
   "offline_enabled": true,
   "permissions": [ "contextMenus", "activeTab", "storage"],
   "optional_permissions": [ "pageCapture","clipboardWrite","clipboardRead","bookmarks"]
