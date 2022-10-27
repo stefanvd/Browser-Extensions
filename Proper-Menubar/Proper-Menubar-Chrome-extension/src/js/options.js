@@ -27,8 +27,12 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 //================================================
 
 function $(id){ return document.getElementById(id); }
-
 var youtubeembed = "https://www.youtube.com/embed/?listType=playlist&list=PLfXHh3TKRb4ZIWFeG31L_jRs5fRHtzYAc";
+var darkmode = false;
+
+function defaultgetsettings(){
+	read_options();
+}
 
 // Option to save current value
 function save_options(){
@@ -67,59 +71,92 @@ chrome.storage.sync.get(["backgroundcolor", "backgroundimage", "googlesites", "a
 });
 
 function read_options(){
+// youtube
+	$("materialModalYouTubeButtonOK").addEventListener("click", function(e){
+		closeMaterialYouTubeAlert(e);
+		chrome.storage.sync.set({"firstsawyoutube": true});
+	});
+
+	$("materialModalYouTubeButtonCANCEL").addEventListener("click", function(e){
+		closeMaterialYouTubeCancel(e);
+	});
 
 	// rate
 	$("materialModalRate").addEventListener("click", function(e){
-		closeMaterialRateAlert(e, false);
+		closeMaterialRateAlert(e);
 	});
 	$("materialModalRateContent").addEventListener("click", function(e){
 		e.stopPropagation();
 	});
-	$("materialModalRateButtonOK").addEventListener("click", function(e){
-		closeMaterialRateAlert(e, true);
+	$("materialModalRateButtonWriteOK").addEventListener("click", function(e){
+		closeMaterialRateAlert(e);
 		window.open(writereview); $("sectionreviewbox").style.display = "none"; chrome.storage.sync.set({"reviewedlastonversion": chrome.runtime.getManifest().version});
 	});
+	$("materialModalRateButtonWriteCANCEL").addEventListener("click", function(e){
+		closeMaterialRateAlert(e);
+		chrome.storage.sync.set({"firstsawrate": false});
+	});
+	$("materialModalButtonSupportOK").addEventListener("click", function(e){
+		closeMaterialRateAlert(e);
+		window.open(linksupport);
+		chrome.storage.sync.set({"firstsawrate": false});
+	});
+	$("materialModalButtonSupportCANCEL").addEventListener("click", function(e){
+		closeMaterialRateAlert(e);
+		chrome.storage.sync.set({"firstsawrate": false});
+	});
 	$("materialModalRateButtonCANCEL").addEventListener("click", function(e){
-		closeMaterialRateAlert(e, false);
+		closeMaterialRateAlert(e);
+		chrome.storage.sync.set({"firstsawrate": false});
 	});
 
-	// introduce
-	$("materialModalIntroduce").addEventListener("click", function(e){
-		closeMaterialIntroduceAlert(e, false);
-	});
-	$("materialModalIntroduceContent").addEventListener("click", function(e){
-		e.stopPropagation();
-	});
-	$("materialModalIntroduceButtonOK").addEventListener("click", function(e){
-		closeMaterialIntroduceAlert(e, true);
-	});
-	$("materialModalIntroduceButtonCANCEL").addEventListener("click", function(e){
-		closeMaterialIntroduceAlert(e, false);
-	});
-
-	// rate
-	function materialRateAlert(callback){
-		document.getElementById("materialModalRate").className = "show";
-		document.getElementById("materialModalRate").setAttribute("aria-disabled", "false");
-	}
-	function closeMaterialRateAlert(e, result){
-		e.stopPropagation();
-		document.getElementById("materialModalRate").className = "hide";
-		document.getElementById("materialModalRate").setAttribute("aria-disabled", "true");
-	}
-
-	// introduce
-	function materialIntroduceAlert(callback){
-		document.getElementById("materialModalIntroduceButtonCANCEL").style.display = "none";
-		document.getElementById("materialModalIntroduce").className = "show";
-		document.getElementById("materialModalIntroduce").setAttribute("aria-disabled", "false");
-	}
-	function closeMaterialIntroduceAlert(e, result){
-		e.stopPropagation();
-		document.getElementById("materialModalIntroduce").className = "hide";
-		document.getElementById("materialModalIntroduce").setAttribute("aria-disabled", "true");
+	if(document.querySelector("input[name=\"rating\"]")){
+		document.querySelectorAll("input[name=\"rating\"]").forEach((elem) => {
+			elem.addEventListener("change", function(event){
+				var item = event.target.value;
+				if(item == 5 || item == 4){
+					// good stars
+					$("ratepage0").classList.add("hidden");
+					$("ratepage1high").classList.remove("hidden");
+				}else if(item == 3 || item == 2 || item == 1){
+					// low stars
+					$("ratepage0").classList.add("hidden");
+					$("ratepage1low").classList.remove("hidden");
+				}
+			});
+		});
 	}
 	//---
+
+	function showhidemodal(name, visible, status){
+		document.getElementById(name).className = visible;
+		document.getElementById(name).setAttribute("aria-disabled", status);
+		setmetathemepopup(status);
+	}
+
+	// rate
+	function materialRateAlert(){
+		showhidemodal("materialModalRate", "show", "false");
+	}
+	function closeMaterialRateAlert(e){
+		e.stopPropagation();
+		showhidemodal("materialModalRate", "hide", "true");
+	}
+	//---
+
+	// youtube
+	function materialYouTubeAlert(){
+		showhidemodal("materialModalYouTube", "show", "false");
+	}
+	function closeMaterialYouTubeCancel(e){
+		e.stopPropagation();
+		showhidemodal("materialModalYouTube", "hide", "true");
+	}
+	function closeMaterialYouTubeAlert(e){
+		e.stopPropagation();
+		window.open(linkyoutube, "_blank");
+		showhidemodal("materialModalYouTube", "hide", "true");
+	}
 
 	chrome.storage.sync.get(["firstDate", "opacity", "country", "backgroundhex", "backgroundimagesource", "backgroundcolor", "backgroundimage", "googlesites", "dropshadow", "allsites", "fontcolor", "search", "existingtab", "propermenuDomains", "countremember", "optionskipremember", "display", "hovertextcolor", "hoverbackground", "firstsawrate", "introduce", "getpositiontop", "getpositionbottom", "toolbarwhite", "toolbarblack", "toolbaronly", "googleproducts", "menuproducts", "googlebarDomains", "toolbarDomains"], function(items){
 		if(items["opacity"]){ $("opacity").value = items["opacity"]; }else{ $("opacity").value = "100"; }
@@ -146,14 +183,6 @@ function read_options(){
 		if(items["googleproducts"] == true)$("googleproducts").checked = true;
 		if(items["menuproducts"] == true)$("menuproducts").checked = true;
 
-		// show introduce
-		if(items["introduce"] != true){
-			window.setTimeout(function(){
-				materialIntroduceAlert(function(result){ console.log(result); });
-			}, 2500);
-			chrome.storage.sync.set({"introduce": true});
-		}
-
 		// show remember page
 		var firstmonth = false;
 		var currentDate = new Date().getTime();
@@ -174,18 +203,50 @@ function read_options(){
 				$("sectionreviewbox").style.display = "block"; // show now always the banner
 				if(items["firstsawrate"] != true){
 					window.setTimeout(function(){
-						materialRateAlert(function(result){ console.log(result); });
+						materialRateAlert();
 					}, 2500);
 					chrome.storage.sync.set({"firstsawrate": true});
-				}else{}
+				}
 			}else{
 				$("sectionreviewbox").style.display = "none";
 			}
 		}
 
+		var firstday = false;
+		var startnum = items["firstsawnumber"];
+		if($("optionskipremember").checked != true){
+			var dateinstall = items["firstDate"];
+			var datenextday = dateinstall + (1 * 24 * 60 * 60 * 1000);
+			if(currentDate >= datenextday){ firstday = false; }else{ firstday = true; }
+
+			if(firstday){
+				// show nothing
+			}else{
+				// if the rate box is not visible, and never clicked, then show the YouTube channel box
+				if(items["firstsawrate"] != true && items["firstsawyoutube"] != true){
+					if(typeof startnum == "undefined" || startnum == null){ startnum = 1; }
+					if(startnum == 4){
+						window.setTimeout(function(){
+							materialYouTubeAlert();
+						}, 2500);
+						startnum = 0;
+					}
+					startnum += 1;
+					chrome.storage.sync.set({"firstsawnumber": startnum});
+				}
+			}
+		}
+
+		// donation bar
+		if(devdonate == true){
+			$("managed-prefs-banner").className = "hidden";
+		}
+
+
 		// load tab div
-		var tabListItems = document.getElementById("navbar").childNodes;
-		for(var i = 0; i < tabListItems.length; i++){
+		var tabListItems = $("navbar").childNodes;
+		var i, l = tabListItems.length;
+		for(i = 0; i < l; i++){
 			if(tabListItems[i].nodeName == "LI"){
 				var tabLink = getFirstChildWithTagName(tabListItems[i], "A");
 				var id = getHash(tabLink.getAttribute("data-tab"));
@@ -196,21 +257,21 @@ function read_options(){
 
 		// Assign onclick events to the tab links, and
 		// highlight the first tab
-		var i = 0;
-
-		for(var id in tabLinks){
-			tabLinks[id].onclick = showTab;
-			tabLinks[id].onfocus = function(){ this.blur(); };
-			if(i == 0) tabLinks[id].className = "navbar-item-selected";
-			i++;
+		var tabi = 0;
+		var tabid;
+		for(tabid in tabLinks){
+			tabLinks[tabid].onclick = showTab;
+			tabLinks[tabid].onfocus = function(){ this.blur(); };
+			if(tabi == 0) tabLinks[tabid].className = "navbar-item-selected";
+			tabi++;
 		}
 
 		// Hide all content divs except the first
-		var i = 0;
-
-		for(var id in contentDivs){
-			if(i != 0) contentDivs[id].className = "page hidden";
-			i++;
+		var contenti = 0;
+		var contentid;
+		for(contentid in contentDivs){
+			if(contenti != 0) contentDivs[contentid].className = "page hidden";
+			contenti++;
 		}
 
 		// display version number
@@ -246,8 +307,7 @@ function read_options(){
 				tagappendToListBox("googlebarDomainsBox", gbuf[i]);
 		}
 
-		// retest the function
-		test();
+		test(); // do the test
 
 	});// chrome storage end
 } // end read
@@ -410,46 +470,70 @@ function yearnow(){
 	var today = new Date(); var y0 = today.getFullYear(); $("yearnow").innerText = y0;
 }
 
+function setappearancemode(a, b, c){
+	$("dropmenu").className = a;
+	document.body.className = b;
+	$("headlamp").style.webkitFilter = c;
+	$("headlamp").style.filter = c;
+	$("loadinglamp").style.webkitFilter = c;
+	$("loadinglamp").style.filter = c;
+}
+
+function godarkmode(){
+	$("dropmenu").className = "hide";
+	setappearancemode("hide", "dark", "invert(1) brightness(2)");
+}
+
+function golightmode(){
+	$("dropmenu").className = "hide";
+	setappearancemode("hide", "light", "invert(0)");
+}
+
+function seticonstyle(a, b, c){
+	$("icondarkauto").style.opacity = a;
+	$("icondarkoff").style.opacity = b;
+	$("icondarkon").style.opacity = c;
+}
+
 function checkdarkmode(){
 	chrome.storage.sync.get(["darkmode"], function(items){
-		darkmode = items["darkmode"]; if(darkmode == null)darkmode = false; // default darkmode false
+		darkmode = items["darkmode"]; if(darkmode == null)darkmode = 2; // default Operating System
 
 		// dark mode
-		if(darkmode == true){
-			$("currentdarkmode").innerText = chrome.i18n.getMessage("titledarkmodeon");
-			document.body.className = "dark";
-			$("headlamp").src = "icons/icon16@2x.png";
-			$("headlamp").srcset = "icons/icon16.png 1x, icons/icon16@2x.png 2x";
-			$("headlamp").style.webkitFilter = "invert(1)";
-			$("headlamp").style.filter = "invert(1)";
-		}else{
-			$("currentdarkmode").innerText = chrome.i18n.getMessage("titledarkmodeoff");
-			document.body.className = "light";
-			$("headlamp").src = "icons/icon16@2x.png";
-			$("headlamp").srcset = "icons/icon16.png 1x, icons/icon16@2x.png 2x";
-			$("headlamp").style.webkitFilter = "invert(0)";
-			$("headlamp").style.filter = "invert(0)";
+		if(darkmode == 1){
+			godarkmode();
+			seticonstyle(0, 0, 1);
+		}else if(darkmode == 0){
+			golightmode();
+			seticonstyle(0, 1, 0);
+		}else if(darkmode == 2){
+			if(window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches){
+				godarkmode();
+			}else{
+				golightmode();
+			}
+			seticonstyle(1, 0, 0);
 		}
 	});
 }
 
 // Listen for messages
-chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse){
+chrome.runtime.onMessage.addListener(function(msg){
 	// If the received message has the expected format...
 	if(msg.text === "receiveallpermissions"){
 		// empty ul first
 		if($("permullist")){
-			var lis = document.querySelectorAll("#permullist li");
-			var i;
-			var li;
-			for(i = 0; li = lis[i]; i++){
-				li.parentNode.removeChild(li);
+			var ul = document.getElementById("permullist");
+			if(ul){
+				while(ul.firstChild){
+					ul.removeChild(ul.firstChild);
+				}
 			}
 		}
 		var perm = msg.value;
 		perm.forEach(function(x){
 			if($("permissionlist")){
-				if($("permullist")){}else{
+				if($("permullist") == null){
 					var newpermtitle = document.createElement("h4");
 					newpermtitle.textContent = chrome.i18n.getMessage("permissionrequired");
 					$("permissionlist").appendChild(newpermtitle);
@@ -468,7 +552,7 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse){
 
 				var textperm = "";
 				var newpermspandes = document.createElement("span");
-				if(x == "activeTab"){ textperm = chrome.i18n.getMessage("permissionactivetab"); }else if(x == "contextMenus"){ textperm = chrome.i18n.getMessage("permissioncontextmenu"); }else if(x == "storage"){ textperm = chrome.i18n.getMessage("permissionstorage"); }else if(x == "tabs"){ textperm = chrome.i18n.getMessage("permissiontabs"); }else if(x == "pageCapture"){ textperm = chrome.i18n.getMessage("permissionpagecapture"); }else if(x == "clipboardWrite"){ textperm = chrome.i18n.getMessage("permissionclipwrite"); }else if(x == "clipboardRead"){ textperm = chrome.i18n.getMessage("permissionclipread"); }else if(x == "bookmarks"){ textperm = chrome.i18n.getMessage("permissionbookmarks"); }
+				if(x == "activeTab"){ textperm = chrome.i18n.getMessage("permissionactivetab"); }else if(x == "contextMenus"){ textperm = chrome.i18n.getMessage("permissioncontextmenu"); }else if(x == "storage"){ textperm = chrome.i18n.getMessage("permissionstorage"); }else if(x == "tabs"){ textperm = chrome.i18n.getMessage("permissiontabs"); }else if(x == "pageCapture"){ textperm = chrome.i18n.getMessage("permissionpagecapture"); }else if(x == "clipboardWrite"){ textperm = chrome.i18n.getMessage("permissionclipwrite"); }else if(x == "clipboardRead"){ textperm = chrome.i18n.getMessage("permissionclipread"); }else if(x == "bookmarks"){ textperm = chrome.i18n.getMessage("permissionbookmarks"); }else if(x == "scripting"){ textperm = chrome.i18n.getMessage("permissionscripting"); }
 				newpermspandes.textContent = textperm;
 				newpermspandes.className = "item";
 				newperm.appendChild(newpermspandes);
@@ -477,6 +561,63 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse){
 	}
 });
 
+
+function setmetatheme(a){
+	const metas = document.getElementsByTagName("meta");
+	var darktheme;
+	var lighttheme;
+
+	if(a == true){
+		// top status bar color => if side bar is open
+		darktheme = "#1c1c1c";
+		lighttheme = "#f5f5f5";
+	}else{
+		darktheme = "#232323";
+		lighttheme = "#ffffff";
+	}
+
+	let i, l = metas.length;
+	for(i = 0; i < l; i++){
+		if(metas[i].getAttribute("name") == "theme-color"){
+			if(metas[i].getAttribute("media")){
+				if(metas[i].getAttribute("media") == "(prefers-color-scheme: light)"){
+					metas[i].setAttribute("content", lighttheme);
+				}else if(metas[i].getAttribute("media") == "(prefers-color-scheme: dark)"){
+					metas[i].setAttribute("content", darktheme);
+				}
+			}
+		}
+	}
+}
+
+function setmetathemepopup(a){
+	const metas = document.getElementsByTagName("meta");
+	var darktheme;
+	var lighttheme;
+
+	if(a == true){
+		// top status bar color => if popup is open
+		darktheme = "#111111";
+		lighttheme = "#7f7f7f";
+	}else{
+		darktheme = "#232323";
+		lighttheme = "#ffffff";
+	}
+
+	let i, l = metas.length;
+	for(i = 0; i < l; i++){
+		if(metas[i].getAttribute("name") == "theme-color"){
+			if(metas[i].getAttribute("media")){
+				if(metas[i].getAttribute("media") == "(prefers-color-scheme: light)"){
+					metas[i].setAttribute("content", lighttheme);
+				}else if(metas[i].getAttribute("media") == "(prefers-color-scheme: dark)"){
+					metas[i].setAttribute("content", darktheme);
+				}
+			}
+		}
+	}
+}
+
 /* Option page body action */
 // Read current value settings
 window.addEventListener("load", function(){
@@ -484,53 +625,22 @@ window.addEventListener("load", function(){
 	$("loading").style.display = "none";
 });
 
-if(window.location.href != exoptionspage){
-	document.addEventListener("DOMContentLoaded", domcontentloaded);
-}else{
-	domcontentloaded();
-}
+document.addEventListener("DOMContentLoaded", domcontentloaded);
 
 function domcontentloaded(){
 	checkdarkmode();
+	window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function(){
+		checkdarkmode();
+	});
 
-	if(window.location.href != exoptionspage){
-
-		var condition = navigator.onLine ? "online" : "offline";
-		if(condition == "online"){
-			fetch(developerwebsite).then(function(response){
-				if(response.status === 200){
-					// website is online
-					// redirect to there
-					window.location.href = exoptionspage;
-				}else{
-					throw new Error(response.statusText);
-				}
-
-			}).catch((e)=>{
-				// is not there
-				// use offline page
-				// Add the YouTube player
-				$("dont-turn-off-the-lights").src = youtubeembed;
-				read_options();
-				yearnow();
-			});
-		}else{
-			// Add the YouTube player
-			$("dont-turn-off-the-lights").src = youtubeembed;
-			read_options();
-			yearnow();
-		}
-
-	}else{
-		// Add the YouTube player
-		$("dont-turn-off-the-lights").src = youtubeembed;
-		read_options();
-		yearnow();
-	}
+	// Add the YouTube player
+	$("dont-turn-off-the-lights").src = youtubeembed;
+	defaultgetsettings();
+	yearnow();
 
 	// Remove remember
 	var sharetext = chrome.i18n.getMessage("sharetextd");
-	var stefanvdurl = propermenubarproduct;
+	var stefanvdurl = linkproduct;
 	var stefanvdaacodeurl = encodeURIComponent(stefanvdurl);
 
 	if($("shareboxyoutube")){
@@ -570,37 +680,33 @@ function domcontentloaded(){
 	});
 
 	$("titleex").addEventListener("click", function(){
-		window.open(developerwebsite);
+		window.open(linkdeveloperwebsite);
 	});
 
 	$("btnsupport").addEventListener("click", function(){
 		window.open(linksupport); $("dropmenu").className = "hide";
 	});
 
-	$("btnactivedarkmode").addEventListener("click", function(){
-		chrome.storage.sync.get(["darkmode"], function(items){
-			darkmode = items["darkmode"]; if(darkmode == null)darkmode = false; // default darkmode false
-			// dark mode
-			if(darkmode == true){
-				$("currentdarkmode").innerText = chrome.i18n.getMessage("titledarkmodeoff");
-				$("dropmenu").className = "hide";
-				document.body.className = "light";
-				$("headlamp").src = "icons/icon16@2x.png";
-				$("headlamp").srcset = "icons/icon16.png 1x, icons/icon16@2x.png 2x";
-				$("headlamp").style.webkitFilter = "invert(0)";
-				$("headlamp").style.filter = "invert(0)";
-				chrome.storage.sync.set({"darkmode":false});
-			}else{
-				$("currentdarkmode").innerText = chrome.i18n.getMessage("titledarkmodeon");
-				$("dropmenu").className = "hide";
-				document.body.className = "dark";
-				$("headlamp").src = "icons/icon16@2x.png";
-				$("headlamp").srcset = "icons/icon16.png 1x, icons/icon16@2x.png 2x";
-				$("headlamp").style.webkitFilter = "invert(1)";
-				$("headlamp").style.filter = "invert(1)";
-				chrome.storage.sync.set({"darkmode":true});
-			}
-		});
+	$("btnactivedarkmodeauto").addEventListener("click", function(){
+		if(window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches){
+			godarkmode();
+		}else{
+			golightmode();
+		}
+		seticonstyle(1, 0, 0);
+		chrome.storage.sync.set({"darkmode":2});
+	});
+
+	$("btnactivedarkmodeoff").addEventListener("click", function(){
+		golightmode();
+		seticonstyle(0, 1, 0);
+		chrome.storage.sync.set({"darkmode":0});
+	});
+
+	$("btnactivedarkmodeon").addEventListener("click", function(){
+		godarkmode();
+		seticonstyle(0, 0, 1);
+		chrome.storage.sync.set({"darkmode":1});
 	});
 
 	// promotion
@@ -610,9 +716,14 @@ function domcontentloaded(){
 
 	// Detect click / change to save the page and test it.
 	var inputs = document.querySelectorAll("input");
-	for(var i = 0; i < inputs.length; i++){ inputs[i].addEventListener("change", test); inputs[i].addEventListener("change", save_options); }
+	var i;
+	var l = inputs.length;
+	for(i = 0; i < l; i++){ inputs[i].addEventListener("change", test); inputs[i].addEventListener("change", ariacheck); inputs[i].addEventListener("change", save_options); }
+
 	var select = document.querySelectorAll("select");
-	for(var i = 0; i < select.length; i++){ select[i].addEventListener("change", test); select[i].addEventListener("change", save_options); }
+	var j;
+	var m = select.length;
+	for(j = 0; j < m; j++){ select[j].addEventListener("change", test); select[j].addEventListener("change", ariacheck); select[j].addEventListener("change", save_options); }
 
 	// show all the active permissions in a list
 	chrome.runtime.sendMessage({name: "getallpermissions"});
@@ -639,6 +750,14 @@ function domcontentloaded(){
 		if(window.innerWidth < 480){ $("menuToggle").click(); }
 	}
 
+	$("reveal-menu").addEventListener("click", function(){
+		if(this.checked == true){
+			setmetatheme(true);
+		}else{
+			setmetatheme(false);
+		}
+	});
+
 	$("slice1").addEventListener("click", function(){ slidepreview1(); });
 	$("slice2").addEventListener("click", function(){ slidepreview2(); });
 	$("slice3").addEventListener("click", function(){ slidepreview3(); });
@@ -664,7 +783,7 @@ function domcontentloaded(){
 		}, false);
 	}
 
-	// googlebar Remove website
+	// Bar remove website
 	$("googlebarremovebutton").addEventListener("click", function(){ googlebarremoveSelectedExcludedDomain(); });
 
 	$("removepermissioncopy").addEventListener("click", function(){

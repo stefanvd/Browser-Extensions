@@ -36,19 +36,22 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 <link rel="stylesheet" type="text/css" href="css/options.css">
 <script type="text/javascript" src="js/constants.js"></script>
 <script type="text/javascript" src="js/options.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#232323" media="(prefers-color-scheme: dark)">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 </head>
 <body class="light">
 
 <div id="loading">
 <div id="loadingcenter">
 <div id="productwelcomeimageload">
-    <div class="icon">
-        <img id="loadinglamp" alt="Proper Menubar" width="16" height="16" src="icons/icon16.png" srcset="icons/icon16.png 1x, icons/icon16@2x.png 2x">Proper Menubar™</div>
-</div>
+	<div class="icon">
+		<img id="loadinglamp" alt="Proper Menubar" width="16" height="16" src="icons/icon16.png" srcset="icons/icon16.png 1x, icons/icon16@2x.png 2x">Proper Menubar™</div>
+	</div>
 <div id="progressbar"><div id="progress"><div id="pbaranim"></div></div></div>
 </div>
-<span id="loadinghelp"><span data-i18n="pagestillloading"></span> <a href="https://www.stefanvd.net/support" target="_blank" data-i18n="pagehelp" rel="noopener"></a>!</span>
+<span id="loadinghelp"><span data-i18n="pagestillloading"></span> <a href="https://www.stefanvd.net/support/" target="_blank" data-i18n="pagehelp" rel="noopener"></a>!</span>
 </div>
 
 <div id="main-content" role="main">
@@ -58,7 +61,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 		<div class="masterhead">
 			<div class="title" id="titleex">
 				<div class="icon">
-					<img id="headlamp" width="16" height="16" alt="Proper Menubar browser extension plus">
+					<img id="headlamp" loading="lazy" width="16" height="16" alt="Full Screen browser extension button" src="icons/icon16.png" srcset="icons/icon16.png 1x, icons/icon16@2x.png 2x">
 				</div>
 				Proper Menubar™</div>
 			<div class="search">
@@ -119,13 +122,15 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 	</ul>
 	</div>
 	<div id="mainview">
-		<h1 class="hidden"><span data-i18n="optionpagetitle"></span></h1>
+		<h1 data-i18n="optionpagetitle" class="hidden"></h1>
 		<div id="managed-prefs-banner">
-			<span id="managed-prefs-icon">
-				<a class="donatebutton" target="_blank" href="https://www.stefanvd.net/donate.htm" data-i18n="titledonatebutton" rel="noopener"></a>
-			</span>
-			<span id="managed-prefs-text" data-i18n="donatepromotext"></span>
-			<div id="managed-prefs-text-close">x</div>
+			<div class="donate-content">
+				<span id="managed-prefs-icon">
+					<a class="donatebutton" target="_blank" href="https://www.stefanvd.net/donate/" data-i18n="titledonatebutton" rel="noopener"></a>
+				</span>
+				<span id="managed-prefs-text" data-i18n="donatepromotext"></span>
+				<div id="managed-prefs-text-close">x</div>
+			</div>
 		</div>
 		<div id="mainview-content">
 			<div id="tab1" class="page">
@@ -241,18 +246,18 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 					<table id="toolbarcustomplace">
 						<tr>
 							<td></td>
-						   	<td></td>
-						  	<td></td>
+							<td></td>
+							<td></td>
 						</tr>
 						<tr>
-						  <td colspan="2"><select id="googlebarDomainsBox" name="menubarentryList" size="15" multiple="" aria-label="The products in the box"></select></td>
-						  <td valign="top">
-							<button type="button" id="googlebarremovebutton" name="delete"><span data-i18n="deletebutton"></span></button>
-							<br><br>
-							<button type="button" id="googlebarupbutton" name="up"><span data-i18n="upbutton"></span></button>
-							<br><br>
-							<button type="button" id="googlebardownbutton" name="down"><span data-i18n="downbutton"></span></button>
-						</td>					  
+							<td colspan="2"><select id="googlebarDomainsBox" name="menubarentryList" size="15" multiple="" aria-label="The products in the box"></select></td>
+							<td valign="top">
+								<button type="button" id="googlebarremovebutton" name="delete"><span data-i18n="deletebutton"></span></button>
+								<br><br>
+								<button type="button" id="googlebarupbutton" name="up"><span data-i18n="upbutton"></span></button>
+								<br><br>
+								<button type="button" id="googlebardownbutton" name="down"><span data-i18n="downbutton"></span></button>
+							</td>
 						</tr>
 					</table>
 				</form>
@@ -285,13 +290,13 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				<form id="formtoolbar">
 					<table id="toolbarwhitelist">
 						<tr>
-						  <td><span data-i18n="titelwebsite"></span>:</td>
-						   <td><input id="toolbarwebsiteurl"  type="url" required pattern="(https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*))|((https?|ftp)://)?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})" placeholder="https://www.example.com"  aria-label="The URL box to type a website for the Finance feature"></td>
-						  <td><button type="submit" id="toolbaraddbutton" name="add"><span data-i18n="addbutton"></span></button></td>
+							<td><span data-i18n="titelwebsite"></span>:</td>
+							<td><input id="toolbarwebsiteurl" type="url" required pattern="(https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*))|((https?|ftp)://)?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})" placeholder="https://www.example.com"aria-label="The URL box to type a website for the Finance feature"></td>
+							<td><button type="submit" id="toolbaraddbutton" name="add"><span data-i18n="addbutton"></span></button></td>
 						</tr>
 						<tr>
-						  <td colspan="2"><select id="toolbarDomainsBox" name="toolbarentryList" size="3" multiple="" aria-label="The website URLs in the box"></select></td>
-						  <td valign="top"><button type="button" id="toolbarremovebutton" name="delete"><span data-i18n="deletebutton"></span></button></td>					  
+							<td colspan="2"><select id="toolbarDomainsBox" name="toolbarentryList" size="3" multiple="" aria-label="The website URLs in the box"></select></td>
+							<td valign="top"><button type="button" id="toolbarremovebutton" name="delete"><span data-i18n="deletebutton"></span></button></td>
 						</tr>
 					</table>
 				</form>
@@ -517,49 +522,83 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 		</div>
 	</div>
 <!-- dialog -->
-			<div id="materialModalRate" class="hide" role="dialog" aria-label="Review this extension" aria-describedby="materialModalRateTitle" aria-disabled="true">
-						<div id="materialModalRateCentered">
-							<div id="materialModalRateContent">
-								<img src="images/star.svg" alt="Review Proper Menubar to 5 stars">
-								<div id="materialModalRateTitle"><span data-i18n="friendlyremember"></span></div>
-								<div id="materialModalRateText">
-									<span data-i18n="desremrate"></span>
-								</div>
-								<div id="materialModalRateButtons">
-								<div id="materialModalRateButtonOK" class="materialModalButton"><span data-i18n="titlelratenow"></span></div>
-								<div id="materialModalRateButtonCANCEL" class="materialModalButton"><span data-i18n="titleratelater"></span></div>
-								</div>
-							</div>
-						</div>
+<div id="materialModalYouTube" class="hide" role="dialog" aria-label="Learn more on the YouTube Channel" aria-describedby="materialModalYouTubeTitle" aria-disabled="true">
+	<div id="materialModalYouTubeCentered">
+		<div id="materialModalYouTubeContent">
+			<picture>
+				<source srcset="/images/youtube-blog.webp 1x, /images/youtube-blog@2x.webp 2x" type="image/webp">
+				<source srcset="/images/youtube-blog.png 1x, /images/youtube-blog@2x.png 2x" type="image/png"> 
+				<img alt="YouTube Stefan Van Damme" loading="lazy" width="117" height="49" src="/images/youtube-blog@2x.png">
+			</picture>
+			<div id="materialModalYouTubeTitle"><span data-i18n="titleyoutube"></span></div>
+			<div id="materialModalYouTubeText">
+				<span data-i18n="desyoutube"></span>
 			</div>
-			<div id="materialModalIntroduce" class="hide" role="dialog" aria-label="Introduce the new design" aria-describedby="materialModalIntroduceTitle" aria-disabled="true">
-					<div id="materialModalIntroduceCentered">
-						<div id="materialModalIntroduceContent">
-							<img src="images/introduce.svg" alt="Introducing Proper Menubar">
-							<div id="materialModalIntroduceTitle"><span data-i18n="titelintroduce"></span></div>
-							<div id="materialModalIntroduceText">
-								<span data-i18n="desintroduce"></span>
-							</div>
-							<div id="materialModalIntroduceButtons">
-							<div id="materialModalIntroduceButtonOK" class="materialModalButton"><span data-i18n="titleok"></span></div>
-							<div id="materialModalIntroduceButtonCANCEL" class="materialModalButton"><span data-i18n="titlecancel"></span></div>
-							</div>
-						</div>
+			<div id="materialModalYouTubeButtons">
+				<div id="materialModalYouTubeButtonOK" class="materialModalButton"><span data-i18n="titlesub"></span></div>
+				<div id="materialModalYouTubeButtonCANCEL" class="materialModalButton"><span data-i18n="titlelater"></span></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="materialModalRate" class="hide" role="dialog" aria-label="Review this extension" aria-describedby="materialModalRateTitle" aria-disabled="true">
+	<div id="materialModalRateCentered">
+		<div id="materialModalRateContent">
+			<div id="ratepage0">
+				<div class="ratetitle"><span data-i18n="desratetitle"></span></div>
+				<div class="ratedes" ><span data-i18n="destapstar"></span></div>
+				<div class="starrating">
+					<div class="rating">
+						<input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Awesome!">5 stars</label>
+						<input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Pretty good">4 stars</label>
+						<input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Meh">3 stars</label>
+						<input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Kinda bad">2 stars</label>
+						<input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Very bad">1 star</label>
 					</div>
+				</div>
+				<div id="materialModalRateButtons">
+					<div id="materialModalRateButtonCANCEL" class="materialModalButton"><span data-i18n="desratenotnowthanks"></span></div>
+				</div>
 			</div>
-			<div id="dropmenu" class="hide">
-				<ul><li id="btnactivedarkmode">
-					<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-					width="16" height="16"
-					viewBox="0 0 30 30">
-					<path d="M22,21c-6.627,0-12-5.373-12-12c0-1.95,0.475-3.785,1.3-5.412C6.485,5.148,3,9.665,3,15c0,6.627,5.373,12,12,12 c4.678,0,8.72-2.682,10.7-6.588C24.534,20.79,23.292,21,22,21z"></path></svg>
-					<span id="currentdarkmode" data-i18n="titledarkmodeoff"></span></li></ul>
-				<ul><li id="btnsupport">
-						<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-						width="16" height="16"
-						viewBox="0 0 24 24"><g><path d="M 20 2 L 4 2 C 2.894531 2 2 2.894531 2 4 L 2 22 L 6 18 L 20 18 C 21.105469 18 22 17.105469 22 16 L 22 4 C 22 2.894531 21.105469 2 20 2 Z M 13 14 L 11 14 L 11 12 L 13 12 Z M 15 9 C 15 9.378906 14.789063 9.71875 14.449219 9.890625 L 13 10.621094 L 13 11 L 11 11 L 11 10 C 11 9.621094 11.210938 9.28125 11.550781 9.109375 L 13 8.378906 L 13 7 L 11 7 L 11 8.078125 L 9 8.078125 L 9 6 C 9 5.449219 9.449219 5 10 5 L 14 5 C 14.550781 5 15 5.449219 15 6 Z "></path></g></svg>
-						<span data-i18n="titelpopupsupport"></span></li></ul>
+			<div id="ratepage1high" class="hidden">
+				<div class="rateactiontext">
+					<div class="ratetitle"><span data-i18n="desrategoodtitle"></span></div>
+					<div class="desrate">
+						<span data-i18n="desrategood"></span>
+					</div>
+				</div>
+				<div id="materialModalRateButtons">
+					<div id="materialModalRateButtonWriteOK" class="materialModalButton"><span data-i18n="desrategoodaction"></span></div>
+					<div id="materialModalRateButtonWriteCANCEL" class="materialModalButton"><span data-i18n="desratenothanks"></span></div>
+				</div>
 			</div>
+			<div id="ratepage1low" class="hidden">
+				<div class="rateactiontext">
+					<div class="ratetitle"><span data-i18n="desratebadtitle"></span></div>
+					<div class="desrate">
+						<span data-i18n="desratebad"></span>
+					</div>
+				</div>
+				<div id="materialModalRateButtons">
+					<div id="materialModalButtonSupportOK" class="materialModalButton"><span data-i18n="desratebadaction"></span></div>
+					<div id="materialModalButtonSupportCANCEL" class="materialModalButton"><span data-i18n="desratenothanks"></span></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="dropmenu" class="hide">
+	<ul>
+		<li id="btnactivedarkmodeauto">
+			<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="16" height="16" viewBox="0 0 24 24" id="icondarkauto"><g><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"></path></g></svg><span data-i18n="titledarkmodeauto"></span></li>
+		<li id="btnactivedarkmodeoff">
+			<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="16" height="16" viewBox="0 0 24 24" id="icondarkoff"><g><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"></path></g></svg><span data-i18n="titledarkmodeoff"></span></li>
+		<li id="btnactivedarkmodeon">
+			<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="16" height="16" viewBox="0 0 24 24" id="icondarkon"><g><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"></path></g></svg><span data-i18n="titledarkmodeon"></span></li>
+		<li id="btnsupport" class="topline">
+			<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="16" height="16" viewBox="0 0 24 24"><g><path d="M 20 2 L 4 2 C 2.894531 2 2 2.894531 2 4 L 2 22 L 6 18 L 20 18 C 21.105469 18 22 17.105469 22 16 L 22 4 C 22 2.894531 21.105469 2 20 2 Z M 13 14 L 11 14 L 11 12 L 13 12 Z M 15 9 C 15 9.378906 14.789063 9.71875 14.449219 9.890625 L 13 10.621094 L 13 11 L 11 11 L 11 10 C 11 9.621094 11.210938 9.28125 11.550781 9.109375 L 13 8.378906 L 13 7 L 11 7 L 11 8.078125 L 9 8.078125 L 9 6 C 9 5.449219 9.449219 5 10 5 L 14 5 C 14.550781 5 15 5.449219 15 6 Z "></path></g></svg><span data-i18n="titelpopupsupport"></span></li>
+	</ul>
+</div>
 </div>
 <script type="text/javascript" src="js/translate.js"></script>
 </body>

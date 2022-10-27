@@ -202,11 +202,14 @@ ul#navbar li a svg{margin-right:24px;fill:var(--totl-sidebar-icon-background)}
 section{position:relative;-webkit-box-orient:horizontal;border-bottom:var(--totl-section-border);display:-webkit-box;padding-top:20px;padding-bottom:20px;width:100%}
 section>h3{font-size:105%;font-weight:700;margin:0;width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 section>div:only-of-type{-webkit-box-flex:1}
-#websitezoom input[type=url]{width:475px;float:left}
+#websitezoom input[type=url]{width:300px;float:left;box-sizing:border-box}
 #screenzoom input[type=text]{width:90px;float:left;margin-right:4px}
-#websitezoomBox{width:495px}
+.detectbox{width:calc(100% - 94px)}
+.singlebox{width:60px}
+#websitezoomBox{width:calc(100% - 64px)}
 #screenzoomBox{width:300px}
 #websitezoomnumberBox,#screenzoomnumberBox{width:60px}
+#screenzoomaddbutton,#screenzoomremovebutton,#websitezoomaddbutton,#websitezoomremovebutton{width:100%;max-width:123px;text-overflow:ellipsis;white-space:nowrap}
 /* Hyperlinks */
 #mainview-content section a{color:rgb(51, 103, 214);text-decoration:underline}
 #mainview-content section a:active{color:rgb(51, 103, 214)}
@@ -350,6 +353,10 @@ input[type=range][disabled]::-moz-range-thumb{background-color:var(--totl-range-
 .md-color input[type=color]{position:absolute;right:-25px;top:-5px;width:102px;height:30px;border:none;margin:0;padding:0}
 .md-color label div{vertical-align:middle;display:inline;box-sizing:border-box}
 .md-color label{display:inline-block}
+/* Description */
+.md-desbox{position:relative;margin:16px 0;box-sizing:border-box}
+/* Form */
+form{position:relative;margin:16px 0;box-sizing:border-box}
 /* Checkbox */
 .md-checkbox{position:relative;margin:16px 0;box-sizing:border-box}
 .md-checkbox label{cursor:pointer;box-sizing:border-box;min-height:20px;display:grid;align-items:center}
@@ -406,7 +413,7 @@ input[type=time]:hover,input[type=number]:hover,input[type=password]:hover,input
 input[type=time]:focus,input[type=number]:focus,input[type=password]:focus,input[type=text]:focus,input:not([type]):focus{border-bottom:var(--totl-input-other-border-focus)}
 input[type=url]{background:var(--totl-input-url-background);color:var(--totl-input-url-color);padding:10px;box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);border:none;outline:none;font-size:13px}
 /* special */
-#websitezoomnumber,#screenzoomnumber,#screenzoomname{width:39px;padding:10px;background-color:var(--totl-input-other-multi-background);color:var(--totl-input-url-color);box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);border:none;outline:none;font-size:13px;height:auto}
+#websitezoomnumber,#screenzoomnumber,#screenzoomname{width:60px;padding:10px;background-color:var(--totl-input-other-multi-background);color:var(--totl-input-url-color);box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);border:none;outline:none;font-size:13px;height:auto;box-sizing:border-box}
 #websitezoomnumber[disabled],#screenzoomnumber[disabled],#screenzoomname[disabled]{box-shadow:none;background-color:var(--totl-input-url-disabled-background);color:var(--totl-input-url-disabled-color)}
 /* Disable url */
 input[type=url][disabled]{box-shadow:none;background-color:var(--totl-input-url-disabled-background);color:var(--totl-input-url-disabled-color)}
@@ -488,11 +495,10 @@ only screen and (max-device-width:480px){
   .suggpanel{width:100%}
   .videopreview{width:100%;padding-right:0}
   .videopreview iframe{width:100%;height:auto}
-  #websitezoom{margin-left:0px}
-  #websitezoom input[type=url]{width:85px;float:left}
-  #websitezoomBox{width:105px}
-  #screenzoom input[type=text]{width:86px;margin-right:0}
-  #screenzoomBox{width:105px}
+  #websitezoom{margin-left:0px;width:100%}
+  #websitezoom input[type=url]{width:100%;float:left}
+  #websitezoomBox{width:calc(100% - 64px)}
+  #screenzoomBox{width:calc(100% - 64px)}
   #ayh{font-size:12px;right:15px}
   #tllo{font-size:11px;top:26px;right:15px}
   .stars{font-size:24px;top:14px;left:15px}
