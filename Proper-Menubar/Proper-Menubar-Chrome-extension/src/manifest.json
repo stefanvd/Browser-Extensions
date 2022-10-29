@@ -70,5 +70,5 @@
   "minimum_chrome_version": "103",
   "offline_enabled": true,
   "permissions": [ "contextMenus", "activeTab", "storage"],
-  "optional_permissions": [ "pageCapture","clipboardWrite","clipboardRead","bookmarks"]
+  "optional_permissions": [ "pageCapture", "clipboardWrite", "clipboardRead", "bookmarks"]
 }

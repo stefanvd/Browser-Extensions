@@ -318,11 +318,12 @@ header .rightmenu:hover{background:var(--totl-svg-fill-color-hover);cursor:point
 #dropmenu.hide{display:none}
 #dropmenu.show{display:block}
 #dropmenu ul{line-height:48px;list-style:none;margin:0;padding:0}
-#dropmenu{box-shadow:0 2px 4px 0 rgba(0,0,0,0.16),0 2px 8px 0 rgba(0,0,0,0.12);position:absolute;top:42px;right:24px;width:200px;z-index:800;background:var(--totl-primary-background);padding:10px 0px}
+#dropmenu{box-shadow:0 2px 4px 0 rgba(0,0,0,0.16),0 2px 8px 0 rgba(0,0,0,0.12);position:absolute;top:42px;right:calc(24px + env(safe-area-inset-right));width:200px;z-index:800;background:var(--totl-primary-background);padding:10px 0px}
 #dropmenu svg{position:relative;top:3px;margin-right:10px;fill: var(--totl-sidebar-icon-background)}
 #dropmenu ul li{height:48px;user-select:none;padding:0px 16px;color:var(--totl-primary-font-color);cursor:pointer}
 #dropmenu ul li:hover{background-color:var(--totl-dropmenu-li-background-hover)}
 #dropmenu ul li:active{background-color:var(--totl-dropmenu-li-background-active)}
+#dropmenu ul li.topline{border-top:var(--totl-section-border)}
 #menu{-webkit-user-select:none;user-select:none;z-index:399;position:absolute;top:5px;left:5px;height:45px;width:45px;border-radius:50%}
 #menu:hover{ background:var(--totl-menu-background-hover);cursor:pointer}
 #menuToggle{height:12px;width:20px;border-radius:50%;position:absolute;top:0;bottom:0;margin:auto;left:0;right:0}

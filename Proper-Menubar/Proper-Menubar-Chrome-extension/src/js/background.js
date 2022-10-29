@@ -66,16 +66,16 @@ chrome.runtime.onMessage.addListener(function request(request, sender, sendRespo
 			}
 		});
 	}else if(request.name == "stefanchromeabout"){
-		chrome.tabs.create({url: newabout});
+		chrome.tabs.create({url: browserabout});
 	}else if(request.name == "stefanbookmarkmanager"){
-		chrome.tabs.create({url: newbookmarks});
+		chrome.tabs.create({url: browserbookmarks});
 	}else if(request.name == "stefanhometab"){
 		chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
 			var tab = tabs[0];
 			chrome.tabs.update(tab.id, {url: browsernewtab});
 		});
 	}else if(request.name == "stefanhistory"){
-		chrome.tabs.create({url: newhistory});
+		chrome.tabs.create({url: browserhistory});
 	}else if(request.name == "stefansavemhtml"){
 		// Permissions must be requested from inside a user gesture
 		chrome.permissions.request({
@@ -134,10 +134,10 @@ chrome.runtime.onMessage.addListener(function request(request, sender, sendRespo
 			}
 		});
 	}else if(request.name == "stefansettings"){
-		chrome.tabs.create({url: newsettings});
+		chrome.tabs.create({url: browsersettings});
 	}else if(request.name == "stefanzoomin"){
 		chrome.tabs.query({active: true}, function(tabs){
-			tabId = tabs[0].id;
+			var tabId = tabs[0].id;
 			chrome.tabs.getZoom(tabId, function(zoomFactor){
 				zoomFactor += .05;
 				chrome.tabs.setZoom(tabId, zoomFactor);
@@ -145,7 +145,7 @@ chrome.runtime.onMessage.addListener(function request(request, sender, sendRespo
 		});
 	}else if(request.name == "stefanzoomout"){
 		chrome.tabs.query({active: true}, function(tabs){
-			tabId = tabs[0].id;
+			var tabId = tabs[0].id;
 			chrome.tabs.getZoom(tabId, function(zoomFactor){
 				var a = zoomFactor;
 				var b = .05;
@@ -155,7 +155,7 @@ chrome.runtime.onMessage.addListener(function request(request, sender, sendRespo
 		});
 	}else if(request.name == "stefanzoomactual"){
 		chrome.tabs.query({active: true}, function(tabs){
-			tabId = tabs[0].id;
+			var tabId = tabs[0].id;
 			chrome.tabs.setZoom(tabId, 1);
 		});
 	}else if(request.name == "stefanbookmarkadd"){
@@ -199,9 +199,7 @@ chrome.runtime.onMessage.addListener(function request(request, sender, sendRespo
 					// Finding the selected tab.
 					if(window.tabs[i].active){
 						foundSelected = true;
-					}
-					// Finding the next tab.
-					else if(foundSelected){
+					}else if(foundSelected){
 						// Selecting the next tab.
 						chrome.tabs.update(window.tabs[i].id, {active: true});
 						return;
@@ -213,13 +211,11 @@ chrome.runtime.onMessage.addListener(function request(request, sender, sendRespo
 			function(window){
 				var foundSelected = false;
 				for(var i = window.tabs.length - 1; i >= 0; i--){
-					// Finding the selected tab.
+					// Finding the selected tab
 					if(window.tabs[i].active){
 						foundSelected = true;
-					}
-					// Finding the next tab.
-					else if(foundSelected){
-						// Selecting the next tab.
+					}else if(foundSelected){
+						// Selecting the next tab
 						chrome.tabs.update(window.tabs[i].id, {active: true});
 						return;
 					}
@@ -227,12 +223,12 @@ chrome.runtime.onMessage.addListener(function request(request, sender, sendRespo
 			});
 	}else if(request.name == "stefanduplicatetab"){
 		chrome.tabs.query({active: true}, function(tabs){
-			tabId = tabs[0].id;
+			var tabId = tabs[0].id;
 			chrome.tabs.duplicate(tabId);
 		});
 	}else if(request.name == "stefanpintab"){
 		chrome.tabs.query({active: true}, function(tabs){
-			tabId = tabs[0].id;
+			var tabId = tabs[0].id;
 			var pinned = tabs[0].pinned;
 			if(pinned){
 				chrome.tabs.update(tabId, {pinned: false});
@@ -244,7 +240,7 @@ chrome.runtime.onMessage.addListener(function request(request, sender, sendRespo
 		return true;
 	}else if(request.name == "stefanmutetab"){
 		chrome.tabs.query({active: true}, function(tabs){
-			tabId = tabs[0].id;
+			var tabId = tabs[0].id;
 			var muted = tabs[0].mutedInfo.muted;
 			if(muted){
 				chrome.tabs.update(tabId, {muted: false});
@@ -284,15 +280,15 @@ chrome.runtime.onMessage.addListener(function request(request, sender, sendRespo
 			chrome.windows.update(window.id, {state: "maximized"});
 		});
 	}else if(request.name == "stefandownloads"){
-		chrome.windows.create({url: newdownloads});
+		chrome.windows.create({url: browserdownloads});
 	}else if(request.name == "stefanextensions"){
-		chrome.windows.create({url: newextensions});
+		chrome.windows.create({url: browserextensions});
 	}else if(request.name == "stefanpolicy"){
-		chrome.windows.create({url: newpolicy});
+		chrome.windows.create({url: browserpolicy});
 	}else if(request.name == "stefaninspect"){
-		chrome.windows.create({url: newinspect});
+		chrome.windows.create({url: browserinspect});
 	}else if(request.name == "stefanflags"){
-		chrome.windows.create({url: newflags});
+		chrome.windows.create({url: browserflags});
 	}else if(request.name == "stefanremovebar"){
 		chrome.tabs.query({active: true}, function(tabs){
 			for(var i = 0; i < tabs.length; i++){
@@ -371,6 +367,10 @@ chrome.runtime.onMessage.addListener(function request(request, sender, sendRespo
 			result = permissions.permissions;
 			chrome.tabs.sendMessage(sender.tab.id, {text: "receiveallpermissions", value: result});
 		});
+	}else if(request.name == "contextmenuon"){
+		checkcontextmenus();
+	}else if(request.name == "contextmenuoff"){
+		removecontexmenus();
 	}
 });
 
@@ -397,16 +397,39 @@ chrome.tabs.onHighlighted.addListener(function(){
 });
 
 // contextMenus
-function onClickHandler(info, tab){
-	if(info.menuItemId == "totlguideemenu"){ window.open(linkguide, "_blank"); }else if(info.menuItemId == "totldevelopmenu"){ window.open(donatewebsite, "_blank"); }else if(info.menuItemId == "totlratemenu"){ window.open(writereview, "_blank"); }else if(info.menuItemId == "totlsharemenu"){ window.open(propermenubarwebsite, "_blank"); }else if(info.menuItemId == "totlshareemail"){ window.open("mailto:youremail?subject=Proper Menubar extension&body=Hé, This is amazing. I just tried today this Proper Menubar browser extension" + propermenubarproduct + "", "_blank"); }else if(info.menuItemId == "totlsharetwitter"){ var spropermenubarproductcodeurl = encodeURIComponent("The Best and Amazing Proper Menubar browser extension " + propermenubarproduct + ""); window.open("https://twitter.com/home?status=" + spropermenubarproductcodeurl + "", "_blank"); }else if(info.menuItemId == "totlsharefacebook"){ window.open("https://www.facebook.com/sharer/sharer.php?u=" + propermenubarproduct, "_blank"); }else if(info.menuItemId == "totlsubscribe"){ chrome.tabs.create({url: linkyoutube, active:true}); }
+function onClickHandler(info){
+	if(info.menuItemId == "totlguideemenu"){
+		chrome.tabs.create({url: linkguide, active:true});
+	}else if(info.menuItemId == "totldevelopmenu"){
+		chrome.tabs.create({url: linkdonate, active:true});
+	}else if(info.menuItemId == "totlratemenu"){
+		chrome.tabs.create({url: writereview, active:true});
+	}else if(info.menuItemId == "totlshareemail"){
+		var sturnoffthelightemail = "mailto:your@email.com?subject=" + chrome.i18n.getMessage("sharetexta") + "&body=" + chrome.i18n.getMessage("sharetextb") + " " + linkproduct; chrome.tabs.create({url: sturnoffthelightemail, active:true});
+	}else if(info.menuItemId == "totlsharetwitter"){
+		var slinkproductcodeurl = encodeURIComponent(chrome.i18n.getMessage("sharetextd") + " " + linkproduct); chrome.tabs.create({url: "https://twitter.com/intent/tweet?text=" + slinkproductcodeurl, active:true});
+	}else if(info.menuItemId == "totlsharefacebook"){
+		chrome.tabs.create({url: "https://www.facebook.com/sharer/sharer.php?u=" + linkproduct, active:true});
+	}else if(info.menuItemId == "totlsubscribe"){
+		chrome.tabs.create({url: linkyoutube, active:true});
+	}else if(info.menuItemId == "totlshareqq"){
+		chrome.tabs.create({url: "https://connect.qq.com/widget/shareqq/index.html?url=" + encodeURIComponent(linkproduct) + "&title=" + encodeURIComponent(chrome.i18n.getMessage("sharetextd")), active:true});
+	}else if(info.menuItemId == "totlshareweibo"){
+		chrome.tabs.create({url: "https://service.weibo.com/share/share.php?url=" + linkproduct + "&title=" + encodeURIComponent(chrome.i18n.getMessage("sharetextd")), active:true});
+	}else if(info.menuItemId == "totlsharevkontakte"){
+		chrome.tabs.create({url: "https://vk.com/share.php?url=" + linkproduct, active:true});
+	}else if(info.menuItemId == "totlsharewhatsapp"){
+		chrome.tabs.create({url: "https://api.whatsapp.com/send?text=" + chrome.i18n.getMessage("sharetextd") + "%0a" + linkproduct, active:true});
+	}
 }
 
 // check to remove all contextmenus
-chrome.contextMenus.removeAll(function(){
-// console.log("contextMenus.removeAll callback");
-});
+if(chrome.contextMenus){
+	chrome.contextMenus.removeAll(function(){
+	// console.log("contextMenus.removeAll callback");
+	});
+}
 
-// pageaction
 var sharemenusharetitle = chrome.i18n.getMessage("sharemenusharetitle");
 var sharemenuwelcomeguidetitle = chrome.i18n.getMessage("sharemenuwelcomeguidetitle");
 var sharemenutellafriend = chrome.i18n.getMessage("sharemenutellafriend");
@@ -415,52 +438,105 @@ var sharemenupostonfacebook = chrome.i18n.getMessage("sharemenupostonfacebook");
 var sharemenuratetitle = chrome.i18n.getMessage("sharemenuratetitle");
 var sharemenudonatetitle = chrome.i18n.getMessage("sharemenudonatetitle");
 var sharemenusubscribetitle = chrome.i18n.getMessage("desremyoutube");
+var sharemenupostonweibo = chrome.i18n.getMessage("sharemenupostonweibo");
+var sharemenupostonvkontakte = chrome.i18n.getMessage("sharemenupostonvkontakte");
+var sharemenupostonwhatsapp = chrome.i18n.getMessage("sharemenupostonwhatsapp");
+var sharemenupostonqq = chrome.i18n.getMessage("sharemenupostonqq");
 
-var contexts = ["browser_action"];
-try{
-	// try show web browsers that do support "icons"
-	// Firefox, Opera, Microsoft Edge
-	chrome.contextMenus.create({"title": sharemenuwelcomeguidetitle, "type":"normal", "id": "totlguideemenu", "contexts": contexts, "icons": {"16": "images/IconGuide.png", "32": "images/IconGuide@2x.png"}});
-	chrome.contextMenus.create({"title": sharemenudonatetitle, "type":"normal", "id": "totldevelopmenu", "contexts": contexts, "icons": {"16": "images/IconDonate.png", "32": "images/IconDonate@2x.png"}});
-	chrome.contextMenus.create({"title": sharemenuratetitle, "type":"normal", "id": "totlratemenu", "contexts": contexts, "icons": {"16": "images/IconStar.png", "32": "images/IconStar@2x.png"}});
-}catch(e){
-	// catch web browsers that do NOT show the icon
-	// Google Chrome
-	chrome.contextMenus.create({"title": sharemenuwelcomeguidetitle, "type":"normal", "id": "totlguideemenu", "contexts": contexts});
-	chrome.contextMenus.create({"title": sharemenudonatetitle, "type":"normal", "id": "totldevelopmenu", "contexts": contexts});
-	chrome.contextMenus.create({"title": sharemenuratetitle, "type":"normal", "id": "totlratemenu", "contexts": contexts});
+function browsercontext(a, b, c, d){
+	var item = {"title": a, "type": "normal", "id": b, "contexts": contexts};
+	var newitem;
+	if(d != ""){
+		item = Object.assign({}, item, {parentId: d});
+	}
+	if(c != ""){
+		newitem = Object.assign({}, item, {icons: c});
+	}
+	try{
+		// try show web browsers that do support "icons"
+		// Firefox, Opera, Microsoft Edge
+		return chrome.contextMenus.create(newitem);
+	}catch(e){
+		// catch web browsers that do NOT show the icon
+		// Google Chrome
+		return chrome.contextMenus.create(item);
+	}
 }
 
-// Create a parent item and two children.
-try{
-	// try show web browsers that do support "icons"
-	// Firefox, Opera, Microsoft Edge
-	var parent = chrome.contextMenus.create({"title": sharemenusharetitle, "id": "totlsharemenu", "contexts": contexts, "icons": {"16": "images/IconShare.png", "32": "images/IconShare@2x.png"}});
-	var child1 = chrome.contextMenus.create({"title": sharemenutellafriend, "id": "totlshareemail", "contexts": contexts, "parentId": parent, "icons": {"16": "images/IconEmail.png", "32": "images/IconEmail@2x.png"}});
-	chrome.contextMenus.create({"title": "", "type":"separator", "id": "totlsepartorshare", "contexts": contexts, "parentId": parent});
-	var child2 = chrome.contextMenus.create({"title": sharemenusendatweet, "id": "totlsharetwitter", "contexts": contexts, "parentId": parent, "icons": {"16": "images/IconTwitter.png", "32": "images/IconTwitter@2x.png"}});
-	var child3 = chrome.contextMenus.create({"title": sharemenupostonfacebook, "id": "totlsharefacebook", "contexts": contexts, "parentId": parent, "icons": {"16": "images/IconFacebook.png", "32": "images/IconFacebook@2x.png"}});
-}catch(e){
-	// catch web browsers that do NOT show the icon
-	// Google Chrome
-	var parent = chrome.contextMenus.create({"title": sharemenusharetitle, "id": "totlsharemenu", "contexts": contexts});
-	var child1 = chrome.contextMenus.create({"title": sharemenutellafriend, "id": "totlshareemail", "contexts": contexts, "parentId": parent});
-	chrome.contextMenus.create({"title": "", "type":"separator", "id": "totlsepartorshare", "contexts": contexts, "parentId": parent});
-	var child2 = chrome.contextMenus.create({"title": sharemenusendatweet, "id": "totlsharetwitter", "contexts": contexts, "parentId": parent});
-	var child3 = chrome.contextMenus.create({"title": sharemenupostonfacebook, "id": "totlsharefacebook", "contexts": contexts, "parentId": parent});
-}
+var actionmenuadded = false;
+if(chrome.contextMenus){
+	if(actionmenuadded == false){
+		actionmenuadded = true;
 
-chrome.contextMenus.create({"title": "", "type":"separator", "id": "totlsepartor", "contexts": contexts});
-try{
-	// try show web browsers that do support "icons"
-	// Firefox, Opera, Microsoft Edge
-	chrome.contextMenus.create({"title": sharemenusubscribetitle, "type":"normal", "id": "totlsubscribe", "contexts":contexts, "icons": {"16": "images/IconYouTube.png", "32": "images/IconYouTube@2x.png"}});
-}catch(e){
-	// catch web browsers that do NOT show the icon
-	// Google Chrome
-	chrome.contextMenus.create({"title": sharemenusubscribetitle, "type":"normal", "id": "totlsubscribe", "contexts":contexts});
+		var contexts = ["action"];
+
+		browsercontext(sharemenuwelcomeguidetitle, "totlguideemenu", {"16": "images/IconGuide.png", "32": "images/IconGuide@2x.png"});
+		browsercontext(sharemenudonatetitle, "totldevelopmenu", {"16": "images/IconDonate.png", "32": "images/IconDonate@2x.png"});
+		browsercontext(sharemenuratetitle, "totlratemenu", {"16": "images/IconStar.png", "32": "images/IconStar@2x.png"});
+
+		// Create a parent item and two children.
+		var parent = null;
+		parent = browsercontext(sharemenusharetitle, "totlsharemenu", {"16": "images/IconShare.png", "32": "images/IconShare@2x.png"});
+		browsercontext(sharemenutellafriend, "totlshareemail", {"16": "images/IconEmail.png", "32": "images/IconEmail@2x.png"}, parent);
+		chrome.contextMenus.create({"title": "", "type":"separator", "id": "totlsepartorshare", "contexts": contexts, "parentId": parent});
+
+		var uiLanguage = chrome.i18n.getUILanguage();
+		if(uiLanguage.includes("zh")){
+			// Chinese users
+			browsercontext(sharemenupostonweibo, "totlshareweibo", {"16": "images/IconWeibo.png", "32": "images/IconWeibo@2x.png"}, parent);
+			browsercontext(sharemenupostonqq, "totlshareqq", {"16": "images/IconQQ.png", "32": "images/IconQQ@2x.png"}, parent);
+		}else if(uiLanguage.includes("ru")){
+			// Russian users
+			browsercontext(sharemenupostonvkontakte, "totlsharevkontakte", {"16": "images/IconVkontakte.png", "32": "images/IconVkontakte@2x.png"}, parent);
+			browsercontext(sharemenupostonfacebook, "totlsharefacebook", {"16": "images/IconFacebook.png", "32": "images/IconFacebook@2x.png"}, parent);
+			browsercontext(sharemenupostonwhatsapp, "totlsharewhatsapp", {"16": "images/IconWhatsApp.png", "32": "images/IconWhatsApp@2x.png"}, parent);
+			browsercontext(sharemenusendatweet, "totlsharetwitter", {"16": "images/IconTwitter.png", "32": "images/IconTwitter@2x.png"}, parent);
+		}else{
+			// all users
+			browsercontext(sharemenupostonfacebook, "totlsharefacebook", {"16": "images/IconFacebook.png", "32": "images/IconFacebook@2x.png"}, parent);
+			browsercontext(sharemenupostonwhatsapp, "totlsharewhatsapp", {"16": "images/IconWhatsApp.png", "32": "images/IconWhatsApp@2x.png"}, parent);
+			browsercontext(sharemenusendatweet, "totlsharetwitter", {"16": "images/IconTwitter.png", "32": "images/IconTwitter@2x.png"}, parent);
+		}
+
+		chrome.contextMenus.create({"title": "", "type":"separator", "id": "totlsepartor", "contexts": contexts});
+		browsercontext(sharemenusubscribetitle, "totlsubscribe", {"16": "images/IconYouTube.png", "32": "images/IconYouTube@2x.png"});
+
+		chrome.contextMenus.onClicked.addListener(onClickHandler);
+	}
 }
 chrome.contextMenus.onClicked.addListener(onClickHandler);
+
+chrome.storage.sync.get(["contextmenus"], function(items){
+	if(items["contextmenus"]){ checkcontextmenus(); }
+});
+
+// context menu for page
+var menupage = null;
+var contextmenuadded = false;
+var contextarraypage = [];
+var contextspage = null;
+
+var pagetitle = chrome.i18n.getMessage("pagetitle");
+function checkcontextmenus(){
+	if(chrome.contextMenus){
+		if(contextmenuadded == false){
+			contextmenuadded = true;
+
+			// page
+			var contextspage = ["page"];
+			menupage = chrome.contextMenus.create({"title": pagetitle, "type":"normal", "id": "pmpage", "contexts":contextspage});
+			contextarraypage.push(menupage);
+		}
+	}
+}
+
+function removecontexmenus(){
+	if(contextspage != null){
+		chrome.contextMenus.remove("pmpage");
+	}
+	contextspage = null;
+	contextmenuadded = false;
+}
 
 chrome.commands.onCommand.addListener(function(command){
 	if(command == "toggle-feature-propermenubar"){
@@ -491,7 +567,14 @@ function refreshtoolbar(){
 	});
 }
 
+function onchangestorage(a, b, c, d){
+	if(a[b]){
+		if(a[b].newValue == true){ c(); }else{ d(); }
+	}
+}
+
 chrome.storage.onChanged.addListener(function(changes){
+	onchangestorage(changes, "contextmenus", checkcontextmenus, removecontexmenus);
 	if(changes["googleproducts"]){ if(changes["googleproducts"].newValue){ refreshtoolbar(); } }
 	if(changes["menuproducts"]){ if(changes["menuproducts"].newValue){ refreshtoolbar(); } }
 	if(changes["googlebarDomains"]){ if(changes["googlebarDomains"].newValue){ refreshtoolbar(); } }
@@ -535,3 +618,11 @@ function installation(){
 chrome.runtime.onInstalled.addListener(function(){
 	installation();
 });
+
+/*
+TODO
++ emails
++ shortcut key combination
++ popup panel design
++ bug file menu do not work
+*/

@@ -43,7 +43,7 @@ function save_options(){
 
 	var googlebarDomainsBox = $("googlebarDomainsBox");
 	var googlebarDomains = {};
-	for(var i = 0; i < googlebarDomainsBox.length; i++){ googlebarDomains[googlebarDomainsBox.options[i].value] = true; }
+	for(var j = 0; j < googlebarDomainsBox.length; j++){ googlebarDomains[googlebarDomainsBox.options[j].value] = true; }
 
 	chrome.storage.sync.set({"opacity": $("opacity").value, "country":$("country").value, "backgroundhex":$("backgroundhex").value, "backgroundimagesource":$("backgroundimagesource").value, "backgroundcolor":$("backgroundcolor").checked, "backgroundimage":$("backgroundimage").checked, "dropshadow":$("dropshadow").checked, "allsites":$("allsites").checked, "fontcolor":$("fontcolor").value, "googlesites":$("googlesites").checked, "search":$("search").checked, "existingtab":$("existingtab").checked, "toolbarDomains": JSON.stringify(toolbarDomains), "optionskipremember":$("optionskipremember").checked, "display":$("display").value, "hovertextcolor":$("hovertextcolor").value, "hoverbackground":$("hoverbackground").value, "getpositiontop": $("getpositiontop").checked, "getpositionbottom": $("getpositionbottom").checked, "toolbarwhite": $("toolbarwhite").checked, "toolbarblack": $("toolbarblack").checked, "toolbaronly":$("toolbaronly").checked, "googleproducts":$("googleproducts").checked, "menuproducts":$("menuproducts").checked, "googlebarDomains": JSON.stringify(googlebarDomains)});
 }
@@ -242,7 +242,6 @@ function read_options(){
 			$("managed-prefs-banner").className = "hidden";
 		}
 
-
 		// load tab div
 		var tabListItems = $("navbar").childNodes;
 		var i, l = tabListItems.length;
@@ -289,8 +288,11 @@ function read_options(){
 			for(var domain in toolbarDomains)
 				abuf.push(domain);
 			abuf.sort();
-			for(var i = 0; i < abuf.length; i++)
-				appendToListBox("toolbarDomainsBox", abuf[i]);
+
+			var bari;
+			var barl = abuf.length;
+			for(bari = 0; bari < barl; bari++)
+				appendToListBox("toolbarDomainsBox", abuf[bari]);
 		}
 
 		// google bar - Excluded domains - sort these alphabetically
@@ -301,10 +303,14 @@ function read_options(){
 		if(typeof googlebarDomains == "string"){
 			googlebarDomains = JSON.parse(googlebarDomains);
 			var gbuf = [];
-			for(var domain in googlebarDomains)
-				gbuf.push(domain);
-			for(var i = 0; i < gbuf.length; i++)
-				tagappendToListBox("googlebarDomainsBox", gbuf[i]);
+			for(var sdomain in googlebarDomains)
+				gbuf.push(sdomain);
+			gbuf.sort();
+
+			var webi;
+			var webl = gbuf.length;
+			for(webi = 0; webi < webl; webi++)
+				tagappendToListBox("googlebarDomainsBox", gbuf[webi]);
 		}
 
 		test(); // do the test
@@ -394,7 +400,9 @@ function moveproductdown(){
 		excludedstockBox.selectedIndex = i + 1;
 		ariacheck();
 		save_options();
-	}catch(e){}
+	}catch(e){
+		// console.log(e);
+	}
 }
 
 function moveproductup(){
@@ -410,7 +418,9 @@ function moveproductup(){
 		excludedstockBox.selectedIndex = i - 1;
 		ariacheck();
 		save_options();
-	}catch(e){}
+	}catch(e){
+		// console.log(e);
+	}
 }
 
 function test(){
@@ -712,7 +722,7 @@ function domcontentloaded(){
 	// promotion
 	$("promotext").innerText = chrome.i18n.getMessage("donatetext");
 	$("spnpromoaction").innerText = chrome.i18n.getMessage("donatecalltoaction");
-	$("btnpromoaction").addEventListener("click", function(){ window.open(donatewebsite); });
+	$("btnpromoaction").addEventListener("click", function(){ window.open(linkdonate); });
 
 	// Detect click / change to save the page and test it.
 	var inputs = document.querySelectorAll("input");
@@ -771,11 +781,11 @@ function domcontentloaded(){
 	// toolbar Remove website
 	$("toolbarremovebutton").addEventListener("click", function(){ toolbarremoveSelectedExcludedDomain(); });
 
-	// googlebar Add product
-	var inputs, index;
-	inputs = $("tagbox").getElementsByClassName("tags");
-	for(index = 0; index < inputs.length; ++index){
-		inputs[index].addEventListener("click", function(event){
+	// Google bar Add product
+	var barinputs, barindex;
+	barinputs = $("tagbox").getElementsByClassName("tags");
+	for(barindex = 0; barindex < barinputs.length; ++barindex){
+		barinputs[barindex].addEventListener("click", function(){
 			var prod = this.id; prod = prod.substr(3);
 			tagappendToListBox("googlebarDomainsBox", prod);
 			ariacheck();
@@ -797,8 +807,8 @@ function domcontentloaded(){
 			}else{
 				// The permissions have not been removed (e.g., you tried to remove
 				// required permissions).
-				var txtpermission = chrome.i18n.getMessage("wpermissionnotremoved");
-				window.alert(txtpermission);
+				var txtpermissionnot = chrome.i18n.getMessage("wpermissionnotremoved");
+				window.alert(txtpermissionnot);
 			}
 		});
 	});
@@ -814,8 +824,8 @@ function domcontentloaded(){
 			}else{
 				// The permissions have not been removed (e.g., you tried to remove
 				// required permissions).
-				var txtpermission = chrome.i18n.getMessage("wpermissionnotremoved");
-				window.alert(txtpermission);
+				var txtpermissionnot = chrome.i18n.getMessage("wpermissionnotremoved");
+				window.alert(txtpermissionnot);
 			}
 		});
 	});
@@ -831,8 +841,8 @@ function domcontentloaded(){
 			}else{
 				// The permissions have not been removed (e.g., you tried to remove
 				// required permissions).
-				var txtpermission = chrome.i18n.getMessage("wpermissionnotremoved");
-				window.alert(txtpermission);
+				var txtpermissionnot = chrome.i18n.getMessage("wpermissionnotremoved");
+				window.alert(txtpermissionnot);
 			}
 		});
 	});
@@ -848,8 +858,8 @@ function domcontentloaded(){
 			}else{
 				// The permissions have not been removed (e.g., you tried to remove
 				// required permissions).
-				var txtpermission = chrome.i18n.getMessage("wpermissionnotremoved");
-				window.alert(txtpermission);
+				var txtpermissionnot = chrome.i18n.getMessage("wpermissionnotremoved");
+				window.alert(txtpermissionnot);
 			}
 		});
 	});

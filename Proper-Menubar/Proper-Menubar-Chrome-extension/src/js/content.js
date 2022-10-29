@@ -51,13 +51,147 @@ function hex2rgb(hex){
 	};
 }
 
+var el;
+function SD(id){ return el.shadowRoot.getElementById(id); }
+
+function createmenubar(a, b, c, d, e){
+	var newdropdowncontent = SD(e);
+	if(!newdropdowncontent){
+		var newdropdown = document.createElement("label");
+		newdropdown.setAttribute("for", e);
+		newtoolbarul.appendChild(newdropdown);
+
+		var newinputcheck = document.createElement("input");
+		newinputcheck.setAttribute("id", e);
+		newinputcheck.setAttribute("type", "checkbox");
+		newinputcheck.setAttribute("name", "ppcontrol");
+		newinputcheck.addEventListener("change", function(event){
+			if(event.target.id == e){
+				if(event.target.checked == true){
+					var inputs, index;
+					inputs = newtoolbarul.getElementsByTagName("input");
+					for(index = 0; index < inputs.length; ++index){
+						if(inputs[index].id != event.target.id){
+							inputs[index].checked = false;
+						}
+					}
+				}
+			}
+		}, false);
+		newdropdown.appendChild(newinputcheck);
+
+		var newdropdowna = document.createElement("a");
+		newdropdowna.style.color = fontcolor;
+		newdropdowna.innerHTML = d;
+		newdropdown.appendChild(newdropdowna);
+
+		var rgb = hex2rgb(backgroundhex);
+		var newdropdowncontentpart = document.createElement("div");
+		newdropdowncontentpart.setAttribute("id", c);
+		newdropdowncontentpart.setAttribute("class", c);
+		if(getpositiontop == true){
+			newdropdowncontentpart.style.top = height;
+		}else{
+			newdropdowncontentpart.style.bottom = height;
+		}
+		newdropdowncontentpart.style.background = "rgba(" + rgb.red + "," + rgb.green + "," + rgb.blue + "," + (opacity / 100) + ")";
+		newdropdown.appendChild(newdropdowncontentpart);
+	}
+	// create the link
+	var newdropdowncontentlink = SD(c);
+	var newdropdowncontentulb;
+	if(newdropdowncontentlink.getElementsByTagName("ul")[0]){
+		newdropdowncontentulb = newdropdowncontent.getElementsByTagName("ul")[0];
+	}else{
+		newdropdowncontentulb = document.createElement("ul");
+		newdropdowncontentlink.appendChild(newdropdowncontentulb);
+	}
+
+	var newdropdowncontentli = document.createElement("li");
+	newdropdowncontentulb.appendChild(newdropdowncontentli);
+
+	var newdropdowncontentlia = document.createElement("a");
+	newdropdowncontentlia.setAttribute("id", b);
+	newdropdowncontentlia.style.color = fontcolor;
+	newdropdowncontentlia.innerHTML = a;
+	newdropdowncontentli.appendChild(newdropdowncontentlia);
+}
+
+function createline(a){
+	var hrelement = document.createElement("hr");
+	SD(a).getElementsByTagName("ul")[0].appendChild(hrelement);
+}
+
+var numberitems = 0;
+function createlink(a, b, c){
+	// only the first 13 in the bar, rest dropdown menu
+	if(numberitems < display){
+		var newtoolbarulli = document.createElement("li");
+		newtoolbarul.appendChild(newtoolbarulli);
+
+		var newtoolbarullia = document.createElement("a");
+		if(search != true){
+			if(existingtab == true){ newtoolbarullia.setAttribute("target", "_self"); }else{ newtoolbarullia.setAttribute("target", "_blank"); }
+		}
+
+		newtoolbarullia.setAttribute("id", c);
+		newtoolbarullia.style.color = fontcolor;
+		newtoolbarullia.innerHTML = a;
+		if(search != true){
+			newtoolbarullia.setAttribute("href", b);
+		}
+		newtoolbarulli.appendChild(newtoolbarullia);
+	}else{
+		newdropdowncontent = SD("stefanvdpropermenubardropdown");
+		if(!newdropdowncontent){
+			var newdropdown = document.createElement("li");
+			newdropdown.setAttribute("id", "stefanvdpropermenubardropdown");
+			newtoolbarul.appendChild(newdropdown);
+
+			var newdropdowna = document.createElement("a");
+			newdropdowna.setAttribute("id", "stefanvdpropermenubarmore");
+			newdropdowna.style.color = fontcolor;
+			newdropdowna.innerHTML = chrome.i18n.getMessage("linkmore");
+			newdropdowna.setAttribute("href", "#");
+			newdropdown.appendChild(newdropdowna);
+
+			var rgb = hex2rgb(backgroundhex);
+			var newdropdowncontentpart = document.createElement("div");
+			newdropdowncontentpart.setAttribute("id", "stefanvdpropermenubardropdowncontent");
+			newdropdowncontentpart.style.background = "rgba(" + rgb.red + "," + rgb.green + "," + rgb.blue + "," + (opacity / 100) + ")";
+			if(getpositiontop == true){
+				newdropdowncontentpart.style.top = height;
+			}else{
+				newdropdowncontentpart.style.bottom = height;
+			}
+			newdropdown.style.background = "rgba(" + rgb.red + "," + rgb.green + "," + rgb.blue + "," + (opacity / 100) + ")";
+			newdropdown.appendChild(newdropdowncontentpart);
+		}
+		// create the link
+		var newdropdowncontent = SD("stefanvdpropermenubardropdowncontent");
+		var newdropdowncontentli = document.createElement("li");
+		newdropdowncontent.appendChild(newdropdowncontentli);
+
+		var newdropdowncontentlia = document.createElement("a");
+		if(search != true){
+			if(existingtab == true){ newdropdowncontentlia.setAttribute("target", "_self"); }else{ newdropdowncontentlia.setAttribute("target", "_blank"); }
+		}
+		newdropdowncontentlia.setAttribute("id", c);
+		newdropdowncontentlia.style.color = fontcolor;
+		newdropdowncontentlia.innerHTML = a;
+		newdropdowncontentlia.setAttribute("href", b);
+		newdropdowncontentli.appendChild(newdropdowncontentlia);
+	}
+	numberitems = numberitems + 1;
+}
+
 window.addEventListener("load", function(){
 	chrome.runtime.sendMessage({name: "stefanproper"});
 }, true);
 
 var height;
 
-var skipPositionedChild = function(node, style){
+var skipPositionedChild = function(node){
 	if(this.offsetParent &&
          this.offsetParent.tagName !== "BODY")return true;
 	if(hasPositionedParent(node))return true;
@@ -78,9 +212,6 @@ function removetoolbar(){
 	var checkb = $("stefanvdpropermenubar");
 	if(checkb){
 		document.documentElement.removeChild(checkb);
-
-		var a = document.querySelectorAll("[data-propermenubar]");
-
 		var a = document.body.getElementsByTagName("*");
 		for(var i = 0, len = a.length; i < len; i++){
 			if(a[i].hasAttribute("data-spmtop")){
@@ -94,7 +225,6 @@ function removetoolbar(){
 			}
 			a[i].setAttribute("data-propermenubar", false);
 		}
-
 	}
 
 	var checkc = $("stefanvdproperblocksmall");
@@ -104,29 +234,32 @@ function removetoolbar(){
 }
 
 var taskchangepositiontop = false;
+var x, w, v, y, z, q;
+var newtoolbardiv;
+var newtoolbarul;
 function addtoolbar(){
 	var checka = $("stefanvdpropermenubar");
-	if(checka){}else{
+	if(!checka){
 		height = "30px";
 
 		var Children = document.body.getElementsByTagName("*");
 		for(var i = 0, len = Children.length; i < len; i++){
 
 			if(Children[i].currentStyle){
-				var x = Children[i].currentStyle["position"];
-				var w = Children[i].currentStyle["margin-top"];
-				var v = Children[i].currentStyle["margin-bottom"];
-				var y = Children[i].currentStyle["top"];
-				var z = Children[i].currentStyle["bottom"];
-				var q = Children[i].currentStyle["height"];
+				x = Children[i].currentStyle["position"];
+				w = Children[i].currentStyle["margin-top"];
+				v = Children[i].currentStyle["margin-bottom"];
+				y = Children[i].currentStyle["top"];
+				z = Children[i].currentStyle["bottom"];
+				q = Children[i].currentStyle["height"];
 			}else if(window.getComputedStyle){
 				var st = document.defaultView.getComputedStyle(Children[i], null);
-				var x = st.getPropertyValue("position");
-				var w = st.getPropertyValue("margin-top");
-				var v = st.getPropertyValue("margin-bottom");
-				var y = st.getPropertyValue("top");
-				var z = st.getPropertyValue("bottom");
-				var q = st.getPropertyValue("height");
+				x = st.getPropertyValue("position");
+				w = st.getPropertyValue("margin-top");
+				v = st.getPropertyValue("margin-bottom");
+				y = st.getPropertyValue("top");
+				z = st.getPropertyValue("bottom");
+				q = st.getPropertyValue("height");
 			}
 
 			if(getpositiontop == true){
@@ -167,7 +300,7 @@ function addtoolbar(){
 				}
 			}else{
 				if((x == "absolute" || x == "fixed") && z !== "auto"){
-					if(x === "absolute" && skipPositionedChild(Children[i])){}else{
+					if(x != "absolute" && !skipPositionedChild(Children[i])){
 						Children[i].setAttribute("data-propermenubar", true);
 						Children[i].setAttribute("data-spmbottom", w);
 						Children[i].style.marginBottom = parseInt(z, 10) + parseInt(height, 10) + "px";
@@ -215,7 +348,7 @@ function addtoolbar(){
 		document.documentElement.appendChild(frame);
 
 		//------
-		let el = document.querySelector("#stefanvdpropermenubar");
+		el = document.querySelector("#stefanvdpropermenubar");
 		el.attachShadow({mode: "open"});
 		// Just like prototype & constructor bi-directional references, we have...
 		// el.shadowRoot // the shadow root.
@@ -228,8 +361,6 @@ function addtoolbar(){
 		link.href = chrome.runtime.getURL("css/body.css");
 		link.media = "all";
 		el.shadowRoot.appendChild(link);
-
-		function SD(id){ return el.shadowRoot.getElementById(id); }
 		//----
 
 		// inject CSS for the hover effect
@@ -246,7 +377,9 @@ function addtoolbar(){
 			css.type = "text/css";
 			css.appendChild(document.createTextNode(pmcssbar));
 			el.shadowRoot.appendChild(css);
-		}catch(e){}
+		}catch(e){
+			// console.log(e);
+		}
 
 		//---
 		var newtoolbar = document.createElement("div");
@@ -276,78 +409,14 @@ function addtoolbar(){
 		}, false);
 		newtoolbar.appendChild(newtoolbarclose);
 
-
-		var newtoolbardiv = document.createElement("div");
+		newtoolbardiv = document.createElement("div");
 		newtoolbardiv.setAttribute("id", "stefanvdpropermenubarnav");
 		newtoolbar.appendChild(newtoolbardiv);
 
-		var newtoolbarul = document.createElement("ul");
+		newtoolbarul = document.createElement("ul");
 		newtoolbardiv.appendChild(newtoolbarul);
 
 		if(googleproducts == true){
-			var numberitems = 0;
-			function createlink(a, b, c){
-				// only the first 13 in the bar, rest dropdown menu
-				if(numberitems < display){
-					var newtoolbarulli = document.createElement("li");
-					newtoolbarul.appendChild(newtoolbarulli);
-
-					var newtoolbarullia = document.createElement("a");
-					if(search == true){}else{
-						if(existingtab == true){ newtoolbarullia.setAttribute("target", "_self"); }else{ newtoolbarullia.setAttribute("target", "_blank"); }
-					}
-
-					newtoolbarullia.setAttribute("id", c);
-					newtoolbarullia.style.color = fontcolor;
-					newtoolbarullia.innerHTML = a;
-					if(search == true){}else{
-						newtoolbarullia.setAttribute("href", b);
-					}
-					newtoolbarulli.appendChild(newtoolbarullia);
-				}else{
-					var newdropdowncontent = SD("stefanvdpropermenubardropdown");
-					if(newdropdowncontent){}else{
-						var newdropdown = document.createElement("li");
-						newdropdown.setAttribute("id", "stefanvdpropermenubardropdown");
-						newtoolbarul.appendChild(newdropdown);
-
-						var newdropdowna = document.createElement("a");
-						newdropdowna.setAttribute("id", "stefanvdpropermenubarmore");
-						newdropdowna.style.color = fontcolor;
-						newdropdowna.innerHTML = chrome.i18n.getMessage("linkmore");
-						newdropdowna.setAttribute("href", "#");
-						newdropdown.appendChild(newdropdowna);
-
-						var rgb = hex2rgb(backgroundhex);
-						var newdropdowncontent = document.createElement("div");
-						newdropdowncontent.setAttribute("id", "stefanvdpropermenubardropdowncontent");
-						newdropdowncontent.style.background = "rgba(" + rgb.red + "," + rgb.green + "," + rgb.blue + "," + (opacity / 100) + ")";
-						if(getpositiontop == true){
-							newdropdowncontent.style.top = height;
-						}else{
-							newdropdowncontent.style.bottom = height;
-						}
-						newdropdown.style.background = "rgba(" + rgb.red + "," + rgb.green + "," + rgb.blue + "," + (opacity / 100) + ")";
-						newdropdown.appendChild(newdropdowncontent);
-					}
-					// create the link
-					var newdropdowncontent = SD("stefanvdpropermenubardropdowncontent");
-					var newdropdowncontentli = document.createElement("li");
-					newdropdowncontent.appendChild(newdropdowncontentli);
-
-					var newdropdowncontentlia = document.createElement("a");
-					if(search == true){}else{
-						if(existingtab == true){ newdropdowncontentlia.setAttribute("target", "_self"); }else{ newdropdowncontentlia.setAttribute("target", "_blank"); }
-					}
-					newdropdowncontentlia.setAttribute("id", c);
-					newdropdowncontentlia.style.color = fontcolor;
-					newdropdowncontentlia.innerHTML = a;
-					newdropdowncontentlia.setAttribute("href", b);
-					newdropdowncontentli.appendChild(newdropdowncontentlia);
-				}
-				numberitems = numberitems + 1;
-			}
-
 			var i18nlink1a = chrome.i18n.getMessage("link1a");
 			var i18nlink2a = chrome.i18n.getMessage("link2a");
 			var i18nlink3a = chrome.i18n.getMessage("link3a");
@@ -407,60 +476,60 @@ function addtoolbar(){
 				var pbuf = [];
 				for(var domain in googlebarDomains)
 					pbuf.push(domain);
-				for(var i = 0; i < pbuf.length; i++){
-					if(pbuf[i] == "link1a"){ createlink(i18nlink1a, productlink1, "link1s"); }
-					if(pbuf[i] == "link2a"){ createlink(i18nlink2a, productlink2, "link2s"); }
-					if(pbuf[i] == "link3a"){ createlink(i18nlink3a, productlink3, "link3s"); }
-					if(pbuf[i] == "link4a"){ createlink(i18nlink4a, productlink4, "link4s"); }
-					if(pbuf[i] == "link5a"){ createlink(i18nlink5a, productlink5, "link5s"); }
-					if(pbuf[i] == "link6a"){ createlink(i18nlink6a, productlink6, "link6s"); }
-					if(pbuf[i] == "link7a"){ createlink(i18nlink7a, productlink7, "link7s"); }
-					if(pbuf[i] == "link8a"){ createlink(i18nlink8a, productlink8, "link8s"); }
-					if(pbuf[i] == "link9a"){ createlink(i18nlink9a, productlink9, "link9s"); }
-					if(pbuf[i] == "link10a"){ createlink(i18nlink10a, productlink10, "link10s"); }
-					if(pbuf[i] == "link11a"){ createlink(i18nlink11a, productlink11, "link11s"); }
-					if(pbuf[i] == "link12a"){ createlink(i18nlink12a, productlink12, "link12s"); }
-					if(pbuf[i] == "link13a"){ createlink(i18nlink13a, productlink13, "link13s"); }
-					if(pbuf[i] == "link14a"){ createlink(i18nlink14a, productlink14, "link14s"); }
-					if(pbuf[i] == "link15a"){ createlink(i18nlink15a, productlink15, "link15s"); }
-					if(pbuf[i] == "link16a"){ createlink(i18nlink16a, productlink16, "link16s"); }
-					if(pbuf[i] == "link17a"){ createlink(i18nlink17a, productlink17, "link17s"); }
-					if(pbuf[i] == "link18a"){ createlink(i18nlink18a, productlink18, "link18s"); }
-					if(pbuf[i] == "link19a"){ createlink(i18nlink19a, productlink19, "link19s"); }
-					if(pbuf[i] == "link20a"){ createlink(i18nlink20a, productlink20, "link20s"); }
-					if(pbuf[i] == "link22a"){ createlink(i18nlink22a, productlink22, "link22s"); }
-					if(pbuf[i] == "link23a"){ createlink(i18nlink23a, productlink23, "link23s"); }
-					if(pbuf[i] == "link24a"){ createlink(i18nlink24a, productlink24, "link24s"); }
-					if(pbuf[i] == "link25a"){ createlink(i18nlink25a, productlink25, "link25s"); }
-					if(pbuf[i] == "link26a"){ createlink(i18nlink26a, productlink26, "link26s"); }
-					if(pbuf[i] == "link27a"){ createlink(i18nlink27a, productlink27, "link27s"); }
-					if(pbuf[i] == "link28a"){ createlink(i18nlink28a, productlink28, "link28s"); }
-					if(pbuf[i] == "link29a"){ createlink(i18nlink29a, productlink29, "link29s"); }
-					if(pbuf[i] == "link30a"){ createlink(i18nlink30a, productlink30, "link30s"); }
-					if(pbuf[i] == "link31a"){ createlink(i18nlink31a, productlink31, "link31s"); }
-					if(pbuf[i] == "link32a"){ createlink(i18nlink32a, productlink32, "link32s"); }
-					if(pbuf[i] == "link33a"){ createlink(i18nlink33a, productlink33, "link33s"); }
-					if(pbuf[i] == "link34a"){ createlink(i18nlink34a, productlink34, "link34s"); }
-					if(pbuf[i] == "link35a"){ createlink(i18nlink35a, productlink35, "link35s"); }
-					if(pbuf[i] == "link36a"){ createlink(i18nlink36a, productlink36, "link36s"); }
-					if(pbuf[i] == "link37a"){ createlink(i18nlink37a, productlink37, "link37s"); }
-					if(pbuf[i] == "link38a"){ createlink(i18nlink38a, productlink38, "link38s"); }
-					if(pbuf[i] == "link39a"){ createlink(i18nlink39a, productlink39, "link39s"); }
-					if(pbuf[i] == "link40a"){ createlink(i18nlink40a, productlink40, "link40s"); }
-					if(pbuf[i] == "link41a"){ createlink(i18nlink41a, productlink41, "link41s"); }
-					if(pbuf[i] == "link42a"){ createlink(i18nlink42a, productlink42, "link42s"); }
-					if(pbuf[i] == "link43a"){ createlink(i18nlink43a, productlink43, "link43s"); }
-					if(pbuf[i] == "link44a"){ createlink(i18nlink44a, productlink44, "link44s"); }
-					if(pbuf[i] == "link45a"){ createlink(i18nlink45a, productlink45, "link45s"); }
-					if(pbuf[i] == "link46a"){ createlink(i18nlink46a, productlink46, "link46s"); }
-					if(pbuf[i] == "link47a"){ createlink(i18nlink47a, productlink47, "link47s"); }
-					if(pbuf[i] == "link48a"){ createlink(i18nlink48a, productlink48, "link48s"); }
-					if(pbuf[i] == "link49a"){ createlink(i18nlink49a, productlink49, "link49s"); }
-					if(pbuf[i] == "link50a"){ createlink(i18nlink50a, productlink50, "link50s"); }
-					if(pbuf[i] == "link51a"){ createlink(i18nlink51a, productlink51, "link51s"); }
-					if(pbuf[i] == "link52a"){ createlink(i18nlink52a, productlink52, "link52s"); }
-					if(pbuf[i] == "link53a"){ createlink(i18nlink53a, productlink53, "link53s"); }
-					if(pbuf[i] == "link21a"){ createlink(i18nlink21a, productlink21, "link21s"); }
+				for(var j = 0; j < pbuf.length; j++){
+					if(pbuf[j] == "link1a"){ createlink(i18nlink1a, productlink1, "link1s"); }
+					if(pbuf[j] == "link2a"){ createlink(i18nlink2a, productlink2, "link2s"); }
+					if(pbuf[j] == "link3a"){ createlink(i18nlink3a, productlink3, "link3s"); }
+					if(pbuf[j] == "link4a"){ createlink(i18nlink4a, productlink4, "link4s"); }
+					if(pbuf[j] == "link5a"){ createlink(i18nlink5a, productlink5, "link5s"); }
+					if(pbuf[j] == "link6a"){ createlink(i18nlink6a, productlink6, "link6s"); }
+					if(pbuf[j] == "link7a"){ createlink(i18nlink7a, productlink7, "link7s"); }
+					if(pbuf[j] == "link8a"){ createlink(i18nlink8a, productlink8, "link8s"); }
+					if(pbuf[j] == "link9a"){ createlink(i18nlink9a, productlink9, "link9s"); }
+					if(pbuf[j] == "link10a"){ createlink(i18nlink10a, productlink10, "link10s"); }
+					if(pbuf[j] == "link11a"){ createlink(i18nlink11a, productlink11, "link11s"); }
+					if(pbuf[j] == "link12a"){ createlink(i18nlink12a, productlink12, "link12s"); }
+					if(pbuf[j] == "link13a"){ createlink(i18nlink13a, productlink13, "link13s"); }
+					if(pbuf[j] == "link14a"){ createlink(i18nlink14a, productlink14, "link14s"); }
+					if(pbuf[j] == "link15a"){ createlink(i18nlink15a, productlink15, "link15s"); }
+					if(pbuf[j] == "link16a"){ createlink(i18nlink16a, productlink16, "link16s"); }
+					if(pbuf[j] == "link17a"){ createlink(i18nlink17a, productlink17, "link17s"); }
+					if(pbuf[j] == "link18a"){ createlink(i18nlink18a, productlink18, "link18s"); }
+					if(pbuf[j] == "link19a"){ createlink(i18nlink19a, productlink19, "link19s"); }
+					if(pbuf[j] == "link20a"){ createlink(i18nlink20a, productlink20, "link20s"); }
+					if(pbuf[j] == "link22a"){ createlink(i18nlink22a, productlink22, "link22s"); }
+					if(pbuf[j] == "link23a"){ createlink(i18nlink23a, productlink23, "link23s"); }
+					if(pbuf[j] == "link24a"){ createlink(i18nlink24a, productlink24, "link24s"); }
+					if(pbuf[j] == "link25a"){ createlink(i18nlink25a, productlink25, "link25s"); }
+					if(pbuf[j] == "link26a"){ createlink(i18nlink26a, productlink26, "link26s"); }
+					if(pbuf[j] == "link27a"){ createlink(i18nlink27a, productlink27, "link27s"); }
+					if(pbuf[j] == "link28a"){ createlink(i18nlink28a, productlink28, "link28s"); }
+					if(pbuf[j] == "link29a"){ createlink(i18nlink29a, productlink29, "link29s"); }
+					if(pbuf[j] == "link30a"){ createlink(i18nlink30a, productlink30, "link30s"); }
+					if(pbuf[j] == "link31a"){ createlink(i18nlink31a, productlink31, "link31s"); }
+					if(pbuf[j] == "link32a"){ createlink(i18nlink32a, productlink32, "link32s"); }
+					if(pbuf[j] == "link33a"){ createlink(i18nlink33a, productlink33, "link33s"); }
+					if(pbuf[j] == "link34a"){ createlink(i18nlink34a, productlink34, "link34s"); }
+					if(pbuf[j] == "link35a"){ createlink(i18nlink35a, productlink35, "link35s"); }
+					if(pbuf[j] == "link36a"){ createlink(i18nlink36a, productlink36, "link36s"); }
+					if(pbuf[j] == "link37a"){ createlink(i18nlink37a, productlink37, "link37s"); }
+					if(pbuf[j] == "link38a"){ createlink(i18nlink38a, productlink38, "link38s"); }
+					if(pbuf[j] == "link39a"){ createlink(i18nlink39a, productlink39, "link39s"); }
+					if(pbuf[j] == "link40a"){ createlink(i18nlink40a, productlink40, "link40s"); }
+					if(pbuf[j] == "link41a"){ createlink(i18nlink41a, productlink41, "link41s"); }
+					if(pbuf[j] == "link42a"){ createlink(i18nlink42a, productlink42, "link42s"); }
+					if(pbuf[j] == "link43a"){ createlink(i18nlink43a, productlink43, "link43s"); }
+					if(pbuf[j] == "link44a"){ createlink(i18nlink44a, productlink44, "link44s"); }
+					if(pbuf[j] == "link45a"){ createlink(i18nlink45a, productlink45, "link45s"); }
+					if(pbuf[j] == "link46a"){ createlink(i18nlink46a, productlink46, "link46s"); }
+					if(pbuf[j] == "link47a"){ createlink(i18nlink47a, productlink47, "link47s"); }
+					if(pbuf[j] == "link48a"){ createlink(i18nlink48a, productlink48, "link48s"); }
+					if(pbuf[j] == "link49a"){ createlink(i18nlink49a, productlink49, "link49s"); }
+					if(pbuf[j] == "link50a"){ createlink(i18nlink50a, productlink50, "link50s"); }
+					if(pbuf[j] == "link51a"){ createlink(i18nlink51a, productlink51, "link51s"); }
+					if(pbuf[j] == "link52a"){ createlink(i18nlink52a, productlink52, "link52s"); }
+					if(pbuf[j] == "link53a"){ createlink(i18nlink53a, productlink53, "link53s"); }
+					if(pbuf[j] == "link21a"){ createlink(i18nlink21a, productlink21, "link21s"); }
 				}
 			}
 
@@ -475,59 +544,59 @@ function addtoolbar(){
 				var pushnewtab = "_blank";
 				if(existingtab == true){ pushnewtab = "_self"; }else{ pushnewtab = "_blank"; }
 
-				if(SD("link1s")){ SD("link1s").addEventListener("click", function(e){ propopenurl(productlinksearch1, pushnewtab); }, false); }
-				if(SD("link2s")){ SD("link2s").addEventListener("click", function(e){ propopenurl(productlinksearch2, pushnewtab); }, false); }
-				if(SD("link3s")){ SD("link3s").addEventListener("click", function(e){ propopenurl(productlinksearch3, pushnewtab); }, false); }
-				if(SD("link4s")){ SD("link4s").addEventListener("click", function(e){ propopenurl(productlinksearch4, pushnewtab); }, false); }
-				if(SD("link5s")){ SD("link5s").addEventListener("click", function(e){ propopenurl(productlinksearch5, pushnewtab); }, false); }
-				if(SD("link6s")){ SD("link6s").addEventListener("click", function(e){ propopenurl(productlinksearch6, pushnewtab); }, false); }
-				if(SD("link7s")){ SD("link7s").addEventListener("click", function(e){ propopenurl(productlinksearch7, pushnewtab); }, false); }
-				if(SD("link8s")){ SD("link8s").addEventListener("click", function(e){ propopenurl(productlinksearch8, pushnewtab); }, false); }
-				if(SD("link9s")){ SD("link9s").addEventListener("click", function(e){ propopenurl(productlinksearch9, pushnewtab); }, false); }
-				if(SD("link10s")){ SD("link10s").addEventListener("click", function(e){ propopenurl(productlinksearch10, pushnewtab); }, false); }
-				if(SD("link11s")){ SD("link11s").addEventListener("click", function(e){ propopenurl(productlinksearch11, pushnewtab); }, false); }
-				if(SD("link12s")){ SD("link12s").addEventListener("click", function(e){ propopenurl(productlinksearch12, pushnewtab); }, false); }
-				if(SD("link13s")){ SD("link13s").addEventListener("click", function(e){ propopenurl(productlinksearch13, pushnewtab); }, false); }
-				if(SD("link14s")){ SD("link14s").addEventListener("click", function(e){ propopenurl(productlinksearch14, pushnewtab); }, false); }
-				if(SD("link15s")){ SD("link15s").addEventListener("click", function(e){ propopenurl(productlinksearch15, pushnewtab); }, false); }
-				if(SD("link16s")){ SD("link16s").addEventListener("click", function(e){ propopenurl(productlinksearch16, pushnewtab); }, false); }
-				if(SD("link17s")){ SD("link17s").addEventListener("click", function(e){ propopenurl(productlinksearch17, pushnewtab); }, false); }
-				if(SD("link18s")){ SD("link18s").addEventListener("click", function(e){ propopenurl(productlinksearch18, pushnewtab); }, false); }
-				if(SD("link19s")){ SD("link19s").addEventListener("click", function(e){ propopenurl(productlinksearch19, pushnewtab); }, false); }
-				if(SD("link20s")){ SD("link20s").addEventListener("click", function(e){ propopenurl(productlinksearch20, pushnewtab); }, false); }
-				if(SD("link22s")){ SD("link22s").addEventListener("click", function(e){ propopenurl(productlinksearch22, pushnewtab); }, false); }
-				if(SD("link23s")){ SD("link23s").addEventListener("click", function(e){ propopenurl(productlinksearch23, pushnewtab); }, false); }
-				if(SD("link24s")){ SD("link24s").addEventListener("click", function(e){ propopenurl(productlinksearch24, pushnewtab); }, false); }
-				if(SD("link25s")){ SD("link25s").addEventListener("click", function(e){ propopenurl(productlinksearch25, pushnewtab); }, false); }
-				if(SD("link26s")){ SD("link26s").addEventListener("click", function(e){ propopenurl(productlinksearch26, pushnewtab); }, false); }
-				if(SD("link27s")){ SD("link27s").addEventListener("click", function(e){ propopenurl(productlinksearch27, pushnewtab); }, false); }
-				if(SD("link28s")){ SD("link28s").addEventListener("click", function(e){ propopenurl(productlinksearch28, pushnewtab); }, false); }
-				if(SD("link29s")){ SD("link29s").addEventListener("click", function(e){ propopenurl(productlinksearch29, pushnewtab); }, false); }
-				if(SD("link30s")){ SD("link30s").addEventListener("click", function(e){ propopenurl(productlinksearch30, pushnewtab); }, false); }
-				if(SD("link31s")){ SD("link31s").addEventListener("click", function(e){ propopenurl(productlinksearch31, pushnewtab); }, false); }
-				if(SD("link32s")){ SD("link32s").addEventListener("click", function(e){ propopenurl(productlinksearch32, pushnewtab); }, false); }
-				if(SD("link33s")){ SD("link33s").addEventListener("click", function(e){ propopenurl(productlinksearch33, pushnewtab); }, false); }
-				if(SD("link34s")){ SD("link34s").addEventListener("click", function(e){ propopenurl(productlinksearch34, pushnewtab); }, false); }
-				if(SD("link35s")){ SD("link35s").addEventListener("click", function(e){ propopenurl(productlinksearch35, pushnewtab); }, false); }
-				if(SD("link36s")){ SD("link36s").addEventListener("click", function(e){ propopenurl(productlinksearch36, pushnewtab); }, false); }
-				if(SD("link37s")){ SD("link37s").addEventListener("click", function(e){ propopenurl(productlinksearch37, pushnewtab); }, false); }
-				if(SD("link38s")){ SD("link38s").addEventListener("click", function(e){ propopenurl(productlinksearch38, pushnewtab); }, false); }
-				if(SD("link39s")){ SD("link39s").addEventListener("click", function(e){ propopenurl(productlinksearch39, pushnewtab); }, false); }
-				if(SD("link40s")){ SD("link40s").addEventListener("click", function(e){ propopenurl(productlinksearch40, pushnewtab); }, false); }
-				if(SD("link41s")){ SD("link41s").addEventListener("click", function(e){ propopenurl(productlinksearch41, pushnewtab); }, false); }
-				if(SD("link42s")){ SD("link42s").addEventListener("click", function(e){ propopenurl(productlinksearch42, pushnewtab); }, false); }
-				if(SD("link43s")){ SD("link43s").addEventListener("click", function(e){ propopenurl(productlinksearch43, pushnewtab); }, false); }
-				if(SD("link44s")){ SD("link44s").addEventListener("click", function(e){ propopenurl(productlinksearch44, pushnewtab); }, false); }
-				if(SD("link45s")){ SD("link45s").addEventListener("click", function(e){ propopenurl(productlinksearch45, pushnewtab); }, false); }
-				if(SD("link46s")){ SD("link46s").addEventListener("click", function(e){ propopenurl(productlinksearch46, pushnewtab); }, false); }
-				if(SD("link47s")){ SD("link47s").addEventListener("click", function(e){ propopenurl(productlinksearch47, pushnewtab); }, false); }
-				if(SD("link48s")){ SD("link48s").addEventListener("click", function(e){ propopenurl(productlinksearch48, pushnewtab); }, false); }
-				if(SD("link49s")){ SD("link49s").addEventListener("click", function(e){ propopenurl(productlinksearch49, pushnewtab); }, false); }
-				if(SD("link50s")){ SD("link50s").addEventListener("click", function(e){ propopenurl(productlinksearch50, pushnewtab); }, false); }
-				if(SD("link51s")){ SD("link51s").addEventListener("click", function(e){ propopenurl(productlinksearch51, pushnewtab); }, false); }
-				if(SD("link52s")){ SD("link52s").addEventListener("click", function(e){ propopenurl(productlinksearch52, pushnewtab); }, false); }
-				if(SD("link53s")){ SD("link53s").addEventListener("click", function(e){ propopenurl(productlinksearch53, pushnewtab); }, false); }
-				if(SD("link21s")){ SD("link21s").addEventListener("click", function(e){ propopenurl(productlinksearch21, pushnewtab); }, false); }
+				if(SD("link1s")){ SD("link1s").addEventListener("click", function(){ propopenurl(productlinksearch1, pushnewtab); }, false); }
+				if(SD("link2s")){ SD("link2s").addEventListener("click", function(){ propopenurl(productlinksearch2, pushnewtab); }, false); }
+				if(SD("link3s")){ SD("link3s").addEventListener("click", function(){ propopenurl(productlinksearch3, pushnewtab); }, false); }
+				if(SD("link4s")){ SD("link4s").addEventListener("click", function(){ propopenurl(productlinksearch4, pushnewtab); }, false); }
+				if(SD("link5s")){ SD("link5s").addEventListener("click", function(){ propopenurl(productlinksearch5, pushnewtab); }, false); }
+				if(SD("link6s")){ SD("link6s").addEventListener("click", function(){ propopenurl(productlinksearch6, pushnewtab); }, false); }
+				if(SD("link7s")){ SD("link7s").addEventListener("click", function(){ propopenurl(productlinksearch7, pushnewtab); }, false); }
+				if(SD("link8s")){ SD("link8s").addEventListener("click", function(){ propopenurl(productlinksearch8, pushnewtab); }, false); }
+				if(SD("link9s")){ SD("link9s").addEventListener("click", function(){ propopenurl(productlinksearch9, pushnewtab); }, false); }
+				if(SD("link10s")){ SD("link10s").addEventListener("click", function(){ propopenurl(productlinksearch10, pushnewtab); }, false); }
+				if(SD("link11s")){ SD("link11s").addEventListener("click", function(){ propopenurl(productlinksearch11, pushnewtab); }, false); }
+				if(SD("link12s")){ SD("link12s").addEventListener("click", function(){ propopenurl(productlinksearch12, pushnewtab); }, false); }
+				if(SD("link13s")){ SD("link13s").addEventListener("click", function(){ propopenurl(productlinksearch13, pushnewtab); }, false); }
+				if(SD("link14s")){ SD("link14s").addEventListener("click", function(){ propopenurl(productlinksearch14, pushnewtab); }, false); }
+				if(SD("link15s")){ SD("link15s").addEventListener("click", function(){ propopenurl(productlinksearch15, pushnewtab); }, false); }
+				if(SD("link16s")){ SD("link16s").addEventListener("click", function(){ propopenurl(productlinksearch16, pushnewtab); }, false); }
+				if(SD("link17s")){ SD("link17s").addEventListener("click", function(){ propopenurl(productlinksearch17, pushnewtab); }, false); }
+				if(SD("link18s")){ SD("link18s").addEventListener("click", function(){ propopenurl(productlinksearch18, pushnewtab); }, false); }
+				if(SD("link19s")){ SD("link19s").addEventListener("click", function(){ propopenurl(productlinksearch19, pushnewtab); }, false); }
+				if(SD("link20s")){ SD("link20s").addEventListener("click", function(){ propopenurl(productlinksearch20, pushnewtab); }, false); }
+				if(SD("link22s")){ SD("link22s").addEventListener("click", function(){ propopenurl(productlinksearch22, pushnewtab); }, false); }
+				if(SD("link23s")){ SD("link23s").addEventListener("click", function(){ propopenurl(productlinksearch23, pushnewtab); }, false); }
+				if(SD("link24s")){ SD("link24s").addEventListener("click", function(){ propopenurl(productlinksearch24, pushnewtab); }, false); }
+				if(SD("link25s")){ SD("link25s").addEventListener("click", function(){ propopenurl(productlinksearch25, pushnewtab); }, false); }
+				if(SD("link26s")){ SD("link26s").addEventListener("click", function(){ propopenurl(productlinksearch26, pushnewtab); }, false); }
+				if(SD("link27s")){ SD("link27s").addEventListener("click", function(){ propopenurl(productlinksearch27, pushnewtab); }, false); }
+				if(SD("link28s")){ SD("link28s").addEventListener("click", function(){ propopenurl(productlinksearch28, pushnewtab); }, false); }
+				if(SD("link29s")){ SD("link29s").addEventListener("click", function(){ propopenurl(productlinksearch29, pushnewtab); }, false); }
+				if(SD("link30s")){ SD("link30s").addEventListener("click", function(){ propopenurl(productlinksearch30, pushnewtab); }, false); }
+				if(SD("link31s")){ SD("link31s").addEventListener("click", function(){ propopenurl(productlinksearch31, pushnewtab); }, false); }
+				if(SD("link32s")){ SD("link32s").addEventListener("click", function(){ propopenurl(productlinksearch32, pushnewtab); }, false); }
+				if(SD("link33s")){ SD("link33s").addEventListener("click", function(){ propopenurl(productlinksearch33, pushnewtab); }, false); }
+				if(SD("link34s")){ SD("link34s").addEventListener("click", function(){ propopenurl(productlinksearch34, pushnewtab); }, false); }
+				if(SD("link35s")){ SD("link35s").addEventListener("click", function(){ propopenurl(productlinksearch35, pushnewtab); }, false); }
+				if(SD("link36s")){ SD("link36s").addEventListener("click", function(){ propopenurl(productlinksearch36, pushnewtab); }, false); }
+				if(SD("link37s")){ SD("link37s").addEventListener("click", function(){ propopenurl(productlinksearch37, pushnewtab); }, false); }
+				if(SD("link38s")){ SD("link38s").addEventListener("click", function(){ propopenurl(productlinksearch38, pushnewtab); }, false); }
+				if(SD("link39s")){ SD("link39s").addEventListener("click", function(){ propopenurl(productlinksearch39, pushnewtab); }, false); }
+				if(SD("link40s")){ SD("link40s").addEventListener("click", function(){ propopenurl(productlinksearch40, pushnewtab); }, false); }
+				if(SD("link41s")){ SD("link41s").addEventListener("click", function(){ propopenurl(productlinksearch41, pushnewtab); }, false); }
+				if(SD("link42s")){ SD("link42s").addEventListener("click", function(){ propopenurl(productlinksearch42, pushnewtab); }, false); }
+				if(SD("link43s")){ SD("link43s").addEventListener("click", function(){ propopenurl(productlinksearch43, pushnewtab); }, false); }
+				if(SD("link44s")){ SD("link44s").addEventListener("click", function(){ propopenurl(productlinksearch44, pushnewtab); }, false); }
+				if(SD("link45s")){ SD("link45s").addEventListener("click", function(){ propopenurl(productlinksearch45, pushnewtab); }, false); }
+				if(SD("link46s")){ SD("link46s").addEventListener("click", function(){ propopenurl(productlinksearch46, pushnewtab); }, false); }
+				if(SD("link47s")){ SD("link47s").addEventListener("click", function(){ propopenurl(productlinksearch47, pushnewtab); }, false); }
+				if(SD("link48s")){ SD("link48s").addEventListener("click", function(){ propopenurl(productlinksearch48, pushnewtab); }, false); }
+				if(SD("link49s")){ SD("link49s").addEventListener("click", function(){ propopenurl(productlinksearch49, pushnewtab); }, false); }
+				if(SD("link50s")){ SD("link50s").addEventListener("click", function(){ propopenurl(productlinksearch50, pushnewtab); }, false); }
+				if(SD("link51s")){ SD("link51s").addEventListener("click", function(){ propopenurl(productlinksearch51, pushnewtab); }, false); }
+				if(SD("link52s")){ SD("link52s").addEventListener("click", function(){ propopenurl(productlinksearch52, pushnewtab); }, false); }
+				if(SD("link53s")){ SD("link53s").addEventListener("click", function(){ propopenurl(productlinksearch53, pushnewtab); }, false); }
+				if(SD("link21s")){ SD("link21s").addEventListener("click", function(){ propopenurl(productlinksearch21, pushnewtab); }, false); }
 			}
 		}else{
 			// Simple clean browser menu bar
@@ -579,20 +648,17 @@ function addtoolbar(){
 			var i18nmenu39a = chrome.i18n.getMessage("menu39a");
 			var i18nmenu40a = chrome.i18n.getMessage("menu40a");
 			var i18nmenu41a = chrome.i18n.getMessage("menu41a");
-			var i18nmenu42a = chrome.i18n.getMessage("menu42a");
+			// var i18nmenu42a = chrome.i18n.getMessage("menu42a");
 			var i18nmenu43a = chrome.i18n.getMessage("menu43a");
 			var i18nmenu44a = chrome.i18n.getMessage("menu44a");
 			var i18nmenu45a = chrome.i18n.getMessage("menu45a");
 			var i18nmenu46a = chrome.i18n.getMessage("menu46a");
 			var i18nmenu47a = chrome.i18n.getMessage("menu47a");
 
-			function createline(a){
-				var hrelement = document.createElement("hr");
-				SD(a).getElementsByTagName("ul")[0].appendChild(hrelement);
-			}
+
 
 			document.addEventListener("click", function(event){
-				if(event.target.id == "btnfile" || event.target.id == "btnedit" || event.target.id == "btnview" || event.target.id == "btnhistory" || event.target.id == "btnbookmarks" || event.target.id == "btnwindow" || event.target.id == "btnhelp" || event.target.id == "stefanvdpropermenubar"){}else{
+				if(event.target.id != "btnfile" || event.target.id != "btnedit" || event.target.id != "btnview" || event.target.id != "btnhistory" || event.target.id != "btnbookmarks" || event.target.id != "btnwindow" || event.target.id != "btnhelp" || event.target.id != "stefanvdpropermenubar"){
 					SD("btnfile").checked = false;
 					SD("btnedit").checked = false;
 					SD("btnview").checked = false;
@@ -602,69 +668,6 @@ function addtoolbar(){
 					SD("btnhelp").checked = false;
 				}
 			});
-
-			function createmenubar(a, b, c, d, e){
-				var newdropdowncontent = SD(e);
-				if(newdropdowncontent){}else{
-					var newdropdown = document.createElement("label");
-					newdropdown.setAttribute("for", e);
-					newtoolbarul.appendChild(newdropdown);
-
-					var newinputcheck = document.createElement("input");
-					newinputcheck.setAttribute("id", e);
-					newinputcheck.setAttribute("type", "checkbox");
-					newinputcheck.setAttribute("name", "ppcontrol");
-					newinputcheck.addEventListener("change", function(event){
-						if(event.target.id == e){
-							if(event.target.checked == true){
-								var inputs, index;
-								inputs = newtoolbarul.getElementsByTagName("input");
-								for(index = 0; index < inputs.length; ++index){
-									if(inputs[index].id != event.target.id){
-										inputs[index].checked = false;
-									}
-								}
-							}
-						}
-					}, false);
-					newdropdown.appendChild(newinputcheck);
-
-					var newdropdowna = document.createElement("a");
-					newdropdowna.style.color = fontcolor;
-					newdropdowna.innerHTML = d;
-					newdropdown.appendChild(newdropdowna);
-
-					var rgb = hex2rgb(backgroundhex);
-					var newdropdowncontent = document.createElement("div");
-					newdropdowncontent.setAttribute("id", c);
-					newdropdowncontent.setAttribute("class", c);
-					if(getpositiontop == true){
-						newdropdowncontent.style.top = height;
-					}else{
-						newdropdowncontent.style.bottom = height;
-					}
-					newdropdowncontent.style.background = "rgba(" + rgb.red + "," + rgb.green + "," + rgb.blue + "," + (opacity / 100) + ")";
-					newdropdown.appendChild(newdropdowncontent);
-				}
-				// create the link
-				var newdropdowncontent = SD(c);
-
-				if(newdropdowncontent.getElementsByTagName("ul")[0]){
-					var newdropdowncontentul = newdropdowncontent.getElementsByTagName("ul")[0];
-				}else{
-					var newdropdowncontentul = document.createElement("ul");
-					newdropdowncontent.appendChild(newdropdowncontentul);
-				}
-
-				var newdropdowncontentli = document.createElement("li");
-				newdropdowncontentul.appendChild(newdropdowncontentli);
-
-				var newdropdowncontentlia = document.createElement("a");
-				newdropdowncontentlia.setAttribute("id", b);
-				newdropdowncontentlia.style.color = fontcolor;
-				newdropdowncontentlia.innerHTML = a;
-				newdropdowncontentli.appendChild(newdropdowncontentlia);
-			}
 
 			// File
 			createmenubar(i18nmenu1a, "menu1s", "panelfile", i18nmenufile, "btnfile");
@@ -837,6 +840,7 @@ function addtoolbar(){
 			createmenubar(i18nmenu38a, "menu38s", "panelwindow", i18nmenuwindow, "btnwindow");
 			SD("menu38s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanmuteothertab"});
+				// i18nmenu42a
 			}, false);
 			createmenubar(i18nmenu39a, "menu39s", "panelwindow", i18nmenuwindow, "btnwindow");
 			SD("menu39s").addEventListener("click", function(){
@@ -884,27 +888,6 @@ function addtoolbar(){
 	}
 }
 
-// observeDOM - dynamic check
-var observeDOM = (function(){
-	var MutationObserver = window.MutationObserver || window.WebKitMutationObserver,
-		eventListenerSupported = window.addEventListener;
-
-	return function(obj, callback){
-		if(MutationObserver){
-			// define a new observer
-			var obs = new MutationObserver(function(mutations, observer){
-				if(mutations[0].addedNodes.length || mutations[0].removedNodes.length)
-					callback();
-			});
-			// have the observer observe foo for changes in children
-			obs.observe(obj, {childList:true, subtree:true, attributes: true, characterData: true});
-		}else if(eventListenerSupported){
-			obj.addEventListener("DOMNodeInserted", callback, false);
-			obj.addEventListener("DOMNodeRemoved", callback, false);
-		}
-	};
-})();
-
 // Observe a specific DOM element:
 if(document.body){
 	// B New Mutation Summary API Reference
@@ -912,7 +895,7 @@ if(document.body){
 	if(MutationObserver){
 	// setup MutationSummary observer
 		var videolist = document.body;
-		var observer = new MutationObserver(function(mutations, observer){
+		var observer = new MutationObserver(function(mutations){
 			if(addbar == true){
 
 				mutations.forEach(function(mutation){
@@ -949,26 +932,30 @@ if(document.body){
 }
 
 function propopenurl(a, b){
-	getkeyword();
-	openthat = a(country, keyword);
+	var thatkeyword = getkeyword();
+	var openthat = a(country, thatkeyword);
 	chrome.runtime.sendMessage({name: "stefanthaturl", url: openthat, tabaction: b});
 }
 
 function getkeyword(){
 	try{
 		var inputs = document.getElementsByTagName("input");
+		var index;
+		var keyword;
 		for(index = 0; index < inputs.length; ++index){
 			// deal with inputs[index] element.
 			if(inputs[index].getAttribute("name") == "q"){ keyword = inputs[index].value; }
 		}
-	}catch(e){}
+	}catch(e){
+		// console.log(e);
+	}
 	return keyword;
 }
 
-var addbar = null; var dropshadow = null; var allsites = null; var toolbaronly = null; var toolbarDomains = null; var getpositiontop = null; var getpositionbottom = null; var toolbarwhite = null; toolbarblack = null;
+var addbar = null; var dropshadow = null; var allsites = null; var toolbaronly = null; var toolbarDomains = null; var getpositiontop = null; var getpositionbottom = null; var toolbarwhite = null; var toolbarblack = null;
 var opacity = null; var backgroundcolor = null; var backgroundhex = null; var backgroundimagesource = null; var backgroundimage = null; var country = null; var fontcolor = null; var googlesites = null; var search = null; var existingtab = null; var display = null; var hovertextcolor = null; var hoverbackground = null; var googleproducts = null; var menuproducts = null; var googlebarDomains = null;
 
-chrome.runtime.onMessage.addListener(function(request, sender, sendMessage){
+chrome.runtime.onMessage.addListener(function(request){
 	if(request.action == "goselectall"){
 		var range = document.createRange();
 		range.selectNode(document.body);
@@ -991,7 +978,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendMessage){
 			country = items.country;
 			if(country == null){
 				var userLang = navigator.language || navigator.userLanguage;
-				if(userLang == "en-US"){ country = "com"; }else if(userLang == "en-UK"){ country = "co.uk"; }else if(userLang == "en-US"){ country = "com"; }else if(userLang == "en-IE"){ country = "ie"; }else if(userLang == "en-AU"){ country = "au"; }else if(userLang == "en-CA"){ country = "ca"; }else if(userLang == "ar-AR"){ country = "ar"; }else if(userLang == "de-DE"){ country = "de"; }else if(userLang == "ru-RU"){ country = "ru"; }else if(userLang == "it-IT"){ country = "it"; }else if(userLang == "es-ES"){ country = "es"; }else if(userLang == "ja-JP"){ country = "co.jp"; }else if(userLang == "pl-PL"){ country = "pl"; }else if(userLang == "pt-PT"){ country = "pt"; }else if(userLang == "nl-NL"){ country = "nl"; }else if(userLang == "nl-BE"){ country = "be"; }else if(userLang == "fi-FI"){ country = "fi"; }else if(userLang == "fr-CA"){ country = "ca"; }else if(userLang == "fr-BE"){ country = "be"; }else if(userLang == "fr-FR"){ country = "fr"; }else if(userLang == "uk-UK"){ country = "uk"; }else if(userLang == "sv-SV"){ country = "sv"; }else if(userLang == "th-TH"){ country = "th"; }else if(userLang == "tr-TR"){ country = "tr"; }else{ country = "com"; }
+				if(userLang == "en-US"){ country = "com"; }else if(userLang == "en-UK"){ country = "co.uk"; }else if(userLang == "en-IE"){ country = "ie"; }else if(userLang == "en-AU"){ country = "au"; }else if(userLang == "en-CA"){ country = "ca"; }else if(userLang == "ar-AR"){ country = "ar"; }else if(userLang == "de-DE"){ country = "de"; }else if(userLang == "ru-RU"){ country = "ru"; }else if(userLang == "it-IT"){ country = "it"; }else if(userLang == "es-ES"){ country = "es"; }else if(userLang == "ja-JP"){ country = "co.jp"; }else if(userLang == "pl-PL"){ country = "pl"; }else if(userLang == "pt-PT"){ country = "pt"; }else if(userLang == "nl-NL"){ country = "nl"; }else if(userLang == "nl-BE"){ country = "be"; }else if(userLang == "fi-FI"){ country = "fi"; }else if(userLang == "fr-CA"){ country = "ca"; }else if(userLang == "fr-BE"){ country = "be"; }else if(userLang == "fr-FR"){ country = "fr"; }else if(userLang == "uk-UK"){ country = "uk"; }else if(userLang == "sv-SV"){ country = "sv"; }else if(userLang == "th-TH"){ country = "th"; }else if(userLang == "tr-TR"){ country = "tr"; }else{ country = "com"; }
 				chrome.storage.sync.set({"country": country});
 			}
 			addbar = items["addbar"]; if(addbar == null)addbar = true;
@@ -1095,7 +1082,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendMessage){
 			country = items.country;
 			if(country == null){
 				var userLang = navigator.language || navigator.userLanguage;
-				if(userLang == "en-US"){ country = "com"; }else if(userLang == "en-UK"){ country = "co.uk"; }else if(userLang == "en-US"){ country = "com"; }else if(userLang == "en-IE"){ country = "ie"; }else if(userLang == "en-AU"){ country = "au"; }else if(userLang == "en-CA"){ country = "ca"; }else if(userLang == "ar-AR"){ country = "ar"; }else if(userLang == "de-DE"){ country = "de"; }else if(userLang == "ru-RU"){ country = "ru"; }else if(userLang == "it-IT"){ country = "it"; }else if(userLang == "es-ES"){ country = "es"; }else if(userLang == "ja-JP"){ country = "co.jp"; }else if(userLang == "pl-PL"){ country = "pl"; }else if(userLang == "pt-PT"){ country = "pt"; }else if(userLang == "nl-NL"){ country = "nl"; }else if(userLang == "nl-BE"){ country = "be"; }else if(userLang == "fi-FI"){ country = "fi"; }else if(userLang == "fr-CA"){ country = "ca"; }else if(userLang == "fr-BE"){ country = "be"; }else if(userLang == "fr-FR"){ country = "fr"; }else if(userLang == "uk-UK"){ country = "uk"; }else if(userLang == "sv-SV"){ country = "sv"; }else if(userLang == "th-TH"){ country = "th"; }else if(userLang == "tr-TR"){ country = "tr"; }else{ country = "com"; }
+				if(userLang == "en-US"){ country = "com"; }else if(userLang == "en-UK"){ country = "co.uk"; }else if(userLang == "en-IE"){ country = "ie"; }else if(userLang == "en-AU"){ country = "au"; }else if(userLang == "en-CA"){ country = "ca"; }else if(userLang == "ar-AR"){ country = "ar"; }else if(userLang == "de-DE"){ country = "de"; }else if(userLang == "ru-RU"){ country = "ru"; }else if(userLang == "it-IT"){ country = "it"; }else if(userLang == "es-ES"){ country = "es"; }else if(userLang == "ja-JP"){ country = "co.jp"; }else if(userLang == "pl-PL"){ country = "pl"; }else if(userLang == "pt-PT"){ country = "pt"; }else if(userLang == "nl-NL"){ country = "nl"; }else if(userLang == "nl-BE"){ country = "be"; }else if(userLang == "fi-FI"){ country = "fi"; }else if(userLang == "fr-CA"){ country = "ca"; }else if(userLang == "fr-BE"){ country = "be"; }else if(userLang == "fr-FR"){ country = "fr"; }else if(userLang == "uk-UK"){ country = "uk"; }else if(userLang == "sv-SV"){ country = "sv"; }else if(userLang == "th-TH"){ country = "th"; }else if(userLang == "tr-TR"){ country = "tr"; }else{ country = "com"; }
 				chrome.storage.sync.set({"country": country});
 			}
 			addbar = items["addbar"]; if(addbar == null)addbar = true;

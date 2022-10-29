@@ -64,12 +64,12 @@ body{background:var(--totl-body-background);color:var(--totl-primary-font-color)
 .hidden{display:none}
 hr{margin:0;border:0px;height:1px;background:var(--totl-hr-border)}
 .btnbox{margin:15px auto;left:0;right:0;width:calc(295px - 15px)}
-.btnbox .dbn{cursor:pointer;padding:5px;height:60px;width:60px;display:inline-block;float:left;vertical-align:top;margin:5px 10px;border:1px solid transparent;position:relative}
-.btnbox .dbn:hover{border:1px solid #ccc}
-.btnbox .dbn .lbl{color:var(--totl-primary-font-color);position:absolute;bottom:5px;font-size:11px;text-align:center;left:0;right:0;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}
-.btnbox .donatebck{background:rgb(255,215,64);border:1px solid #ffd740}
+.btnbox .dbn{cursor:pointer;padding:5px;height:60px;width:60px;display:block;float:left;margin:5px 10px;border:1px solid transparent;position:relative}
+.btnbox .donatebck{background:rgb(255,215,64);border:1px solid #ffd740;border-radius:8px}
 .btnbox .donatebck:hover{background:rgba(255,215,64,.6);border:1px solid #ffd740}
-.btnbox .donatebck .lbl{color:black}
+.btnbox .dbn:hover{background-color:#e8f0fe;border:1px solid transparent;border-radius:8px}
+.btnbox .dbn:hover .lbl{white-space:normal}
+.btnbox .dbn .lbl{color:var(--totl-primary-font-color);position:absolute;bottom:5px;font-size:11px;text-align:center;left:0;right:0;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}
 .textrate{text-align:center;font-size:30px;top:10px;left:0;right:0;position:absolute;color:#fcba49}
 .textdonate,.textsettings{text-align:center;font-size:30px;top:10px;left:0;right:0;position:absolute}
 .email{background:url(../images/email@2x.png)left top no-repeat;background:-webkit-image-set(url(../images/email.png) 1x,url(../images/email@2x.png) 2x);width:18px;height:18px;display:inline-block;background-size:cover;margin:auto;position:absolute;top:0;right:0;bottom:15px;left:0}
@@ -89,7 +89,7 @@ button[disabled],button[disabled]:hover{box-shadow:none;background-color:var(--t
 .palette .green{background-color:rgb(31,164,99)}
 .palette .green:active{background-color:rgba(31,164,99,.4)}
 .palette .green:hover{background-color:rgba(31,164,99,.2)}
-.palette .yellow{background-color:rgb(253,216,53);color:black;}
+.palette .yellow{background-color:rgb(253,216,53);color:black}
 .palette .yellow:active{background-color:rgba(253,216,53,.4)}
 .palette .yellow:hover{background-color:rgba(253,216,53,.2)}
 #stefanvdpropermenubar{display:flex;position:relative}

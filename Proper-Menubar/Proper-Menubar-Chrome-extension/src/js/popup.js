@@ -68,12 +68,129 @@ function toggleon(){
 	);
 }
 
+var numberitems = 0;
+function createlink(a, b, c){
+	// only the first 13 in the bar, rest dropdown menu
+	if(numberitems < display){
+		var newtoolbarulli = document.createElement("li");
+		newtoolbarul.appendChild(newtoolbarulli);
 
+		var newtoolbarullia = document.createElement("a");
+		if(existingtab == true){ newtoolbarullia.setAttribute("target", "_self"); }else{ newtoolbarullia.setAttribute("target", "_blank"); }
+
+		newtoolbarullia.setAttribute("id", c);
+		newtoolbarullia.style.color = fontcolor;
+		newtoolbarullia.innerHTML = a;
+		newtoolbarullia.setAttribute("href", b);
+		newtoolbarulli.appendChild(newtoolbarullia);
+	}else{
+		newdropdowncontent = $("stefanvdpropermenubardropdown");
+		if(!newdropdowncontent){
+			var newdropdown = document.createElement("li");
+			newdropdown.setAttribute("id", "stefanvdpropermenubardropdown");
+			newtoolbarul.appendChild(newdropdown);
+
+			var newdropdowna = document.createElement("a");
+			newdropdowna.setAttribute("id", "stefanvdpropermenubarmore");
+			newdropdowna.style.color = fontcolor;
+			newdropdowna.innerHTML = chrome.i18n.getMessage("linkmore");
+			newdropdowna.setAttribute("href", "#");
+			newdropdown.appendChild(newdropdowna);
+
+			var rgb = hex2rgb(backgroundhex);
+			var newdropdowncontentpart = document.createElement("div");
+			newdropdowncontentpart.setAttribute("id", "stefanvdpropermenubardropdowncontent");
+			newdropdowncontentpart.style.top = 0;
+			newdropdown.style.background = "rgba(" + rgb.red + "," + rgb.green + "," + rgb.blue + "," + (opacity / 100) + ")";
+			newdropdown.appendChild(newdropdowncontentpart);
+		}
+		// create the link
+		var newdropdowncontent = $("stefanvdpropermenubardropdowncontent");
+		var newdropdowncontentli = document.createElement("li");
+		newdropdowncontent.appendChild(newdropdowncontentli);
+
+		var newdropdowncontentlia = document.createElement("a");
+		if(existingtab == true){ newdropdowncontentlia.setAttribute("target", "_self"); }else{ newdropdowncontentlia.setAttribute("target", "_blank"); }
+		newdropdowncontentlia.setAttribute("id", c);
+		newdropdowncontentlia.style.color = fontcolor;
+		newdropdowncontentlia.innerHTML = a;
+		newdropdowncontentlia.setAttribute("href", b);
+		newdropdowncontentli.appendChild(newdropdowncontentlia);
+	}
+	numberitems = numberitems + 1;
+}
+
+function createline(a){
+	var hrelement = document.createElement("hr");
+	$(a).getElementsByTagName("ul")[0].appendChild(hrelement);
+}
+
+function createmenubar(a, b, c, d, e){
+	var newdropdowncontent = $(e);
+	if(!newdropdowncontent){
+		var newdropdown = document.createElement("label");
+		newdropdown.setAttribute("for", e);
+		newtoolbarul.appendChild(newdropdown);
+
+		var newinputcheck = document.createElement("input");
+		newinputcheck.setAttribute("id", e);
+		newinputcheck.setAttribute("type", "checkbox");
+		newinputcheck.setAttribute("name", "ppcontrol");
+		newinputcheck.addEventListener("change", function(event){
+			if(event.target.id == e){
+				if(event.target.checked == true){
+					var inputs, index;
+					inputs = newtoolbarul.getElementsByTagName("input");
+					for(index = 0; index < inputs.length; ++index){
+						if(inputs[index].id != event.target.id){
+							inputs[index].checked = false;
+						}
+					}
+				}
+			}
+		}, false);
+		newdropdown.appendChild(newinputcheck);
+
+		var newdropdowna = document.createElement("a");
+		newdropdowna.style.color = fontcolor;
+		newdropdowna.innerHTML = d;
+		// newdropdowna.setAttribute('href', '#');
+		newdropdown.appendChild(newdropdowna);
+
+		var rgb = hex2rgb(backgroundhex);
+		var newdropdowncontentpart = document.createElement("div");
+		newdropdowncontentpart.setAttribute("id", c);
+		newdropdowncontentpart.setAttribute("class", c);
+		newdropdowncontentpart.style.border = "1px solid gray";
+		newdropdowncontentpart.style.background = "rgba(" + rgb.red + "," + rgb.green + "," + rgb.blue + "," + (opacity / 100) + ")";
+		newdropdown.appendChild(newdropdowncontentpart);
+	}
+	// create the link
+	var newdropdowncontentlink = $(c);
+	var newdropdowncontentulb;
+	if(newdropdowncontentlink.getElementsByTagName("ul")[0]){
+		newdropdowncontentulb = newdropdowncontentlink.getElementsByTagName("ul")[0];
+	}else{
+		newdropdowncontentulb = document.createElement("ul");
+		newdropdowncontentlink.appendChild(newdropdowncontentulb);
+	}
+
+	var newdropdowncontentli = document.createElement("li");
+	newdropdowncontentulb.appendChild(newdropdowncontentli);
+
+	var newdropdowncontentlia = document.createElement("a");
+	newdropdowncontentlia.setAttribute("id", b);
+	newdropdowncontentlia.style.color = fontcolor;
+	newdropdowncontentlia.innerHTML = a;
+	// newdropdowncontentlia.setAttribute('href', "#");
+	newdropdowncontentli.appendChild(newdropdowncontentlia);
+}
+
+var newtoolbardiv;
+var newtoolbarul;
 function addtoolbar(){
 	var frame = $("stefanvdpropermenubar");
 	if(frame){
-		height = "30px";
-
 		// inject CSS for the hover effect
 		try{
 			var pmcssbar = "#stefanvdnavwrappe #stefanvdpropermenubarnav li:hover a,#stefanvdnavwrappe #stefanvdpropermenubarnav a:focus,#stefanvdnavwrappe #stefanvdpropermenubarnav a:active{padding:0 7px;line-height:30px!important;color:" + hovertextcolor + "!important;background:" + hoverbackground + "!important;text-decoration:none;height:30px;font-weight:normal}#stefanvdnavwrappe #stefanvdpropermenubarnav label:hover{color:" + hovertextcolor + "!important;background:" + hoverbackground + "!important}";
@@ -88,7 +205,9 @@ function addtoolbar(){
 			css.type = "text/css";
 			css.appendChild(document.createTextNode(pmcssbar));
 			document.body.appendChild(css);
-		}catch(e){}
+		}catch(e){
+			// console.log(e);
+		}
 
 		//---
 		var newtoolbar = document.createElement("div");
@@ -97,65 +216,15 @@ function addtoolbar(){
 		newtoolbar.style.background = "rgba(" + rgb.red + "," + rgb.green + "," + rgb.blue + "," + (opacity / 100) + ")";
 		frame.appendChild(newtoolbar);
 
-		var newtoolbardiv = document.createElement("div");
+		newtoolbardiv = document.createElement("div");
 		newtoolbardiv.setAttribute("id", "stefanvdpropermenubarnav");
 		newtoolbar.appendChild(newtoolbardiv);
 
-		var newtoolbarul = document.createElement("ul");
+		newtoolbarul = document.createElement("ul");
 		newtoolbardiv.appendChild(newtoolbarul);
 
 		if(googleproducts == true){
-			var numberitems = 0;
-			function createlink(a, b, c){
-				// only the first 13 in the bar, rest dropdown menu
-				if(numberitems < display){
-					var newtoolbarulli = document.createElement("li");
-					newtoolbarul.appendChild(newtoolbarulli);
 
-					var newtoolbarullia = document.createElement("a");
-					if(existingtab == true){ newtoolbarullia.setAttribute("target", "_self"); }else{ newtoolbarullia.setAttribute("target", "_blank"); }
-
-					newtoolbarullia.setAttribute("id", c);
-					newtoolbarullia.style.color = fontcolor;
-					newtoolbarullia.innerHTML = a;
-					newtoolbarullia.setAttribute("href", b);
-					newtoolbarulli.appendChild(newtoolbarullia);
-				}else{
-					var newdropdowncontent = $("stefanvdpropermenubardropdown");
-					if(newdropdowncontent){}else{
-						var newdropdown = document.createElement("li");
-						newdropdown.setAttribute("id", "stefanvdpropermenubardropdown");
-						newtoolbarul.appendChild(newdropdown);
-
-						var newdropdowna = document.createElement("a");
-						newdropdowna.setAttribute("id", "stefanvdpropermenubarmore");
-						newdropdowna.style.color = fontcolor;
-						newdropdowna.innerHTML = chrome.i18n.getMessage("linkmore");
-						newdropdowna.setAttribute("href", "#");
-						newdropdown.appendChild(newdropdowna);
-
-						var rgb = hex2rgb(backgroundhex);
-						var newdropdowncontent = document.createElement("div");
-						newdropdowncontent.setAttribute("id", "stefanvdpropermenubardropdowncontent");
-						newdropdowncontent.style.top = 0;
-						newdropdown.style.background = "rgba(" + rgb.red + "," + rgb.green + "," + rgb.blue + "," + (opacity / 100) + ")";
-						newdropdown.appendChild(newdropdowncontent);
-					}
-					// create the link
-					var newdropdowncontent = $("stefanvdpropermenubardropdowncontent");
-					var newdropdowncontentli = document.createElement("li");
-					newdropdowncontent.appendChild(newdropdowncontentli);
-
-					var newdropdowncontentlia = document.createElement("a");
-					if(existingtab == true){ newdropdowncontentlia.setAttribute("target", "_self"); }else{ newdropdowncontentlia.setAttribute("target", "_blank"); }
-					newdropdowncontentlia.setAttribute("id", c);
-					newdropdowncontentlia.style.color = fontcolor;
-					newdropdowncontentlia.innerHTML = a;
-					newdropdowncontentlia.setAttribute("href", b);
-					newdropdowncontentli.appendChild(newdropdowncontentlia);
-				}
-				numberitems = numberitems + 1;
-			}
 
 			var i18nlink1a = chrome.i18n.getMessage("link1a");
 			var i18nlink2a = chrome.i18n.getMessage("link2a");
@@ -322,78 +391,12 @@ function addtoolbar(){
 			var i18nmenu39a = chrome.i18n.getMessage("menu39a");
 			var i18nmenu40a = chrome.i18n.getMessage("menu40a");
 			var i18nmenu41a = chrome.i18n.getMessage("menu41a");
-			var i18nmenu42a = chrome.i18n.getMessage("menu42a");
+			// var i18nmenu42a = chrome.i18n.getMessage("menu42a");
 			var i18nmenu43a = chrome.i18n.getMessage("menu43a");
 			var i18nmenu44a = chrome.i18n.getMessage("menu44a");
 			var i18nmenu45a = chrome.i18n.getMessage("menu45a");
 			var i18nmenu46a = chrome.i18n.getMessage("menu46a");
 			var i18nmenu47a = chrome.i18n.getMessage("menu47a");
-
-			function createline(a){
-				var hrelement = document.createElement("hr");
-				$(a).getElementsByTagName("ul")[0].appendChild(hrelement);
-			}
-
-			function createmenubar(a, b, c, d, e){
-				var newdropdowncontent = $(e);
-				if(newdropdowncontent){}else{
-					var newdropdown = document.createElement("label");
-					newdropdown.setAttribute("for", e);
-					newtoolbarul.appendChild(newdropdown);
-
-					var newinputcheck = document.createElement("input");
-					newinputcheck.setAttribute("id", e);
-					newinputcheck.setAttribute("type", "checkbox");
-					newinputcheck.setAttribute("name", "ppcontrol");
-					newinputcheck.addEventListener("change", function(event){
-						if(event.target.id == e){
-							if(event.target.checked == true){
-								var inputs, index;
-								inputs = newtoolbarul.getElementsByTagName("input");
-								for(index = 0; index < inputs.length; ++index){
-									if(inputs[index].id != event.target.id){
-										inputs[index].checked = false;
-									}
-								}
-							}
-						}
-					}, false);
-					newdropdown.appendChild(newinputcheck);
-
-					var newdropdowna = document.createElement("a");
-					newdropdowna.style.color = fontcolor;
-					newdropdowna.innerHTML = d;
-					// newdropdowna.setAttribute('href', '#');
-					newdropdown.appendChild(newdropdowna);
-
-					var rgb = hex2rgb(backgroundhex);
-					var newdropdowncontent = document.createElement("div");
-					newdropdowncontent.setAttribute("id", c);
-					newdropdowncontent.setAttribute("class", c);
-					newdropdowncontent.style.border = "1px solid gray";
-					newdropdowncontent.style.background = "rgba(" + rgb.red + "," + rgb.green + "," + rgb.blue + "," + (opacity / 100) + ")";
-					newdropdown.appendChild(newdropdowncontent);
-				}
-				// create the link
-				var newdropdowncontent = $(c);
-
-				if(newdropdowncontent.getElementsByTagName("ul")[0]){
-					var newdropdowncontentul = newdropdowncontent.getElementsByTagName("ul")[0];
-				}else{
-					var newdropdowncontentul = document.createElement("ul");
-					newdropdowncontent.appendChild(newdropdowncontentul);
-				}
-
-				var newdropdowncontentli = document.createElement("li");
-				newdropdowncontentul.appendChild(newdropdowncontentli);
-
-				var newdropdowncontentlia = document.createElement("a");
-				newdropdowncontentlia.setAttribute("id", b);
-				newdropdowncontentlia.style.color = fontcolor;
-				newdropdowncontentlia.innerHTML = a;
-				// newdropdowncontentlia.setAttribute('href', "#");
-				newdropdowncontentli.appendChild(newdropdowncontentlia);
-			}
 
 			// File
 			createmenubar(i18nmenu1a, "menu1s", "panelfile", i18nmenufile, "btnfile");
@@ -567,6 +570,7 @@ function addtoolbar(){
 			createmenubar(i18nmenu38a, "menu38s", "panelwindow", i18nmenuwindow, "btnwindow");
 			$("menu38s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanmuteothertab"});
+				// i18nmenu42a
 			}, false);
 			createmenubar(i18nmenu39a, "menu39s", "panelwindow", i18nmenuwindow, "btnwindow");
 			$("menu39s").addEventListener("click", function(){
@@ -614,11 +618,10 @@ function addtoolbar(){
 	}
 }
 
-var addbar = null; var dropshadow = null; var allsites = null; var toolbaronly = null; var toolbarDomains = null; var getpositiontop = null; var getpositionbottom = null; var toolbarwhite = null; toolbarblack = null;
-var opacity = null; var backgroundcolor = null; var backgroundhex = null; var backgroundimagesource = null; var backgroundimage = null; var country = null; var fontcolor = null; var googlesites = null; var search = null; var existingtab = null; var display = null; var hovertextcolor = null; var hoverbackground = null; var googleproducts = null; var menuproducts = null; var googlebarDomains = null;
+var addbar = null; var opacity = null; var backgroundcolor = null; var backgroundhex = null; var backgroundimage = null; var fontcolor = null; var googlesites = null; var search = null; var existingtab = null; var display = null; var hovertextcolor = null; var hoverbackground = null; var googleproducts = null; var menuproducts = null; var googlebarDomains = null;
 
 document.addEventListener("DOMContentLoaded", function(){
-	chrome.storage.sync.get(["country", "addbar", "dropshadow", "toolbarDomains", "allsites", "toolbaronly", "getpositiontop", "getpositionbottom", "toolbarwhite", "toolbarblack", "backgroundhex", "backgroundimagesource", "opacity", "backgroundcolor", "backgroundimage", "allsites", "fontcolor", "googlesites", "search", "existingtab", "display", "hovertextcolor", "hoverbackground", "googleproducts", "menuproducts", "googlebarDomains"
+	chrome.storage.sync.get(["addbar", "dropshadow", "toolbarDomains", "allsites", "toolbaronly", "getpositiontop", "getpositionbottom", "toolbarwhite", "toolbarblack", "backgroundhex", "opacity", "backgroundcolor", "backgroundimage", "allsites", "fontcolor", "googlesites", "search", "existingtab", "display", "hovertextcolor", "hoverbackground", "googleproducts", "menuproducts", "googlebarDomains"
 	], function(items){
 		addbar = items["addbar"]; if(addbar == null)addbar = true;
 		if(addbar == true){
@@ -628,12 +631,10 @@ document.addEventListener("DOMContentLoaded", function(){
 			$("turnoff").style.display = "none";
 			$("turnon").style.display = "block";
 		}
-		country = items.country;
 		googlebarDomains = items["googlebarDomains"];
 		if(typeof googlebarDomains == "undefined")
 			googlebarDomains = JSON.stringify({"link1a": true, "link2a": true, "link3a": true, "link4a": true, "link5a": true, "link6a": true, "link7a": true, "link8a": true, "link9a": true, "link10a": true, "link11a": true, "link12a": true, "link13a": true, "link14a": true, "link15a": true, "link16a": true, "link17a": true, "link18a": true, "link19a": true, "link20a": true, "link21a": true, "link22a": true, "link23a": true, "link24a": true, "link25a": true, "link26a": true, "link27a": true, "link28a": true});
 		backgroundhex = items["backgroundhex"]; if(backgroundhex == null)backgroundhex = "#2d2d2d";
-		backgroundimagesource = items["backgroundimagesource"];
 		opacity = items["opacity"]; if(opacity == null)opacity = "100";
 		backgroundcolor = items["backgroundcolor"]; if(backgroundcolor == null)backgroundcolor = true;
 		backgroundimage = items["backgroundimage"]; if(backgroundimage == null)backgroundimage = false;
@@ -655,7 +656,7 @@ document.addEventListener("DOMContentLoaded", function(){
 		chrome.tabs.query({"active": true, "windowId": chrome.windows.WINDOW_ID_CURRENT},
 			function(tabs){
 				var currenttaburl = tabs[0].url;
-				if((new URL(currenttaburl)).origin == browserstore || currenttaburl == browserextensions || currenttaburl == browsernewtab || currenttaburl == browsersettings || currenttaburl == exoptionspage){
+				if((new URL(currenttaburl)).origin == browserstore || currenttaburl == browserextensions || currenttaburl == browsernewtab || currenttaburl == browsersettings){
 					$("turnoff").style.display = "none";
 					$("turnon").style.display = "none";
 					$("errormessage").className = "";
@@ -670,7 +671,7 @@ document.addEventListener("DOMContentLoaded", function(){
 	// Toggle off
 	$("turnon").addEventListener("click", function(){ toggleon(); });
 
-	$("opendonate").addEventListener("click", function(){ window.open(donatewebsite); });
+	$("opendonate").addEventListener("click", function(){ window.open(linkdonate); });
 	$("openrate").addEventListener("click", function(){ window.open(writereview); });
 	$("openoptions").addEventListener("click", function(){ window.open(chrome.extension.getURL("options.html")); });
 
@@ -678,8 +679,8 @@ document.addEventListener("DOMContentLoaded", function(){
 	$("openwelcomeguide").addEventListener("click", function(){ window.open(linkguide); });
 	$("openyoutube").addEventListener("click", function(){ window.open(linkyoutube); });
 
-	$("openemail").addEventListener("click", function(){ var spropermenubaremail = "mailto:your@email.com?subject=" + chrome.i18n.getMessage("sharetexta") + "&body=" + chrome.i18n.getMessage("sharetextb") + " " + propermenubarproduct; chrome.tabs.create({url: spropermenubaremail, active:true}); });
-	$("openfacebook").addEventListener("click", function(){ chrome.tabs.create({url: "https://www.facebook.com/sharer/sharer.php?u=" + propermenubarproduct, active:true}); });
-	$("opentwitter").addEventListener("click", function(){ var spropermenubarproductcodeurl = encodeURIComponent(chrome.i18n.getMessage("sharetextc") + " " + propermenubarproduct); chrome.tabs.create({url: "https://twitter.com/home?status=" + spropermenubarproductcodeurl, active:true}); });
+	$("openemail").addEventListener("click", function(){ var sturnoffthelightemail = "mailto:your@email.com?subject=" + chrome.i18n.getMessage("sharetexta") + "&body=" + chrome.i18n.getMessage("sharetextb") + " " + linkproduct; chrome.tabs.create({url: sturnoffthelightemail, active:true}); });
+	$("openfacebook").addEventListener("click", function(){ chrome.tabs.create({url: "https://www.facebook.com/sharer/sharer.php?u=" + linkproduct, active:true}); });
+	$("opentwitter").addEventListener("click", function(){ var slinkproductcodeurl = encodeURIComponent(chrome.i18n.getMessage("sharetextd") + " " + linkproduct); chrome.tabs.create({url: "https://twitter.com/intent/tweet?text=" + slinkproductcodeurl, active:true}); });
 
 });
