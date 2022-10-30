@@ -56,6 +56,6 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 #stefanvdnavwrappe #btnfile:checked ~ .panelfile, #stefanvdnavwrappe #btnedit:checked ~ .paneledit, #stefanvdnavwrappe #btnview:checked ~ .panelview, #stefanvdnavwrappe #btnhistory:checked ~ .panelhistory, #stefanvdnavwrappe #btnbookmarks:checked ~ .panelbookmarks, #stefanvdnavwrappe #btnwindow:checked ~ .panelwindow, #stefanvdnavwrappe #btnhelp:checked ~ .panelhelp{display:block}
 
 #stefanvdnavwrappe input{display:none}
-@media print {
+@media print{
 #stefanvdpropermenubar{display:none!important}
 }

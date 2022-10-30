@@ -167,16 +167,16 @@ function createmenubar(a, b, c, d, e){
 	}
 	// create the link
 	var newdropdowncontentlink = $(c);
-	var newdropdowncontentulb;
+	var newdropdowncontentul;
 	if(newdropdowncontentlink.getElementsByTagName("ul")[0]){
-		newdropdowncontentulb = newdropdowncontentlink.getElementsByTagName("ul")[0];
+		newdropdowncontentul = newdropdowncontentlink.getElementsByTagName("ul")[0];
 	}else{
-		newdropdowncontentulb = document.createElement("ul");
-		newdropdowncontentlink.appendChild(newdropdowncontentulb);
+		newdropdowncontentul = document.createElement("ul");
+		newdropdowncontentlink.appendChild(newdropdowncontentul);
 	}
 
 	var newdropdowncontentli = document.createElement("li");
-	newdropdowncontentulb.appendChild(newdropdowncontentli);
+	newdropdowncontentul.appendChild(newdropdowncontentli);
 
 	var newdropdowncontentlia = document.createElement("a");
 	newdropdowncontentlia.setAttribute("id", b);
@@ -621,6 +621,11 @@ function addtoolbar(){
 var addbar = null; var opacity = null; var backgroundcolor = null; var backgroundhex = null; var backgroundimage = null; var fontcolor = null; var googlesites = null; var search = null; var existingtab = null; var display = null; var hovertextcolor = null; var hoverbackground = null; var googleproducts = null; var menuproducts = null; var googlebarDomains = null;
 
 document.addEventListener("DOMContentLoaded", function(){
+	// disable context menu
+	document.addEventListener("contextmenu", function(e){
+		e.preventDefault();
+	}, false);
+
 	chrome.storage.sync.get(["addbar", "dropshadow", "toolbarDomains", "allsites", "toolbaronly", "getpositiontop", "getpositionbottom", "toolbarwhite", "toolbarblack", "backgroundhex", "opacity", "backgroundcolor", "backgroundimage", "allsites", "fontcolor", "googlesites", "search", "existingtab", "display", "hovertextcolor", "hoverbackground", "googleproducts", "menuproducts", "googlebarDomains"
 	], function(items){
 		addbar = items["addbar"]; if(addbar == null)addbar = true;
@@ -678,9 +683,4 @@ document.addEventListener("DOMContentLoaded", function(){
 	$("opensupport").addEventListener("click", function(){ window.open(linksupport); });
 	$("openwelcomeguide").addEventListener("click", function(){ window.open(linkguide); });
 	$("openyoutube").addEventListener("click", function(){ window.open(linkyoutube); });
-
-	$("openemail").addEventListener("click", function(){ var sturnoffthelightemail = "mailto:your@email.com?subject=" + chrome.i18n.getMessage("sharetexta") + "&body=" + chrome.i18n.getMessage("sharetextb") + " " + linkproduct; chrome.tabs.create({url: sturnoffthelightemail, active:true}); });
-	$("openfacebook").addEventListener("click", function(){ chrome.tabs.create({url: "https://www.facebook.com/sharer/sharer.php?u=" + linkproduct, active:true}); });
-	$("opentwitter").addEventListener("click", function(){ var slinkproductcodeurl = encodeURIComponent(chrome.i18n.getMessage("sharetextd") + " " + linkproduct); chrome.tabs.create({url: "https://twitter.com/intent/tweet?text=" + slinkproductcodeurl, active:true}); });
-
 });

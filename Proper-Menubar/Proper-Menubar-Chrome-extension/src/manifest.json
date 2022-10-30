@@ -35,7 +35,7 @@
     "service_worker": "js/background.js"
   },
   "content_security_policy": {
-    "extension_pages": "default-src 'none'; style-src 'self'; media-src https://www.stefanvd.net; child-src https://www.youtube.com https://www.stefanvd.net; connect-src https://www.stefanvd.net; script-src 'self'; img-src 'self' https://www.stefanvd.net * data:; object-src 'none'"
+    "extension_pages": "default-src 'none'; style-src 'self' 'unsafe-inline'; media-src https://www.stefanvd.net; child-src https://www.youtube.com https://www.stefanvd.net; connect-src https://www.stefanvd.net; script-src 'self'; img-src 'self' https://www.stefanvd.net * data:; object-src 'none'"
   },
   "web_accessible_resources": [{
     "resources": [ "images/Slice1.png",

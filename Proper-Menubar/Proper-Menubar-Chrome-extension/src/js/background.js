@@ -622,7 +622,6 @@ chrome.runtime.onInstalled.addListener(function(){
 /*
 TODO
 + emails
-+ shortcut key combination
++ shortcut key combination in the bar alt+ctrl
 + popup panel design
-+ bug file menu do not work
 */
