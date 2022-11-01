@@ -678,7 +678,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 	$("opendonate").addEventListener("click", function(){ window.open(linkdonate); });
 	$("openrate").addEventListener("click", function(){ window.open(writereview); });
-	$("openoptions").addEventListener("click", function(){ window.open(chrome.extension.getURL("options.html")); });
+	$("openoptions").addEventListener("click", function(){ window.open(chrome.runtime.getURL("options.html")); });
 
 	$("opensupport").addEventListener("click", function(){ window.open(linksupport); });
 	$("openwelcomeguide").addEventListener("click", function(){ window.open(linkguide); });

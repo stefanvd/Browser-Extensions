@@ -45,12 +45,12 @@ function save_options(){
 	var googlebarDomains = {};
 	for(var j = 0; j < googlebarDomainsBox.length; j++){ googlebarDomains[googlebarDomainsBox.options[j].value] = true; }
 
-	chrome.storage.sync.set({"opacity": $("opacity").value, "country":$("country").value, "backgroundhex":$("backgroundhex").value, "backgroundimagesource":$("backgroundimagesource").value, "backgroundcolor":$("backgroundcolor").checked, "backgroundimage":$("backgroundimage").checked, "dropshadow":$("dropshadow").checked, "allsites":$("allsites").checked, "fontcolor":$("fontcolor").value, "googlesites":$("googlesites").checked, "search":$("search").checked, "existingtab":$("existingtab").checked, "toolbarDomains": JSON.stringify(toolbarDomains), "optionskipremember":$("optionskipremember").checked, "display":$("display").value, "hovertextcolor":$("hovertextcolor").value, "hoverbackground":$("hoverbackground").value, "getpositiontop": $("getpositiontop").checked, "getpositionbottom": $("getpositionbottom").checked, "toolbarwhite": $("toolbarwhite").checked, "toolbarblack": $("toolbarblack").checked, "toolbaronly":$("toolbaronly").checked, "googleproducts":$("googleproducts").checked, "menuproducts":$("menuproducts").checked, "googlebarDomains": JSON.stringify(googlebarDomains)});
+	chrome.storage.sync.set({"opacity": $("opacity").value, "country":$("country").value, "backgroundhex":$("backgroundhex").value, "backgroundimagesource":$("backgroundimagesource").value, "backgroundcolor":$("backgroundcolor").checked, "backgroundimage":$("backgroundimage").checked, "dropshadow":$("dropshadow").checked, "allsites":$("allsites").checked, "fontcolor":$("fontcolor").value, "googlesites":$("googlesites").checked, "search":$("search").checked, "existingtab":$("existingtab").checked, "toolbarDomains": JSON.stringify(toolbarDomains), "optionskipremember":$("optionskipremember").checked, "display":$("display").value, "hovertextcolor":$("hovertextcolor").value, "hoverbackground":$("hoverbackground").value, "getpositiontop": $("getpositiontop").checked, "getpositionbottom": $("getpositionbottom").checked, "toolbarwhite": $("toolbarwhite").checked, "toolbarblack": $("toolbarblack").checked, "toolbaronly":$("toolbaronly").checked, "googleproducts":$("googleproducts").checked, "menuproducts":$("menuproducts").checked, "googlebarDomains": JSON.stringify(googlebarDomains), "hovermenu": $("hovermenu").checked});
 }
 
 var firstdefaultvalues = {};
 // Option default value to read if there is no current value from chrome.storage AND init default value
-chrome.storage.sync.get(["backgroundcolor", "backgroundimage", "googlesites", "allsites", "dropshadow", "display", "search", "hovertextcolor", "hoverbackground", "getpositiontop", "getpositionbottom", "toolbarwhite", "toolbarblack", "googleproducts", "menuproducts"], function(items){
+chrome.storage.sync.get(["backgroundcolor", "backgroundimage", "googlesites", "allsites", "dropshadow", "display", "search", "hovertextcolor", "hoverbackground", "getpositiontop", "getpositionbottom", "toolbarwhite", "toolbarblack", "googleproducts", "menuproducts", "hovermenu"], function(items){
 	// find no localstore zoomengine
 	if(items["backgroundcolor"] == null && items["backgroundimage"] == null){ firstdefaultvalues["backgroundcolor"] = true; firstdefaultvalues["backgroundimage"] = false; }
 	if(items["allsites"] == null){ firstdefaultvalues["allsites"] = true; }
@@ -62,6 +62,7 @@ chrome.storage.sync.get(["backgroundcolor", "backgroundimage", "googlesites", "a
 	if(items["getpositiontop"] == null && items["getpositionbottom"] == null){ firstdefaultvalues["getpositiontop"] = true; firstdefaultvalues["getpositionbottom"] = false; }
 	if(items["toolbarwhite"] == null && items["toolbarblack"] == null){ firstdefaultvalues["toolbarwhite"] = true; firstdefaultvalues["toolbarblack"] = false; }
 	if(items["googleproducts"] == null && items["menuproducts"] == null){ firstdefaultvalues["googleproducts"] = false; firstdefaultvalues["menuproducts"] = true; }
+	if(items["hovermenu"] == null){ firstdefaultvalues["hovermenu"] = true; }
 
 	// find no localstore lightimage
 	// Save the init value
@@ -158,7 +159,7 @@ function read_options(){
 		showhidemodal("materialModalYouTube", "hide", "true");
 	}
 
-	chrome.storage.sync.get(["firstDate", "opacity", "country", "backgroundhex", "backgroundimagesource", "backgroundcolor", "backgroundimage", "googlesites", "dropshadow", "allsites", "fontcolor", "search", "existingtab", "propermenuDomains", "countremember", "optionskipremember", "display", "hovertextcolor", "hoverbackground", "firstsawrate", "introduce", "getpositiontop", "getpositionbottom", "toolbarwhite", "toolbarblack", "toolbaronly", "googleproducts", "menuproducts", "googlebarDomains", "toolbarDomains"], function(items){
+	chrome.storage.sync.get(["firstDate", "opacity", "country", "backgroundhex", "backgroundimagesource", "backgroundcolor", "backgroundimage", "googlesites", "dropshadow", "allsites", "fontcolor", "search", "existingtab", "propermenuDomains", "countremember", "optionskipremember", "display", "hovertextcolor", "hoverbackground", "firstsawrate", "introduce", "getpositiontop", "getpositionbottom", "toolbarwhite", "toolbarblack", "toolbaronly", "googleproducts", "menuproducts", "googlebarDomains", "toolbarDomains", "hovermenu"], function(items){
 		if(items["opacity"]){ $("opacity").value = items["opacity"]; }else{ $("opacity").value = "100"; }
 		if(items["country"]){ $("country").value = items["country"]; }else{ $("country").value = "com"; }
 		if(items["backgroundhex"]){ $("backgroundhex").value = items["backgroundhex"]; }else{ $("backgroundhex").value = "#2D2D2D"; }
@@ -182,6 +183,7 @@ function read_options(){
 		if(items["toolbarblack"] == true)$("toolbarblack").checked = true;
 		if(items["googleproducts"] == true)$("googleproducts").checked = true;
 		if(items["menuproducts"] == true)$("menuproducts").checked = true;
+		if(items["hovermenu"] == true)$("hovermenu").checked = true;
 
 		// show remember page
 		var firstmonth = false;
@@ -424,6 +426,12 @@ function moveproductup(){
 }
 
 function test(){
+	if(document.getElementById("googleproducts").checked == true){
+		document.getElementById("tagbox").removeAttribute("disabled", "");
+	}else{
+		document.getElementById("tagbox").setAttribute("disabled", "");
+	}
+
 	if(document.getElementById("toolbaronly").checked == true){
 		document.getElementById("toolbarwebsiteurl").disabled = false;
 		document.getElementById("toolbaraddbutton").disabled = false;
@@ -453,12 +461,12 @@ function test(){
 	}
 }
 
-function slidepreview1(){ $("backgroundimagesource").value = chrome.extension.getURL("/images/slice1.png"); ariacheck(); save_options(); }
-function slidepreview2(){ $("backgroundimagesource").value = chrome.extension.getURL("/images/slice2.png"); ariacheck(); save_options(); }
-function slidepreview3(){ $("backgroundimagesource").value = chrome.extension.getURL("/images/slice3.png"); ariacheck(); save_options(); }
-function slidepreview4(){ $("backgroundimagesource").value = chrome.extension.getURL("/images/slice4.png"); ariacheck(); save_options(); }
-function slidepreview5(){ $("backgroundimagesource").value = chrome.extension.getURL("/images/slice5.png"); ariacheck(); save_options(); }
-function slidepreview6(){ $("backgroundimagesource").value = chrome.extension.getURL("/images/slice6.png"); ariacheck(); save_options(); }
+function slidepreview1(){ $("backgroundimagesource").value = chrome.runtime.getURL("/images/slice1.png"); ariacheck(); save_options(); }
+function slidepreview2(){ $("backgroundimagesource").value = chrome.runtime.getURL("/images/slice2.png"); ariacheck(); save_options(); }
+function slidepreview3(){ $("backgroundimagesource").value = chrome.runtime.getURL("/images/slice3.png"); ariacheck(); save_options(); }
+function slidepreview4(){ $("backgroundimagesource").value = chrome.runtime.getURL("/images/slice4.png"); ariacheck(); save_options(); }
+function slidepreview5(){ $("backgroundimagesource").value = chrome.runtime.getURL("/images/slice5.png"); ariacheck(); save_options(); }
+function slidepreview6(){ $("backgroundimagesource").value = chrome.runtime.getURL("/images/slice6.png"); ariacheck(); save_options(); }
 
 function ariacheck(){
 	var inputs = document.querySelectorAll("input");
@@ -786,10 +794,12 @@ function domcontentloaded(){
 	barinputs = $("tagbox").getElementsByClassName("tags");
 	for(barindex = 0; barindex < barinputs.length; ++barindex){
 		barinputs[barindex].addEventListener("click", function(){
-			var prod = this.id; prod = prod.substr(3);
-			tagappendToListBox("googlebarDomainsBox", prod);
-			ariacheck();
-			save_options();
+			if($("tagbox").hasAttribute("disabled") == false){
+				var prod = this.id; prod = prod.substr(3);
+				tagappendToListBox("googlebarDomainsBox", prod);
+				ariacheck();
+				save_options();
+			}
 		}, false);
 	}
 

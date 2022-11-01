@@ -621,7 +621,10 @@ chrome.runtime.onInstalled.addListener(function(){
 
 /*
 TODO
-+ emails
++ emails features
 + shortcut key combination in the bar alt+ctrl
++ shortcut key focus menu item one by one
+   https://stackoverflow.com/questions/50257057/how-to-navigate-through-li-elements-using-arrow-keys-jquery
+
 + popup panel design
 */

@@ -55,19 +55,39 @@ var el;
 function SD(id){ return el.shadowRoot.getElementById(id); }
 
 function createmenubar(a, b, c, d, e){
-	var newdropdowncontent = SD(e);
+	var newdropdowncontent = SD(e[0]);
 	if(!newdropdowncontent){
 		var newdropdown = document.createElement("label");
-		newdropdown.setAttribute("for", e);
+		newdropdown.setAttribute("for", e[0]);
+
+		// automatically open new panel with hover
+		if(hovermenu == true){
+			newdropdown.addEventListener("mouseover", function(){
+				if(SD("btnfile").checked || SD("btnedit").checked || SD("btnview").checked || SD("btnhistory").checked || SD("btnbookmarks").checked || SD("btnwindow").checked || SD("btnhelp").checked){
+					SD("btnfile").checked = false;
+					SD("btnedit").checked = false;
+					SD("btnview").checked = false;
+					SD("btnhistory").checked = false;
+					SD("btnbookmarks").checked = false;
+					SD("btnwindow").checked = false;
+					SD("btnhelp").checked = false;
+					// enable the current panel
+					SD(this.getAttribute("for")).checked = true;
+				}
+			}, false);
+		}
+
 		newtoolbarul.appendChild(newdropdown);
 
 		var newinputcheck = document.createElement("input");
-		newinputcheck.setAttribute("id", e);
+		newinputcheck.setAttribute("id", e[0]);
 		newinputcheck.setAttribute("type", "checkbox");
 		newinputcheck.setAttribute("name", "ppcontrol");
+		if(e[1] != ""){
+			newinputcheck.setAttribute("accesskey", e[1]);
+		}
 		newinputcheck.addEventListener("change", function(event){
-			console.log("click hier");
-			if(event.target.id == e){
+			if(event.target.id == e[0]){
 				if(event.target.checked == true){
 					var inputs, index;
 					inputs = newtoolbarul.getElementsByTagName("input");
@@ -112,7 +132,10 @@ function createmenubar(a, b, c, d, e){
 	newdropdowncontentul.appendChild(newdropdowncontentli);
 
 	var newdropdowncontentlia = document.createElement("a");
-	newdropdowncontentlia.setAttribute("id", b);
+	newdropdowncontentlia.setAttribute("id", b[0]);
+	if(b[1] != ""){
+		newdropdowncontentlia.setAttribute("accesskey", b[1]);
+	}
 	newdropdowncontentlia.style.color = fontcolor;
 	newdropdowncontentlia.innerHTML = a;
 	newdropdowncontentli.appendChild(newdropdowncontentlia);
@@ -504,7 +527,7 @@ function addtoolbar(){
 			newtoolbar.style.background = "rgba(" + rgb.red + "," + rgb.green + "," + rgb.blue + "," + (opacity / 100) + ")";
 		}
 		if(backgroundimage == true){
-			if(backgroundimagesource == ""){ newtoolbar.style.background = "url(" + chrome.extension.getURL("/images/slice1.png") + ")"; }else{ newtoolbar.style.background = "url(" + backgroundimagesource + ")"; }
+			if(backgroundimagesource == ""){ newtoolbar.style.background = "url(" + chrome.runtime.getURL("/images/slice1.png") + ")"; }else{ newtoolbar.style.background = "url(" + backgroundimagesource + ")"; }
 		}
 		if(dropshadow == true){
 			newtoolbar.style.boxShadow = "0px 2px 10px rgba(0,0,0,.2)";
@@ -671,153 +694,159 @@ function addtoolbar(){
 			});
 
 			// File
-			createmenubar(i18nmenu1a, "menu1s", "panelfile", i18nmenufile, "btnfile");
+			var rootfile = ["btnfile", "f"];
+			createmenubar(i18nmenu1a, ["menu1s", "t"], "panelfile", i18nmenufile, rootfile);
 			SD("menu1s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefancleannewtab"});
 			}, false);
-			createmenubar(i18nmenu2a, "menu2s", "panelfile", i18nmenufile, "btnfile");
+			createmenubar(i18nmenu2a, ["menu2s", "w"], "panelfile", i18nmenufile, rootfile);
 			SD("menu2s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefancleannewwindow"});
 			}, false);
-			createmenubar(i18nmenu3a, "menu3s", "panelfile", i18nmenufile, "btnfile");
+			createmenubar(i18nmenu3a, ["menu3s", "i"], "panelfile", i18nmenufile, rootfile);
 			SD("menu3s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefancleannewwindowincognito"});
 			}, false);
 			createline("panelfile");
-			createmenubar(i18nmenu4a, "menu4s", "panelfile", i18nmenufile, "btnfile");
+			createmenubar(i18nmenu4a, ["menu4s", "c"], "panelfile", i18nmenufile, rootfile);
 			SD("menu4s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefancleanclosewindow"});
 			}, false);
-			createmenubar(i18nmenu5a, "menu5s", "panelfile", i18nmenufile, "btnfile");
+			createmenubar(i18nmenu5a, ["menu5s", "x"], "panelfile", i18nmenufile, rootfile);
 			SD("menu5s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefancleanclosetab"});
 			}, false);
-			createmenubar(i18nmenu27a, "menu27s", "panelfile", i18nmenufile, "btnfile");
+			createmenubar(i18nmenu27a, ["menu27s", "h"], "panelfile", i18nmenufile, rootfile);
 			SD("menu27s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefansavemhtml"});
 			}, false);
 			createline("panelfile");
-			createmenubar(i18nmenu6a, "menu6s", "panelfile", i18nmenufile, "btnfile");
+			createmenubar(i18nmenu6a, ["menu6s", "p"], "panelfile", i18nmenufile, rootfile);
 			SD("menu6s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanprint"});
 			}, false);
 			createline("panelfile");
-			createmenubar(i18nmenu45a, "menu45s", "panelfile", i18nmenufile, "btnfile");
+			createmenubar(i18nmenu45a, ["menu45s", "q"], "panelfile", i18nmenufile, rootfile);
 			SD("menu45s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanexit"});
 			}, false);
 
 			// Edit
-			createmenubar(i18nmenu7a, "menu7s", "paneledit", i18nmenuedit, "btnedit");
+			var rootedit = ["btnedit", "e"];
+			createmenubar(i18nmenu7a, ["menu7s", ""], "paneledit", i18nmenuedit, rootedit);
 			SD("menu7s").addEventListener("click", function(){
 				document.execCommand("cut");
 			}, false);
-			createmenubar(i18nmenu8a, "menu8s", "paneledit", i18nmenuedit, "btnedit");
+			createmenubar(i18nmenu8a, ["menu8s", ""], "paneledit", i18nmenuedit, rootedit);
 			SD("menu8s").addEventListener("click", function(){
 				document.execCommand("copy");
 			}, false);
-			createmenubar(i18nmenu9a, "menu9s", "paneledit", i18nmenuedit, "btnedit");
+			createmenubar(i18nmenu9a, ["menu9s", ""], "paneledit", i18nmenuedit, rootedit);
 			SD("menu9s").addEventListener("click", function(){
 				document.execCommand("paste");
 			}, false);
 			createline("paneledit");
-			createmenubar(i18nmenu10a, "menu10s", "paneledit", i18nmenuedit, "btnedit");
+			createmenubar(i18nmenu10a, ["menu10s", ""], "paneledit", i18nmenuedit, rootedit);
 			SD("menu10s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefansettings"});
 			}, false);
 			createline("paneledit");
-			createmenubar(i18nmenu11a, "menu11s", "paneledit", i18nmenuedit, "btnedit");
+			createmenubar(i18nmenu11a, ["menu11s", ""], "paneledit", i18nmenuedit, rootedit);
 			SD("menu11s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanselectall"});
 			}, false);
 
 			// View
-			createmenubar(i18nmenu12a, "menu12s", "panelview", i18nmenuview, "btnview");
+			var rootview = ["btnview", "v"];
+			createmenubar(i18nmenu12a, ["menu12s", ""], "panelview", i18nmenuview, rootview);
 			SD("menu12s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanstoppage"});
 			}, false);
-			createmenubar(i18nmenu28a, "menu28s", "panelview", i18nmenuview, "btnview");
+			createmenubar(i18nmenu28a, ["menu28s", ""], "panelview", i18nmenuview, rootview);
 			SD("menu28s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanreloadpage"});
 			}, false);
 			createline("panelview");
-			createmenubar(i18nmenu29a, "menu29s", "panelview", i18nmenuview, "btnview");
+			createmenubar(i18nmenu29a, ["menu29s", ""], "panelview", i18nmenuview, rootview);
 			SD("menu29s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanfullscreenpage"});
 			}, false);
-			createmenubar(i18nmenu30a, "menu30s", "panelview", i18nmenuview, "btnview");
+			createmenubar(i18nmenu30a, ["menu30s", ""], "panelview", i18nmenuview, rootview);
 			SD("menu30s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanzoomactual"});
 			}, false);
-			createmenubar(i18nmenu31a, "menu31s", "panelview", i18nmenuview, "btnview");
+			createmenubar(i18nmenu31a, ["menu31s", ""], "panelview", i18nmenuview, rootview);
 			SD("menu31s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanzoomin"});
 			}, false);
-			createmenubar(i18nmenu32a, "menu32s", "panelview", i18nmenuview, "btnview");
+			createmenubar(i18nmenu32a, ["menu32s", ""], "panelview", i18nmenuview, rootview);
 			SD("menu32s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanzoomout"});
 			}, false);
-			createmenubar(i18nmenu47a, "menu47s", "panelview", i18nmenuview, "btnview");
+			createmenubar(i18nmenu47a, ["menu47s", ""], "panelview", i18nmenuview, rootview);
 			SD("menu47s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanviewsource"});
 			}, false);
 
 			// History
-			createmenubar(i18nmenu13a, "menu13s", "panelhistory", i18nmenuhistory, "btnhistory");
+			var roothistory = ["btnhistory", "h"];
+			createmenubar(i18nmenu13a, ["menu13s", ""], "panelhistory", i18nmenuhistory, roothistory);
 			SD("menu13s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanhometab"});
 			}, false);
-			createmenubar(i18nmenu19a, "menu19s", "panelhistory", i18nmenuhistory, "btnhistory");
+			createmenubar(i18nmenu19a, ["menu19s", ""], "panelhistory", i18nmenuhistory, roothistory);
 			SD("menu19s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanhistoryback"});
 			}, false);
-			createmenubar(i18nmenu20a, "menu20s", "panelhistory", i18nmenuhistory, "btnhistory");
+			createmenubar(i18nmenu20a, ["menu20s", ""], "panelhistory", i18nmenuhistory, roothistory);
 			SD("menu20s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanhistoryforward"});
 			}, false);
 			createline("panelhistory");
-			createmenubar(i18nmenu26a, "menu26s", "panelhistory", i18nmenuhistory, "btnhistory");
+			createmenubar(i18nmenu26a, ["menu26s", ""], "panelhistory", i18nmenuhistory, roothistory);
 			SD("menu26s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanhistory"});
 			}, false);
 
 			// Bookmarks
-			createmenubar(i18nmenu14a, "menu14s", "panelbookmarks", i18nmenubookmarks, "btnbookmarks");
+			var rootbookmarks = ["btnbookmarks", "b"];
+			createmenubar(i18nmenu14a, ["menu14s", ""], "panelbookmarks", i18nmenubookmarks, rootbookmarks);
 			SD("menu14s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanbookmarkmanager"});
 			}, false);
-			createmenubar(i18nmenu18a, "menu18s", "panelbookmarks", i18nmenubookmarks, "btnbookmarks");
+			createmenubar(i18nmenu18a, ["menu18s", ""], "panelbookmarks", i18nmenubookmarks, rootbookmarks);
 			SD("menu18s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanbookmarkadd"});
 			}, false);
-			createmenubar(i18nmenu33a, "menu33s", "panelbookmarks", i18nmenubookmarks, "btnbookmarks");
+			createmenubar(i18nmenu33a, ["menu33s", ""], "panelbookmarks", i18nmenubookmarks, rootbookmarks);
 			SD("menu33s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanbookmarkaddall"});
 			}, false);
 
-			// Windows
-			createmenubar(i18nmenu43a, "menu43s", "panelwindow", i18nmenuwindow, "btnwindow");
+			// Window
+			var rootwindow = ["btnwindow", "w"];
+			createmenubar(i18nmenu43a, ["menu43s", ""], "panelwindow", i18nmenuwindow, rootwindow);
 			SD("menu43s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanminimise"});
 			}, false);
-			createmenubar(i18nmenu44a, "menu44s", "panelwindow", i18nmenuwindow, "btnwindow");
+			createmenubar(i18nmenu44a, ["menu44s", ""], "panelwindow", i18nmenuwindow, rootwindow);
 			SD("menu44s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanzoom"});
 			}, false);
 			createline("panelwindow");
-			createmenubar(i18nmenu15a, "menu15s", "panelwindow", i18nmenuwindow, "btnwindow");
+			createmenubar(i18nmenu15a, ["menu15s", ""], "panelwindow", i18nmenuwindow, rootwindow);
 			SD("menu15s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanswitchtabright"});
 			}, false);
-			createmenubar(i18nmenu34a, "menu34s", "panelwindow", i18nmenuwindow, "btnwindow");
+			createmenubar(i18nmenu34a, ["menu34s", ""], "panelwindow", i18nmenuwindow, rootwindow);
 			SD("menu34s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanswitchtableft"});
 			}, false);
-			createmenubar(i18nmenu35a, "menu35s", "panelwindow", i18nmenuwindow, "btnwindow");
+			createmenubar(i18nmenu35a, ["menu35s", ""], "panelwindow", i18nmenuwindow, rootwindow);
 			SD("menu35s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanduplicatetab"});
 			}, false);
-			createmenubar(i18nmenu36a, "menu36s", "panelwindow", i18nmenuwindow, "btnwindow");
+			createmenubar(i18nmenu36a, ["menu36s", ""], "panelwindow", i18nmenuwindow, rootwindow);
 			SD("menu36s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanpintab"}, function(response){
 					if(response.pinit == true){
@@ -828,7 +857,7 @@ function addtoolbar(){
 				});
 			}, false);
 			createline("panelwindow");
-			createmenubar(i18nmenu37a, "menu37s", "panelwindow", i18nmenuwindow, "btnwindow");
+			createmenubar(i18nmenu37a, ["menu37s", ""], "panelwindow", i18nmenuwindow, rootwindow);
 			SD("menu37s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanmutetab"}, function(response){
 					if(response.soundoff == true){
@@ -838,12 +867,12 @@ function addtoolbar(){
 					}
 				});
 			}, false);
-			createmenubar(i18nmenu38a, "menu38s", "panelwindow", i18nmenuwindow, "btnwindow");
+			createmenubar(i18nmenu38a, ["menu38s", ""], "panelwindow", i18nmenuwindow, rootwindow);
 			SD("menu38s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanmuteothertab"});
 				// i18nmenu42a
 			}, false);
-			createmenubar(i18nmenu39a, "menu39s", "panelwindow", i18nmenuwindow, "btnwindow");
+			createmenubar(i18nmenu39a, ["menu39s", ""], "panelwindow", i18nmenuwindow, rootwindow);
 			SD("menu39s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanmutealltabs"}, function(response){
 					if(response.soundoff == true){
@@ -854,33 +883,34 @@ function addtoolbar(){
 				});
 			}, false);
 			createline("panelwindow");
-			createmenubar(i18nmenu21a, "menu21s", "panelwindow", i18nmenuwindow, "btnwindow");
+			createmenubar(i18nmenu21a, ["menu21s", ""], "panelwindow", i18nmenuwindow, rootwindow);
 			SD("menu21s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefandownloads"});
 			}, false);
-			createmenubar(i18nmenu22a, "menu22s", "panelwindow", i18nmenuwindow, "btnwindow");
+			createmenubar(i18nmenu22a, ["menu22s", ""], "panelwindow", i18nmenuwindow, rootwindow);
 			SD("menu22s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanextensions"});
 			}, false);
-			createmenubar(i18nmenu23a, "menu23s", "panelwindow", i18nmenuwindow, "btnwindow");
+			createmenubar(i18nmenu23a, ["menu23s", ""], "panelwindow", i18nmenuwindow, rootwindow);
 			SD("menu23s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanpolicy"});
 			}, false);
-			createmenubar(i18nmenu24a, "menu24s", "panelwindow", i18nmenuwindow, "btnwindow");
+			createmenubar(i18nmenu24a, ["menu24s", ""], "panelwindow", i18nmenuwindow, rootwindow);
 			SD("menu24s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefaninspect"});
 			}, false);
-			createmenubar(i18nmenu25a, "menu25s", "panelwindow", i18nmenuwindow, "btnwindow");
+			createmenubar(i18nmenu25a, ["menu25s", ""], "panelwindow", i18nmenuwindow, rootwindow);
 			SD("menu25s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanflags"});
 			}, false);
 
 			// Help
-			createmenubar(i18nmenu16a, "menu16s", "panelhelp", i18nmenuhelp, "btnhelp");
+			var roothelp = ["btnhelp", "h"];
+			createmenubar(i18nmenu16a, ["menu16s", ""], "panelhelp", i18nmenuhelp, roothelp);
 			SD("menu16s").addEventListener("click", function(){
 				window.open(linksupport, "_target");
 			}, false);
-			createmenubar(i18nmenu17a, "menu17s", "panelhelp", i18nmenuhelp, "btnhelp");
+			createmenubar(i18nmenu17a, ["menu17s", ""], "panelhelp", i18nmenuhelp, roothelp);
 			SD("menu17s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanchromeabout"});
 			}, false);
@@ -954,7 +984,7 @@ function getkeyword(){
 }
 
 var addbar = null; var dropshadow = null; var allsites = null; var toolbaronly = null; var toolbarDomains = null; var getpositiontop = null; var getpositionbottom = null; var toolbarwhite = null; var toolbarblack = null;
-var opacity = null; var backgroundcolor = null; var backgroundhex = null; var backgroundimagesource = null; var backgroundimage = null; var country = null; var fontcolor = null; var googlesites = null; var search = null; var existingtab = null; var display = null; var hovertextcolor = null; var hoverbackground = null; var googleproducts = null; var menuproducts = null; var googlebarDomains = null;
+var opacity = null; var backgroundcolor = null; var backgroundhex = null; var backgroundimagesource = null; var backgroundimage = null; var country = null; var fontcolor = null; var googlesites = null; var search = null; var existingtab = null; var display = null; var hovertextcolor = null; var hoverbackground = null; var googleproducts = null; var menuproducts = null; var googlebarDomains = null, hovermenu = null;
 
 chrome.runtime.onMessage.addListener(function(request){
 	if(request.action == "goselectall"){
@@ -975,7 +1005,7 @@ chrome.runtime.onMessage.addListener(function(request){
 	}else if(request.action == "goforward"){
 		window.history.forward();
 	}else if(request.action == "addremove"){
-		chrome.storage.sync.get(["country", "addbar", "dropshadow", "toolbarDomains", "allsites", "toolbaronly", "getpositiontop", "getpositionbottom", "toolbarwhite", "toolbarblack", "backgroundhex", "backgroundimagesource", "opacity", "backgroundcolor", "backgroundimage", "allsites", "fontcolor", "googlesites", "search", "existingtab", "display", "hovertextcolor", "hoverbackground", "googleproducts", "menuproducts", "googlebarDomains"], function(items){
+		chrome.storage.sync.get(["country", "addbar", "dropshadow", "toolbarDomains", "allsites", "toolbaronly", "getpositiontop", "getpositionbottom", "toolbarwhite", "toolbarblack", "backgroundhex", "backgroundimagesource", "opacity", "backgroundcolor", "backgroundimage", "allsites", "fontcolor", "googlesites", "search", "existingtab", "display", "hovertextcolor", "hoverbackground", "googleproducts", "menuproducts", "googlebarDomains", "hovermenu"], function(items){
 			country = items.country;
 			if(country == null){
 				var userLang = navigator.language || navigator.userLanguage;
@@ -1011,6 +1041,7 @@ chrome.runtime.onMessage.addListener(function(request){
 			hoverbackground = items["hoverbackground"]; if(hoverbackground == null)hoverbackground = "#444444";
 			googleproducts = items["googleproducts"]; if(googleproducts == null)googleproducts = false;
 			menuproducts = items["menuproducts"]; if(menuproducts == null)menuproducts = true;
+			hovermenu = items["hovermenu"]; if(hovermenu == null)hovermenu = true;
 
 			if(addbar == true){
 				var urlinthelist = false;

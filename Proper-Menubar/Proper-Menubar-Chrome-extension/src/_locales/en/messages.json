@@ -286,5 +286,7 @@
     "desratebadaction": {"message": "Yes, I will give feedback"},
     "desrategoodtitle": {"message": "Thank you!"},
     "desratebadtitle": {"message": "How can we make it better?"},
-    "destapstar": {"message":"Tap a star to rate it on the browser extension store."}
+    "destapstar": {"message":"Tap a star to rate it on the browser extension store."},
+    "titelhovermenu": {"message": "Hover menu"},
+    "deshovermenu": {"message": "Show the menu when you move your cursor on top of the first menu item"}
   }
