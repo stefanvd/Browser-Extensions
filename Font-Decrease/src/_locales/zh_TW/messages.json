@@ -1,0 +1,5 @@
+{
+   "name": {"message": "字體變小"},
+   "description": {"message": "點擊按鈕縮小當前網頁字體"},
+   "browsertitle": {"message": "字體變小"}
+}

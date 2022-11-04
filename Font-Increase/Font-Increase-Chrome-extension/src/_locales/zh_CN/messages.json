@@ -1,0 +1,5 @@
+﻿{
+   "name": {"message": "字体变大"},
+   "description": {"message": "点击按钮增大当前网页字体"},
+   "browsertitle": {"message": "字体变大"}
+}

@@ -1,0 +1,5 @@
+﻿{
+    "name": {"message": "Afname Lettergrootte"},
+    "description": {"message": "Met een klik op de knop de lettergrootte op de huidige pagina zal afnemen."},
+    "browsertitle": {"message": "Afname Lettergrootte"}
+}

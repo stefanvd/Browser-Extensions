@@ -627,4 +627,6 @@ TODO
    https://stackoverflow.com/questions/50257057/how-to-navigate-through-li-elements-using-arrow-keys-jquery
 
 + popup panel design
++ file open menu item
+
 */

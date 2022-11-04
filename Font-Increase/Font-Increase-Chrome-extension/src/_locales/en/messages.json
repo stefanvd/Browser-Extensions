@@ -1,0 +1,5 @@
+﻿{
+    "name": {"message": "Font Size Increase"},
+    "description": {"message": "With one click on the button the font size on the current page will be increase."},
+    "browsertitle": {"message": "Font Size Increase"}
+}
