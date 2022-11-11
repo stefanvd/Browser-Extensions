@@ -63,6 +63,7 @@ body{background:var(--totl-body-background);color:var(--totl-primary-font-color)
 .button:hover{color:var(--totl-primary-font-color);opacity:.88}
 .hidden{display:none}
 hr{margin:0;border:0px;height:1px;background:var(--totl-hr-border)}
+.stefanvdhidden{display:none}
 .btnbox{margin:15px auto;left:0;right:0;width:calc(295px - 15px);height:163px}
 .btnbox .dbn{cursor:pointer;padding:5px;height:60px;width:60px;display:block;float:left;margin:5px 10px;border:1px solid transparent;position:relative}
 .btnbox .donatebck{background:rgb(255,215,64);border:1px solid #ffd740;border-radius:8px}

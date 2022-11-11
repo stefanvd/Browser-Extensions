@@ -15,19 +15,19 @@ const linkguide = "https://www.stefanvd.net/project/proper-menubar/browser/googl
 const linkproductdescription = "https://www.stefanvd.net/project/proper-menubar/browser/";
 const browsernewtab = "chrome://newtab/";
 const browserstore = "https://chrome.google.com";
-const linkyoutube = "https://www.youtube.com/c/stefanvandamme?sub_confirmation=1";
+const linkyoutube = "https://www.youtube.com/@stefanvandamme?sub_confirmation=1";
 const devmode = true;
 const devdonate = false;
 
 const browserextensions = "chrome://extensions/";
 const browsersettings = "chrome://settings/";
-const browserdownloads = "chrome://downloads";
-const browserpolicy = "chrome://policy";
-const browserinspect = "chrome://inspect";
-const browserflags = "chrome://flags";
-const browserabout = "chrome://chrome";
-const browserbookmarks = "chrome://bookmarks";
-const browserhistory = "chrome://history";
+const browserdownloads = "chrome://downloads/";
+const browserpolicy = "chrome://policy/";
+const browserinspect = "chrome://inspect/";
+const browserflags = "chrome://flags/";
+const browserabout = "chrome://version/";
+const browserbookmarks = "chrome://bookmarks/";
+const browserhistory = "chrome://history/";
 
 var country = null;
 var keyword = "";
@@ -160,7 +160,7 @@ var productlinksearch19 = function(a, b){ return"https://photos.google." + a + "
 var productlinksearch20 = function(a, b){ return"https://www.google." + a + "/search?tbm=vid&source=hp&q=" + b; };
 var productlinksearch21 = function(a, b){ return"https://www.google.com/intl/" + a + "/about/products"; };
 var productlinksearch22 = function(a, b){ return"https://www.google.com/voice"; };
-var productlinksearch23 = function(a, b){ return"https://www.google.com/contacts/#contacts‎"; };
+var productlinksearch23 = function(a, b){ return"https://www.google.com/contacts/#contacts"; };
 var productlinksearch24 = function(a, b){ return"https://scholar.google." + a + ""; };
 var productlinksearch25 = function(a, b){ return"https://keep.google.com"; };
 var productlinksearch26 = function(a, b){ return"https://docs.google.com/presentation"; };

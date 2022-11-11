@@ -139,7 +139,7 @@
     "showremember": {"message": "Do not show this reminder page again when I open the options page"},
     "skipremember": {"message": "Skip this, and open now the options page"},
     "titelrightsreserved": {"message": "Some rights reserved."},
-    "friendlyremember": {"message": "Friendly Reminder..."},
+    "friendlyremember": {"message": "Friendly Reminder…"},
     "welcomebasictext": {"message": "Welcome on the Proper Menubar browser extension. Here a brief video about how to use the Proper Menubar extension in your web browser."},
     "promotitle": {"message": "Tip of the day"},
     "promotext": {
@@ -288,5 +288,6 @@
     "desratebadtitle": {"message": "How can we make it better?"},
     "destapstar": {"message":"Tap a star to rate it on the browser extension store."},
     "titelhovermenu": {"message": "Hover menu"},
-    "deshovermenu": {"message": "Show the menu when you move your cursor on top of the first menu item"}
+    "deshovermenu": {"message": "Show the menu when you move your cursor on top of the first menu item"},
+    "menu48a": {"message": "Open File…"}
   }

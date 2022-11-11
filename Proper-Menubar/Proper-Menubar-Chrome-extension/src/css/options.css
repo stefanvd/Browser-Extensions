@@ -209,12 +209,12 @@ section{position:relative;-webkit-box-orient:horizontal;border-bottom:var(--totl
 section>h3{font-size:105%;font-weight:700;margin:0;width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 section>div:only-of-type{-webkit-box-flex:1}
 /* slices */
-.slice1{background:url(../images/Slice1.png);width:calc(100% - 6px);height:30px;margin:3px}
-.slice2{background:url(../images/Slice2.png);width:calc(100% - 6px);height:30px;margin:3px}
-.slice3{background:url(../images/Slice3.png);width:calc(100% - 6px);height:30px;margin:3px}
-.slice4{background:url(../images/Slice4.png);width:calc(100% - 6px);height:30px;margin:3px}
-.slice5{background:url(../images/Slice5.png);width:calc(100% - 6px);height:30px;margin:3px}
-.slice6{background:url(../images/Slice6.png);width:calc(100% - 6px);height:30px;margin:3px}
+.slice1{background:url(/images/slice1.png);width:calc(100% - 6px);height:30px;margin:3px}
+.slice2{background:url(/images/slice2.png);width:calc(100% - 6px);height:30px;margin:3px}
+.slice3{background:url(/images/slice3.png);width:calc(100% - 6px);height:30px;margin:3px}
+.slice4{background:url(/images/slice4.png);width:calc(100% - 6px);height:30px;margin:3px}
+.slice5{background:url(/images/slice5.png);width:calc(100% - 6px);height:30px;margin:3px}
+.slice6{background:url(/images/slice6.png);width:calc(100% - 6px);height:30px;margin:3px}
 .slice1:hover,.slice2:hover,.slice3:hover,.slice4:hover,.slice5:hover,.slice6:hover{opacity:.8;cursor:pointer}
 #backgroundimagesource{width:400px;display:none}
 /* propermenu only */

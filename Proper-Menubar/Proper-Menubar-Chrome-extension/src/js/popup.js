@@ -186,6 +186,118 @@ function createmenubar(a, b, c, d, e){
 	newdropdowncontentli.appendChild(newdropdowncontentlia);
 }
 
+
+var i18nlink1a = chrome.i18n.getMessage("link1a");
+var i18nlink2a = chrome.i18n.getMessage("link2a");
+var i18nlink3a = chrome.i18n.getMessage("link3a");
+var i18nlink4a = chrome.i18n.getMessage("link4a");
+var i18nlink5a = chrome.i18n.getMessage("link5a");
+var i18nlink6a = chrome.i18n.getMessage("link6a");
+var i18nlink7a = chrome.i18n.getMessage("link7a");
+var i18nlink8a = chrome.i18n.getMessage("link8a");
+var i18nlink9a = chrome.i18n.getMessage("link9a");
+var i18nlink10a = chrome.i18n.getMessage("link10a");
+var i18nlink11a = chrome.i18n.getMessage("link11a");
+var i18nlink12a = chrome.i18n.getMessage("link12a");
+var i18nlink13a = chrome.i18n.getMessage("link13a");
+var i18nlink14a = chrome.i18n.getMessage("link14a");
+var i18nlink15a = chrome.i18n.getMessage("link15a");
+var i18nlink16a = chrome.i18n.getMessage("link16a");
+var i18nlink17a = chrome.i18n.getMessage("link17a");
+var i18nlink18a = chrome.i18n.getMessage("link18a");
+var i18nlink19a = chrome.i18n.getMessage("link19a");
+var i18nlink20a = chrome.i18n.getMessage("link20a");
+var i18nlink21a = chrome.i18n.getMessage("link21a");
+var i18nlink22a = chrome.i18n.getMessage("link22a");
+var i18nlink23a = chrome.i18n.getMessage("link23a");
+var i18nlink24a = chrome.i18n.getMessage("link24a");
+var i18nlink25a = chrome.i18n.getMessage("link25a");
+var i18nlink26a = chrome.i18n.getMessage("link26a");
+var i18nlink27a = chrome.i18n.getMessage("link27a");
+var i18nlink28a = chrome.i18n.getMessage("link28a");
+var i18nlink29a = chrome.i18n.getMessage("link29a");
+var i18nlink30a = chrome.i18n.getMessage("link30a");
+var i18nlink31a = chrome.i18n.getMessage("link31a");
+var i18nlink32a = chrome.i18n.getMessage("link32a");
+var i18nlink33a = chrome.i18n.getMessage("link33a");
+var i18nlink34a = chrome.i18n.getMessage("link34a");
+var i18nlink35a = chrome.i18n.getMessage("link35a");
+var i18nlink36a = chrome.i18n.getMessage("link36a");
+var i18nlink37a = chrome.i18n.getMessage("link37a");
+var i18nlink38a = chrome.i18n.getMessage("link38a");
+var i18nlink39a = chrome.i18n.getMessage("link39a");
+var i18nlink40a = chrome.i18n.getMessage("link40a");
+var i18nlink41a = chrome.i18n.getMessage("link41a");
+var i18nlink42a = chrome.i18n.getMessage("link42a");
+var i18nlink43a = chrome.i18n.getMessage("link43a");
+var i18nlink44a = chrome.i18n.getMessage("link44a");
+var i18nlink45a = chrome.i18n.getMessage("link45a");
+var i18nlink46a = chrome.i18n.getMessage("link46a");
+var i18nlink47a = chrome.i18n.getMessage("link47a");
+var i18nlink48a = chrome.i18n.getMessage("link48a");
+var i18nlink49a = chrome.i18n.getMessage("link49a");
+var i18nlink50a = chrome.i18n.getMessage("link50a");
+var i18nlink51a = chrome.i18n.getMessage("link51a");
+var i18nlink52a = chrome.i18n.getMessage("link52a");
+var i18nlink53a = chrome.i18n.getMessage("link53a");
+
+// Simple clean browser menu bar
+var i18nmenufile = chrome.i18n.getMessage("menufile");
+var i18nmenuedit = chrome.i18n.getMessage("menuedit");
+var i18nmenuview = chrome.i18n.getMessage("menuview");
+var i18nmenuhistory = chrome.i18n.getMessage("menuhistory");
+var i18nmenubookmarks = chrome.i18n.getMessage("menubookmarks");
+var i18nmenuwindow = chrome.i18n.getMessage("menuwindow");
+var i18nmenuhelp = chrome.i18n.getMessage("menuhelp");
+var i18nmenu1a = chrome.i18n.getMessage("menu1a");
+var i18nmenu2a = chrome.i18n.getMessage("menu2a");
+var i18nmenu3a = chrome.i18n.getMessage("menu3a");
+var i18nmenu4a = chrome.i18n.getMessage("menu4a");
+var i18nmenu5a = chrome.i18n.getMessage("menu5a");
+var i18nmenu6a = chrome.i18n.getMessage("menu6a");
+var i18nmenu7a = chrome.i18n.getMessage("menu7a");
+var i18nmenu8a = chrome.i18n.getMessage("menu8a");
+var i18nmenu9a = chrome.i18n.getMessage("menu9a");
+var i18nmenu10a = chrome.i18n.getMessage("menu10a");
+var i18nmenu11a = chrome.i18n.getMessage("menu11a");
+var i18nmenu12a = chrome.i18n.getMessage("menu12a");
+var i18nmenu13a = chrome.i18n.getMessage("menu13a");
+var i18nmenu14a = chrome.i18n.getMessage("menu14a");
+var i18nmenu15a = chrome.i18n.getMessage("menu15a");
+var i18nmenu16a = chrome.i18n.getMessage("menu16a");
+var i18nmenu17a = chrome.i18n.getMessage("menu17a");
+var i18nmenu18a = chrome.i18n.getMessage("menu18a");
+var i18nmenu19a = chrome.i18n.getMessage("menu19a");
+var i18nmenu20a = chrome.i18n.getMessage("menu20a");
+var i18nmenu21a = chrome.i18n.getMessage("menu21a");
+var i18nmenu22a = chrome.i18n.getMessage("menu22a");
+var i18nmenu23a = chrome.i18n.getMessage("menu23a");
+var i18nmenu24a = chrome.i18n.getMessage("menu24a");
+var i18nmenu25a = chrome.i18n.getMessage("menu25a");
+var i18nmenu26a = chrome.i18n.getMessage("menu26a");
+var i18nmenu27a = chrome.i18n.getMessage("menu27a");
+var i18nmenu28a = chrome.i18n.getMessage("menu28a");
+var i18nmenu29a = chrome.i18n.getMessage("menu29a");
+var i18nmenu30a = chrome.i18n.getMessage("menu30a");
+var i18nmenu31a = chrome.i18n.getMessage("menu31a");
+var i18nmenu32a = chrome.i18n.getMessage("menu32a");
+var i18nmenu33a = chrome.i18n.getMessage("menu33a");
+var i18nmenu34a = chrome.i18n.getMessage("menu34a");
+var i18nmenu35a = chrome.i18n.getMessage("menu35a");
+var i18nmenu36a = chrome.i18n.getMessage("menu36a");
+var i18nmenu37a = chrome.i18n.getMessage("menu37a");
+var i18nmenu38a = chrome.i18n.getMessage("menu38a");
+var i18nmenu39a = chrome.i18n.getMessage("menu39a");
+var i18nmenu40a = chrome.i18n.getMessage("menu40a");
+var i18nmenu41a = chrome.i18n.getMessage("menu41a");
+// var i18nmenu42a = chrome.i18n.getMessage("menu42a");
+var i18nmenu43a = chrome.i18n.getMessage("menu43a");
+var i18nmenu44a = chrome.i18n.getMessage("menu44a");
+var i18nmenu45a = chrome.i18n.getMessage("menu45a");
+var i18nmenu46a = chrome.i18n.getMessage("menu46a");
+var i18nmenu47a = chrome.i18n.getMessage("menu47a");
+var i18nmenu48a = chrome.i18n.getMessage("menu48a");
+
 var newtoolbardiv;
 var newtoolbarul;
 function addtoolbar(){
@@ -224,62 +336,6 @@ function addtoolbar(){
 		newtoolbardiv.appendChild(newtoolbarul);
 
 		if(googleproducts == true){
-
-
-			var i18nlink1a = chrome.i18n.getMessage("link1a");
-			var i18nlink2a = chrome.i18n.getMessage("link2a");
-			var i18nlink3a = chrome.i18n.getMessage("link3a");
-			var i18nlink4a = chrome.i18n.getMessage("link4a");
-			var i18nlink5a = chrome.i18n.getMessage("link5a");
-			var i18nlink6a = chrome.i18n.getMessage("link6a");
-			var i18nlink7a = chrome.i18n.getMessage("link7a");
-			var i18nlink8a = chrome.i18n.getMessage("link8a");
-			var i18nlink9a = chrome.i18n.getMessage("link9a");
-			var i18nlink10a = chrome.i18n.getMessage("link10a");
-			var i18nlink11a = chrome.i18n.getMessage("link11a");
-			var i18nlink12a = chrome.i18n.getMessage("link12a");
-			var i18nlink13a = chrome.i18n.getMessage("link13a");
-			var i18nlink14a = chrome.i18n.getMessage("link14a");
-			var i18nlink15a = chrome.i18n.getMessage("link15a");
-			var i18nlink16a = chrome.i18n.getMessage("link16a");
-			var i18nlink17a = chrome.i18n.getMessage("link17a");
-			var i18nlink18a = chrome.i18n.getMessage("link18a");
-			var i18nlink19a = chrome.i18n.getMessage("link19a");
-			var i18nlink20a = chrome.i18n.getMessage("link20a");
-			var i18nlink21a = chrome.i18n.getMessage("link21a");
-			var i18nlink22a = chrome.i18n.getMessage("link22a");
-			var i18nlink23a = chrome.i18n.getMessage("link23a");
-			var i18nlink24a = chrome.i18n.getMessage("link24a");
-			var i18nlink25a = chrome.i18n.getMessage("link25a");
-			var i18nlink26a = chrome.i18n.getMessage("link26a");
-			var i18nlink27a = chrome.i18n.getMessage("link27a");
-			var i18nlink28a = chrome.i18n.getMessage("link28a");
-			var i18nlink29a = chrome.i18n.getMessage("link29a");
-			var i18nlink30a = chrome.i18n.getMessage("link30a");
-			var i18nlink31a = chrome.i18n.getMessage("link31a");
-			var i18nlink32a = chrome.i18n.getMessage("link32a");
-			var i18nlink33a = chrome.i18n.getMessage("link33a");
-			var i18nlink34a = chrome.i18n.getMessage("link34a");
-			var i18nlink35a = chrome.i18n.getMessage("link35a");
-			var i18nlink36a = chrome.i18n.getMessage("link36a");
-			var i18nlink37a = chrome.i18n.getMessage("link37a");
-			var i18nlink38a = chrome.i18n.getMessage("link38a");
-			var i18nlink39a = chrome.i18n.getMessage("link39a");
-			var i18nlink40a = chrome.i18n.getMessage("link40a");
-			var i18nlink41a = chrome.i18n.getMessage("link41a");
-			var i18nlink42a = chrome.i18n.getMessage("link42a");
-			var i18nlink43a = chrome.i18n.getMessage("link43a");
-			var i18nlink44a = chrome.i18n.getMessage("link44a");
-			var i18nlink45a = chrome.i18n.getMessage("link45a");
-			var i18nlink46a = chrome.i18n.getMessage("link46a");
-			var i18nlink47a = chrome.i18n.getMessage("link47a");
-			var i18nlink48a = chrome.i18n.getMessage("link48a");
-			var i18nlink49a = chrome.i18n.getMessage("link49a");
-			var i18nlink50a = chrome.i18n.getMessage("link50a");
-			var i18nlink51a = chrome.i18n.getMessage("link51a");
-			var i18nlink52a = chrome.i18n.getMessage("link52a");
-			var i18nlink53a = chrome.i18n.getMessage("link53a");
-
 			if(typeof googlebarDomains == "string"){
 				googlebarDomains = JSON.parse(googlebarDomains);
 				var pbuf = [];
@@ -342,62 +398,6 @@ function addtoolbar(){
 				}
 			}
 		}else{
-			// Simple clean browser menu bar
-			var i18nmenufile = chrome.i18n.getMessage("menufile");
-			var i18nmenuedit = chrome.i18n.getMessage("menuedit");
-			var i18nmenuview = chrome.i18n.getMessage("menuview");
-			var i18nmenuhistory = chrome.i18n.getMessage("menuhistory");
-			var i18nmenubookmarks = chrome.i18n.getMessage("menubookmarks");
-			var i18nmenuwindow = chrome.i18n.getMessage("menuwindow");
-			var i18nmenuhelp = chrome.i18n.getMessage("menuhelp");
-			var i18nmenu1a = chrome.i18n.getMessage("menu1a");
-			var i18nmenu2a = chrome.i18n.getMessage("menu2a");
-			var i18nmenu3a = chrome.i18n.getMessage("menu3a");
-			var i18nmenu4a = chrome.i18n.getMessage("menu4a");
-			var i18nmenu5a = chrome.i18n.getMessage("menu5a");
-			var i18nmenu6a = chrome.i18n.getMessage("menu6a");
-			var i18nmenu7a = chrome.i18n.getMessage("menu7a");
-			var i18nmenu8a = chrome.i18n.getMessage("menu8a");
-			var i18nmenu9a = chrome.i18n.getMessage("menu9a");
-			var i18nmenu10a = chrome.i18n.getMessage("menu10a");
-			var i18nmenu11a = chrome.i18n.getMessage("menu11a");
-			var i18nmenu12a = chrome.i18n.getMessage("menu12a");
-			var i18nmenu13a = chrome.i18n.getMessage("menu13a");
-			var i18nmenu14a = chrome.i18n.getMessage("menu14a");
-			var i18nmenu15a = chrome.i18n.getMessage("menu15a");
-			var i18nmenu16a = chrome.i18n.getMessage("menu16a");
-			var i18nmenu17a = chrome.i18n.getMessage("menu17a");
-			var i18nmenu18a = chrome.i18n.getMessage("menu18a");
-			var i18nmenu19a = chrome.i18n.getMessage("menu19a");
-			var i18nmenu20a = chrome.i18n.getMessage("menu20a");
-			var i18nmenu21a = chrome.i18n.getMessage("menu21a");
-			var i18nmenu22a = chrome.i18n.getMessage("menu22a");
-			var i18nmenu23a = chrome.i18n.getMessage("menu23a");
-			var i18nmenu24a = chrome.i18n.getMessage("menu24a");
-			var i18nmenu25a = chrome.i18n.getMessage("menu25a");
-			var i18nmenu26a = chrome.i18n.getMessage("menu26a");
-			var i18nmenu27a = chrome.i18n.getMessage("menu27a");
-			var i18nmenu28a = chrome.i18n.getMessage("menu28a");
-			var i18nmenu29a = chrome.i18n.getMessage("menu29a");
-			var i18nmenu30a = chrome.i18n.getMessage("menu30a");
-			var i18nmenu31a = chrome.i18n.getMessage("menu31a");
-			var i18nmenu32a = chrome.i18n.getMessage("menu32a");
-			var i18nmenu33a = chrome.i18n.getMessage("menu33a");
-			var i18nmenu34a = chrome.i18n.getMessage("menu34a");
-			var i18nmenu35a = chrome.i18n.getMessage("menu35a");
-			var i18nmenu36a = chrome.i18n.getMessage("menu36a");
-			var i18nmenu37a = chrome.i18n.getMessage("menu37a");
-			var i18nmenu38a = chrome.i18n.getMessage("menu38a");
-			var i18nmenu39a = chrome.i18n.getMessage("menu39a");
-			var i18nmenu40a = chrome.i18n.getMessage("menu40a");
-			var i18nmenu41a = chrome.i18n.getMessage("menu41a");
-			// var i18nmenu42a = chrome.i18n.getMessage("menu42a");
-			var i18nmenu43a = chrome.i18n.getMessage("menu43a");
-			var i18nmenu44a = chrome.i18n.getMessage("menu44a");
-			var i18nmenu45a = chrome.i18n.getMessage("menu45a");
-			var i18nmenu46a = chrome.i18n.getMessage("menu46a");
-			var i18nmenu47a = chrome.i18n.getMessage("menu47a");
-
 			// File
 			createmenubar(i18nmenu1a, "menu1s", "panelfile", i18nmenufile, "btnfile");
 			$("menu1s").addEventListener("click", function(){
@@ -412,6 +412,10 @@ function addtoolbar(){
 				chrome.runtime.sendMessage({name: "stefancleannewwindowincognito"});
 			}, false);
 			createline("panelfile");
+			createmenubar(i18nmenu48a, "menu48s", "panelfile", i18nmenufile, "btnfile");
+			$("menu48s").addEventListener("click", function(){
+				runopenfile();
+			}, false);
 			createmenubar(i18nmenu4a, "menu4s", "panelfile", i18nmenufile, "btnfile");
 			$("menu4s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefancleanclosewindow"});
@@ -616,6 +620,31 @@ function addtoolbar(){
 
 		}
 	}
+}
+
+// Open local file
+function runopenfile(){
+	// <input type="file" id="attachment" style="display: none;" onchange="fileSelected(this)"/>
+	// <input type="button" id="btnAttachment" onclick="openAttachment()" value="File"/>
+	var input = document.createElement("input");
+	input.type = "file";
+	input.id = "attachment";
+	input.className = "stefanvdhidden";
+	input.addEventListener("change", function(){ fileSelected(this); });
+	document.body.appendChild(input);
+
+	document.getElementById("attachment").click();
+
+	var element = $("attachment");
+	if(element){
+		element.parentNode.removeChild(element);
+	}
+}
+
+function fileSelected(input){
+	var thatfile = input.files[0];
+	var path = (window.URL || window.webkitURL).createObjectURL(thatfile);
+	window.open(path);
 }
 
 var addbar = null; var opacity = null; var backgroundcolor = null; var backgroundhex = null; var backgroundimage = null; var fontcolor = null; var googlesites = null; var search = null; var existingtab = null; var display = null; var hovertextcolor = null; var hoverbackground = null; var googleproducts = null; var menuproducts = null; var googlebarDomains = null;

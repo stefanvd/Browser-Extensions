@@ -280,15 +280,15 @@ chrome.runtime.onMessage.addListener(function request(request, sender, sendRespo
 			chrome.windows.update(window.id, {state: "maximized"});
 		});
 	}else if(request.name == "stefandownloads"){
-		chrome.windows.create({url: browserdownloads});
+		chrome.tabs.create({url: browserdownloads});
 	}else if(request.name == "stefanextensions"){
-		chrome.windows.create({url: browserextensions});
+		chrome.tabs.create({url: browserextensions});
 	}else if(request.name == "stefanpolicy"){
-		chrome.windows.create({url: browserpolicy});
+		chrome.tabs.create({url: browserpolicy});
 	}else if(request.name == "stefaninspect"){
-		chrome.windows.create({url: browserinspect});
+		chrome.tabs.create({url: browserinspect});
 	}else if(request.name == "stefanflags"){
-		chrome.windows.create({url: browserflags});
+		chrome.tabs.create({url: browserflags});
 	}else if(request.name == "stefanremovebar"){
 		chrome.tabs.query({active: true}, function(tabs){
 			for(var i = 0; i < tabs.length; i++){
@@ -542,7 +542,11 @@ chrome.commands.onCommand.addListener(function(command){
 	if(command == "toggle-feature-propermenubar"){
 		var addbar = null;
 		chrome.storage.sync.get(["addbar"], function(items){
-			if(items["addbar"]){ addbar = items["addbar"]; }if(addbar == null)addbar = true;
+
+			if(items["addbar"]){
+				addbar = items["addbar"];
+			}
+
 			chrome.tabs.query({active: true}, function(tabs){
 				for(var i = 0; i < tabs.length; i++){
 					if(addbar == true){
@@ -553,8 +557,8 @@ chrome.commands.onCommand.addListener(function(command){
 						chrome.tabs.sendMessage(tabs[i].id, {action: "addremove"});
 					}
 				}
-			}
-			);
+			});
+
 		});
 	}
 });
@@ -619,14 +623,14 @@ chrome.runtime.onInstalled.addListener(function(){
 	installation();
 });
 
+
 /*
 TODO
 + emails features
-+ shortcut key combination in the bar alt+ctrl
 + shortcut key focus menu item one by one
    https://stackoverflow.com/questions/50257057/how-to-navigate-through-li-elements-using-arrow-keys-jquery
-
+   https://jsfiddle.net/7teo1r5h/2/
 + popup panel design
-+ file open menu item
-
++ FIX THIS: Uncaught (in promise) Error: Could not establish connection. Receiving end does not exist.
++ FIX THIS: Double command in keyboard??
 */

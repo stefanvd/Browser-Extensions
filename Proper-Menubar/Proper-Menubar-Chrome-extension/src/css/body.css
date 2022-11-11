@@ -26,6 +26,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 //================================================
 */
 
+.stefanvdhidden{display:none}
 #stefanvdproperblocksmall{height:30px!important;width:100%!important;display:block!important}
 
 #stefanvdnavwrappe{margin:0 auto;background-color:#2D2D2D;height:30px;width:100%;-webkit-user-select:none;user-select:none}

@@ -104,6 +104,7 @@ function createmenubar(a, b, c, d, e){
 		var newdropdowna = document.createElement("a");
 		newdropdowna.style.color = fontcolor;
 		newdropdowna.innerHTML = d;
+		newdropdowna.tabIndex = 0;
 		newdropdown.appendChild(newdropdowna);
 
 		var rgb = hex2rgb(backgroundhex);
@@ -138,6 +139,7 @@ function createmenubar(a, b, c, d, e){
 	}
 	newdropdowncontentlia.style.color = fontcolor;
 	newdropdowncontentlia.innerHTML = a;
+	newdropdowncontentlia.tabIndex = 0;
 	newdropdowncontentli.appendChild(newdropdowncontentlia);
 }
 
@@ -366,6 +368,7 @@ var i18nmenu44a = chrome.i18n.getMessage("menu44a");
 var i18nmenu45a = chrome.i18n.getMessage("menu45a");
 var i18nmenu46a = chrome.i18n.getMessage("menu46a");
 var i18nmenu47a = chrome.i18n.getMessage("menu47a");
+var i18nmenu48a = chrome.i18n.getMessage("menu48a");
 
 var taskchangepositiontop = false;
 var x, w, v, y, z, q;
@@ -457,6 +460,7 @@ function addtoolbar(){
 
 		var frame = document.createElement("div");
 		frame.setAttribute("id", "stefanvdpropermenubar");
+		frame.setAttribute("role", "toolbar");
 		frame.style.height = "30px";
 		frame.style.border = "none";
 		frame.style.position = "fixed";
@@ -708,6 +712,10 @@ function addtoolbar(){
 				chrome.runtime.sendMessage({name: "stefancleannewwindowincognito"});
 			}, false);
 			createline("panelfile");
+			createmenubar(i18nmenu48a, ["menu48s", "c"], "panelfile", i18nmenufile, rootfile);
+			SD("menu48s").addEventListener("click", function(){
+				runopenfile();
+			}, false);
 			createmenubar(i18nmenu4a, ["menu4s", "c"], "panelfile", i18nmenufile, rootfile);
 			SD("menu4s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefancleanclosewindow"});
@@ -981,6 +989,31 @@ function getkeyword(){
 		// console.log(e);
 	}
 	return keyword;
+}
+
+// Open local file
+function runopenfile(){
+	// <input type="file" id="attachment" style="display: none;" onchange="fileSelected(this)"/>
+	// <input type="button" id="btnAttachment" onclick="openAttachment()" value="File"/>
+	var input = document.createElement("input");
+	input.type = "file";
+	input.id = "attachment";
+	input.className = "stefanvdhidden";
+	input.addEventListener("change", function(){ fileSelected(this); });
+	el.shadowRoot.appendChild(input);
+
+	el.shadowRoot.getElementById("attachment").click();
+
+	var element = SD("attachment");
+	if(element){
+		element.parentNode.removeChild(element);
+	}
+}
+
+function fileSelected(input){
+	var thatfile = input.files[0];
+	var path = (window.URL || window.webkitURL).createObjectURL(thatfile);
+	window.open(path);
 }
 
 var addbar = null; var dropshadow = null; var allsites = null; var toolbaronly = null; var toolbarDomains = null; var getpositiontop = null; var getpositionbottom = null; var toolbarwhite = null; var toolbarblack = null;
