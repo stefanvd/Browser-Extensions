@@ -513,8 +513,6 @@ if(chrome.contextMenus){
 	}
 }
 
-chrome.contextMenus.onClicked.addListener(onClickHandler);
-
 chrome.storage.sync.get(["contextmenus"], function(items){
 	if(items["contextmenus"]){ checkcontextmenus(); }
 });

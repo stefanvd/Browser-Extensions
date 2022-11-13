@@ -420,6 +420,8 @@ function onClickHandler(info){
 		chrome.tabs.create({url: "https://vk.com/share.php?url=" + linkproduct, active:true});
 	}else if(info.menuItemId == "totlsharewhatsapp"){
 		chrome.tabs.create({url: "https://api.whatsapp.com/send?text=" + chrome.i18n.getMessage("sharetextd") + "%0a" + linkproduct, active:true});
+	}else if(info.menuItemId == "pmpage"){
+		togglebar();
 	}
 }
 
@@ -504,7 +506,6 @@ if(chrome.contextMenus){
 		chrome.contextMenus.onClicked.addListener(onClickHandler);
 	}
 }
-chrome.contextMenus.onClicked.addListener(onClickHandler);
 
 chrome.storage.sync.get(["contextmenus"], function(items){
 	if(items["contextmenus"]){ checkcontextmenus(); }
@@ -538,28 +539,32 @@ function removecontexmenus(){
 	contextmenuadded = false;
 }
 
+function togglebar(){
+	var addbar = null;
+	chrome.storage.sync.get(["addbar"], function(items){
+
+		if(items["addbar"]){
+			addbar = items["addbar"];
+		}
+
+		chrome.tabs.query({active: true}, function(tabs){
+			for(var i = 0; i < tabs.length; i++){
+				if(addbar == true){
+					chrome.storage.sync.set({"addbar": false});
+					chrome.tabs.sendMessage(tabs[i].id, {action: "addremove"});
+				}else{
+					chrome.storage.sync.set({"addbar": true});
+					chrome.tabs.sendMessage(tabs[i].id, {action: "addremove"});
+				}
+			}
+		});
+
+	});
+}
+
 chrome.commands.onCommand.addListener(function(command){
 	if(command == "toggle-feature-propermenubar"){
-		var addbar = null;
-		chrome.storage.sync.get(["addbar"], function(items){
-
-			if(items["addbar"]){
-				addbar = items["addbar"];
-			}
-
-			chrome.tabs.query({active: true}, function(tabs){
-				for(var i = 0; i < tabs.length; i++){
-					if(addbar == true){
-						chrome.storage.sync.set({"addbar": false});
-						chrome.tabs.sendMessage(tabs[i].id, {action: "addremove"});
-					}else{
-						chrome.storage.sync.set({"addbar": true});
-						chrome.tabs.sendMessage(tabs[i].id, {action: "addremove"});
-					}
-				}
-			});
-
-		});
+		togglebar();
 	}
 });
 
@@ -631,6 +636,7 @@ TODO
    https://stackoverflow.com/questions/50257057/how-to-navigate-through-li-elements-using-arrow-keys-jquery
    https://jsfiddle.net/7teo1r5h/2/
 + popup panel design
++ FIX THIS add context menu (toggle menubar)
 + FIX THIS: Uncaught (in promise) Error: Could not establish connection. Receiving end does not exist.
 + FIX THIS: Double command in keyboard??
 */
