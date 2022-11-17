@@ -1,0 +1,54 @@
+{
+  "manifest_version": 2,
+  "name": "__MSG_name__",
+  "description": "__MSG_description__",
+  "version": "1.0",
+  "background": {
+    "scripts": ["scripts/constants.js","scripts/background.js"]
+  },
+  "icons": {
+    "16": "images/icon16.png",
+    "24": "images/icon24.png",
+    "32": "images/icon32.png",
+    "48": "images/icon48.png",
+    "96": "images/icon96.png",
+    "128": "images/icon128.png"
+  },
+  "default_locale": "en",
+  "sidebar_action": {
+    "default_icon": {
+      "16": "images/icon16.png",
+      "32": "images/icon32.png"
+    },
+    "default_title": "__MSG_name__",
+    "default_panel": "panel.html",
+    "open_at_install":true
+  },
+  "browser_action": {
+    "default_icon": {
+      "16": "images/icon16.png",
+      "32": "images/icon32.png"
+    },
+    "default_title": "__MSG_name__",
+    "theme_icons": [{
+      "light": "images/icon16.png",
+      "dark": "images/icon16.png",
+      "size": 16
+    }, {
+      "light": "images/icon32.png",
+      "dark": "images/icon32.png",
+      "size": 32
+    }]
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "permissions": ["contextMenus", "activeTab", "storage"],
+  "browser_specific_settings": {
+    "gecko": {
+        "id": "notesidebar@stefanvd.net",
+        "strict_min_version": "77.0"
+    }
+  }
+}

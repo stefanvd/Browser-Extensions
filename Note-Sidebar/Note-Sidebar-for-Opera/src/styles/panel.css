@@ -1,0 +1,75 @@
+/*
+//================================================
+
+Note Sidebar
+Write small or large notes in your sidebar.
+Copyright (C) 2022 Stefan vd
+www.stefanvd.net
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+
+To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.0/
+
+//================================================
+*/
+
+html,body{background:var(--ext-primary-background);color:var(--ext-nav-color);margin:0;padding:0;font-family:'Helvetica','Verdana',sans-serif}
+.notepaper{z-index:-1;position:fixed;top:0;left:0;height:100%;width:100%}
+textarea{background:transparent;width:100%;height:100%;position:fixed;top:0;left:0;right:0;bottom:0;outline:none;padding:15px;margin:0;border:0;box-sizing:border-box;resize:none;font-family:Helvetica,Arial,sans-serif;font-size:var(--ext-font-size);line-height:var(--ext-line-height);color:var(--ext-nav-color)}
+.texttoolbar{bottom:15px;right:15px;display:flex;position:fixed;gap:15px;height:18px}
+#counter{height:18px;display:flex;color:var(--ext-nav-color);-webkit-user-select:none;user-select:none;align-items:center}
+.btn-copy{width:18px;height:18px;background:none;border:none;padding:0;margin:0;cursor:pointer}
+.btn-copy:hover{opacity:.65}
+.btn-copy svg{fill:var(--ext-nav-color);height:18px;width:18px}
+.btn-print{width:18px;height:18px;background:none;border:none;padding:0;margin:0;cursor:pointer}
+.btn-print:hover{opacity:.65}
+.btn-print svg{fill:var(--ext-nav-color);height:18px;width:18px}
+.btn-startspeech{width:18px;height:18px;background:none;border:none;padding:0;margin:0;cursor:pointer}
+.btn-startspeech:hover{opacity:.65}
+.btn-startspeech svg{fill:var(--ext-nav-color);height:18px;width:18px}
+.btn-stopspeech{width:18px;height:18px;background:none;border:none;padding:0;margin:0;cursor:pointer}
+.btn-stopspeech:hover{opacity:.65}
+.btn-stopspeech svg{fill:var(--ext-nav-color);height:18px;width:18px}
+#field{margin-left:15px}
+#voices{display:block;outline:none;width:100%}
+#stefanvdpromo{margin:auto;width:305px;position:fixed;bottom:50px;left:0;right:0;background-color:#ffffff;border:solid #dadce0 1px;border-radius:24px;box-sizing:border-box;color:#000000}
+#stefanvdpromo .box{display:flex;flex-direction:row;height:30px;justify-content:center;align-items:center;gap:8px}
+#stefanvdpromo a,#stefanvdpromo a:hover,#stefanvdpromo a:visited{color:rgb(25 103 210)}
+#stefanvdpromo .red{color:red;padding-inline-start:8px}
+#stefanvdpromo .close{border-radius:20px;width:20px;height:20px;color:#5f6367;margin-inline-end:4px;display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-user-select:none;user-select:none}
+#stefanvdpromo .close:hover{background:#e8e8e9}
+#lockscreen{position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;background:#ffffff;opacity:1}
+#lockscreen input{background:#ffffff;position:absolute;top:0;bottom:0;margin:auto;width:150px;height:40px;font-size:40px;padding:0px 20px;border-radius:20px;border:0;left:0;right:0;outline:none;box-shadow:0 1px 6px 0 rgba(32, 33, 36, .28)}
+#lockscreen input:hover{background:#fbfbfb}
+.hidden{display:none}
+.animation{animation:shake 0.82s cubic-bezier(.36,.07,.19,.97) both}
+@keyframes shake {
+    10%, 90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+    
+    20%, 80% {
+      transform: translate3d(2px, 0, 0);
+    }
+  
+    30%, 50%, 70% {
+      transform: translate3d(-4px, 0, 0);
+    }
+  
+    40%, 60% {
+      transform: translate3d(4px, 0, 0);
+    }
+  }
