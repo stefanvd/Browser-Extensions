@@ -68,7 +68,7 @@ chrome.storage.sync.get(["contextmenus", "counter", "copy", "speech", "voices", 
 });
 
 function read_options(){
-// youtube
+	// youtube
 	$("materialModalYouTubeButtonOK").addEventListener("click", function(e){
 		closeMaterialYouTubeAlert(e);
 		chrome.storage.sync.set({"firstsawyoutube": true});
@@ -643,7 +643,7 @@ function domcontentloaded(){
 	}
 
 	// Reset settings
-	$("resetinotessidebar").addEventListener("click", function(){ chrome.storage.sync.clear(); location.reload(); });
+	$("resetinotessidebar").addEventListener("click", function(){ chrome.storage.sync.clear(); chrome.runtime.sendMessage({name: "bckreload"}); location.reload(); });
 
 	// Save password
 	$("confirmpassword").addEventListener("click", function(){

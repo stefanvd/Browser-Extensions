@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "__MSG_name__",
   "description": "__MSG_description__",
-  "version": "1.0",
+  "version": "1.0.1",
   "background": {
     "service_worker": "scripts/background.js"
   },
@@ -23,22 +23,6 @@
     "default_title": "__MSG_name__",
     "default_panel": "panel.html",
     "open_at_install":true
-  },
-  "action": {
-    "default_icon": {
-      "16": "images/icon16.png",
-      "32": "images/icon32.png"
-    },
-    "default_title": "__MSG_name__",
-    "theme_icons": [{
-      "light": "images/icon16.png",
-      "dark": "images/icon16.png",
-      "size": 16
-    }, {
-      "light": "images/icon32.png",
-      "dark": "images/icon32.png",
-      "size": 32
-    }]
   },
   "options_ui": {
     "page": "options.html",

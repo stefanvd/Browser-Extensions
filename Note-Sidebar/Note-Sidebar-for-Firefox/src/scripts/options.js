@@ -643,7 +643,7 @@ function domcontentloaded(){
 	}
 
 	// Reset settings
-	$("resetinotessidebar").addEventListener("click", function(){ chrome.storage.sync.clear(); location.reload(); });
+	$("resetinotessidebar").addEventListener("click", function(){ chrome.storage.sync.clear(); chrome.runtime.sendMessage({name: "bckreload"}); location.reload(); });
 
 	// Save password
 	$("confirmpassword").addEventListener("click", function(){

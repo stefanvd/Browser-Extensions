@@ -2,7 +2,7 @@
 /*
 
 Note Sidebar
-Write small or large notes in your sidebar.
+Simple note sidebar which can be used to write a note, record thoughts, to-do list, meeting notes, etc.
 Copyright (C) 2022 Stefan vd
 www.stefanvd.net
 
@@ -35,6 +35,11 @@ function save(){
 
 var i18nfirsttext = chrome.i18n.getMessage("firsttext");
 var i18ndefault = chrome.i18n.getMessage("titeldefault");
+var i18npasswordplaceholder = chrome.i18n.getMessage("passwordplaceholder");
+
+function focuspassword(){
+	document.getElementById("inputpass").focus();
+}
 
 function init(){
 	maintext = document.querySelector("#maintext");
@@ -61,11 +66,17 @@ function init(){
 		if(password == true){
 			var darklayer = document.createElement("div");
 			darklayer.id = "lockscreen";
+			darklayer.addEventListener("contextmenu", (event) => event.preventDefault());
 			document.body.appendChild(darklayer);
 
 			var newinput = document.createElement("input");
 			newinput.type = "password";
 			newinput.id = "inputpass";
+			newinput.setAttribute("autofocus", "autofocus");
+			newinput.placeholder = i18npasswordplaceholder;
+			newinput.addEventListener("mousemove", function(){
+				focuspassword();
+			});
 			newinput.addEventListener("input", function(){
 				checkpassword(this.value);
 			});
@@ -83,7 +94,7 @@ function init(){
 				}
 			});
 			darklayer.appendChild(newinput);
-			document.getElementById("inputpass").focus();
+			focuspassword();
 		}
 
 		// show remember page
@@ -183,8 +194,10 @@ function addstylecode(){
 		--ext-primary-background:` + backgroundlight + `;
 		--ext-primary-font-color:#000;
 		--ext-nav-color:` + colorlight + `;
-		--ext-font-size: ` + fontsize + `px;
-		--ext-line-height: ` + lineheight + `px;
+		--ext-font-size:` + fontsize + `px;
+		--ext-line-height:` + lineheight + `px;
+		--ext-lock-boxshadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
+		--ext-lock-hover:#fbfbfb;
 	}
 	
 	/* Dark mode */
@@ -193,8 +206,10 @@ function addstylecode(){
 		--ext-primary-background:` + backgrounddark + `;
 		--ext-primary-font-color:#fff;
 		--ext-nav-color:` + colordark + `;
-		--ext-font-size: ` + fontsize + `px;
-		--ext-line-height: ` + lineheight + `px;
+		--ext-font-size:` + fontsize + `px;
+		--ext-line-height:` + lineheight + `px;
+		--ext-lock-boxshadow: 0 1px 6px 0 rgba(255, 255, 255, 0.28);
+		--ext-lock-hover:#282828;
 		}
 	}
 	`;
@@ -317,14 +332,7 @@ window.addEventListener("DOMContentLoaded", () => {
 	});
 
 	document.getElementById("printtext").addEventListener("click", () => {
-		var childWindow = window.open("", "childWindow", "location=no, menubar=no, toolbar=no");
-		childWindow.document.open();
-		childWindow.document.write("<html><head></head><body>");
-		childWindow.document.write(document.getElementById("maintext").value.replace(/\n/gi, "<br>"));
-		childWindow.document.write("</body></html>");
-		childWindow.print();
-		childWindow.document.close();
-		childWindow.close();
+		print();
 	});
 
 });
@@ -379,7 +387,7 @@ chrome.runtime.onMessage.addListener(function(request){
 		backgrounddark = request.value;
 		removestylecode();
 		addstylecode();
-	}else if(request.msg == "setbackgroundcolor" || request.msg == "setbackgroundimage"){
+	}else if(request.msg == "setbackgroundcolor"){
 		if(request.value == true){
 			removebackgroundpaper();
 		}else{

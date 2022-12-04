@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "__MSG_name__",
   "description": "__MSG_description__",
-  "version": "1.0",
+  "version": "1.0.1",
   "background": {
     "scripts": ["scripts/constants.js","scripts/background.js"]
   },
@@ -31,11 +31,11 @@
     },
     "default_title": "__MSG_name__",
     "theme_icons": [{
-      "light": "images/icon16.png",
+      "light": "images/whiteicon16.png",
       "dark": "images/icon16.png",
       "size": 16
     }, {
-      "light": "images/icon32.png",
+      "light": "images/whiteicon32.png",
       "dark": "images/icon32.png",
       "size": 32
     }]
@@ -44,7 +44,7 @@
     "page": "options.html",
     "open_in_tab": true
   },
-  "permissions": ["contextMenus", "activeTab", "storage"],
+  "permissions": ["contextMenus", "storage"],
   "browser_specific_settings": {
     "gecko": {
         "id": "notesidebar@stefanvd.net",

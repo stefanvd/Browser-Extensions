@@ -4,7 +4,7 @@
     "nameedge": {"message": "Note Sidebar for Microsoft Edge"},
     "nameopera": {"message": "Note Sidebar for Opera"},
     "namefirefox": {"message": "Note Sidebar for Firefox"},
-    "description": {"message": "Write small or large notes in your sidebar."},
+    "description": {"message": "Simple note sidebar which can be used to write a note, record thoughts, to-do list, meeting notes, etc."},
     "optionpagetitle": {"message": "Note Sidebar - Options"},
     "pagehelp": {"message": "help"},
     "pagestillloading": {"message": "The page is still loading?"},
@@ -27,7 +27,7 @@
     "sharemenusendatweet": {"message": "Send a Tweet"},
     "sharemenupostonfacebook": {"message": "Post on Facebook"},
     "sharemenuratetitle": {"message": "Rate this extension"},
-    "sharemenudonatetitle": {"message": "Support Development"},
+    "sharemenudonatetitle": {"message": "Make a donation"},
     "advancedoptions": {"message": "Advanced Options"},
     "help": {"message": "Help"},
     "about": {"message": "About"},
@@ -162,5 +162,6 @@
     "titelpassword": {"message": "Password"},
     "despassword": {"message": "Lock your notes with a pasword"},
     "desconfirmpassword": {"message": "Confirm password"},
-    "optionpasswordsaved": {"message": "Password is saved successfully!"}
+    "optionpasswordsaved": {"message": "Password is saved successfully!"},
+    "passwordplaceholder": {"message": "Enter your Password"}
 }

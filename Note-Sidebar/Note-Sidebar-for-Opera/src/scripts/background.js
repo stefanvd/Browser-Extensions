@@ -2,7 +2,7 @@
 /*
 
 Note Sidebar
-Write small or large notes in your sidebar.
+Simple note sidebar which can be used to write a note, record thoughts, to-do list, meeting notes, etc.
 Copyright (C) 2022 Stefan vd
 www.stefanvd.net
 
@@ -26,14 +26,28 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-/*
-browser.browserAction.onClicked.addListener(function(){
-	browser.sidebarAction.toggle();
-});*/
+if(typeof browser !== "undefined"){
+	var qtest = browser.sidebarAction;
+	if(typeof qtest !== "undefined"){
+		browser.browserAction.onClicked.addListener(function(){
+			browser.sidebarAction.toggle();
+		});
+	}
+}
 
 // Importing the constants
 // eslint-disable-next-line no-undef
 importScripts("constants.js");
+
+chrome.runtime.onMessage.addListener(function request(request){
+	// eye protection & autodim & shortcut
+	switch(request.name){
+	case"bckreload":
+		installation();
+		break;
+	}
+	return true;
+});
 
 var i18nfirsttext = chrome.i18n.getMessage("firsttext");
 
@@ -116,7 +130,7 @@ if(chrome.contextMenus){
 	if(actionmenuadded == false){
 		actionmenuadded = true;
 
-		var contexts = ["action"];
+		var contexts = ["browser_action"];
 
 		browsercontext(sharemenuwelcomeguidetitle, "totlguideemenu", {"16": "images/IconGuide.png", "32": "images/IconGuide@2x.png"});
 		browsercontext(sharemenudonatetitle, "totldevelopmenu", {"16": "images/IconDonate.png", "32": "images/IconDonate@2x.png"});
@@ -197,35 +211,50 @@ chrome.storage.onChanged.addListener(function(changes){
 	onchangestorage(changes, "contextmenus", checkcontextmenus, removecontexmenus);
 	if(changes["txtvalue"]){
 		if(changes["txtvalue"].newValue){ chrome.runtime.sendMessage({msg: "setnotetext", value: changes["txtvalue"].newValue}); }
-	}else if(changes["counter"]){
+	}
+	if(changes["counter"]){
 		chrome.runtime.sendMessage({msg: "setcounter", value: changes["counter"].newValue});
-	}else if(changes["copy"]){
+	}
+	if(changes["copy"]){
 		chrome.runtime.sendMessage({msg: "setcopy", value: changes["copy"].newValue});
-	}else if(changes["speech"]){
+	}
+	if(changes["speech"]){
 		chrome.runtime.sendMessage({msg: "setspeech", value: changes["speech"].newValue});
-	}else if(changes["voices"]){
+	}
+	if(changes["voices"]){
 		chrome.runtime.sendMessage({msg: "setvoices", value: changes["voices"].newValue});
-	}else if(changes["fontsize"]){
+	}
+	if(changes["fontsize"]){
 		chrome.runtime.sendMessage({msg: "setfontsize", value: changes["fontsize"].newValue});
-	}else if(changes["lineheight"]){
+	}
+	if(changes["lineheight"]){
 		chrome.runtime.sendMessage({msg: "setlineheight", value: changes["lineheight"].newValue});
-	}else if(changes["colorlight"]){
+	}
+	if(changes["colorlight"]){
 		chrome.runtime.sendMessage({msg: "setcolorlight", value: changes["colorlight"].newValue});
-	}else if(changes["colordark"]){
+	}
+	if(changes["colordark"]){
 		chrome.runtime.sendMessage({msg: "setcolordark", value: changes["colordark"].newValue});
-	}else if(changes["backgroundlight"]){
+	}
+	if(changes["backgroundlight"]){
 		chrome.runtime.sendMessage({msg: "setbackgroundlight", value: changes["backgroundlight"].newValue});
-	}else if(changes["backgrounddark"]){
+	}
+	if(changes["backgrounddark"]){
 		chrome.runtime.sendMessage({msg: "setbackgrounddark", value: changes["backgrounddark"].newValue});
-	}else if(changes["backgroundcolor"]){
+	}
+	if(changes["backgroundcolor"]){
 		chrome.runtime.sendMessage({msg: "setbackgroundcolor", value: changes["backgroundcolor"].newValue});
-	}else if(changes["backgroundimage"]){
+	}
+	if(changes["backgroundimage"]){
 		chrome.runtime.sendMessage({msg: "setbackgroundimage", value: changes["backgroundimage"].newValue});
-	}else if(changes["backgroundsource"]){
+	}
+	if(changes["backgroundsource"]){
 		chrome.runtime.sendMessage({msg: "setbackgroundsource", value: changes["backgroundsource"].newValue});
-	}else if(changes["backgroundsize"]){
+	}
+	if(changes["backgroundsize"]){
 		chrome.runtime.sendMessage({msg: "setbackgroundsize", value: changes["backgroundsize"].newValue});
-	}else if(changes["print"]){
+	}
+	if(changes["print"]){
 		chrome.runtime.sendMessage({msg: "setprint", value: changes["print"].newValue});
 	}
 });
