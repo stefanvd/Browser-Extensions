@@ -29,5 +29,5 @@
     "open_in_tab": true
   },
   "offline_enabled": true,
-  "permissions": ["contextMenus", "activeTab", "storage"]
+  "permissions": ["contextMenus", "storage"]
 }

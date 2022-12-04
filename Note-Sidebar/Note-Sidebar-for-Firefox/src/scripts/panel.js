@@ -36,6 +36,8 @@ function save(){
 var i18nfirsttext = chrome.i18n.getMessage("firsttext");
 var i18ndefault = chrome.i18n.getMessage("titeldefault");
 var i18npasswordplaceholder = chrome.i18n.getMessage("passwordplaceholder");
+var i18ntitelcopytext = chrome.i18n.getMessage("titlecopytextdone");
+var i18ndescopytext = chrome.i18n.getMessage("descopytextdone");
 
 function focuspassword(){
 	document.getElementById("inputpass").focus();
@@ -329,6 +331,9 @@ window.addEventListener("DOMContentLoaded", () => {
 		const input = document.getElementById("maintext");
 		input.select();
 		document.execCommand("copy");
+		if(showingcopybadge == false){
+			showcopytextbadge();
+		}
 	});
 
 	document.getElementById("printtext").addEventListener("click", () => {
@@ -336,6 +341,29 @@ window.addEventListener("DOMContentLoaded", () => {
 	});
 
 });
+
+var showingcopybadge = false;
+function showcopytextbadge(){
+	var div = document.createElement("div");
+	div.setAttribute("id", "stefanvdremoteadd");
+	div.className = "stefanvdremote";
+	document.body.appendChild(div);
+
+	var h3 = document.createElement("h3");
+	h3.innerText = i18ntitelcopytext;
+	div.appendChild(h3);
+
+	var p = document.createElement("p");
+	p.innerText = i18ndescopytext;
+	div.appendChild(p);
+	showingcopybadge = true;
+
+	window.setTimeout(function(){
+		var element = document.getElementById("stefanvdremoteadd");
+		element.parentNode.removeChild(element);
+		showingcopybadge = false;
+	}, 4000);
+}
 
 document.addEventListener("DOMContentLoaded", init, false);
 

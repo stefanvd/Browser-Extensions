@@ -163,5 +163,7 @@
     "despassword": {"message": "Lock your notes with a pasword"},
     "desconfirmpassword": {"message": "Confirm password"},
     "optionpasswordsaved": {"message": "Password is saved successfully!"},
-    "passwordplaceholder": {"message": "Enter your Password"}
+    "passwordplaceholder": {"message": "Enter your Password"},
+    "titlecopytextdone": {"message": "Copied"},
+    "descopytextdone": {"message": "Text Copied to the Clipboard"}
 }
