@@ -3,9 +3,9 @@ const exbrowser = "opera";
 // values: "chrome", "safari", "edge", "firefox", "opera", "yandex", "whale"
 const linkredirectionoptions = "https://www.stefanvd.net/project/note-sidebar/browser/options/";
 const linkdeveloperwebsite = "https://www.stefanvd.net";
-const linkproduct = "https://chrome.google.com/webstore/detail/note-sidebar/egclcjdpndeoioimlbbbmdhcaopnedkp";
+const linkproduct = "https://addons.opera.com/extensions/details/note-sidebar/";
 const linkdonate = "https://www.stefanvd.net/donate/";
-const writereview = "https://chrome.google.com/webstore/detail/note-sidebar/egclcjdpndeoioimlbbbmdhcaopnedkp/reviews";
+const writereview = "https://addons.opera.com/extensions/details/note-sidebar/";
 const linkchangelog = "https://www.stefanvd.net/project/note-sidebar/browser/opera/changelog/";
 const linktranslate = "https://www.stefanvd.net/project/translate/";
 const linksupport = "https://www.stefanvd.net/support/";
@@ -13,8 +13,8 @@ const linkwelcome = "https://www.stefanvd.net/project/note-sidebar/browser/opera
 const linkuninstall = "https://www.stefanvd.net/project/note-sidebar/browser/opera/uninstall/";
 const linkguide = "https://www.stefanvd.net/project/note-sidebar/browser/opera/guide/";
 const linkproductdescription = "https://www.stefanvd.net/project/note-sidebar/browser/";
-const browsernewtab = "chrome://newtab/";
-const browserstore = "https://chrome.google.com";
+const browsernewtab = "opera://newtab/";
+const browserstore = "https://addons.opera.com";
 const linkyoutube = "https://www.youtube.com/@stefanvandamme?sub_confirmation=1";
 const devmode = true;
 const devdonate = false;
