@@ -21,8 +21,7 @@
       "32": "images/icon32.png"
     },
     "default_title": "__MSG_name__",
-    "default_path": "panel.html",
-    "open_at_install":true
+    "default_path": "panel.html"
   },
   "options_ui": {
     "page": "options.html",
