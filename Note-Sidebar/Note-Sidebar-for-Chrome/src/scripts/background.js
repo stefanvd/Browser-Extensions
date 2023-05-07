@@ -39,6 +39,8 @@ if(typeof browser !== "undefined"){
 // eslint-disable-next-line no-undef
 importScripts("constants.js");
 
+chrome.sidePanel.setPanelBehavior({openPanelOnActionClick: true}).catch((error) => console.error(error));
+
 chrome.runtime.onMessage.addListener(function request(request){
 	// eye protection & autodim & shortcut
 	switch(request.name){

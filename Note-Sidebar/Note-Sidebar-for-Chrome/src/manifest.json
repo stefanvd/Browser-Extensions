@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "__MSG_name__",
   "description": "__MSG_description__",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "background": {
     "service_worker": "scripts/background.js"
   },
@@ -16,13 +16,10 @@
   },
   "default_locale": "en",
   "side_panel": {
-    "default_icon": {
-      "16": "images/icon16.png",
-      "32": "images/icon32.png"
-    },
-    "default_title": "__MSG_name__",
-    "default_path": "panel.html",
-    "openPanelOnActionClick": true
+    "default_path": "panel.html"
+  },
+  "action": {
+    "default_title": "__MSG_name__"
   },
   "options_ui": {
     "page": "options.html",
