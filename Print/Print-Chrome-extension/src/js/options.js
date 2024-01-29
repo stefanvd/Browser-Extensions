@@ -561,11 +561,11 @@ function domcontentloaded(){
 	$("a1").addEventListener("click", function(){ document.images["preview"].src = "/icons/feet19@2x.png"; });
 	$("a2").addEventListener("click", function(){ document.images["preview"].src = "/icons/paw19@2x.png"; });
 
-	// save color all setting
-	var colors = document.getElementsByClassName("color");
-	var t, v = colors.length;
-	for(t = 0, v; t < v; t++){
-		colors[t].addEventListener("click", save_options);
+	// save browser icon styles
+	var buttoncolor = document.getElementsByClassName("buttoncolor");
+	var r, v = buttoncolor.length;
+	for(r = 0, v; r < v; r++){
+		buttoncolor[r].addEventListener("click", save_options);
 	}
 
 	var guidekb = true;

@@ -3,7 +3,7 @@
 
 Proper Menubar
 Add the best menu bar to get easy and fast access to all your useful browser options and internet products!
-Copyright (C) 2022 Stefan vd
+Copyright (C) 2024 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -105,6 +105,8 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 --totl-tag-hover:rgba(232, 240, 253,.2);
 --totl-donation-bar:#FFD54F;
 --totl-gray-text:#9e9e9e;
+--browser-preview-image: url(/images/browser-preview-dark.png);
+--browser-preview-image-2x: url(/images/browser-preview-dark@2x.png);
 }
 .light{
 --totl-primary-background:#fff;
@@ -185,6 +187,8 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 --totl-tag-hover:rgba(232, 240, 253,1);
 --totl-donation-bar:#FFF59D;
 --totl-gray-text:#585858;
+--browser-preview-image: url(/images/browser-preview.png);
+--browser-preview-image-2x: url(/images/browser-preview@2x.png);
 }
 
 html{overflow:hidden;height:100vh}
@@ -208,6 +212,7 @@ ul#navbar li a svg{margin-right:24px;fill:var(--totl-sidebar-icon-background)}
 section{position:relative;-webkit-box-orient:horizontal;border-bottom:var(--totl-section-border);display:-webkit-box;padding-top:20px;padding-bottom:20px;width:100%}
 section>h3{font-size:105%;font-weight:700;margin:0;width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 section>div:only-of-type{-webkit-box-flex:1}
+.page section:last-child{margin-bottom:20px}
 /* slices */
 .slice1{background:url(/images/slice1.png);width:calc(100% - 6px);height:30px;margin:3px}
 .slice2{background:url(/images/slice2.png);width:calc(100% - 6px);height:30px;margin:3px}
@@ -279,9 +284,9 @@ section>div:only-of-type{-webkit-box-flex:1}
 #shareboxfacebook{background:url(../images/facebook@2x.png)left top no-repeat;background:-webkit-image-set(url(../images/facebook.png) 1x,url(../images/facebook@2x.png) 2x);width:18px;height:18px;display:inline-block;background-size:cover;margin-right:10px;cursor:pointer}
 #shareboxtwitter{background:url(../images/twitter@2x.png)left top no-repeat;background:-webkit-image-set(url(../images/twitter.png) 1x,url(../images/twitter@2x.png) 2x);width:18px;height:18px;display:inline-block;background-size:cover;cursor:pointer}
 #shareboxrate:hover,#shareboxyoutube:hover,#shareboxfacebook:hover,#shareboxtwitter:hover{opacity:.8;cursor:pointer}
-.probox{top:-18px;position:absolute;background:#FDD835;color:black;font-size:12px;padding:2px 12px;border-radius:2px;display:inline-block}
-.proboxtext{display:inline-flex;line-height:18px;padding:15px 15px 10px}
-.proboxbutton,.proboxbutton:hover{background:#4285f4;color:white;margin-left:25px}
+.probox{top:0;position:absolute;background:#FDD835;color:black;font-size:12px;padding:2px 12px;border-radius:2px;display:inline-block}
+.proboxtext{display:inline-flex;line-height:18px;padding:15px 15px 10px;gap:25px}
+.proboxbutton,.proboxbutton:hover{background:#4285f4;color:white}
 .proboxbutton:hover{opacity:.8}
 /* Review box */
 #reviewextensionbox{height:75px;position:relative;-webkit-user-select:none;-moz-user-select:none;user-select:none}
@@ -290,6 +295,17 @@ section>div:only-of-type{-webkit-box-flex:1}
 #tllo{position:absolute;font-size:16px;top:25px;right:30px;color:var(--totl-primary-font-color)}
 #nt{position:absolute;font-size:12px;font-weight:700;color:var(--totl-primary-font-color);text-transform:uppercase;top:60px;left:50px;cursor:pointer}
 #war{position:absolute;font-size:12px;font-weight:700;color:#39F;text-transform:uppercase;top:60px;right:30px;cursor:pointer}
+/* Note Sidebar buttons */
+.buttoncolor{padding:10px;height:19px;width:19px}
+.minibrowserpreview{width:100%;display:flex;flex-direction:row;justify-content:flex-start;align-items:center}
+.minibrowserpreview .columnA{width:60%}
+.minibrowserpreview .columnB{width:30%}
+.minibrowserpreview .activebutton{width:19px;height:19px;position:absolute;padding-top:44px;padding-left:98px;background-size:contain}
+.browserbuttons{display:flex;gap:8px;margin-bottom:8px;margin-top:8px}
+.browserbuttons img{border-radius:5px;border:var(--totl-input-other-border);cursor:pointer}
+.browserbuttons .lightbackground{background:#ffffff}
+.browserbuttons .darkbackground{background:#232323}
+.browserpreview{background:var(--browser-preview-image)left top no-repeat;background:-webkit-image-set(var(--browser-preview-image) 1x, var(--browser-preview-image-2x) 2x);background:image-set(var(--browser-preview-image) 1x, var(--browser-preview-image-2x) 2x);height:110px;width:300px;background-size:contain}
 /* Profile */
 .cardokbutton{display:block;-webkit-user-select:none;-moz-user-select:none;user-select:none;margin:8px 0;float:left;background:0 0;border:none;border-radius:2px;color:#2296f3;position:relative;height:36px;min-width:64px;padding:0 16px;font-family:"Roboto","Helvetica","Arial",sans-serif;font-size:14px;font-weight:500;text-transform:uppercase;letter-spacing:0;overflow:hidden;outline:none;cursor:pointer;text-decoration:none;text-align:center;line-height:36px}
 .cardokbutton:active{background-color:rgba(158,158,158,.4)}
@@ -520,6 +536,7 @@ only screen and (max-device-width:480px){
   .stars{font-size:24px;top:14px;left:15px}
   #nt{left:15px}
   #war{right:15px}
+  .minibrowserpreview{flex-direction:column;justify-content:flex-start;align-items:flex-start}
   #materialModal.hide #materialModalCentered,#materialModalRate.hide #materialModalRateCentered,#materialModalYouTube.hide #materialModalYouTubeCentered{transform:translateY(200px);transition:transform 0.2s ease-out}
   #materialModalCentered,#materialModalRateCentered,#materialModalYouTubeCentered{padding:0}
   #materialModalContent,#materialModalRateContent,#materialModalYouTubeContent{max-width:none;width:100vw;margin-top:5vh;left:0;bottom:0;position:absolute;border-radius:25px 25px 0 0}
@@ -527,6 +544,7 @@ only screen and (max-device-width:480px){
   .aboutbuttons button{margin:15px 0;display:block}
   #managed-prefs-banner{height:52px}
   .donatebutton{padding:8px 16px}
+  .proboxtext{flex-direction:column}
   /* for mobile only */
   input[type=checkbox]:checked ~ #navbar-container{display:block;animation:slide-in 0.5s ease;animation-fill-mode:forwards}
   input[type=checkbox]:checked ~ #darkpanel{opacity:1;display:block;pointer-events:auto}

@@ -24,7 +24,7 @@
     "sharemenusharetitle": {"message": "Share this"},
     "sharemenuwelcomeguidetitle": {"message": "Welcome Guide"},
     "sharemenutellafriend": {"message": "Tell a Friend"},
-    "sharemenusendatweet": {"message": "Send a Tweet"},
+    "sharemenupostonx": {"message": "Post on X"},
     "sharemenupostonfacebook": {"message": "Post on Facebook"},
     "sharemenuratetitle": {"message": "Rate this extension"},
     "sharemenudonatetitle": {"message": "Make a donation"},
@@ -165,5 +165,9 @@
     "optionpasswordsaved": {"message": "Password is saved successfully!"},
     "passwordplaceholder": {"message": "Enter your Password"},
     "titlecopytextdone": {"message": "Copied"},
-    "descopytextdone": {"message": "Text Copied to the Clipboard"}
+    "descopytextdone": {"message": "Text Copied to the Clipboard"},
+    "head2": {"message": "Choose your favorite Note Sidebar icon:"},
+    "typenote": {"message": "Type note"},
+    "typeplaintext": {"message": "Plain Text Format"},
+    "typerichtext": {"message": "Rich Text Format"}
 }

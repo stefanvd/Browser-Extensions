@@ -1,0 +1,81 @@
+/*
+//================================================
+
+Page Sidebar
+Effortlessly open any website in your web browser's sidebar – streamline your workflow instantly!
+Copyright (C) 2024 Stefan vd
+www.stefanvd.net
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+
+To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.0/
+
+//================================================
+*/
+
+/* Light mode */
+:root {
+  --ext-primary-background:#fff;
+  --ext-primary-font-color:#000;
+  --ext-svg-fill-color-hover:#ebebeb;
+  --ext-border-line:#dddddd;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark){
+  :root{
+    --ext-primary-background:#232323;
+    --ext-primary-font-color:#fff;
+    --ext-svg-fill-color-hover:#474747;
+    --ext-border-line:#37383a;
+  }
+}
+
+body{margin:0;padding:0;width:100%;height:100vh;background:var(--ext-primary-background);color:var(--ext-primary-font-color)}
+iframe{border:none;width:100%;height:100%;box-sizing:border-box;margin:0px}
+.hidden{display:none}
+#preview{border:0}
+.blurlayer{z-index:2000;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);background-color:rgba(0, 0, 0, 0.5)}
+.web{position:relative}
+#drag-drop-navbar{z-index:2000;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);background-color:rgba(0, 0, 0, 0.5);width:100%;height:48px;border:2px dashed #ccc;display:flex;justify-content:center;align-items:center;position:fixed;left:0;top:0;z-index:2500;bottom:0;right:0;box-sizing:border-box;border-radius:0px}
+#drag-drop-navbar.show{display:flex}
+#drag-drop-navbar.hidden{display:none}
+#drag-drop-info{gap:8px;flex-direction:column;font-size:14px;justify-content:center;align-items:center;height:100%}
+#drag-drop-info.show{display:flex}
+#drag-drop-info.hidden{display:none}
+#drag-drop-zone{width:100%;height:100%;border:2px dashed #ccc;display:flex;justify-content:center;align-items:center;position:absolute;left:0;top:0;z-index:2500;bottom:0;right:0;box-sizing:border-box;border-radius:18px}
+#drag-drop-zone.show{display:flex}
+#drag-drop-zone.hidden{display:none}
+#stefanvdpromo{font-family:Helvetica,Arial,sans-serif;margin:auto;width:305px;position:fixed;bottom:50px;left:0;right:0;background-color:#ffffff;border:solid #dadce0 1px;border-radius:24px;box-sizing:border-box;color:#000000}
+#stefanvdpromo .box{display:flex;flex-direction:row;height:30px;justify-content:center;align-items:center;gap:8px}
+#stefanvdpromo a,#stefanvdpromo a:hover,#stefanvdpromo a:visited{color:rgb(25 103 210)}
+#stefanvdpromo .red{color:red;padding-inline-start:8px}
+#stefanvdpromo .close{border-radius:20px;width:20px;height:20px;color:#5f6367;margin-inline-end:4px;display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-user-select:none;user-select:none}
+#stefanvdpromo .close:hover{background:#e8e8e9}
+.navigation{box-sizing:border-box;padding:0px 10px;height:48px;width:100%;z-index:2200;display:flex;align-items:center;gap:8px}
+.clean .navigation{display:none}
+.web{width:100%;height:100%;overflow:hidden}
+.container{display:flex;height:100%;justify-content:space-between}
+.container.top{flex-direction:column-reverse}
+.container.bottom{flex-direction:column}
+.container.top iframe{border-top:1px solid var(--ext-border-line)}
+.container.bottom iframe{border-bottom:1px solid var(--ext-border-line)}
+#searchbar{width:100%;margin:0;padding:4px 10px;outline:none;border:1px solid var(--ext-border-line);border-radius:30px;height:30px}
+#btngo{display:flex;height:30px;min-width:40px;background:transparent;border:0;align-items:center;justify-content:center;border-radius:30px}
+#btngo:hover{background:var(--ext-svg-fill-color-hover);cursor:pointer}
+#btnhome{display:flex;height:30px;width:30px;background:transparent;border:0;align-items:center;justify-content:center;border-radius:30px}
+#btnhome:hover{background:var(--ext-svg-fill-color-hover);cursor:pointer}
+.icon svg{fill:var(--ext-primary-font-color)}

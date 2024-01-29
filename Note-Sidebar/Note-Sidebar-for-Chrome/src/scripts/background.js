@@ -3,7 +3,7 @@
 
 Note Sidebar
 Simple note sidebar which can be used to write a note, record thoughts, to-do list, meeting notes, etc.
-Copyright (C) 2022 Stefan vd
+Copyright (C) 2024 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -97,7 +97,7 @@ if(chrome.contextMenus){
 var sharemenusharetitle = chrome.i18n.getMessage("sharemenusharetitle");
 var sharemenuwelcomeguidetitle = chrome.i18n.getMessage("sharemenuwelcomeguidetitle");
 var sharemenutellafriend = chrome.i18n.getMessage("sharemenutellafriend");
-var sharemenusendatweet = chrome.i18n.getMessage("sharemenusendatweet");
+var sharemenupostonx = chrome.i18n.getMessage("sharemenupostonx");
 var sharemenupostonfacebook = chrome.i18n.getMessage("sharemenupostonfacebook");
 var sharemenuratetitle = chrome.i18n.getMessage("sharemenuratetitle");
 var sharemenudonatetitle = chrome.i18n.getMessage("sharemenudonatetitle");
@@ -154,12 +154,12 @@ if(chrome.contextMenus){
 			browsercontext(sharemenupostonvkontakte, "totlsharevkontakte", {"16": "images/IconVkontakte.png", "32": "images/IconVkontakte@2x.png"}, parent);
 			browsercontext(sharemenupostonfacebook, "totlsharefacebook", {"16": "images/IconFacebook.png", "32": "images/IconFacebook@2x.png"}, parent);
 			browsercontext(sharemenupostonwhatsapp, "totlsharewhatsapp", {"16": "images/IconWhatsApp.png", "32": "images/IconWhatsApp@2x.png"}, parent);
-			browsercontext(sharemenusendatweet, "totlsharetwitter", {"16": "images/IconTwitter.png", "32": "images/IconTwitter@2x.png"}, parent);
+			browsercontext(sharemenupostonx, "totlsharetwitter", {"16": "images/IconTwitter.png", "32": "images/IconTwitter@2x.png"}, parent);
 		}else{
 			// all users
 			browsercontext(sharemenupostonfacebook, "totlsharefacebook", {"16": "images/IconFacebook.png", "32": "images/IconFacebook@2x.png"}, parent);
 			browsercontext(sharemenupostonwhatsapp, "totlsharewhatsapp", {"16": "images/IconWhatsApp.png", "32": "images/IconWhatsApp@2x.png"}, parent);
-			browsercontext(sharemenusendatweet, "totlsharetwitter", {"16": "images/IconTwitter.png", "32": "images/IconTwitter@2x.png"}, parent);
+			browsercontext(sharemenupostonx, "totlsharetwitter", {"16": "images/IconTwitter.png", "32": "images/IconTwitter@2x.png"}, parent);
 		}
 
 		chrome.contextMenus.create({"title": "", "type":"separator", "id": "totlsepartor", "contexts": contexts});
@@ -189,7 +189,7 @@ function checkcontextmenus(){
 
 			// page
 			contextspage = ["selection"];
-			menupage = chrome.contextMenus.create({"title": pagetitle, "type":"normal", "id": "snpage", "contexts":contextspage});
+			menupage = chrome.contextMenus.create({"title": pagetitle, "type": "normal", "id": "snpage", "contexts": contextspage});
 			contextarraypage.push(menupage);
 		}
 	}
@@ -209,8 +209,40 @@ function onchangestorage(a, b, c, d){
 	}
 }
 
+chrome.storage.sync.get(["icon"], function(items){
+	if(items["icon"] == undefined){
+		if(exbrowser == "safari"){
+			items["icon"] = "/images/icon38.png";
+		}else{
+			items["icon"] = "/images/icon38.png";
+		}
+	}
+	chrome.action.setIcon({
+		path : {
+			"19": items["icon"],
+			"38": items["icon"]
+		}
+	});
+});
+
 chrome.storage.onChanged.addListener(function(changes){
 	onchangestorage(changes, "contextmenus", checkcontextmenus, removecontexmenus);
+	if(changes["icon"]){
+		if(changes["icon"].newValue){
+			chrome.tabs.query({}, function(tabs){
+				var i, l = tabs.length;
+				for(i = 0; i < l; i++){
+					chrome.action.setIcon({tabId : tabs[i].id,
+						path : {
+							"19": changes["icon"].newValue,
+							"38": changes["icon"].newValue
+						}
+					});
+				}
+			}
+			);
+		}
+	}
 	if(changes["txtvalue"]){
 		if(changes["txtvalue"].newValue){ chrome.runtime.sendMessage({msg: "setnotetext", value: changes["txtvalue"].newValue}); }
 	}
@@ -258,6 +290,9 @@ chrome.storage.onChanged.addListener(function(changes){
 	}
 	if(changes["print"]){
 		chrome.runtime.sendMessage({msg: "setprint", value: changes["print"].newValue});
+	}
+	if(changes["plaintext"]){
+		chrome.runtime.sendMessage({msg: "settype", value: changes["plaintext"].newValue});
 	}
 });
 

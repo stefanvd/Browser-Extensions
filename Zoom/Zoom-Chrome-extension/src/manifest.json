@@ -2,36 +2,36 @@
   "manifest_version": 3,
   "name": "__MSG_namechrome__",
   "short_name": "Zoom",
-  "version": "2.7.0.0",
+  "version": "2.8.6.0",
   "description": "__MSG_description__",
   "author": "Stefan vd",
   "homepage_url": "https://www.stefanvd.net/support/",
   "icons": {
-    "16": "icons/icon16.png",
-    "24": "icons/icon24.png",
-    "32": "icons/icon32.png",
-    "48": "icons/icon48.png",
-    "96": "icons/icon96.png",
-    "128": "icons/icon128.png"
+    "16": "images/icon16.png",
+    "24": "images/icon24.png",
+    "32": "images/icon32.png",
+    "48": "images/icon48.png",
+    "96": "images/icon96.png",
+    "128": "images/icon128.png"
   },
   "default_locale": "en",
   "action": {
     "default_title": "__MSG_name__",
     "default_icon": {
-      "16": "icons/iconstick16.png",
-      "19": "icons/iconstick19.png",
-      "20": "icons/iconstick20.png",
-      "32": "icons/iconstick32.png",
-      "38": "icons/iconstick38.png",
-      "40": "icons/iconstick40.png",
-      "64": "icons/iconstick64.png"
+      "16": "images/iconstick16.png",
+      "19": "images/iconstick19.png",
+      "20": "images/iconstick20.png",
+      "32": "images/iconstick32.png",
+      "38": "images/iconstick38.png",
+      "40": "images/iconstick40.png",
+      "64": "images/iconstick64.png"
     }
   },
   "background": {
-    "service_worker": "js/background.js"
+    "service_worker": "scripts/background.js"
   },
   "content_security_policy": {
-    "extension_pages": "default-src 'none'; style-src 'self'; media-src https://www.stefanvd.net; child-src https://www.youtube.com https://www.stefanvd.net; connect-src https://www.stefanvd.net; script-src 'self'; img-src 'self' https://www.stefanvd.net * data:; object-src 'none'"
+    "extension_pages": "default-src 'none'; style-src 'self'; media-src https://www.stefanvd.net; frame-src https://www.youtube.com https://www.stefanvd.net; connect-src https://www.stefanvd.net; script-src 'self'; img-src 'self' https://www.stefanvd.net * data:; object-src 'none'"
   },
   "commands": {
     "toggle-feature-zoomin": {
@@ -65,7 +65,7 @@
   },
   "content_scripts": [{
     "matches": ["<all_urls>"],
-    "js": ["js/constants.js", "js/content.js"],
+    "js": ["scripts/constants.js", "scripts/content.js"],
     "run_at": "document_start"
   }],
   "options_ui": {

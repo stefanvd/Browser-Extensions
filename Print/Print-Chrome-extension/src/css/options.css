@@ -257,12 +257,16 @@ section>div:only-of-type{-webkit-box-flex:1}
 #nt{position:absolute;font-size:12px;font-weight:700;color:var(--totl-primary-font-color);text-transform:uppercase;top:60px;left:50px;cursor:pointer}
 #war{position:absolute;font-size:12px;font-weight:700;color:#39F;text-transform:uppercase;top:60px;right:30px;cursor:pointer}
 /* Print buttons */
-.color{padding:10px;height:19px;width:19px}
-.printpreview{width:100%}
-.printpreview .columnA{width:60%}
-.printpreview .columnB{width:30%}
-.printpreview .printbtn{width:19px;height:19px;position:absolute;padding-top:24px;padding-left:240px;background-size:contain}
-.browserpreview{background:url(../images/print-preview@2x.png)left top no-repeat;background:-webkit-image-set(url(../images/print-preview.png) 1x,url(../images/print-preview@2x.png) 2x);height:110px;width:300px;background-size:contain}
+.buttoncolor{padding:10px;height:19px;width:19px}
+.minibrowserpreview{width:100%}
+.minibrowserpreview .columnA{width:60%}
+.minibrowserpreview .columnB{width:30%}
+.minibrowserpreview .activebutton{width:19px;height:19px;position:absolute;padding-top:44px;padding-left:98px;background-size:contain}
+.browserbuttons{display:flex;gap:8px;margin-bottom:8px;margin-top:8px}
+.browserbuttons img{border-radius:5px;border:var(--totl-input-other-border);cursor:pointer}
+.browserbuttons .lightbackground{background:#ffffff}
+.browserbuttons .darkbackground{background:#232323}
+.browserpreview{background:url(../images/browser-preview@2x.png)left top no-repeat;background:-webkit-image-set(url(../images/browser-preview.png) 1x,url(../images/browser-preview@2x.png) 2x);height:110px;width:300px;background-size:contain}
 /* Profile */
 .cardokbutton{display:block;-webkit-user-select:none;-moz-user-select:none;user-select:none;margin:8px 0;float:left;background:0 0;border:none;border-radius:2px;color:#2296f3;position:relative;height:36px;min-width:64px;padding:0 16px;font-family:"Roboto","Helvetica","Arial",sans-serif;font-size:14px;font-weight:500;text-transform:uppercase;letter-spacing:0;overflow:hidden;outline:none;cursor:pointer;text-decoration:none;text-align:center;line-height:36px}
 .cardokbutton:active{background-color:rgba(158,158,158,.4)}

@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "__MSG_namechrome__",
+  "short_name": "Date Today",  
+  "version": "1.4.2.0",
+  "description": "__MSG_description__",
+  "author": "Stefan vd",
+  "homepage_url": "https://www.stefanvd.net/support/",
+  "icons": {
+    "16": "images/icon16.png",
+    "32": "images/icon32.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  },
+  "default_locale": "en",
+  "action": {
+    "default_title": "__MSG_browsertitle__",
+    "default_popup": "popup.html"
+  },
+  "minimum_chrome_version": "88",
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "background": {
+    "service_worker": "scripts/background.js"
+  },
+  "content_security_policy": {
+    "extension_pages": "default-src 'none'; style-src 'self'; media-src https://www.stefanvd.net; frame-src https://www.youtube.com https://www.stefanvd.net; connect-src https://www.stefanvd.net; script-src 'self'; img-src 'self' https://www.stefanvd.net * data:; object-src 'none'"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+D",
+        "mac": "MacCtrl+Shift+D"
+      }
+    }
+  },
+  "content_scripts": [
+  {
+    "matches": ["*://*/*"],
+    "all_frames": true,
+    "js": ["scripts/constants.js","scripts/content.js"],
+    "run_at": "document_end"
+  }
+  ],
+  "offline_enabled": true,
+  "permissions": [ "activeTab", "contextMenus", "storage", "alarms" ]
+}

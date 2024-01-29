@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!--
+//================================================
+/*
+
+Page Sidebar
+Effortlessly open any website in your web browser's sidebar – streamline your workflow instantly!
+Copyright (C) 2024 Stefan vd
+www.stefanvd.net
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+
+To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.0/
+
+*/
+//================================================
+-->
+
+<title data-i18n="name"></title>
+<link rel="stylesheet" type="text/css" href="styles/panel.css">
+<script type="text/javascript" src="scripts/panel.js"></script>
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#232323" media="(prefers-color-scheme: dark)">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+</head>
+<body>
+<div id="psidebar" class="container">
+    <div></div>
+    <div id="web" class="web">
+        <div id="drag-drop-info" class="show">
+            <img alt="Link" width="128" height="128" src="images/link.png" srcset="images/link.png 1x, images/link@2x.png 2x">
+            <div class="placeholder"><span data-i18n="desdragdrop"></span></div>
+        </div>
+        <div id="drag-drop-zone"></div>
+        <iframe id="preview" class="hidden" allow="camera; clipboard-write; fullscreen; microphone; geolocation"></iframe>
+        <div id="stefanvdpromo" class="hidden">
+            <div class="box">
+                <div class="red"><span data-i18n="stefanvdpromonew"></span></div>
+                <a href="https://www.stefanvd.net/project/browser-extension/?utm_source=notessidebar&utm_medium=referral&utm_campaign=browserextension-promo" target="_blank"><span data-i18n="stefanvdpromotext"></span></a>
+                <div class="close">✕</div>
+            </div>
+        </div>
+    </div>
+    <div id="navbar" class="navigation">
+        <div id="drag-drop-navbar" class="hidden"></div>
+        <button id="btnhome" class="icon"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="18" height="18" viewBox="0 0 24 24">
+            <path d="M 12 2 A 1 1 0 0 0 11.289062 2.296875 L 1.203125 11.097656 A 0.5 0.5 0 0 0 1 11.5 A 0.5 0.5 0 0 0 1.5 12 L 4 12 L 4 20 C 4 20.552 4.448 21 5 21 L 9 21 C 9.552 21 10 20.552 10 20 L 10 14 L 14 14 L 14 20 C 14 20.552 14.448 21 15 21 L 19 21 C 19.552 21 20 20.552 20 20 L 20 12 L 22.5 12 A 0.5 0.5 0 0 0 23 11.5 A 0.5 0.5 0 0 0 22.796875 11.097656 L 12.716797 2.3027344 A 1 1 0 0 0 12.710938 2.296875 A 1 1 0 0 0 12 2 z"></path>
+        </svg></button>
+        <input id="searchbar" type="search" placeholder="Search" aria-label="Search through web">
+        <button id="btngo"><span data-i18n="navgo"></span></button>
+    </div>
+</div>
+<script type="text/javascript" src="scripts/translate.js"></script>
+</body>
+</html>

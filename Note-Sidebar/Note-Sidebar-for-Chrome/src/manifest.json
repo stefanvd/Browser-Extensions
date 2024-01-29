@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "__MSG_name__",
   "description": "__MSG_description__",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "background": {
     "service_worker": "scripts/background.js"
   },
@@ -20,6 +20,14 @@
   },
   "action": {
     "default_title": "__MSG_name__"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+T",
+        "mac": "MacCtrl+Shift+T"
+      }
+    }
   },
   "options_ui": {
     "page": "options.html",

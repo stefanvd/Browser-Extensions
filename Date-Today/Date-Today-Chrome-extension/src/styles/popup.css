@@ -1,0 +1,50 @@
+﻿/*
+//================================================
+
+Date Today
+The best clock to see in one glance the current day and time. With an option to see the digital clock in the browser toolbar.
+Copyright (C) 2024 Stefan vd
+www.stefanvd.net
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+
+To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.0/
+
+//================================================
+*/
+
+body{min-width:450px;min-height:102px;margin:0;padding:0;user-select:none;-webkit-user-select:none;overflow:hidden;cursor:pointer}
+#datetoday{z-index:30000;opacity:1;-webkit-animation:dtpanel;-webkit-animation-duration:1s;animation:dtpanel;animation-duration:1s}
+@keyframes dtpanel{0%{opacity:0}25%{opacity:0}100%{opacity:1}}
+#a{border:0px}
+#point{height:100px;color:#999999;width:25px;font-family:arial;font-size:70pt;position:absolute;top:-4px;left:105px}
+#tic{color:Black;font-family:arial;font-weight:bold;position:absolute;top:0px;left:2px}
+#remember{font-family:arial;width:100%;height:100%;background-color:rgba(255,255,255,.98);top:0;left:0;position:absolute;z-index:50000}
+.below{position:absolute;bottom:5px;left:5px;color:gray}
+#rate{cursor:pointer;background:#FFD54F;color:#000;height:50px;width:275px;display:inline-block;margin:8px;padding:8px;font-size:16px;vertical-align:middle;line-height:50px;text-align:center;border-radius:4px}
+#continue{cursor:pointer;background:#f7f7f7;color:#000;height:50px;width:100px;display:inline-block;margin:8px;padding:8px;font-size:16px;vertical-align:middle;line-height:50px;text-align:center;border-radius:4px}
+#rate:hover,#continue:hover{opacity:.8}
+.below{display:flex;align-items:center}
+#remembernever{outline:none}
+#copytext{display:block;position:absolute;top:-20px;opacity:0}
+.night{background:black;color:white}
+.day{background:white;color:black}
+#flasheffect{font-family:arial;pointer-events:none;display:flex;align-items:center;justify-content:center;font-size:18px;opacity:0;position:absolute;top:0;left:0;width:100%;height:100%;-webkit-animation:flash;-webkit-animation-duration:2s;animation:flash;animation-duration:2s}
+@keyframes flash{0%{opacity:0}25%{opacity:1}100%{opacity:1}}
+.blinkme{animation:blinker 1s linear infinite}
+@keyframes blinker{50%{opacity:0}}
+#btnpip{position:absolute;top:2px;right:5px;background-image:url("/images/pip.svg");height:20px;width:20px;z-index:2000;}
+.hidden{display:none}

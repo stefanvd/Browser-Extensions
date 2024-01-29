@@ -3,7 +3,7 @@
 
 Note Sidebar
 Simple note sidebar which can be used to write a note, record thoughts, to-do list, meeting notes, etc.
-Copyright (C) 2022 Stefan vd
+Copyright (C) 2024 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -26,10 +26,14 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-var maintext; var theValue; var counter; var copy; var speech; var voices; var fontsize; var lineheight; var colorlight; var colordark; var backgroundlight; var backgrounddark; var backgroundcolor; var backgroundimage; var backgroundsource; var backgroundsize; var printicon; var password; var enterpassword;
+var maintext; var powertext; var theValue; var counter; var copy; var speech; var voices; var fontsize; var lineheight; var colorlight; var colordark; var backgroundlight; var backgrounddark; var backgroundcolor; var backgroundimage; var backgroundsource; var backgroundsize; var printicon; var password; var enterpassword; var richtext; var plaintext;
 
 function save(){
-	theValue = maintext.value;
+	if(plaintext == true){
+		theValue = maintext.value;
+	}else if(richtext == true){
+		theValue = powertext.innerHTML;
+	}
 	chrome.storage.sync.set({"txtvalue": theValue});
 }
 
@@ -45,8 +49,10 @@ function focuspassword(){
 
 function init(){
 	maintext = document.querySelector("#maintext");
-	chrome.storage.sync.get(["firstDate", "optionskipremember", "txtvalue", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsource", "backgroundsize", "print", "password", "enterpassword"], function(items){
+	powertext = document.querySelector("#powertext");
+	chrome.storage.sync.get(["firstDate", "optionskipremember", "txtvalue", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsource", "backgroundsize", "print", "password", "enterpassword", "richtext", "plaintext"], function(items){
 		theValue = items["txtvalue"]; if(theValue == null){ theValue = i18nfirsttext; }
+		console.log("LOAD= " + theValue);
 		counter = items["counter"]; if(counter == null){ counter = true; }
 		copy = items["copy"]; if(copy == null){ copy = true; }
 		speech = items["speech"]; if(speech == null){ speech = true; }
@@ -62,8 +68,10 @@ function init(){
 		backgroundsource = items["backgroundsource"]; if(backgroundsource == null){ backgroundsource = 0; }
 		backgroundsize = items["backgroundsize"]; if(backgroundsize == null){ backgroundsize = 150; }
 		printicon = items["print"]; if(printicon == null){ printicon = false; }
-		password = items["password"]; if(printicon == null){ printicon = false; }
+		password = items["password"]; if(password == null){ password = false; }
 		enterpassword = items["enterpassword"]; if(enterpassword == null){ enterpassword = ""; }
+		richtext = items["richtext"]; if(richtext == null){ richtext = false; }
+		plaintext = items["plaintext"]; if(plaintext == null){ plaintext = true; }
 
 		if(password == true){
 			var darklayer = document.createElement("div");
@@ -122,10 +130,19 @@ function init(){
 			}
 		}
 
-		if(!theValue){
-			theValue = "";
+		if(plaintext == true){
+			if(!theValue){
+				theValue = "";
+			}
+			maintext.value = theValue;
+			document.getElementById("maintext").className = "";
+		}else if(richtext == true){
+			if(!theValue){
+				theValue = "";
+			}
+			powertext.innerHTML = theValue;
+			document.getElementById("powertext").className = "";
 		}
-		maintext.value = theValue;
 
 		if(counter == true){
 			countcharacters();
@@ -164,14 +181,21 @@ function init(){
 
 		// Add stylesheet
 		addstylecode();
-	});
 
-	maintext.onchange = function(){
-		save();
-	};
-	maintext.oninput = function(){
-		countcharacters();
-	};
+		if(plaintext == true){
+			maintext.onchange = function(){
+				save();
+			};
+			maintext.oninput = function(){
+				countcharacters();
+			};
+		}else if(richtext == true){
+			powertext.oninput = function(){
+				save();
+				countcharacters();
+			};
+		}
+	});
 
 	document.querySelector(".close").addEventListener("click", () => {
 		document.getElementById("stefanvdpromo").className = "hidden";
@@ -257,7 +281,13 @@ function updatebackgroundpaper(){
 }
 
 function countcharacters(){
-	document.getElementById("counter").textContent = document.querySelector("#maintext").value.length;
+	if(plaintext == true){
+		document.getElementById("counter").textContent = document.querySelector("#maintext").value.length;
+	}else if(richtext == true){
+		var content = document.getElementById("powertext").innerText;
+		var charCount = content.length;
+		document.getElementById("counter").textContent = charCount;
+	}
 }
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -435,5 +465,7 @@ chrome.runtime.onMessage.addListener(function(request){
 		}else{
 			document.getElementById("printtext").className = "hidden";
 		}
+	}else if(request.msg == "settype"){
+		location.reload();
 	}
 });

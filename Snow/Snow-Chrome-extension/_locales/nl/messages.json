@@ -1,0 +1,10 @@
+{
+   "name": {
+      "message": "Sneeuw",
+	  "description": "Snow"
+   },
+   "description": {
+      "message": "Laat het sneeuwen op de huidige pagina.",
+	  "description": "Let it snow on you current page."
+   }
+}
