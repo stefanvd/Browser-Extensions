@@ -190,5 +190,10 @@
     "titelpopupmodern": {"message": "Modern"},
     "titelprezoombutton": {"message":"Predefined levels"},
     "desprezoombutton": {"message":"Show your predefined zoom levels below the slider"},
-    "designoreset": {"message":"Ignore resets to this value when using the browser's built-in zoom engine"}
+    "designoreset": {"message":"Ignore resets to this value when using the browser's built-in zoom engine"},
+    "desinfobrowserbuiltin": {"message":"The feature affects the entire page and scales everything uniformly, including text, images, and other elements."},
+    "desinfocss": {"message":"The feature to scale an element and its children. It scales that element and its children relative to their original sizes within the document flow."},
+    "desinfofontsize": {"message":"The feature that will change only the text size and not the images."},
+    "deszoommousebutton": {"message": "Mouse button"},
+    "deszoommousewheel": {"message": "Mouse Wheel"}
 }

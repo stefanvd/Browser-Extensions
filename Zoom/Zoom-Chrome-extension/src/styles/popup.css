@@ -62,6 +62,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 *{outline:0}
 #hund{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 html,body{margin:0;padding:0}
+.hidden{display:none}
 .transparent{color:var(--totl-primary-font-color)}
 .general{background:var(--totl-body-background);color:var(--totl-primary-font-color)}
 #predefinedbuttons{display:flex;gap:8px;margin:8px 0px}
@@ -72,7 +73,7 @@ html.modern{width:300px;height:50px}
 .modern body{font-family:sans-serif,'Lucida Grande','Helvetica Neue';font-size:11px}
 .modern .panel{padding:5px}
 .modern .panel .title{padding-bottom:10px;margin:0;display:block;font-weight:bold;-webkit-user-select:none;user-select:none;cursor:default;font-size:14px}
-.modern .panel .titleb{padding-bottom:5px;margin:0 0 0 12px;display:block;font-weight:bold;-webkit-user-select:none;user-select:none;cursor:default;font-size:12px;opacity:.6;}
+.modern .panel .titleb{padding-bottom:5px;margin:0 0 0 12px;display:block;font-weight:bold;-webkit-user-select:none;user-select:none;cursor:default;font-size:12px;opacity:.6}
 .modern .panel .slider{position:relative}
 .modern .panel .slider .sliderlabel{position:absolute;font-size:10px;color:var(--totl-slider-text-color);top:5px;left:7px;-webkit-user-select:none;user-select:none;cursor:default}
 .modern .panel .number{position:absolute;top:10px;left:230px}
@@ -115,12 +116,12 @@ html.large{width:319px;height:35px}
 .large ul li{height:35px;float:left;overflow:hidden}
 .large ul li .btnregular{user-select:none;-webkit-user-select:none;padding:0px 12px;line-height:35px;color:var(--totl-primary-font-color);text-decoration:none;display:inline-block;height:35px;width:11px;text-align:center}
 .large ul li .btnreset{user-select:none;-webkit-user-select:none;padding:0px 12px;line-height:35px;color:var(--totl-primary-font-color);text-decoration:none;display:inline-block;height:35px;width:55px;text-align:center}
-.large ul li:hover *,.large input[type=range]:hover,.large input[type=number]:hover{background:rgb(66,120,245);color:white;}
+.large ul li:hover *,.large input[type=range]:hover,.large input[type=number]:hover{background:rgb(66,120,245);color:white}
 .large .number{margin-left:125px}
 .large input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;-moz-appearance:none;appearance:none;height:35px;width:14px;background:#ddd;cursor:pointer}
 .large input[type=range]::-moz-range-thumb{height:35px;width:14px;background:#ddd;cursor:pointer}
 .large input[type=range]::-ms-thumb{height:35px;width:14px;background:#ddd;cursor:pointer}
-.large .zbox{display:flex;justify-content:space-between}
+.large .zbox{display:flex;justify-content:space-between;flex-wrap:wrap}
 .large .otherbox, .large .title, .large .sliderlabel{display:none}
 /* small */
 html.small{width:297px;height:25px}
@@ -135,10 +136,10 @@ html.small{width:297px;height:25px}
 .small ul li{height:35px;float:left;overflow:hidden}
 .small ul li .btnregular{user-select:none;-webkit-user-select:none;padding:0px 12px;line-height:25px;color:var(--totl-primary-font-color);text-decoration:none;display:inline-block;height:25px;width:11px;text-align:center}
 .small ul li .btnreset{user-select:none;-webkit-user-select:none;padding:0px 12px;line-height:25px;color:var(--totl-primary-font-color);text-decoration:none;display:inline-block;height:25px;width:45px;text-align:center}
-.small ul li:hover *,.small input[type=range]:hover,.small input[type=number]:hover{background:rgb(66,120,245);color:white;}
+.small ul li:hover *,.small input[type=range]:hover,.small input[type=number]:hover{background:rgb(66,120,245);color:white}
 .small .number{margin-left:113px}
 .small input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;-moz-appearance:none;appearance:none;height:25px;width:14px;background:#ddd;cursor:pointer}
 .small input[type=range]::-moz-range-thumb{height:25px;width:14px;background:#ddd;cursor:pointer}
 .small input[type=range]::-ms-thumb{height:25px;width:14px;background:#ddd;cursor:pointer}
-.small .zbox{display:flex;justify-content:space-between}
+.small .zbox{display:flex;justify-content:space-between;flex-wrap:wrap}
 .small .otherbox, .small .title, .small .sliderlabel{display:none}

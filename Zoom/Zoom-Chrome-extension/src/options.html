@@ -169,15 +169,15 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 			<div role="radiogroup" aria-labelledby="zoomengine">
 				<div class="md-radio">
 					<input id="zoomchrome" type="radio" name="zoomengine" value="chrome" role="radio" aria-checked="false" aria-labelledby="zoomengine">
-					<label for="zoomchrome"><div><span data-i18n="deszoomchrome"></span></div></label>
+					<label for="zoomchrome"><div><span data-i18n="deszoomchrome"></span></div><br><div><span data-i18n="desinfobrowserbuiltin"></span></div></label>
 				</div>
 				<div class="md-radio">
 					<input id="zoomweb" type="radio" name="zoomengine" value="web" role="radio" aria-checked="true" aria-labelledby="zoomengine">
-					<label for="zoomweb"><div><span data-i18n="deszoomweb"></span></div></label>
+					<label for="zoomweb"><div><span data-i18n="deszoomweb"></span></div><br><div><span data-i18n="desinfocss"></span></div></label>
 				</div>
 				<div class="md-radio">
 					<input id="zoomfont" type="radio" name="zoomengine" value="font" role="radio" aria-checked="false" aria-labelledby="zoomengine">
-					<label for="zoomfont"><div><span data-i18n="deszoomfont"></span></div></label>
+					<label for="zoomfont"><div><span data-i18n="deszoomfont"></span></div><br><div><span data-i18n="desinfofontsize"></span></div></label>
 				</div>
 			</div>
 			</section>
@@ -342,6 +342,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 						<input id="zoommousescroll" type="checkbox" role="checkbox" aria-checked="false" aria-labelledby="zoommousescroll">
 						<label for="zoommousescroll"><div><span data-i18n="deszoommousescroll"></span></div></label>
 					</div>
+					<span id="kindzoommouse" data-i18n="deszoommousebutton"></span>
 					<div role="radiogroup" aria-labelledby="kindzoommouse">
 						<div class="md-radio">
 							<input id="zoommousebuttonleft" type="radio" name="zoommouse" value="left" role="radio" aria-checked="true" aria-labelledby="kindzoommouse">
@@ -353,6 +354,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 						</div>
 					</div>
 					<br>
+					<span id="kindzoomscroll" data-i18n="deszoommousewheel"></span>
 					<div role="radiogroup" aria-labelledby="kindzoomscroll">
 						<div class="md-radio">
 							<input id="zoommousescrollup" type="radio" name="zoommousescroll" value="left" role="radio" aria-checked="true" aria-labelledby="kindzoomscroll">
@@ -366,7 +368,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				</div>
 				</section>
 				<section>
-				<h3 data-i18n="titelzoomdoubleclick"></h3>
+				<h3 id="kindzoomclick" data-i18n="titelzoomdoubleclick"></h3>
 				<div>
 					<div role="radiogroup" aria-labelledby="kindzoomclick">
 						<div class="md-radio">
@@ -385,7 +387,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				</div>
 				</section>
 				<section>
-					<h3 data-i18n="titelmagnifyingglass"></h3>
+					<h3 id="kindzoommagshape" data-i18n="titelmagnifyingglass"></h3>
 					<div>
 						<div role="radiogroup" aria-labelledby="kindzoommagshape">
 							<div class="md-radio">
@@ -406,7 +408,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 					</div>
 				</section>
 				<section>
-				<h3 data-i18n="titelpopupdesign"></h3>
+				<h3 id="popupstyle" data-i18n="titelpopupdesign"></h3>
 				<div>
 					<div role="radiogroup" aria-labelledby="popupstyle">
 						<div class="md-radio">
@@ -425,7 +427,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				</div>
 				</section>
 				<section>
-					<h3 data-i18n="titelcontextmenu"></h3>
+					<h3 id="contextstyle" data-i18n="titelcontextmenu"></h3>
 					<div>
 						<div class="md-checkbox">
 							<input id="contextmenus" type="checkbox" role="checkbox" aria-checked="false" aria-labelledby="contextmenus">
