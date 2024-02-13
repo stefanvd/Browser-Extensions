@@ -37,12 +37,12 @@ function defaultgetsettings(){
 // Option to save current value
 function save_options(){
 	var e = $("getfontfamily");
-	chrome.storage.sync.set({"optionskipremember": $("optionskipremember").checked, "color1night": $("color1night").value, "color2night": $("color2night").value, "color3night": $("color3night").value, "color4night": $("color4night").value, "color5night": $("color5night").value, "color6night": $("color6night").value, "color7night": $("color7night").value, "color8night": $("color8night").value, "twelfh": $("twelfh").checked, "stamp": $("stamp").checked, "color1": $("color1").value, "color2": $("color2").value, "color3": $("color3").value, "color4": $("color4").value, "color5": $("color5").value, "color6": $("color6").value, "color7": $("color7").value, "color8": $("color8").value, "badge": $("badge").checked, "nightmode": $("nightmode").checked, "begintime": $("begintime").value, "endtime": $("endtime").value, "getfontfamily": e.options[e.selectedIndex].value, "lightcolor": $("lightcolor").value, "clockbck": $("clockbck").checked, "colorhours": $("colorhours").value, "colorminutes": $("colorminutes").value, "clockanalog": $("clockanalog").checked, "clocktickpoint": $("clocktickpoint").checked, "colorbackground": $("colorbackground").value, "colordots": $("colordots").value, "badgeclock": $("badgeclock").checked, "badgedate": $("badgedate").checked, "badgeweek": $("badgeweek").checked, "badgedatesystema": $("badgedatesystema").checked, "badgedatesystemb": $("badgedatesystemb").checked, "badgemonth": $("badgemonth").checked, "stamptypeA": $("stamptypeA").checked, "stamptypeB": $("stamptypeB").checked, "stamptypeC": $("stamptypeC").checked, "stamptypeD": $("stamptypeD").checked, "textcanvascolor": $("textcanvascolor").value, "stamptypeE": $("stamptypeE").checked, "optionpip": $("optionpip").checked, "badgetop": $("badgetop").checked, "badgebottom": $("badgebottom").checked});
+	chrome.storage.sync.set({"optionskipremember": $("optionskipremember").checked, "color1night": $("color1night").value, "color2night": $("color2night").value, "color3night": $("color3night").value, "color4night": $("color4night").value, "color5night": $("color5night").value, "color6night": $("color6night").value, "color7night": $("color7night").value, "color8night": $("color8night").value, "twelfh": $("twelfh").checked, "stamp": $("stamp").checked, "color1": $("color1").value, "color2": $("color2").value, "color3": $("color3").value, "color4": $("color4").value, "color5": $("color5").value, "color6": $("color6").value, "color7": $("color7").value, "color8": $("color8").value, "badge": $("badge").checked, "nightmode": $("nightmode").checked, "begintime": $("begintime").value, "endtime": $("endtime").value, "getfontfamily": e.options[e.selectedIndex].value, "lightcolor": $("lightcolor").value, "clockbck": $("clockbck").checked, "colorhours": $("colorhours").value, "colorminutes": $("colorminutes").value, "clockanalog": $("clockanalog").checked, "clocktickpoint": $("clocktickpoint").checked, "colorbackground": $("colorbackground").value, "colordots": $("colordots").value, "badgeclock": $("badgeclock").checked, "badgedate": $("badgedate").checked, "badgeweek": $("badgeweek").checked, "badgedatesystema": $("badgedatesystema").checked, "badgedatesystemb": $("badgedatesystemb").checked, "badgemonth": $("badgemonth").checked, "stamptypeA": $("stamptypeA").checked, "stamptypeB": $("stamptypeB").checked, "stamptypeC": $("stamptypeC").checked, "stamptypeD": $("stamptypeD").checked, "textcanvascolor": $("textcanvascolor").value, "stamptypeE": $("stamptypeE").checked, "optionpip": $("optionpip").checked, "badgetop": $("badgetop").checked, "badgebottom": $("badgebottom").checked, "hidemonth": $("hidemonth").checked});
 }
 
 var firstdefaultvalues = {};
 // Option default value to read if there is no current value from chrome.storage AND init default value
-chrome.storage.sync.get(["color1", "color2", "color3", "color4", "color5", "color6", "color7", "color8", "color1night", "color2night", "color3night", "color4night", "color5night", "color6night", "color7night", "color8night", "clockanalog", "colorbackground", "badgeclock", "badgedatesystema", "stamptypeA", "textcanvascolor", "badgetop", "badgebottom"], function(items){
+chrome.storage.sync.get(["color1", "color2", "color3", "color4", "color5", "color6", "color7", "color8", "color1night", "color2night", "color3night", "color4night", "color5night", "color6night", "color7night", "color8night", "clockanalog", "colorbackground", "badgeclock", "badgedatesystema", "stamptypeA", "textcanvascolor", "badgetop", "badgebottom", "hidemonth"], function(items){
 	// find no localstore datetodayengine
 	if(items["color1"] == null && items["color2"] == null && items["color3"] == null && items["color4"] == null && items["color5"] == null && items["color6"] == null && items["color7"] == null){ firstdefaultvalues["color1"] = "#808080"; firstdefaultvalues["color2"] = "#000000"; firstdefaultvalues["color3"] = "#808080"; firstdefaultvalues["color4"] = "#000000"; firstdefaultvalues["color5"] = "#000000"; firstdefaultvalues["color6"] = "#808080"; firstdefaultvalues["color7"] = "#ffffff"; firstdefaultvalues["color6"] = "#808080"; }
 	if(items["color1night"] == null && items["color2night"] == null && items["color3night"] == null && items["color4night"] == null && items["color5night"] == null && items["color6night"] == null){ firstdefaultvalues["color1night"] = "#0fff58"; firstdefaultvalues["color2night"] = "#0fff58"; firstdefaultvalues["color3night"] = "#0fff58"; firstdefaultvalues["color4night"] = "#0fff58"; firstdefaultvalues["color5night"] = "#0fff58"; firstdefaultvalues["color6night"] = "#0fff58"; firstdefaultvalues["color7night"] = "#000000"; firstdefaultvalues["color8night"] = "#0fff58"; }// find no localstore lightimage
@@ -53,6 +53,7 @@ chrome.storage.sync.get(["color1", "color2", "color3", "color4", "color5", "colo
 	if(items["stamptypeA"] == null){ firstdefaultvalues["stamptypeA"] = true; }
 	if(items["textcanvascolor"] == null){ firstdefaultvalues["textcanvascolor"] = "#000000"; }
 	if(items["badgetop"] == null && items["badgebottom"] == null){ firstdefaultvalues["badgetop"] = false; firstdefaultvalues["badgebottom"] = true; }
+	if(items["hidemonth"] == null){ firstdefaultvalues["hidemonth"] = false; }
 	// Save the init value
 	chrome.storage.sync.set(firstdefaultvalues, function(){
 		// console.log('Settings saved');
@@ -148,7 +149,7 @@ function read_options(){
 	}
 
 
-	chrome.storage.sync.get(["firstDate", "optionskipremember", "countremember", "color1", "color2", "color3", "color4", "color5", "color6", "color7", "color8", "twelfh", "stamp", "color1night", "color2night", "color3night", "color4night", "color5night", "color6night", "color7night", "color8night", "badge", "nightmode", "begintime", "endtime", "getfontfamily", "lightcolor", "clockbck", "colorhours", "colorminutes", "clockanalog", "clocktickpoint", "colorbackground", "colordots", "badgeclock", "badgedate", "badgeweek", "badgemonth", "badgedatesystema", "badgedatesystemb", "stamptypeA", "stamptypeB", "stamptypeC", "stamptypeD", "textcanvascolor", "firstsawrate", "introduce", "stamptypeE", "optionpip", "badgetop", "badgebottom"], function(items){
+	chrome.storage.sync.get(["firstDate", "optionskipremember", "countremember", "color1", "color2", "color3", "color4", "color5", "color6", "color7", "color8", "twelfh", "stamp", "color1night", "color2night", "color3night", "color4night", "color5night", "color6night", "color7night", "color8night", "badge", "nightmode", "begintime", "endtime", "getfontfamily", "lightcolor", "clockbck", "colorhours", "colorminutes", "clockanalog", "clocktickpoint", "colorbackground", "colordots", "badgeclock", "badgedate", "badgeweek", "badgemonth", "badgedatesystema", "badgedatesystemb", "stamptypeA", "stamptypeB", "stamptypeC", "stamptypeD", "textcanvascolor", "firstsawrate", "introduce", "stamptypeE", "optionpip", "badgetop", "badgebottom", "hidemonth"], function(items){
 		if(items["color1"]){ $("color1").value = items["color1"]; }else $("color1").value = "#808080";
 		if(items["color2"]){ $("color2").value = items["color2"]; }else $("color2").value = "#000000";
 		if(items["color3"]){ $("color3").value = items["color3"]; }else $("color3").value = "#808080";
@@ -196,6 +197,7 @@ function read_options(){
 		if(items["optionpip"] == true)$("optionpip").checked = true;
 		if(items["badgetop"] == true)$("badgetop").checked = true;
 		if(items["badgebottom"] == true)$("badgebottom").checked = true;
+		if(items["hidemonth"] == true)$("hidemonth").checked = true;
 
 		// show remember page
 		var firstmonth = false;
@@ -496,10 +498,12 @@ function test(){
 		$("badgetop").disabled = false;
 		$("badgebottom").disabled = false;
 		$("textcanvascolor").disabled = false;
+		$("hidemonth").disabled = false;
 	}else{
 		$("badgetop").disabled = true;
 		$("badgebottom").disabled = true;
 		$("textcanvascolor").disabled = true;
+		$("hidemonth").disabled = true;
 	}
 }
 

@@ -14,7 +14,7 @@ const linkuninstall = "https://www.stefanvd.net/project/zoom/browser/google-chro
 const linkguide = "https://www.stefanvd.net/project/zoom/browser/google-chrome/guide/";
 const linkproductdescription = "https://www.stefanvd.net/project/zoom/browser-extension/";
 const browsernewtab = "chrome://newtab/";
-const browserstore = "https://chrome.google.com";
+const browserstore = "https://chromewebstore.google.com";
 const linkyoutube = "https://www.youtube.com/@stefanvandamme?sub_confirmation=1";
 const devmode = true;
 const devdonate = false;

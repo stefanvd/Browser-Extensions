@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "__MSG_name__",
   "short_name": "Date Today",  
-  "version": "1.4.2.0",
+  "version": "1.4.4.0",
   "description": "__MSG_description__",
   "author": "Stefan vd",
   "homepage_url": "https://www.stefanvd.net/support/",
@@ -17,7 +17,6 @@
     "default_title": "__MSG_browsertitle__",
     "default_popup": "popup.html"
   },
-  "minimum_chrome_version": "43",
   "options_ui": {
     "page": "options.html",
     "open_in_tab": true

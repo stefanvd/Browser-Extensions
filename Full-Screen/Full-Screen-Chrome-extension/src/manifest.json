@@ -2,42 +2,42 @@
   "manifest_version": 3,
   "name": "__MSG_namechrome__",
   "short_name": "Full Screen",  
-  "version": "1.7.0.0",
+  "version": "1.8.0.0",
   "description": "__MSG_description__",
   "author": "Stefan vd",
   "homepage_url": "https://www.stefanvd.net/support/",
   "icons": {
-    "16": "icons/icon16.png",
-    "24": "icons/icon24.png",
-    "32": "icons/icon32.png",
-    "48": "icons/icon48.png",
-    "96": "icons/icon96.png",
-    "128": "icons/icon128.png"
+    "16": "images/icon16.png",
+    "24": "images/icon24.png",
+    "32": "images/icon32.png",
+    "48": "images/icon48.png",
+    "96": "images/icon96.png",
+    "128": "images/icon128.png"
   },
   "default_locale": "en",
   "action": {
     "default_icon": {
-      "19": "icons/icon19.png",
-      "38": "icons/icon38.png"
+      "19": "images/icon19.png",
+      "38": "images/icon38.png"
     },
     "default_title": "__MSG_name__"
   },
   "content_scripts": [
     {
       "matches": ["*://*/*"],
-      "js": ["js/constants.js","js/content.js"],
-      "css" : ["css/fs.css"],
+      "js": ["scripts/constants.js","scripts/content.js"],
+      "css" : ["styles/fs.css"],
       "run_at": "document_end"
     }
   ],
   "background": {
-    "service_worker": "js/background.js"
+    "service_worker": "scripts/background.js"
   },
   "content_security_policy": {
-    "extension_pages": "default-src 'none'; style-src 'self'; media-src https://www.stefanvd.net; child-src https://www.youtube.com https://www.stefanvd.net; connect-src https://www.stefanvd.net; script-src 'self'; img-src 'self' https://www.stefanvd.net * data:; object-src 'none'"
+    "extension_pages": "default-src 'none'; style-src 'self'; media-src https://www.stefanvd.net; frame-src https://www.youtube.com https://www.stefanvd.net; connect-src https://www.stefanvd.net; script-src 'self'; img-src 'self' https://www.stefanvd.net * data:; object-src 'none'"
   },
   "commands": {
-    "_execute_browser_action": {
+    "_execute_action": {
       "suggested_key": {
         "default": "Ctrl+Shift+F",
         "mac": "MacCtrl+Shift+F"
@@ -49,7 +49,7 @@
     "open_in_tab": true
   },
   "web_accessible_resources": [{
-    "resources": ["/js/video-player-status.js"],
+    "resources": ["/scripts/video-player-status.js"],
     "matches": ["<all_urls>"],
     "use_dynamic_url": true
   }],

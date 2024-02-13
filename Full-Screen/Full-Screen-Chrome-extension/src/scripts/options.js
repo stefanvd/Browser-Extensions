@@ -3,7 +3,7 @@
 
 Full Screen
 Go full screen with one click on the button.
-Copyright (C) 2022 Stefan vd
+Copyright (C) 2024 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -34,22 +34,49 @@ function defaultgetsettings(){
 	read_options();
 }
 
+function eventsubmitFunc(selector, callback){
+	document.getElementById(selector).addEventListener("submit", function(e){
+		e.preventDefault();
+		callback();
+	});
+}
+
+function getalldomains(a){
+	var atmosphereDomainsBox = $(a);
+	var atmosphereDomains = {};
+	var atmospherei;
+	var atmospherel = atmosphereDomainsBox.length;
+	for(atmospherei = 0; atmospherei < atmospherel; atmospherei++){ atmosphereDomains[atmosphereDomainsBox.options[atmospherei].value] = true; }
+	return JSON.stringify(atmosphereDomains);
+}
+
 // Option to save current value
 function save_options(){
 	chrome.runtime.sendMessage({name: "getallpermissions"});
 
-	chrome.storage.sync.set({"contextmenus":$("contextmenus").checked, "mediafullscreen":$("mediafullscreen").checked, "optionskipremember":$("optionskipremember").checked, "fullscreenweb":$("fullscreenweb").checked, "fullscreenwindow":$("fullscreenwindow").checked, "fullscreenpopup":$("fullscreenpopup").checked, "fullscreenvideo":$("fullscreenvideo").checked, "allwindows":$("allwindows").checked, "videoinwindow":$("videoinwindow").checked, "videooutwindow":$("videooutwindow").checked, "autostartup":$("autostartup").checked, "startupallwindow":$("startupallwindow").checked, "startupcurrentwindow":$("startupcurrentwindow").checked});
+	chrome.storage.sync.set({"icon": $("btnpreview").src, "contextmenus":$("contextmenus").checked, "autofullscreen":$("autofullscreen").checked, "optionskipremember":$("optionskipremember").checked, "fullscreenweb":$("fullscreenweb").checked, "fullscreenwindow":$("fullscreenwindow").checked, "fullscreenpopup":$("fullscreenpopup").checked, "fullscreenvideo":$("fullscreenvideo").checked, "allwindows":$("allwindows").checked, "videoinwindow":$("videoinwindow").checked, "videooutwindow":$("videooutwindow").checked, "autostartup":$("autostartup").checked, "startupallwindow":$("startupallwindow").checked, "startupcurrentwindow":$("startupcurrentwindow").checked, "autofullscreenDomains":getalldomains("autofullscreenDomainsBox"), "autofullscreenchecklistwhite":$("autofullscreenchecklistwhite").checked, "autofullscreenchecklistblack":$("autofullscreenchecklistblack").checked, "autofullscreenonly":$("autofullscreenonly").checked});
 }
 
 var firstdefaultvalues = {};
 // Option default value to read if there is no current value from chrome.storage AND init default value
-chrome.storage.sync.get(["contextmenus", "fullscreenweb", "fullscreenwindow", "fullscreenpopup", "fullscreenvideo", "videoinwindow", "videooutwindow", "startupallwindow", "startupcurrentwindow"], function(items){
+chrome.storage.sync.get(["icon", "contextmenus", "fullscreenweb", "fullscreenwindow", "fullscreenpopup", "fullscreenvideo", "videoinwindow", "videooutwindow", "startupallwindow", "startupcurrentwindow", "autofullscreenDomains", "autofullscreenchecklistwhite", "autofullscreenchecklistblack"], function(items){
 	// find no localstore zoomengine
+	if(items["icon"] == null){
+		if(exbrowser == "safari"){
+			firstdefaultvalues["icon"] = "/images/icon38.png";
+		}else{
+			firstdefaultvalues["icon"] = "/images/icon38.png";
+		}
+	}
 	if(items["contextmenus"] == null){ firstdefaultvalues["contextmenus"] = true; }
 	if(items["fullscreenweb"] == null && items["fullscreenwindow"] == null && items["fullscreenvideo"] == null){ firstdefaultvalues["fullscreenweb"] = true; firstdefaultvalues["fullscreenwindow"] = false; firstdefaultvalues["fullscreenpopup"] = false; firstdefaultvalues["fullscreenvideo"] = false; }
 	if(items["videoinwindow"] == null && items["videooutwindow"] == null){ firstdefaultvalues["videoinwindow"] = true; firstdefaultvalues["videooutwindow"] = false; }
 	if(items["startupallwindow"] == null && items["startupcurrentwindow"] == null){ firstdefaultvalues["startupallwindow"] = true; firstdefaultvalues["startupcurrentwindow"] = false; }
-	// find no localstore lightimage
+	if(items["autofullscreenDomains"] == null || items["atmosphereDomains"] == null || items["autostopDomains"] == null || items["videotoolDomains"] == null || items["videovolumeDomains"] == null || items["gamepadDomains"] == null){
+		firstdefaultvalues["autofullscreenDomains"] = JSON.stringify({"https://www.youtube.com": true, "https://vimeo.com": true});
+	}
+	// find no localstore autofullscreen whitelist
+	if(items["autofullscreenchecklistwhite"] == null && items["autofullscreenchecklistblack"] == null){ firstdefaultvalues["autofullscreenchecklistwhite"] = true; firstdefaultvalues["autofullscreenchecklistblack"] = false; }
 	// Save the init value
 	chrome.storage.sync.set(firstdefaultvalues, function(){
 		// console.log('Settings saved');
@@ -144,9 +171,10 @@ function read_options(){
 		showhidemodal("materialModalYouTube", "hide", "true");
 	}
 
-	chrome.storage.sync.get(["firstDate", "contextmenus", "mediafullscreen", "countremember", "optionskipremember", "fullscreenweb", "fullscreenwindow", "fullscreenpopup", "fullscreenvideo", "allwindows", "videoinwindow", "videooutwindow", "firstsawrate", "autostartup", "startupallwindow", "startupcurrentwindow"], function(items){
+	chrome.storage.sync.get(["icon", "firstDate", "contextmenus", "autofullscreen", "countremember", "optionskipremember", "fullscreenweb", "fullscreenwindow", "fullscreenpopup", "fullscreenvideo", "allwindows", "videoinwindow", "videooutwindow", "firstsawrate", "autostartup", "startupallwindow", "startupcurrentwindow", "autofullscreenDomains", "autofullscreenchecklistwhite", "autofullscreenchecklistblack", "autofullscreenonly"], function(items){
+		if(items["icon"]){ $("btnpreview").src = items["icon"]; }
 		if(items["contextmenus"] == true)$("contextmenus").checked = true;
-		if(items["mediafullscreen"] == true)$("mediafullscreen").checked = true;
+		if(items["autofullscreen"] == true)$("autofullscreen").checked = true;
 		if(items["optionskipremember"] == true)$("optionskipremember").checked = true;
 		if(items["fullscreenweb"] == true)$("fullscreenweb").checked = true;
 		if(items["fullscreenwindow"] == true)$("fullscreenwindow").checked = true;
@@ -158,6 +186,13 @@ function read_options(){
 		if(items["autostartup"] == true)$("autostartup").checked = true;
 		if(items["startupallwindow"] == true)$("startupallwindow").checked = true;
 		if(items["startupcurrentwindow"] == true)$("startupcurrentwindow").checked = true;
+		if(items["autofullscreenchecklistwhite"] == true)$("autofullscreenchecklistwhite").checked = true;
+		if(items["autofullscreenchecklistblack"] == true)$("autofullscreenchecklistblack").checked = true;
+		if(items["autofullscreenonly"] == true)$("autofullscreenonly").checked = true;
+
+		// autofullscreen - Excluded domains - sort these alphabetically
+		var autofullscreenDomains = items["autofullscreenDomains"];
+		setlistbox("autofullscreenDomainsBox", autofullscreenDomains);
 
 		// show remember page
 		var firstmonth = false;
@@ -258,6 +293,22 @@ function read_options(){
 	});// chrome storage end
 } // end read
 
+function setlistbox(a, b){
+	if(typeof b == "string"){
+		b = JSON.parse(b);
+		let srbuf = [], domain;
+		for(domain in b)
+			srbuf.push(domain);
+		srbuf.sort();
+		let i, l = srbuf.length;
+		for(i = 0; i < l; i++)
+			appendToListBox(a, srbuf[i]);
+	}
+}
+
+// Add a filter string to the list box.
+function appendToListBox(boxId, text){ var elt = document.createElement("option"); elt.role = "option"; elt.text = text; elt.value = text; $(boxId).add(elt, null); }
+
 // tabel script
 var tabLinks = new Array();
 var contentDivs = new Array();
@@ -292,7 +343,45 @@ function getHash(url){
 	return url.substring(hashPos + 1);
 }
 
+// whitelist autofullscreen domain
+function autofullscreenaddWhitelistDomain(){
+	var domain = $("autofullscreenwebsiteurl").value;
+	appendToListBox("autofullscreenDomainsBox", domain);
+	save_options();
+}
+
+function removedselectedwebsite(boxelement){
+	var thisDomainsBox = $(boxelement);
+	var i = thisDomainsBox.length - 1;
+	for(i; i >= 0; i--){
+		if(thisDomainsBox.options[i].selected)
+			thisDomainsBox.remove(i);
+	}
+	save_options();
+}
+
+function autofullscreenElements(disabled){
+	$("autofullscreenDomainsBox").disabled = disabled;
+	$("autofullscreenwebsiteurl").disabled = disabled;
+	$("autofullscreenaddbutton").disabled = disabled;
+	$("autofullscreenremovebutton").disabled = disabled;
+	$("autofullscreenchecklistwhite").disabled = disabled;
+	$("autofullscreenchecklistblack").disabled = disabled;
+}
+
 function test(){
+	if($("autofullscreen").checked == true){
+		$("autofullscreenonly").disabled = false;
+		if($("autofullscreenonly").checked == true){
+			autofullscreenElements(false);
+		}else{
+			autofullscreenElements(true);
+		}
+	}else{
+		$("autofullscreenonly").disabled = true;
+		autofullscreenElements(true);
+	}
+
 	if($("autostartup").checked){
 		$("startupallwindow").disabled = false;
 		$("startupcurrentwindow").disabled = false;
@@ -589,6 +678,27 @@ function domcontentloaded(){
 
 	// Close yellow bar
 	$("managed-prefs-text-close").addEventListener("click", function(){ $("managed-prefs-banner").style.display = "none"; });
+	$("p0").addEventListener("click", function(){
+		var custombrowser = "";
+		if(exbrowser == "safari"){ custombrowser = "/images/icon38.png"; }else{ custombrowser = "/images/icon38.png"; }
+		setpreviewicon(custombrowser);
+	});
+	$("p1").addEventListener("click", function(){
+		var custombrowser = "";
+		custombrowser = "/images/icon38white.png";
+		setpreviewicon(custombrowser);
+	});
+
+	function setpreviewicon(a){
+		document.images["btnpreview"].setAttribute("data-icon", a); document.images["btnpreview"].src = a; save_options();
+	}
+
+	// save browser icon styles
+	var buttoncolor = document.getElementsByClassName("buttoncolor");
+	var r, v = buttoncolor.length;
+	for(r = 0, v; r < v; r++){
+		buttoncolor[r].addEventListener("click", save_options);
+	}
 
 	var guidekb = true;
 	function memguide(){
@@ -633,8 +743,14 @@ function domcontentloaded(){
 		$("dont-turn-off-the-lights").src = youtubeembed;
 	}
 
+	// autofullscreen Add website
+	eventsubmitFunc("formautofullscreen", autofullscreenaddWhitelistDomain);
+
+	// autofullscreen Remove website
+	$("autofullscreenremovebutton").addEventListener("click", function(){ removedselectedwebsite("autofullscreenDomainsBox"); });
+
 	// Reset settings
-	$("resetfullscreen").addEventListener("click", function(){ chrome.storage.sync.clear(); location.reload(); });
+	$("resetbrowserextension").addEventListener("click", function(){ chrome.storage.sync.clear(); chrome.runtime.sendMessage({name: "bckreload"}); location.reload(); });
 
 	// Review box
 	$("war").addEventListener("click", function(){ window.open(writereview); $("sectionreviewbox").style.display = "none"; chrome.storage.sync.set({"reviewedlastonversion": chrome.runtime.getManifest().version}); });

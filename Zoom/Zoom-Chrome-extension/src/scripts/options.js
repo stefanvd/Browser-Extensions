@@ -1088,7 +1088,6 @@ function domcontentloaded(){
 	// Remove
 	$("websitelevelremovebutton").addEventListener("click", function(){ levelzoomremoveSelectedExcludedDomain(); });
 
-
 	// Reset settings
 	$("resetbrowserextension").addEventListener("click", function(){ chrome.storage.sync.clear(); chrome.runtime.sendMessage({name: "bckreload"}); location.reload(); });
 

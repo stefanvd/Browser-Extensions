@@ -549,6 +549,10 @@ document.addEventListener("DOMContentLoaded", function(){
 		}else if(modernpopup){
 			document.getElementById("type").className = "modern";
 			document.documentElement.className = "modern";
+		}else{
+			// default popup design
+			document.getElementById("type").className = "modern";
+			document.documentElement.className = "modern";
 		}
 
 		if(exbrowser == "safari"){

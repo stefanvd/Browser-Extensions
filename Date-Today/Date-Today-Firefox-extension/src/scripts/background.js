@@ -30,12 +30,12 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 // eslint-disable-next-line no-undef
 // importScripts("constants.js");
 
-var twelfh = null, badge = null, lightcolor = null, clockbck = null, colorhours = null, colorminutes = null, clockanalog = null, clocktickpoint = null, colorbackground = null, colordots = null, badgeclock = null, badgedate = null, badgeweek = null, badgemonth = null, badgedatesystema = null, badgedatesystemb = null, textcanvascolor = null, stamptypeA = null, stamptypeB = null, stamptypeC = null, stamptypeD = null, stamptypeE = null, datetoday = null, badgetop = null, badgebottom = null;
+var twelfh = null, badge = null, lightcolor = null, clockbck = null, colorhours = null, colorminutes = null, clockanalog = null, clocktickpoint = null, colorbackground = null, colordots = null, badgeclock = null, badgedate = null, badgeweek = null, badgemonth = null, badgedatesystema = null, badgedatesystemb = null, textcanvascolor = null, stamptypeA = null, stamptypeB = null, stamptypeC = null, stamptypeD = null, stamptypeE = null, datetoday = null, badgetop = null, badgebottom = null, hidemonth = null;
 var pastetext;
 
 // Read current value settings
 function init(){
-	chrome.storage.sync.get(["twelfh", "badge", "lightcolor", "clockbck", "colorhours", "colorminutes", "clockanalog", "clocktickpoint", "colorbackground", "colordots", "badgeclock", "badgedate", "badgeweek", "badgemonth", "badgedatesystema", "badgedatesystemb", "textcanvascolor", "stamptypeA", "stamptypeB", "stamptypeC", "stamptypeD", "stamptypeE", "badgetop", "badgebottom"], function(response){
+	chrome.storage.sync.get(["twelfh", "badge", "lightcolor", "clockbck", "colorhours", "colorminutes", "clockanalog", "clocktickpoint", "colorbackground", "colordots", "badgeclock", "badgedate", "badgeweek", "badgemonth", "badgedatesystema", "badgedatesystemb", "textcanvascolor", "stamptypeA", "stamptypeB", "stamptypeC", "stamptypeD", "stamptypeE", "badgetop", "badgebottom", "hidemonth"], function(response){
 		twelfh = response.twelfh; if(twelfh == null)twelfh = false;
 		badge = response.badge; if(badge == null)badge = false;
 		lightcolor = response.lightcolor; if(lightcolor == null)lightcolor = "#3cb4fe";
@@ -60,6 +60,7 @@ function init(){
 		stamptypeE = response.stamptypeE; if(stamptypeE == null)stamptypeE = false;
 		badgetop = response.badgetop; if(badgetop == null)badgetop = false;
 		badgebottom = response.badgebottom; if(badgebottom == null)badgebottom = true;
+		hidemonth = response.hidemonth; if(hidemonth == null)hidemonth = false;
 
 		var jan = chrome.i18n.getMessage("jan"); var feb = chrome.i18n.getMessage("feb"); var mar = chrome.i18n.getMessage("mar");
 		var apr = chrome.i18n.getMessage("apr"); var may = chrome.i18n.getMessage("may"); var jun = chrome.i18n.getMessage("jun");
@@ -162,13 +163,20 @@ function init(){
 			}
 
 			if((badge == true) && (badgemonth == true)){
-				c.font = "22px Arial";
-				c.fillStyle = textcanvascolor;
-				c.textAlign = "center";
-				if(badgebottom == true){
-					c.fillText(d.getDate(), canvas.width / 2, canvas.height / 2 - 2);
+				if(hidemonth == true){
+					c.font = "38px Arial";
+					c.fillStyle = textcanvascolor;
+					c.textAlign = "center";
+					c.fillText(d.getDate(), canvas.width / 2, canvas.height - 4);
 				}else{
-					c.fillText(d.getDate(), canvas.width / 2, canvas.height);
+					c.font = "22px Arial";
+					c.fillStyle = textcanvascolor;
+					c.textAlign = "center";
+					if(badgebottom == true){
+						c.fillText(d.getDate(), canvas.width / 2, canvas.height / 2 - 2);
+					}else{
+						c.fillText(d.getDate(), canvas.width / 2, canvas.height);
+					}
 				}
 			}
 
@@ -220,7 +228,11 @@ function init(){
 				}else if(badgemonth == true){
 					badgelabel = this_month_name_array[this_month]; badgelabel = badgelabel.substring(0, 3); // only the first 3 characters
 				}
-				chrome.action.setBadgeText({text: badgelabel});
+				if(hidemonth == true && badgemonth == true){
+					chrome.action.setBadgeText({text: ""});
+				}else{
+					chrome.action.setBadgeText({text: badgelabel});
+				}
 				chrome.action.setBadgeBackgroundColor({color:lightcolor});
 			}else{
 				chrome.action.setBadgeText({text: ""});
@@ -461,6 +473,9 @@ chrome.storage.onChanged.addListener(function(changes){
 	}
 	if(changes["badgebottom"]){
 		if(changes["badgebottom"].newValue == true){ badgebottom = true; }else{ badgebottom = false; }
+	}
+	if(changes["hidemonth"]){
+		if(changes["hidemonth"].newValue == true){ hidemonth = true; }else{ hidemonth = false; }
 	}
 	if(changes["badgedatesystema"]){
 		if(changes["badgedatesystema"].newValue == true){ badgedatesystema = true; }else{ badgedatesystema = false; }

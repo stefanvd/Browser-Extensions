@@ -185,5 +185,6 @@
   "labletimeformat": {"message": "Time format"},
   "permissionalarm": {"message": "This is to get the current date and time at each refresh interval."},
   "titlebadgebottom": {"message": "Place month at the bottom"},
-  "titlebadgetop": {"message": "Place month on top"}
+  "titlebadgetop": {"message": "Place month on top"},
+  "deshidemonth": {"message": "Hide month"}
 }
