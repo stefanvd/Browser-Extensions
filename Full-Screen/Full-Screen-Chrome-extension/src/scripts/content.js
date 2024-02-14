@@ -48,9 +48,9 @@ if(redirectionHosts.includes(window.location.href)){
 }
 
 // settings
-var startautofullscreen = null, contextmenus = null, autofullscreen = null, videoinwindow = null, videooutwindow = null, autofullscreenDomains, autofullscreenonly, autofullscreenchecklistblack, autofullscreenchecklistwhite = null;
+var startautofullscreen = null, contextmenus = null, autofullscreen = null, videoinwindow = null, videooutwindow = null, autofullscreenDomains = null, autofullscreenonly = null, autofullscreenchecklistblack = null, autofullscreenchecklistwhite = null;
 
-chrome.storage.sync.get(["contextmenus", "autofullscreen", "videoinwindow", "videooutwindow", "autofullscreenonly", "autofullscreenchecklistwhite", "autofullscreenchecklistblack"], function(items){
+chrome.storage.sync.get(["contextmenus", "autofullscreen", "videoinwindow", "videooutwindow", "autofullscreenonly", "autofullscreenchecklistwhite", "autofullscreenchecklistblack", "autofullscreenDomains"], function(items){
 	contextmenus = items["contextmenus"]; if(contextmenus == null)contextmenus = true;
 	autofullscreen = items["autofullscreen"]; if(autofullscreen == null)autofullscreen = false;
 	videoinwindow = items["videoinwindow"]; if(videoinwindow == null)videoinwindow = true;
@@ -58,11 +58,12 @@ chrome.storage.sync.get(["contextmenus", "autofullscreen", "videoinwindow", "vid
 	autofullscreenonly = items["autofullscreenonly"]; if(autofullscreenonly == null)autofullscreenonly = false;
 	autofullscreenchecklistwhite = items["autofullscreenchecklistwhite"]; if(autofullscreenchecklistwhite == null)autofullscreenchecklistwhite = true;
 	autofullscreenchecklistblack = items["autofullscreenchecklistblack"]; if(autofullscreenchecklistblack == null)autofullscreenchecklistblack = false;
+	autofullscreenDomains = items["autofullscreenDomains"];
 
 	if(autofullscreen == true){
 		addautofullscreenfile();
+		runautofullscreencheck();
 	}
-	runautofullscreencheck();
 });
 
 // auto bring the html5 or youtube video to fullscreen
@@ -233,49 +234,20 @@ function runautofullscreencheck(){
 }
 
 var videowindow = false;
-var checktheatermode;
 var initialtheatermode = false;
 var thatPrevControlEnabled = false;
 function windowfullaction(){
 	if(document.getElementsByTagName("video")[0]){
 		if(window.location.href.match(/^http(s)?:\/\/(www\.)?youtube.com/i)){
 			// YouTube website
-			// var playertheater = document.getElementById("player-theater-container");
-			var playercontrols = document.getElementsByClassName("ytp-chrome-bottom")[0];
 			var playercontainer = document.getElementById("ytd-player");
-
-			var masthead = $("masthead-container");
-			if(masthead)masthead.style.cssText = "z-index:auto !important";
-
+			var stefanvdregularhtmlplayer = document.getElementsByClassName("stefanvdvideowindow")[0];
 			if(playercontainer){
-				var stefanvdregularhtmlplayer = document.getElementsByClassName("stefanvdvideowindow")[0];
-				var original = document.getElementsByClassName("ytp-size-button")[0];
-				var watchContainer = document.querySelector("ytd-watch-flexy");
 				if(stefanvdregularhtmlplayer){
-					if(!initialtheatermode){
-						original.click();
-					}
-					playercontainer.classList.remove("stefanvdvideowindow");
-					// playertheater.classList.remove("stefanvdvideotheather");
-					playercontrols.classList.remove("stefanvdvideocontrols");
-					document.getElementsByTagName("video")[0].classList.remove("stefanvdvideowindow");
-
-					videowindow = false;
-					removeexitshortcut();
+					ytFullMode(false);
 				}else{
-					checktheatermode = watchContainer ? watchContainer.hasAttribute("theater") : true;
-					initialtheatermode = checktheatermode;
-					if(!checktheatermode){
-						original.click();
-						checktheatermode = true;
-					}
-					playercontainer.classList.add("stefanvdvideowindow");
-					// playertheater.classList.add("stefanvdvideotheather");
-					playercontrols.classList.add("stefanvdvideocontrols");
-					document.getElementsByTagName("video")[0].classList.add("stefanvdvideowindow");
-
-					videowindow = true;
-					setexitshortcut();
+					// do not exist, create this full screen mode
+					ytFullMode(true);
 				}
 			}
 		}else{
@@ -303,6 +275,49 @@ function windowfullaction(){
 	}
 }
 
+function ytFullMode(isFullScreen){
+	// YouTube website
+	var playercontrols = document.getElementsByClassName("ytp-chrome-bottom")[0];
+	var playercontainer = document.getElementById("ytd-player");
+
+	var masthead = $("masthead-container");
+	if(masthead)masthead.style.cssText = "z-index:auto !important";
+
+	if(playercontainer){
+		var stefanvdregularhtmlplayer = document.getElementsByClassName("stefanvdvideowindow")[0];
+		var original = document.getElementsByClassName("ytp-size-button")[0];
+		var watchContainer = document.querySelector("ytd-watch-flexy");
+
+		if(isFullScreen == true){
+			const checktheatermode = watchContainer ? watchContainer.hasAttribute("theater") : true;
+			initialtheatermode = checktheatermode;
+			if(!checktheatermode){
+				original.click();
+			}
+			playercontainer.classList.add("stefanvdvideowindow");
+			playercontrols.classList.add("stefanvdvideocontrols");
+			document.querySelector("video").classList.add("stefanvdvideowindow");
+
+			videowindow = true;
+			setexitshortcut();
+		}else{
+			if(stefanvdregularhtmlplayer){
+				if(!initialtheatermode){
+					original.click();
+				}
+				playercontainer.classList.remove("stefanvdvideowindow");
+				playercontrols.classList.remove("stefanvdvideocontrols");
+				document.querySelector("video").classList.remove("stefanvdvideowindow");
+
+				videowindow = false;
+				removeexitshortcut();
+			}
+		}
+
+
+	}
+}
+
 function shortcut(e){
 	if(e.keyCode == 27){
 		if(videowindow == true){
@@ -323,7 +338,7 @@ function shadesOff(player){
 		// skip it and use => videoinwindow
 		// if(videoinwindow == true){
 		if(window.location.href.match(/^http(s)?:\/\/(www\.)?youtube.com/i)){
-			windowfullaction(player);
+			ytFullMode(false);
 		}else{
 			player.classList.remove("stefanvdvideowindow");
 		}
@@ -339,7 +354,7 @@ function shadesOn(player){
 		// skip it and use => videoinwindow
 		// if(videoinwindow == true){
 		if(window.location.href.match(/^http(s)?:\/\/(www\.)?youtube.com/i)){
-			windowfullaction(player);
+			ytFullMode(true);
 		}else{
 			player.classList.add("stefanvdvideowindow");
 		}
@@ -405,23 +420,26 @@ chrome.runtime.onMessage.addListener(function(request){
 			videooutwindow = items["videooutwindow"];
 		});
 	}else if(request.name == "gorefreshautofullscreen"){
-		chrome.storage.sync.get(["autofullscreen"], function(items){
+		chrome.storage.sync.get(["autofullscreen", "autofullscreenonly", "autofullscreenchecklistwhite", "autofullscreenchecklistblack", "autofullscreenDomains"], function(items){
 			autofullscreen = items["autofullscreen"];
-			autofullscreenonly = items["autofullscreenonly"]; if(autofullscreenonly == null)autofullscreenonly = false;
-			autofullscreenchecklistwhite = items["autofullscreenchecklistwhite"]; if(autofullscreenchecklistwhite == null)autofullscreenchecklistwhite = true;
-			autofullscreenchecklistblack = items["autofullscreenchecklistblack"]; if(autofullscreenchecklistblack == null)autofullscreenchecklistblack = false;
+			autofullscreenonly = items["autofullscreenonly"];
+			autofullscreenchecklistwhite = items["autofullscreenchecklistwhite"];
+			autofullscreenchecklistblack = items["autofullscreenchecklistblack"];
+			autofullscreenDomains = items["autofullscreenDomains"];
+
+			// remove
+			window.clearInterval(startautofullscreen);
+			if(document.getElementById("fsautofullscreen")){
+				removeElement("fsautofullscreen");
+			}
+			if(document.getElementById("stefanvdfullscreenmessage")){
+				removeElement("stefanvdfullscreenmessage");
+			}
+
+			// add
 			if(autofullscreen == true){
 				addautofullscreenfile();
 				runautofullscreencheck();
-			}else{
-				// remove
-				window.clearInterval(startautofullscreen);
-				if(document.getElementById("fsautofullscreen")){
-					removeElement("fsautofullscreen");
-				}
-				if(document.getElementById("stefanvdfullscreenmessage")){
-					removeElement("stefanvdfullscreenmessage");
-				}
 			}
 		});
 	}
