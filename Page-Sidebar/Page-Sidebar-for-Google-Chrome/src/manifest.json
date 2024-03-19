@@ -3,7 +3,7 @@
   "name": "__MSG_namefull__",
   "short_name": "__MSG_name__",
   "description": "__MSG_description__",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "background": {
     "service_worker": "scripts/background.js"
   },
@@ -16,6 +16,13 @@
     "96": "images/icon96.png",
     "128": "images/icon128.png"
   },
+  "content_scripts": [{
+    "all_frames": true,
+    "js": ["/scripts/communicate.js"],
+    "match_about_blank": true,
+    "matches": [ "*://*/*" ],
+    "run_at": "document_start"
+  }],
   "default_locale": "en",
   "side_panel": {
     "default_path": "panel.html"

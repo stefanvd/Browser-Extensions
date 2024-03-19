@@ -26,8 +26,24 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-var selectedsearch, searchgoogle, searchbing, searchduckduckgo, searchbaidu, searchyandex, typepanelzone, typepanelcustom, websitezoomname, navtop, navbottom, navhidden;
+var selectedsearch, searchgoogle, searchbing, searchduckduckgo, searchbaidu, searchyandex, typepanelzone, typepanelcustom, websitezoomname, navtop, navbottom, navhidden, opentab, opencopy;
 document.addEventListener("DOMContentLoaded", init);
+
+// Detect URL to open back in new web browser tab
+var currentSidePanelURL = "";
+window.addEventListener("message", (e) => {
+	// console.log("FIRST WEBSITE URL=", e.data.href);
+	if(e.data?.method === "navigate"){
+		if(e.source){
+			e.source.postMessage({
+				method: "navigate-verified"
+			}, "*");
+		}
+	}else if(e.data?.method === "complete"){
+		// console.log("VISITED WEBSITE URL=", e.data.href);
+		currentSidePanelURL = e.data.href;
+	}
+});
 
 function init(){
 	// complete page
@@ -83,7 +99,7 @@ function init(){
 		document.getElementById("stefanvdpromo").className = "hidden";
 	});
 
-	chrome.storage.sync.get(["firstDate", "optionskipremember", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "websitezoomname", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex"], function(items){
+	chrome.storage.sync.get(["firstDate", "optionskipremember", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "websitezoomname", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "opentab", "opencopy"], function(items){
 		searchgoogle = items["searchgoogle"]; if(searchgoogle == null){ searchgoogle = true; }
 		searchbing = items["searchbing"]; if(searchbing == null){ searchbing = false; }
 		searchduckduckgo = items["searchduckduckgo"]; if(searchduckduckgo == null){ searchduckduckgo = false; }
@@ -101,6 +117,18 @@ function init(){
 			selectedsearch = "searchyandex";
 		}else{
 			selectedsearch = "searchgoogle"; // default
+		}
+		opentab = items["opentab"]; if(opentab == null){ opentab = false; }
+		if(opentab == true){
+			document.getElementById("btntab").className = "icon";
+		}else{
+			document.getElementById("btntab").className = "hidden";
+		}
+		opencopy = items["opencopy"]; if(opencopy == null){ opencopy = false; }
+		if(opencopy == true){
+			document.getElementById("btncopy").className = "icon";
+		}else{
+			document.getElementById("btncopy").className = "hidden";
 		}
 
 		// show remember page
@@ -152,7 +180,48 @@ function init(){
 		document.getElementById("btnhome").addEventListener("click", actionHome, false);
 		document.getElementById("btngo").addEventListener("click", actionGo, false);
 		document.getElementById("searchbar").addEventListener("keypress", handleKeyPress, false);
+		document.getElementById("btncopy").addEventListener("click", actionCopyTab, false);
+		document.getElementById("btntab").addEventListener("click", actionOpenTab, false);
 	});
+}
+
+function actionCopyTab(){
+	// Create a temporary textarea element to hold the text
+	const textarea = document.createElement("textarea");
+
+	// Assign the text you want to copy to the textarea
+	const textToCopy = currentSidePanelURL;
+	textarea.value = textToCopy;
+
+	// Set the textarea to be invisible
+	textarea.style.position = "fixed";
+	textarea.style.opacity = 0;
+
+	// Append the textarea to the DOM
+	document.body.appendChild(textarea);
+
+	// Select the text within the textarea
+	textarea.select();
+
+	try{
+		// Execute the copy command
+		const successful = document.execCommand("copy");
+		if(successful){
+			console.log("Text copied to clipboard: " + textToCopy);
+		}else{
+			console.error("Unable to copy text to clipboard");
+		}
+	}catch(err){
+		console.error("Error copying text to clipboard:", err);
+	}
+
+	// Remove the temporary textarea
+	document.body.removeChild(textarea);
+}
+
+function actionOpenTab(){
+	var iframeURL = currentSidePanelURL;
+	window.open(iframeURL, "_blank");
 }
 
 function handleDrop(e){
@@ -352,6 +421,24 @@ chrome.runtime.onMessage.addListener(function(request){
 				selectedsearch = "searchbaidu";
 			}else if(searchyandex){
 				selectedsearch = "searchyandex";
+			}
+		});
+	}else if(request.msg == "setopentab"){
+		chrome.storage.sync.get(["opentab"], function(items){
+			opentab = items["opentab"]; if(opentab == null){ opentab = false; }
+			if(opentab == true){
+				document.getElementById("btntab").className = "icon";
+			}else{
+				document.getElementById("btntab").className = "hidden";
+			}
+		});
+	}else if(request.msg == "setopencopy"){
+		chrome.storage.sync.get(["opencopy"], function(items){
+			opencopy = items["opencopy"]; if(opencopy == null){ opencopy = false; }
+			if(opencopy == true){
+				document.getElementById("btncopy").className = "icon";
+			}else{
+				document.getElementById("btncopy").className = "hidden";
 			}
 		});
 	}

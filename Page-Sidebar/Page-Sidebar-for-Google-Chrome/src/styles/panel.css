@@ -46,7 +46,6 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 
 body{margin:0;padding:0;width:100%;height:100vh;background:var(--ext-primary-background);color:var(--ext-primary-font-color)}
 iframe{border:none;width:100%;height:100%;box-sizing:border-box;margin:0px}
-.hidden{display:none}
 #preview{border:0}
 .blurlayer{z-index:2000;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);background-color:rgba(0, 0, 0, 0.5)}
 .web{position:relative}
@@ -77,5 +76,9 @@ iframe{border:none;width:100%;height:100%;box-sizing:border-box;margin:0px}
 #btngo{display:flex;height:30px;min-width:40px;background:transparent;border:0;align-items:center;justify-content:center;border-radius:30px}
 #btngo:hover{background:var(--ext-svg-fill-color-hover);cursor:pointer}
 #btnhome{display:flex;height:30px;width:30px;background:transparent;border:0;align-items:center;justify-content:center;border-radius:30px}
-#btnhome:hover{background:var(--ext-svg-fill-color-hover);cursor:pointer}
+#btncopy{height:30px;width:30px;background:transparent;border:0;align-items:center;justify-content:center;border-radius:30px}
+#btntab{height:30px;width:30px;background:transparent;border:0;align-items:center;justify-content:center;border-radius:30px}
+#btnhome:hover,#btntab:hover,#btncopy:hover{background:var(--ext-svg-fill-color-hover);cursor:pointer}
+.icon{display:flex}
 .icon svg{fill:var(--ext-primary-font-color)}
+.hidden{display:none}

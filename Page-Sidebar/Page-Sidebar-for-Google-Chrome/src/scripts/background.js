@@ -75,6 +75,23 @@ function onClickHandler(info, tab){
 		chrome.tabs.create({url: "https://vk.com/share.php?url=" + linkproduct, active:true});
 	}else if(info.menuItemId == "totlsharewhatsapp"){
 		chrome.tabs.create({url: "https://api.whatsapp.com/send?text=" + chrome.i18n.getMessage("sharetextd") + "%0a" + linkproduct, active:true});
+	}else if(info.menuItemId == "sppage"){
+		chrome.tabs.query({
+			active: true,
+			lastFocusedWindow: true
+		}, function(tabs){
+			var tab = tabs[0];
+			if(tab){
+				var currentpage = tab.url;
+				// console.log("currentpage= " + currentpage);
+				chrome.sidePanel.open({windowId: tab.windowId}, function(){
+					// wait when panel is open, then send the message
+					setTimeout(function(){
+						chrome.runtime.sendMessage({msg: "setpage", value: currentpage});
+					}, 500);
+				});
+			}
+		});
 	}else if(info.menuItemId == "snpage"){
 		var selectedlink = info.linkUrl;
 		// console.log("selectedlink= " + selectedlink);
@@ -141,7 +158,7 @@ if(chrome.contextMenus){
 	if(actionmenuadded == false){
 		actionmenuadded = true;
 
-		var contexts = ["browser_action"];
+		var contexts = ["action"];
 
 		browsercontext(sharemenuwelcomeguidetitle, "totlguideemenu", {"16": "images/IconGuide.png", "32": "images/IconGuide@2x.png"});
 		browsercontext(sharemenudonatetitle, "totldevelopmenu", {"16": "images/IconDonate.png", "32": "images/IconDonate@2x.png"});
@@ -190,9 +207,11 @@ var menusel = null;
 var contextmenuadded = false;
 var contextarraypage = [];
 var contextspage = null;
+var contextslink = null;
 var contextsselection = null;
 
 var pagetitle = chrome.i18n.getMessage("pagetitle");
+var linktitle = chrome.i18n.getMessage("linktitle");
 var pagesearchtitle = chrome.i18n.getMessage("pagesearchtitle");
 function checkcontextmenus(){
 	if(chrome.contextMenus){
@@ -200,8 +219,13 @@ function checkcontextmenus(){
 			contextmenuadded = true;
 
 			// page
-			contextspage = ["link"];
-			menupage = chrome.contextMenus.create({"title": pagetitle, "type":"normal", "id": "snpage", "contexts": contextspage});
+			contextspage = ["page"];
+			menupage = chrome.contextMenus.create({"title": pagetitle, "type":"normal", "id": "sppage", "contexts": contextspage});
+			contextarraypage.push(menupage);
+
+			// link
+			contextslink = ["link"];
+			menupage = chrome.contextMenus.create({"title": linktitle, "type":"normal", "id": "snpage", "contexts": contextslink});
 			contextarraypage.push(menupage);
 
 			// search query
@@ -214,12 +238,16 @@ function checkcontextmenus(){
 
 function removecontexmenus(){
 	if(contextspage != null){
+		chrome.contextMenus.remove("sppage");
+	}
+	if(contextslink != null){
 		chrome.contextMenus.remove("snpage");
 	}
 	if(contextsselection != null){
 		chrome.contextMenus.remove("slpage");
 	}
 	contextspage = null;
+	contextslink = null;
 	contextsselection = null;
 	contextmenuadded = false;
 }
@@ -324,6 +352,16 @@ chrome.storage.onChanged.addListener(function(changes){
 	if(changes["searchyandex"]){
 		if(changes["searchyandex"].newValue == true){
 			chrome.runtime.sendMessage({msg: "setrefreshsearch"});
+		}
+	}
+	if(changes["opentab"]){
+		if(changes["opentab"].newValue == true || changes["opentab"].newValue == false){
+			chrome.runtime.sendMessage({msg: "setopentab"});
+		}
+	}
+	if(changes["opencopy"]){
+		if(changes["opencopy"].newValue == true || changes["opencopy"].newValue == false){
+			chrome.runtime.sendMessage({msg: "setopencopy"});
 		}
 	}
 });

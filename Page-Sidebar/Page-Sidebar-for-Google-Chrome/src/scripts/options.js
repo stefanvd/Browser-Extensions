@@ -36,7 +36,7 @@ function defaultgetsettings(){
 
 // Option to save current value
 function save_options(){
-	chrome.storage.sync.set({"icon": $("btnpreview").src, "optionskipremember":$("optionskipremember").checked, "contextmenus":$("contextmenus").checked, "searchgoogle": $("searchgoogle").checked, "searchbing": $("searchbing").checked, "searchduckduckgo": $("searchduckduckgo").checked, "searchbaidu": $("searchbaidu").checked, "searchyandex": $("searchyandex").checked, "navtop": $("navtop").checked, "navbottom": $("navbottom").checked, "navhidden": $("navhidden").checked, "typepanelzone": $("typepanelzone").checked, "typepanelcustom": $("typepanelcustom").checked, "websitezoomname": $("websitezoomname").value});
+	chrome.storage.sync.set({"icon": $("btnpreview").src, "optionskipremember":$("optionskipremember").checked, "contextmenus":$("contextmenus").checked, "searchgoogle": $("searchgoogle").checked, "searchbing": $("searchbing").checked, "searchduckduckgo": $("searchduckduckgo").checked, "searchbaidu": $("searchbaidu").checked, "searchyandex": $("searchyandex").checked, "navtop": $("navtop").checked, "navbottom": $("navbottom").checked, "navhidden": $("navhidden").checked, "typepanelzone": $("typepanelzone").checked, "typepanelcustom": $("typepanelcustom").checked, "websitezoomname": $("websitezoomname").value, "opentab": $("opentab").checked, "opencopy": $("opencopy").checked});
 }
 
 var firstdefaultvalues = {};
@@ -150,7 +150,7 @@ function read_options(){
 		showhidemodal("materialModalYouTube", "hide", "true");
 	}
 
-	chrome.storage.sync.get(["icon", "firstDate", "contextmenus", "optionskipremember", "firstsawrate", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "websitezoomname"], function(items){
+	chrome.storage.sync.get(["icon", "firstDate", "contextmenus", "optionskipremember", "firstsawrate", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "websitezoomname", "opentab", "opencopy"], function(items){
 		if(items["icon"]){ $("btnpreview").src = items["icon"]; }
 		if(items["contextmenus"] == true)$("contextmenus").checked = true;
 		if(items["optionskipremember"] == true){ $("optionskipremember").checked = true; $("firstcheckboxskipremember").checked = true; }
@@ -165,6 +165,8 @@ function read_options(){
 		if(items["typepanelzone"] == true){ $("typepanelzone").checked = true; }
 		if(items["typepanelcustom"] == true){ $("typepanelcustom").checked = true; }
 		if(items["websitezoomname"]){ $("websitezoomname").value = items["websitezoomname"]; }else $("websitezoomname").value = "https://www.google.com";
+		if(items["opentab"] == true){ $("opentab").checked = true; }
+		if(items["opencopy"] == true){ $("opencopy").checked = true; }
 
 		// show remember page
 		var firstmonth = false;
