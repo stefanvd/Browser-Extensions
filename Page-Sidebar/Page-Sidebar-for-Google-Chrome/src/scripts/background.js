@@ -364,6 +364,14 @@ chrome.storage.onChanged.addListener(function(changes){
 			chrome.runtime.sendMessage({msg: "setopencopy"});
 		}
 	}
+	if(changes["openquickbookmarks"]){
+		if(changes["openquickbookmarks"].newValue == true || changes["openquickbookmarks"].newValue == false){
+			chrome.runtime.sendMessage({msg: "setopenquickbookmarks"});
+		}
+	}
+	if(changes["websitename1"] || changes["websiteurl1"] || changes["websitename2"] || changes["websiteurl2"] || changes["websitename3"] || changes["websiteurl3"] || changes["websitename4"] || changes["websiteurl4"] || changes["websitename5"] || changes["websiteurl5"] || changes["websitename6"] || changes["websiteurl6"] || changes["websitename7"] || changes["websiteurl7"] || changes["websitename8"] || changes["websiteurl8"] || changes["websitename9"] || changes["websiteurl9"] || changes["websitename10"] || changes["websiteurl10"]){
+		chrome.runtime.sendMessage({msg: "setbookmarkswebsites"});
+	}
 });
 
 chrome.runtime.setUninstallURL(linkuninstall);
