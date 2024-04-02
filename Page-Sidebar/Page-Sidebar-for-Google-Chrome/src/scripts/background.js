@@ -41,11 +41,14 @@ importScripts("constants.js");
 
 chrome.sidePanel.setPanelBehavior({openPanelOnActionClick: true}).catch((error) => console.error(error));
 
-chrome.runtime.onMessage.addListener(function request(request){
+chrome.runtime.onMessage.addListener(function request(request, sender, response){
 	// eye protection & autodim & shortcut
 	switch(request.name){
 	case"bckreload":
 		installation();
+		break;
+	case"sidepanelopen":
+		response(!sender.documentId);
 		break;
 	}
 	return true;
@@ -198,58 +201,62 @@ if(chrome.contextMenus){
 var contextmenus;
 chrome.storage.sync.get(["contextmenus"], function(items){
 	contextmenus = items.contextmenus; if(contextmenus == null)contextmenus = true;
-	if(items["contextmenus"]){ checkcontextmenus(); }
+	if(contextmenus){ checkcontextmenus(); }
 });
 
-// context menu for page
-var menupage = null;
-var menusel = null;
+// context menu for page and link and selection
+var menuitems = null;
 var contextmenuadded = false;
 var contextarraypage = [];
-var contextspage = null;
-var contextslink = null;
-var contextsselection = null;
+var contextarraylink = [];
+var contextarrayselection = [];
 
-var pagetitle = chrome.i18n.getMessage("pagetitle");
-var linktitle = chrome.i18n.getMessage("linktitle");
-var pagesearchtitle = chrome.i18n.getMessage("pagesearchtitle");
+function addwebpagecontext(a, b, c, d){
+	var k;
+	var addvideolength = b.length;
+	for(k = 0; k < addvideolength; k++){
+		var contextvideo = b[k];
+		menuitems = chrome.contextMenus.create({"title": a, "type":"normal", "id": d, "contexts":[contextvideo]});
+		c.push(menuitems);
+	}
+}
+
 function checkcontextmenus(){
 	if(chrome.contextMenus){
 		if(contextmenuadded == false){
 			contextmenuadded = true;
-
 			// page
-			contextspage = ["page"];
-			menupage = chrome.contextMenus.create({"title": pagetitle, "type":"normal", "id": "sppage", "contexts": contextspage});
-			contextarraypage.push(menupage);
-
+			var pagetitle = chrome.i18n.getMessage("pagetitle");
+			var contextspage = ["page"];
+			addwebpagecontext(pagetitle, contextspage, contextarraypage, "sppage");
 			// link
-			contextslink = ["link"];
-			menupage = chrome.contextMenus.create({"title": linktitle, "type":"normal", "id": "snpage", "contexts": contextslink});
-			contextarraypage.push(menupage);
-
-			// search query
-			contextsselection = ["selection"];
-			menusel = chrome.contextMenus.create({"title": pagesearchtitle, "type":"normal", "id": "slpage", "contexts": contextsselection});
-			contextarraypage.push(menusel);
+			var linktitle = chrome.i18n.getMessage("linktitle");
+			var contextslink = ["link"];
+			addwebpagecontext(linktitle, contextslink, contextarraylink, "snpage");
+			// selection
+			var pagesearchtitle = chrome.i18n.getMessage("pagesearchtitle");
+			var contextsselection = ["selection"];
+			addwebpagecontext(pagesearchtitle, contextsselection, contextarrayselection, "slpage");
 		}
 	}
 }
 
+function cleanrightclickmenu(menu){
+	if(menu.length > 0){
+		menu.forEach(function(item){
+			if(item != null){ chrome.contextMenus.remove(item); }
+		});
+	}
+	menu.length = 0;
+}
+
 function removecontexmenus(){
-	if(contextspage != null){
-		chrome.contextMenus.remove("sppage");
+	if(chrome.contextMenus){
+		cleanrightclickmenu(contextarraypage);
+		cleanrightclickmenu(contextarraylink);
+		cleanrightclickmenu(contextarrayselection);
+		contextmenuadded = false;
 	}
-	if(contextslink != null){
-		chrome.contextMenus.remove("snpage");
-	}
-	if(contextsselection != null){
-		chrome.contextMenus.remove("slpage");
-	}
-	contextspage = null;
-	contextslink = null;
-	contextsselection = null;
-	contextmenuadded = false;
 }
 
 function onchangestorage(a, b, c, d){

@@ -3,7 +3,7 @@
   "name": "__MSG_namefull__",
   "short_name": "__MSG_name__",
   "description": "__MSG_description__",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "background": {
     "service_worker": "scripts/background.js"
   },
