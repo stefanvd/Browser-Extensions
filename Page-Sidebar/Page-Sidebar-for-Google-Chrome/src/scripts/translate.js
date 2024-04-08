@@ -26,7 +26,6 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-
 // Search for data and translate it to current use language
 var items = document.querySelectorAll("[data-i18n]");
 var i;

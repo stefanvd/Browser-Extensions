@@ -195,5 +195,6 @@
     "desinfocss": {"message":"The feature to scale an element and its children. It scales that element and its children relative to their original sizes within the document flow."},
     "desinfofontsize": {"message":"The feature that will change only the text size and not the images."},
     "deszoommousebutton": {"message": "Mouse button"},
-    "deszoommousewheel": {"message": "Mouse Wheel"}
+    "deszoommousewheel": {"message": "Mouse Wheel"},
+    "deszoomoutdoubleclick": {"message": "Double click to zooms out and a single click to zooms in the web page"}
 }

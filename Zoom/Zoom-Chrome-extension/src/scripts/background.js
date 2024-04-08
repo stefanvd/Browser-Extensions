@@ -30,7 +30,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 // eslint-disable-next-line no-undef
 importScripts("constants.js");
 
-var currentURL; var allzoom; var allzoomvalue; var zoombydomain; var zoombypage; var defaultallscreen; var defaultsinglescreen; var goturlinside = false; var currentscreen; var chromedisplay; var screenzoom; var zoomsingleclick; var zoomnewsingleclick; var zoomdoubleclick; var contexta; var contextb; var contextc; var websitepreset;
+var currentURL; var allzoom; var allzoomvalue; var zoombydomain; var zoombypage; var defaultallscreen; var defaultsinglescreen; var goturlinside = false; var currentscreen; var chromedisplay; var screenzoom; var zoomsingleclick; var zoomnewsingleclick; var zoomdoubleclick; var zoomoutdoubleclick; var contexta; var contextb; var contextc; var websitepreset;
 var currentRatio = 1; var ratio = 1; var job = null;
 var webjob; var websitezoom = {}; var badge; var steps; var lightcolor; var zoomchrome; var zoomweb; var zoomfont; var ignoreset;
 
@@ -427,8 +427,8 @@ let clickbutton = 0;
 // Declare a timer variable
 let timer;
 var openactiondoubleclick = function(tab){
-	// console.log("CLICK zoomdoubleclick= " + zoomdoubleclick + " zoomnewsingleclick= " + zoomnewsingleclick + " zoomsingleclick=" + zoomsingleclick);
-	if(zoomdoubleclick == true || zoomnewsingleclick == true){
+	// console.log("CLICK zoomdoubleclick= " + zoomdoubleclick + " zoomoutdoubleclick= " + zoomoutdoubleclick + " zoomnewsingleclick= " + zoomnewsingleclick + " zoomsingleclick=" + zoomsingleclick);
+	if(zoomdoubleclick == true || zoomoutdoubleclick == true || zoomnewsingleclick == true){
 		clickbutton += 1;
 		if(clickbutton == 2){
 			// console.log("Doubleclick");
@@ -436,6 +436,9 @@ var openactiondoubleclick = function(tab){
 			if(zoomdoubleclick == true){
 				// zoom in
 				zoomview(+1);
+			}else if(zoomoutdoubleclick == true){
+				// zoom out
+				zoomview(-1);
 			}else if(zoomnewsingleclick == true){
 				setTimeout(function(){
 					clickbutton = 0;
@@ -452,6 +455,9 @@ var openactiondoubleclick = function(tab){
 				if(zoomdoubleclick == true){
 					// zoom out
 					zoomview(-1);
+				}else if(zoomoutdoubleclick == true){
+					// zoom out
+					zoomview(+1);
 				}else if(zoomnewsingleclick == true){
 					chrome.tabs.sendMessage(tab.id, {text:"enablemagnifyingglass"});
 				}
@@ -479,6 +485,12 @@ function setactionpanel(){
 			});
 		});
 	}else if(zoomdoubleclick == true){
+		chrome.tabs.query({}, function(tabs){
+			tabs.forEach(function(tab){
+				chrome.action.setPopup({tabId: tab.id, popup: ""});
+			});
+		});
+	}else if(zoomoutdoubleclick == true){
 		chrome.tabs.query({}, function(tabs){
 			tabs.forEach(function(tab){
 				chrome.action.setPopup({tabId: tab.id, popup: ""});
@@ -1105,8 +1117,9 @@ function handleZoomed(zoomChangeInfo){
 }
 chrome.tabs.onZoomChange.addListener(handleZoomed);
 
-chrome.storage.sync.get(["zoomdoubleclick", "zoomnewsingleclick", "zoomsingleclick"], function(response){
+chrome.storage.sync.get(["zoomdoubleclick", "zoomoutdoubleclick", "zoomnewsingleclick", "zoomsingleclick"], function(response){
 	zoomdoubleclick = response.zoomdoubleclick; if(zoomdoubleclick == null)zoomdoubleclick = false; // default zoomdoubleclick false
+	zoomoutdoubleclick = response.zoomoutdoubleclick; if(zoomoutdoubleclick == null)zoomoutdoubleclick = false; // default zoomoutdoubleclick false
 	zoomnewsingleclick = response.zoomnewsingleclick; if(zoomnewsingleclick == null)zoomnewsingleclick = false; // default zoomnewsingleclick false
 	zoomsingleclick = response.zoomsingleclick; if(zoomsingleclick == null)zoomsingleclick = true; // default zoomsingleclick true
 
@@ -1174,19 +1187,25 @@ chrome.storage.onChanged.addListener(function(changes){
 	}
 	if(changes["zoomdoubleclick"]){
 		if(changes["zoomdoubleclick"].newValue == true){
-			zoomsingleclick = false; zoomnewsingleclick = false; zoomdoubleclick = true;
+			zoomsingleclick = false; zoomnewsingleclick = false; zoomdoubleclick = true; zoomoutdoubleclick = false;
 			setactionpanel();
 		}
 	}
 	if(changes["zoomnewsingleclick"]){
 		if(changes["zoomnewsingleclick"].newValue == true){
-			zoomsingleclick = false; zoomnewsingleclick = true; zoomdoubleclick = false;
+			zoomsingleclick = false; zoomnewsingleclick = true; zoomdoubleclick = false; zoomoutdoubleclick = false;
 			setactionpanel();
 		}
 	}
 	if(changes["zoomsingleclick"]){
 		if(changes["zoomsingleclick"].newValue == true){
-			zoomsingleclick = true; zoomnewsingleclick = false; zoomdoubleclick = false;
+			zoomsingleclick = true; zoomnewsingleclick = false; zoomdoubleclick = false; zoomoutdoubleclick = false;
+			setactionpanel();
+		}
+	}
+	if(changes["zoomoutdoubleclick"]){
+		if(changes["zoomoutdoubleclick"].newValue == true){
+			zoomsingleclick = false; zoomnewsingleclick = false; zoomdoubleclick = false; zoomoutdoubleclick = true;
 			setactionpanel();
 		}
 	}

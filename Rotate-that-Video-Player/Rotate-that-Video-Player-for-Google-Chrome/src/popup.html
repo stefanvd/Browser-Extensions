@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" class="modern">
+<head>
+<meta charset="utf-8">
+<!--
+//================================================
+/*
+
+Rotate that Video Player
+Improve your video experience by effortlessly rotating your video clips by 90, 180, or 270 degrees.
+Copyright (C) 2024 Stefan vd
+www.stefanvd.net
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+
+To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.0/
+
+*/
+//================================================
+-->
+<link rel="stylesheet" type="text/css" href="styles/popup.css">
+<script type="text/javascript" src="scripts/constants.js"></script>
+<script type="text/javascript" src="scripts/popup.js"></script>
+</head>
+<body>
+<div id="type" class="modern">
+	<div class="panel">
+		<div class="zbox" id="rotatepanel">
+			<div class="title"><span data-i18n="rotatename"></span></div>
+			<div class="number"><input id="number" type="number" min="0" max="360" value="0" step="1" size="2"/></div>
+			<div class="groupbox">
+				<div class="slider">
+					<div class="sliderlabel">0</div>
+					<input id="range" type="range" max="360" value="0" step="1"/>
+				</div>
+				<div class="items">
+					<ul class="button_group">
+						<li><div id="hund" class="btnregular" title="0°">0&#176;</div></li>
+						<li><div id="minus" class="btnregular" title="-90°">-90&#176;</div></li>
+						<li><div id="plus" class="btnregular" title="+90°">+90&#176;</div></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="zbox" id="toppanel">
+			<div class="title"><span data-i18n="topname"></span></div>
+			<div class="number"><input id="topnumber" type="number" min="0" max="600" value="0" step="1" size="2"/></div>
+			<div class="groupbox">
+				<div class="slider">
+					<div class="sliderlabel">0</div>
+					<input id="toprange" type="range" min="0" max="600" value="0" step="1"/>
+				</div>
+			</div>	
+		</div>
+		<div class="zbox" id="leftpanel">
+			<div class="title"><span data-i18n="leftname"></span></div>
+			<div class="number"><input id="leftnumber" type="number" min="0" max="600" value="0" step="1" size="2"/></div>
+			<div class="groupbox">
+				<div class="slider">
+					<div class="sliderlabel">0</div>
+					<input id="leftrange" type="range" min="0" max="600" value="0" step="1"/>
+				</div>
+			</div>	
+		</div>
+		<div class="zbox" id="scalepanel">
+			<div class="title"><span data-i18n="scalename"></span></div>
+			<div class="number"><input id="scalenumber" type="number" min="0" max="600" value="0" step="1" size="2"/></div>
+			<div class="groupbox">
+				<div class="slider">
+					<div class="sliderlabel">0</div>
+					<input id="scalerange" type="range" min="0" max="600" value="0" step="1"/>
+				</div>
+			</div>	
+		</div>
+		<div class="otherbox">
+			<hr>
+			<div class="link">
+				<ul class="action_group">
+					<li><div id="options" class="btnoptions"><span data-i18n="titelpopupoptions"></span></div></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="scripts/translate.js"></script>
+</body>
+</html>
