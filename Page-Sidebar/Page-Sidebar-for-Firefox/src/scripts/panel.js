@@ -26,8 +26,27 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-var selectedsearch, searchgoogle, searchbing, searchduckduckgo, searchbaidu, searchyandex, typepanelzone, typepanelcustom, websitezoomname, navtop, navbottom, navhidden;
+var selectedsearch, searchgoogle, searchbing, searchduckduckgo, searchbaidu, searchyandex, typepanelzone, typepanelcustom, websitezoomname, navtop, navbottom, navhidden, opentab, opencopy, openquickbookmarks;
 document.addEventListener("DOMContentLoaded", init);
+
+var i18ntitelcopytext = chrome.i18n.getMessage("titlecopytextdone");
+var i18ndescopytext = chrome.i18n.getMessage("descopytextdone");
+
+// Detect URL to open back in new web browser tab
+var currentSidePanelURL = "";
+window.addEventListener("message", (e) => {
+	// console.log("FIRST WEBSITE URL=", e.data.href);
+	if(e.data?.method === "navigate"){
+		if(e.source){
+			e.source.postMessage({
+				method: "navigate-verified"
+			}, "*");
+		}
+	}else if(e.data?.method === "complete"){
+		// console.log("VISITED WEBSITE URL=", e.data.href);
+		currentSidePanelURL = e.data.href;
+	}
+});
 
 // Listen for messages
 chrome.runtime.onMessage.addListener(function(msg){
@@ -39,14 +58,27 @@ chrome.runtime.onMessage.addListener(function(msg){
 		}else{
 			document.getElementById("hostbox").className = "hostpermission";
 			document.querySelector("#btnallowallhost").addEventListener("click", () => {
+
 				browser.permissions.request({
 					origins: ["*://*/*"]
+				}, function(){
+
+					browser.permissions.contains({
+						origins: ["*://*/*"]
+					}, (result) => {
+						if(result){
+							document.getElementById("hostbox").className = "hidden";
+						}
+					});
+
 				});
+
 			});
 		}
 	}
 });
 
+var isMenuClick = false;
 function init(){
 	// allow Firefox permission to run this extension
 	// show all the active permissions in a list
@@ -106,7 +138,7 @@ function init(){
 		document.getElementById("stefanvdpromo").className = "hidden";
 	});
 
-	chrome.storage.sync.get(["firstDate", "optionskipremember", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "websitezoomname", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex"], function(items){
+	chrome.storage.sync.get(["firstDate", "optionskipremember", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "websitezoomname", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "opentab", "opencopy", "openquickbookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10"], function(items){
 		searchgoogle = items["searchgoogle"]; if(searchgoogle == null){ searchgoogle = true; }
 		searchbing = items["searchbing"]; if(searchbing == null){ searchbing = false; }
 		searchduckduckgo = items["searchduckduckgo"]; if(searchduckduckgo == null){ searchduckduckgo = false; }
@@ -125,6 +157,28 @@ function init(){
 		}else{
 			selectedsearch = "searchgoogle"; // default
 		}
+		opentab = items["opentab"]; if(opentab == null){ opentab = false; }
+		if(opentab == true){
+			document.getElementById("btntab").className = "icon";
+		}else{
+			document.getElementById("btntab").className = "hidden";
+		}
+		opencopy = items["opencopy"]; if(opencopy == null){ opencopy = false; }
+		if(opencopy == true){
+			document.getElementById("btncopy").className = "icon";
+		}else{
+			document.getElementById("btncopy").className = "hidden";
+		}
+
+		openquickbookmarks = items["openquickbookmarks"]; if(openquickbookmarks == null){ openquickbookmarks = false; }
+		if(openquickbookmarks == true){
+			document.getElementById("btnbookmarks").className = "icon";
+		}else{
+			document.getElementById("btnbookmarks").className = "hidden";
+		}
+
+		// Add menu items
+		createmenuitems(items);
 
 		// show remember page
 		var firstmonth = false;
@@ -175,7 +229,115 @@ function init(){
 		document.getElementById("btnhome").addEventListener("click", actionHome, false);
 		document.getElementById("btngo").addEventListener("click", actionGo, false);
 		document.getElementById("searchbar").addEventListener("keypress", handleKeyPress, false);
+		document.getElementById("btncopy").addEventListener("click", actionCopyTab, false);
+		document.getElementById("btntab").addEventListener("click", actionOpenTab, false);
+		document.getElementById("btnbookmarks").addEventListener("click", function(){
+			if(document.getElementById("menubookmarks").className == ""){
+				document.getElementById("menubookmarks").className = "hidden";
+			}else{
+				isMenuClick = true;
+				document.getElementById("menubookmarks").className = "";
+			}
+		});
+		document.addEventListener("click", ()=>{
+			if(!isMenuClick){
+				// Hide the menu here
+				document.getElementById("menubookmarks").className = "hidden";
+			}
+			// Reset isMenuClick
+			isMenuClick = false;
+		});
 	});
+}
+
+function createmenuitems(items){
+	const menu = document.getElementById("list");
+	for(let i = 1; i <= 10; i++){
+		const name = items["websitename" + `${i}`];
+		const url = items["websiteurl" + `${i}`];
+		if(name && url){
+			const listItem = document.createElement("li");
+			const anchor = document.createElement("a");
+			anchor.textContent = name;
+			anchor.href = url;
+			// Open URL in a new tab when clicked
+			anchor.addEventListener("click", function(event){
+				// Prevent the default action of following the link
+				event.preventDefault();
+				open(url, true);
+				// close panel
+				document.getElementById("menubookmarks").className = "hidden";
+				isMenuClick = false;
+			});
+			listItem.appendChild(anchor);
+			menu.appendChild(listItem);
+		}
+	}
+}
+
+function actionCopyTab(){
+	// Create a temporary textarea element to hold the text
+	const textarea = document.createElement("textarea");
+
+	// Assign the text you want to copy to the textarea
+	const textToCopy = currentSidePanelURL;
+	textarea.value = textToCopy;
+
+	// Set the textarea to be invisible
+	textarea.style.position = "fixed";
+	textarea.style.opacity = 0;
+
+	// Append the textarea to the DOM
+	document.body.appendChild(textarea);
+
+	// Select the text within the textarea
+	textarea.select();
+
+	try{
+		// Execute the copy command
+		const successful = document.execCommand("copy");
+		if(successful){
+			console.log("Text copied to clipboard: " + textToCopy);
+			if(showingcopybadge == false){
+				showcopytextbadge();
+			}
+		}else{
+			console.error("Unable to copy text to clipboard");
+		}
+	}catch(err){
+		console.error("Error copying text to clipboard:", err);
+	}
+
+	// Remove the temporary textarea
+	document.body.removeChild(textarea);
+}
+
+var showingcopybadge = false;
+function showcopytextbadge(){
+	var div = document.createElement("div");
+	div.setAttribute("id", "stefanvdremoteadd");
+	div.className = "stefanvdremote";
+	document.body.appendChild(div);
+
+	var h3 = document.createElement("h3");
+	h3.innerText = i18ntitelcopytext;
+	div.appendChild(h3);
+
+	var p = document.createElement("p");
+	p.innerText = i18ndescopytext;
+	div.appendChild(p);
+	showingcopybadge = true;
+
+	window.setTimeout(function(){
+		var element = document.getElementById("stefanvdremoteadd");
+		element.parentNode.removeChild(element);
+		showingcopybadge = false;
+	}, 4000);
+}
+
+function actionOpenTab(){
+	var iframeURL = currentSidePanelURL;
+	window.open(iframeURL, "_blank");
 }
 
 function handleDrop(e){
@@ -382,6 +544,43 @@ chrome.runtime.onMessage.addListener(function(request){
 			}else if(searchyandex){
 				selectedsearch = "searchyandex";
 			}
+		});
+	}else if(request.msg == "setopentab"){
+		chrome.storage.sync.get(["opentab"], function(items){
+			opentab = items["opentab"]; if(opentab == null){ opentab = false; }
+			if(opentab == true){
+				document.getElementById("btntab").className = "icon";
+			}else{
+				document.getElementById("btntab").className = "hidden";
+			}
+		});
+	}else if(request.msg == "setopencopy"){
+		chrome.storage.sync.get(["opencopy"], function(items){
+			opencopy = items["opencopy"]; if(opencopy == null){ opencopy = false; }
+			if(opencopy == true){
+				document.getElementById("btncopy").className = "icon";
+			}else{
+				document.getElementById("btncopy").className = "hidden";
+			}
+		});
+	}else if(request.msg == "setopenquickbookmarks"){
+		chrome.storage.sync.get(["openquickbookmarks"], function(items){
+			openquickbookmarks = items["openquickbookmarks"]; if(openquickbookmarks == null){ openquickbookmarks = false; }
+			if(openquickbookmarks == true){
+				document.getElementById("btnbookmarks").className = "icon";
+			}else{
+				document.getElementById("btnbookmarks").className = "hidden";
+				document.getElementById("menubookmarks").className = "hidden";
+			}
+		});
+	}else if(request.msg == "setbookmarkswebsites"){
+		chrome.storage.sync.get(["websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10"], function(items){
+			document.getElementById("menubookmarks").className = "hidden";
+			var list = document.getElementById("list");
+			while(list.firstChild){
+				list.removeChild(list.firstChild);
+			}
+			createmenuitems(items);
 		});
 	}
 });

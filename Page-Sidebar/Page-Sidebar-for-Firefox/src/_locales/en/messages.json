@@ -120,8 +120,9 @@
     "desratebadtitle": {"message": "How can we make it better?"},
     "destapstar": {"message":"Tap a star to rate it on the browser extension store."},
     "titelcontextmenu": {"message": "Context Menu"},
-    "descontextmenu": {"message": "Show the context menu to copy a text to the sidebar"},
-    "pagetitle": {"message": "Open link in sidebar"},
+    "descontextmenu": {"message": "Show the context menu to open the current web page in the sidebar"},
+    "linktitle": {"message": "Open link in sidebar"},
+    "pagetitle": {"message": "Open current web page in sidebar"},
     "guide": {"message": "Page Sidebar Guide"},
     "basicsettings": {"message": "Basics"},
     "changelog": {"message": "Changelog"},
@@ -144,6 +145,14 @@
     "head2": {"message": "Choose your favorite Page Sidebar icon:"},
     "navgo": {"message": "Go"},
     "designhome": {"message": "Start page"},
+    "titelopentab": {"message": "Open back in tab"},
+    "desopentab": {"message": "Show the button on the navigation bar to open the current page in a new tab"},
+    "titelopencopy": {"message": "Copy current URL"},
+    "desopencopy": {"message": "Show the button to copy the current page URL to the clipboard"},
+    "titelquickbookmarks": {"message": "Quick Bookmarks"},
+    "desquickbookmarks": {"message": "Show the button to open your selected bookmark in the sidebar"},
+    "titlecopytextdone": {"message": "Copied"},
+    "descopytextdone": {"message": "URL Copied to the Clipboard"},
     "allowhostpermission": {"message": "Allow the host permission to show any website here in the sidebar"},
     "btnallowhost": {"message": "Allow on all websites"}
-  }
+}

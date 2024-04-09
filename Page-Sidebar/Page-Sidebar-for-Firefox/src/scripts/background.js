@@ -58,18 +58,20 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 		});
 		break;
 	case"getallhost":
+		// --- Begin Firefox
 		browser.permissions.contains({
 			origins: ["*://*/*"]
 		}, (result) => {
 			if(result){
-				// The extension has the permissions.
-				chrome.tabs.sendMessage(sender.tab.id, {text: "receiveallhost", value: result});
+				// The extension has the permissions
+				chrome.runtime.sendMessage({text: "receiveallhost", value: result});
 			}else{
 				// The extension doesn't have the permissions
-				chrome.tabs.sendMessage(sender.tab.id, {text: "receiveallhost", value: result});
+				chrome.runtime.sendMessage({text: "receiveallhost", value: result});
 			}
 		});
 		break;
+		// --- End Firefox
 	}
 });
 
@@ -97,22 +99,41 @@ function onClickHandler(info, tab){
 		chrome.tabs.create({url: "https://vk.com/share.php?url=" + linkproduct, active:true});
 	}else if(info.menuItemId == "totlsharewhatsapp"){
 		chrome.tabs.create({url: "https://api.whatsapp.com/send?text=" + chrome.i18n.getMessage("sharetextd") + "%0a" + linkproduct, active:true});
+	}else if(info.menuItemId == "sppage"){
+		chrome.tabs.query({
+			active: true,
+			lastFocusedWindow: true
+		}, function(tabs){
+			var tab = tabs[0];
+			if(tab){
+				var currentpage = tab.url;
+				// console.log("currentpage= " + currentpage);
+				chrome.sidePanel.open({windowId: tab.windowId}, function(){
+					// wait when panel is open, then send the message
+					setTimeout(function(){
+						chrome.runtime.sendMessage({msg: "setpage", value: currentpage});
+					}, 500);
+				});
+			}
+		});
 	}else if(info.menuItemId == "snpage"){
 		var selectedlink = info.linkUrl;
-		browser.sidebarAction.open();
 		// console.log("selectedlink= " + selectedlink);
-		// wait when panel is open, then send the message
-		setTimeout(function(){
-			chrome.runtime.sendMessage({msg: "setpage", value: selectedlink});
-		}, 500);
+		chrome.sidePanel.open({windowId: tab.windowId}, function(){
+			// wait when panel is open, then send the message
+			setTimeout(function(){
+				chrome.runtime.sendMessage({msg: "setpage", value: selectedlink});
+			}, 500);
+		});
 	}else if(info.menuItemId == "slpage"){
 		var searchquery = info.selectionText;
-		browser.sidebarAction.open();
 		// console.log("searchquery= " + searchquery);
-		// wait when panel is open, then send the message
-		setTimeout(function(){
-			chrome.runtime.sendMessage({msg: "setsearch", value: searchquery});
-		}, 500);
+		chrome.sidePanel.open({windowId: tab.windowId}, function(){
+			// wait when panel is open, then send the message
+			setTimeout(function(){
+				chrome.runtime.sendMessage({msg: "setsearch", value: searchquery});
+			}, 500);
+		});
 	}
 }
 
@@ -201,47 +222,62 @@ if(chrome.contextMenus){
 var contextmenus;
 chrome.storage.sync.get(["contextmenus"], function(items){
 	contextmenus = items.contextmenus; if(contextmenus == null)contextmenus = true;
-	if(items["contextmenus"]){ checkcontextmenus(); }
+	if(contextmenus){ checkcontextmenus(); }
 });
 
-// context menu for page
-var menupage = null;
-var menusel = null;
+// context menu for page and link and selection
+var menuitems = null;
 var contextmenuadded = false;
 var contextarraypage = [];
-var contextspage = null;
-var contextsselection = null;
+var contextarraylink = [];
+var contextarrayselection = [];
 
-var pagetitle = chrome.i18n.getMessage("pagetitle");
-var pagesearchtitle = chrome.i18n.getMessage("pagesearchtitle");
+function addwebpagecontext(a, b, c, d){
+	var k;
+	var addvideolength = b.length;
+	for(k = 0; k < addvideolength; k++){
+		var contextvideo = b[k];
+		menuitems = chrome.contextMenus.create({"title": a, "type":"normal", "id": d, "contexts":[contextvideo]});
+		c.push(menuitems);
+	}
+}
+
 function checkcontextmenus(){
 	if(chrome.contextMenus){
 		if(contextmenuadded == false){
 			contextmenuadded = true;
-
 			// page
-			contextspage = ["link"];
-			menupage = chrome.contextMenus.create({"title": pagetitle, "type":"normal", "id": "snpage", "contexts": contextspage});
-			contextarraypage.push(menupage);
-
-			// search query
-			contextsselection = ["selection"];
-			menusel = chrome.contextMenus.create({"title": pagesearchtitle, "type":"normal", "id": "slpage", "contexts": contextsselection});
-			contextarraypage.push(menusel);
+			var pagetitle = chrome.i18n.getMessage("pagetitle");
+			var contextspage = ["page"];
+			addwebpagecontext(pagetitle, contextspage, contextarraypage, "sppage");
+			// link
+			var linktitle = chrome.i18n.getMessage("linktitle");
+			var contextslink = ["link"];
+			addwebpagecontext(linktitle, contextslink, contextarraylink, "snpage");
+			// selection
+			var pagesearchtitle = chrome.i18n.getMessage("pagesearchtitle");
+			var contextsselection = ["selection"];
+			addwebpagecontext(pagesearchtitle, contextsselection, contextarrayselection, "slpage");
 		}
 	}
 }
 
+function cleanrightclickmenu(menu){
+	if(menu.length > 0){
+		menu.forEach(function(item){
+			if(item != null){ chrome.contextMenus.remove(item); }
+		});
+	}
+	menu.length = 0;
+}
+
 function removecontexmenus(){
-	if(contextspage != null){
-		chrome.contextMenus.remove("snpage");
+	if(chrome.contextMenus){
+		cleanrightclickmenu(contextarraypage);
+		cleanrightclickmenu(contextarraylink);
+		cleanrightclickmenu(contextarrayselection);
+		contextmenuadded = false;
 	}
-	if(contextsselection != null){
-		chrome.contextMenus.remove("slpage");
-	}
-	contextspage = null;
-	contextsselection = null;
-	contextmenuadded = false;
 }
 
 function onchangestorage(a, b, c, d){
@@ -345,6 +381,24 @@ chrome.storage.onChanged.addListener(function(changes){
 		if(changes["searchyandex"].newValue == true){
 			chrome.runtime.sendMessage({msg: "setrefreshsearch"});
 		}
+	}
+	if(changes["opentab"]){
+		if(changes["opentab"].newValue == true || changes["opentab"].newValue == false){
+			chrome.runtime.sendMessage({msg: "setopentab"});
+		}
+	}
+	if(changes["opencopy"]){
+		if(changes["opencopy"].newValue == true || changes["opencopy"].newValue == false){
+			chrome.runtime.sendMessage({msg: "setopencopy"});
+		}
+	}
+	if(changes["openquickbookmarks"]){
+		if(changes["openquickbookmarks"].newValue == true || changes["openquickbookmarks"].newValue == false){
+			chrome.runtime.sendMessage({msg: "setopenquickbookmarks"});
+		}
+	}
+	if(changes["websitename1"] || changes["websiteurl1"] || changes["websitename2"] || changes["websiteurl2"] || changes["websitename3"] || changes["websiteurl3"] || changes["websitename4"] || changes["websiteurl4"] || changes["websitename5"] || changes["websiteurl5"] || changes["websitename6"] || changes["websiteurl6"] || changes["websitename7"] || changes["websiteurl7"] || changes["websitename8"] || changes["websiteurl8"] || changes["websitename9"] || changes["websiteurl9"] || changes["websitename10"] || changes["websiteurl10"]){
+		chrome.runtime.sendMessage({msg: "setbookmarkswebsites"});
 	}
 });
 

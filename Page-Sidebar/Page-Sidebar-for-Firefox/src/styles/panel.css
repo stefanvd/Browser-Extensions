@@ -32,6 +32,8 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
   --ext-primary-font-color:#000;
   --ext-svg-fill-color-hover:#ebebeb;
   --ext-border-line:#dddddd;
+  --ext-dropmenu-li-background-hover:#EEEEEE;
+  --ext-dropmenu-li-background-active:#F5F5F5;
 }
 
 /* Dark mode */
@@ -41,27 +43,28 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
     --ext-primary-font-color:#fff;
     --ext-svg-fill-color-hover:#474747;
     --ext-border-line:#37383a;
+    --ext-dropmenu-li-background-hover:#424242;
+    --ext-dropmenu-li-background-active:#4e4e4e;
   }
 }
 
 body{margin:0;padding:0;width:100%;height:100vh;background:var(--ext-primary-background);color:var(--ext-primary-font-color)}
-.hostpermission{padding:30px;display:flex;position:absolute;top:0;left:0;right:0;bottom:0;height:100%;background:var(--ext-primary-background);color:var(--ext-primary-font-color);z-index:20000}
+.hostpermission{padding:30px;display:flex;position:absolute;top:0;left:0;right:0;bottom:0;height:100%;background:var(--ext-primary-background);color:var(--ext-primary-font-color);box-sizing:border-box;font-family:verdana;line-height:24px;z-index:20000}
 .hostpermission div{flex-direction:column;align-items:initial;justify-content:center;display:flex}
 iframe{border:none;width:100%;height:100%;box-sizing:border-box;margin:0px}
-.hidden{display:none}
 #preview{border:0}
 .blurlayer{z-index:2000;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);background-color:rgba(0, 0, 0, 0.5)}
 .web{position:relative}
 #drag-drop-navbar{z-index:2000;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);background-color:rgba(0, 0, 0, 0.5);width:100%;height:48px;border:2px dashed #ccc;display:flex;justify-content:center;align-items:center;position:fixed;left:0;top:0;z-index:2500;bottom:0;right:0;box-sizing:border-box;border-radius:0px}
 #drag-drop-navbar.show{display:flex}
 #drag-drop-navbar.hidden{display:none}
-#drag-drop-info{gap:8px;flex-direction:column;font-size:14px;justify-content:center;align-items:center;height:100%;font-family:Verdana}
+#drag-drop-info{gap:8px;flex-direction:column;font-size:14px;justify-content:center;align-items:center;height:100%}
 #drag-drop-info.show{display:flex}
 #drag-drop-info.hidden{display:none}
 #drag-drop-zone{width:100%;height:100%;border:2px dashed #ccc;display:flex;justify-content:center;align-items:center;position:absolute;left:0;top:0;z-index:2500;bottom:0;right:0;box-sizing:border-box;border-radius:18px}
 #drag-drop-zone.show{display:flex}
 #drag-drop-zone.hidden{display:none}
-#stefanvdpromo{font-family:Helvetica,Arial,sans-serif;margin:auto;width:305px;position:fixed;bottom:50px;left:0;right:0;background-color:#ffffff;border:solid #dadce0 1px;border-radius:24px;box-sizing:border-box;color:#000000}
+#stefanvdpromo{z-index:2600;font-family:Helvetica,Arial,sans-serif;margin:auto;width:305px;position:fixed;bottom:50px;left:0;right:0;background-color:#ffffff;border:solid #dadce0 1px;border-radius:24px;box-sizing:border-box;color:#000000}
 #stefanvdpromo .box{display:flex;flex-direction:row;height:30px;justify-content:center;align-items:center;gap:8px}
 #stefanvdpromo a,#stefanvdpromo a:hover,#stefanvdpromo a:visited{color:rgb(25 103 210)}
 #stefanvdpromo .red{color:red;padding-inline-start:8px}
@@ -79,5 +82,24 @@ iframe{border:none;width:100%;height:100%;box-sizing:border-box;margin:0px}
 #btngo{display:flex;height:30px;min-width:40px;background:transparent;border:0;align-items:center;justify-content:center;border-radius:30px}
 #btngo:hover{background:var(--ext-svg-fill-color-hover);cursor:pointer}
 #btnhome{display:flex;height:30px;width:30px;background:transparent;border:0;align-items:center;justify-content:center;border-radius:30px}
-#btnhome:hover{background:var(--ext-svg-fill-color-hover);cursor:pointer}
+#btncopy{height:30px;width:30px;background:transparent;border:0;align-items:center;justify-content:center;border-radius:30px}
+#btntab{height:30px;width:30px;background:transparent;border:0;align-items:center;justify-content:center;border-radius:30px}
+#btnbookmarks{height:30px;width:30px;background:transparent;border:0;align-items:center;justify-content:center;border-radius:30px}
+#btnhome:hover,#btntab:hover,#btncopy:hover,#btnbookmarks:hover{background:var(--ext-svg-fill-color-hover);cursor:pointer}
+.icon{display:flex}
 .icon svg{fill:var(--ext-primary-font-color)}
+#menubookmarks{position:absolute;box-shadow:0 2px 4px 0 rgba(0,0,0,0.16),0 2px 8px 0 rgba(0,0,0,0.12);left:10px;z-index:3000;background:var(--totl-primary-background);padding:10px 0px;background:var(--ext-primary-background)}
+.top #menubookmarks{top:40px}
+.bottom #menubookmarks{bottom:40px}
+#menubookmarks ul{list-style:none;padding:0;margin:0}
+#menubookmarks ul li{height:48px;user-select:none;width:100%}
+#menubookmarks ul li a{height:48px;user-select:none;padding:0 16px;color:var(--totl-primary-font-color);cursor:pointer;display:flex;justify-content:flex-start;align-items:center;text-decoration:none}
+#menubookmarks ul a:hover{background-color:var(--ext-dropmenu-li-background-hover)}
+#menubookmarks ul a:active{background-color:var(--ext-dropmenu-li-background-active)}
+.stefanvdremote{overflow:hidden;z-index:2147483647!important;box-shadow:0px 0px 1px black;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);background:var(--totl-primary-background);position:absolute;top:0;left:0;right:0;width:230pt;opacity:0.98;height:50pt;border-radius:25pt;margin:0 auto;margin-top:20pt;animation:wrapper 4.0s both;color:var(--totl-primary-font-color)}
+.stefanvdremote h3{text-align:center;margin:0;font-size:15px;padding-top:10pt;animation:h3 2.5s}
+.stefanvdremote p{text-align:center;margin:0;font-size:13px;color:#888;padding-top:4pt;animation:p 2.5s}
+@keyframes h3{0%{opacity:0}50%{opacity:0}80%{opacity:1;transform:scale(1.5) translate(0,4px)}}
+@keyframes p{0%{opacity:0}80%{opacity:0;transform:scale(1.5) translate(0,12px)}100%{opacity:1;transform:scale(1)}}
+@keyframes wrapper{0%{opacity:0}20%{opacity:0;transform:translate(0,-100px)}40%{opacity:0.98;transform:translate(0,0)}80%{opacity:0.98;transform:translate(0,0)}100%{opacity:0;transform:translate(0, -100px)}}
+.hidden{display:none}
