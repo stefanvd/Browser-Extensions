@@ -1,4 +1,4 @@
-﻿//================================================
+//================================================
 /*
 
 Page Sidebar
@@ -26,15 +26,24 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-// Search for data and translate it to current use language
-var items = document.querySelectorAll("[data-i18n]");
-var i;
-var l = items.length;
-for(i = 0; i < l; i++){
-	var translation = chrome.i18n.getMessage(items[i].getAttribute("data-i18n"));
-	if(items[i].value === "i18n"){
-		items[i].value = translation;
-	}else{
-		items[i].innerText = translation;
-	}
+/* global navigation */
+if(window.top !== window && window.parent === window.top){
+	chrome.runtime.sendMessage({name: "sidepanelopen"}, (b) => {
+		if(b){
+			const origin = chrome.runtime.getURL("");
+			addEventListener("hashchange", () => top.postMessage({method: "navigate", href: location.href}, origin));
+			addEventListener("message", (e) => {
+				if(e.data?.method === "navigate-verified" && e.origin.includes(chrome.runtime.id)){
+					navigation.addEventListener("navigate", (e) => {
+						const href = e.destination.url;
+						top.postMessage({
+							method: "complete",
+							href
+						}, origin);
+					});
+				}
+			});
+			top.postMessage({method: "navigate", href: location.href}, origin);
+		}
+	});
 }

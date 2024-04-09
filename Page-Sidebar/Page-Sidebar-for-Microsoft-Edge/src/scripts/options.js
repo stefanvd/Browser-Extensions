@@ -36,12 +36,12 @@ function defaultgetsettings(){
 
 // Option to save current value
 function save_options(){
-	chrome.storage.sync.set({"icon": $("btnpreview").src, "optionskipremember":$("optionskipremember").checked, "contextmenus":$("contextmenus").checked, "searchgoogle": $("searchgoogle").checked, "searchbing": $("searchbing").checked, "searchduckduckgo": $("searchduckduckgo").checked, "searchbaidu": $("searchbaidu").checked, "searchyandex": $("searchyandex").checked, "navtop": $("navtop").checked, "navbottom": $("navbottom").checked, "navhidden": $("navhidden").checked, "typepanelzone": $("typepanelzone").checked, "typepanelcustom": $("typepanelcustom").checked, "websitezoomname": $("websitezoomname").value});
+	chrome.storage.sync.set({"icon": $("btnpreview").src, "optionskipremember":$("optionskipremember").checked, "contextmenus":$("contextmenus").checked, "searchgoogle": $("searchgoogle").checked, "searchbing": $("searchbing").checked, "searchduckduckgo": $("searchduckduckgo").checked, "searchbaidu": $("searchbaidu").checked, "searchyandex": $("searchyandex").checked, "navtop": $("navtop").checked, "navbottom": $("navbottom").checked, "navhidden": $("navhidden").checked, "typepanelzone": $("typepanelzone").checked, "typepanelcustom": $("typepanelcustom").checked, "websitezoomname": $("websitezoomname").value, "opentab": $("opentab").checked, "opencopy": $("opencopy").checked, "openquickbookmarks": $("openquickbookmarks").checked, "websitename1": $("websitename1").value, "websiteurl1": $("websiteurl1").value, "websitename2": $("websitename2").value, "websiteurl2": $("websiteurl2").value, "websitename3": $("websitename3").value, "websiteurl3": $("websiteurl3").value, "websitename4": $("websitename4").value, "websiteurl4": $("websiteurl4").value, "websitename5": $("websitename5").value, "websiteurl5": $("websiteurl5").value, "websitename6": $("websitename6").value, "websiteurl6": $("websiteurl6").value, "websitename7": $("websitename7").value, "websiteurl7": $("websiteurl7").value, "websitename8": $("websitename8").value, "websiteurl8": $("websiteurl8").value, "websitename9": $("websitename9").value, "websiteurl9": $("websiteurl9").value, "websitename10": $("websitename10").value, "websiteurl10": $("websiteurl10").value});
 }
 
 var firstdefaultvalues = {};
 // Option default value to read if there is no current value from chrome.storage AND init default value
-chrome.storage.sync.get(["icon", "contextmenus", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "websitezoomname"], function(items){
+chrome.storage.sync.get(["icon", "contextmenus", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "websitezoomname", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3"], function(items){
 	// find no localstore
 	if(items["icon"] == null){
 		if(exbrowser == "safari"){
@@ -55,6 +55,12 @@ chrome.storage.sync.get(["icon", "contextmenus", "searchgoogle", "searchbing", "
 	if(items["navtop"] == null && items["navbottom"] == null && items["navhidden"] == null){ firstdefaultvalues["navtop"] = true; firstdefaultvalues["navbottom"] = false; firstdefaultvalues["navhidden"] = false; }
 	if(items["websitezoomname"] == null){ firstdefaultvalues["websitezoomname"] = "https://www.google.com"; }
 	if(items["typepanelzone"] == null && items["typepanelcustom"] == null){ firstdefaultvalues["typepanelzone"] = true; firstdefaultvalues["typepanelcustom"] = false; }
+	if(items["websitename1"] == null){ firstdefaultvalues["websitename1"] = "Google"; }
+	if(items["websiteurl1"] == null){ firstdefaultvalues["websiteurl1"] = "https://www.google.com"; }
+	if(items["websitename2"] == null){ firstdefaultvalues["websitename2"] = "YouTube"; }
+	if(items["websiteurl2"] == null){ firstdefaultvalues["websiteurl2"] = "https://www.youtube.com"; }
+	if(items["websitename3"] == null){ firstdefaultvalues["websitename3"] = "Developer"; }
+	if(items["websiteurl3"] == null){ firstdefaultvalues["websiteurl3"] = "https://www.stefanvd.net"; }
 	// find no localstore lightimage
 	// Save the init value
 	chrome.storage.sync.set(firstdefaultvalues, function(){
@@ -150,7 +156,7 @@ function read_options(){
 		showhidemodal("materialModalYouTube", "hide", "true");
 	}
 
-	chrome.storage.sync.get(["icon", "firstDate", "contextmenus", "optionskipremember", "firstsawrate", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "websitezoomname"], function(items){
+	chrome.storage.sync.get(["icon", "firstDate", "contextmenus", "optionskipremember", "firstsawrate", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "websitezoomname", "opentab", "opencopy", "openquickbookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10"], function(items){
 		if(items["icon"]){ $("btnpreview").src = items["icon"]; }
 		if(items["contextmenus"] == true)$("contextmenus").checked = true;
 		if(items["optionskipremember"] == true){ $("optionskipremember").checked = true; $("firstcheckboxskipremember").checked = true; }
@@ -165,6 +171,29 @@ function read_options(){
 		if(items["typepanelzone"] == true){ $("typepanelzone").checked = true; }
 		if(items["typepanelcustom"] == true){ $("typepanelcustom").checked = true; }
 		if(items["websitezoomname"]){ $("websitezoomname").value = items["websitezoomname"]; }else $("websitezoomname").value = "https://www.google.com";
+		if(items["opentab"] == true){ $("opentab").checked = true; }
+		if(items["opencopy"] == true){ $("opencopy").checked = true; }
+		if(items["openquickbookmarks"]){ $("openquickbookmarks").checked = true; }
+		if(items["websitename1"]){ $("websitename1").value = items["websitename1"]; }
+		if(items["websiteurl1"]){ $("websiteurl1").value = items["websiteurl1"]; }
+		if(items["websitename2"]){ $("websitename2").value = items["websitename2"]; }
+		if(items["websiteurl2"]){ $("websiteurl2").value = items["websiteurl2"]; }
+		if(items["websitename3"]){ $("websitename3").value = items["websitename3"]; }
+		if(items["websiteurl3"]){ $("websiteurl3").value = items["websiteurl3"]; }
+		if(items["websitename4"]){ $("websitename4").value = items["websitename4"]; }
+		if(items["websiteurl4"]){ $("websiteurl4").value = items["websiteurl4"]; }
+		if(items["websitename5"]){ $("websitename5").value = items["websitename5"]; }
+		if(items["websiteurl5"]){ $("websiteurl5").value = items["websiteurl5"]; }
+		if(items["websitename6"]){ $("websitename6").value = items["websitename6"]; }
+		if(items["websiteurl6"]){ $("websiteurl6").value = items["websiteurl6"]; }
+		if(items["websitename7"]){ $("websitename7").value = items["websitename7"]; }
+		if(items["websiteurl7"]){ $("websiteurl7").value = items["websiteurl7"]; }
+		if(items["websitename8"]){ $("websitename8").value = items["websitename8"]; }
+		if(items["websiteurl8"]){ $("websiteurl8").value = items["websiteurl8"]; }
+		if(items["websitename9"]){ $("websitename9").value = items["websitename9"]; }
+		if(items["websiteurl9"]){ $("websiteurl9").value = items["websiteurl9"]; }
+		if(items["websitename10"]){ $("websitename10").value = items["websitename10"]; }
+		if(items["websiteurl10"]){ $("websiteurl10").value = items["websiteurl10"]; }
 
 		// show remember page
 		var firstmonth = false;
@@ -305,6 +334,68 @@ function test(){
 	}else{
 		$("websitezoomname").disabled = false;
 	}
+
+	if($("openquickbookmarks").checked == true){
+		$("websitename1").disabled = false;
+		$("websiteurl1").disabled = false;
+
+		$("websitename2").disabled = false;
+		$("websiteurl2").disabled = false;
+
+		$("websitename3").disabled = false;
+		$("websiteurl3").disabled = false;
+
+		$("websitename4").disabled = false;
+		$("websiteurl4").disabled = false;
+
+		$("websitename5").disabled = false;
+		$("websiteurl5").disabled = false;
+
+		$("websitename6").disabled = false;
+		$("websiteurl6").disabled = false;
+
+		$("websitename7").disabled = false;
+		$("websiteurl7").disabled = false;
+
+		$("websitename8").disabled = false;
+		$("websiteurl8").disabled = false;
+
+		$("websitename9").disabled = false;
+		$("websiteurl9").disabled = false;
+
+		$("websitename10").disabled = false;
+		$("websiteurl10").disabled = false;
+	}else{
+		$("websitename1").disabled = true;
+		$("websiteurl1").disabled = true;
+
+		$("websitename2").disabled = true;
+		$("websiteurl2").disabled = true;
+
+		$("websitename3").disabled = true;
+		$("websiteurl3").disabled = true;
+
+		$("websitename4").disabled = true;
+		$("websiteurl4").disabled = true;
+
+		$("websitename5").disabled = true;
+		$("websiteurl5").disabled = true;
+
+		$("websitename6").disabled = true;
+		$("websiteurl6").disabled = true;
+
+		$("websitename7").disabled = true;
+		$("websiteurl7").disabled = true;
+
+		$("websitename8").disabled = true;
+		$("websiteurl8").disabled = true;
+
+		$("websitename9").disabled = true;
+		$("websiteurl9").disabled = true;
+
+		$("websitename10").disabled = true;
+		$("websiteurl10").disabled = true;
+	}
 }
 
 function ariacheck(){
@@ -371,6 +462,13 @@ function checkdarkmode(){
 			}
 			seticonstyle(1, 0, 0);
 		}
+	});
+}
+
+function eventsubmitFunc(selector, callback){
+	document.getElementById(selector).addEventListener("submit", function(e){
+		e.preventDefault();
+		callback();
 	});
 }
 
@@ -582,6 +680,18 @@ function domcontentloaded(){
 	var m = select.length;
 	for(j = 0; j < m; j++){ select[j].addEventListener("change", test); select[j].addEventListener("change", ariacheck); select[j].addEventListener("change", save_options); }
 
+	// bookmark
+	var bookmarkname = document.getElementsByClassName("bookmarkname");
+	var f, x = bookmarkname.length;
+	for(r = 0, x; f < x; f++){
+		bookmarkname[f].addEventListener("change", save_options);
+	}
+	var bookmarkurl = document.getElementsByClassName("bookmarkurl");
+	var g, w = bookmarkurl.length;
+	for(r = 0, w; g < w; g++){
+		bookmarkurl[g].addEventListener("change", save_options);
+	}
+
 	// show all the active permissions in a list
 	chrome.runtime.sendMessage({name: "getallpermissions"});
 
@@ -651,6 +761,18 @@ function domcontentloaded(){
 	function OFFworkaroundbugfromsafari(){
 		$("dont-turn-off-the-lights").src = youtubeembed;
 	}
+
+	// Add website
+	eventsubmitFunc("formwebsite1", save_options);
+	eventsubmitFunc("formwebsite2", save_options);
+	eventsubmitFunc("formwebsite3", save_options);
+	eventsubmitFunc("formwebsite4", save_options);
+	eventsubmitFunc("formwebsite5", save_options);
+	eventsubmitFunc("formwebsite6", save_options);
+	eventsubmitFunc("formwebsite7", save_options);
+	eventsubmitFunc("formwebsite8", save_options);
+	eventsubmitFunc("formwebsite9", save_options);
+	eventsubmitFunc("formwebsite10", save_options);
 
 	// Reset settings
 	$("resetbrowserextension").addEventListener("click", function(){ chrome.storage.sync.clear(); chrome.runtime.sendMessage({name: "bckreload"}); location.reload(); });
