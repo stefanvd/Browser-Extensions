@@ -302,10 +302,17 @@ document.addEventListener("DOMContentLoaded", function(){
 		const domain = url.hostname;
 
 		chrome.storage.sync.get([domain], function(result){
-			currentrotate = result[domain]["rotate"] || 0;
-			currenttop = result[domain]["topposition"] || 0;
-			currentleft = result[domain]["leftposition"] || 0;
-			currentscale = result[domain]["scale"] || 100;
+			if(result[domain]){
+				currentrotate = result[domain]["rotate"] || 0;
+				currenttop = result[domain]["topposition"] || 0;
+				currentleft = result[domain]["leftposition"] || 0;
+				currentscale = result[domain]["scale"] || 100;
+			}else{
+				currentrotate = 0;
+				currenttop = 0;
+				currentleft = 0;
+				currentscale = 100;
+			}
 
 			document.getElementById("number").value = Math.round(currentrotate);
 			document.getElementById("range").value = Math.round(currentrotate);
