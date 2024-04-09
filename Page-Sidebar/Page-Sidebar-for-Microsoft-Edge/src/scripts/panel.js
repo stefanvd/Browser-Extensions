@@ -190,7 +190,13 @@ function actionHome(){
 function actionGo(){
 	var searchInput = document.getElementById("searchbar").value.trim();
 	// Check if the input is a valid URL
-	var urlRegex = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
+	// capture groups:
+	// 1: protocol (https://)
+	// 2: domain (mail.google.com)
+	// 3: path (/chat/u/0/)
+	// 4: query string (?view=list)
+	// 5: fragment (#chat/home)
+	var urlRegex = /^(https?:\/\/)?((?:[\da-z.-]+)+\.(?:[a-z.]{2,})+)?((?:\/[-a-z\d%_.~+]*)*)(\?[;&a-z\d%_.~+=-]*)?(#.*)?$/i;
 	if(urlRegex.test(searchInput)){
 		// If it's a URL, navigate to the page
 		if(searchInput.startsWith("http://www.") || searchInput.startsWith("https://www.")){
@@ -198,7 +204,7 @@ function actionGo(){
 		}else if(searchInput.startsWith("http://") || searchInput.startsWith("https://")){
 			open(searchInput, true);
 		}else{
-			open("http://" + searchInput, true);
+			open("https://" + searchInput, true);
 		}
 	}else{
 		// If it is not a URL, perform a search
