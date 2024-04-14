@@ -128,7 +128,8 @@ function zoomtab(a, b){
 					tabs.forEach(function(tab){
 						var pop = tab.url;
 						if(typeof pop !== "undefined"){
-							if(zoombydomain == true){ var webpop = pop.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0]; }else{ webpop = pop; }
+							var webpop;
+							if(zoombydomain == true){ webpop = pop.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0]; }else{ webpop = pop; }
 							if(webpop == webjob){ // in current tab and not in popup window
 								try{
 									var supportsZoom = "zoom" in document.body.style;
@@ -172,7 +173,7 @@ function zoomtab(a, b){
 					tabs.forEach(function(tab){
 						// only on http, https and ftp website (and not the chrome:extension url)
 						if(/^(f|ht)tps?:\/\//i.test(tab.url)){
-							chrome.tabs.sendMessage(tab.id, {text: "setfontsize"});
+							// This function will be called after the first message is sent and processed
 							chrome.tabs.sendMessage(tab.id, {text: "changefontsize", value: document.getElementById("number").value});
 						}
 						if(badge == true){
@@ -187,9 +188,9 @@ function zoomtab(a, b){
 					tabs.forEach(function(tab){
 						var pop = tab.url;
 						if(typeof pop !== "undefined"){
-							if(zoombydomain == true){ pop = pop.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0]; }else{ var webpop = pop; }
+							var webpop;
+							if(zoombydomain == true){ webpop = pop.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0]; }else{ webpop = pop; }
 							if(webpop == webjob){ // in current tab and not in popup window
-								chrome.tabs.sendMessage(tab.id, {text: "setfontsize"});
 								chrome.tabs.sendMessage(tab.id, {text: "changefontsize", value: document.getElementById("number").value});
 								if(badge == true){
 									chrome.action.setBadgeBackgroundColor({color:lightcolor});

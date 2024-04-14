@@ -32,41 +32,8 @@ function updateVideoStyle(response){
 	var videoleft = response.leftposition;
 	var videoscale = response.scale;
 	// console.log("videorotate", videorotate, "videotop", videotop, "videoleft", videoleft, "videoscale", videoscale);
-
-	// Check if the class is already added to the document body head
-	var styleElement = document.getElementById("stefanvdrotate-style");
-	if(!styleElement){
-		// If not added, create a new style element and add it to the head
-		styleElement = document.createElement("style");
-		styleElement.id = "stefanvdrotate-style";
-		document.head.appendChild(styleElement);
-	}
-
-	// Generate CSS rule based on the current values
-	const transformValue = `rotate(${videorotate}deg) scale(${videoscale / 100}) translate(${videotop}px, ${videoleft}px)`;
-	var cssRule = ".stefanvdrotate { transform: " + transformValue + "; }";
-
-	// Update the style element with the new CSS rule
-	styleElement.innerHTML = cssRule;
-
-	// Apply the class to the appropriate elements based on the URL
-	if(window.location.href.match(/((http:\/\/(.*youtube\.com\/.*))|(https:\/\/(.*youtube\.com\/.*)))/i)){
-		if(document.getElementById("movie_player")){
-			document.getElementById("movie_player").style.zIndex = 1001;
-			document.getElementById("movie_player").style.position = "relative";
-		}
-		if(document.getElementById("player-api")){
-			document.getElementById("player-api").style.cssText = "overflow:visible !important";
-		}
-		if(document.getElementById("player")){
-			document.getElementById("player").classList.add("stefanvdrotate");
-			document.getElementById("player").style.zIndex = 1001;
-		}
-	}else{
-		if(document.getElementsByTagName("video")[0]){
-			document.getElementsByTagName("video")[0].classList.add("stefanvdrotate");
-		}
-	}
+	// eslint-disable-next-line no-undef
+	startRotate(videorotate, videotop, videoleft, videoscale);
 }
 
 function setvideorotate(){

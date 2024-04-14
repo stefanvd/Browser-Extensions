@@ -135,7 +135,7 @@
     "desshowleft": {"message": "Show the horizontally move slider in the panel"},
     "titelshowscale": {"message": "Scale"},
     "desshowscale": {"message": "Show the scale slider in the panel"},
-    "titlesrotateclockwise": {"message": "Rotate 90 degrees clockwise"},
-    "titlesrotatecounter": {"message": "Rotate 90 degrees counter-clockwise"},
-    "titlesrotatereset": {"message": "Reset the rotation"}
+    "titlerotateclockwise": {"message": "Rotate 90 degrees clockwise"},
+    "titlerotatecounter": {"message": "Rotate 90 degrees counter-clockwise"},
+    "titlerotatereset": {"message": "Reset the rotation"}
 }

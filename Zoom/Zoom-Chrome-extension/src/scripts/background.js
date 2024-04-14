@@ -32,7 +32,7 @@ importScripts("constants.js");
 
 var currentURL; var allzoom; var allzoomvalue; var zoombydomain; var zoombypage; var defaultallscreen; var defaultsinglescreen; var goturlinside = false; var currentscreen; var chromedisplay; var screenzoom; var zoomsingleclick; var zoomnewsingleclick; var zoomdoubleclick; var zoomoutdoubleclick; var contexta; var contextb; var contextc; var websitepreset;
 var currentRatio = 1; var ratio = 1; var job = null;
-var webjob; var websitezoom = {}; var badge; var steps; var lightcolor; var zoomchrome; var zoomweb; var zoomfont; var ignoreset;
+var webjob; var websitezoom = {}; var badge; var steps; var lightcolor; var zoomchrome; var zoomweb; var zoomfont; var ignoreset; var webpop;
 
 chrome.runtime.onMessage.addListener(function request(request, sender){
 	switch(request.name){
@@ -113,8 +113,7 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 											});
 										});
 									}else if(zoomfont == true){
-										chrome.tabs.sendMessage(tabs[0].id, {text:"setfontsize"});
-										chrome.tabs.sendMessage(tabs[0].id, {text:"changefontsize", value: Math.round(allzoomvalue * 100)});
+										chrome.tabs.sendMessage(tabs[0].id, {text: "changefontsize", value: Math.round(allzoomvalue * 100)});
 									}
 								}else{
 									// Needed if the zoom value is the same, update the badge value
@@ -169,8 +168,7 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 													chrome.tabs.sendMessage(tab.id, {text:"setbodycsszoom", value:editzoom});
 												}
 											}else if(zoomfont == true){
-												chrome.tabs.sendMessage(tab.id, {text:"setfontsize"});
-												chrome.tabs.sendMessage(tab.id, {text:"changefontsize", value: Math.round(editzoom * 100)});
+												chrome.tabs.sendMessage(tab.id, {text: "changefontsize", value: Math.round(editzoom * 100)});
 											}
 											setBadgeValue(editzoom, tab.id);
 										}
@@ -218,8 +216,7 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 										}
 										setBadgeValue(allzoomvalue, sender.tab.id);
 									}else if(zoomfont == true){
-										chrome.tabs.sendMessage(sender.tab.id, {text:"setfontsize"});
-										chrome.tabs.sendMessage(sender.tab.id, {text:"changefontsize", value: Math.round(allzoomvalue * 100)});
+										chrome.tabs.sendMessage(sender.tab.id, {text: "changefontsize", value: Math.round(allzoomvalue * 100)});
 										setBadgeValue(allzoomvalue, sender.tab.id);
 									}
 								}else{
@@ -230,7 +227,6 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 				}
 				goturlinside = false;
 			}
-
 		});
 		break;
 	case"contextmenuon":
@@ -338,7 +334,7 @@ function zoomtab(a, b){
 						var pop = tab.url;
 						if(typeof pop !== "undefined"){
 							var filtermatch = pop.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/);
-							if(zoombydomain == true){ if(filtermatch){ webpop = filtermatch[0]; } }else{ var webpop = pop; }
+							if(zoombydomain == true){ if(filtermatch){ webpop = filtermatch[0]; } }else{ webpop = pop; }
 							if(webpop == webjob){
 								try{
 									chrome.tabs.sendMessage(tab.id, {text:"setbodycsszoom", value:b});
@@ -367,7 +363,7 @@ function zoomtab(a, b){
 						var pop = tab.url;
 						if(typeof pop !== "undefined"){
 							var filtermatch = pop.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/);
-							if(zoombydomain == true){ if(filtermatch){ webpop = filtermatch[0]; } }else{ var webpop = pop; }
+							if(zoombydomain == true){ if(filtermatch){ webpop = filtermatch[0]; } }else{ webpop = pop; }
 							if(webpop == webjob){
 								chrome.tabs.sendMessage(tab.id, {text: "changefontsize", value: Math.round(b * 100)});
 								setBadgeValue(b, tab.id);
@@ -388,6 +384,7 @@ function zoomtab(a, b){
 		for(domain in websitezoom){ atbbuf.push(domain); atbbuf.sort(); }
 		var i;
 		var l = atbbuf.length;
+		// website is in the list,
 		for(i = 0; i < l; i++){
 			if(atbbuf[i] == webjob){ // update
 				if(b == 1){
@@ -398,13 +395,27 @@ function zoomtab(a, b){
 					// update ratio
 					websitezoom["" + atbbuf[i] + ""] = parseInt(b * 100);
 				}
+				// save for zoom feature
+				chrome.storage.sync.set({"websitezoom":JSON.stringify(websitezoom)});
 			}else{
 				// add to list
 				websitezoom["" + webjob + ""] = parseInt(b * 100);
+				// save for zoom feature
+				chrome.storage.sync.set({"websitezoom":JSON.stringify(websitezoom)});
 			}
 		}
-		// save for zoom feature
-		chrome.storage.sync.set({"websitezoom":JSON.stringify(websitezoom)});
+
+		// website is not in the list, then add this new website with his new zoom value
+		try{
+			if((atbbuf.includes(webjob) != true)){
+				// add to list
+				websitezoom["" + webjob + ""] = b;
+				// save for zoom feature
+				chrome.storage.sync.set({"websitezoom": JSON.stringify(websitezoom)});
+			}
+		}catch(e){
+			// console.log(e);
+		}
 	}
 }
 function zoomview(direction){ zoom(nextratio(currentRatio * 100, direction)); }
@@ -694,7 +705,6 @@ function onClickHandler(info){
 				}else if(zoomweb == true){
 					chrome.tabs.sendMessage(tabs[0].id, {text:"setbodycsszoom", value:czl / 100});
 				}else if(zoomfont == true){
-					chrome.tabs.sendMessage(tabs[0].id, {text: "setfontsize"});
 					chrome.tabs.sendMessage(tabs[0].id, {text: "changefontsize", value: Math.round(czl)});
 				}
 				setBadgeValue(czl, tabs[0].id);

@@ -41,12 +41,16 @@ chrome.runtime.onConnect.addListener(function(port){
 			chrome.storage.sync.set({[newurlwebsite]: newobject});
 		});
 	}
+	return true;
 });
 
 chrome.runtime.onMessage.addListener(function request(request, sender, sendResponse){
 	if(request.name == "getSetting"){
 		chrome.storage.sync.get([request.urlwebsite], function(result){
-			sendResponse({rotate: result[request.urlwebsite]["rotate"], topposition: result[request.urlwebsite]["topposition"], leftposition: result[request.urlwebsite]["leftposition"], scale: result[request.urlwebsite]["scale"]});
+			if(!chrome.runtime.lastError){
+				// if a correct URL and not a Chrome settins page, then continue here
+				sendResponse({rotate: result[request.urlwebsite]["rotate"], topposition: result[request.urlwebsite]["topposition"], leftposition: result[request.urlwebsite]["leftposition"], scale: result[request.urlwebsite]["scale"]});
+			}
 		});
 	}else if(request.name == "setSetting"){
 		newrotatevalue = request.rotatevalue;

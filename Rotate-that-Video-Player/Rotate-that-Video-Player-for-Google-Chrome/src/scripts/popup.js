@@ -56,7 +56,6 @@ function updateTabValues(){
 	// console.log("currenttop", currenttop, "currentleft", currentleft, "currentscale", currentscale, "currentrotate", currentrotate);
 	chrome.tabs.query({windowId: chrome.windows.WINDOW_ID_CURRENT, active: true}, function(tabs){
 		var tab = tabs[0];
-		var tabId = tab.id;
 		document.getElementById("topnumber").value = Math.round(currenttop);
 		document.getElementById("toprange").value = Math.round(currenttop);
 		document.getElementById("leftnumber").value = Math.round(currentleft);
@@ -66,11 +65,14 @@ function updateTabValues(){
 		document.getElementById("number").value = Math.round(currentrotate);
 		document.getElementById("range").value = Math.round(currentrotate);
 
-		chrome.scripting.executeScript({
-			target: {tabId: tabId},
-			function: insertscript,
-			args: [currentrotate, currenttop, currentleft, currentscale]
-		});
+		if(tab && tab.url && (tab.url.startsWith("http://") || tab.url.startsWith("https://"))){
+			chrome.scripting.executeScript({
+				target: {tabId: tab.id},
+				// eslint-disable-next-line no-undef
+				function: startRotate,
+				args: [currentrotate, currenttop, currentleft, currentscale]
+			});
+		}
 
 		job = tab.url;
 		var url = new URL(job);
@@ -87,59 +89,6 @@ function updateTabValues(){
 	});
 }
 
-function insertscript(rotate, top, left, scale){
-	// Check if the class is already added to the document body head
-	var styleElement = document.getElementById("stefanvdrotate-style");
-	if(!styleElement){
-		// If not added, create a new style element and add it to the head
-		styleElement = document.createElement("style");
-		styleElement.id = "stefanvdrotate-style";
-		document.head.appendChild(styleElement);
-	}
-
-	// Generate CSS rule based on the current values
-	const transformValue = `rotate(${rotate}deg) scale(${scale / 100}) translate(${top}px, ${left}px)`;
-	var cssRule = ".stefanvdrotate { transform: " + transformValue + "; }";
-
-	// Update the style element with the new CSS rule
-	styleElement.innerHTML = cssRule;
-
-	// Apply the class to the appropriate elements based on the URL
-	if(window.location.href.match(/((http:\/\/(.*youtube\.com\/.*))|(https:\/\/(.*youtube\.com\/.*)))/i)){
-		if(document.getElementById("movie_player")){
-			document.getElementById("movie_player").style.zIndex = 1001;
-			document.getElementById("movie_player").style.position = "relative";
-		}
-		if(document.getElementById("player-api")){
-			document.getElementById("player-api").style.cssText = "overflow:visible !important";
-		}
-		if(document.getElementById("player")){
-			document.getElementById("player").classList.add("stefanvdrotate");
-			document.getElementById("player").style.zIndex = 1001;
-		}
-	}else{
-		if(document.getElementsByTagName("video")[0]){
-			document.getElementsByTagName("video")[0].classList.add("stefanvdrotate");
-		}
-	}
-
-	// console.log("rotate", rotate, "top", top, "left", left, "scale=", scale);
-	if(rotate == 0 && top == 0 && left == 0 && scale == 100){
-		var item = document.getElementById("stefanvdrotate-style");
-		if(item){
-			item.parentNode.removeChild(item);
-		}
-		if(window.location.href.match(/((http:\/\/(.*youtube\.com\/.*))|(https:\/\/(.*youtube\.com\/.*)))/i)){
-			if(document.getElementById("player").classList.contains("stefanvdrotate")){
-				document.getElementById("player").classList.remove("stefanvdrotate");
-			}
-		}else{
-			if(document.getElementsByTagName("video")[0].classList.contains("stefanvdrotate")){
-				document.getElementsByTagName("video")[0].classList.remove("stefanvdrotate");
-			}
-		}
-	}
-}
 
 function rotateview(direction){ rotate(nextratio(currentrotate, direction)); }
 
@@ -242,11 +191,56 @@ function wheelscale(event){
 	event.returnValue = false;
 }
 
+function checkForHTML5Video(){
+	var videoTags = document.getElementsByTagName("video");
+	if(videoTags.length > 0){
+		return true;
+	}else{
+		return false;
+	}
+}
+
+function showResult(a){
+	if(a == true){
+		document.getElementById("novideofound").className = "show";
+	}else{
+		document.getElementById("novideofound").className = "hidden";
+	}
+}
+
 document.addEventListener("DOMContentLoaded", function(){
 	// disable context menu
 	document.addEventListener("contextmenu", function(e){
 		e.preventDefault();
 	}, false);
+
+	chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+		chrome.scripting.executeScript({
+			target: {tabId: tabs[0].id},
+			function: checkForHTML5Video
+		}, function(results){
+			if(chrome.runtime.lastError){
+				showResult(true);
+			}else{
+				var videoFound = results[0].result;
+				if(videoFound){
+					showResult(false);
+				}else{
+					showResult(true);
+				}
+			}
+		});
+	});
+
+	document.getElementById("btntryvideo").addEventListener("click", function(){
+		// stefan vd intro
+		window.open("https://www.youtube.com/watch?v=fsxi4Ehxb4g", "_blank");
+	});
+
+	document.getElementById("btnhelp").addEventListener("click", function(){
+		// stefan vd support
+		window.open(linksupport, "_blank");
+	});
 
 	chrome.storage.sync.get(["darkmode", "showrotate", "showtop", "showleft", "showscale"], function(response){
 		darkmode = response.darkmode; if(darkmode == null)darkmode = 2; // default Operating System

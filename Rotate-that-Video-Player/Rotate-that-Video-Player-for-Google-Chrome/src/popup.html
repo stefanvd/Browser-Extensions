@@ -33,9 +33,16 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 -->
 <link rel="stylesheet" type="text/css" href="styles/popup.css">
 <script type="text/javascript" src="scripts/constants.js"></script>
+<script type="text/javascript" src="scripts/rotate.js"></script>
 <script type="text/javascript" src="scripts/popup.js"></script>
 </head>
 <body>
+<div id="novideofound" class="hidden">
+	<div class="titel"><span data-i18n="titlenotfound"></span></div>
+	<div class="des"><span data-i18n="desnotfound"></span></div>
+	<div class="action"><button id="btntryvideo"><span data-i18n="desvideotry"></span></button></div>
+	<div class="help"><button id="btnhelp" class="btnhelp"><span data-i18n="helpextension"></span></button></div>
+</div>
 <div id="type" class="modern">
 	<div class="panel">
 		<div class="zbox" id="rotatepanel">
