@@ -1,0 +1,11 @@
+{
+    "extension_name": {
+        "message": "Aurora Player"
+    },
+    "extension_description": {
+        "message": "Ouvrez la vidéo actuelle dans l'application Aurora Player pour des effets lumineux époustouflants."
+    },
+    "errornovideo": {
+        "message": "Aucune vidéo n'est trouvée sur la page Web actuelle."
+    }
+}
