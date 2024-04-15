@@ -31,6 +31,57 @@ function $(id){ return document.getElementById(id); }
 var currentscreen = screen.width + "x" + screen.height;
 chrome.runtime.sendMessage({name: "getallRatio", website: window.location.href, screen: currentscreen});
 
+function addOrUpdateDiv(newfontsize){
+	setdefaultfontsize();
+
+	var existingDiv = document.getElementById("stefanvdzoomextension");
+	if(existingDiv){
+		existingDiv.setAttribute("data-current-zoom", newfontsize);
+	}else{
+		var div = document.createElement("div");
+		div.setAttribute("id", "stefanvdzoomextension");
+		div.setAttribute("data-current-zoom", newfontsize);
+		div.style.display = "none";
+		document.body.appendChild(div);
+	}
+
+	var q = document.getElementsByTagName("*");
+	var i;
+	var l = q.length;
+	for(i = 0; i < l; i++){
+		// Skip tags
+		if(q[i].tagName.toLowerCase() === "meta" ||
+			q[i].tagName.toLowerCase() === "link" ||
+			q[i].tagName.toLowerCase() === "style" ||
+			q[i].tagName.toLowerCase() === "base" ||
+			q[i].tagName.toLowerCase() === "noscript" ||
+			q[i].tagName.toLowerCase() === "title" ||
+			q[i].tagName.toLowerCase() === "head"){
+			continue;
+		}
+
+		if(q[i].hasAttribute("data-default-fontsize")){
+			var tempcurrent = q[i].getAttribute("data-default-fontsize");
+			tempcurrent = tempcurrent.replace("px", "");
+			var finalfontsize = tempcurrent * (newfontsize / 100);
+			finalfontsize = finalfontsize + "px";
+			q[i].style.setProperty("font-size", finalfontsize, "important");
+		}
+	}
+}
+
+function initfont(fontsize){
+	var newfontsize = fontsize;
+	// Check if the DOM is already loaded
+	if(document.readyState === "loading"){
+		// If page is still loading, add an event listener for load
+		window.addEventListener("load", function(){ addOrUpdateDiv(newfontsize); });
+	}else{
+		// If page is already loaded, call addOrUpdateDiv directly
+		addOrUpdateDiv(newfontsize);
+	}
+}
+
 // Listen for messages
 chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse){
 	if(msg.text === "getwebzoom"){
@@ -50,36 +101,14 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse){
 		}
 	}else if(msg.text === "refreshscreen"){
 		currentscreen = screen.width + "x" + screen.height;
-		// reload page to get the curretn web page zoom
+		// reload page to get the current web page zoom
 		location.reload();
 		// because send message will overwrite if use many tabs and the last tab will be only send
 		// runtime.sendMessage can be used only for one-time requests
 		// chrome.runtime.sendMessage({name: "getallRatio", website: window.location.href, screen: currentscreen});
-	}else if(msg.text === "setfontsize"){
-		setdefaultfontsize();
 	}else if(msg.text === "changefontsize"){
-		var newfontsize = msg.value;
-		if($("stefanvdzoomextension")){
-			$("stefanvdzoomextension").setAttribute("data-current-zoom", newfontsize);
-		}else{
-			var div = document.createElement("div");
-			div.setAttribute("id", "stefanvdzoomextension");
-			div.setAttribute("data-current-zoom", newfontsize);
-			div.style.display = "none";
-			document.body.appendChild(div);
-		}
-		var q = document.getElementsByTagName("*");
-		var i;
-		var l = q.length;
-		for(i = 0; i < l; i++){
-			if(q[i].hasAttribute("data-default-fontsize")){
-				var tempcurrent = q[i].getAttribute("data-default-fontsize");
-				tempcurrent = tempcurrent.replace("px", "");
-				var finalfontsize = tempcurrent * (newfontsize / 100);
-				finalfontsize = finalfontsize + "px";
-				q[i].style.setProperty("font-size", finalfontsize, "important");
-			}
-		}
+		initfont(msg.value);
+		sendResponse(true);
 	}else if(msg.text === "enablemagnifyingglass"){
 		magnifyenabled = true;
 		chrome.runtime.sendMessage({name: "getscreenshot"});
@@ -257,13 +286,24 @@ function moveSpot(e){
 	glass.style.backgroundPosition = leftsign + "px " + topsign + "px";
 }
 
-
 function setdefaultfontsize(){
 	var q = document.getElementsByTagName("*");
 	var i;
 	var l = q.length;
 	var fntsz;
 	for(i = 0; i < l; i++){
+		// Skip tags
+		if(q[i].tagName.toLowerCase() === "meta" ||
+		q[i].tagName.toLowerCase() === "link" ||
+		q[i].tagName.toLowerCase() === "style" ||
+		q[i].tagName.toLowerCase() === "base" ||
+		q[i].tagName.toLowerCase() === "script" ||
+		q[i].tagName.toLowerCase() === "noscript" ||
+		q[i].tagName.toLowerCase() === "title" ||
+		q[i].tagName.toLowerCase() === "head"){
+			continue;
+		}
+
 		if(q[i].currentStyle){
 			fntsz = q[i].currentStyle["font-size"];
 		}else if(window.getComputedStyle){
