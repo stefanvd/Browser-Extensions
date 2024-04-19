@@ -3,9 +3,9 @@ const exbrowser = "chrome";
 // values: "chrome", "safari", "edge", "firefox", "opera", "yandex", "whale"
 const linkredirectionoptions = "https://www.stefanvd.net/project/proper-menubar/browser/options/";
 const linkdeveloperwebsite = "https://www.stefanvd.net";
-const linkproduct = "https://chrome.google.com/webstore/detail/proper-menubar/egclcjdpndeoioimlbbbmdhcaopnedkp";
+const linkproduct = "https://chromewebstore.google.com/detail/proper-menubar-for-google/egclcjdpndeoioimlbbbmdhcaopnedkp";
 const linkdonate = "https://www.stefanvd.net/donate/";
-const writereview = "https://chrome.google.com/webstore/detail/proper-menubar/egclcjdpndeoioimlbbbmdhcaopnedkp/reviews";
+const writereview = "https://chromewebstore.google.com/detail/proper-menubar-for-google/egclcjdpndeoioimlbbbmdhcaopnedkp/reviews";
 const linkchangelog = "https://www.stefanvd.net/project/proper-menubar/browser/google-chrome/changelog/";
 const linktranslate = "https://www.stefanvd.net/project/translate/";
 const linksupport = "https://www.stefanvd.net/support/";
@@ -14,7 +14,7 @@ const linkuninstall = "https://www.stefanvd.net/project/proper-menubar/browser/g
 const linkguide = "https://www.stefanvd.net/project/proper-menubar/browser/google-chrome/guide/";
 const linkproductdescription = "https://www.stefanvd.net/project/proper-menubar/browser/";
 const browsernewtab = "chrome://newtab/";
-const browserstore = "https://chrome.google.com";
+const browserstore = "https://chromewebstore.google.com";
 const linkyoutube = "https://www.youtube.com/@stefanvandamme?sub_confirmation=1";
 const devmode = true;
 const devdonate = false;
@@ -25,7 +25,7 @@ const browserdownloads = "chrome://downloads/";
 const browserpolicy = "chrome://policy/";
 const browserinspect = "chrome://inspect/";
 const browserflags = "chrome://flags/";
-const browserabout = "chrome://version/";
+const browserabout = "chrome://settings/help";
 const browserbookmarks = "chrome://bookmarks/";
 const browserhistory = "chrome://history/";
 

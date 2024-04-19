@@ -3,7 +3,7 @@
 
 Proper Menubar
 Add the best menu bar to get easy and fast access to all your useful browser options and internet products!
-Copyright (C) 2022 Stefan vd
+Copyright (C) 2024 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -458,7 +458,8 @@ function addtoolbar(){
 			document.body.insertBefore(divblock, document.body.firstChild);
 		}
 
-		var frame = document.createElement("div");
+
+		var frame = document.createElement("proper-menubar");
 		frame.setAttribute("id", "stefanvdpropermenubar");
 		frame.setAttribute("role", "toolbar");
 		frame.style.height = "30px";
@@ -482,7 +483,6 @@ function addtoolbar(){
 				frame.style.boxShadow = "0px -2px 10px rgba(0,0,0,.2)";
 			}
 		}
-
 		document.documentElement.appendChild(frame);
 
 		//------
@@ -496,8 +496,12 @@ function addtoolbar(){
 		link.id = "csspalette";
 		link.rel = "stylesheet";
 		link.type = "text/css";
-		link.href = chrome.runtime.getURL("css/body.css");
+		link.href = chrome.runtime.getURL("styles/body.css");
 		link.media = "all";
+		// wait for the CSS is loaded, then show the bar
+		link.onload = function(){
+			newtoolbar.style.display = "block";
+		};
 		el.shadowRoot.appendChild(link);
 		//----
 
@@ -522,6 +526,7 @@ function addtoolbar(){
 		//---
 		var newtoolbar = document.createElement("div");
 		newtoolbar.setAttribute("id", "stefanvdnavwrappe");
+		newtoolbar.style.display = "none"; // Hide the menu until everything is loaded
 		newtoolbar.style.zIndex = "2147483647";
 		newtoolbar.style.width = "100%";
 		// newtoolbar.style.height = "30px";

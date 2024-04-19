@@ -1,34 +1,6 @@
-/*
-//================================================
-
-Proper Menubar
-Add the best menu bar to get easy and fast access to all your useful browser options and internet products!
-Copyright (C) 2022 Stefan vd
-www.stefanvd.net
-
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-
-
-To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.0/
-
-//================================================
-*/
-
+#stefanvdnavwrappe:not(:defined) > * {display:none}
 .stefanvdhidden{display:none}
 #stefanvdproperblocksmall{height:30px!important;width:100%!important;display:block!important}
-
 #stefanvdnavwrappe{margin:0 auto;background-color:#2D2D2D;height:30px;width:100%;-webkit-user-select:none;user-select:none}
 #stefanvdnavwrappe #stefanvdpropermenubarnav{-webkit-font-smoothing:antialiased;font-family:Arial,Helvetica,sans-serif!important;font-size:13px;padding-top:4px;width:100%!important}
 #stefanvdnavwrappe #stefanvdpropermenubarnav,#stefanvdnavwrappe #stefanvdpropermenubarnav ul{padding:0;margin:0;list-style:none;font-family:Arial,Helvetica,sans-serif}
@@ -40,12 +12,9 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 #stefanvdpropermenubardropdown:hover #stefanvdpropermenubardropdowncontent{display:block}
 #stefanvdpropermenubardropdown:hover #stefanvdpropermenubardropdowncontent li{width:100%;color:#fff;text-align:left}
 #stefanvdpropermenubardropdown:hover #stefanvdpropermenubardropdowncontent li:hover{color:#fff;opacity:.8}
-
 #stefanvdpropermenubarnav{margin-left:8px!important}
-
 #stefanvdnavwrappe #stefanvdpropermenubarclose{position:absolute;top:3px;right:15px;width:24px;height:24px;font-size:12px;text-align:center;line-height:24px;font-family:verdana;cursor:pointer}
 #stefanvdnavwrappe #stefanvdpropermenubarclose:hover{background:rgba(250, 250, 250, 0.2);border-radius:24px}
-
 /* Browser menu bar */
 #stefanvdnavwrappe hr{margin:0;height:1px;background:gray;width:100%;border:0}
 #stefanvdpropermenubarbrowserdropdown{position:relative;display:inline-block}
@@ -53,9 +22,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 #stefanvdnavwrappe #panelfile li, #stefanvdnavwrappe #paneledit li, #stefanvdnavwrappe #panelview li, #stefanvdnavwrappe #panelhistory li, #stefanvdnavwrappe #panelbookmarks li, #stefanvdnavwrappe #panelwindow li, #stefanvdnavwrappe #panelhelp li{width:100%}
 #stefanvdnavwrappe #btnfile:hover #panelfile li, #stefanvdnavwrappe #btnedit:hover #paneledit li, #stefanvdnavwrappe #btnview:hover #panelview li, #stefanvdnavwrappe #btnhistory:hover #panelhistory li, #stefanvdnavwrappe #btnbookmarks:hover #panelbookmarks li, #stefanvdnavwrappe #btnwindow:hover #panelwindow li, #stefanvdnavwrappe #btnhelp:hover #panelhelp li{width:100%;color:#fff;text-align:left}
 #stefanvdnavwrappe #btnfile:hover #panelfile li:hover, #stefanvdnavwrappe #btnedit:hover #paneledit li:hover, #stefanvdnavwrappe #btnview:hover #panelview li:hover, #stefanvdnavwrappe #btnhistory:hover #panelhistory li:hover, #stefanvdnavwrappe #btnbookmarks:hover #panelbookmarks li:hover, #stefanvdnavwrappe #btnwindow:hover #panelwindow li:hover, #stefanvdnavwrappe #btnhelp:hover #panelhelp li:hover{color:#fff;opacity:.8}
-
 #stefanvdnavwrappe #btnfile:checked ~ .panelfile, #stefanvdnavwrappe #btnedit:checked ~ .paneledit, #stefanvdnavwrappe #btnview:checked ~ .panelview, #stefanvdnavwrappe #btnhistory:checked ~ .panelhistory, #stefanvdnavwrappe #btnbookmarks:checked ~ .panelbookmarks, #stefanvdnavwrappe #btnwindow:checked ~ .panelwindow, #stefanvdnavwrappe #btnhelp:checked ~ .panelhelp{display:block}
-
 #stefanvdnavwrappe input{display:none}
 @media print{
 #stefanvdpropermenubar{display:none!important}

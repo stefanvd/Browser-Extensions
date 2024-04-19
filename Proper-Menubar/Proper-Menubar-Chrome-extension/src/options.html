@@ -8,7 +8,7 @@
 
 Proper Menubar
 Add the best menu bar to get easy and fast access to all your useful browser options and internet products!
-Copyright (C) 2022 Stefan vd
+Copyright (C) 2024 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -32,14 +32,16 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 //================================================
 -->
 
-<title data-i18n="optionpagetitle"></title>
-<link rel="stylesheet" type="text/css" href="css/options.css">
-<script type="text/javascript" src="js/constants.js"></script>
-<script type="text/javascript" src="js/options.js"></script>
+<title data-i18n="optionpagetitle">Proper Menubar - Options</title>
+<link rel="stylesheet" type="text/css" href="styles/options.css">
+<script type="text/javascript" src="scripts/constants.js"></script>
+<script type="text/javascript" src="scripts/options.js"></script>
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#232323" media="(prefers-color-scheme: dark)">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link href="/images/favicon-light.png" rel="icon" media="(prefers-color-scheme: light)">
+<link href="/images/favicon-dark.png" rel="icon" media="(prefers-color-scheme: dark)">
 </head>
 <body class="light">
 
@@ -47,11 +49,11 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 <div id="loadingcenter">
 <div id="productwelcomeimageload">
 	<div class="icon">
-		<img id="loadinglamp" alt="Proper Menubar" width="16" height="16" src="icons/icon16.png" srcset="icons/icon16.png 1x, icons/icon16@2x.png 2x">Proper Menubar™</div>
+		<img id="loadinglamp" alt="Proper Menubar" width="16" height="16" src="images/icon16.png" srcset="images/icon16.png 1x, images/icon16@2x.png 2x">Proper Menubar™</div>
 	</div>
 <div id="progressbar"><div id="progress"><div id="pbaranim"></div></div></div>
 </div>
-<span id="loadinghelp"><span data-i18n="pagestillloading"></span> <a href="https://www.stefanvd.net/support/" target="_blank" data-i18n="pagehelp" rel="noopener"></a>!</span>
+<span id="loadinghelp"><span data-i18n="pagestillloading"></span> <a href="https://www.stefanvd.net/support/" target="_blank" data-i18n="pagehelp" aria-label="Help page for opening this options page" rel="noopener"></a>!</span>
 </div>
 
 <div id="main-content" role="main">
@@ -61,7 +63,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 		<div class="masterhead">
 			<div class="title" id="titleex">
 				<div class="icon">
-					<img id="headlamp" loading="lazy" width="16" height="16" alt="Proper Menubar browser extension button" src="icons/icon16.png" srcset="icons/icon16.png 1x, icons/icon16@2x.png 2x">
+					<img id="headlamp" loading="lazy" width="16" height="16" alt="Proper Menubar browser extension button" src="images/icon16.png" srcset="images/icon16.png 1x, images/icon16@2x.png 2x">
 				</div>
 				Proper Menubar™</div>
 			<div class="search">
@@ -76,7 +78,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 			</div>
 		</div>
 	</header>
-	<input type="checkbox" id="reveal-menu" role="button">
+	<input type="checkbox" id="reveal-menu" role="checkbox" aria-checked="false" aria-label="The button to open the 3 dots menu">
 	
 	<div id="md-home">
 			<label for="reveal-menu" id="menu">
@@ -126,7 +128,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 		<div id="managed-prefs-banner">
 			<div class="donate-content">
 				<span id="managed-prefs-icon">
-					<a class="donatebutton" target="_blank" href="https://www.stefanvd.net/donate/" data-i18n="titledonatebutton" rel="noopener"></a>
+					<a class="donatebutton" target="_blank" href="https://www.stefanvd.net/donate/" data-i18n="titledonatebutton" aria-label="Donate page to support Proper Menubar browser extension" rel="noopener"></a>
 				</span>
 				<span id="managed-prefs-text" data-i18n="donatepromotext"></span>
 				<div id="managed-prefs-text-close">x</div>
@@ -141,7 +143,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 			<br>
 			<section>
 				<div class="videopreview">
-					<iframe id="dont-turn-off-the-lights" class="youtube-player" title="YouTube video" type="text/html" width="auto" height="auto" src="" frameborder="0" allowfullscreen="">Your browser does not support iframes.</iframe>
+					<iframe title="Introduction Video" id="dont-turn-off-the-lights" class="youtube-player" title="YouTube video" type="text/html" width="auto" height="auto" src="" frameborder="0" allowfullscreen="">Your browser does not support iframes.</iframe>
 				</div>
 				<div class="suggpanel">
 						<div class="profile">
@@ -159,12 +161,11 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 						</div>
 				</div>
 			</section>
-			<section>
+			<section id="donateproject">
 				<div class="probox"><span data-i18n="promotitle"></span></div>
 				<div class="proboxtext">
 				<span id="promotext"></span>
-				<br><br>
-				<button id="btnpromoaction" class="proboxbutton">⇩ <span id="spnpromoaction" data-i18n="promocalltoaction"></span></button>
+				<button id="btnpromoaction" class="proboxbutton" aria-label="Download">⇩ <span id="spnpromoaction" data-i18n="promocalltoaction"></span></button>
 				</div>
 			</section>
 			<section>
@@ -252,25 +253,25 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 						<tr>
 							<td colspan="2"><select id="googlebarDomainsBox" name="menubarentryList" size="15" multiple="" aria-label="The products in the box"></select></td>
 							<td valign="top">
-								<button type="button" id="googlebarremovebutton" name="delete"><span data-i18n="deletebutton"></span></button>
+								<button type="button" id="googlebarremovebutton" name="delete" aria-label="Delete"><span data-i18n="deletebutton"></span></button>
 								<br><br>
-								<button type="button" id="googlebarupbutton" name="up"><span data-i18n="upbutton"></span></button>
+								<button type="button" id="googlebarupbutton" name="up" aria-label="Up"><span data-i18n="upbutton"></span></button>
 								<br><br>
-								<button type="button" id="googlebardownbutton" name="down"><span data-i18n="downbutton"></span></button>
+								<button type="button" id="googlebardownbutton" name="down" aria-label="Down"><span data-i18n="downbutton"></span></button>
 							</td>
 						</tr>
 					</table>
 				</form>
 			</div>
 			</section>
-			<section id="sectionreviewbox">
-			<div id="reviewextensionbox">
-				<div class="stars">★★★★★</div>
-				<div id="ayh"><span data-i18n="areyouhappy"></span></div>
-				<div id="tllo"><span data-i18n="tellothers"></span></div>
-				<div id="nt"><span data-i18n="nothanks"></span></div>
-				<div id="war"><span data-i18n="writeareview"></span></div>
-			</div>
+			<section id="sectionreviewbox">			
+				<div id="reviewextensionbox">
+					<div class="stars">★★★★★</div>
+					<div id="ayh"><span data-i18n="areyouhappy"></span></div>
+					<div id="tllo"><span data-i18n="tellothers"></span></div>
+					<div id="nt"><span data-i18n="nothanks"></span></div>
+					<div id="war"><span data-i18n="writeareview"></span></div>
+				</div>
 			</section>
 			<section>
 			<h3 id="toolbarallsites" data-i18n="titelallsites"></h3>
@@ -292,11 +293,11 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 						<tr>
 							<td><span data-i18n="titelwebsite"></span>:</td>
 							<td><input id="toolbarwebsiteurl" type="url" required pattern="(https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*))|((https?|ftp)://)?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})" placeholder="https://www.example.com"aria-label="The URL box to type a website for the Finance feature"></td>
-							<td><button type="submit" id="toolbaraddbutton" name="add"><span data-i18n="addbutton"></span></button></td>
+							<td><button type="submit" id="toolbaraddbutton" name="add" aria-label="Add"><span data-i18n="addbutton"></span></button></td>
 						</tr>
 						<tr>
 							<td colspan="2"><select id="toolbarDomainsBox" name="toolbarentryList" size="3" multiple="" aria-label="The website URLs in the box"></select></td>
-							<td valign="top"><button type="button" id="toolbarremovebutton" name="delete"><span data-i18n="deletebutton"></span></button></td>
+							<td valign="top"><button type="button" id="toolbarremovebutton" name="delete"  aria-label="Delete"><span data-i18n="deletebutton"></span></button></td>
 						</tr>
 					</table>
 				</form>
@@ -355,17 +356,34 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 			</div>
 			</section>
 			<section>
-			<div class="grey-text"><span data-i18n="googletrademark"></span></div>
+			<div class="gray-text"><span data-i18n="googletrademark"></span></div>
 			</section>
 			</div>
 			<div id="tab2" class="page hidden">
 			<h2 data-i18n="designmarquee"></h2>
 			<section>
+				<h3 id="head2"><span data-i18n="titleicon"></span></h3>
+				<div>
+					<div class="md-desbox">
+						<div><span data-i18n="head2"></span></div>
+					</div>
+					<br>
+					<div class="minibrowserpreview">
+						<div class="columnA">
+						<div class="browserbuttons"><img id="p0" alt="Page Sidebar" class="buttoncolor lightbackground" src="images/icon38.png"><img id="p1" alt="Page Sidebar" class="buttoncolor darkbackground" src="images/icon38white.png"></div>
+						<br>
+						</div>
+						<div class="columnB"><div class="activebutton"><img id="btnpreview" alt="Page Sidebar" name="preview" class="buttoncolor" src="images/icon38.png"></div><div class="browserpreview"></div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section>
 			<h3 data-i18n="titelcountry"></h3>
 			<div>
 			<div>
 				<div class="md-number">
-					<label for="country"><div><span data-i18n="descountry"></span> <input type="text" min="1" max="30" step="1" value="com" name="country" id="country" maxlength="6" size="4"></div></label>
+					<label for="country"><div><span data-i18n="descountry"></span> <input type="text" min="1" max="30" step="1" value="com" name="country" id="country" maxlength="6" size="4" autocomplete="off"></div></label>
 				</div>
 			</div>
 			</section>
@@ -382,22 +400,22 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 			<div>
 				<div class="md-color">
 					<div class="input-color-container">
-						<input id="fontcolor" type="color" class="color" list="datalightcolor">
-						<datalist id="datalightcolor">
-						<option>#FFFFFF</option>
-						<option>#FF0000</option>
-						<option>#FF7700</option>
-						<option>#FFEE00</option>
-						<option>#00FF00</option>
-						<option>#008000</option>
-						<option>#3CB4FE</option>
-						<option>#0000FF</option>
-						<option>#808080</option>
-						<option>#000000</option>
-						</datalist>
+						<input id="fontcolor" type="color" class="color" aria-label="Color" list="datalightcolor">
 					</div>
 					<label for="fontcolor"><div><span data-i18n="desfontcolor"></span></div></label>
 				</div>
+				<datalist id="datalightcolor">
+					<option>#FFFFFF</option>
+					<option>#FF0000</option>
+					<option>#FF7700</option>
+					<option>#FFEE00</option>
+					<option>#00FF00</option>
+					<option>#008000</option>
+					<option>#3CB4FE</option>
+					<option>#0000FF</option>
+					<option>#808080</option>
+					<option>#000000</option>
+				</datalist>
 			</div>
 			</section>
 			<section>
@@ -416,9 +434,9 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 			<div>
 				<div class="md-color">
 					<div class="input-color-container">
-						<input id="hoverbackground" type="color" class="color" list="datalightcolor">
+						<input id="hoverbackground" type="color" class="color" aria-label="Color" list="datalightcolor">
 					</div>
-					<label class="checkbox"><span data-i18n="deshoverbackground"></span></label>
+					<label for="hoverbackground" class="checkbox"><div><span data-i18n="deshoverbackground"></span></div></label>
 				</div>
 			</div>
 			</section>
@@ -440,7 +458,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				</div>
 				<div class="md-color">
 					<div class="input-color-container">
-					<input id="backgroundhex" type="color"> 
+					<input id="backgroundhex" type="color" class="color" aria-label="Color" list="datalightcolor"> 
 					</div>
 				</div>
 				<div class="md-number">
@@ -463,6 +481,15 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 			<div id="tab4" class="page hidden">
 				<h2 data-i18n="advancedoptions"></h2>
 				<section>
+					<h3 id="contextstyle" data-i18n="titelcontextmenu"></h3>
+					<div>
+						<div class="md-checkbox">
+							<input id="contextmenus" type="checkbox" role="checkbox" aria-checked="false" aria-labelledby="contextmenus">
+							<label for="contextmenus"><div><span data-i18n="descontextmenu"></span></div></label>
+						</div>
+					</div>
+				</section>
+				<section>
 				<h3 data-i18n="titelrememberpage"></h3>
 				<div>
 					<div class="md-checkbox">	
@@ -474,23 +501,23 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				<section>
 				<h3 data-i18n="titelpermission"></h3>
 				<div>
-					<label><button id="removepermissioncopy" data-i18n="despermissioncopy"></button></label>
+					<label><button id="removepermissioncopy" data-i18n="despermissioncopy" aria-label="Copy permission"></button></label>
 					<br><br>
-					<label><button id="removepermissionpaste" data-i18n="despermissionpaste"></button></label>
+					<label><button id="removepermissionpaste" data-i18n="despermissionpaste" aria-label="Paste permission"></button></label>
 					<br><br>
-					<label><button id="removepermissionmhtml" data-i18n="despermissionmhtml"></button></label>
+					<label><button id="removepermissionmhtml" data-i18n="despermissionmhtml" aria-label="MHTML permission"></button></label>
 					<br><br>
-					<label><button id="removepermissionbookmark" data-i18n="despermissionbookmark"></button></label>
+					<label><button id="removepermissionbookmark" data-i18n="despermissionbookmark" aria-label="Bookmark permission"></button></label>
 				</div>
 				</section>
 				<section>
 				<h3 data-i18n="titelsync"></h3>
-				<div class="grey-text"><span data-i18n="titelsyncbrowser"></span></div>
+				<div class="gray-text"><span data-i18n="titelsyncbrowser"></span></div>
 				</section>
 				<section>
 				<h3 data-i18n="titelreset"></h3>
 				<div>
-					<label><button id="resetpropermenubar" data-i18n="resetbrowserextension"></button></label>
+					<label><button id="resetpropermenubar" data-i18n="resetbrowserextension" aria-label="Reset"></button></label>
 				</div>
 				</section>
 			</div>
@@ -498,7 +525,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 			<h2 data-i18n="about"></h2>
 			<section>
 				<div>
-				<h4>Proper Menubar™</h4>
+				<h3>Proper Menubar™</h3>
 				<span data-i18n="version"></span> <span id="version_number"></span>
 				<br>
 				<span data-i18n="description"></span>
@@ -510,12 +537,12 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				<br>
 				<br>
 				<div class="aboutbuttons">
-				<button id="buttonreportissue" data-i18n="reportbug"></button><button id="buttonchangelog" data-i18n="changelog"></button><button id="buttontranslateme" data-i18n="translateme"></button>
+				<button id="buttonreportissue" data-i18n="reportbug" aria-label="Report bug"></button><button id="buttonchangelog" data-i18n="changelog" aria-label="Changelog"></button><button id="buttontranslateme" data-i18n="translateme" aria-label="Translate"></button>
 				</div>
 				<br>
 				<div id="permissionlist"></div>
 				<br><br><br><br><br>
-				<div class="grey-text">
+				<div class="gray-text">
 				Proper Menubar<br>
 				<span>&copy; <span id="yearnow"></span> Stefan vd. <span data-i18n="titelrightsreserved"></span></span><br>
 				<span data-i18n="textfoot"></span> <a href="http://creativecommons.org/licenses/GPL/2.0/">GPL 2.0</a>.
@@ -525,7 +552,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 			</div>
 		</div>
 		<div id="tab3" class="page hidden">
-			<iframe id="welcomeguide" src="" width="100%" height="100%" frameBorder="0" scrolling="no"></iframe>
+			<iframe id="welcomeguide" title="Welcome Guide" src="" width="100%" height="100%" frameBorder="0" scrolling="no">Your browser does not support iframes.</iframe>
 		</div>
 	</div>
 <!-- dialog -->
@@ -607,6 +634,6 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 	</ul>
 </div>
 </div>
-<script type="text/javascript" src="js/translate.js"></script>
+<script type="text/javascript" src="scripts/translate.js"></script>
 </body>
 </html>

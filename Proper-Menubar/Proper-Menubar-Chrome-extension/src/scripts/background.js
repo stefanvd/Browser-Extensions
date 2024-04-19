@@ -3,7 +3,7 @@
 
 Proper Menubar
 Add the best menu bar to get easy and fast access to all your useful browser options and internet products!
-Copyright (C) 2022 Stefan vd
+Copyright (C) 2024 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -29,6 +29,37 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 // Importing the constants
 // eslint-disable-next-line no-undef
 importScripts("constants.js");
+
+// Not for Safari web browser, it use the content script way in the manifest.json file
+// because Safari 15.4 and 16.0 do not support script "injectImmediately" and not stable "webNavigation.onCommitted" on iOS
+// Inject before displaying the website
+if(exbrowser != "safari"){
+	chrome.webNavigation.onCommitted.addListener(({tabId, frameId, url}) => {
+		// Filter out non main window events.
+		if(frameId !== 0)return;
+		setTabView(tabId, url);
+	});
+}
+
+function setTabView(tabId, url){
+	if(tabId >= 0){
+		if(url.match(/^http/i) || url.match(/^file/i)){
+			chrome.scripting.executeScript({
+				target: {tabId: tabId},
+				files: ["scripts/content.js"],
+				injectImmediately: true
+			}, function(){
+				if(chrome.runtime.lastError){
+					// if current tab do not have the content.js and can not send the message to local chrome:// page.
+					// The line will excute, and log 'ERROR:  {message: "Could not establish connection. Receiving end does not exist."}'
+					// console.log("ERROR: ", chrome.runtime.lastError);
+				}
+				// viewController.setactionzoom(tabId, viewSettings)
+			});
+		}
+	}
+}
+//---
 
 var saveAs = function(blob, name){
 	var object_url = window.URL.createObjectURL(blob);
@@ -372,6 +403,7 @@ chrome.runtime.onMessage.addListener(function request(request, sender, sendRespo
 	}else if(request.name == "contextmenuoff"){
 		removecontexmenus();
 	}
+	return true;
 });
 
 // update when refresh on the tab
@@ -582,8 +614,62 @@ function onchangestorage(a, b, c, d){
 	}
 }
 
+async function getCurrentTab(){
+	let queryOptions = {active: true, currentWindow: true};
+	let tabs = await chrome.tabs.query(queryOptions);
+	return tabs[0];
+}
+
+chrome.storage.sync.get(["icon"], function(items){
+	if(items["icon"] == undefined){
+		if(exbrowser == "safari"){
+			items["icon"] = "/images/icon38.png";
+		}else{
+			items["icon"] = "/images/icon38.png";
+		}
+	}
+	chrome.action.setIcon({
+		path : {
+			"19": items["icon"],
+			"38": items["icon"]
+		}
+	});
+});
+
+// update on refresh tab
+chrome.tabs.onUpdated.addListener(function(){
+	getCurrentTab().then((thattab) => {
+		chrome.storage.sync.get(["icon"], function(items){
+			if(items["icon"] == undefined){
+				if(exbrowser == "safari"){
+					items["icon"] = "/images/icon38.png";
+				}else{
+					items["icon"] = "/images/icon38.png";
+				}
+			}
+			chrome.action.setIcon({tabId : thattab.id, path : {"19": items["icon"], "38": items["icon"]}});
+		});
+	});
+});
+
 chrome.storage.onChanged.addListener(function(changes){
 	onchangestorage(changes, "contextmenus", checkcontextmenus, removecontexmenus);
+	if(changes["icon"]){
+		if(changes["icon"].newValue){
+			chrome.tabs.query({}, function(tabs){
+				var i, l = tabs.length;
+				for(i = 0; i < l; i++){
+					chrome.action.setIcon({tabId : tabs[i].id,
+						path : {
+							"19": changes["icon"].newValue,
+							"38": changes["icon"].newValue
+						}
+					});
+				}
+			}
+			);
+		}
+	}
 	if(changes["googleproducts"]){ if(changes["googleproducts"].newValue){ refreshtoolbar(); } }
 	if(changes["menuproducts"]){ if(changes["menuproducts"].newValue){ refreshtoolbar(); } }
 	if(changes["googlebarDomains"]){ if(changes["googlebarDomains"].newValue){ refreshtoolbar(); } }
@@ -636,7 +722,6 @@ TODO
    https://stackoverflow.com/questions/50257057/how-to-navigate-through-li-elements-using-arrow-keys-jquery
    https://jsfiddle.net/7teo1r5h/2/
 + popup panel design
-+ FIX THIS add context menu (toggle menubar)
 + FIX THIS: Uncaught (in promise) Error: Could not establish connection. Receiving end does not exist.
-+ FIX THIS: Double command in keyboard??
+
 */

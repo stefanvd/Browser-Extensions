@@ -3,7 +3,7 @@
 
 Proper Menubar
 Add the best menu bar to get easy and fast access to all your useful browser options and internet products!
-Copyright (C) 2022 Stefan vd
+Copyright (C) 2024 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -45,7 +45,7 @@ function save_options(){
 	var googlebarDomains = {};
 	for(var j = 0; j < googlebarDomainsBox.length; j++){ googlebarDomains[googlebarDomainsBox.options[j].value] = true; }
 
-	chrome.storage.sync.set({"opacity": $("opacity").value, "country":$("country").value, "backgroundhex":$("backgroundhex").value, "backgroundimagesource":$("backgroundimagesource").value, "backgroundcolor":$("backgroundcolor").checked, "backgroundimage":$("backgroundimage").checked, "dropshadow":$("dropshadow").checked, "allsites":$("allsites").checked, "fontcolor":$("fontcolor").value, "googlesites":$("googlesites").checked, "search":$("search").checked, "existingtab":$("existingtab").checked, "toolbarDomains": JSON.stringify(toolbarDomains), "optionskipremember":$("optionskipremember").checked, "display":$("display").value, "hovertextcolor":$("hovertextcolor").value, "hoverbackground":$("hoverbackground").value, "getpositiontop": $("getpositiontop").checked, "getpositionbottom": $("getpositionbottom").checked, "toolbarwhite": $("toolbarwhite").checked, "toolbarblack": $("toolbarblack").checked, "toolbaronly":$("toolbaronly").checked, "googleproducts":$("googleproducts").checked, "menuproducts":$("menuproducts").checked, "googlebarDomains": JSON.stringify(googlebarDomains), "hovermenu": $("hovermenu").checked});
+	chrome.storage.sync.set({"icon": $("btnpreview").src, "opacity": $("opacity").value, "country":$("country").value, "backgroundhex":$("backgroundhex").value, "backgroundimagesource":$("backgroundimagesource").value, "backgroundcolor":$("backgroundcolor").checked, "backgroundimage":$("backgroundimage").checked, "dropshadow":$("dropshadow").checked, "allsites":$("allsites").checked, "fontcolor":$("fontcolor").value, "googlesites":$("googlesites").checked, "search":$("search").checked, "existingtab":$("existingtab").checked, "toolbarDomains": JSON.stringify(toolbarDomains), "optionskipremember":$("optionskipremember").checked, "display":$("display").value, "hovertextcolor":$("hovertextcolor").value, "hoverbackground":$("hoverbackground").value, "getpositiontop": $("getpositiontop").checked, "getpositionbottom": $("getpositionbottom").checked, "toolbarwhite": $("toolbarwhite").checked, "toolbarblack": $("toolbarblack").checked, "toolbaronly":$("toolbaronly").checked, "googleproducts":$("googleproducts").checked, "menuproducts":$("menuproducts").checked, "googlebarDomains": JSON.stringify(googlebarDomains), "hovermenu": $("hovermenu").checked, "contextmenus": $("contextmenus").checked});
 }
 
 var firstdefaultvalues = {};
@@ -159,7 +159,8 @@ function read_options(){
 		showhidemodal("materialModalYouTube", "hide", "true");
 	}
 
-	chrome.storage.sync.get(["firstDate", "opacity", "country", "backgroundhex", "backgroundimagesource", "backgroundcolor", "backgroundimage", "googlesites", "dropshadow", "allsites", "fontcolor", "search", "existingtab", "propermenuDomains", "countremember", "optionskipremember", "display", "hovertextcolor", "hoverbackground", "firstsawrate", "introduce", "getpositiontop", "getpositionbottom", "toolbarwhite", "toolbarblack", "toolbaronly", "googleproducts", "menuproducts", "googlebarDomains", "toolbarDomains", "hovermenu"], function(items){
+	chrome.storage.sync.get(["icon", "firstDate", "opacity", "country", "backgroundhex", "backgroundimagesource", "backgroundcolor", "backgroundimage", "googlesites", "dropshadow", "allsites", "fontcolor", "search", "existingtab", "propermenuDomains", "countremember", "optionskipremember", "display", "hovertextcolor", "hoverbackground", "firstsawrate", "introduce", "getpositiontop", "getpositionbottom", "toolbarwhite", "toolbarblack", "toolbaronly", "googleproducts", "menuproducts", "googlebarDomains", "toolbarDomains", "hovermenu", "contextmenus"], function(items){
+		if(items["icon"]){ $("btnpreview").src = items["icon"]; }
 		if(items["opacity"]){ $("opacity").value = items["opacity"]; }else{ $("opacity").value = "100"; }
 		if(items["country"]){ $("country").value = items["country"]; }else{ $("country").value = "com"; }
 		if(items["backgroundhex"]){ $("backgroundhex").value = items["backgroundhex"]; }else{ $("backgroundhex").value = "#2D2D2D"; }
@@ -184,6 +185,7 @@ function read_options(){
 		if(items["googleproducts"] == true)$("googleproducts").checked = true;
 		if(items["menuproducts"] == true)$("menuproducts").checked = true;
 		if(items["hovermenu"] == true)$("hovermenu").checked = true;
+		if(items["contextmenus"] == true)$("contextmenus").checked = true;
 
 		// show remember page
 		var firstmonth = false;
@@ -748,6 +750,27 @@ function domcontentloaded(){
 
 	// Close yellow bar
 	$("managed-prefs-text-close").addEventListener("click", function(){ $("managed-prefs-banner").style.display = "none"; });
+	$("p0").addEventListener("click", function(){
+		var custombrowser = "";
+		if(exbrowser == "safari"){ custombrowser = "/images/icon38.png"; }else{ custombrowser = "/images/icon38.png"; }
+		setpreviewicon(custombrowser);
+	});
+	$("p1").addEventListener("click", function(){
+		var custombrowser = "";
+		custombrowser = "/images/icon38white.png";
+		setpreviewicon(custombrowser);
+	});
+
+	function setpreviewicon(a){
+		document.images["btnpreview"].setAttribute("data-icon", a); document.images["btnpreview"].src = a; save_options();
+	}
+
+	// save browser icon styles
+	var buttoncolor = document.getElementsByClassName("buttoncolor");
+	var r, v = buttoncolor.length;
+	for(r = 0, v; r < v; r++){
+		buttoncolor[r].addEventListener("click", save_options);
+	}
 
 	// Move up
 	$("googlebarupbutton").addEventListener("click", function(){ moveproductup(); });

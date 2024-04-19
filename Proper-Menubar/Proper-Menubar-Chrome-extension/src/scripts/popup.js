@@ -3,7 +3,7 @@
 
 Proper Menubar
 Add the best menu bar to get easy and fast access to all your useful browser options and internet products!
-Copyright (C) 2022 Stefan vd
+Copyright (C) 2024 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -316,7 +316,7 @@ function addtoolbar(){
 			css.setAttribute("id", "csspropermenubar");
 			css.type = "text/css";
 			css.appendChild(document.createTextNode(pmcssbar));
-			document.body.appendChild(css);
+			document.head.appendChild(css);
 		}catch(e){
 			// console.log(e);
 		}
