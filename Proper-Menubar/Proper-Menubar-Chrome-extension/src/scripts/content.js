@@ -257,6 +257,11 @@ function removetoolbar(){
 	if(checkc){
 		document.body.removeChild(checkc);
 	}
+
+	el = null;
+	newtoolbardiv = null;
+	newtoolbarul = null;
+	numberitems = 0;
 }
 
 var i18nlink1a = chrome.i18n.getMessage("link1a");
@@ -458,7 +463,6 @@ function addtoolbar(){
 			document.body.insertBefore(divblock, document.body.firstChild);
 		}
 
-
 		var frame = document.createElement("proper-menubar");
 		frame.setAttribute("id", "stefanvdpropermenubar");
 		frame.setAttribute("role", "toolbar");
@@ -496,7 +500,7 @@ function addtoolbar(){
 		link.id = "csspalette";
 		link.rel = "stylesheet";
 		link.type = "text/css";
-		link.href = chrome.runtime.getURL("styles/body.css");
+		link.href = chrome.runtime.getURL("styles/toolbar.css");
 		link.media = "all";
 		// wait for the CSS is loaded, then show the bar
 		link.onload = function(){
@@ -688,17 +692,20 @@ function addtoolbar(){
 				if(SD("link21s")){ SD("link21s").addEventListener("click", function(){ propopenurl(productlinksearch21, pushnewtab); }, false); }
 			}
 		}else{
+			// Regular file menu bar
 			document.addEventListener("click", function(event){
-				if(event.target.id == "btnfile" || event.target.id == "btnedit" || event.target.id == "btnview" || event.target.id == "btnhistory" || event.target.id == "btnbookmarks" || event.target.id == "btnwindow" || event.target.id == "btnhelp" || event.target.id == "stefanvdpropermenubar"){
-					// console.log(event);
-				}else{
-					SD("btnfile").checked = false;
-					SD("btnedit").checked = false;
-					SD("btnview").checked = false;
-					SD("btnhistory").checked = false;
-					SD("btnbookmarks").checked = false;
-					SD("btnwindow").checked = false;
-					SD("btnhelp").checked = false;
+				if(menuproducts == true){
+					if(event.target.id == "btnfile" || event.target.id == "btnedit" || event.target.id == "btnview" || event.target.id == "btnhistory" || event.target.id == "btnbookmarks" || event.target.id == "btnwindow" || event.target.id == "btnhelp" || event.target.id == "stefanvdpropermenubar"){
+						// console.log(event);
+					}else{
+						SD("btnfile").checked = false;
+						SD("btnedit").checked = false;
+						SD("btnview").checked = false;
+						SD("btnhistory").checked = false;
+						SD("btnbookmarks").checked = false;
+						SD("btnwindow").checked = false;
+						SD("btnhelp").checked = false;
+					}
 				}
 			});
 
@@ -844,7 +851,7 @@ function addtoolbar(){
 			}, false);
 			createmenubar(i18nmenu44a, ["menu44s", ""], "panelwindow", i18nmenuwindow, rootwindow);
 			SD("menu44s").addEventListener("click", function(){
-				chrome.runtime.sendMessage({name: "stefanzoom"});
+				chrome.runtime.sendMessage({name: "stefanmaximize"});
 			}, false);
 			createline("panelwindow");
 			createmenubar(i18nmenu15a, ["menu15s", ""], "panelwindow", i18nmenuwindow, rootwindow);
@@ -927,6 +934,109 @@ function addtoolbar(){
 			SD("menu17s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanchromeabout"});
 			}, false);
+
+			// Begin shorcut to move to left, right, up and down
+			const menuRootItems = el.shadowRoot.querySelectorAll("#btnfile + a, #btnhelp + a, #btnedit + a, #btnview + a, #btnhistory + a, #btnbookmarks + a, #btnwindow + a");
+			let activeMenuItemFile = 0;
+			let activeMenuItemHelp = 0;
+			let activeMenuItemEdit = 0;
+			let activeMenuItemView = 0;
+			let activeMenuItemHistory = 0;
+			let activeMenuItemBookmarks = 0;
+			let activeMenuItemWindow = 0;
+			let currentRootIndex = 0;
+
+			document.addEventListener("keydown", function(event){
+				if(menuproducts == true){
+					if(event.key === "ArrowDown" || event.key === "ArrowUp"){
+						event.preventDefault();
+						const direction = event.key === "ArrowDown" ? 1 : -1;
+						let activeMenuItem;
+						let menuItemsArray;
+						if(el.shadowRoot.getElementById("btnfile").checked){
+							activeMenuItem = activeMenuItemFile;
+							menuItemsArray = Array.from(el.shadowRoot.querySelectorAll(".panelfile a"));
+						}else if(el.shadowRoot.getElementById("btnhelp").checked){
+							activeMenuItem = activeMenuItemHelp;
+							menuItemsArray = Array.from(el.shadowRoot.querySelectorAll(".panelhelp a"));
+						}else if(el.shadowRoot.getElementById("btnedit").checked){
+							activeMenuItem = activeMenuItemEdit;
+							menuItemsArray = Array.from(el.shadowRoot.querySelectorAll(".paneledit a"));
+						}else if(el.shadowRoot.getElementById("btnview").checked){
+							activeMenuItem = activeMenuItemView;
+							menuItemsArray = Array.from(el.shadowRoot.querySelectorAll(".panelview a"));
+						}else if(el.shadowRoot.getElementById("btnhistory").checked){
+							activeMenuItem = activeMenuItemHistory;
+							menuItemsArray = Array.from(el.shadowRoot.querySelectorAll(".panelhistory a"));
+						}else if(el.shadowRoot.getElementById("btnbookmarks").checked){
+							activeMenuItem = activeMenuItemBookmarks;
+							menuItemsArray = Array.from(el.shadowRoot.querySelectorAll(".panelbookmarks a"));
+						}else if(el.shadowRoot.getElementById("btnwindow").checked){
+							activeMenuItem = activeMenuItemWindow;
+							menuItemsArray = Array.from(el.shadowRoot.querySelectorAll(".panelwindow a"));
+						}
+						if(menuItemsArray && menuItemsArray.length > 0){
+							const newIndex = (activeMenuItem + direction + menuItemsArray.length) % menuItemsArray.length;
+							switch(true){
+							case el.shadowRoot.getElementById("btnfile").checked:
+								activeMenuItemFile = newIndex;
+								break;
+							case el.shadowRoot.getElementById("btnhelp").checked:
+								activeMenuItemHelp = newIndex;
+								break;
+							case el.shadowRoot.getElementById("btnedit").checked:
+								activeMenuItemEdit = newIndex;
+								break;
+							case el.shadowRoot.getElementById("btnview").checked:
+								activeMenuItemView = newIndex;
+								break;
+							case el.shadowRoot.getElementById("btnhistory").checked:
+								activeMenuItemHistory = newIndex;
+								break;
+							case el.shadowRoot.getElementById("btnbookmarks").checked:
+								activeMenuItemBookmarks = newIndex;
+								break;
+							case el.shadowRoot.getElementById("btnwindow").checked:
+								activeMenuItemWindow = newIndex;
+								break;
+							default:
+								break;
+							}
+							menuItemsArray[newIndex].focus();
+						}
+					}else if(event.key === "ArrowLeft" || event.key === "ArrowRight"){
+						event.preventDefault();
+						const newIndex = event.key === "ArrowRight" ? (currentRootIndex + 1) % menuRootItems.length : (currentRootIndex - 1 + menuRootItems.length) % menuRootItems.length;
+						const nextCheckbox = menuRootItems[newIndex].previousElementSibling;
+						if(nextCheckbox){
+							const prevCheckbox = menuRootItems[currentRootIndex].previousElementSibling;
+							if(prevCheckbox){
+								prevCheckbox.checked = false;
+								prevCheckbox.nextElementSibling.style.display = "none";
+							}
+							nextCheckbox.checked = !nextCheckbox.checked;
+							nextCheckbox.nextElementSibling.style.display = "block";
+							menuRootItems[newIndex].focus();
+							currentRootIndex = newIndex;
+							// Reset active item index for the opened flyout
+							activeMenuItemFile = -1;
+							activeMenuItemHelp = -1;
+							activeMenuItemEdit = -1;
+							activeMenuItemView = -1;
+							activeMenuItemHistory = -1;
+							activeMenuItemBookmarks = -1;
+							activeMenuItemWindow = -1;
+						}
+					}else if(event.key === "Enter"){
+						event.preventDefault();
+						const focusedElement = el.shadowRoot.activeElement;
+						if(focusedElement){
+							focusedElement.click();
+						}
+					}
+				}
+			});
+			// End shortcut
 
 		}
 	}
@@ -1024,7 +1134,7 @@ function fileSelected(input){
 var addbar = null; var dropshadow = null; var allsites = null; var toolbaronly = null; var toolbarDomains = null; var getpositiontop = null; var getpositionbottom = null; var toolbarwhite = null; var toolbarblack = null;
 var opacity = null; var backgroundcolor = null; var backgroundhex = null; var backgroundimagesource = null; var backgroundimage = null; var country = null; var fontcolor = null; var googlesites = null; var search = null; var existingtab = null; var display = null; var hovertextcolor = null; var hoverbackground = null; var googleproducts = null; var menuproducts = null; var googlebarDomains = null, hovermenu = null;
 
-chrome.runtime.onMessage.addListener(function(request){
+chrome.runtime.onMessage.addListener(function request(request){
 	if(request.action == "goselectall"){
 		var range = document.createRange();
 		range.selectNode(document.body);
@@ -1042,6 +1152,16 @@ chrome.runtime.onMessage.addListener(function(request){
 		window.history.back();
 	}else if(request.action == "goforward"){
 		window.history.forward();
+	}else if(request.action == "gofocus"){
+		const firstRootMenuItem = el.shadowRoot.querySelectorAll("#btnfile")[0];
+		const btnFile = el.shadowRoot.getElementById("btnfile");
+		if(btnFile){
+			const firstAnchor = firstRootMenuItem;
+			if(firstAnchor){
+				firstAnchor.focus();
+				firstAnchor.click();
+			}
+		}
 	}else if(request.action == "addremove"){
 		chrome.storage.sync.get(["country", "addbar", "dropshadow", "toolbarDomains", "allsites", "toolbaronly", "getpositiontop", "getpositionbottom", "toolbarwhite", "toolbarblack", "backgroundhex", "backgroundimagesource", "opacity", "backgroundcolor", "backgroundimage", "allsites", "fontcolor", "googlesites", "search", "existingtab", "display", "hovertextcolor", "hoverbackground", "googleproducts", "menuproducts", "googlebarDomains", "hovermenu"], function(items){
 			country = items.country;
@@ -1146,7 +1266,6 @@ chrome.runtime.onMessage.addListener(function(request){
 				removetoolbar();
 			}
 		});
-
 	}else if(request.action == "toolbarrefresh"){
 		chrome.storage.sync.get(["country", "addbar", "dropshadow", "toolbarDomains", "allsites", "toolbaronly", "getpositiontop", "getpositionbottom", "toolbarwhite", "toolbarblack", "backgroundhex", "backgroundimagesource", "opacity", "backgroundcolor", "backgroundimage", "allsites", "fontcolor", "googlesites", "search", "existingtab", "display", "hovertextcolor", "hoverbackground", "googleproducts", "menuproducts", "googlebarDomains"], function(items){
 			country = items.country;
@@ -1184,10 +1303,16 @@ chrome.runtime.onMessage.addListener(function(request){
 			hoverbackground = items["hoverbackground"]; if(hoverbackground == null)hoverbackground = "#444444";
 			googleproducts = items["googleproducts"]; if(googleproducts == null)googleproducts = false;
 			menuproducts = items["menuproducts"]; if(menuproducts == null)menuproducts = true;
-			removetoolbar();
-			addtoolbar();
+			hovermenu = items["hovermenu"]; if(hovermenu == null)hovermenu = true;
+
+			// refresh it
+			if(addbar == true){
+				removetoolbar();
+				addtoolbar();
+			}
 			// window.location.reload();
 		});
+
 	}
 
 });

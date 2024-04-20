@@ -73,10 +73,10 @@ var saveAs = function(blob, name){
 chrome.runtime.onMessage.addListener(function request(request, sender, sendResponse){
 	if(request.name == "stefanproper"){
 		chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
-			for(var i = 0; i < tabs.length; i++){
-				chrome.tabs.sendMessage(tabs[i].id, {action: "addremove"});
-			}
+			var tab = tabs[0];
+			chrome.tabs.sendMessage(tab.id, {action: "addremove"});
 		});
+		sendResponse(true);
 	}else if(request.name == "stefancleannewtab"){
 		chrome.tabs.create({url: browsernewtab});
 	}else if(request.name == "stefancleannewwindow"){
@@ -327,6 +327,7 @@ chrome.runtime.onMessage.addListener(function request(request, sender, sendRespo
 				chrome.storage.sync.set({"addbar": false});
 				chrome.tabs.sendMessage(tabs[i].id, {action: "addremove"});
 			}
+			sendResponse(true);
 		}
 		);
 	}else if(request.name == "stefanprint"){
@@ -406,26 +407,18 @@ chrome.runtime.onMessage.addListener(function request(request, sender, sendRespo
 	return true;
 });
 
-// update when refresh on the tab
-/* chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-		if((tab.url.match(/^http/i))){
-            chrome.tabs.query({active: true}, function (tabs) {
-                for (var i = 0; i < tabs.length; i++) {
-                    chrome.tabs.sendMessage(tabs[i].id, {action: "addremove"});
-                    }
-                }
-            );
-		}
-});*/
-
 // update when click on the tab
-chrome.tabs.onHighlighted.addListener(function(){
-	chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
-		for(var i = 0; i < tabs.length; i++){
-			chrome.tabs.sendMessage(tabs[i].id, {action: "addremove"});
-		}
-	}
-	);
+chrome.tabs.onHighlighted.addListener(function(tabs){
+	var currentTabId = tabs.tabIds[0];
+	chrome.tabs.get(currentTabId, function(tab){
+		chrome.tabs.sendMessage(tab.id, {action: "toolbarrefresh"}, function(){
+			if(chrome.runtime.lastError){
+				// console.log("Menu Error: " + chrome.runtime.lastError.message);
+				// content script is not added here
+				// need to refresh the web page
+			}
+		});
+	});
 });
 
 // contextMenus
@@ -594,16 +587,32 @@ function togglebar(){
 	});
 }
 
+function togglefocus(){
+	chrome.tabs.query({active: true}, function(tabs){
+		for(var i = 0; i < tabs.length; i++){
+			chrome.tabs.sendMessage(tabs[i].id, {action: "gofocus"});
+		}
+	});
+}
+
 chrome.commands.onCommand.addListener(function(command){
 	if(command == "toggle-feature-propermenubar"){
 		togglebar();
+	}else if(command == "toggle-feature-focus"){
+		togglefocus();
 	}
 });
 
 function refreshtoolbar(){
-	chrome.tabs.query({}, function(tabs){
+	chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
 		for(var i = 0; i < tabs.length; ++i){
-			chrome.tabs.sendMessage(tabs[i].id, {action: "toolbarrefresh"});
+			chrome.tabs.sendMessage(tabs[i].id, {action: "toolbarrefresh"}, function(){
+				if(chrome.runtime.lastError){
+					// console.log("Menu Error: " + chrome.runtime.lastError.message);
+					// content script is not added here
+					// need to refresh the web page
+				}
+			});
 		}
 	});
 }
@@ -713,15 +722,3 @@ function installation(){
 chrome.runtime.onInstalled.addListener(function(){
 	installation();
 });
-
-
-/*
-TODO
-+ emails features
-+ shortcut key focus menu item one by one
-   https://stackoverflow.com/questions/50257057/how-to-navigate-through-li-elements-using-arrow-keys-jquery
-   https://jsfiddle.net/7teo1r5h/2/
-+ popup panel design
-+ FIX THIS: Uncaught (in promise) Error: Could not establish connection. Receiving end does not exist.
-
-*/

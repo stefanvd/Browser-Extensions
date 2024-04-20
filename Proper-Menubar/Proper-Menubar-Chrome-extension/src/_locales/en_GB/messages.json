@@ -9,7 +9,7 @@
   "descountry": {"message": "Type here your country website code (or 'com' for international):"},
   "description": {"message": "Add the best menu bar to get easy and fast access to all your useful browser options and internet products!"},
   "desfontcolor": {"message": "Change the color of the links"},
-  "desgooglesites": {"message": "Show the bar only on Google websites (normal use)"},
+  "desgooglesites": {"message": "Show the bar only on Google websites"},
   "designmenubar": {"message": "Design"},
   "desmenubar": {"message": "Check the following elements if you want to see this in the menubar:"},
   "desopacity": {"message": "with an opacity of"},

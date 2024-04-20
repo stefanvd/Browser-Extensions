@@ -32,6 +32,7 @@
   "content_scripts": [
     {
       "matches": ["*://*/*"],
+      "css" : ["styles/body.css"],
       "js": ["scripts/constants.js"],
       "run_at": "document_end"
     }
@@ -43,7 +44,7 @@
     "images/slice4.png",
     "images/slice5.png",
     "images/slice6.png",
-    "styles/body.css"],
+    "styles/toolbar.css"],
     "matches": ["<all_urls>"],
     "use_dynamic_url": true
   }],
@@ -60,6 +61,13 @@
         "mac": "MacCtrl+Shift+P"
       },
       "description": "__MSG_titelshortproper__"
+    },
+    "toggle-feature-focus": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+1",
+        "mac": "MacCtrl+Shift+1"
+      },
+      "description": "__MSG_titelshortfocus__"
     }
   },
   "options_ui": {
