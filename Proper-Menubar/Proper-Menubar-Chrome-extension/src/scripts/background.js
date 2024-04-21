@@ -41,8 +41,8 @@ if(exbrowser != "safari"){
 	});
 }
 
-// screen-shader.js = Screen Shader
-// night-mode.js = Night Mode
+// constants.js = Constants
+// content.js = Bar
 const scriptList = ["scripts/constants.js", "scripts/content.js"];
 const injectScriptsTo = (tabId, url) => {
 	if(url.match(/^http/i) || url.match(/^file/i)){
