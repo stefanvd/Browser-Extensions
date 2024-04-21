@@ -33,7 +33,6 @@
     {
       "matches": ["*://*/*"],
       "css" : ["styles/body.css"],
-      "js": ["scripts/constants.js"],
       "run_at": "document_end"
     }
   ],

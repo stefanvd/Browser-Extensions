@@ -48,7 +48,13 @@ function toggleoff(){
 		for(var i = 0; i < tabs.length; i++){
 			// Send a request to the content script.
 			chrome.storage.sync.set({"addbar": false});
-			chrome.tabs.sendMessage(tabs[i].id, {action: "addremove"});
+			chrome.tabs.sendMessage(tabs[i].id, {action: "addremove"}, function(){
+				if(chrome.runtime.lastError){
+					// console.log("Menu Error: " + chrome.runtime.lastError.message);
+					// content script is not added here
+					// need to refresh the web page
+				}
+			});
 			$("turnoff").style.display = "none";
 			$("turnon").style.display = "block";
 		}
@@ -60,7 +66,13 @@ function toggleon(){
 		for(var i = 0; i < tabs.length; i++){
 			// Send a request to the content script.
 			chrome.storage.sync.set({"addbar": true});
-			chrome.tabs.sendMessage(tabs[i].id, {action: "addremove"});
+			chrome.tabs.sendMessage(tabs[i].id, {action: "addremove"}, function(){
+				if(chrome.runtime.lastError){
+					// console.log("Menu Error: " + chrome.runtime.lastError.message);
+					// content script is not added here
+					// need to refresh the web page
+				}
+			});
 			$("turnoff").style.display = "block";
 			$("turnon").style.display = "none";
 		}

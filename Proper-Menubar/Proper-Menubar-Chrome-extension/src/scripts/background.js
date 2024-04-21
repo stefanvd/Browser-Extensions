@@ -37,16 +37,20 @@ if(exbrowser != "safari"){
 	chrome.webNavigation.onCommitted.addListener(({tabId, frameId, url}) => {
 		// Filter out non main window events.
 		if(frameId !== 0)return;
-		setTabView(tabId, url);
+		injectScriptsTo(tabId, url);
 	});
 }
 
-function setTabView(tabId, url){
-	if(tabId >= 0){
-		if(url.match(/^http/i) || url.match(/^file/i)){
+// screen-shader.js = Screen Shader
+// night-mode.js = Night Mode
+const scriptList = ["scripts/constants.js", "scripts/content.js"];
+const injectScriptsTo = (tabId, url) => {
+	if(url.match(/^http/i) || url.match(/^file/i)){
+		// JavaScript
+		scriptList.forEach((script) => {
 			chrome.scripting.executeScript({
 				target: {tabId: tabId},
-				files: ["scripts/content.js"],
+				files: [`${script}`],
 				injectImmediately: true
 			}, function(){
 				if(chrome.runtime.lastError){
@@ -56,9 +60,14 @@ function setTabView(tabId, url){
 				}
 				// viewController.setactionzoom(tabId, viewSettings)
 			});
-		}
+		});
+		// CSS
+		chrome.scripting.insertCSS({
+			target: {tabId: tabId},
+			files: ["styles/body.css"]
+		});
 	}
-}
+};
 //---
 
 var saveAs = function(blob, name){
@@ -74,7 +83,13 @@ chrome.runtime.onMessage.addListener(function request(request, sender, sendRespo
 	if(request.name == "stefanproper"){
 		chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
 			var tab = tabs[0];
-			chrome.tabs.sendMessage(tab.id, {action: "addremove"});
+			chrome.tabs.sendMessage(tab.id, {action: "addremove"}, function(){
+				if(chrome.runtime.lastError){
+					// console.log("Menu Error: " + chrome.runtime.lastError.message);
+					// content script is not added here
+					// need to refresh the web page
+				}
+			});
 		});
 		sendResponse(true);
 	}else if(request.name == "stefancleannewtab"){
@@ -325,7 +340,13 @@ chrome.runtime.onMessage.addListener(function request(request, sender, sendRespo
 			for(var i = 0; i < tabs.length; i++){
 				// Send a request to the content script.
 				chrome.storage.sync.set({"addbar": false});
-				chrome.tabs.sendMessage(tabs[i].id, {action: "addremove"});
+				chrome.tabs.sendMessage(tabs[i].id, {action: "addremove"}, function(){
+					if(chrome.runtime.lastError){
+						// console.log("Menu Error: " + chrome.runtime.lastError.message);
+						// content script is not added here
+						// need to refresh the web page
+					}
+				});
 			}
 			sendResponse(true);
 		}
@@ -576,10 +597,22 @@ function togglebar(){
 			for(var i = 0; i < tabs.length; i++){
 				if(addbar == true){
 					chrome.storage.sync.set({"addbar": false});
-					chrome.tabs.sendMessage(tabs[i].id, {action: "addremove"});
+					chrome.tabs.sendMessage(tabs[i].id, {action: "addremove"}, function(){
+						if(chrome.runtime.lastError){
+							// console.log("Menu Error: " + chrome.runtime.lastError.message);
+							// content script is not added here
+							// need to refresh the web page
+						}
+					});
 				}else{
 					chrome.storage.sync.set({"addbar": true});
-					chrome.tabs.sendMessage(tabs[i].id, {action: "addremove"});
+					chrome.tabs.sendMessage(tabs[i].id, {action: "addremove"}, function(){
+						if(chrome.runtime.lastError){
+							// console.log("Menu Error: " + chrome.runtime.lastError.message);
+							// content script is not added here
+							// need to refresh the web page
+						}
+					});
 				}
 			}
 		});
