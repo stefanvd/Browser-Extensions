@@ -72,7 +72,7 @@ chrome.storage.sync.get(["backgroundcolor", "backgroundimage", "googlesites", "a
 });
 
 function read_options(){
-// youtube
+	// youtube
 	$("materialModalYouTubeButtonOK").addEventListener("click", function(e){
 		closeMaterialYouTubeAlert(e);
 		chrome.storage.sync.set({"firstsawyoutube": true});
@@ -920,7 +920,7 @@ function domcontentloaded(){
 	}
 
 	// Reset settings
-	$("resetpropermenubar").addEventListener("click", function(){ chrome.storage.sync.clear(); location.reload(); });
+	$("resetbrowserextension").addEventListener("click", function(){ chrome.storage.sync.clear(); location.reload(); });
 
 	// Review box
 	$("war").addEventListener("click", function(){ window.open(writereview, "_blank"); $("sectionreviewbox").style.display = "none"; chrome.storage.sync.set({"reviewedlastonversion": chrome.runtime.getManifest().version}); });
