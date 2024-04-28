@@ -186,6 +186,41 @@ if(chrome.contextMenus){
 	}
 }
 
+chrome.storage.sync.get(["icon"], function(items){
+	if(items["icon"] == undefined){
+		if(exbrowser == "safari"){
+			items["icon"] = "/images/icon38.png";
+		}else{
+			items["icon"] = "/images/icon38.png";
+		}
+	}
+	chrome.action.setIcon({
+		path : {
+			"19": items["icon"],
+			"38": items["icon"]
+		}
+	});
+});
+
+chrome.storage.onChanged.addListener(function(changes){
+	if(changes["icon"]){
+		if(changes["icon"].newValue){
+			chrome.tabs.query({}, function(tabs){
+				var i, l = tabs.length;
+				for(i = 0; i < l; i++){
+					chrome.action.setIcon({tabId : tabs[i].id,
+						path : {
+							"19": changes["icon"].newValue,
+							"38": changes["icon"].newValue
+						}
+					});
+				}
+			}
+			);
+		}
+	}
+});
+
 chrome.runtime.setUninstallURL(linkuninstall);
 
 function initwelcome(){
