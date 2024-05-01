@@ -3,7 +3,7 @@
   "name": "__MSG_namefull__",
   "short_name": "__MSG_name__",
   "description": "__MSG_description__",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "background": {
     "service_worker": "scripts/background.js"
   },
@@ -29,6 +29,21 @@
   },
   "action": {
     "default_title": "__MSG_name__"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+P",
+        "mac": "MacCtrl+Shift+P"
+      }
+    },
+    "toggle-feature-openweb": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+N",
+        "mac": "MacCtrl+Shift+N"
+      },
+      "description": "__MSG_titelcurrenttab__"
+    }
   },
   "options_ui": {
     "page": "options.html",

@@ -26,7 +26,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-var selectedsearch, searchgoogle, searchbing, searchduckduckgo, searchbaidu, searchyandex, typepanelzone, typepanelcustom, websitezoomname, navtop, navbottom, navhidden, opentab, opencopy, openquickbookmarks;
+var selectedsearch, searchgoogle, searchbing, searchduckduckgo, searchbaidu, searchyandex, typepanelzone, typepanelcustom, typepanellasttime, websitezoomname, websitelasttime, navtop, navbottom, navhidden, opentab, opencopy, openquickbookmarks;
 document.addEventListener("DOMContentLoaded", init);
 
 var i18ntitelcopytext = chrome.i18n.getMessage("titlecopytextdone");
@@ -45,6 +45,10 @@ window.addEventListener("message", (e) => {
 	}else if(e.data?.method === "complete"){
 		// console.log("VISITED WEBSITE URL=", e.data.href);
 		currentSidePanelURL = e.data.href;
+		// save the URL for close the panel
+		if(typepanellasttime == true){
+			chrome.storage.sync.set({"websitelasttime": e.data.href});
+		}
 	}
 });
 
@@ -103,7 +107,7 @@ function init(){
 		document.getElementById("stefanvdpromo").className = "hidden";
 	});
 
-	chrome.storage.sync.get(["firstDate", "optionskipremember", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "websitezoomname", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "opentab", "opencopy", "openquickbookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10"], function(items){
+	chrome.storage.sync.get(["firstDate", "optionskipremember", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "typepanellasttime", "websitezoomname", "websitelasttime", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "opentab", "opencopy", "openquickbookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10"], function(items){
 		searchgoogle = items["searchgoogle"]; if(searchgoogle == null){ searchgoogle = true; }
 		searchbing = items["searchbing"]; if(searchbing == null){ searchbing = false; }
 		searchduckduckgo = items["searchduckduckgo"]; if(searchduckduckgo == null){ searchduckduckgo = false; }
@@ -170,10 +174,14 @@ function init(){
 
 		typepanelzone = items.typepanelzone; if(typepanelzone == null)typepanelzone = true;
 		typepanelcustom = items.typepanelcustom; if(typepanelcustom == null)typepanelcustom = false;
+		typepanellasttime = items.typepanellasttime; if(typepanellasttime == null)typepanellasttime = false;
 		websitezoomname = items.websitezoomname; if(websitezoomname == null)websitezoomname = "https://www.google.com";
+		websitelasttime = items.websitelasttime; if(websitelasttime == null)websitelasttime = "https://www.google.com";
 
 		if(typepanelcustom == true){
 			open(websitezoomname, true);
+		}else if(typepanellasttime == true){
+			open(websitelasttime, true);
 		}
 
 		navtop = items.navtop; if(navtop == null)navtop = true;

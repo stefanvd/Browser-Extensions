@@ -152,5 +152,7 @@
     "titelquickbookmarks": {"message": "Quick Bookmarks"},
     "desquickbookmarks": {"message": "Show the button to open your selected bookmark in the sidebar"},
     "titlecopytextdone": {"message": "Copied"},
-    "descopytextdone": {"message": "URL Copied to the Clipboard"}
+    "descopytextdone": {"message": "URL Copied to the Clipboard"},
+    "deslasttime": {"message": "When closing the sidebar, it will save the current URL. Upon reopening the sidebar, the last accessed URL will be loaded automatically"},
+    "titelcurrenttab": {"message": "Open current tab URL in sidebar"}
   }

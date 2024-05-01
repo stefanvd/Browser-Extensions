@@ -54,6 +54,27 @@ chrome.runtime.onMessage.addListener(function request(request, sender, response)
 	return true;
 });
 
+chrome.commands.onCommand.addListener(function(command){
+	if(command == "toggle-feature-openweb"){
+		chrome.tabs.query({
+			active: true,
+			lastFocusedWindow: true
+		}, function(tabs){
+			var tab = tabs[0];
+			if(tab){
+				var currentpage = tab.url;
+				// console.log("currentpage= " + currentpage);
+				chrome.sidePanel.open({windowId: tab.windowId}, function(){
+					// wait when panel is open, then send the message
+					setTimeout(function(){
+						chrome.runtime.sendMessage({msg: "setpage", value: currentpage});
+					}, 500);
+				});
+			}
+		});
+	}
+});
+
 // contextMenus
 function onClickHandler(info, tab){
 	if(info.menuItemId == "totlguideemenu"){
