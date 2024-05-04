@@ -29,9 +29,11 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 #stefanvdnavwrappe:not(:defined) > * {display:none}
 .stefanvdhidden{display:none}
 #stefanvdnavwrappe{margin:0 auto;background-color:#2D2D2D;height:30px;width:100%;-webkit-user-select:none;user-select:none}
+
 #stefanvdnavwrappe #stefanvdpropermenubarnav{-webkit-font-smoothing:antialiased;font-family:Arial,Helvetica,sans-serif!important;font-size:13px;padding-top:4px;width:100%!important}
 #stefanvdnavwrappe #stefanvdpropermenubarnav,#stefanvdnavwrappe #stefanvdpropermenubarnav ul{padding:0;margin:0;list-style:none;font-family:Arial,Helvetica,sans-serif}
-#stefanvdnavwrappe #stefanvdpropermenubarnav a{font-family:Arial,Helvetica,sans-serif!important;display:block!important;padding:0 7px;line-height:30px!important;height:30px!important;text-decoration:none;font-weight:normal}
+#stefanvdnavwrappe #stefanvdpropermenubarnav .stefanvdpropermenubarroot{display:flex;flex-wrap:nowrap}
+#stefanvdnavwrappe #stefanvdpropermenubarnav a{font-family:Arial,Helvetica,sans-serif!important;display:block!important;padding:0 7px;line-height:30px!important;height:30px!important;text-decoration:none;font-weight:normal;white-space:nowrap}
 #stefanvdnavwrappe #stefanvdpropermenubarnav li,#stefanvdnavwrappe #stefanvdpropermenubarnav label{cursor:pointer;font-family:Arial,Helvetica,sans-serif!important;float:left!important;position:relative!important;line-height:30px!important;height:30px!important;font-size:inherit!important;margin:0!important;padding:0!important;border:0!important;list-style:none!important;background:transparent!important}
 #stefanvdpropermenubardropdown{position:relative;display:inline-block}
 #stefanvdpropermenubardropdowncontent{min-width:100px;display:none;position:absolute;box-shadow:0px 8px 16px 0px rgba(0,0,0,0.2);background:white;padding:0;border-bottom-right-radius:5px;border-bottom-left-radius:5px;overflow:hidden;padding-bottom:5px}

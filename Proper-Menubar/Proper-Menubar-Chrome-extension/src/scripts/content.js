@@ -562,6 +562,7 @@ function addtoolbar(){
 		newtoolbar.appendChild(newtoolbardiv);
 
 		newtoolbarul = document.createElement("ul");
+		newtoolbarul.className = "stefanvdpropermenubarroot";
 		newtoolbardiv.appendChild(newtoolbarul);
 
 		if(googleproducts == true){
