@@ -75,7 +75,7 @@
   },
   "minimum_chrome_version": "103",
   "offline_enabled": true,
-  "permissions": [ "contextMenus", "activeTab", "storage", "webNavigation", "scripting"],
-  "optional_permissions": [ "pageCapture", "clipboardWrite", "clipboardRead", "bookmarks"],
+  "permissions": ["contextMenus", "activeTab", "storage", "webNavigation", "scripting"],
+  "optional_permissions": ["pageCapture", "clipboardWrite", "clipboardRead", "bookmarks"],
   "host_permissions": ["<all_urls>"]
 }
