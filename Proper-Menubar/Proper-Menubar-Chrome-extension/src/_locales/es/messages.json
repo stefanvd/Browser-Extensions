@@ -1,887 +1,302 @@
 {
-    "addbutton": {
-        "message": "Añadir"
-    },
-    "basicsettings": {
-        "message": "Conceptos básicos"
-    },
-    "changelog": {
-        "message": "Registro de cambios"
-    },
-    "deletebutton": {
-        "message": "Eliminar"
-    },
-    "desallsites": {
-        "message": "Mostrar la barra en todos los sitios web"
-    },
-    "desbackgroundcolor": {
-        "message": "Color de fondo"
-    },
-    "desbackgroundimage": {
-        "message": "Haz clic debajo de tu imagen de fondo favorita:"
-    },
-    "descountry": {
-        "message": "Escriba aquí el código de su sitio web de país (o 'com' para internacional):"
-    },
-    "description": {
-        "message": "Añada la mejor barra de menú para obtener un acceso fácil y rápido a todas sus  opciones útiles del navegador y productos de internet."
-    },
-    "desfontcolor": {
-        "message": "Cambiar el color de los enlaces"
-    },
-    "desgooglesites": {
-        "message": "Mostrar la barra sólo en los sitios web de Google"
-    },
-    "designmenubar": {
-        "message": "Diseño"
-    },
-    "desmenubar": {
-        "message": "Marque los siguientes elementos si desea ver esto en la barra de menú:"
-    },
-    "desopacity": {
-        "message": "con una opacidad de"
-    },
-    "despropermenuonly": {
-        "message": "Mostrar la barra sólo en estos sitios web:"
-    },
-    "dessearch": {
-        "message": "Mantenga las palabras de búsqueda actuales al cambiar entre los productos de Google"
-    },
-    "donatepromotext": {
-        "message": "Si pudieras hacer una donación de cualquier cantidad, ¡te lo agradecería inmensamente!"
-    },
-    "googletrademark": {
-        "message": "Nota: Google es una marca registrada de Google Inc. El uso de esta marca está sujeto a los Permisos de Google."
-    },
-    "guide": {
-        "message": "Guía de Proper Menubar"
-    },
-    "link10a": {
-        "message": "Calendario"
-    },
-    "link11a": {
-        "message": "Traducir"
-    },
-    "link12a": {
-        "message": "Móvil"
-    },
-    "link13a": {
-        "message": "Libros"
-    },
-    "link14a": {
-        "message": "Documentos"
-    },
-    "link15a": {
-        "message": "Pagar"
-    },
-    "link16a": {
-        "message": "Compras"
-    },
-    "link17a": {
-        "message": "Blogger"
-    },
-    "link18a": {
-        "message": "Finanzas"
-    },
-    "link19a": {
-        "message": "Fotos"
-    },
-    "link1a": {
-        "message": "Cuenta"
-    },
-    "link20a": {
-        "message": "Vídeos"
-    },
-    "link21a": {
-        "message": "Más Google..."
-    },
-    "link22a": {
-        "message": "Voz"
-    },
-    "link23a": {
-        "message": "Contactos"
-    },
-    "link24a": {
-        "message": "Académico"
-    },
-    "link25a": {
-        "message": "Mantener"
-    },
-    "link26a": {
-        "message": "Diapositivas"
-    },
-    "link27a": {
-        "message": "Grupos"
-    },
-    "link28a": {
-        "message": "Hangouts"
-    },
-    "link29a": {
-        "message": "AI"
-    },
-    "link30a": {
-        "message": "Arte y Cultura"
-    },
-    "link31a": {
-        "message": "Reproducir Música"
-    },
-    "link32a": {
-        "message": "Reproducir Películas"
-    },
-    "link33a": {
-        "message": "Colección"
-    },
-    "link34a": {
-        "message": "Mi Negocio"
-    },
-    "link35a": {
-        "message": "Aula de formación"
-    },
-    "link36a": {
-        "message": "Tierra"
-    },
-    "link37a": {
-        "message": "Gemini"
-    },
-    "link38a": {
-        "message": "Soporte"
-    },
-    "link39a": {
-        "message": "Sitios Web"
-    },
-    "link40a": {
-        "message": "Tendencias"
-    },
-    "link41a": {
-        "message": "Vuelos"
-    },
-    "link42a": {
-        "message": "Ajustado"
-    },
-    "link43a": {
-        "message": "Tienda"
-    },
-    "link44a": {
-        "message": "Nube"
-    },
-    "link45a": {
-        "message": "Estadísticas"
-    },
-    "link46a": {
-        "message": "Anuncios"
-    },
-    "link47a": {
-        "message": "Consola de búsqueda"
-    },
-    "link48a": {
-        "message": "Vendedores"
-    },
-    "link49a": {
-        "message": "Adsense"
-    },
-    "link50a": {
-        "message": "Jugar con la Consola"
-    },
-    "link51a": {
-        "message": "Tienda Chrome Web"
-    },
-    "link52a": {
-        "message": "Hojas"
-    },
-    "link53a": {
-        "message": "Formularios"
-    },
-    "link2a": {
-        "message": "Buscar"
-    },
-    "link3a": {
-        "message": "Imágenes"
-    },
-    "link4a": {
-        "message": "Mapas"
-    },
-    "link5a": {
-        "message": "Play Store"
-    },
-    "link6a": {
-        "message": "YouTube"
-    },
-    "link7a": {
-        "message": "Noticias"
-    },
-    "link8a": {
-        "message": "Gmail"
-    },
-    "link9a": {
-        "message": "Drive"
-    },
-    "linkmore": {
-        "message": "Más..."
-    },
-    "menubar": {
-        "message": "Barra de menú"
-    },
-    "name": {
-        "message": "Proper Menubar"
-    },
-    "namechrome": {
-        "message": "Barra de Menu adecuada para Google Chrome"
-    },
-    "optionpagetitle": {
-        "message": "Proper Menubar (opciones)"
-    },
-    "pagehelp": {
-        "message": "Ayuda"
-    },
-    "pagestillloading": {
-        "message": "¿La página todavía está cargando?"
-    },
-    "popupdonate": {
-        "message": "Apoya mi desarrollo"
-    },
-    "productshare": {
-        "message": "Compartir"
-    },
-    "reportbug": {
-        "message": "Informar de un problema"
-    },
-    "settings": {
-        "message": "Ajustes"
-    },
-    "textfoot": {
-        "message": "Este software está licenciado bajo la CC-GNU GPL. Para ver una copia de esta licencia, visita"
-    },
-    "titelallsites": {
-        "message": "Páginas web"
-    },
-    "titelbackground": {
-        "message": "Fondo"
-    },
-    "titelcountry": {
-        "message": "País"
-    },
-    "titelfontcolor": {
-        "message": "Color del Texto"
-    },
-    "titelsearch": {
-        "message": "Buscar palabra clave"
-    },
-    "titledonatebutton": {
-        "message": "Donar"
-    },
-    "version": {
-        "message": "Versión"
-    },
-    "designmarquee": {
-        "message": "Diseño"
-    },
-    "titelexistingtab": {
-        "message": "Abrir enlace"
-    },
-    "desexistingtab": {
-        "message": "Si activas esta opción, abrirá el enlace en tu pestaña existente"
-    },
-    "upgradecontexttitle": {
-        "message": "Mejoras"
-    },
-    "upgradecontextmessage": {
-        "message": "para el sitio web de Google"
-    },
-    "upgradecontextitemta": {
-        "message": "Mejoras"
-    },
-    "upgradecontextitemma": {
-        "message": "para el sitio web de YouTube"
-    },
-    "upgradecontextitemtb": {
-        "message": "Enlace"
-    },
-    "upgradecontextitemmb": {
-        "message": "Ahora puede abrir el enlace en tu pestaña existente"
-    },
-    "upgradefbshare": {
-        "message": "Compartir en Facebook"
-    },
-    "upgradetwshare": {
-        "message": "Tuitear"
-    },
-    "ratetitle": {
-        "message": "Por favor, valora y revisa mi extensión"
-    },
-    "ratedes": {
-        "message": "¡Haz que todos sepan acerca de esta gran extensión!"
-    },
-    "rateitema": {
-        "message": "Valóranos con 5 estrellas"
-    },
-    "seelist": {
-        "message": "(ver lista)"
-    },
-    "helptranslate": {
-        "message": "Ayúdanos a traducir"
-    },
-    "sharemenusharetitle": {
-        "message": "Comparte esto"
-    },
-    "sharemenuwelcomeguidetitle": {
-        "message": "Guía de bienvenida"
-    },
-    "sharemenutellafriend": {
-        "message": "Cuéntaselo a un amigo"
-    },
-    "sharemenusendatweet": {
-        "message": "Envía un tweet"
-    },
-    "sharemenupostonfacebook": {
-        "message": "Publica en Facebook"
-    },
-    "sharemenuratetitle": {
-        "message": "Califica esta extensión"
-    },
-    "sharemenudonatetitle": {
-        "message": "Apoya el desarrollo"
-    },
-    "advancedoptions": {
-        "message": "Opciones avanzadas"
-    },
-    "help": {
-        "message": "Ayuda"
-    },
-    "about": {
-        "message": "Acerca de"
-    },
-    "titelreset": {
-        "message": "Reiniciar ajustes"
-    },
-    "resetbrowserextension": {
-        "message": "Restablecer ajustes de Proper Menubar"
-    },
-    "areyouhappy": {
-        "message": "¿Te gusta Proper Menubar?"
-    },
-    "tellothers": {
-        "message": "Asegúrate de que tu opinión cuenta"
-    },
-    "nothanks": {
-        "message": "No, gracias"
-    },
-    "writeareview": {
-        "message": "Escribe tu opinión"
-    },
-    "downloadtheapp": {
-        "message": "Descargar la aplicación ahora"
-    },
-    "desrememberpage": {
-        "message": "Si esta opción está activada, no le mostrará la página de recordatorio"
-    },
-    "titelrememberpage": {
-        "message": "Página de recordatorio"
-    },
-    "longdonatetext": {
-        "message": "Te agradeceríamos que realizaras una donación a esta extensión para contribuir a mantenerla disponible. Ya sea 1€ o 100€, ¡te lo agradeceremos!"
-    },
-    "enjoyshare": {
-        "message": "Disfruta de esta extensión y compártela con otras personas que creas que les gustará."
-    },
-    "titelsync": {
-        "message": "Sincronización"
-    },
-    "titelsyncbrowser": {
-        "message": "Sincroniza la configuración de la extensión con tu otro navegador."
-    },
-    "titeldownloadupgrade": {
-        "message": "La página se oscurecerá completamente, así podrás ver los vídeos como si estuvieras en el cine."
-    },
-    "desproject": {
-        "message": "proyecto"
-    },
-    "desbrowserextension": {
-        "message": "extensión para navegadores"
-    },
-    "translateme": {
-        "message": "Ayuda a traducir"
-    },
-    "titelwebsite": {
-        "message": "Página web"
-    },
-    "titeldeveloper": {
-        "message": "Desarrollador"
-    },
-    "rememberrate": {
-        "message": "Valorar"
-    },
-    "showremember": {
-        "message": "No volver a mostrar este recordatorio al abrir la página de opciones"
-    },
-    "skipremember": {
-        "message": "Omitir esto y abrir la página de opciones"
-    },
-    "titelrightsreserved": {
-        "message": "Algunos derechos reservados."
-    },
-    "friendlyremember": {
-        "message": "Recordatorio amigable…"
-    },
-    "welcomebasictext": {
-        "message": "Te damos la bienvenida a la extensión de navegador Proper Menubar. Este vídeo introductorio te enseñará a usarlo en tu navegador."
-    },
-    "promotitle": {
-        "message": "Consejo del día"
-    },
+    "name": {"message": "Proper Menubar"},
+    "namechrome": {"message": "Barra de Menu adecuada para Google Chrome"},
+    "nameedge": {"message": "Proper Menubar for Microsoft Edge"},
+    "namefirefox": {"message": "Proper Menubar for Firefox"},
+    "nameopera": {"message": "Proper Menubar for Opera"},
+    "namesafari": {"message": "Proper Menubar for Safari"},
+    "addbutton": {"message": "Añadir"},
+    "basicsettings": {"message": "Conceptos básicos"},
+    "changelog": {"message": "Registro de cambios"},
+    "deletebutton": {"message": "Eliminar"},
+    "desallsites": {"message": "Mostrar la barra en todos los sitios web"},
+    "desbackgroundcolor": {"message": "Color de fondo"},
+    "desbackgroundimage": {"message": "Haz clic debajo de tu imagen de fondo favorita:"},
+    "descountry": {"message": "Escriba aquí el código de su sitio web de país (o 'com' para internacional):"},
+    "description": {"message": "Añada la mejor barra de menú para obtener un acceso fácil y rápido a todas sus  opciones útiles del navegador y productos de internet."},
+    "desfontcolor": {"message": "Cambiar el color de los enlaces"},
+    "desgooglesites": {"message": "Mostrar la barra sólo en los sitios web de Google"},
+    "designmenubar": {"message": "Diseño"},
+    "desmenubar": {"message": "Marque los siguientes elementos si desea ver esto en la barra de menú:"},
+    "desopacity": {"message": "con una opacidad de"},
+    "despropermenuonly": {"message": "Mostrar la barra sólo en estos sitios web:"},
+    "dessearch": {"message": "Mantenga las palabras de búsqueda actuales al cambiar entre los productos de Google"},
+    "donatepromotext": {"message": "Si pudieras hacer una donación de cualquier cantidad, ¡te lo agradecería inmensamente!"},
+    "googletrademark": {"message": "Nota: Google es una marca registrada de Google Inc. El uso de esta marca está sujeto a los Permisos de Google."},
+    "guide": {"message": "Guía de Proper Menubar"},
+    "link10a": {"message": "Calendario"},
+    "link11a": {"message": "Traducir"},
+    "link12a": {"message": "Móvil"},
+    "link13a": {"message": "Libros"},
+    "link14a": {"message": "Documentos"},
+    "link15a": {"message": "Pagar"},
+    "link16a": {"message": "Compras"},
+    "link17a": {"message": "Blogger"},
+    "link18a": {"message": "Finanzas"},
+    "link19a": {"message": "Fotos"},
+    "link1a": {"message": "Cuenta"},
+    "link20a": {"message": "Vídeos"},
+    "link21a": {"message": "Más Google..."},
+    "link22a": {"message": "Voz"},
+    "link23a": {"message": "Contactos"},
+    "link24a": {"message": "Académico"},
+    "link25a": {"message": "Mantener"},
+    "link26a": {"message": "Diapositivas"},
+    "link27a": {"message": "Grupos"},
+    "link28a": {"message": "Hangouts"},
+    "link29a": {"message": "AI"},
+    "link30a": {"message": "Arte y Cultura"},
+    "link31a": {"message": "Reproducir Música"},
+    "link32a": {"message": "Reproducir Películas"},
+    "link33a": {"message": "Colección"},
+    "link34a": {"message": "Mi Negocio"},
+    "link35a": {"message": "Aula de formación"},
+    "link36a": {"message": "Tierra"},
+    "link37a": {"message": "Gemini"},
+    "link38a": {"message": "Soporte"},
+    "link39a": {"message": "Sitios Web"},
+    "link40a": {"message": "Tendencias"},
+    "link41a": {"message": "Vuelos"},
+    "link42a": {"message": "Ajustado"},
+    "link43a": {"message": "Tienda"},
+    "link44a": {"message": "Nube"},
+    "link45a": {"message": "Estadísticas"},
+    "link46a": {"message": "Anuncios"},
+    "link47a": {"message": "Consola de búsqueda"},
+    "link48a": {"message": "Vendedores"},
+    "link49a": {"message": "Adsense"},
+    "link50a": {"message": "Jugar con la Consola"},
+    "link51a": {"message": "Tienda Chrome Web"},
+    "link52a": {"message": "Hojas"},
+    "link53a": {"message": "Formularios"},
+    "link2a": {"message": "Buscar"},
+    "link3a": {"message": "Imágenes"},
+    "link4a": {"message": "Mapas"},
+    "link5a": {"message": "Play Store"},
+    "link6a": {"message": "YouTube"},
+    "link7a": {"message": "Noticias"},
+    "link8a": {"message": "Gmail"},
+    "link9a": {"message": "Drive"},
+    "linkmore": {"message": "Más..."},
+    "menubar": {"message": "Barra de menú"},
+    "optionpagetitle": {"message": "Proper Menubar (opciones)"},
+    "pagehelp": {"message": "Ayuda"},
+    "pagestillloading": {"message": "¿La página todavía está cargando?"},
+    "popupdonate": {"message": "Apoya mi desarrollo"},
+    "productshare": {"message": "Compartir"},
+    "reportbug": {"message": "Informar de un problema"},
+    "settings": {"message": "Ajustes"},
+    "textfoot": {"message": "Este software está licenciado bajo la CC-GNU GPL. Para ver una copia de esta licencia, visita"},
+    "titelallsites": {"message": "Páginas web"},
+    "titelbackground": {"message": "Fondo"},
+    "titelcountry": {"message": "País"},
+    "titelfontcolor": {"message": "Color del Texto"},
+    "titelsearch": {"message": "Buscar palabra clave"},
+    "titledonatebutton": {"message": "Donar"},
+    "version": {"message": "Versión"},
+    "designmarquee": {"message": "Diseño"},
+    "titelexistingtab": {"message": "Abrir enlace"},
+    "desexistingtab": {"message": "Si activas esta opción, abrirá el enlace en tu pestaña existente"},
+    "upgradecontexttitle": {"message": "Mejoras"},
+    "upgradecontextmessage": {"message": "para el sitio web de Google"},
+    "upgradecontextitemta": {"message": "Mejoras"},
+    "upgradecontextitemma": {"message": "para el sitio web de YouTube"},
+    "upgradecontextitemtb": {"message": "Enlace"},
+    "upgradecontextitemmb": {"message": "Ahora puede abrir el enlace en tu pestaña existente"},
+    "upgradefbshare": {"message": "Compartir en Facebook"},
+    "upgradetwshare": {"message": "Tuitear"},
+    "ratetitle": {"message": "Por favor, valora y revisa mi extensión"},
+    "ratedes": {"message": "¡Haz que todos sepan acerca de esta gran extensión!"},
+    "rateitema": {"message": "Valóranos con 5 estrellas"},
+    "seelist": {"message": "(ver lista)"},
+    "helptranslate": {"message": "Ayúdanos a traducir"},
+    "sharemenusharetitle": {"message": "Comparte esto"},
+    "sharemenuwelcomeguidetitle": {"message": "Guía de bienvenida"},
+    "sharemenutellafriend": {"message": "Cuéntaselo a un amigo"},
+    "sharemenusendatweet": {"message": "Send a Post"},
+    "sharemenupostonfacebook": {"message": "Publica en Facebook"},
+    "sharemenuratetitle": {"message": "Califica esta extensión"},
+    "sharemenudonatetitle": {"message": "Apoya el desarrollo"},
+    "advancedoptions": {"message": "Opciones avanzadas"},
+    "help": {"message": "Ayuda"},
+    "about": {"message": "Acerca de"},
+    "titelreset": {"message": "Reiniciar ajustes"},
+    "resetbrowserextension": {"message": "Restablecer ajustes de Proper Menubar"},
+    "areyouhappy": {"message": "¿Te gusta Proper Menubar?"},
+    "tellothers": {"message": "Asegúrate de que tu opinión cuenta"},
+    "nothanks": {"message": "No, gracias"},
+    "writeareview": {"message": "Escribe tu opinión"},
+    "downloadtheapp": {"message": "Descargar la aplicación ahora"},
+    "desrememberpage": {"message": "Si esta opción está activada, no le mostrará la página de recordatorio"},
+    "titelrememberpage": {"message": "Página de recordatorio"},
+    "longdonatetext": {"message": "Te agradeceríamos que realizaras una donación a esta extensión para contribuir a mantenerla disponible. Ya sea 1€ o 100€, ¡te lo agradeceremos!"},
+    "enjoyshare": {"message": "Disfruta de esta extensión y compártela con otras personas que creas que les gustará."},
+    "titelsync": {"message": "Sincronización"},
+    "titelsyncbrowser": {"message": "Sincroniza la configuración de la extensión con tu otro navegador."},
+    "titeldownloadupgrade": {"message": "La página se oscurecerá completamente, así podrás ver los vídeos como si estuvieras en el cine."},
+    "desproject": {"message": "proyecto"},
+    "desbrowserextension": {"message": "extensión para navegadores"},
+    "translateme": {"message": "Ayuda a traducir"},
+    "titelwebsite": {"message": "Página web"},
+    "titeldeveloper": {"message": "Desarrollador"},
+    "rememberrate": {"message": "Valorar"},
+    "showremember": {"message": "No volver a mostrar este recordatorio al abrir la página de opciones"},
+    "skipremember": {"message": "Omitir esto y abrir la página de opciones"},
+    "titelrightsreserved": {"message": "Algunos derechos reservados."},
+    "friendlyremember": {"message": "Recordatorio amigable…"},
+    "welcomebasictext": {"message": "Te damos la bienvenida a la extensión de navegador Proper Menubar. Este vídeo introductorio te enseñará a usarlo en tu navegador."},
+    "promotitle": {"message": "Consejo del día"},
     "promotext": {
         "message": "¿Quieres usar algo nuevo y increíble para tu navegador web? Prueba la extensión del navegador $product$.",
-        "placeholders": {
-            "product": {
-                "content": "$1",
-                "example": "Turn Off the Lights"
-            }
-        }
-    },
-    "promocalltoaction": {
-        "message": "¡Descárgalo ya!"
-    },
-    "donatetext": {
-        "message": "Debido al pequeño número de donaciones el proyecto puede ser cerrado. Por favor, apoye el desarrollo adicional con una donación."
-    },
-    "donatecalltoaction": {
-        "message": "Donar ahora!"
-    },
-    "titelsharethis": {
-        "message": "Compartir esto:"
-    },
-    "titelwelcome": {
-        "message": "Te damos la bienvenida"
-    },
-    "titelcolor": {
-        "message": "Color"
-    },
-    "descolor": {
-        "message": "Cambiar el color de fondo de la barra de herramientas"
-    },
-    "titeldropshadow": {
-        "message": "Sombra paralela"
-    },
-    "desdropshadow": {
-        "message": "Obtener un efecto de sombra debajo de la barra de herramientas"
-    },
-    "titeltoolbaroff": {
-        "message": "Proper Menubar desactivado"
-    },
-    "titeltoolbaron": {
-        "message": "Proper Menubar activado"
-    },
-    "titelpopupoptions": {
-        "message": "Opciones"
-    },
-    "titelpopupratestars": {
-        "message": "Valóranos con 5 estrellas"
-    },
-    "titelpopupsupport": {
-        "message": "Soporte"
-    },
-    "titelpopupwelcomeguide": {
-        "message": "Guía de bienvenida"
-    },
-    "titelpopupvideo": {
-        "message": "YouTube"
-    },
-    "titeldisplay": {
-        "message": "Pantalla"
-    },
-    "desdisplay": {
-        "message": "Mostrar el número de productos de Google en la barra de herramientas"
-    },
-    "titelshortproper": {
-        "message": "Mostrar/Ocultar Proper Menubar"
-    },
-    "titelhovertextcolor": {
-        "message": "Color del texto al poner el cursor encima"
-    },
-    "deshovertextcolor": {
-        "message": "Cambiar el color de la fuente cuando el ratón está sobre un enlace"
-    },
-    "titelhoverbackground": {
-        "message": "Color de fondo al pasar el ratón"
-    },
-    "deshoverbackground": {
-        "message": "Cambiar el color de la fuente cuando el ratón está sobre un enlace"
-    },
-    "titlelratenow": {
-        "message": "Califícanos ahora"
-    },
-    "titleratelater": {
-        "message": "Después"
-    },
-    "desremrate": {
-        "message": "Si te gusta  Proper Menubar™, no dudes en valorar esta extensión con cinco estrellas. Esto nos anima a continuar con su desarrollo y mejorar el producto. No es obligatorio escribir un comentario, pero, si te apetece, apreciamos mucho que le dediques unos segundos a hacerlo. Si no prefieres no hacerlo, puedes valorar la extensión sin más. Agradeceremos tus ★★★★★. ¡Muchas gracias!"
-    },
-    "titleok": {
-        "message": "Aceptar"
-    },
-    "titlecancel": {
-        "message": "Cancelar"
-    },
-    "titledarkmodeon": {
-        "message": "Modo oscuro: SÍ"
-    },
-    "titledarkmodeoff": {
-        "message": "Modo oscuro: NO"
-    },
-    "titledarkmodeauto": {
-        "message": "Usar apariencia del dispositivo"
-    },
-    "desremyoutube": {
-        "message": "Suscríbete en YouTube"
-    },
-    "titeltoolbarwhitelist": {
-        "message": "Lista blanca"
-    },
-    "titeltoolbarblacklist": {
-        "message": "Lista negra"
-    },
-    "titelpositionbar": {
-        "message": "Posición de la barra"
-    },
-    "despositionbartop": {
-        "message": "Arriba"
-    },
-    "despositionbarbottom": {
-        "message": "Abajo"
-    },
-    "menufile": {
-        "message": "Archivo"
-    },
-    "menuedit": {
-        "message": "Editar"
-    },
-    "menuview": {
-        "message": "Ver"
-    },
-    "menuhistory": {
-        "message": "Historial"
-    },
-    "menubookmarks": {
-        "message": "Marcadores"
-    },
-    "menuwindow": {
-        "message": "Ventana"
-    },
-    "menuhelp": {
-        "message": "Ayuda"
-    },
-    "menu1a": {
-        "message": "Nueva pestaña"
-    },
-    "menu2a": {
-        "message": "Nueva Ventana"
-    },
-    "menu3a": {
-        "message": "Nueva ventana de incógnito"
-    },
-    "menu4a": {
-        "message": "Cerrar la ventana"
-    },
-    "menu5a": {
-        "message": "Cerrar pestaña"
-    },
-    "menu6a": {
-        "message": "Imprimir"
-    },
-    "menu7a": {
-        "message": "Cortar"
-    },
-    "menu8a": {
-        "message": "Copiar"
-    },
-    "menu9a": {
-        "message": "Pegar"
-    },
-    "menu10a": {
-        "message": "Ajustes"
-    },
-    "menu11a": {
-        "message": "Seleccionar todo"
-    },
-    "menu12a": {
-        "message": "Detener"
-    },
-    "menu13a": {
-        "message": "Inicio"
-    },
-    "menu14a": {
-        "message": "Administrador de marcadores"
-    },
-    "menu15a": {
-        "message": "Seleccionar la pestaña siguiente"
-    },
-    "menu16a": {
-        "message": "Ayuda"
-    },
-    "menu17a": {
-        "message": "Acerca de"
-    },
-    "menu18a": {
-        "message": "Añade esta página a favoritos"
-    },
-    "menu19a": {
-        "message": "Atrás"
-    },
-    "menu20a": {
-        "message": "Adelante"
-    },
-    "menu21a": {
-        "message": "Descargas"
-    },
-    "menu22a": {
-        "message": "Extensiones"
-    },
-    "menu23a": {
-        "message": "Políticas"
-    },
-    "menu24a": {
-        "message": "Inspeccionar"
-    },
-    "menu25a": {
-        "message": "Marcas"
-    },
-    "menu26a": {
-        "message": "Mostrar todo el historial"
-    },
-    "menu27a": {
-        "message": "Guardar página como…"
-    },
-    "menu28a": {
-        "message": "Recargar esta página"
-    },
-    "menu29a": {
-        "message": "Ver a pantalla completa"
-    },
-    "menu30a": {
-        "message": "Tamaño actual"
-    },
-    "menu31a": {
-        "message": "Ampliar"
-    },
-    "menu32a": {
-        "message": "Alejar"
-    },
-    "menu33a": {
-        "message": "Marcar todas las pestañas..."
-    },
-    "menu34a": {
-        "message": "Seleccionar la pestaña anterior"
-    },
-    "menu35a": {
-        "message": "Duplicar pestaña"
-    },
-    "menu36a": {
-        "message": "Fijar pestaña"
-    },
-    "menu37a": {
-        "message": "Silenciar pestaña"
-    },
-    "menu38a": {
-        "message": "Cerrar las otras pestañas"
-    },
-    "menu39a": {
-        "message": "Cerrar todas las pestañas"
-    },
-    "menu40a": {
-        "message": "Silenciar pestaña"
-    },
-    "menu41a": {
-        "message": "Desactivar todas las pestañas"
-    },
-    "menu42a": {
-        "message": "Dejar de silenciar otra pestaña"
-    },
-    "menu43a": {
-        "message": "Minimizar"
-    },
-    "menu44a": {
-        "message": "Maximizar"
-    },
-    "menu45a": {
-        "message": "Salir"
-    },
-    "menu46a": {
-        "message": "Soltar pestaña"
-    },
-    "menu47a": {
-        "message": "Ver Fuente"
-    },
-    "titelgoogleproducts": {
-        "message": "Mostrar los nombres de productos de Google"
-    },
-    "titelmenuproducts": {
-        "message": "Mostrar la barra de menú del navegador"
-    },
-    "titelchooseproduct": {
-        "message": "Elija los productos que desea en su barra de menú"
-    },
-    "upbutton": {
-        "message": "Arriba"
-    },
-    "downbutton": {
-        "message": "Abajo"
-    },
-    "searchplaceholder": {
-        "message": "Buscar"
-    },
-    "permissionoption": {
-        "message": "Se necesitan permisos para activar esta característica."
-    },
-    "titelpermission": {
-        "message": "Permisos"
-    },
-    "despermissioncopy": {
-        "message": "Quitar el permiso de corte y copiar"
-    },
-    "despermissionpaste": {
-        "message": "Eliminar el permiso de pegar"
-    },
-    "despermissionmhtml": {
-        "message": "Eliminar el permiso MHTML guardado"
-    },
-    "despermissionbookmark": {
-        "message": "Quitar el permiso de marcadores"
-    },
-    "wpermissionremoved": {
-        "message": "Los permisos se han eliminado."
-    },
-    "wpermissionnotremoved": {
-        "message": "Los permisos no han sido eliminados"
-    },
-    "sharetexta": {
-        "message": "Obtén esta extensión de navegador Cool Proper Menubar"
-    },
-    "sharetextb": {
-        "message": "¡Hola, esto es increíble! He probado la extensión del navegador Proper Menubar hoy mismo."
-    },
-    "sharetextc": {
-        "message": "La mejor y increíble extensión del navegador Proper Menubar"
-    },
-    "sharetextd": {
-        "message": "La extensión Proper Menubar es la mejor herramienta útil. ¡Descárgala y pruébala tú mismo!"
-    },
-    "permissionrequired": {
-        "message": "Permisos actuales activos "
-    },
-    "permissionactivetab": {
-        "message": "Esto solo administrará el Proper Menubar de la página web en la página de pestañas abierta actualmente."
-    },
-    "permissiontabs": {
-        "message": "Esto es necesario para las siguientes funciones: mostrarle la página de bienvenida y guía, administrar el Proper Menubar en todas las pestañas abiertas y abrir la página Opciones."
-    },
-    "permissioncontextmenu": {
-        "message": "Esto para añadir todo el elemento Proper Menubar en el menú contextual del navegador web."
-    },
-    "permissionstorage": {
-        "message": "Esto para guardar la configuración en su equipo local, y para sincronizarla con su cuenta de navegador."
-    },
-    "permissionpagecapture": {
-        "message": "Esto para guardar la página web actualmente abierta como un tipo de archivo MHTML."
-    },
-    "permissionclipwrite": {
-        "message": "Esto para escribir el texto seleccionado con la función 'copiar' o 'cortar' en el portapapeles."
-    },
-    "permissionclipread": {
-        "message": "Esto para leer el texto guardado en el portapapeles."
-    },
-    "permissionbookmarks": {
-        "message": "Esto para crear un marcador personalizado en su página de gestor de marcadores."
-    },
-    "permissionscripting": {
-        "message": "Esto inyecta JavaScript y código CSS en páginas web."
-    },
-    "sharemenupostonweibo": {
-        "message": "Publicar en Weibo"
-    },
-    "sharemenupostonvkontakte": {
-        "message": "Publicar en Vkontakte"
-    },
-    "sharemenupostonwhatsapp": {
-        "message": "Publicar en WhatsApp"
-    },
-    "sharemenupostonqq": {
-        "message": "Publicar en QQ"
-    },
-    "destrythiswebsite": {
-        "message": "Prueba esta página web"
-    },
-    "titleyoutube": {
-        "message": "Únete al canal de Stefan."
-    },
-    "desyoutube": {
-        "message": "Descubre y aprende más sobre la extensión del navegador de Stefan. Mírala ahora en YouTube."
-    },
-    "titlesub": {
-        "message": "¡Suscríbete ahora!"
-    },
-    "titlelater": {
-        "message": "Después"
-    },
-    "titleicon": {
-        "message": "Icono"
-    },
-    "desratebad": {
-        "message": "Sentimos que hayas tenido esta mala experiencia. Haznos saber cómo podemos mejorar nuestra aplicación."
-    },
-    "desrategood": {
-        "message": "¡Nos alegra escuchar que te gusta Proper Menubar! ¿Puedes invertir un minuto en valorar nuestra extensión? ¡Tu reseña en la tienda marcará la diferencia!"
-    },
-    "desratetitle": {
-        "message": "¿Te encanta esta extensión del navegador?"
-    },
-    "desrategoodaction": {
-        "message": "Escribe una reseña"
-    },
-    "desratenothanks": {
-        "message": "No, gracias"
-    },
-    "desratenotnowthanks": {
-        "message": "Ahora no, gracias"
-    },
-    "desratebadaction": {
-        "message": "Sí, daré comentarios"
-    },
-    "desrategoodtitle": {
-        "message": "Gracias!"
-    },
-    "desratebadtitle": {
-        "message": "¿Cómo podemos mejorar tu experiencia?"
-    },
-    "destapstar": {
-        "message": "Toca una estrella para valorarnos en la tienda de extensiones del navegador."
-    },
-    "titelhovermenu": {
-        "message": "Menú flotante"
-    },
-    "deshovermenu": {
-        "message": "Mostrar el menú cuando mueva el cursor sobre el primer elemento de menú"
-    },
-    "menu48a": {
-        "message": "Abrir archivo…"
-    },
-    "titelcontextmenu": {
-        "message": "Menú Contextual"
-    },
-    "descontextmenu": {
-        "message": "Activar el menú de clic derecho para mostrar u ocultar la barra"
-    },
-    "head2": {
-        "message": "Elige tu icono favorito de Proper Menubar:"
-    },
-    "pagetitle": {
-        "message": "Alternar visibilidad de Proper Menubar"
-    },
-    "barnotvisible": {
-        "message": "La barra de menú adecuada no se puede mostrar en esta página."
-    },
-    "permissionwebnavigation": {
-        "message": "Esto es necesario para hacer visible al instante la barra en la página web actual antes de cargar la página web."
-    },
-    "titelshortfocus": {
-        "message": "Enfoque la Proper Menubar"
-    }
+        "placeholders": {"product": {"content": "$1", "example": "Turn Off the Lights"}}
+    },
+    "promocalltoaction": {"message": "¡Descárgalo ya!"},
+    "donatetext": {"message": "Debido al pequeño número de donaciones el proyecto puede ser cerrado. Por favor, apoye el desarrollo adicional con una donación."},
+    "donatecalltoaction": {"message": "Donar ahora!"},
+    "titelsharethis": {"message": "Compartir esto:"},
+    "titelwelcome": {"message": "Te damos la bienvenida"},
+    "titelcolor": {"message": "Color"},
+    "descolor": {"message": "Cambiar el color de fondo de la barra de herramientas"},
+    "titeldropshadow": {"message": "Sombra paralela"},
+    "desdropshadow": {"message": "Obtener un efecto de sombra debajo de la barra de herramientas"},
+    "titeltoolbaroff": {"message": "Proper Menubar desactivado"},
+    "titeltoolbaron": {"message": "Proper Menubar activado"},
+    "titelpopupoptions": {"message": "Opciones"},
+    "titelpopupratestars": {"message": "Valóranos con 5 estrellas"},
+    "titelpopupsupport": {"message": "Soporte"},
+    "titelpopupwelcomeguide": {"message": "Guía de bienvenida"},
+    "titelpopupvideo": {"message": "YouTube"},
+    "titeldisplay": {"message": "Pantalla"},
+    "desdisplay": {"message": "Mostrar el número de productos de Google en la barra de herramientas"},
+    "titelshortproper": {"message": "Mostrar/Ocultar Proper Menubar"},
+    "titelhovertextcolor": {"message": "Color del texto al poner el cursor encima"},
+    "deshovertextcolor": {"message": "Cambiar el color de la fuente cuando el ratón está sobre un enlace"},
+    "titelhoverbackground": {"message": "Color de fondo al pasar el ratón"},
+    "deshoverbackground": {"message": "Cambiar el color de la fuente cuando el ratón está sobre un enlace"},
+    "titlelratenow": {"message": "Califícanos ahora"},
+    "titleratelater": {"message": "Después"},
+    "desremrate": {"message": "Si te gusta  Proper Menubar™, no dudes en valorar esta extensión con cinco estrellas. Esto nos anima a continuar con su desarrollo y mejorar el producto. No es obligatorio escribir un comentario, pero, si te apetece, apreciamos mucho que le dediques unos segundos a hacerlo. Si no prefieres no hacerlo, puedes valorar la extensión sin más. Agradeceremos tus ★★★★★. ¡Muchas gracias!"},
+    "titleok": {"message": "Aceptar"},
+    "titlecancel": {"message": "Cancelar"},
+    "titledarkmodeon": {"message": "Modo oscuro: SÍ"},
+    "titledarkmodeoff": {"message": "Modo oscuro: NO"},
+    "titledarkmodeauto": {"message": "Usar apariencia del dispositivo"},
+    "desremyoutube": {"message": "Suscríbete en YouTube"},
+    "titeltoolbarwhitelist": {"message": "Lista blanca"},
+    "titeltoolbarblacklist": {"message": "Lista negra"},
+    "titelpositionbar": {"message": "Posición de la barra"},
+    "despositionbartop": {"message": "Arriba"},
+    "despositionbarbottom": {"message": "Abajo"},
+    "menufile": {"message": "Archivo"},
+    "menuedit": {"message": "Editar"},
+    "menuview": {"message": "Ver"},
+    "menuhistory": {"message": "Historial"},
+    "menubookmarks": {"message": "Marcadores"},
+    "menuwindow": {"message": "Ventana"},
+    "menuhelp": {"message": "Ayuda"},
+    "menu1a": {"message": "Nueva pestaña"},
+    "menu2a": {"message": "Nueva Ventana"},
+    "menu3a": {"message": "Nueva ventana de incógnito"},
+    "menu4a": {"message": "Cerrar la ventana"},
+    "menu5a": {"message": "Cerrar pestaña"},
+    "menu6a": {"message": "Imprimir"},
+    "menu7a": {"message": "Cortar"},
+    "menu8a": {"message": "Copiar"},
+    "menu9a": {"message": "Pegar"},
+    "menu10a": {"message": "Ajustes"},
+    "menu11a": {"message": "Seleccionar todo"},
+    "menu12a": {"message": "Detener"},
+    "menu13a": {"message": "Inicio"},
+    "menu14a": {"message": "Administrador de marcadores"},
+    "menu15a": {"message": "Seleccionar la pestaña siguiente"},
+    "menu16a": {"message": "Ayuda"},
+    "menu17a": {"message": "Acerca de"},
+    "menu18a": {"message": "Añade esta página a favoritos"},
+    "menu19a": {"message": "Atrás"},
+    "menu20a": {"message": "Adelante"},
+    "menu21a": {"message": "Descargas"},
+    "menu22a": {"message": "Extensiones"},
+    "menu23a": {"message": "Políticas"},
+    "menu24a": {"message": "Inspeccionar"},
+    "menu25a": {"message": "Marcas"},
+    "menu26a": {"message": "Mostrar todo el historial"},
+    "menu27a": {"message": "Guardar página como…"},
+    "menu28a": {"message": "Recargar esta página"},
+    "menu29a": {"message": "Ver a pantalla completa"},
+    "menu30a": {"message": "Tamaño actual"},
+    "menu31a": {"message": "Ampliar"},
+    "menu32a": {"message": "Alejar"},
+    "menu33a": {"message": "Marcar todas las pestañas..."},
+    "menu34a": {"message": "Seleccionar la pestaña anterior"},
+    "menu35a": {"message": "Duplicar pestaña"},
+    "menu36a": {"message": "Fijar pestaña"},
+    "menu37a": {"message": "Silenciar pestaña"},
+    "menu38a": {"message": "Cerrar las otras pestañas"},
+    "menu39a": {"message": "Cerrar todas las pestañas"},
+    "menu40a": {"message": "Silenciar pestaña"},
+    "menu41a": {"message": "Desactivar todas las pestañas"},
+    "menu42a": {"message": "Dejar de silenciar otra pestaña"},
+    "menu43a": {"message": "Minimizar"},
+    "menu44a": {"message": "Maximizar"},
+    "menu45a": {"message": "Salir"},
+    "menu46a": {"message": "Soltar pestaña"},
+    "menu47a": {"message": "Ver Fuente"},
+    "titelgoogleproducts": {"message": "Mostrar los nombres de productos de Google"},
+    "titelmenuproducts": {"message": "Mostrar la barra de menú del navegador"},
+    "titelchooseproduct": {"message": "Elija los productos que desea en su barra de menú"},
+    "upbutton": {"message": "Arriba"},
+    "downbutton": {"message": "Abajo"},
+    "searchplaceholder": {"message": "Buscar"},
+    "permissionoption": {"message": "Se necesitan permisos para activar esta característica."},
+    "titelpermission": {"message": "Permisos"},
+    "despermissioncopy": {"message": "Quitar el permiso de corte y copiar"},
+    "despermissionpaste": {"message": "Eliminar el permiso de pegar"},
+    "despermissionmhtml": {"message": "Eliminar el permiso MHTML guardado"},
+    "despermissionbookmark": {"message": "Quitar el permiso de marcadores"},
+    "wpermissionremoved": {"message": "Los permisos se han eliminado."},
+    "wpermissionnotremoved": {"message": "Los permisos no han sido eliminados"},
+    "sharetexta": {"message": "Obtén esta extensión de navegador Cool Proper Menubar"},
+    "sharetextb": {"message": "¡Hola, esto es increíble! He probado la extensión del navegador Proper Menubar hoy mismo."},
+    "sharetextc": {"message": "La mejor y increíble extensión del navegador Proper Menubar"},
+    "sharetextd": {"message": "La extensión Proper Menubar es la mejor herramienta útil. ¡Descárgala y pruébala tú mismo!"},
+    "permissionrequired": {"message": "Permisos actuales activos "},
+    "permissionactivetab": {"message": "Esto solo administrará el Proper Menubar de la página web en la página de pestañas abierta actualmente."},
+    "permissiontabs": {"message": "Esto es necesario para las siguientes funciones: mostrarle la página de bienvenida y guía, administrar el Proper Menubar en todas las pestañas abiertas y abrir la página Opciones."},
+    "permissioncontextmenu": {"message": "Esto para añadir todo el elemento Proper Menubar en el menú contextual del navegador web."},
+    "permissionstorage": {"message": "Esto para guardar la configuración en su equipo local, y para sincronizarla con su cuenta de navegador."},
+    "permissionpagecapture": {"message": "Esto para guardar la página web actualmente abierta como un tipo de archivo MHTML."},
+    "permissionclipwrite": {"message": "Esto para escribir el texto seleccionado con la función 'copiar' o 'cortar' en el portapapeles."},
+    "permissionclipread": {"message": "Esto para leer el texto guardado en el portapapeles."},
+    "permissionbookmarks": {"message": "Esto para crear un marcador personalizado en su página de gestor de marcadores."},
+    "permissionscripting": {"message": "Esto inyecta JavaScript y código CSS en páginas web."},
+    "sharemenupostonweibo": {"message": "Publicar en Weibo"},
+    "sharemenupostonvkontakte": {"message": "Publicar en Vkontakte"},
+    "sharemenupostonwhatsapp": {"message": "Publicar en WhatsApp"},
+    "sharemenupostonqq": {"message": "Publicar en QQ"},
+    "destrythiswebsite": {"message": "Prueba esta página web"},
+    "titleyoutube": {"message": "Únete al canal de Stefan."},
+    "desyoutube": {"message": "Descubre y aprende más sobre la extensión del navegador de Stefan. Mírala ahora en YouTube."},
+    "titlesub": {"message": "¡Suscríbete ahora!"},
+    "titlelater": {"message": "Después"},
+    "titleicon": {"message": "Icono"},
+    "desratebad": {"message": "Sentimos que hayas tenido esta mala experiencia. Haznos saber cómo podemos mejorar nuestra aplicación."},
+    "desrategood": {"message": "¡Nos alegra escuchar que te gusta Proper Menubar! ¿Puedes invertir un minuto en valorar nuestra extensión? ¡Tu reseña en la tienda marcará la diferencia!"},
+    "desratetitle": {"message": "¿Te encanta esta extensión del navegador?"},
+    "desrategoodaction": {"message": "Escribe una reseña"},
+    "desratenothanks": {"message": "No, gracias"},
+    "desratenotnowthanks": {"message": "Ahora no, gracias"},
+    "desratebadaction": {"message": "Sí, daré comentarios"},
+    "desrategoodtitle": {"message": "Gracias!"},
+    "desratebadtitle": {"message": "¿Cómo podemos mejorar tu experiencia?"},
+    "destapstar": {"message": "Toca una estrella para valorarnos en la tienda de extensiones del navegador."},
+    "titelhovermenu": {"message": "Menú flotante"},
+    "deshovermenu": {"message": "Mostrar el menú cuando mueva el cursor sobre el primer elemento de menú"},
+    "menu48a": {"message": "Abrir archivo…"},
+    "titelcontextmenu": {"message": "Menú Contextual"},
+    "descontextmenu": {"message": "Activar el menú de clic derecho para mostrar u ocultar la barra"},
+    "head2": {"message": "Elige tu icono favorito de Proper Menubar:"},
+    "pagetitle": {"message": "Alternar visibilidad de Proper Menubar"},
+    "barnotvisible": {"message": "La barra de menú adecuada no se puede mostrar en esta página."},
+    "permissionwebnavigation": {"message": "Esto es necesario para hacer visible al instante la barra en la página web actual antes de cargar la página web."},
+    "titelshortfocus": {"message": "Enfoque la Proper Menubar"}
 }

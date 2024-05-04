@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "__MSG_nameedge__",
-  "short_name": "Proper Menubar",
-  "version": "1.3.3",
+  "short_name": "PM",
+  "version": "1.3.4",
   "description": "__MSG_description__",
   "author": "Stefan vd",
   "homepage_url": "https://www.stefanvd.net/support/",
