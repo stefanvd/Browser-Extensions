@@ -86,14 +86,18 @@ iframe{border:none;width:100%;height:100%;box-sizing:border-box;margin:0px}
 #btnhome:hover,#btntab:hover,#btncopy:hover,#btnbookmarks:hover{background:var(--ext-svg-fill-color-hover);cursor:pointer}
 .icon{display:flex}
 .icon svg{fill:var(--ext-primary-font-color)}
-#menubookmarks{position:absolute;box-shadow:0 2px 4px 0 rgba(0,0,0,0.16),0 2px 8px 0 rgba(0,0,0,0.12);left:10px;z-index:3000;background:var(--totl-primary-background);padding:10px 0px;background:var(--ext-primary-background)}
+#menubookmarks{position:absolute;left:10px;z-index:3000;background:var(--totl-primary-background);padding:10px 0px;background:var(--ext-primary-background)}
 .top #menubookmarks{top:40px}
 .bottom #menubookmarks{bottom:40px}
-#menubookmarks ul{list-style:none;padding:0;margin:0}
-#menubookmarks ul li{height:48px;user-select:none;width:100%}
-#menubookmarks ul li a{height:48px;user-select:none;padding:0 16px;color:var(--totl-primary-font-color);cursor:pointer;display:flex;justify-content:flex-start;align-items:center;text-decoration:none}
-#menubookmarks ul a:hover{background-color:var(--ext-dropmenu-li-background-hover)}
-#menubookmarks ul a:active{background-color:var(--ext-dropmenu-li-background-active)}
+#menubookmarks ul{list-style:none;padding:0;margin:0;box-shadow:0 2px 4px 0 rgba(0,0,0,0.16),0 2px 8px 0 rgba(0,0,0,0.12)}
+#menubookmarks ul li{position:relative;height:48px;user-select:none;width:100%;display:flex}
+#menubookmarks ul li a{display:inline-block;height:100%;line-height:48px;user-select:none;padding:0 16px;color:var(--totl-primary-font-color);cursor:pointer;justify-content:flex-start;align-items:center;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%}
+#menubookmarks ul li a img{display:inline-block;vertical-align:middle}
+#menubookmarks ul li a div{display:initial;margin-left:8px;vertical-align:middle}
+#menubookmarks ul li span{padding-left:16px;color:var(--totl-primary-font-color);cursor:pointer;display:flex;justify-content:flex-start;align-items:center}
+#menubookmarks ul a:hover,#menubookmarks ul span:hover{background-color:var(--ext-dropmenu-li-background-hover)}
+#menubookmarks ul a:active,#menubookmarks ul span:active{background-color:var(--ext-dropmenu-li-background-active)}
+#menubookmarks ul ul{position:absolute;top:0;background:var(--ext-primary-background);z-index:1;right:-200px;width:200px}
 .stefanvdremote{overflow:hidden;z-index:2147483647!important;box-shadow:0px 0px 1px black;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);background:var(--totl-primary-background);position:absolute;top:0;left:0;right:0;width:230pt;opacity:0.98;height:50pt;border-radius:25pt;margin:0 auto;margin-top:20pt;animation:wrapper 4.0s both;color:var(--totl-primary-font-color)}
 .stefanvdremote h3{text-align:center;margin:0;font-size:15px;padding-top:10pt;animation:h3 2.5s}
 .stefanvdremote p{text-align:center;margin:0;font-size:13px;color:#888;padding-top:4pt;animation:p 2.5s}

@@ -51,5 +51,6 @@
   },
   "offline_enabled": true,
   "minimum_chrome_version": "114",
-  "permissions": ["contextMenus", "storage", "sidePanel", "declarativeNetRequestWithHostAccess"]
+  "permissions": ["contextMenus", "storage", "sidePanel", "declarativeNetRequestWithHostAccess"],
+  "optional_permissions": ["bookmarks"]
 }

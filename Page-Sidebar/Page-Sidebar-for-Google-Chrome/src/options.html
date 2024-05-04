@@ -292,8 +292,16 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				<section>
 					<h3 data-i18n="titelquickbookmarks"></h3>
 					<div>
-						<div class="md-checkbox">	
-							<input id="openquickbookmarks" type="checkbox" class="bookmarkname">
+						<div class="md-radio">
+							<input id="opennonebookmarks" type="radio" name="typebookmark" value="none" role="radio" aria-checked="false" aria-labelledby="typebookmark" class="bookmarkname">
+							<label for="opennonebookmarks"><div><span data-i18n="desnonebookmarks"></span></div></label>
+						</div>
+						<div class="md-radio">
+							<input id="openbrowserbookmarks" type="radio" name="typebookmark" value="full" role="radio" aria-checked="false" aria-labelledby="typebookmark" class="bookmarkname">
+							<label for="openbrowserbookmarks"><div><span data-i18n="desbrowserbookmarks"></span></div></label>
+						</div>
+						<div class="md-radio">	
+							<input id="openquickbookmarks" type="radio" name="typebookmark" value="limit" role="radio" aria-checked="false" aria-labelledby="typebookmark" class="bookmarkname">
 							<label for="openquickbookmarks"><div><span data-i18n="desquickbookmarks"></span></div></label>
 						</div>
 						<div class="booktable">
@@ -378,6 +386,12 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 						<label for="optionskipremember"><div><span data-i18n="desrememberpage"></span></div></label>
 					</div>
 				</div>
+				</section>
+				<section>
+					<h3 data-i18n="titelpermission"></h3>
+					<div>
+						<label><button id="removepermissionbookmark" data-i18n="despermissionbookmark" aria-label="Bookmark permission"></button></label>
+					</div>
 				</section>
 				<section>
 				<h3 data-i18n="titelsync"></h3>

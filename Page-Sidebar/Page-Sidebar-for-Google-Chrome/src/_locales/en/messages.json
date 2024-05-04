@@ -154,5 +154,12 @@
     "titlecopytextdone": {"message": "Copied"},
     "descopytextdone": {"message": "URL Copied to the Clipboard"},
     "deslasttime": {"message": "When closing the sidebar, it will save the current URL. Upon reopening the sidebar, the last accessed URL will be loaded automatically"},
-    "titelcurrenttab": {"message": "Open current tab URL in sidebar"}
+    "titelcurrenttab": {"message": "Open current tab URL in sidebar"},
+    "despermissionbookmark": {"message": "Remove the Bookmarks permission"},
+    "wpermissionremoved": {"message": "The permissions have been removed."},
+    "wpermissionnotremoved": {"message": "The permissions have not been removed"},
+    "titelpermission": {"message": "Permissions"},
+    "desbrowserbookmarks": {"message": "Show your browser bookmarks"},
+    "desnonebookmarks": {"message": "No bookmarks"},
+    "permissionoption": {"message": "Permission must be enabled to use this feature."}
   }

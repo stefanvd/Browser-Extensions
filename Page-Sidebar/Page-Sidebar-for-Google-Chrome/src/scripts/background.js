@@ -50,6 +50,17 @@ chrome.runtime.onMessage.addListener(function request(request, sender, response)
 	case"sidepanelopen":
 		response(!sender.documentId);
 		break;
+	case"stefanbookmarkadd":
+		// Permissions must be requested from inside a user gesture
+		chrome.permissions.request({
+			permissions: ["bookmarks"]
+		}, function(granted){
+			// The callback argument will be true if the user granted the permissions.
+			if(granted){
+				// todo send message back
+			}
+		});
+		break;
 	}
 	return true;
 });
@@ -392,8 +403,18 @@ chrome.storage.onChanged.addListener(function(changes){
 			chrome.runtime.sendMessage({msg: "setopencopy"});
 		}
 	}
+	if(changes["opennonebookmarks"]){
+		if(changes["opennonebookmarks"].newValue == true){
+			chrome.runtime.sendMessage({msg: "setopennonebookmarks"});
+		}
+	}
+	if(changes["openbrowserbookmarks"]){
+		if(changes["openbrowserbookmarks"].newValue == true){
+			chrome.runtime.sendMessage({msg: "setopenbrowserbookmarks"});
+		}
+	}
 	if(changes["openquickbookmarks"]){
-		if(changes["openquickbookmarks"].newValue == true || changes["openquickbookmarks"].newValue == false){
+		if(changes["openquickbookmarks"].newValue == true){
 			chrome.runtime.sendMessage({msg: "setopenquickbookmarks"});
 		}
 	}

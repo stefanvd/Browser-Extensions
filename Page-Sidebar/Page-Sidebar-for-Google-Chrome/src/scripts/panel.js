@@ -26,7 +26,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-var selectedsearch, searchgoogle, searchbing, searchduckduckgo, searchbaidu, searchyandex, typepanelzone, typepanelcustom, typepanellasttime, websitezoomname, websitelasttime, navtop, navbottom, navhidden, opentab, opencopy, openquickbookmarks;
+var selectedsearch, searchgoogle, searchbing, searchduckduckgo, searchbaidu, searchyandex, typepanelzone, typepanelcustom, typepanellasttime, websitezoomname, websitelasttime, navtop, navbottom, navhidden, opentab, opencopy, opennonebookmarks, openbrowserbookmarks, openquickbookmarks;
 document.addEventListener("DOMContentLoaded", init);
 
 var i18ntitelcopytext = chrome.i18n.getMessage("titlecopytextdone");
@@ -107,7 +107,7 @@ function init(){
 		document.getElementById("stefanvdpromo").className = "hidden";
 	});
 
-	chrome.storage.sync.get(["firstDate", "optionskipremember", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "typepanellasttime", "websitezoomname", "websitelasttime", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "opentab", "opencopy", "openquickbookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10"], function(items){
+	chrome.storage.sync.get(["firstDate", "optionskipremember", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "typepanellasttime", "websitezoomname", "websitelasttime", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "opentab", "opencopy", "opennonebookmarks", "openbrowserbookmarks", "openquickbookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10"], function(items){
 		searchgoogle = items["searchgoogle"]; if(searchgoogle == null){ searchgoogle = true; }
 		searchbing = items["searchbing"]; if(searchbing == null){ searchbing = false; }
 		searchduckduckgo = items["searchduckduckgo"]; if(searchduckduckgo == null){ searchduckduckgo = false; }
@@ -139,15 +139,25 @@ function init(){
 			document.getElementById("btncopy").className = "hidden";
 		}
 
+		opennonebookmarks = items["opennonebookmarks"]; if(opennonebookmarks == null){ opennonebookmarks = false; }
+		openbrowserbookmarks = items["openbrowserbookmarks"]; if(openbrowserbookmarks == null){ openbrowserbookmarks = false; }
 		openquickbookmarks = items["openquickbookmarks"]; if(openquickbookmarks == null){ openquickbookmarks = false; }
-		if(openquickbookmarks == true){
+		if(openbrowserbookmarks == true){
+			document.getElementById("btnbookmarks").className = "icon";
+		}else if(openquickbookmarks == true){
 			document.getElementById("btnbookmarks").className = "icon";
 		}else{
 			document.getElementById("btnbookmarks").className = "hidden";
 		}
 
 		// Add menu items
-		createmenuitems(items);
+		if(openbrowserbookmarks == true){
+			createbrowserbookmark();
+		}else if(openquickbookmarks == true){
+			createmenuitems(items);
+		}else if(opennonebookmarks == true){
+			// do nothing
+		}
 
 		// show remember page
 		var firstmonth = false;
@@ -246,6 +256,98 @@ function createmenuitems(items){
 			menu.appendChild(listItem);
 		}
 	}
+}
+
+function createbrowserbookmark(){
+	// Fetch bookmarks and render them
+	chrome.bookmarks.getTree(function(bookmarkTreeNodes){
+		renderBookmarks(bookmarkTreeNodes[0].children, document.getElementById("list"));
+	});
+}
+
+function renderBookmarks(bookmarks, parentElement){
+	bookmarks.forEach(function(bookmark){
+		if(bookmark.children){
+			// Create a sublist for folders
+			var sublist = document.createElement("ul");
+			sublist.style.display = "none";
+			renderBookmarks(bookmark.children, sublist);
+			var listItemsub = document.createElement("li");
+			var folderLink = document.createElement("a");
+			folderLink.href = "#";
+			var folderIcon = document.createElement("img");
+			folderIcon.src = "/images/folder@2x.png";
+			folderIcon.alt = "Folder Icon";
+			folderIcon.height = 16;
+			folderIcon.width = 16;
+			folderLink.appendChild(folderIcon); // Append folder icon inside the link
+
+			// Create span for bookmark title
+			var titleSpan = document.createElement("div");
+			titleSpan.textContent = bookmark.title;
+
+			folderLink.appendChild(titleSpan);
+			listItemsub.appendChild(folderLink);
+			listItemsub.appendChild(sublist);
+			parentElement.appendChild(listItemsub);
+
+			// Add event listeners for mouseenter and mouseleave
+			listItemsub.addEventListener("mouseenter", function(){
+				sublist.style.display = "block";
+			});
+
+			listItemsub.addEventListener("mouseleave", function(){
+				sublist.style.display = "none";
+			});
+
+			// Add class for CSS styling
+			listItemsub.classList.add("bookmark-item");
+		}else{
+			// Create list item for bookmarks
+			var listItem = document.createElement("li");
+			var link = document.createElement("a");
+			link.href = bookmark.url;
+			link.addEventListener("click", function(event){
+				// Prevent the default action of following the link
+				event.preventDefault();
+				open(bookmark.url, true);
+				// close panel
+				document.getElementById("menubookmarks").className = "hidden";
+				isMenuClick = false;
+			});
+			var favicon = document.createElement("img");
+			favicon.src = "https://s2.googleusercontent.com/s2/favicons?domain=" + getDomain(bookmark.url);
+			favicon.alt = "Favicon";
+			favicon.height = 16;
+			favicon.width = 16;
+			link.appendChild(favicon); // Append favicon inside the link
+
+			// Create span for bookmark title
+			var titleSpanRoot = document.createElement("div");
+			titleSpanRoot.textContent = bookmark.title;
+
+			link.appendChild(titleSpanRoot);
+			listItem.appendChild(link);
+			parentElement.appendChild(listItem);
+
+			// Add class for CSS styling
+			listItem.classList.add("bookmark-item");
+		}
+	});
+}
+
+// Function to extract domain from URL
+function getDomain(url){
+	var domain;
+	// Find & remove protocol (http, https, ftp) and get domain
+	if(url.indexOf("://") > -1){
+		domain = url.split("/")[2];
+	}else{
+		domain = url.split("/")[0];
+	}
+	// Find & remove port number
+	domain = domain.split(":")[0];
+	return domain;
 }
 
 function actionCopyTab(){
@@ -465,6 +567,13 @@ function performSearch(searchEngine, query){
 	}
 }
 
+function clearBookmarksItems(){
+	var list = document.getElementById("list");
+	while(list.firstChild){
+		list.removeChild(list.firstChild);
+	}
+}
+
 chrome.runtime.onMessage.addListener(function(request){
 	if(request.msg == "setpage"){
 		// console.log("received = " + request.value);
@@ -536,24 +645,38 @@ chrome.runtime.onMessage.addListener(function(request){
 				document.getElementById("btncopy").className = "hidden";
 			}
 		});
-	}else if(request.msg == "setopenquickbookmarks"){
-		chrome.storage.sync.get(["openquickbookmarks"], function(items){
-			openquickbookmarks = items["openquickbookmarks"]; if(openquickbookmarks == null){ openquickbookmarks = false; }
-			if(openquickbookmarks == true){
-				document.getElementById("btnbookmarks").className = "icon";
-			}else{
-				document.getElementById("btnbookmarks").className = "hidden";
-				document.getElementById("menubookmarks").className = "hidden";
-			}
-		});
 	}else if(request.msg == "setbookmarkswebsites"){
 		chrome.storage.sync.get(["websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10"], function(items){
 			document.getElementById("menubookmarks").className = "hidden";
-			var list = document.getElementById("list");
-			while(list.firstChild){
-				list.removeChild(list.firstChild);
-			}
+			clearBookmarksItems();
 			createmenuitems(items);
+		});
+	}else if(request.msg == "setopennonebookmarks"){
+		chrome.storage.sync.get(["openquickbookmarks", "openbrowserbookmarks", "opennonebookmarks"], function(items){
+			openquickbookmarks = items["openquickbookmarks"]; if(openquickbookmarks == null){ openquickbookmarks = false; }
+			openbrowserbookmarks = items["openbrowserbookmarks"]; if(openbrowserbookmarks == null){ openbrowserbookmarks = false; }
+			opennonebookmarks = items["opennonebookmarks"]; if(opennonebookmarks == null){ opennonebookmarks = false; }
+			document.getElementById("menubookmarks").className = "hidden";
+			document.getElementById("btnbookmarks").className = "hidden";
+			clearBookmarksItems();
+		});
+	}else if(request.msg == "setopenquickbookmarks"){
+		chrome.storage.sync.get(["openquickbookmarks", "openbrowserbookmarks", "opennonebookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10"], function(items){
+			openquickbookmarks = items["openquickbookmarks"]; if(openquickbookmarks == null){ openquickbookmarks = false; }
+			openbrowserbookmarks = items["openbrowserbookmarks"]; if(openbrowserbookmarks == null){ openbrowserbookmarks = false; }
+			opennonebookmarks = items["opennonebookmarks"]; if(opennonebookmarks == null){ opennonebookmarks = false; }
+			clearBookmarksItems(items);
+			createmenuitems(items);
+			document.getElementById("btnbookmarks").className = "icon";
+		});
+	}else if(request.msg == "setopenbrowserbookmarks"){
+		chrome.storage.sync.get(["openquickbookmarks", "openbrowserbookmarks", "opennonebookmarks"], function(items){
+			openquickbookmarks = items["openquickbookmarks"]; if(openquickbookmarks == null){ openquickbookmarks = false; }
+			openbrowserbookmarks = items["openbrowserbookmarks"]; if(openbrowserbookmarks == null){ openbrowserbookmarks = false; }
+			opennonebookmarks = items["opennonebookmarks"]; if(opennonebookmarks == null){ opennonebookmarks = false; }
+			document.getElementById("btnbookmarks").className = "icon";
+			clearBookmarksItems();
+			createbrowserbookmark();
 		});
 	}
 });

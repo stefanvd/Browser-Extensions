@@ -103,6 +103,7 @@ function createmenubar(a, b, c, d, e){
 
 		var newdropdowna = document.createElement("a");
 		newdropdowna.style.color = fontcolor;
+		newdropdowna.id = "hyper" + e[0];
 		newdropdowna.innerHTML = d;
 		newdropdowna.tabIndex = 0;
 		newdropdown.appendChild(newdropdowna);
@@ -935,112 +936,136 @@ function addtoolbar(){
 				chrome.runtime.sendMessage({name: "stefanchromeabout"});
 			}, false);
 
-			// Begin shorcut to move to left, right, up and down
-			const menuRootItems = el.shadowRoot.querySelectorAll("#btnfile + a, #btnhelp + a, #btnedit + a, #btnview + a, #btnhistory + a, #btnbookmarks + a, #btnwindow + a");
-			let activeMenuItemFile = 0;
-			let activeMenuItemHelp = 0;
-			let activeMenuItemEdit = 0;
-			let activeMenuItemView = 0;
-			let activeMenuItemHistory = 0;
-			let activeMenuItemBookmarks = 0;
-			let activeMenuItemWindow = 0;
-			let currentRootIndex = 0;
 
-			document.addEventListener("keydown", function(event){
-				if(menuproducts == true){
-					if(event.key === "ArrowDown" || event.key === "ArrowUp"){
-						event.preventDefault();
-						const direction = event.key === "ArrowDown" ? 1 : -1;
-						let activeMenuItem;
-						let menuItemsArray;
-						if(el.shadowRoot.getElementById("btnfile").checked){
-							activeMenuItem = activeMenuItemFile;
-							menuItemsArray = Array.from(el.shadowRoot.querySelectorAll(".panelfile a"));
-						}else if(el.shadowRoot.getElementById("btnhelp").checked){
-							activeMenuItem = activeMenuItemHelp;
-							menuItemsArray = Array.from(el.shadowRoot.querySelectorAll(".panelhelp a"));
-						}else if(el.shadowRoot.getElementById("btnedit").checked){
-							activeMenuItem = activeMenuItemEdit;
-							menuItemsArray = Array.from(el.shadowRoot.querySelectorAll(".paneledit a"));
-						}else if(el.shadowRoot.getElementById("btnview").checked){
-							activeMenuItem = activeMenuItemView;
-							menuItemsArray = Array.from(el.shadowRoot.querySelectorAll(".panelview a"));
-						}else if(el.shadowRoot.getElementById("btnhistory").checked){
-							activeMenuItem = activeMenuItemHistory;
-							menuItemsArray = Array.from(el.shadowRoot.querySelectorAll(".panelhistory a"));
-						}else if(el.shadowRoot.getElementById("btnbookmarks").checked){
-							activeMenuItem = activeMenuItemBookmarks;
-							menuItemsArray = Array.from(el.shadowRoot.querySelectorAll(".panelbookmarks a"));
-						}else if(el.shadowRoot.getElementById("btnwindow").checked){
-							activeMenuItem = activeMenuItemWindow;
-							menuItemsArray = Array.from(el.shadowRoot.querySelectorAll(".panelwindow a"));
-						}
-						if(menuItemsArray && menuItemsArray.length > 0){
-							const newIndex = (activeMenuItem + direction + menuItemsArray.length) % menuItemsArray.length;
-							switch(true){
-							case el.shadowRoot.getElementById("btnfile").checked:
-								activeMenuItemFile = newIndex;
-								break;
-							case el.shadowRoot.getElementById("btnhelp").checked:
-								activeMenuItemHelp = newIndex;
-								break;
-							case el.shadowRoot.getElementById("btnedit").checked:
-								activeMenuItemEdit = newIndex;
-								break;
-							case el.shadowRoot.getElementById("btnview").checked:
-								activeMenuItemView = newIndex;
-								break;
-							case el.shadowRoot.getElementById("btnhistory").checked:
-								activeMenuItemHistory = newIndex;
-								break;
-							case el.shadowRoot.getElementById("btnbookmarks").checked:
-								activeMenuItemBookmarks = newIndex;
-								break;
-							case el.shadowRoot.getElementById("btnwindow").checked:
-								activeMenuItemWindow = newIndex;
-								break;
-							default:
-								break;
-							}
-							menuItemsArray[newIndex].focus();
-						}
-					}else if(event.key === "ArrowLeft" || event.key === "ArrowRight"){
-						event.preventDefault();
-						const newIndex = event.key === "ArrowRight" ? (currentRootIndex + 1) % menuRootItems.length : (currentRootIndex - 1 + menuRootItems.length) % menuRootItems.length;
-						const nextCheckbox = menuRootItems[newIndex].previousElementSibling;
-						if(nextCheckbox){
-							const prevCheckbox = menuRootItems[currentRootIndex].previousElementSibling;
-							if(prevCheckbox){
-								prevCheckbox.checked = false;
-								prevCheckbox.nextElementSibling.style.display = "none";
-							}
-							nextCheckbox.checked = !nextCheckbox.checked;
-							nextCheckbox.nextElementSibling.style.display = "block";
-							menuRootItems[newIndex].focus();
-							currentRootIndex = newIndex;
-							// Reset active item index for the opened flyout
-							activeMenuItemFile = -1;
-							activeMenuItemHelp = -1;
-							activeMenuItemEdit = -1;
-							activeMenuItemView = -1;
-							activeMenuItemHistory = -1;
-							activeMenuItemBookmarks = -1;
-							activeMenuItemWindow = -1;
-						}
-					}else if(event.key === "Enter"){
-						event.preventDefault();
-						const focusedElement = el.shadowRoot.activeElement;
-						if(focusedElement){
-							focusedElement.click();
-						}
-					}
+			// Start root menu shortcut
+			menuRootItems = el.shadowRoot.querySelectorAll("#btnfile + a, #btnhelp + a, #btnedit + a, #btnview + a, #btnhistory + a, #btnbookmarks + a, #btnwindow + a");
+
+			// Add event listener for keyboard events
+			let keyboardEventListener = null;
+
+			// Event listener to toggle keyboard event listener based on focus
+			document.addEventListener("focusin", function(event){
+				const focusedElement = event.target;
+				if(focusedElement.id === "stefanvdpropermenubar"){
+					keyboardEventListener = handleKeyboardEvent;
+					document.addEventListener("keydown", keyboardEventListener);
 				}
 			});
-			// End shortcut
+
+			document.addEventListener("focusout", function(){
+				if(keyboardEventListener){
+					document.removeEventListener("keydown", keyboardEventListener);
+					keyboardEventListener = null;
+				}
+			});
+			// End root menu shortcut
 
 		}
 	}
 }
+
+// Begin shorcut to move to left, right, up and down
+var menuRootItems = null;
+let activeMenuItemFile = 0;
+let activeMenuItemHelp = 0;
+let activeMenuItemEdit = 0;
+let activeMenuItemView = 0;
+let activeMenuItemHistory = 0;
+let activeMenuItemBookmarks = 0;
+let activeMenuItemWindow = 0;
+let currentRootIndex = 0;
+
+function handleKeyboardEvent(event){
+	if(menuproducts == true){
+		if(event.key === "ArrowDown" || event.key === "ArrowUp"){
+			event.preventDefault();
+			const direction = event.key === "ArrowDown" ? 1 : -1;
+			let activeMenuItem;
+			let menuItemsArray;
+			if(el.shadowRoot.getElementById("btnfile").checked){
+				activeMenuItem = activeMenuItemFile;
+				menuItemsArray = Array.from(el.shadowRoot.querySelectorAll(".panelfile a"));
+			}else if(el.shadowRoot.getElementById("btnhelp").checked){
+				activeMenuItem = activeMenuItemHelp;
+				menuItemsArray = Array.from(el.shadowRoot.querySelectorAll(".panelhelp a"));
+			}else if(el.shadowRoot.getElementById("btnedit").checked){
+				activeMenuItem = activeMenuItemEdit;
+				menuItemsArray = Array.from(el.shadowRoot.querySelectorAll(".paneledit a"));
+			}else if(el.shadowRoot.getElementById("btnview").checked){
+				activeMenuItem = activeMenuItemView;
+				menuItemsArray = Array.from(el.shadowRoot.querySelectorAll(".panelview a"));
+			}else if(el.shadowRoot.getElementById("btnhistory").checked){
+				activeMenuItem = activeMenuItemHistory;
+				menuItemsArray = Array.from(el.shadowRoot.querySelectorAll(".panelhistory a"));
+			}else if(el.shadowRoot.getElementById("btnbookmarks").checked){
+				activeMenuItem = activeMenuItemBookmarks;
+				menuItemsArray = Array.from(el.shadowRoot.querySelectorAll(".panelbookmarks a"));
+			}else if(el.shadowRoot.getElementById("btnwindow").checked){
+				activeMenuItem = activeMenuItemWindow;
+				menuItemsArray = Array.from(el.shadowRoot.querySelectorAll(".panelwindow a"));
+			}
+			if(menuItemsArray && menuItemsArray.length > 0){
+				const newIndex = (activeMenuItem + direction + menuItemsArray.length) % menuItemsArray.length;
+				switch(true){
+				case el.shadowRoot.getElementById("btnfile").checked:
+					activeMenuItemFile = newIndex;
+					break;
+				case el.shadowRoot.getElementById("btnhelp").checked:
+					activeMenuItemHelp = newIndex;
+					break;
+				case el.shadowRoot.getElementById("btnedit").checked:
+					activeMenuItemEdit = newIndex;
+					break;
+				case el.shadowRoot.getElementById("btnview").checked:
+					activeMenuItemView = newIndex;
+					break;
+				case el.shadowRoot.getElementById("btnhistory").checked:
+					activeMenuItemHistory = newIndex;
+					break;
+				case el.shadowRoot.getElementById("btnbookmarks").checked:
+					activeMenuItemBookmarks = newIndex;
+					break;
+				case el.shadowRoot.getElementById("btnwindow").checked:
+					activeMenuItemWindow = newIndex;
+					break;
+				default:
+					break;
+				}
+				menuItemsArray[newIndex].focus();
+			}
+		}else if(event.key === "ArrowLeft" || event.key === "ArrowRight"){
+			event.preventDefault();
+			const newIndex = event.key === "ArrowRight" ? (currentRootIndex + 1) % menuRootItems.length : (currentRootIndex - 1 + menuRootItems.length) % menuRootItems.length;
+			const nextCheckbox = menuRootItems[newIndex].previousElementSibling;
+			if(nextCheckbox){
+				const prevCheckbox = menuRootItems[currentRootIndex].previousElementSibling;
+				if(prevCheckbox){
+					prevCheckbox.checked = false;
+					prevCheckbox.nextElementSibling.style.display = "none";
+				}
+				nextCheckbox.checked = !nextCheckbox.checked;
+				nextCheckbox.nextElementSibling.style.display = "block";
+				menuRootItems[newIndex].focus();
+				currentRootIndex = newIndex;
+				// Reset active item index for the opened flyout
+				activeMenuItemFile = -1;
+				activeMenuItemHelp = -1;
+				activeMenuItemEdit = -1;
+				activeMenuItemView = -1;
+				activeMenuItemHistory = -1;
+				activeMenuItemBookmarks = -1;
+				activeMenuItemWindow = -1;
+			}
+		}else if(event.key === "Enter"){
+			event.preventDefault();
+			const focusedElement = el.shadowRoot.activeElement;
+			if(focusedElement){
+				focusedElement.click();
+			}
+		}
+	}
+}
+// End shortcut
 
 // Observe a specific DOM element:
 if(document.body){
@@ -1153,14 +1178,9 @@ chrome.runtime.onMessage.addListener(function request(request){
 	}else if(request.action == "goforward"){
 		window.history.forward();
 	}else if(request.action == "gofocus"){
-		const firstRootMenuItem = el.shadowRoot.querySelectorAll("#btnfile")[0];
-		const btnFile = el.shadowRoot.getElementById("btnfile");
+		const btnFile = el.shadowRoot.getElementById("hyperbtnfile");
 		if(btnFile){
-			const firstAnchor = firstRootMenuItem;
-			if(firstAnchor){
-				firstAnchor.focus();
-				firstAnchor.click();
-			}
+			btnFile.focus();
 		}
 	}else if(request.action == "addremove"){
 		chrome.storage.sync.get(["country", "addbar", "dropshadow", "toolbarDomains", "allsites", "toolbaronly", "getpositiontop", "getpositionbottom", "toolbarwhite", "toolbarblack", "backgroundhex", "backgroundimagesource", "opacity", "backgroundcolor", "backgroundimage", "allsites", "fontcolor", "googlesites", "search", "existingtab", "display", "hovertextcolor", "hoverbackground", "googleproducts", "menuproducts", "googlebarDomains", "hovermenu"], function(items){

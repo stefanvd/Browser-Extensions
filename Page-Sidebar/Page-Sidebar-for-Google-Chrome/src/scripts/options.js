@@ -30,43 +30,51 @@ function $(id){ return document.getElementById(id); }
 var youtubeembed = "https://www.youtube.com/embed/?listType=playlist&list=PLfXHh3TKRb4Z-C2w3SLAY_InRNET-DgI1&rel=0";
 var darkmode = false;
 
+var firstdefaultvalues = {};
 function defaultgetsettings(){
-	read_options();
+	// Option default value to read if there is no current value from chrome.storage AND init default value
+	chrome.storage.sync.get(["icon", "contextmenus", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "typepanellasttime", "websitezoomname", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "opennonebookmarks", "openbrowserbookmarks", "openquickbookmarks"], function(items){
+		// find no localstore
+		if(items["icon"] == null){
+			if(exbrowser == "safari"){
+				firstdefaultvalues["icon"] = "/images/icon38.png";
+			}else{
+				firstdefaultvalues["icon"] = "/images/icon38.png";
+			}
+		}
+		if(items["contextmenus"] == null){ firstdefaultvalues["contextmenus"] = true; }
+		if(items["searchgoogle"] == null && items["searchbing"] == null && items["searchduckduckgo"] == null && items["searchbaidu"] == null && items["searchyandex"] == null){ firstdefaultvalues["searchgoogle"] = true; firstdefaultvalues["searchbing"] = false; firstdefaultvalues["searchduckduckgo"] = false; firstdefaultvalues["searchbaidu"] = false; firstdefaultvalues["searchyandex"] = false; }
+		if(items["navtop"] == null && items["navbottom"] == null && items["navhidden"] == null){ firstdefaultvalues["navtop"] = true; firstdefaultvalues["navbottom"] = false; firstdefaultvalues["navhidden"] = false; }
+		if(items["websitezoomname"] == null){ firstdefaultvalues["websitezoomname"] = "https://www.google.com"; }
+		if(items["typepanelzone"] == null && items["typepanelcustom"] == null && items["typepanellasttime"] == null){
+			firstdefaultvalues["typepanelzone"] = true;
+			firstdefaultvalues["typepanelcustom"] = false;
+			firstdefaultvalues["typepanellasttime"] = false;
+		}
+		if(items["websitename1"] == null){ firstdefaultvalues["websitename1"] = "Google"; }
+		if(items["websiteurl1"] == null){ firstdefaultvalues["websiteurl1"] = "https://www.google.com"; }
+		if(items["websitename2"] == null){ firstdefaultvalues["websitename2"] = "YouTube"; }
+		if(items["websiteurl2"] == null){ firstdefaultvalues["websiteurl2"] = "https://www.youtube.com"; }
+		if(items["websitename3"] == null){ firstdefaultvalues["websitename3"] = "Developer"; }
+		if(items["websiteurl3"] == null){ firstdefaultvalues["websiteurl3"] = "https://www.stefanvd.net"; }
+		if(items["opennonebookmarks"] == null && items["openbrowserbookmarks"] == null && items["openquickbookmarks"] == null){
+			firstdefaultvalues["opennonebookmarks"] = true;
+			firstdefaultvalues["openbrowserbookmarks"] = false;
+			firstdefaultvalues["openquickbookmarks"] = false;
+		}
+
+		// Save the init value
+		chrome.storage.sync.set(firstdefaultvalues, function(){
+			// console.log("Settings saved");
+			read_options();
+		});
+	});
 }
 
 // Option to save current value
 function save_options(){
-	chrome.storage.sync.set({"icon": $("btnpreview").src, "optionskipremember":$("optionskipremember").checked, "contextmenus":$("contextmenus").checked, "searchgoogle": $("searchgoogle").checked, "searchbing": $("searchbing").checked, "searchduckduckgo": $("searchduckduckgo").checked, "searchbaidu": $("searchbaidu").checked, "searchyandex": $("searchyandex").checked, "navtop": $("navtop").checked, "navbottom": $("navbottom").checked, "navhidden": $("navhidden").checked, "typepanelzone": $("typepanelzone").checked, "typepanelcustom": $("typepanelcustom").checked, "typepanellasttime": $("typepanellasttime").checked, "websitezoomname": $("websitezoomname").value, "opentab": $("opentab").checked, "opencopy": $("opencopy").checked, "openquickbookmarks": $("openquickbookmarks").checked, "websitename1": $("websitename1").value, "websiteurl1": $("websiteurl1").value, "websitename2": $("websitename2").value, "websiteurl2": $("websiteurl2").value, "websitename3": $("websitename3").value, "websiteurl3": $("websiteurl3").value, "websitename4": $("websitename4").value, "websiteurl4": $("websiteurl4").value, "websitename5": $("websitename5").value, "websiteurl5": $("websiteurl5").value, "websitename6": $("websitename6").value, "websiteurl6": $("websiteurl6").value, "websitename7": $("websitename7").value, "websiteurl7": $("websiteurl7").value, "websitename8": $("websitename8").value, "websiteurl8": $("websiteurl8").value, "websitename9": $("websitename9").value, "websiteurl9": $("websiteurl9").value, "websitename10": $("websitename10").value, "websiteurl10": $("websiteurl10").value});
+	chrome.storage.sync.set({"icon": $("btnpreview").src, "optionskipremember":$("optionskipremember").checked, "contextmenus":$("contextmenus").checked, "searchgoogle": $("searchgoogle").checked, "searchbing": $("searchbing").checked, "searchduckduckgo": $("searchduckduckgo").checked, "searchbaidu": $("searchbaidu").checked, "searchyandex": $("searchyandex").checked, "navtop": $("navtop").checked, "navbottom": $("navbottom").checked, "navhidden": $("navhidden").checked, "typepanelzone": $("typepanelzone").checked, "typepanelcustom": $("typepanelcustom").checked, "typepanellasttime": $("typepanellasttime").checked, "websitezoomname": $("websitezoomname").value, "opentab": $("opentab").checked, "opencopy": $("opencopy").checked, "opennonebookmarks": $("opennonebookmarks").checked, "openbrowserbookmarks": $("openbrowserbookmarks").checked, "openquickbookmarks": $("openquickbookmarks").checked, "websitename1": $("websitename1").value, "websiteurl1": $("websiteurl1").value, "websitename2": $("websitename2").value, "websiteurl2": $("websiteurl2").value, "websitename3": $("websitename3").value, "websiteurl3": $("websiteurl3").value, "websitename4": $("websitename4").value, "websiteurl4": $("websiteurl4").value, "websitename5": $("websitename5").value, "websiteurl5": $("websiteurl5").value, "websitename6": $("websitename6").value, "websiteurl6": $("websiteurl6").value, "websitename7": $("websitename7").value, "websiteurl7": $("websiteurl7").value, "websitename8": $("websitename8").value, "websiteurl8": $("websiteurl8").value, "websitename9": $("websitename9").value, "websiteurl9": $("websiteurl9").value, "websitename10": $("websitename10").value, "websiteurl10": $("websiteurl10").value});
 }
-
-var firstdefaultvalues = {};
-// Option default value to read if there is no current value from chrome.storage AND init default value
-chrome.storage.sync.get(["icon", "contextmenus", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "typepanellasttime", "websitezoomname", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3"], function(items){
-	// find no localstore
-	if(items["icon"] == null){
-		if(exbrowser == "safari"){
-			firstdefaultvalues["icon"] = "/images/icon38.png";
-		}else{
-			firstdefaultvalues["icon"] = "/images/icon38.png";
-		}
-	}
-	if(items["contextmenus"] == null){ firstdefaultvalues["contextmenus"] = true; }
-	if(items["searchgoogle"] == null && items["searchbing"] == null && items["searchduckduckgo"] == null && items["searchbaidu"] == null && items["searchyandex"] == null){ firstdefaultvalues["searchgoogle"] = true; firstdefaultvalues["searchbing"] = false; firstdefaultvalues["searchduckduckgo"] = false; firstdefaultvalues["searchbaidu"] = false; firstdefaultvalues["searchyandex"] = false; }
-	if(items["navtop"] == null && items["navbottom"] == null && items["navhidden"] == null){ firstdefaultvalues["navtop"] = true; firstdefaultvalues["navbottom"] = false; firstdefaultvalues["navhidden"] = false; }
-	if(items["websitezoomname"] == null){ firstdefaultvalues["websitezoomname"] = "https://www.google.com"; }
-	if(items["typepanelzone"] == null && items["typepanelcustom"] == null && items["typepanellasttime"]){ firstdefaultvalues["typepanelzone"] = true; firstdefaultvalues["typepanelcustom"] = false; firstdefaultvalues["typepanellasttime"] = false; }
-	if(items["websitename1"] == null){ firstdefaultvalues["websitename1"] = "Google"; }
-	if(items["websiteurl1"] == null){ firstdefaultvalues["websiteurl1"] = "https://www.google.com"; }
-	if(items["websitename2"] == null){ firstdefaultvalues["websitename2"] = "YouTube"; }
-	if(items["websiteurl2"] == null){ firstdefaultvalues["websiteurl2"] = "https://www.youtube.com"; }
-	if(items["websitename3"] == null){ firstdefaultvalues["websitename3"] = "Developer"; }
-	if(items["websiteurl3"] == null){ firstdefaultvalues["websiteurl3"] = "https://www.stefanvd.net"; }
-	// find no localstore lightimage
-	// Save the init value
-	chrome.storage.sync.set(firstdefaultvalues, function(){
-		// console.log('Settings saved');
-	});
-});
 
 function read_options(){
 	// youtube
@@ -156,10 +164,10 @@ function read_options(){
 		showhidemodal("materialModalYouTube", "hide", "true");
 	}
 
-	chrome.storage.sync.get(["icon", "firstDate", "contextmenus", "optionskipremember", "firstsawrate", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "typepanellasttime", "websitezoomname", "opentab", "opencopy", "openquickbookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10"], function(items){
+	chrome.storage.sync.get(["icon", "firstDate", "contextmenus", "optionskipremember", "firstsawrate", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "typepanellasttime", "websitezoomname", "opentab", "opencopy", "opennonebookmarks", "openbrowserbookmarks", "openquickbookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10"], function(items){
 		if(items["icon"]){ $("btnpreview").src = items["icon"]; }
 		if(items["contextmenus"] == true)$("contextmenus").checked = true;
-		if(items["optionskipremember"] == true){ $("optionskipremember").checked = true; $("firstcheckboxskipremember").checked = true; }
+		if(items["optionskipremember"] == true){ $("optionskipremember").checked = true; }
 		if(items["searchgoogle"] == true){ $("searchgoogle").checked = true; }
 		if(items["searchbing"] == true){ $("searchbing").checked = true; }
 		if(items["searchduckduckgo"] == true){ $("searchduckduckgo").checked = true; }
@@ -174,6 +182,8 @@ function read_options(){
 		if(items["websitezoomname"]){ $("websitezoomname").value = items["websitezoomname"]; }else $("websitezoomname").value = "https://www.google.com";
 		if(items["opentab"] == true){ $("opentab").checked = true; }
 		if(items["opencopy"] == true){ $("opencopy").checked = true; }
+		if(items["opennonebookmarks"]){ $("opennonebookmarks").checked = true; }
+		if(items["openbrowserbookmarks"]){ $("openbrowserbookmarks").checked = true; }
 		if(items["openquickbookmarks"]){ $("openquickbookmarks").checked = true; }
 		if(items["websitename1"]){ $("websitename1").value = items["websitename1"]; }
 		if(items["websiteurl1"]){ $("websiteurl1").value = items["websiteurl1"]; }
@@ -334,6 +344,10 @@ function test(){
 		$("websitezoomname").disabled = false;
 	}else{
 		$("websitezoomname").disabled = true;
+	}
+
+	if($("openbrowserbookmarks").checked == true){
+		chrome.runtime.sendMessage({name: "stefanbookmarkadd"});
 	}
 
 	if($("openquickbookmarks").checked == true){
@@ -739,6 +753,23 @@ function domcontentloaded(){
 		}else{
 			setmetatheme(false);
 		}
+	});
+
+	$("removepermissionbookmark").addEventListener("click", function(){
+		chrome.permissions.remove({
+			permissions: ["bookmarks"]
+		}, function(removed){
+			if(removed){
+				// The permissions have been removed.
+				var txtpermission = chrome.i18n.getMessage("wpermissionremoved");
+				window.alert(txtpermission);
+			}else{
+				// The permissions have not been removed (e.g., you tried to remove
+				// required permissions).
+				var txtpermissionnot = chrome.i18n.getMessage("wpermissionnotremoved");
+				window.alert(txtpermissionnot);
+			}
+		});
 	});
 
 	// Save KB download
