@@ -270,7 +270,7 @@ function renderBookmarks(bookmarks, parentElement){
 		if(bookmark.children){
 			// Create a sublist for folders
 			var sublist = document.createElement("ul");
-			sublist.style.display = "none";
+			sublist.className = "hideitem";
 			renderBookmarks(bookmark.children, sublist);
 			var listItemsub = document.createElement("li");
 			var folderLink = document.createElement("a");
@@ -293,11 +293,11 @@ function renderBookmarks(bookmarks, parentElement){
 
 			// Add event listeners for mouseenter and mouseleave
 			listItemsub.addEventListener("mouseenter", function(){
-				sublist.style.display = "block";
+				sublist.className = "showitem";
 			});
 
 			listItemsub.addEventListener("mouseleave", function(){
-				sublist.style.display = "none";
+				sublist.className = "hideitem";
 			});
 
 			// Add class for CSS styling

@@ -522,7 +522,7 @@ chrome.runtime.onMessage.addListener(function(msg){
 
 				var textperm = "";
 				var newpermspandes = document.createElement("span");
-				if(x == "activeTab"){ textperm = chrome.i18n.getMessage("permissionactivetab"); }else if(x == "contextMenus"){ textperm = chrome.i18n.getMessage("permissioncontextmenu"); }else if(x == "storage"){ textperm = chrome.i18n.getMessage("permissionstorage"); }else if(x == "tabs"){ textperm = chrome.i18n.getMessage("permissiontabs"); }else if(x == "scripting"){ textperm = chrome.i18n.getMessage("permissionscripting"); }
+				if(x == "activeTab"){ textperm = chrome.i18n.getMessage("permissionactivetab"); }else if(x == "contextMenus"){ textperm = chrome.i18n.getMessage("permissioncontextmenu"); }else if(x == "storage"){ textperm = chrome.i18n.getMessage("permissionstorage"); }else if(x == "tabs"){ textperm = chrome.i18n.getMessage("permissiontabs"); }else if(x == "scripting"){ textperm = chrome.i18n.getMessage("permissionscripting"); }else if(x == "bookmarks"){ textperm = chrome.i18n.getMessage("permissionbookmarks"); }else if(x == "sidePanel"){ textperm = chrome.i18n.getMessage("permissionsidepanel"); }else if(x == "declarativeNetRequestWithHostAccess"){ textperm = chrome.i18n.getMessage("permissionhostaccess"); }
 				newpermspandes.textContent = textperm;
 				newpermspandes.className = "item";
 				newperm.appendChild(newpermspandes);
@@ -530,7 +530,6 @@ chrome.runtime.onMessage.addListener(function(msg){
 		});
 	}
 });
-
 
 function setmetatheme(a){
 	const metas = document.getElementsByTagName("meta");
@@ -763,6 +762,12 @@ function domcontentloaded(){
 				// The permissions have been removed.
 				var txtpermission = chrome.i18n.getMessage("wpermissionremoved");
 				window.alert(txtpermission);
+
+				// set to default off
+				$("opennonebookmarks").checked = true;
+				$("openbrowserbookmarks").checked = false;
+				$("openquickbookmarks").checked = false;
+				save_options();
 			}else{
 				// The permissions have not been removed (e.g., you tried to remove
 				// required permissions).

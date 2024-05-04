@@ -50,6 +50,13 @@ chrome.runtime.onMessage.addListener(function request(request, sender, response)
 	case"sidepanelopen":
 		response(!sender.documentId);
 		break;
+	case"getallpermissions":
+		var result = "";
+		chrome.permissions.getAll(function(permissions){
+			result = permissions.permissions;
+			chrome.tabs.sendMessage(sender.tab.id, {text: "receiveallpermissions", value: result});
+		});
+		break;
 	case"stefanbookmarkadd":
 		// Permissions must be requested from inside a user gesture
 		chrome.permissions.request({
