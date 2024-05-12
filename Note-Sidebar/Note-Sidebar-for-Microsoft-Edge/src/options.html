@@ -8,7 +8,7 @@
 
 Note Sidebar
 Simple note sidebar which can be used to write a note, record thoughts, to-do list, meeting notes, etc.
-Copyright (C) 2023 Stefan vd
+Copyright (C) 2024 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -163,7 +163,6 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				<div class="probox"><span data-i18n="promotitle"></span></div>
 				<div class="proboxtext">
 				<span id="promotext"></span>
-				<br><br>
 				<button id="btnpromoaction" class="proboxbutton">⇩ <span id="spnpromoaction" data-i18n="promocalltoaction"></span></button>
 				</div>
 			</section>
@@ -327,6 +326,23 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				</div>
 			</div>
 			</section>
+			<section>
+				<h3 id="head2"><span data-i18n="titleicon"></span></h3>
+				<div>
+					<div class="md-desbox">
+						<div><span data-i18n="head2"></span></div>
+					</div>
+					<br>
+					<div class="minibrowserpreview">
+						<div class="columnA">
+						<div class="browserbuttons"><img id="p0" alt="Note Sidebar" class="buttoncolor lightbackground" src="images/icon38.png"><img id="p1" alt="Note Sidebar" class="buttoncolor darkbackground" src="images/icon38white.png"></div>
+						<br>
+						</div>
+						<div class="columnB"><div class="activebutton"><img id="btnpreview" alt="Note Sidebar" name="preview" class="buttoncolor" src="images/icon38.png"></div><div class="browserpreview"></div>
+						</div>
+					</div>
+				</div>
+			</section>
 			</div>
 			<div id="tab4" class="page hidden">
 				<h2 data-i18n="advancedoptions"></h2>
@@ -338,6 +354,35 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 						<label for="optionskipremember"><div><span data-i18n="desrememberpage"></span></div></label>
 					</div>
 				</div>
+				</section>
+				<section>
+					<h3 id="typeformat" data-i18n="typenote"></h3>
+					<div>
+						<div class="md-radio">
+							<input id="plaintext" type="radio" name="textformat" value="plain" role="radio" aria-checked="true" aria-labelledby="typeformat">
+							<label for="plaintext"><div><span data-i18n="typeplaintext"></span></div></label>
+						</div>
+						<div class="md-radio">
+							<input id="richtext" type="radio" name="textformat" value="rich" role="radio" aria-checked="false" aria-labelledby="typeformat">
+							<label for="richtext"><div><span data-i18n="typerichtext"></span></div></label>
+						</div>
+						<div>
+							<div><strong>Bold</strong><br>Windows: <em>Ctrl + B</em><br>Linux: <em>Ctrl + B</em><br>Mac: <em>⌘ + B</em></div>
+							<br>
+							<div><em>Italic</em><br>Windows: <em>Ctrl + I</em><br>Linux: <em>Ctrl + I</em><br>Mac: <em>⌘ + I</em></div>
+							<br>
+							<div><u>Underline</u><br>Windows: <em>Ctrl + U</em><br>Linux: <em>Ctrl + U</em><br>Mac: <em>⌘ + U</em></div>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3 data-i18n="titeltabs"></h3>
+					<div>
+						<div class="md-checkbox">	
+							<input id="multiple" type="checkbox">
+							<label for="multiple"><div><span data-i18n="destabs"></span></div></label>
+						</div>
+					</div>
 				</section>
 				<section>
 					<h3 data-i18n="titelpassword"></h3>
@@ -356,7 +401,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 					<div>
 						<label><button id="exportnotes" data-i18n="desexportnotes"></button></label>
 					</div>
-					</section>
+				</section>
 				<section>
 				<h3 data-i18n="titelsync"></h3>
 				<div class="grey-text"><span data-i18n="titelsyncbrowser"></span></div>
@@ -364,7 +409,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				<section>
 				<h3 data-i18n="titelreset"></h3>
 				<div>
-					<label><button id="resetinotessidebar" data-i18n="resetbrowserextension"></button></label>
+					<label><button id="resetbrowserextension" data-i18n="resetbrowserextension"></button></label>
 				</div>
 				</section>
 			</div>

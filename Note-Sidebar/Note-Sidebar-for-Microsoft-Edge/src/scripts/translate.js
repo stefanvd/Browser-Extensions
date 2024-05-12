@@ -3,7 +3,7 @@
 
 Note Sidebar
 Simple note sidebar which can be used to write a note, record thoughts, to-do list, meeting notes, etc.
-Copyright (C) 2023 Stefan vd
+Copyright (C) 2024 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or

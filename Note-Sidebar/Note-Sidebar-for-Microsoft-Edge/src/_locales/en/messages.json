@@ -4,6 +4,7 @@
     "nameedge": {"message": "Note Sidebar for Microsoft Edge"},
     "nameopera": {"message": "Note Sidebar for Opera"},
     "namefirefox": {"message": "Note Sidebar for Firefox"},
+    "namesafari": {"message": "Note Sidebar for Safari"},
     "description": {"message": "Simple note sidebar which can be used to write a note, record thoughts, to-do list, meeting notes, etc."},
     "optionpagetitle": {"message": "Note Sidebar - Options"},
     "pagehelp": {"message": "help"},
@@ -24,7 +25,7 @@
     "sharemenusharetitle": {"message": "Share this"},
     "sharemenuwelcomeguidetitle": {"message": "Welcome Guide"},
     "sharemenutellafriend": {"message": "Tell a Friend"},
-    "sharemenusendatweet": {"message": "Send a Tweet"},
+    "sharemenupostonx": {"message": "Post on X"},
     "sharemenupostonfacebook": {"message": "Post on Facebook"},
     "sharemenuratetitle": {"message": "Rate this extension"},
     "sharemenudonatetitle": {"message": "Make a donation"},
@@ -165,5 +166,12 @@
     "optionpasswordsaved": {"message": "Password is saved successfully!"},
     "passwordplaceholder": {"message": "Enter your Password"},
     "titlecopytextdone": {"message": "Copied"},
-    "descopytextdone": {"message": "Text Copied to the Clipboard"}
+    "descopytextdone": {"message": "Text Copied to the Clipboard"},
+    "head2": {"message": "Choose your favorite Note Sidebar icon:"},
+    "typenote": {"message": "Type note"},
+    "typeplaintext": {"message": "Plain Text Format"},
+    "typerichtext": {"message": "Rich Text Format"},
+    "titeltabs": {"message": "Multiple Notes"},
+    "destabs": {"message": "Add multiple notes in the sidebar"},
+    "note": {"message": "Note"}
 }

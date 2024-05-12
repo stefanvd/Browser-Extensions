@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "__MSG_name__",
   "description": "__MSG_description__",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "background": {
     "service_worker": "scripts/background.js"
   },
@@ -28,6 +28,9 @@
         "mac": "MacCtrl+Shift+T"
       }
     }
+  },
+  "content_security_policy": {
+    "extension_pages": "default-src 'none'; style-src 'self' 'unsafe-inline'; media-src https://www.stefanvd.net; child-src https://www.youtube.com https://www.stefanvd.net; connect-src https://www.stefanvd.net; script-src 'self'; img-src 'self' https://www.stefanvd.net * data:; object-src 'none'"
   },
   "options_ui": {
     "page": "options.html",

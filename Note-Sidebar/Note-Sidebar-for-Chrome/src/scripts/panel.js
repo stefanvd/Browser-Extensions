@@ -150,6 +150,11 @@ function init(){
 			document.getElementById("tabstrip").dataset.active = index;
 			setActiveTabContent(index);
 		}
+
+		// recount characters
+		if(counter == true){
+			countcharacters();
+		}
 	});
 
 	tabContainer.addEventListener("click", function(event){
@@ -599,6 +604,11 @@ function createTabContent(){
 			}
 			powertext.innerHTML = theValue;
 		}
+	}
+
+	// recount characters
+	if(counter == true){
+		countcharacters();
 	}
 }
 
