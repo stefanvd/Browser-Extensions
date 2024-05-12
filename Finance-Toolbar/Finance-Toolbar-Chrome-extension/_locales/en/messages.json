@@ -66,7 +66,7 @@
         "message": "Refresh Data"
     },
     "desxminutes": {
-        "message": "Update the stock market information on the choosen seconds"
+        "message": "Update the stock market information on the chosen seconds"
     },
     "designmarquee": {
         "message": "Design"
@@ -87,7 +87,7 @@
         "message": "Hover Popup"
     },
     "deshoverpopup": {
-        "message": "Show the popup image for that current stock, when i hover over the current value."
+        "message": "Show the popup image for the current stock when hovering over its current value."
     },
     "example": {
         "message": "Example"

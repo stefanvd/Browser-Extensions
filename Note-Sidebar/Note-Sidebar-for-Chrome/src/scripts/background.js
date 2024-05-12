@@ -47,8 +47,28 @@ chrome.runtime.onMessage.addListener(function request(request){
 	case"bckreload":
 		installation();
 		break;
+	case"newnotetext":
+		currentnotetext = request.value;
+		// console.log("currentnotetext=", currentnotetext);
+		break;
+	case"newmultinotetext":
+		currentmultinotetext = request.value;
+		// console.log("currentmultinotetext=", currentmultinotetext);
+		break;
 	}
 	return true;
+});
+
+var currentnotetext = "";
+var currentmultinotetext = [{"note":""}];
+chrome.runtime.onConnect.addListener((port) => {
+	if(port.name === "myNoteSidebar"){
+		port.onDisconnect.addListener(() => {
+			// console.log("Notesidebar Sidepanel closed");
+			chrome.storage.sync.set({"txtvalue": currentnotetext});
+			chrome.storage.sync.set({"multivalue": currentmultinotetext});
+		});
+	}
 });
 
 var i18nfirsttext = chrome.i18n.getMessage("firsttext");
@@ -79,10 +99,18 @@ function onClickHandler(info){
 		chrome.tabs.create({url: "https://api.whatsapp.com/send?text=" + chrome.i18n.getMessage("sharetextd") + "%0a" + linkproduct, active:true});
 	}else if(info.menuItemId == "snpage"){
 		var selectedtext = info.selectionText;
-		chrome.storage.sync.get(["txtvalue"], function(items){
+		chrome.storage.sync.get(["txtvalue", "richtext", "plaintext"], function(items){
 			var theValue = items["txtvalue"]; if(theValue == null){ theValue = i18nfirsttext; }
-			var newtextstring = theValue + " " + selectedtext;
-			chrome.storage.sync.set({"txtvalue": newtextstring});
+			var richtext = items["richtext"]; if(richtext == null){ richtext = false; }
+			var plaintext = items["plaintext"]; if(plaintext == null){ plaintext = true; }
+
+			// add text on next line
+			if(richtext == true){
+				currentnotetext = theValue + "<br>" + selectedtext;
+			}else{
+				currentnotetext = theValue + "\n" + selectedtext;
+			}
+			chrome.storage.sync.set({"txtvalue": currentnotetext});
 		});
 	}
 }
@@ -132,7 +160,7 @@ if(chrome.contextMenus){
 	if(actionmenuadded == false){
 		actionmenuadded = true;
 
-		var contexts = ["browser_action"];
+		var contexts = ["action"];
 
 		browsercontext(sharemenuwelcomeguidetitle, "totlguideemenu", {"16": "images/IconGuide.png", "32": "images/IconGuide@2x.png"});
 		browsercontext(sharemenudonatetitle, "totldevelopmenu", {"16": "images/IconDonate.png", "32": "images/IconDonate@2x.png"});
@@ -293,6 +321,9 @@ chrome.storage.onChanged.addListener(function(changes){
 	}
 	if(changes["plaintext"]){
 		chrome.runtime.sendMessage({msg: "settype", value: changes["plaintext"].newValue});
+	}
+	if(changes["multiple"]){
+		chrome.runtime.sendMessage({msg: "setmultiple", value: changes["multiple"].newValue});
 	}
 });
 

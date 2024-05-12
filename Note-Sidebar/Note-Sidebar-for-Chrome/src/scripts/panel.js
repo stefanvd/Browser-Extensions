@@ -26,15 +26,28 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-var maintext; var powertext; var theValue; var counter; var copy; var speech; var voices; var fontsize; var lineheight; var colorlight; var colordark; var backgroundlight; var backgrounddark; var backgroundcolor; var backgroundimage; var backgroundsource; var backgroundsize; var printicon; var password; var enterpassword; var richtext; var plaintext;
+var maintext; var powertext; var theValue; var multiValue; var counter; var copy; var speech; var voices; var fontsize; var lineheight; var colorlight; var colordark; var backgroundlight; var backgrounddark; var backgroundcolor; var backgroundimage; var backgroundsource; var backgroundsize; var printicon; var password; var enterpassword; var richtext; var plaintext; var multiple;
 
 function save(){
+	var savingtext;
 	if(plaintext == true){
-		theValue = maintext.value;
+		savingtext = maintext.value;
 	}else if(richtext == true){
-		theValue = powertext.innerHTML;
+		savingtext = powertext.innerHTML;
 	}
-	chrome.storage.sync.set({"txtvalue": theValue});
+
+	if(multiple == true){
+		var previoustab = document.getElementById("tabstrip").dataset.active;
+		if(plaintext == true){
+			multiValue[previoustab].note = savingtext;
+		}else if(richtext == true){
+			multiValue[previoustab].note = savingtext;
+		}
+		chrome.runtime.sendMessage({name: "newmultinotetext", value: multiValue});
+	}else{
+		theValue = savingtext;
+		chrome.runtime.sendMessage({name: "newnotetext", value: savingtext});
+	}
 }
 
 var i18nfirsttext = chrome.i18n.getMessage("firsttext");
@@ -42,17 +55,137 @@ var i18ndefault = chrome.i18n.getMessage("titeldefault");
 var i18npasswordplaceholder = chrome.i18n.getMessage("passwordplaceholder");
 var i18ntitelcopytext = chrome.i18n.getMessage("titlecopytextdone");
 var i18ndescopytext = chrome.i18n.getMessage("descopytextdone");
+var i18nnote = chrome.i18n.getMessage("note");
 
 function focuspassword(){
 	document.getElementById("inputpass").focus();
 }
 
+// Begin tabs functions
+function removeObjectAtIndex(index, array){
+	if(index > -1 && index < array.length){
+		array.splice(index, 1);
+	}
+	return array;
+}
+
+function removeTabs(){
+	var tabs = document.getElementById("tabstrip").querySelectorAll(".tab");
+	tabs.forEach(function(tab){
+		tab.parentNode.removeChild(tab);
+	});
+}
+
+function setActiveTab(tab){
+	const tabs = document.querySelectorAll(".tab");
+	tabs.forEach((t) => t.classList.remove("active"));
+	tab.classList.add("active");
+}
+
+function setActiveTabContent(numb){
+	// Retrieve the note value
+	var noteValue = multiValue[numb].note;
+	if(!noteValue){
+		noteValue = "";
+	}
+
+	if(plaintext == true){
+		maintext.value = noteValue;
+	}else if(richtext == true){
+		powertext.innerHTML = noteValue;
+	}
+}
+
+function createAllTabsInBar(){
+	var totaltabs = multiValue.length;
+	// Loop to create the specified number of tabs
+	for(var i = 0; i < totaltabs; i++){
+		const newTab = document.createElement("div");
+		newTab.classList.add("tab");
+		newTab.textContent = i18nnote + parseInt(i + 1);
+		newTab.innerHTML += "<div class=\"tab-close\">x</div>";
+		tabContainer.insertBefore(newTab, tabContainer.lastElementChild);
+	}
+}
+
+function createNewTab(){
+	const newTab = document.createElement("div");
+	newTab.classList.add("tab");
+	newTab.textContent = i18nnote + ` ${tabContainer.children.length}`;
+	newTab.innerHTML += "<div class=\"tab-close\">x</div>";
+	tabContainer.insertBefore(newTab, tabContainer.lastElementChild);
+	setActiveTab(newTab);
+
+	// Adding a new object to the array
+	multiValue.push({"note": ""});
+	// set the current active tab
+	document.getElementById("tabstrip").dataset.active = multiValue.length - 1;
+	setActiveTabContent(multiValue.length - 1);
+	save();
+}
+// End tabs functions
+
+var tabContainer;
 function init(){
+	// open connnection to background that the panel is open
+	chrome.runtime.connect({name: "myNoteSidebar"});
+
+	// Begin multiple tabs
+	tabContainer = document.querySelector(".tab-bar");
+
+	tabContainer.addEventListener("click", function(event){
+		// save previous text
+		var previoustab = document.getElementById("tabstrip").dataset.active;
+		if(plaintext == true){
+			multiValue[previoustab].note = document.getElementById("maintext").value;
+		}else if(richtext == true){
+			multiValue[previoustab].note = document.getElementById("powertext").innerHTML;
+		}
+
+		// change tab
+		const targetTab = event.target.closest(".tab");
+		if(targetTab && !targetTab.classList.contains("add-tab")){
+			setActiveTab(targetTab);
+			const index = [...targetTab.parentNode.children].indexOf(targetTab);
+			document.getElementById("tabstrip").dataset.active = index;
+			setActiveTabContent(index);
+		}
+	});
+
+	tabContainer.addEventListener("click", function(event){
+		if(event.target.classList.contains("tab-close")){
+			if(multiValue.length > 1){
+				const index = [...event.target.parentNode.parentNode.children].indexOf(event.target.parentNode);
+				multiValue = removeObjectAtIndex(index, multiValue);
+
+				document.getElementById("tabstrip").dataset.active = multiValue.length - 1;
+				setActiveTabContent(multiValue.length - 1);
+
+				save();
+
+				// remove all tabs
+				removeTabs();
+				// create all tabs, and set active
+				createAllTabsInBar();
+				// set the current active tab
+				document.getElementById("tabstrip").dataset.active = 0;
+				const tabs = document.querySelectorAll(".tab");
+				tabs.forEach((t) => t.classList.remove("active"));
+				const firstTab = tabs[0];
+				firstTab.classList.add("active");
+				setActiveTabContent(0);
+			}
+		}
+	});
+
+	document.querySelector(".add-tab").addEventListener("click", createNewTab);
+	// End multiple tabs ---
+
 	maintext = document.querySelector("#maintext");
 	powertext = document.querySelector("#powertext");
-	chrome.storage.sync.get(["firstDate", "optionskipremember", "txtvalue", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsource", "backgroundsize", "print", "password", "enterpassword", "richtext", "plaintext"], function(items){
+	chrome.storage.sync.get(["firstDate", "optionskipremember", "txtvalue", "multivalue", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsource", "backgroundsize", "print", "password", "enterpassword", "richtext", "plaintext", "multiple"], function(items){
 		theValue = items["txtvalue"]; if(theValue == null){ theValue = i18nfirsttext; }
-		console.log("LOAD= " + theValue);
+		multiValue = items["multivalue"]; if(multiValue == null){ multiValue = [{"note":i18nfirsttext}]; }
 		counter = items["counter"]; if(counter == null){ counter = true; }
 		copy = items["copy"]; if(copy == null){ copy = true; }
 		speech = items["speech"]; if(speech == null){ speech = true; }
@@ -72,6 +205,8 @@ function init(){
 		enterpassword = items["enterpassword"]; if(enterpassword == null){ enterpassword = ""; }
 		richtext = items["richtext"]; if(richtext == null){ richtext = false; }
 		plaintext = items["plaintext"]; if(plaintext == null){ plaintext = true; }
+		multiple = items["multiple"]; if(multiple == null){ multiple = false; }
+
 
 		if(password == true){
 			var darklayer = document.createElement("div");
@@ -130,19 +265,10 @@ function init(){
 			}
 		}
 
-		if(plaintext == true){
-			if(!theValue){
-				theValue = "";
-			}
-			maintext.value = theValue;
-			document.getElementById("maintext").className = "";
-		}else if(richtext == true){
-			if(!theValue){
-				theValue = "";
-			}
-			powertext.innerHTML = theValue;
-			document.getElementById("powertext").className = "";
-		}
+		// show the tab bar or not
+		applyStyles(multiple, richtext);
+		// show the content
+		createTabContent();
 
 		if(counter == true){
 			countcharacters();
@@ -183,10 +309,8 @@ function init(){
 		addstylecode();
 
 		if(plaintext == true){
-			maintext.onchange = function(){
-				save();
-			};
 			maintext.oninput = function(){
+				save();
 				countcharacters();
 			};
 		}else if(richtext == true){
@@ -291,7 +415,6 @@ function countcharacters(){
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-	const input = document.getElementById("maintext");
 	const main = document.getElementsByTagName("main")[0];
 	const voiceSelect = document.getElementById("voices");
 	let voices;
@@ -333,7 +456,12 @@ window.addEventListener("DOMContentLoaded", () => {
 	var utterance;
 	document.getElementById("startspeech").addEventListener("click", (event) => {
 		event.preventDefault();
-		const toSay = input.value.trim();
+		var toSay;
+		if(richtext == true){
+			toSay = document.getElementById("powertext").innerText.trim();
+		}else{
+			toSay = document.getElementById("maintext").value.trim();
+		}
 		utterance = new SpeechSynthesisUtterance(toSay);
 		utterance.voice = currentVoice;
 		utterance.rate = 0.85;
@@ -358,9 +486,30 @@ window.addEventListener("DOMContentLoaded", () => {
 	});
 
 	document.getElementById("copytext").addEventListener("click", () => {
-		const input = document.getElementById("maintext");
-		input.select();
-		document.execCommand("copy");
+		var input;
+		if(richtext == true){
+			var content = document.getElementById("powertext").innerHTML;
+			// Create a temporary textarea element to hold the content
+			var tempTextArea = document.createElement("textarea");
+			tempTextArea.value = content;
+			document.body.appendChild(tempTextArea);
+			// Select and copy the content
+			tempTextArea.select();
+			document.execCommand("copy");
+			// Remove the temporary textarea
+			document.body.removeChild(tempTextArea);
+
+			// Select all
+			var range = document.createRange();
+			range.selectNode(document.getElementById("powertext"));
+			window.getSelection().removeAllRanges();
+			window.getSelection().addRange(range);
+		}else{
+			input = document.getElementById("maintext");
+			input.select();
+			document.execCommand("copy");
+		}
+
 		if(showingcopybadge == false){
 			showcopytextbadge();
 		}
@@ -395,11 +544,73 @@ function showcopytextbadge(){
 	}, 4000);
 }
 
+function applyStyles(multiple, richtext){
+	if(multiple){
+		// multiple notes
+		if(richtext){
+			document.getElementById("tabstrip").className = "tab-bar";
+			document.getElementById("powertext").className = "enablebar";
+		}else{
+			document.getElementById("tabstrip").className = "tab-bar";
+			document.getElementById("maintext").className = "enablebar";
+		}
+	}else{
+		// single note
+		if(richtext){
+			document.getElementById("tabstrip").className = "hidden";
+			document.getElementById("powertext").className = "regularbar";
+		}else{
+			document.getElementById("tabstrip").className = "hidden";
+			document.getElementById("maintext").className = "regularbar";
+		}
+	}
+}
+
+function createTabContent(){
+	if(multiple == true){
+		if(!multiValue){
+			multiValue = [{"note":""}];
+		}
+
+		// remove all tabs
+		removeTabs();
+		createAllTabsInBar();
+		// set the current active tab
+		document.getElementById("tabstrip").dataset.active = 0;
+		const tabs = document.querySelectorAll(".tab");
+		tabs.forEach((t) => t.classList.remove("active"));
+		const firstTab = tabs[0];
+		firstTab.classList.add("active");
+
+		if(plaintext == true){
+			setActiveTabContent(0);
+		}else if(richtext == true){
+			setActiveTabContent(0);
+		}
+	}else{
+		if(plaintext == true){
+			if(!theValue){
+				theValue = "";
+			}
+			maintext.value = theValue;
+		}else if(richtext == true){
+			if(!theValue){
+				theValue = "";
+			}
+			powertext.innerHTML = theValue;
+		}
+	}
+}
+
 document.addEventListener("DOMContentLoaded", init, false);
 
 chrome.runtime.onMessage.addListener(function(request){
 	if(request.msg == "setnotetext"){
-		document.querySelector("#maintext").value = request.value;
+		if(plaintext == true){
+			document.querySelector("#maintext").value = request.value;
+		}else if(richtext == true){
+			document.querySelector("#powertext").innerHTML = request.value;
+		}
 	}else if(request.msg == "setcounter"){
 		if(request.value == true){
 			countcharacters();
@@ -467,5 +678,9 @@ chrome.runtime.onMessage.addListener(function(request){
 		}
 	}else if(request.msg == "settype"){
 		location.reload();
+	}else if(request.msg == "setmultiple"){
+		multiple = request.value;
+		applyStyles(request.value, richtext);
+		createTabContent();
 	}
 });

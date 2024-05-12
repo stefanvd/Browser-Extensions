@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "__MSG_name__",
   "description": "__MSG_description__",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "background": {
     "service_worker": "scripts/background.js"
   },
