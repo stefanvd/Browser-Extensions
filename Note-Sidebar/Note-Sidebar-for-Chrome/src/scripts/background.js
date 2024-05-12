@@ -45,6 +45,8 @@ chrome.runtime.onMessage.addListener(function request(request){
 	// eye protection & autodim & shortcut
 	switch(request.name){
 	case"bckreload":
+		currentnotetext = chrome.i18n.getMessage("firsttext");
+		currentmultinotetext = [{"note":""}];
 		installation();
 		break;
 	case"newnotetext":
