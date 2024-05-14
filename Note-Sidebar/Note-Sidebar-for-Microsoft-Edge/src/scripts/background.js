@@ -61,8 +61,19 @@ chrome.runtime.onMessage.addListener(function request(request){
 	return true;
 });
 
-var currentnotetext = "";
-var currentmultinotetext = [{"note":""}];
+var i18nfirsttext = chrome.i18n.getMessage("firsttext");
+var currentnotetext;
+var currentmultinotetext;
+
+function init(){
+	chrome.storage.sync.get(["txtvalue", "multivalue"], function(items){
+		var theValue = items["txtvalue"]; if(theValue == null){ theValue = i18nfirsttext; }
+		var multiValue = items["multivalue"]; if(multiValue == null){ multiValue = [{"note":i18nfirsttext}]; }
+		currentnotetext = theValue;
+		currentmultinotetext = multiValue;
+	});
+}
+
 chrome.runtime.onConnect.addListener((port) => {
 	if(port.name === "myNoteSidebar"){
 		port.onDisconnect.addListener(() => {
@@ -72,8 +83,6 @@ chrome.runtime.onConnect.addListener((port) => {
 		});
 	}
 });
-
-var i18nfirsttext = chrome.i18n.getMessage("firsttext");
 
 // contextMenus
 function onClickHandler(info){
@@ -347,4 +356,5 @@ function installation(){
 
 chrome.runtime.onInstalled.addListener(function(){
 	installation();
+	init();
 });
