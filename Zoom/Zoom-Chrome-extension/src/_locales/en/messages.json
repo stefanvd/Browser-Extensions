@@ -196,5 +196,8 @@
     "desinfofontsize": {"message":"The feature that will change only the text size and not the images."},
     "deszoommousebutton": {"message": "Mouse button"},
     "deszoommousewheel": {"message": "Mouse Wheel"},
-    "deszoomoutdoubleclick": {"message": "Double click to zooms out and a single click to zooms in the web page"}
+    "deszoomoutdoubleclick": {"message": "Double click to zooms out and a single click to zooms in the web page"},
+    "titleshortpredefined1": {"message": "Toggle to predefined zoom value 1"},
+    "titleshortpredefined2": {"message": "Toggle to predefined zoom value 2"},
+    "titleshortpredefined3": {"message": "Toggle to predefined zoom value 3"}
 }

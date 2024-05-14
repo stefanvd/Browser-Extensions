@@ -667,6 +667,7 @@ chrome.tabs.onHighlighted.addListener(function(tab){
 	checkaddpopup(tab);
 });
 
+var websitelevel;
 chrome.commands.onCommand.addListener(function(command){
 	if(command == "toggle-feature-zoomin"){
 		zoomview(+1);
@@ -681,7 +682,35 @@ chrome.commands.onCommand.addListener(function(command){
 					chrome.tabs.sendMessage(tabs[0].id, {text: "enablemagnifyingglass"});
 				}
 			});
+	}else if(command == "toggle-feature-predefined1"){
+		chrome.storage.sync.get(["websitelevel"], function(){
+			if(typeof websitelevel == "undefined" || websitelevel == null){
+				websitelevel = JSON.stringify({"85": true, "115": true, "123": true});
+			}
+			// Get the first item and pass it to zoom function
+			var firstItem = Object.keys(JSON.parse(websitelevel))[0];
+			zoom(firstItem);
+		});
+	}else if(command == "toggle-feature-predefined2"){
+		chrome.storage.sync.get(["websitelevel"], function(){
+			if(typeof websitelevel == "undefined" || websitelevel == null){
+				websitelevel = JSON.stringify({"85": true, "115": true, "123": true});
+			}
+			// Get the second item and pass it to zoom function
+			var secondItem = Object.keys(JSON.parse(websitelevel))[1];
+			zoom(secondItem);
+		});
+	}else if(command == "toggle-feature-predefined3"){
+		chrome.storage.sync.get(["websitelevel"], function(){
+			if(typeof websitelevel == "undefined" || websitelevel == null){
+				websitelevel = JSON.stringify({"85": true, "115": true, "123": true});
+			}
+			// Get the third item and pass it to zoom function
+			var thirdItem = Object.keys(JSON.parse(websitelevel))[2];
+			zoom(thirdItem);
+		});
 	}
+
 });
 
 // contextMenus

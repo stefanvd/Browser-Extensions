@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "__MSG_namechrome__",
   "short_name": "Zoom",
-  "version": "2.8.11.0",
+  "version": "2.8.12.0",
   "description": "__MSG_description__",
   "author": "Stefan vd",
   "homepage_url": "https://www.stefanvd.net/support/",
@@ -61,6 +61,15 @@
         "mac": "MacCtrl+Shift+M"
       },
       "description": "__MSG_titleshortzoommagnify__"
+    },
+    "toggle-feature-predefined1": {
+      "description": "__MSG_titleshortpredefined1__"
+    },
+    "toggle-feature-predefined2": {
+      "description": "__MSG_titleshortpredefined2__"
+    },
+    "toggle-feature-predefined3": {
+      "description": "__MSG_titleshortpredefined3__"
     }
   },
   "content_scripts": [{
