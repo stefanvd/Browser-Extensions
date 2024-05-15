@@ -164,5 +164,10 @@
     "titelpermission": {"message": "Permissions"},
     "desbrowserbookmarks": {"message": "Show your browser bookmarks"},
     "desnonebookmarks": {"message": "No bookmarks"},
-    "permissionoption": {"message": "Permission must be enabled to use this feature."}
+    "permissionoption": {"message": "Permission must be enabled to use this feature."},
+    "desgooglesidepanel": {"message": "Side panel view mode for Google search results"},
+    "titelzoom": {"message": "Zoom"},
+    "deszoom": {"message": "Show the floating zoom panel featuring zoom in, and zoom out buttons to manage the scale of the web page."},
+    "desdefaultzoom": {"message": "Default zoom level for all web pages"},
+    "desstep": {"message": "Steps"}
   }

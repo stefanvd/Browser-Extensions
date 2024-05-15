@@ -206,6 +206,21 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 					</div>
 				</div>
 			</section>
+			<section>
+				<h3 data-i18n="titelzoom"></h3>
+				<div>
+					<div class="md-checkbox">
+						<input id="zoom" type="checkbox">
+						<label for="zoom"><div><span data-i18n="deszoom"></span></div></label>
+					</div>
+					<div class="md-number">
+						<label><span data-i18n="desdefaultzoom"></span> <input type="number" id="defaultzoom" aria-label="Steps" min="1" max="400" step="1" value="100" maxlength="3" size="4" required="">%</label>
+					</div>
+					<div class="md-number">
+						<label><span data-i18n="desstep"></span> <input type="number" id="step" aria-label="Steps" min="1" max="100" step="1" value="5" maxlength="3" size="4" required=""></label>
+					</div>
+				</div>
+			</section>
 			</div>
 			<div id="tab2" class="page hidden">
 				<h2 data-i18n="designmarquee"></h2>
@@ -252,6 +267,10 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 						<div class="md-radio">
 							<input id="searchgoogle" type="radio" name="searchengine" value="google" role="radio" aria-checked="true" aria-labelledby="searchengine">
 							<label for="searchgoogle"><div><span>Google</span></div></label>
+						</div>
+						<div class="md-checkbox">	
+							<input id="googlesidepanel" type="checkbox">
+							<label for="googlesidepanel"><div><span data-i18n="desgooglesidepanel"></span></div></label>
 						</div>
 						<div class="md-radio">
 							<input id="searchbing" type="radio" name="searchengine" value="bing" role="radio" aria-checked="false" aria-labelledby="searchengine">

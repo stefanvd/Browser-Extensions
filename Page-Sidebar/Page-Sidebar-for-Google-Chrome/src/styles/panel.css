@@ -30,6 +30,8 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 :root {
   --ext-primary-background:#fff;
   --ext-primary-font-color:#000;
+  --ext-secundar-background:#efefef;
+  --ext-secundar-background-hover:#d9d9d9;
   --ext-svg-fill-color-hover:#ebebeb;
   --ext-border-line:#dddddd;
   --ext-dropmenu-li-background-hover:#EEEEEE;
@@ -41,6 +43,8 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
   :root{
     --ext-primary-background:#232323;
     --ext-primary-font-color:#fff;
+    --ext-secundar-background:#2a2a2a;
+    --ext-secundar-background-hover:#3c3c3c;
     --ext-svg-fill-color-hover:#474747;
     --ext-border-line:#37383a;
     --ext-dropmenu-li-background-hover:#424242;
@@ -104,6 +108,10 @@ iframe{border:none;width:100%;height:100%;box-sizing:border-box;margin:0px}
 .stefanvdremote{overflow:hidden;z-index:2147483647!important;box-shadow:0px 0px 1px black;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);background:var(--ext-primary-background);position:absolute;top:0;left:0;right:0;width:230pt;opacity:0.98;height:50pt;border-radius:25pt;margin:0 auto;margin-top:20pt;animation:wrapper 4.0s both;color:var(--ext-primary-font-color)}
 .stefanvdremote h3{text-align:center;margin:0;font-size:15px;padding-top:10pt;animation:h3 2.5s}
 .stefanvdremote p{text-align:center;margin:0;font-size:13px;color:#888;padding-top:4pt;animation:p 2.5s}
+.zoom-panel{gap:8px;z-index:2500;position:fixed;top:50%;right:0;transform:translateY(-50%);background-color:var(--ext-primary-background);padding:20px;box-shadow:0px 0px 10px rgba(0, 0, 0, 0.1);border-radius:25px 0 0 25px;display:flex;flex-direction:column;align-items:center}
+.zoom-button{user-select:none;background-color:var(--ext-secundar-background);color:var(--ext-primary-font-color);font-size:20px;border:none;border-radius:50%;width:40px;height:40px;cursor:pointer;transition:background-color 0.3s ease}
+.zoom-button:hover{background-color:var(--ext-secundar-background-hover);}
+.zoom-level{user-select:none;font-size:14px;color:var(--ext-primary-font-color)}
 @keyframes h3{0%{opacity:0}50%{opacity:0}80%{opacity:1;transform:scale(1.5) translate(0,4px)}}
 @keyframes p{0%{opacity:0}80%{opacity:0;transform:scale(1.5) translate(0,12px)}100%{opacity:1;transform:scale(1)}}
 @keyframes wrapper{0%{opacity:0}20%{opacity:0;transform:translate(0,-100px)}40%{opacity:0.98;transform:translate(0,0)}80%{opacity:0.98;transform:translate(0,0)}100%{opacity:0;transform:translate(0, -100px)}}

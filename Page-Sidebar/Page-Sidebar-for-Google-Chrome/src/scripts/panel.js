@@ -26,18 +26,20 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-var selectedsearch, searchgoogle, searchbing, searchduckduckgo, searchbaidu, searchyandex, typepanelzone, typepanelcustom, typepanellasttime, websitezoomname, websitelasttime, navtop, navbottom, navhidden, opentab, opencopy, opennonebookmarks, openbrowserbookmarks, openquickbookmarks;
+var selectedsearch, searchgoogle, searchbing, searchduckduckgo, searchbaidu, searchyandex, typepanelzone, typepanelcustom, typepanellasttime, websitezoomname, websitelasttime, navtop, navbottom, navhidden, opentab, opencopy, opennonebookmarks, openbrowserbookmarks, openquickbookmarks, googlesidepanel, zoom, defaultzoom, step;
 document.addEventListener("DOMContentLoaded", init);
 
 var i18ntitelcopytext = chrome.i18n.getMessage("titlecopytextdone");
 var i18ndescopytext = chrome.i18n.getMessage("descopytextdone");
 
+var winsend;
 // Detect URL to open back in new web browser tab
 var currentSidePanelURL = "";
 window.addEventListener("message", (e) => {
 	// console.log("FIRST WEBSITE URL=", e.data.href);
 	if(e.data?.method === "navigate"){
 		if(e.source){
+			winsend = e.source;
 			e.source.postMessage({
 				method: "navigate-verified"
 			}, "*");
@@ -49,8 +51,24 @@ window.addEventListener("message", (e) => {
 		if(typepanellasttime == true){
 			chrome.storage.sync.set({"websitelasttime": e.data.href});
 		}
+		if(zoom == true && defaultzoom != 100){
+			updateZoomLevel();
+		}
 	}
 });
+
+// Elements
+var zoomInButton;
+var zoomOutButton;
+var zoomLevelDisplay;
+var zoomLevel = 100;
+// Function to update zoom level display
+function updateZoomLevel(){
+	zoomLevelDisplay.textContent = zoomLevel + "%";
+	winsend.postMessage({
+		method: "changeZoomScale", zoom: parseFloat(zoomLevel / 100)
+	}, "*");
+}
 
 var isMenuClick = false;
 function init(){
@@ -107,12 +125,38 @@ function init(){
 		document.getElementById("stefanvdpromo").className = "hidden";
 	});
 
-	chrome.storage.sync.get(["firstDate", "optionskipremember", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "typepanellasttime", "websitezoomname", "websitelasttime", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "opentab", "opencopy", "opennonebookmarks", "openbrowserbookmarks", "openquickbookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10"], function(items){
+	zoomInButton = document.getElementById("zoom-in-button");
+	zoomOutButton = document.getElementById("zoom-out-button");
+	zoomLevelDisplay = document.getElementById("zoom-level");
+	zoomInButton.addEventListener("click", () => {
+		zoomLevel = parseInt(zoomLevel) + parseInt(step);
+		updateZoomLevel();
+	});
+
+	zoomOutButton.addEventListener("click", () => {
+		zoomLevel = parseInt(zoomLevel) - parseInt(step);
+		updateZoomLevel();
+	});
+
+	chrome.storage.sync.get(["firstDate", "optionskipremember", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "typepanellasttime", "websitezoomname", "websitelasttime", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "opentab", "opencopy", "opennonebookmarks", "openbrowserbookmarks", "openquickbookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10", "googlesidepanel", "zoom", "defaultzoom", "step"], function(items){
 		searchgoogle = items["searchgoogle"]; if(searchgoogle == null){ searchgoogle = true; }
+		googlesidepanel = items["googlesidepanel"]; if(googlesidepanel == null){ googlesidepanel = true; }
 		searchbing = items["searchbing"]; if(searchbing == null){ searchbing = false; }
 		searchduckduckgo = items["searchduckduckgo"]; if(searchduckduckgo == null){ searchduckduckgo = false; }
 		searchbaidu = items["searchbaidu"]; if(searchbaidu == null){ searchbaidu = false; }
 		searchyandex = items["searchyandex"]; if(searchyandex == null){ searchyandex = false; }
+		zoom = items["zoom"]; if(zoom == null){ zoom = false; }
+		defaultzoom = items["defaultzoom"]; if(defaultzoom == null){ defaultzoom = 100; }
+		step = items["step"]; if(step == null){ step = 5; }
+
+		//---
+		if(zoom == true){
+			document.getElementById("zoombar").className = "zoom-panel";
+		}
+		zoomLevel = parseInt(defaultzoom);
+		zoomLevelDisplay.textContent = defaultzoom + "%";
+		//---
+
 		if(searchgoogle){
 			selectedsearch = "searchgoogle";
 		}else if(searchbing){
@@ -547,7 +591,13 @@ function removeblurlayernav(){
 function performSearch(searchEngine, query){
 	switch(searchEngine){
 	case"searchgoogle":
-		open("https://www.google.com/search?q=" + encodeURIComponent(query), true);
+		if(googlesidepanel == true){
+			// Google side-by-side search
+			// https://www.chromium.org/developers/design-documents/side-by-side-search-for-default-search-engines/
+			open("https://www.google.com/search?q=" + encodeURIComponent(query) + "&sidesearch=1", true);
+		}else{
+			open("https://www.google.com/search?q=" + encodeURIComponent(query), true);
+		}
 		break;
 	case"searchbing":
 		open("https://www.bing.com/search?q=" + encodeURIComponent(query), true);
@@ -677,6 +727,36 @@ chrome.runtime.onMessage.addListener(function(request){
 			document.getElementById("btnbookmarks").className = "icon";
 			clearBookmarksItems();
 			createbrowserbookmark();
+		});
+	}else if(request.msg == "setgooglesidepanel"){
+		chrome.storage.sync.get(["googlesidepanel"], function(items){
+			googlesidepanel = items["googlesidepanel"]; if(googlesidepanel == null){ googlesidepanel = true; }
+		});
+	}else if(request.msg == "setzoom"){
+		chrome.storage.sync.get(["zoom", "defaultzoom"], function(items){
+			zoom = items["zoom"]; if(zoom == null){ zoom = false; }
+			defaultzoom = items["defaultzoom"]; if(defaultzoom == null){ defaultzoom = 100; }
+			if(zoom == true){
+				document.getElementById("zoombar").className = "zoom-panel";
+				zoomLevelDisplay.textContent = defaultzoom + "%";
+				zoomLevel = parseInt(defaultzoom);
+			}else{
+				document.getElementById("zoombar").className = "hidden";
+				zoomLevelDisplay.textContent = 100 + "%";
+				zoomLevel = 100;
+			}
+			updateZoomLevel();
+		});
+	}else if(request.msg == "setstep"){
+		chrome.storage.sync.get(["step"], function(items){
+			step = items["step"]; if(step == null){ step = 5; }
+		});
+	}else if(request.msg == "setdefaultzoom"){
+		chrome.storage.sync.get(["defaultzoom"], function(items){
+			defaultzoom = items["defaultzoom"]; if(defaultzoom == null){ defaultzoom = 100; }
+			zoomLevelDisplay.textContent = defaultzoom + "%";
+			zoomLevel = parseInt(defaultzoom);
+			updateZoomLevel();
 		});
 	}
 });
