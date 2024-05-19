@@ -38,6 +38,7 @@ var currentSidePanelURL = "";
 window.addEventListener("message", (e) => {
 	// console.log("FIRST WEBSITE URL=", e.data.href);
 	if(e.data?.method === "navigate"){
+		// console.log("NAVIGATE URL=", e.data.href);
 		if(e.source){
 			winsend = e.source;
 			e.source.postMessage({
@@ -51,7 +52,7 @@ window.addEventListener("message", (e) => {
 		if(typepanellasttime == true){
 			chrome.storage.sync.set({"websitelasttime": e.data.href});
 		}
-		if(zoom == true && defaultzoom != 100){
+		if(zoom == true && zoomLevel != 100){
 			updateZoomLevel();
 		}
 	}
@@ -62,6 +63,8 @@ var zoomInButton;
 var zoomOutButton;
 var zoomLevelDisplay;
 var zoomLevel = 100;
+var collapseHandle;
+var zoomPanel;
 // Function to update zoom level display
 function updateZoomLevel(){
 	zoomLevelDisplay.textContent = zoomLevel + "%";
@@ -72,6 +75,11 @@ function updateZoomLevel(){
 
 var isMenuClick = false;
 function init(){
+	// allow Firefox permission to run this extension
+	// show all the active permissions in a list
+	chrome.runtime.sendMessage({name: "getallhost"});
+	//----
+
 	// complete page
 	const dragDropZone = document.getElementById("drag-drop-zone");
 	const web = document.getElementById("web");
@@ -136,6 +144,13 @@ function init(){
 	zoomOutButton.addEventListener("click", () => {
 		zoomLevel = parseInt(zoomLevel) - parseInt(step);
 		updateZoomLevel();
+	});
+
+	collapseHandle = document.getElementById("collapse-handle");
+	zoomPanel = document.getElementById("zoombar");
+
+	collapseHandle.addEventListener("click", function(){
+		zoomPanel.classList.toggle("collapsed");
 	});
 
 	chrome.storage.sync.get(["firstDate", "optionskipremember", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "typepanellasttime", "websitezoomname", "websitelasttime", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "opentab", "opencopy", "opennonebookmarks", "openbrowserbookmarks", "openquickbookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10", "googlesidepanel", "zoom", "defaultzoom", "step"], function(items){
@@ -416,15 +431,15 @@ function actionCopyTab(){
 		// Execute the copy command
 		const successful = document.execCommand("copy");
 		if(successful){
-			console.log("Text copied to clipboard: " + textToCopy);
+			// console.log("Text copied to clipboard: " + textToCopy);
 			if(showingcopybadge == false){
 				showcopytextbadge();
 			}
 		}else{
-			console.error("Unable to copy text to clipboard");
+			// console.error("Unable to copy text to clipboard");
 		}
 	}catch(err){
-		console.error("Error copying text to clipboard:", err);
+		// console.error("Error copying text to clipboard:", err);
 	}
 
 	// Remove the temporary textarea
@@ -470,7 +485,7 @@ function handleDrop(e){
 				return open(currenturl, true);
 			}
 		}catch(e){
-			console.log(e);
+			// console.log(e);
 		}
 	}
 
@@ -625,7 +640,31 @@ function clearBookmarksItems(){
 }
 
 chrome.runtime.onMessage.addListener(function(request){
-	if(request.msg == "setpage"){
+	if(request.text == "receiveallhost"){
+		var perm = request.value;
+		if(perm == true){
+			// do nothing, permission is allowed
+		}else{
+			document.getElementById("hostbox").className = "hostpermission";
+			document.querySelector("#btnallowallhost").addEventListener("click", () => {
+
+				browser.permissions.request({
+					origins: ["*://*/*"]
+				}, function(){
+
+					browser.permissions.contains({
+						origins: ["*://*/*"]
+					}, (result) => {
+						if(result){
+							document.getElementById("hostbox").className = "hidden";
+						}
+					});
+
+				});
+
+			});
+		}
+	}else if(request.msg == "setpage"){
 		// console.log("received = " + request.value);
 		open(request.value, true);
 	}else if(request.msg == "setsearch"){
@@ -757,6 +796,28 @@ chrome.runtime.onMessage.addListener(function(request){
 			zoomLevelDisplay.textContent = defaultzoom + "%";
 			zoomLevel = parseInt(defaultzoom);
 			updateZoomLevel();
+		});
+	}else if(request.msg == "settypepanelzone"){
+		chrome.storage.sync.get(["typepanelzone"], function(items){
+			typepanelzone = items.typepanelzone; if(typepanelzone == null)typepanelzone = true;
+			typepanelcustom = false;
+			typepanellasttime = false;
+		});
+	}else if(request.msg == "settypepanelcustom"){
+		chrome.storage.sync.get(["typepanelcustom"], function(items){
+			typepanelcustom = items.typepanelcustom; if(typepanelcustom == null)typepanelcustom = false;
+			typepanelzone = false;
+			typepanellasttime = false;
+		});
+	}else if(request.msg == "setwebsitezoomname"){
+		chrome.storage.sync.get(["websitezoomname"], function(items){
+			websitezoomname = items.websitezoomname; if(websitezoomname == null)websitezoomname = "https://www.google.com";
+		});
+	}else if(request.msg == "settypepanellasttime"){
+		chrome.storage.sync.get(["typepanellasttime"], function(items){
+			typepanellasttime = items.typepanellasttime; if(typepanellasttime == null)typepanellasttime = false;
+			typepanelcustom = false;
+			typepanelzone = false;
 		});
 	}
 });

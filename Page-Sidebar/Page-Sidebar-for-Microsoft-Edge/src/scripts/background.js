@@ -26,20 +26,33 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-if(typeof browser !== "undefined"){
-	var qtest = browser.sidebarAction;
-	if(typeof qtest !== "undefined"){
-		browser.browserAction.onClicked.addListener(function(){
-			browser.sidebarAction.toggle();
-		});
-	}
+// Function to check if the current browser is Firefox
+function isFirefox(){
+	return typeof browser !== "undefined" && typeof browser.sidebarAction !== "undefined";
 }
 
-// Importing the constants
-// eslint-disable-next-line no-undef
-importScripts("constants.js");
+// Function to check if the current browser is Chrome / Chromium
+function isChrome(){
+	return typeof chrome !== "undefined" && typeof chrome.sidePanel !== "undefined";
+}
 
-chrome.sidePanel.setPanelBehavior({openPanelOnActionClick: true}).catch((error) => console.error(error));
+// Execute Firefox-specific code
+if(isFirefox()){
+	browser.action.onClicked.addListener(function(){
+		browser.sidebarAction.toggle();
+	});
+}
+
+// Execute Chrome-specific code
+if(isChrome()){
+	// Importing the constants
+	// eslint-disable-next-line no-undef
+	importScripts("constants.js");
+
+	chrome.sidePanel.setPanelBehavior({openPanelOnActionClick: true}).catch((error) => console.error(error));
+}
+
+// --- General code
 
 chrome.runtime.onMessage.addListener(function request(request, sender, response){
 	// eye protection & autodim & shortcut
@@ -50,8 +63,61 @@ chrome.runtime.onMessage.addListener(function request(request, sender, response)
 	case"sidepanelopen":
 		response(!sender.documentId);
 		break;
+	case"getallpermissions":
+		var result = "";
+		chrome.permissions.getAll(function(permissions){
+			result = permissions.permissions;
+			chrome.tabs.sendMessage(sender.tab.id, {text: "receiveallpermissions", value: result});
+		});
+		break;
+	case"stefanbookmarkadd":
+		// Permissions must be requested from inside a user gesture
+		chrome.permissions.request({
+			permissions: ["bookmarks"]
+		}, function(granted){
+			// The callback argument will be true if the user granted the permissions.
+			if(granted){
+				// todo send message back
+			}
+		});
+		break;
+	case"getallhost":
+		// --- Begin Firefox
+		chrome.permissions.contains({
+			origins: ["*://*/*"]
+		}, (result) => {
+			if(result){
+				// The extension has the permissions
+				chrome.runtime.sendMessage({text: "receiveallhost", value: result});
+			}else{
+				// The extension doesn't have the permissions
+				chrome.runtime.sendMessage({text: "receiveallhost", value: result});
+			}
+		});
+		break;
+		// --- End Firefox
 	}
-	return true;
+});
+
+chrome.commands.onCommand.addListener(function(command){
+	if(command == "toggle-feature-openweb"){
+		chrome.tabs.query({
+			active: true,
+			lastFocusedWindow: true
+		}, function(tabs){
+			var tab = tabs[0];
+			if(tab){
+				var currentpage = tab.url;
+				// console.log("currentpage= " + currentpage);
+				chrome.sidePanel.open({windowId: tab.windowId}, function(){
+					// wait when panel is open, then send the message
+					setTimeout(function(){
+						chrome.runtime.sendMessage({msg: "setpage", value: currentpage});
+					}, 500);
+				});
+			}
+		});
+	}
 });
 
 // contextMenus
@@ -371,13 +437,57 @@ chrome.storage.onChanged.addListener(function(changes){
 			chrome.runtime.sendMessage({msg: "setopencopy"});
 		}
 	}
+	if(changes["opennonebookmarks"]){
+		if(changes["opennonebookmarks"].newValue == true){
+			chrome.runtime.sendMessage({msg: "setopennonebookmarks"});
+		}
+	}
+	if(changes["openbrowserbookmarks"]){
+		if(changes["openbrowserbookmarks"].newValue == true){
+			chrome.runtime.sendMessage({msg: "setopenbrowserbookmarks"});
+		}
+	}
 	if(changes["openquickbookmarks"]){
-		if(changes["openquickbookmarks"].newValue == true || changes["openquickbookmarks"].newValue == false){
+		if(changes["openquickbookmarks"].newValue == true){
 			chrome.runtime.sendMessage({msg: "setopenquickbookmarks"});
 		}
 	}
 	if(changes["websitename1"] || changes["websiteurl1"] || changes["websitename2"] || changes["websiteurl2"] || changes["websitename3"] || changes["websiteurl3"] || changes["websitename4"] || changes["websiteurl4"] || changes["websitename5"] || changes["websiteurl5"] || changes["websitename6"] || changes["websiteurl6"] || changes["websitename7"] || changes["websiteurl7"] || changes["websitename8"] || changes["websiteurl8"] || changes["websitename9"] || changes["websiteurl9"] || changes["websitename10"] || changes["websiteurl10"]){
 		chrome.runtime.sendMessage({msg: "setbookmarkswebsites"});
+	}
+	if(changes["googlesidepanel"]){
+		if(changes["googlesidepanel"].newValue == true || changes["googlesidepanel"].newValue == false){
+			chrome.runtime.sendMessage({msg: "setgooglesidepanel"});
+		}
+	}
+	if(changes["zoom"]){
+		if(changes["zoom"].newValue == true || changes["zoom"].newValue == false){
+			chrome.runtime.sendMessage({msg: "setzoom"});
+		}
+	}
+	if(changes["step"]){
+		chrome.runtime.sendMessage({msg: "setstep"});
+	}
+	if(changes["defaultzoom"]){
+		chrome.runtime.sendMessage({msg: "setdefaultzoom"});
+	}
+	if(changes["typepanelzone"]){
+		if(changes["typepanelzone"].newValue == true){
+			chrome.runtime.sendMessage({msg: "settypepanelzone"});
+		}
+	}
+	if(changes["typepanelcustom"]){
+		if(changes["typepanelcustom"].newValue == true){
+			chrome.runtime.sendMessage({msg: "settypepanelcustom"});
+		}
+	}
+	if(changes["websitezoomname"]){
+		chrome.runtime.sendMessage({msg: "setwebsitezoomname"});
+	}
+	if(changes["typepanellasttime"]){
+		if(changes["typepanellasttime"].newValue == true){
+			chrome.runtime.sendMessage({msg: "settypepanellasttime"});
+		}
 	}
 });
 

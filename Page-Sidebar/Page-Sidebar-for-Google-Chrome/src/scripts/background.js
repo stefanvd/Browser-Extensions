@@ -26,20 +26,33 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-if(typeof browser !== "undefined"){
-	var qtest = browser.sidebarAction;
-	if(typeof qtest !== "undefined"){
-		browser.browserAction.onClicked.addListener(function(){
-			browser.sidebarAction.toggle();
-		});
-	}
+// Function to check if the current browser is Firefox
+function isFirefox(){
+	return typeof browser !== "undefined" && typeof browser.sidebarAction !== "undefined";
 }
 
-// Importing the constants
-// eslint-disable-next-line no-undef
-importScripts("constants.js");
+// Function to check if the current browser is Chrome / Chromium
+function isChrome(){
+	return typeof chrome !== "undefined" && typeof chrome.sidePanel !== "undefined";
+}
 
-chrome.sidePanel.setPanelBehavior({openPanelOnActionClick: true}).catch((error) => console.error(error));
+// Execute Firefox-specific code
+if(isFirefox()){
+	browser.action.onClicked.addListener(function(){
+		browser.sidebarAction.toggle();
+	});
+}
+
+// Execute Chrome-specific code
+if(isChrome()){
+	// Importing the constants
+	// eslint-disable-next-line no-undef
+	importScripts("constants.js");
+
+	chrome.sidePanel.setPanelBehavior({openPanelOnActionClick: true}).catch((error) => console.error(error));
+}
+
+// --- General code
 
 chrome.runtime.onMessage.addListener(function request(request, sender, response){
 	// eye protection & autodim & shortcut
@@ -68,8 +81,22 @@ chrome.runtime.onMessage.addListener(function request(request, sender, response)
 			}
 		});
 		break;
+	case"getallhost":
+		// --- Begin Firefox
+		chrome.permissions.contains({
+			origins: ["*://*/*"]
+		}, (result) => {
+			if(result){
+				// The extension has the permissions
+				chrome.runtime.sendMessage({text: "receiveallhost", value: result});
+			}else{
+				// The extension doesn't have the permissions
+				chrome.runtime.sendMessage({text: "receiveallhost", value: result});
+			}
+		});
+		break;
+		// --- End Firefox
 	}
-	return true;
 });
 
 chrome.commands.onCommand.addListener(function(command){
@@ -443,6 +470,24 @@ chrome.storage.onChanged.addListener(function(changes){
 	}
 	if(changes["defaultzoom"]){
 		chrome.runtime.sendMessage({msg: "setdefaultzoom"});
+	}
+	if(changes["typepanelzone"]){
+		if(changes["typepanelzone"].newValue == true){
+			chrome.runtime.sendMessage({msg: "settypepanelzone"});
+		}
+	}
+	if(changes["typepanelcustom"]){
+		if(changes["typepanelcustom"].newValue == true){
+			chrome.runtime.sendMessage({msg: "settypepanelcustom"});
+		}
+	}
+	if(changes["websitezoomname"]){
+		chrome.runtime.sendMessage({msg: "setwebsitezoomname"});
+	}
+	if(changes["typepanellasttime"]){
+		if(changes["typepanellasttime"].newValue == true){
+			chrome.runtime.sendMessage({msg: "settypepanellasttime"});
+		}
 	}
 });
 

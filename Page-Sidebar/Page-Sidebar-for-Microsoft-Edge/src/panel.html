@@ -41,8 +41,13 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 </head>
 <body>
+<div id="hostbox" class="hidden">
+    <div>
+        <span data-i18n="allowhostpermission"></span>
+        <button id="btnallowallhost"><span data-i18n="btnallowhost"></span></button>
+    </div>
+</div>
 <div id="psidebar" class="container">
-    <div></div>
     <div id="web" class="web">
         <div id="drag-drop-info" class="show">
             <img alt="Link" width="128" height="128" src="images/link.png" srcset="images/link.png 1x, images/link@2x.png 2x">
@@ -71,6 +76,12 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
     </div>
     <div id="menubookmarks" class="hidden"><ul id="list"></ul></div>
 </div>
+<div class="hidden" id="zoombar">
+    <div class="collapse-handle" id="collapse-handle"></div>
+    <button class="zoom-button" id="zoom-in-button"><i class="material-icons">+</i></button>
+    <button class="zoom-button" id="zoom-out-button"><i class="material-icons">-</i></button>
+    <div class="zoom-level" id="zoom-level"></div>
+</div>  
 <script type="text/javascript" src="scripts/translate.js"></script>
 </body>
 </html>

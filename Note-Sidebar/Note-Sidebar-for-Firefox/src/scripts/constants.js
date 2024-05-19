@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-const exbrowser = "chrome";
+const exbrowser = "firefox";
 // values: "chrome", "safari", "edge", "firefox", "opera", "yandex", "whale"
 const linkredirectionoptions = "https://www.stefanvd.net/project/note-sidebar/browser/options/";
 const linkdeveloperwebsite = "https://www.stefanvd.net";
@@ -13,8 +13,8 @@ const linkwelcome = "https://www.stefanvd.net/project/note-sidebar/browser/firef
 const linkuninstall = "https://www.stefanvd.net/project/note-sidebar/browser/firefox/uninstall/";
 const linkguide = "https://www.stefanvd.net/project/note-sidebar/browser/firefox/guide/";
 const linkproductdescription = "https://www.stefanvd.net/project/note-sidebar/browser/";
-const browsernewtab = "chrome://newtab/";
-const browserstore = "https://chrome.google.com";
+const browsernewtab = "null";
+const browserstore = "https://addons.mozilla.org";
 const linkyoutube = "https://www.youtube.com/@stefanvandamme?sub_confirmation=1";
 const devmode = true;
 const devdonate = false;

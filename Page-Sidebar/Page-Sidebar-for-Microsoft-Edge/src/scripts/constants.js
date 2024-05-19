@@ -13,7 +13,7 @@ const linkwelcome = "https://www.stefanvd.net/project/page-sidebar/browser/micro
 const linkuninstall = "https://www.stefanvd.net/project/page-sidebar/browser/microsoft-edge/uninstall/";
 const linkguide = "https://www.stefanvd.net/project/page-sidebar/browser/microsoft-edge/guide/";
 const linkproductdescription = "https://www.stefanvd.net/project/page-sidebar/browser/";
-const browsernewtab = "chrome://newtab/";
+const browsernewtab = "edge://newtab/";
 const browserstore = "https://microsoftedge.microsoft.com";
 const linkyoutube = "https://www.youtube.com/@stefanvandamme?sub_confirmation=1";
 const devmode = true;

@@ -1,8 +1,8 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "__MSG_name__",
   "description": "__MSG_description__",
-  "version": "1.0.1",
+  "version": "1.0.12",
   "background": {
     "scripts": ["scripts/constants.js","scripts/background.js"]
   },
@@ -24,7 +24,7 @@
     "default_panel": "panel.html",
     "open_at_install":true
   },
-  "browser_action": {
+  "action": {
     "default_icon": {
       "16": "images/icon16.png",
       "32": "images/icon32.png"
@@ -40,6 +40,17 @@
       "size": 32
     }]
   },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+T",
+        "mac": "MacCtrl+Shift+T"
+      }
+    }
+  },
+  "content_security_policy": {
+    "extension_pages": "default-src 'none'; style-src 'self' 'unsafe-inline'; media-src https://www.stefanvd.net; frame-src https://www.youtube.com https://www.stefanvd.net; connect-src https://www.stefanvd.net; script-src 'self'; img-src 'self' https://www.stefanvd.net * data:; object-src 'none'"
+  },
   "options_ui": {
     "page": "options.html",
     "open_in_tab": true
@@ -48,7 +59,7 @@
   "browser_specific_settings": {
     "gecko": {
         "id": "notesidebar@stefanvd.net",
-        "strict_min_version": "77.0"
+        "strict_min_version": "113.0"
     }
   }
 }

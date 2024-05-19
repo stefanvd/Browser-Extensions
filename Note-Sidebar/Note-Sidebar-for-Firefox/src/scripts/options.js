@@ -3,7 +3,7 @@
 
 Proper Menubar
 Add the best menu bar to get easy and fast access to all your useful browser options and internet products!
-Copyright (C) 2022 Stefan vd
+Copyright (C) 2024 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -30,42 +30,49 @@ function $(id){ return document.getElementById(id); }
 var youtubeembed = "https://www.youtube.com/embed/?listType=playlist&list=PLfXHh3TKRb4a3QPx9G9YTeyVmqyMURld3";
 var darkmode = false;
 
+var firstdefaultvalues = {};
 function defaultgetsettings(){
-	read_options();
+	// Option default value to read if there is no current value from chrome.storage AND init default value
+	chrome.storage.sync.get(["icon", "contextmenus", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsize", "print", "password", "enterpassword", "richtext", "plaintext"], function(items){
+		// find no localstore zoomengine
+		if(items["icon"] == null){
+			if(exbrowser == "safari"){
+				firstdefaultvalues["icon"] = "/images/icon38.png";
+			}else{
+				firstdefaultvalues["icon"] = "/images/icon38.png";
+			}
+		}
+		if(items["contextmenus"] == null){ firstdefaultvalues["contextmenus"] = true; }
+		if(items["counter"] == null){ firstdefaultvalues["counter"] = true; }
+		if(items["copy"] == null){ firstdefaultvalues["copy"] = true; }
+		if(items["speech"] == null){ firstdefaultvalues["speech"] = true; }
+		if(items["voices"] == null){ firstdefaultvalues["voices"] = false; }
+		if(items["fontsize"] == null){ firstdefaultvalues["fontsize"] = 18; }
+		if(items["lineheight"] == null){ firstdefaultvalues["lineheight"] = 26; }
+		if(items["colorlight"] == null){ firstdefaultvalues["colorlight"] = "#373737"; }
+		if(items["colordark"] == null){ firstdefaultvalues["colordark"] = "#ffffff"; }
+		if(items["backgroundlight"] == null){ firstdefaultvalues["backgroundlight"] = "#ffffff"; }
+		if(items["backgrounddark"] == null){ firstdefaultvalues["backgrounddark"] = "#232323"; }
+		if(items["backgroundimage"] == null && items["backgroundcolor"] == null){ firstdefaultvalues["backgroundimage"] = false; firstdefaultvalues["backgroundcolor"] = true; }
+		if(items["backgroundsize"] == null){ firstdefaultvalues["backgroundsize"] = 150; }
+		if(items["print"] == null){ firstdefaultvalues["print"] = true; }
+		if(items["password"] == null){ firstdefaultvalues["password"] = false; }
+		if(items["enterpassword"] == null){ firstdefaultvalues["enterpassword"] = ""; }
+		if(items["richtext"] == null && items["plaintext"] == null){ firstdefaultvalues["richtext"] = false; firstdefaultvalues["plaintext"] = true; }
+
+		// find no localstore lightimage
+		// Save the init value
+		chrome.storage.sync.set(firstdefaultvalues, function(){
+			// console.log('Settings saved');
+			read_options();
+		});
+	});
 }
 
 // Option to save current value
 function save_options(){
-	chrome.storage.sync.set({"optionskipremember":$("optionskipremember").checked, "contextmenus":$("contextmenus").checked, "counter":$("counter").checked, "copy":$("copy").checked, "speech":$("speech").checked, "voices":$("voices").checked, "fontsize":$("fontsize").value, "lineheight":$("lineheight").value, "colorlight":$("colorlight").value, "colordark":$("colordark").value, "backgroundlight":$("backgroundlight").value, "backgrounddark":$("backgrounddark").value, "backgroundcolor":$("backgroundcolor").checked, "backgroundimage":$("backgroundimage").checked, "backgroundsize":$("backgroundsize").value, "print":$("print").checked, "password":$("password").checked});
+	chrome.storage.sync.set({"icon": $("btnpreview").src, "optionskipremember":$("optionskipremember").checked, "contextmenus":$("contextmenus").checked, "counter":$("counter").checked, "copy":$("copy").checked, "speech":$("speech").checked, "voices":$("voices").checked, "fontsize":$("fontsize").value, "lineheight":$("lineheight").value, "colorlight":$("colorlight").value, "colordark":$("colordark").value, "backgroundlight":$("backgroundlight").value, "backgrounddark":$("backgrounddark").value, "backgroundcolor":$("backgroundcolor").checked, "backgroundimage":$("backgroundimage").checked, "backgroundsize":$("backgroundsize").value, "print":$("print").checked, "password":$("password").checked, "richtext":$("richtext").checked, "plaintext":$("plaintext").checked, "multiple":$("multiple").checked});
 }
-
-var firstdefaultvalues = {};
-// Option default value to read if there is no current value from chrome.storage AND init default value
-chrome.storage.sync.get(["contextmenus", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsize", "print", "password", "enterpassword"], function(items){
-	// find no localstore zoomengine
-	if(items["contextmenus"] == null){ firstdefaultvalues["contextmenus"] = true; }
-	if(items["counter"] == null){ firstdefaultvalues["counter"] = true; }
-	if(items["copy"] == null){ firstdefaultvalues["copy"] = true; }
-	if(items["speech"] == null){ firstdefaultvalues["speech"] = true; }
-	if(items["voices"] == null){ firstdefaultvalues["voices"] = false; }
-	if(items["fontsize"] == null){ firstdefaultvalues["fontsize"] = 18; }
-	if(items["lineheight"] == null){ firstdefaultvalues["lineheight"] = 26; }
-	if(items["colorlight"] == null){ firstdefaultvalues["colorlight"] = "#373737"; }
-	if(items["colordark"] == null){ firstdefaultvalues["colordark"] = "#ffffff"; }
-	if(items["backgroundlight"] == null){ firstdefaultvalues["backgroundlight"] = "#ffffff"; }
-	if(items["backgrounddark"] == null){ firstdefaultvalues["backgrounddark"] = "#232323"; }
-	if(items["backgroundimage"] == null && items["backgroundcolor"] == null){ firstdefaultvalues["backgroundimage"] = false; firstdefaultvalues["backgroundcolor"] = true; }
-	if(items["backgroundsize"] == null){ firstdefaultvalues["backgroundsize"] = 150; }
-	if(items["print"] == null){ firstdefaultvalues["print"] = true; }
-	if(items["password"] == null){ firstdefaultvalues["password"] = false; }
-	if(items["enterpassword"] == null){ firstdefaultvalues["enterpassword"] = ""; }
-
-	// find no localstore lightimage
-	// Save the init value
-	chrome.storage.sync.set(firstdefaultvalues, function(){
-		// console.log('Settings saved');
-	});
-});
 
 function read_options(){
 	// youtube
@@ -155,7 +162,8 @@ function read_options(){
 		showhidemodal("materialModalYouTube", "hide", "true");
 	}
 
-	chrome.storage.sync.get(["firstDate", "contextmenus", "optionskipremember", "firstsawrate", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsize", "print", "password", "enterpassword"], function(items){
+	chrome.storage.sync.get(["icon", "firstDate", "contextmenus", "optionskipremember", "firstsawrate", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsize", "print", "password", "enterpassword", "plaintext", "richtext", "multiple"], function(items){
+		if(items["icon"]){ $("btnpreview").src = items["icon"]; }
 		if(items["contextmenus"] == true)$("contextmenus").checked = true;
 		if(items["optionskipremember"] == true){ $("optionskipremember").checked = true; $("firstcheckboxskipremember").checked = true; }
 		if(items["counter"] == true)$("counter").checked = true;
@@ -174,6 +182,9 @@ function read_options(){
 		if(items["print"] == true)$("print").checked = true;
 		if(items["password"] == true)$("password").checked = true;
 		if(items["enterpassword"])$("enterpassword").value = items["enterpassword"];
+		if(items["plaintext"] == true)$("plaintext").checked = true;
+		if(items["richtext"] == true)$("richtext").checked = true;
+		if(items["multiple"] == true)$("multiple").checked = true;
 
 		// show remember page
 		var firstmonth = false;
@@ -598,6 +609,27 @@ function domcontentloaded(){
 
 	// Close yellow bar
 	$("managed-prefs-text-close").addEventListener("click", function(){ $("managed-prefs-banner").style.display = "none"; });
+	$("p0").addEventListener("click", function(){
+		var custombrowser = "";
+		if(exbrowser == "safari"){ custombrowser = "/images/icon38.png"; }else{ custombrowser = "/images/icon38.png"; }
+		setpreviewicon(custombrowser);
+	});
+	$("p1").addEventListener("click", function(){
+		var custombrowser = "";
+		custombrowser = "/images/icon38white.png";
+		setpreviewicon(custombrowser);
+	});
+
+	function setpreviewicon(a){
+		document.images["btnpreview"].setAttribute("data-icon", a); document.images["btnpreview"].src = a; save_options();
+	}
+
+	// save browser icon styles
+	var buttoncolor = document.getElementsByClassName("buttoncolor");
+	var r, v = buttoncolor.length;
+	for(r = 0, v; r < v; r++){
+		buttoncolor[r].addEventListener("click", save_options);
+	}
 
 	var guidekb = true;
 	function memguide(){
@@ -643,7 +675,7 @@ function domcontentloaded(){
 	}
 
 	// Reset settings
-	$("resetinotessidebar").addEventListener("click", function(){ chrome.storage.sync.clear(); chrome.runtime.sendMessage({name: "bckreload"}); location.reload(); });
+	$("resetbrowserextension").addEventListener("click", function(){ chrome.storage.sync.clear(); chrome.runtime.sendMessage({name: "bckreload"}); location.reload(); });
 
 	// Save password
 	$("confirmpassword").addEventListener("click", function(){

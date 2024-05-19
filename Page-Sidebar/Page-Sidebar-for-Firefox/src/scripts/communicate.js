@@ -41,6 +41,8 @@ if(window.top !== window && window.parent === window.top){
 							href
 						}, origin);
 					});
+				}else if(e.data?.method === "changeZoomScale"){
+					document.body.style.zoom = e.data.zoom;
 				}
 			});
 			top.postMessage({method: "navigate", href: location.href}, origin);
