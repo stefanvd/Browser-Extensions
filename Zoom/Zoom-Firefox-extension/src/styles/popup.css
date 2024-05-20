@@ -41,14 +41,6 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 --totl-slider-border:rgba(255, 255, 255, 0.2);
 --totl-slider-background:rgba(17, 17, 17, 0.1);
 --totl-button-list-background:rgb(255,255,255,.15);
---totl-button-color:#fff;
---totl-button-background:rgba(244,244,244,.4);
---totl-button-background-active:rgba(158,158,158,.2);
---totl-button-background-hover:rgba(158,158,158,.4);
---totl-button-color-palette:rgba(255,255,255,.1);
---totl-analytic-background-hover:#474747;
---totl-button-disabled-color:rgba(255,255,255,.3);
---totl-button-disabled-background:rgba(255,255,255,.12);
 }
 .light{
 --totl-primary-background:#fff;
@@ -65,14 +57,6 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 --totl-slider-border:rgba(0,0,0,.2);
 --totl-slider-background:rgba(17, 17, 17, 0.1);
 --totl-button-list-background:rgb(0,0,0,.15);
---totl-button-color:#000;
---totl-button-background:rgba(244,244,244,.4);
---totl-button-background-active:rgba(158,158,158,.2);
---totl-button-background-hover:rgba(158,158,158,.4);
---totl-button-color-palette:rgba(100,100,100,.1);
---totl-analytic-background-hover:#f5f5f5;
---totl-button-disabled-color:rgba(0,0,0,.26);
---totl-button-disabled-background:rgba(0,0,0,.12);
 }
 
 *{outline:0}
@@ -84,8 +68,6 @@ html,body{margin:0;padding:0}
 #predefinedbuttons{display:flex;gap:8px;margin:8px 0px}
 #predefinedbuttons .btnpreset{height:22px;display:flex;align-items:center;min-width:30px;justify-content:center;cursor:pointer;border-radius:5px;flex-wrap:wrap;-webkit-user-select:none;user-select:none}
 #predefinedbuttons .btnpreset:hover{background:var(--totl-svg-button-background-hover);color:var(--totl-primary-font-color)}
-.hostpermission{padding:30px;display:flex;position:absolute;top:0;left:0;right:0;bottom:0;height:100%;backdrop-filter:blur(10px);color:var(--totl-primary-font-color);box-sizing:border-box;font-family:verdana;line-height:24px;z-index:20000}
-.hostpermission div{flex-direction:column;align-items:initial;justify-content:center;display:flex}
 /* modern */
 html.modern{width:300px;height:226px}
 .modern body{font-family:sans-serif,'Lucida Grande','Helvetica Neue';font-size:11px}
@@ -161,13 +143,3 @@ html.small{width:297px;height:25px}
 .small input[type=range]::-ms-thumb{height:25px;width:14px;background:#ddd;cursor:pointer}
 .small .zbox{display:flex;justify-content:space-between;flex-wrap:wrap}
 .small .otherbox, .small .title, .small .sliderlabel{display:none}
-/* regular */
-/* dense button - mini */
-button{-webkit-user-select:none;-moz-user-select:none;user-select:none;background:0 0;border:none;border-radius:2px;color:var(--totl-button-color);position:relative;height:32px;margin:0;min-width:64px;padding:0 16px;display:inline-block;font-family:"Roboto","Helvetica","Arial",sans-serif;font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:0;overflow:hidden;will-change:box-shadow;transition:box-shadow .2s cubic-bezier(.4,0,1,1),background-color .2s cubic-bezier(.4,0,.2,1),color .2s cubic-bezier(.4,0,.2,1);outline:none;cursor:pointer;text-decoration:none;text-align:center;line-height:32px;vertical-align:middle;box-shadow:0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);background-color:var(--totl-button-background)}
-button:active{background-color:var(--totl-button-background-active)}
-button:hover{background-color:var(--totl-button-background-hover)}
-/* Disable buttons */
-button[disabled],button[disabled]:hover{box-shadow:none;background-color:var(--totl-button-disabled-background);color:var(--totl-button-disabled-color);cursor:default}
-.btnhelp{color:#000;background-color:rgba(0,113,227,1);color:white}
-.btnhelp:active{background-color:rgba(0,113,227,.4);color:black}
-.btnhelp:hover{background-color:rgba(0,113,227,.2);color:black}

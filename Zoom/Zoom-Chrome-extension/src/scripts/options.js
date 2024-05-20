@@ -74,13 +74,13 @@ function save_options(){
 		screenzoom[screenzoomBox.options[screenzoomi].value] = getsnumber;
 	}
 
-	var websitelevelBox = document.getElementById("websitelevelnumberBox");
-	var websitelevel = {};
-	for(var i = 0; i < websitelevelBox.length; i++){
-		websitelevel[websitelevelBox.options[i].value] = true;
+	var selectElement = document.getElementById("websitelevelnumberBox");
+	var websitelevel = [];
+	for(var i = 0; i < selectElement.length; i++){
+		websitelevel.push(selectElement[i].value);
 	}
 
-	chrome.storage.sync.set({"icon": $("btnpreview").src, "allzoom": $("allzoom").checked, "optionskipremember": $("optionskipremember").checked, "contextmenus": $("contextmenus").checked, "badge": $("badge").checked, "steps": $("steps").value, "lightcolor": $("lightcolor").value, "zoomchrome": $("zoomchrome").checked, "zoomweb": $("zoomweb").checked, "websitezoom": JSON.stringify(websitezoom), "zoomdoubleclick": $("zoomdoubleclick").checked, "zoomoutdoubleclick": $("zoomoutdoubleclick").checked, "zoomnewsingleclick": $("zoomnewsingleclick").checked, "zoomsingleclick": $("zoomsingleclick").checked, "zoommousescroll": $("zoommousescroll").checked, "zoommousebuttonleft": $("zoommousebuttonleft").checked, "zoommousebuttonright": $("zoommousebuttonright").checked, "zoommousescrollup": $("zoommousescrollup").checked, "zoommousescrolldown": $("zoommousescrolldown").checked, "smallpopup": $("smallpopup").checked, "largepopup": $("largepopup").checked, "modernpopup": $("modernpopup").checked, "zoombydomain": $("zoombydomain").checked, "zoombypage": $("zoombypage").checked, "allzoomvalue": $("allzoomvalue").value / 100, "defaultallscreen": $("defaultallscreen").checked, "defaultsinglescreen": $("defaultsinglescreen").checked, "screenzoom": JSON.stringify(screenzoom), "zoomfont": $("zoomfont").checked, "zoommagcircle": $("zoommagcircle").checked, "zoommagsquare": $("zoommagsquare").checked, "zoommagszoomlevel": $("zoommagszoomlevel").value, "zoommagszoomsize": $("zoommagszoomsize").value, "contexta": $("contexta").checked, "contextb": $("contextb").checked, "contextc": $("contextc").checked, "websitepreset": JSON.stringify(websitepreset), "prezoombutton": $("prezoombutton").checked, "websitelevel": JSON.stringify(websitelevel), "ignoreset": $("ignoreset").checked});
+	chrome.storage.sync.set({"icon": $("btnpreview").src, "allzoom": $("allzoom").checked, "optionskipremember": $("optionskipremember").checked, "contextmenus": $("contextmenus").checked, "badge": $("badge").checked, "steps": $("steps").value, "lightcolor": $("lightcolor").value, "zoomchrome": $("zoomchrome").checked, "zoomweb": $("zoomweb").checked, "websitezoom": JSON.stringify(websitezoom), "zoomdoubleclick": $("zoomdoubleclick").checked, "zoomoutdoubleclick": $("zoomoutdoubleclick").checked, "zoomnewsingleclick": $("zoomnewsingleclick").checked, "zoomsingleclick": $("zoomsingleclick").checked, "zoommousescroll": $("zoommousescroll").checked, "zoommousebuttonleft": $("zoommousebuttonleft").checked, "zoommousebuttonright": $("zoommousebuttonright").checked, "zoommousescrollup": $("zoommousescrollup").checked, "zoommousescrolldown": $("zoommousescrolldown").checked, "smallpopup": $("smallpopup").checked, "largepopup": $("largepopup").checked, "modernpopup": $("modernpopup").checked, "zoombydomain": $("zoombydomain").checked, "zoombypage": $("zoombypage").checked, "allzoomvalue": $("allzoomvalue").value / 100, "defaultallscreen": $("defaultallscreen").checked, "defaultsinglescreen": $("defaultsinglescreen").checked, "screenzoom": JSON.stringify(screenzoom), "zoomfont": $("zoomfont").checked, "zoommagcircle": $("zoommagcircle").checked, "zoommagsquare": $("zoommagsquare").checked, "zoommagszoomlevel": $("zoommagszoomlevel").value, "zoommagszoomsize": $("zoommagszoomsize").value, "contexta": $("contexta").checked, "contextb": $("contextb").checked, "contextc": $("contextc").checked, "websitepreset": JSON.stringify(websitepreset), "prezoombutton": $("prezoombutton").checked, "websitelevel": websitelevel, "ignoreset": $("ignoreset").checked});
 }
 
 var firstdefaultvalues = {};
@@ -362,23 +362,10 @@ function read_options(){
 		// predefined zoom buttons
 		var websitelevel = items["websitelevel"];
 		if(typeof websitelevel == "undefined" || websitelevel == null){
-			websitelevel = JSON.stringify({"85": true, "115": true, "123": true});
+			websitelevel = ["85", "115", "123"];
 		}
-
-		if(typeof websitelevel == "string"){
-			websitelevel = JSON.parse(websitelevel);
-			var buf = [];
-			for(var psdomain in websitelevel){
-				buf.push(parseInt(psdomain)); // Convert keys to integers and push them to the array
-			}
-
-			buf.sort(function(a, b){
-				return a - b; // Sort the array in ascending order
-			});
-
-			for(var ti = 0; ti < buf.length; ti++){
-				appendToListBox("websitelevelnumberBox", buf[ti]);
-			}
+		for(let i = 0; i < websitelevel.length; i++){
+			appendToListBox("websitelevelnumberBox", parseInt(websitelevel[i]));
 		}
 
 		// load tab div
@@ -696,11 +683,15 @@ function test(){
 		$("websitelevelnumberBox").disabled = false;
 		$("websiteleveladdbutton").disabled = false;
 		$("websitelevelremovebutton").disabled = false;
+		$("moveupbutton").disabled = false;
+		$("movedownbutton").disabled = false;
 	}else{
 		$("websitelevelnumber").disabled = true;
 		$("websitelevelnumberBox").disabled = true;
 		$("websiteleveladdbutton").disabled = true;
 		$("websitelevelremovebutton").disabled = true;
+		$("moveupbutton").disabled = true;
+		$("movedownbutton").disabled = true;
 	}
 }
 
@@ -1088,6 +1079,10 @@ function domcontentloaded(){
 	document.getElementById("formwebsitelevel").addEventListener("submit", function(e){ e.preventDefault(); levelzoomadd(); });
 	// Remove
 	$("websitelevelremovebutton").addEventListener("click", function(){ levelzoomremoveSelectedExcludedDomain(); });
+	// Move up
+	$("moveupbutton").addEventListener("click", function(){ moveup(); });
+	// Move down
+	$("movedownbutton").addEventListener("click", function(){ movedown(); });
 
 	// Reset settings
 	$("resetbrowserextension").addEventListener("click", function(){ chrome.storage.sync.clear(); chrome.runtime.sendMessage({name: "bckreload"}); location.reload(); });
@@ -1095,6 +1090,32 @@ function domcontentloaded(){
 	// Review box
 	$("war").addEventListener("click", function(){ window.open(writereview); $("sectionreviewbox").style.display = "none"; chrome.storage.sync.set({"reviewedlastonversion": chrome.runtime.getManifest().version}); });
 	$("nt").addEventListener("click", function(){ $("sectionreviewbox").style.display = "none"; chrome.storage.sync.set({"reviewedlastonversion": chrome.runtime.getManifest().version}); });
+
+	function moveup(){
+		var excludedstockBox = document.getElementById("websitelevelnumberBox");
+		var i = excludedstockBox.selectedIndex;
+		if(i > 0){
+			// Swap the options
+			var optionToMoveUp = excludedstockBox.options[i];
+			var optionToMoveDown = excludedstockBox.options[i - 1];
+			excludedstockBox.insertBefore(optionToMoveUp, optionToMoveDown);
+			excludedstockBox.selectedIndex = i - 1;
+			save_options();
+		}
+	}
+
+	function movedown(){
+		var excludedstockBox = document.getElementById("websitelevelnumberBox");
+		var i = excludedstockBox.selectedIndex;
+		if(i >= 0 && i < excludedstockBox.length - 1){
+			// Swap the options
+			var optionToMoveDown = excludedstockBox.options[i];
+			var optionToMoveUp = excludedstockBox.options[i + 1];
+			excludedstockBox.insertBefore(optionToMoveUp, optionToMoveDown);
+			excludedstockBox.selectedIndex = i + 1;
+			save_options();
+		}
+	}
 
 	// search
 	function emptysearch(input){

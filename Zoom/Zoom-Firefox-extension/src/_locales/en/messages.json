@@ -197,6 +197,9 @@
     "deszoommousebutton": {"message": "Mouse button"},
     "deszoommousewheel": {"message": "Mouse Wheel"},
     "deszoomoutdoubleclick": {"message": "Double click to zooms out and a single click to zooms in the web page"},
-    "allowhostpermission": {"message": "Allow the host permission to zoom on any websites"},
-    "btnallowhost": {"message": "Allow on all websites"}
+    "titleshortpredefined1": {"message": "Toggle to predefined zoom value 1"},
+    "titleshortpredefined2": {"message": "Toggle to predefined zoom value 2"},
+    "titleshortpredefined3": {"message": "Toggle to predefined zoom value 3"},
+    "moveupbutton": {"message": "Move Up"},
+    "movedownbutton": {"message": "Move Down"}
 }

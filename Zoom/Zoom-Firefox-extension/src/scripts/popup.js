@@ -30,36 +30,6 @@ function $(id){ return document.getElementById(id); }
 var currentRatio = 1; var ratio = 1; var job = null;
 var darkmode; var allzoom; var allzoomvalue; var webjob; var websitezoom; var badge; var steps; var lightcolor; var zoomchrome; var zoomweb; var zoombydomain; var zoombypage; var defaultsinglescreen; var zoomfont; var counter; var smallpopup; var largepopup; var modernpopup; var prezoombutton; var websitelevel;
 
-// Listen for messages
-chrome.runtime.onMessage.addListener(function(msg){
-	// If the received message has the expected format...
-	if(msg.text == "receiveallhost"){
-		var perm = msg.value;
-		if(perm == true){
-			// do nothing, permission is allowed
-		}else{
-			document.getElementById("hostbox").className = "hostpermission";
-			document.querySelector("#btnallowallhost").addEventListener("click", () => {
-
-				browser.permissions.request({
-					origins: ["*://*/*"]
-				}, function(){
-
-					browser.permissions.contains({
-						origins: ["*://*/*"]
-					}, (result) => {
-						if(result){
-							document.getElementById("hostbox").className = "hidden";
-						}
-					});
-
-				});
-
-			});
-		}
-	}
-});
-
 function zoom(ratio){
 	currentRatio = ratio / 100;
 	chrome.tabs.query({active: true, currentWindow: true}, function(tabs){ zoomtab(tabs[0].id, currentRatio); });
@@ -473,11 +443,6 @@ async function getCurrentTab(){
 }
 
 document.addEventListener("DOMContentLoaded", function(){
-	// allow Firefox permission to run this extension
-	// show all the active permissions in a list
-	chrome.runtime.sendMessage({name: "getallhost"});
-	//----
-
 	// set tooltip
 	$("hund").title = chrome.i18n.getMessage("titleshortzoomreset");
 	$("minus").title = chrome.i18n.getMessage("titleshortzoomout");

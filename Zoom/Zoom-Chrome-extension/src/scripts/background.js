@@ -683,30 +683,33 @@ chrome.commands.onCommand.addListener(function(command){
 				}
 			});
 	}else if(command == "toggle-feature-predefined1"){
-		chrome.storage.sync.get(["websitelevel"], function(){
+		chrome.storage.sync.get(["websitelevel"], function(items){
+			websitelevel = items["websitelevel"];
 			if(typeof websitelevel == "undefined" || websitelevel == null){
-				websitelevel = JSON.stringify({"85": true, "115": true, "123": true});
+				websitelevel = ["85", "115", "123"];
 			}
 			// Get the first item and pass it to zoom function
-			var firstItem = Object.keys(JSON.parse(websitelevel))[0];
+			var firstItem = websitelevel[0];
 			zoom(firstItem);
 		});
 	}else if(command == "toggle-feature-predefined2"){
-		chrome.storage.sync.get(["websitelevel"], function(){
+		chrome.storage.sync.get(["websitelevel"], function(items){
+			websitelevel = items["websitelevel"];
 			if(typeof websitelevel == "undefined" || websitelevel == null){
-				websitelevel = JSON.stringify({"85": true, "115": true, "123": true});
+				websitelevel = ["85", "115", "123"];
 			}
 			// Get the second item and pass it to zoom function
-			var secondItem = Object.keys(JSON.parse(websitelevel))[1];
+			var secondItem = websitelevel[1];
 			zoom(secondItem);
 		});
 	}else if(command == "toggle-feature-predefined3"){
-		chrome.storage.sync.get(["websitelevel"], function(){
+		chrome.storage.sync.get(["websitelevel"], function(items){
+			websitelevel = items["websitelevel"];
 			if(typeof websitelevel == "undefined" || websitelevel == null){
-				websitelevel = JSON.stringify({"85": true, "115": true, "123": true});
+				websitelevel = ["85", "115", "123"];
 			}
 			// Get the third item and pass it to zoom function
-			var thirdItem = Object.keys(JSON.parse(websitelevel))[2];
+			var thirdItem = websitelevel[2];
 			zoom(thirdItem);
 		});
 	}

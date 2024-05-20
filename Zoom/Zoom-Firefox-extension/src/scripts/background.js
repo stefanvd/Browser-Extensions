@@ -255,21 +255,6 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 			chrome.tabs.sendMessage(sender.tab.id, {text: "receiveallpermissions", value: result});
 		});
 		break;
-	case"getallhost":
-		// --- Begin Firefox
-		browser.permissions.contains({
-			origins: ["*://*/*"]
-		}, (result) => {
-			if(result){
-				// The extension has the permissions
-				chrome.runtime.sendMessage({text: "receiveallhost", value: result});
-			}else{
-				// The extension doesn't have the permissions
-				chrome.runtime.sendMessage({text: "receiveallhost", value: result});
-			}
-		});
-		break;
-		// --- End Firefox
 	}
 });
 
@@ -453,9 +438,6 @@ let clickbutton = 0;
 // Declare a timer variable
 let timer;
 var openactiondoubleclick = function(tab){
-	// firefox permisson
-	browser.permissions.request({origins: ["<all_urls>"]});
-
 	// console.log("CLICK zoomdoubleclick= " + zoomdoubleclick + " zoomoutdoubleclick= " + zoomoutdoubleclick + " zoomnewsingleclick= " + zoomnewsingleclick + " zoomsingleclick=" + zoomsingleclick);
 	if(zoomdoubleclick == true || zoomoutdoubleclick == true || zoomnewsingleclick == true){
 		clickbutton += 1;
@@ -685,6 +667,7 @@ chrome.tabs.onHighlighted.addListener(function(tab){
 	checkaddpopup(tab);
 });
 
+var websitelevel;
 chrome.commands.onCommand.addListener(function(command){
 	if(command == "toggle-feature-zoomin"){
 		zoomview(+1);
@@ -699,7 +682,38 @@ chrome.commands.onCommand.addListener(function(command){
 					chrome.tabs.sendMessage(tabs[0].id, {text: "enablemagnifyingglass"});
 				}
 			});
+	}else if(command == "toggle-feature-predefined1"){
+		chrome.storage.sync.get(["websitelevel"], function(items){
+			websitelevel = items["websitelevel"];
+			if(typeof websitelevel == "undefined" || websitelevel == null){
+				websitelevel = ["85", "115", "123"];
+			}
+			// Get the first item and pass it to zoom function
+			var firstItem = websitelevel[0];
+			zoom(firstItem);
+		});
+	}else if(command == "toggle-feature-predefined2"){
+		chrome.storage.sync.get(["websitelevel"], function(items){
+			websitelevel = items["websitelevel"];
+			if(typeof websitelevel == "undefined" || websitelevel == null){
+				websitelevel = ["85", "115", "123"];
+			}
+			// Get the second item and pass it to zoom function
+			var secondItem = websitelevel[1];
+			zoom(secondItem);
+		});
+	}else if(command == "toggle-feature-predefined3"){
+		chrome.storage.sync.get(["websitelevel"], function(items){
+			websitelevel = items["websitelevel"];
+			if(typeof websitelevel == "undefined" || websitelevel == null){
+				websitelevel = ["85", "115", "123"];
+			}
+			// Get the third item and pass it to zoom function
+			var thirdItem = websitelevel[2];
+			zoom(thirdItem);
+		});
 	}
+
 });
 
 // contextMenus

@@ -199,5 +199,7 @@
     "deszoomoutdoubleclick": {"message": "Double click to zooms out and a single click to zooms in the web page"},
     "titleshortpredefined1": {"message": "Toggle to predefined zoom value 1"},
     "titleshortpredefined2": {"message": "Toggle to predefined zoom value 2"},
-    "titleshortpredefined3": {"message": "Toggle to predefined zoom value 3"}
+    "titleshortpredefined3": {"message": "Toggle to predefined zoom value 3"},
+    "moveupbutton": {"message": "Move Up"},
+    "movedownbutton": {"message": "Move Down"}
 }
