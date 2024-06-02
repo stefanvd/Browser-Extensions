@@ -1,0 +1,12 @@
+{
+  "name": "__MSG_nameedge__",
+  "side_panel": {
+    "default_path": "panel.html"
+  },
+  "action": {
+    "default_title": "__MSG_name__"
+  },
+  "offline_enabled": true,
+  "minimum_chrome_version": "114",
+  "permissions": ["contextMenus", "storage", "sidePanel"]
+}

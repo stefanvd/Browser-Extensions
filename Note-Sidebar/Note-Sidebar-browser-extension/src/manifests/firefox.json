@@ -1,0 +1,38 @@
+{
+  "name": "__MSG_name__",
+  "background": {
+    "scripts": ["scripts/constants.js","scripts/background.js"]
+  },
+  "sidebar_action": {
+    "default_icon": {
+      "16": "images/icon16.png",
+      "32": "images/icon32.png"
+    },
+    "default_title": "__MSG_name__",
+    "default_panel": "panel.html",
+    "open_at_install":true
+  },
+  "action": {
+    "default_icon": {
+      "16": "images/icon16.png",
+      "32": "images/icon32.png"
+    },
+    "default_title": "__MSG_name__",
+    "theme_icons": [{
+      "light": "images/whiteicon16.png",
+      "dark": "images/icon16.png",
+      "size": 16
+    }, {
+      "light": "images/whiteicon32.png",
+      "dark": "images/icon32.png",
+      "size": 32
+    }]
+  },
+  "permissions": ["contextMenus", "storage"],
+  "browser_specific_settings": {
+    "gecko": {
+        "id": "notesidebar@stefanvd.net",
+        "strict_min_version": "113.0"
+    }
+  }
+}

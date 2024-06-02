@@ -4,8 +4,6 @@
     "nameedge": {"message": "Note Sidebar for Microsoft Edge"},
     "nameopera": {"message": "Note Sidebar for Opera"},
     "namefirefox": {"message": "Note Sidebar for Firefox"},
-    "namesafari": {"message": "Note Sidebar for Safari"},
-    "namewhale": {"message": "Note Sidebar for Naver Whale"},
     "description": {"message": "Simple note sidebar which can be used to write a note, record thoughts, to-do list, meeting notes, etc."},
     "optionpagetitle": {"message": "Note Sidebar - Options"},
     "pagehelp": {"message": "help"},
@@ -171,8 +169,5 @@
     "head2": {"message": "Choose your favorite Note Sidebar icon:"},
     "typenote": {"message": "Type note"},
     "typeplaintext": {"message": "Plain Text Format"},
-    "typerichtext": {"message": "Rich Text Format"},
-    "titeltabs": {"message": "Multiple Notes"},
-    "destabs": {"message": "Add multiple notes in the sidebar"},
-    "note": {"message": "Note"}
+    "typerichtext": {"message": "Rich Text Format"}
 }

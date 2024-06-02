@@ -1,0 +1,15 @@
+{
+  "name": "__MSG_name__",
+  "side_panel": {
+    "default_path": "panel.html"
+  },
+  "action": {
+    "default_title": "__MSG_name__"
+  },
+  "background": {
+    "service_worker": "scripts/background.js"
+  },
+  "offline_enabled": true,
+  "minimum_chrome_version": "114",
+  "permissions": ["contextMenus", "storage", "sidePanel"]
+}
