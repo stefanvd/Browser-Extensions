@@ -1,53 +1,31 @@
 /* eslint-disable no-undef */
-const{src, dest} = require("gulp");
+const{src, dest, series} = require("gulp");
 const mergeJson = require("gulp-merge-json");
 const rename = require("gulp-rename");
-const merge = require("merge-stream");
 const fs = require("fs-extra");
 const{join} = require("path");
-const outputDir = "dist";
 
-// This is useful for pulling the extension version in from the
-// package.json at the root level
+const outputDir = "dist";
 const packageDef = require("./package.json");
 
-const buildManifest = (browser, destination) => {
-	// Set up manifest values created in code
-	const mergeOverride = {
-		version: packageDef.version,
-	};
+const buildExtension = (browser) => {
+	const destination = `${outputDir}/${browser}`;
 
-	const fileName = "manifest.json";
+	// manifest file
+	const mergeOverride = {version: packageDef.version};
+	const commonManifest = "./src/manifests/common.json";
+	const browserManifest = `./src/manifests/${browser}.json`;
 
-	src([
-		"./src/manifests/common.json",
-		`./src/manifests/${browser}.json`,
-	])
-		.pipe(
-			mergeJson({
-				fileName,
-				mergeOverride,
-			})
-		)
+	src([commonManifest, browserManifest])
+		.pipe(mergeJson({fileName: "manifest.json", mergeOverride}))
 		.pipe(dest(`${destination}/`));
-};
 
-const buildConstants = (browser, destination) => {
-	const fs = require("fs");
-	const path = require("path");
-
-	// Copy constant.js depending on the browser
 	const browserConstantFile = `./src/constants/${browser}/constants.js`;
-	const destinationConstantFile = path.join(destination, "scripts", "constants.js");
-
-	// Ensure the destination scripts folder exists
-	fs.mkdirSync(path.join(destination, "scripts"), {recursive: true});
-
-	// Copy the file
+	const destinationConstantFile = join(destination, "scripts", "constants.js");
+	fs.mkdirSync(join(destination, "scripts"), {recursive: true});
 	fs.copyFileSync(browserConstantFile, destinationConstantFile);
-};
 
-const combineSources = (browser, destination) => {
+	// html, scripts, styles files
 	const sourceFiles = src([
 		"!**/index.js",
 		"./src/LICENSE",
@@ -58,18 +36,16 @@ const combineSources = (browser, destination) => {
 
 	const processedFiles = sourceFiles.pipe(rename((file) => {
 		if(file.extname === ".html" || file.basename === "LICENSE"){
-			file.dirname = ""; // Move files to the root
+			file.dirname = "";
 		}else if(file.dirname.includes("styles") || file.dirname.includes("scripts")){
-			file.dirname = file.dirname.split("/").pop(); // Move styles and scripts to src root
+			file.dirname = file.dirname.split("/").pop();
 		}
 	}));
 
-	return processedFiles.pipe(dest(destination));
-};
+	processedFiles.pipe(dest(destination));
 
-const ImagesSources = (browser, destination) => {
+	// images folder
 	const imageExtensions = ["png", "webp", "svg", "webm", "mp4"];
-
 	imageExtensions.forEach((extension) => {
 		const files = fs.readdirSync("./src/images", {withFileTypes: true});
 		files.forEach((file) => {
@@ -80,31 +56,17 @@ const ImagesSources = (browser, destination) => {
 			}
 		});
 	});
+
+	// languages
+	const commonFiles = src(["./src/_locales/**/*.json"])
+		.pipe(dest(`${destination}/_locales`));
+
+	return commonFiles;
 };
 
-const LanguagesSources = (browser, destination) => {
-	const commonFiles = src([
-		"./src/_locales/**/*.json",
-	])
-		.pipe(dest(destination + "/_locales"));
-	return merge(commonFiles);
+const createTask = (browser) => {
+	return series(() => buildExtension(browser));
 };
-
-const packageExtension = (browser) => {
-	const destination = `${outputDir}/${browser}`;
-	buildManifest(browser, destination);
-	buildConstants(browser, destination);
-	combineSources(browser, destination);
-	ImagesSources(browser, destination);
-	LanguagesSources(browser, destination);
-};
-
-function createTask(browser){
-	return function(cb){
-		packageExtension(browser);
-		cb();
-	};
-}
 
 exports.chrome = createTask("chrome");
 exports.firefox = createTask("firefox");
