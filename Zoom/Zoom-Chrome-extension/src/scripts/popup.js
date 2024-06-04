@@ -518,26 +518,27 @@ document.addEventListener("DOMContentLoaded", function(){
 				websitelevel = JSON.stringify({"85": true, "115": true, "123": true});
 			}
 
-			if(typeof websitelevel == "string"){
+			if(typeof websitelevel === "string"){
 				websitelevel = JSON.parse(websitelevel);
-				var buf = [];
-				for(var psdomain in websitelevel){
-					buf.push(parseInt(psdomain)); // Convert keys to integers and push them to the array
-				}
+			}
 
-				buf.sort(function(a, b){
-					return a - b; // Sort the array in ascending order
+			var buf = [];
+			for(var psdomain in websitelevel){
+				buf.push(parseInt(websitelevel[psdomain]));
+			}
+
+			buf.sort(function(a, b){
+				return a - b; // Sort the array in ascending order
+			});
+
+			for(var ti = 0; ti < buf.length; ti++){
+				var newButton = document.createElement("div");
+				newButton.className = "btnpreset";
+				newButton.textContent = buf[ti];
+				newButton.addEventListener("click", function(){
+					showValue(parseInt(this.textContent));
 				});
-
-				for(var ti = 0; ti < buf.length; ti++){
-					var newButton = document.createElement("div");
-					newButton.className = "btnpreset";
-					newButton.textContent = buf[ti];
-					newButton.addEventListener("click", function(){
-						showValue(parseInt(this.textContent));
-					});
-					predefinedbuttons.appendChild(newButton);
-				}
+				predefinedbuttons.appendChild(newButton);
 			}
 		}
 

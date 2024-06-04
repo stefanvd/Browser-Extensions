@@ -349,6 +349,12 @@ chrome.storage.onChanged.addListener(function(changes){
 	if(changes["multiple"]){
 		chrome.runtime.sendMessage({msg: "setmultiple", value: changes["multiple"].newValue});
 	}
+	if(changes["preventclose"]){
+		chrome.runtime.sendMessage({msg: "setpreventclose", value: changes["preventclose"].newValue});
+	}
+	if(changes["texttabname"]){
+		chrome.runtime.sendMessage({msg: "settexttabname", value: changes["texttabname"].newValue});
+	}
 });
 
 chrome.runtime.setUninstallURL(linkuninstall);

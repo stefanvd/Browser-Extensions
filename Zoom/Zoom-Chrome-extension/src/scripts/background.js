@@ -832,7 +832,7 @@ var sharemenuwelcomeguidetitle = chrome.i18n.getMessage("sharemenuwelcomeguideti
 var sharemenutellafriend = chrome.i18n.getMessage("sharemenutellafriend");
 var sharemenupostonx = chrome.i18n.getMessage("sharemenupostonx");
 var sharemenupostonfacebook = chrome.i18n.getMessage("sharemenupostonfacebook");
-var sharemenuratetitle = chrome.i18n.getMessage("sharemenuratetitle");
+// var sharemenuratetitle = chrome.i18n.getMessage("sharemenuratetitle");
 var sharemenudonatetitle = chrome.i18n.getMessage("sharemenudonatetitle");
 var sharemenusubscribetitle = chrome.i18n.getMessage("desremyoutube");
 var sharemenupostonweibo = chrome.i18n.getMessage("sharemenupostonweibo");
@@ -871,7 +871,7 @@ if(chrome.contextMenus){
 
 		browsercontext(sharemenuwelcomeguidetitle, "totlguideemenu", {"16": "images/IconGuide.png", "32": "images/IconGuide@2x.png"});
 		browsercontext(sharemenudonatetitle, "totldevelopmenu", {"16": "images/IconDonate.png", "32": "images/IconDonate@2x.png"});
-		browsercontext(sharemenuratetitle, "totlratemenu", {"16": "images/IconStar.png", "32": "images/IconStar@2x.png"});
+		// browsercontext(sharemenuratetitle, "totlratemenu", {"16": "images/IconStar.png", "32": "images/IconStar@2x.png"});
 
 		// Create a parent item and two children.
 		var parent = null;

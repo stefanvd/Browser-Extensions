@@ -26,7 +26,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-var maintext; var powertext; var theValue; var multiValue; var counter; var copy; var speech; var voices; var fontsize; var lineheight; var colorlight; var colordark; var backgroundlight; var backgrounddark; var backgroundcolor; var backgroundimage; var backgroundsource; var backgroundsize; var printicon; var password; var enterpassword; var richtext; var plaintext; var multiple;
+var maintext; var powertext; var theValue; var multiValue; var counter; var copy; var speech; var voices; var fontsize; var lineheight; var colorlight; var colordark; var backgroundlight; var backgrounddark; var backgroundcolor; var backgroundimage; var backgroundsource; var backgroundsize; var printicon; var password; var enterpassword; var richtext; var plaintext; var multiple; var preventclose; var texttabname;
 
 function save(){
 	var savingtext;
@@ -56,6 +56,7 @@ var i18npasswordplaceholder = chrome.i18n.getMessage("passwordplaceholder");
 var i18ntitelcopytext = chrome.i18n.getMessage("titlecopytextdone");
 var i18ndescopytext = chrome.i18n.getMessage("descopytextdone");
 var i18nnote = chrome.i18n.getMessage("note");
+var i18nclosetab = chrome.i18n.getMessage("closetab");
 
 function focuspassword(){
 	document.getElementById("inputpass").focus();
@@ -102,7 +103,10 @@ function createAllTabsInBar(){
 	for(var i = 0; i < totaltabs; i++){
 		const newTab = document.createElement("div");
 		newTab.classList.add("tab");
-		newTab.textContent = i18nnote + parseInt(i + 1);
+		const titleDiv = document.createElement("div");
+		titleDiv.classList.add("title");
+		titleDiv.textContent = i18nnote + parseInt(i + 1);
+		newTab.appendChild(titleDiv);
 		newTab.innerHTML += "<div class=\"tab-close\">x</div>";
 		tabContainer.insertBefore(newTab, tabContainer.lastElementChild);
 	}
@@ -111,7 +115,10 @@ function createAllTabsInBar(){
 function createNewTab(){
 	const newTab = document.createElement("div");
 	newTab.classList.add("tab");
-	newTab.textContent = i18nnote + ` ${tabContainer.children.length}`;
+	const titleDiv = document.createElement("div");
+	titleDiv.classList.add("title");
+	titleDiv.textContent = i18nnote + ` ${tabContainer.children.length}`;
+	newTab.appendChild(titleDiv);
 	newTab.innerHTML += "<div class=\"tab-close\">x</div>";
 	tabContainer.insertBefore(newTab, tabContainer.lastElementChild);
 	setActiveTab(newTab);
@@ -124,6 +131,19 @@ function createNewTab(){
 	save();
 }
 // End tabs functions
+
+// Function to show a custom confirmation dialog
+function showConfirmationDialog(){
+	// Display the confirmation dialog with custom message
+	var result = confirm(i18nclosetab);
+
+	// Check the result and return 1 for 'Yes' and 0 for 'No'
+	if(result){
+		return 1; // 'Yes' clicked
+	}else{
+		return 0; // 'No' clicked
+	}
+}
 
 var tabContainer;
 function init(){
@@ -159,26 +179,47 @@ function init(){
 
 	tabContainer.addEventListener("click", function(event){
 		if(event.target.classList.contains("tab-close")){
-			if(multiValue.length > 1){
-				const index = [...event.target.parentNode.parentNode.children].indexOf(event.target.parentNode);
-				multiValue = removeObjectAtIndex(index, multiValue);
+			var continueremove = false;
+			if(preventclose == true){
+				// Example usage
+				var userResponse = showConfirmationDialog();
+				if(userResponse == 1){
+					// yes
+					continueremove = true;
+					// remove tab
+				}else{
+					// no
+					continueremove = false;
+					// do nothing
+				}
+			}else{
+				continueremove = true;
+			}
 
-				document.getElementById("tabstrip").dataset.active = multiValue.length - 1;
-				setActiveTabContent(multiValue.length - 1);
+			if(continueremove == true){
+				if(multiValue.length > 1){
+					const index = [...event.target.parentNode.parentNode.children].indexOf(event.target.parentNode);
+					multiValue = removeObjectAtIndex(index, multiValue);
 
-				save();
+					document.getElementById("tabstrip").dataset.active = multiValue.length - 1;
+					setActiveTabContent(multiValue.length - 1);
 
-				// remove all tabs
-				removeTabs();
-				// create all tabs, and set active
-				createAllTabsInBar();
-				// set the current active tab
-				document.getElementById("tabstrip").dataset.active = 0;
-				const tabs = document.querySelectorAll(".tab");
-				tabs.forEach((t) => t.classList.remove("active"));
-				const firstTab = tabs[0];
-				firstTab.classList.add("active");
-				setActiveTabContent(0);
+					save();
+
+					// remove all tabs
+					removeTabs();
+					// create all tabs, and set active
+					createAllTabsInBar();
+					// set the current active tab
+					document.getElementById("tabstrip").dataset.active = 0;
+					const tabs = document.querySelectorAll(".tab");
+					tabs.forEach((t) => t.classList.remove("active"));
+					const firstTab = tabs[0];
+					firstTab.classList.add("active");
+					setActiveTabContent(0);
+
+					updatetabname();
+				}
 			}
 		}
 	});
@@ -188,7 +229,7 @@ function init(){
 
 	maintext = document.querySelector("#maintext");
 	powertext = document.querySelector("#powertext");
-	chrome.storage.sync.get(["firstDate", "optionskipremember", "txtvalue", "multivalue", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsource", "backgroundsize", "print", "password", "enterpassword", "richtext", "plaintext", "multiple"], function(items){
+	chrome.storage.sync.get(["firstDate", "optionskipremember", "txtvalue", "multivalue", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsource", "backgroundsize", "print", "password", "enterpassword", "richtext", "plaintext", "multiple", "preventclose", "texttabname"], function(items){
 		theValue = items["txtvalue"]; if(theValue == null){ theValue = i18nfirsttext; }
 		multiValue = items["multivalue"]; if(multiValue == null){ multiValue = [{"note":i18nfirsttext}]; }
 		counter = items["counter"]; if(counter == null){ counter = true; }
@@ -211,7 +252,8 @@ function init(){
 		richtext = items["richtext"]; if(richtext == null){ richtext = false; }
 		plaintext = items["plaintext"]; if(plaintext == null){ plaintext = true; }
 		multiple = items["multiple"]; if(multiple == null){ multiple = false; }
-
+		preventclose = items["preventclose"]; if(preventclose == null){ preventclose = false; }
+		texttabname = items["texttabname"]; if(texttabname == null){ texttabname = false; }
 
 		if(password == true){
 			var darklayer = document.createElement("div");
@@ -317,13 +359,19 @@ function init(){
 			maintext.oninput = function(){
 				save();
 				countcharacters();
+				updatetabname();
 			};
 		}else if(richtext == true){
 			powertext.oninput = function(){
 				save();
 				countcharacters();
+				updatetabname();
 			};
 		}
+
+
+		// on the end update tab names or not
+		updatetabname();
 	});
 
 	document.querySelector(".close").addEventListener("click", () => {
@@ -406,6 +454,36 @@ function updatebackgroundpaper(){
 		}else if(backgroundsource == 3){
 			bcknotepaper.style.backgroundImage = "url(" + chrome.runtime.getURL("images/black-lines.png") + ")";
 		}
+	}
+}
+
+function updatetabname(){
+	if(texttabname == true){
+		if(multiple == true){
+			// multi
+			// Get the tab titles
+			var tabTitles = document.querySelectorAll(".tab .title");
+
+			// Loop through each tab title
+			tabTitles.forEach(function(title, index){
+				// Get the first line of the note text
+				var firstLine = multiValue[index].note.split("\n")[0].trim();
+				if(firstLine == ""){
+					// If note text is empty, show default text with index number
+					firstLine = i18nnote + (index + 1);
+				}else if(firstLine.length > 15){
+					// If note text exceeds 15 characters, limit it and append three dots
+					firstLine = firstLine.substring(0, 15) + "…";
+				}
+
+				// Update the tab title with the first line of the note text
+				title.textContent = firstLine;
+			});
+		}else{
+			// single
+		}
+	}else{
+		// update to use the regular tab names
 	}
 }
 
@@ -692,5 +770,27 @@ chrome.runtime.onMessage.addListener(function(request){
 		multiple = request.value;
 		applyStyles(request.value, richtext);
 		createTabContent();
+	}else if(request.msg == "setpreventclose"){
+		if(request.value == true){
+			preventclose = true;
+		}else{
+			preventclose = false;
+		}
+	}else if(request.msg == "settexttabname"){
+		if(request.value == true){
+			texttabname = true;
+			updatetabname();
+		}else{
+			texttabname = false;
+			// remove all tabs
+			removeTabs();
+			createAllTabsInBar();
+			// set the current active tab
+			document.getElementById("tabstrip").dataset.active = 0;
+			const tabs = document.querySelectorAll(".tab");
+			tabs.forEach((t) => t.classList.remove("active"));
+			const firstTab = tabs[0];
+			firstTab.classList.add("active");
+		}
 	}
 });
