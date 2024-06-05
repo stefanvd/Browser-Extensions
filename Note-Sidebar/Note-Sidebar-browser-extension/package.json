@@ -1,5 +1,5 @@
 {
-  "name": "note-sidebar-browser-extension",
+  "name": "note-sidebar",
   "version": "1.0.13",
   "description": "browser extension",
   "homepage": "https://wwww.stefanvd.net",
@@ -19,7 +19,8 @@
     "edge": "gulp edge",
     "safari": "gulp safari",
     "whale": "gulp whale",
-    "yandex": "gulp yandex"
+    "yandex": "gulp yandex",
+    "chrome-create-zip": "cd dist/chrome && find . -name '.DS_Store' -type f -delete && zip -r ../$npm_package_name-chrome-extension-$npm_package_version.zip * && mv ../$npm_package_name-chrome-extension-$npm_package_version.zip ../dist/"
   },
   "dependencies": {
     "fs-extra": "^11.2.0",
