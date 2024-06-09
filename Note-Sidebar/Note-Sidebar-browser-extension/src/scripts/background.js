@@ -70,6 +70,9 @@ chrome.runtime.onMessage.addListener(function request(request){
 		currentmultinotetext = request.value;
 		// console.log("currentmultinotetext=", currentmultinotetext);
 		break;
+	case"hardsave":
+		chrome.storage.sync.set({"txtvalue": currentnotetext});
+		chrome.storage.sync.set({"multivalue": currentmultinotetext});
 	}
 	return true;
 });

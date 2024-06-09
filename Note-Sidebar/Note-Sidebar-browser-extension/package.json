@@ -1,6 +1,6 @@
 {
   "name": "note-sidebar",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "browser extension",
   "homepage": "https://wwww.stefanvd.net",
   "author": "Stefan Van Damme",
@@ -20,7 +20,11 @@
     "safari": "gulp safari",
     "whale": "gulp whale",
     "yandex": "gulp yandex",
-    "chrome-create-zip": "cd dist/chrome && find . -name '.DS_Store' -type f -delete && zip -r ../$npm_package_name-chrome-extension-$npm_package_version.zip * && mv ../$npm_package_name-chrome-extension-$npm_package_version.zip ../dist/"
+    "chrome-create-zip": "cd dist/chrome && find . -name '.DS_Store' -type f -delete && zip -r ../$npm_package_name-chrome-extension-$npm_package_version.zip * && mv ../$npm_package_name-chrome-extension-$npm_package_version.zip ../dist/",
+    "firefox-create-zip": "cd dist/chrome && find . -name '.DS_Store' -type f -delete && zip -r ../$npm_package_name-chrome-extension-$npm_package_version.zip * && mv ../$npm_package_name-chrome-extension-$npm_package_version.zip ../dist/",
+    "opera-create-zip": "cd dist/chrome && find . -name '.DS_Store' -type f -delete && zip -r ../$npm_package_name-chrome-extension-$npm_package_version.zip * && mv ../$npm_package_name-chrome-extension-$npm_package_version.zip ../dist/",
+    "edge-create-zip": "cd dist/chrome && find . -name '.DS_Store' -type f -delete && zip -r ../$npm_package_name-chrome-extension-$npm_package_version.zip * && mv ../$npm_package_name-chrome-extension-$npm_package_version.zip ../dist/",
+    "whale-create-zip": "cd dist/chrome && find . -name '.DS_Store' -type f -delete && zip -r ../$npm_package_name-chrome-extension-$npm_package_version.zip * && mv ../$npm_package_name-chrome-extension-$npm_package_version.zip ../dist/"
   },
   "dependencies": {
     "fs-extra": "^11.2.0",

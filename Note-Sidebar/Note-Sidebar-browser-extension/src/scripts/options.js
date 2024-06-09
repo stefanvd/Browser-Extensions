@@ -699,24 +699,47 @@ function domcontentloaded(){
 	var i18nfirsttext = chrome.i18n.getMessage("firsttext");
 	$("exportnotes").addEventListener("click", function(){
 
-		chrome.storage.sync.get(["txtvalue"], function(items){
+		chrome.storage.sync.get(["txtvalue", "multivalue"], function(items){
 			var theValue = items["txtvalue"]; if(theValue == null){ theValue = i18nfirsttext; }
-			var saveData = (function(){
-				var a = document.createElement("a");
-				// document.body.appendChild(a);
-				// a.style = "display: none";
-				return function(data, fileName){
-					var blob = new Blob([data], {type: "text/plain;charset=utf-8"}),
-						url = window.URL.createObjectURL(blob);
-					a.href = url;
-					a.download = fileName;
-					a.click();
-					window.URL.revokeObjectURL(url);
-				};
-			}());
+			var multiValue = items["multivalue"]; if(multiValue == null){ multiValue = [{"note":i18nfirsttext}]; }
 
-			var data = theValue, fileName = "export-notes.txt";
-			saveData(data, fileName);
+			if(document.getElementById("multiple").checked){
+				// multiple note
+				let saveData = (function(){
+					var a = document.createElement("a");
+					// document.body.appendChild(a);
+					// a.style = "display: none";
+					return function(data, fileName){
+						var blob = new Blob([data], {type: "text/plain;charset=utf-8"}),
+							url = window.URL.createObjectURL(blob);
+						a.href = url;
+						a.download = fileName;
+						a.click();
+						window.URL.revokeObjectURL(url);
+					};
+				}());
+
+				let data = JSON.stringify(multiValue), fileName = "export-notes.txt";
+				saveData(data, fileName);
+			}else{
+				// single note
+				let saveData = (function(){
+					var a = document.createElement("a");
+					// document.body.appendChild(a);
+					// a.style = "display: none";
+					return function(data, fileName){
+						var blob = new Blob([data], {type: "text/plain;charset=utf-8"}),
+							url = window.URL.createObjectURL(blob);
+						a.href = url;
+						a.download = fileName;
+						a.click();
+						window.URL.revokeObjectURL(url);
+					};
+				}());
+
+				let data = theValue, fileName = "export-notes.txt";
+				saveData(data, fileName);
+			}
 		});
 
 	});

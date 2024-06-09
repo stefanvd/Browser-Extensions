@@ -28,7 +28,7 @@
       "size": 32
     }]
   },
-  "permissions": ["contextMenus", "storage"],
+  "permissions": ["contextMenus", "storage", "unlimitedStorage"],
   "browser_specific_settings": {
     "gecko": {
         "id": "notesidebar@stefanvd.net",

@@ -145,6 +145,42 @@ function showConfirmationDialog(){
 	}
 }
 
+// Begin Hard Saving ---
+// Chrome.storage API MAX_WRITE_OPERATIONS_PER_MINUTE = 120
+// 500ms (2 per second)
+
+// Queue to store save requests
+let saveQueue = [];
+
+// Function to process the save queue
+function processQueue(){
+	if(saveQueue.length === 0)return;
+
+	// Get the next save request from the queue
+	const nextSave = saveQueue.shift();
+
+	// Execute the save function
+	nextSave();
+
+	// Process the next save request after 1 second
+	setTimeout(processQueue, 1000);
+}
+
+// Your save function that writes to chrome storage
+function hardsave(){
+	// Add the save request to the queue
+	saveQueue.push(() => {
+		// Send the message and wait for a response
+		chrome.runtime.sendMessage({name: "hardsave"});
+	});
+
+	// If the queue was empty before adding this save request, start processing
+	if(saveQueue.length === 1){
+		processQueue();
+	}
+}
+// End Hard Saving ---
+
 var tabContainer;
 function init(){
 	// open connnection to background that the panel is open
@@ -360,15 +396,16 @@ function init(){
 				save();
 				countcharacters();
 				updatetabname();
+				hardsave();
 			};
 		}else if(richtext == true){
 			powertext.oninput = function(){
 				save();
 				countcharacters();
 				updatetabname();
+				hardsave();
 			};
 		}
-
 
 		// on the end update tab names or not
 		updatetabname();
