@@ -1,6 +1,6 @@
 {
   "name": "note-sidebar",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "browser extension",
   "homepage": "https://wwww.stefanvd.net",
   "author": "Stefan Van Damme",
@@ -21,10 +21,10 @@
     "whale": "gulp whale",
     "yandex": "gulp yandex",
     "chrome-create-zip": "cd dist/chrome && find . -name '.DS_Store' -type f -delete && zip -r ../$npm_package_name-chrome-extension-$npm_package_version.zip * && mv ../$npm_package_name-chrome-extension-$npm_package_version.zip ../dist/",
-    "firefox-create-zip": "cd dist/chrome && find . -name '.DS_Store' -type f -delete && zip -r ../$npm_package_name-chrome-extension-$npm_package_version.zip * && mv ../$npm_package_name-chrome-extension-$npm_package_version.zip ../dist/",
-    "opera-create-zip": "cd dist/chrome && find . -name '.DS_Store' -type f -delete && zip -r ../$npm_package_name-chrome-extension-$npm_package_version.zip * && mv ../$npm_package_name-chrome-extension-$npm_package_version.zip ../dist/",
-    "edge-create-zip": "cd dist/chrome && find . -name '.DS_Store' -type f -delete && zip -r ../$npm_package_name-chrome-extension-$npm_package_version.zip * && mv ../$npm_package_name-chrome-extension-$npm_package_version.zip ../dist/",
-    "whale-create-zip": "cd dist/chrome && find . -name '.DS_Store' -type f -delete && zip -r ../$npm_package_name-chrome-extension-$npm_package_version.zip * && mv ../$npm_package_name-chrome-extension-$npm_package_version.zip ../dist/"
+    "firefox-create-zip": "cd dist/firefox && find . -name '.DS_Store' -type f -delete && zip -r ../$npm_package_name-firefox-extension-$npm_package_version.zip * && mv ../$npm_package_name-firefox-extension-$npm_package_version.zip ../dist/",
+    "opera-create-zip": "cd dist/opera && find . -name '.DS_Store' -type f -delete && zip -r ../$npm_package_name-opera-extension-$npm_package_version.zip * && mv ../$npm_package_name-opera-extension-$npm_package_version.zip ../dist/",
+    "edge-create-zip": "cd dist/edge && find . -name '.DS_Store' -type f -delete && zip -r ../$npm_package_name-edge-extension-$npm_package_version.zip * && mv ../$npm_package_name-edge-extension-$npm_package_version.zip ../dist/",
+    "whale-create-zip": "cd dist/whale && find . -name '.DS_Store' -type f -delete && zip -r ../$npm_package_name-whale-extension-$npm_package_version.zip * && mv ../$npm_package_name-whale-extension-$npm_package_version.zip ../dist/"
   },
   "dependencies": {
     "fs-extra": "^11.2.0",

@@ -688,9 +688,7 @@ function applyStyles(multiple, richtext){
 
 function createTabContent(){
 	if(multiple == true){
-		if(!multiValue){
-			multiValue = [{"note":""}];
-		}
+		if(multiValue == null){ multiValue = [{"note":i18nfirsttext}]; }
 
 		// remove all tabs
 		removeTabs();
@@ -736,6 +734,10 @@ chrome.runtime.onMessage.addListener(function(request){
 		}else if(richtext == true){
 			document.querySelector("#powertext").innerHTML = request.value;
 		}
+	}else if(request.msg == "setnotemulti"){
+		multiValue = request.value;
+		applyStyles(request.value, richtext);
+		createTabContent();
 	}else if(request.msg == "setcounter"){
 		if(request.value == true){
 			countcharacters();

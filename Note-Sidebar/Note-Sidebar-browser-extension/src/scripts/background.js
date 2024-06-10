@@ -59,7 +59,7 @@ chrome.runtime.onMessage.addListener(function request(request){
 	switch(request.name){
 	case"bckreload":
 		currentnotetext = chrome.i18n.getMessage("firsttext");
-		currentmultinotetext = [{"note":""}];
+		currentmultinotetext = [{"note":i18nfirsttext}];
 		installation();
 		break;
 	case"newnotetext":
@@ -71,8 +71,7 @@ chrome.runtime.onMessage.addListener(function request(request){
 		// console.log("currentmultinotetext=", currentmultinotetext);
 		break;
 	case"hardsave":
-		chrome.storage.sync.set({"txtvalue": currentnotetext});
-		chrome.storage.sync.set({"multivalue": currentmultinotetext});
+		chrome.storage.sync.set({"txtvalue": currentnotetext, "multivalue": currentmultinotetext});
 	}
 	return true;
 });
@@ -94,8 +93,7 @@ chrome.runtime.onConnect.addListener((port) => {
 	if(port.name === "myNoteSidebar"){
 		port.onDisconnect.addListener(() => {
 			// console.log("Notesidebar Sidepanel closed");
-			chrome.storage.sync.set({"txtvalue": currentnotetext});
-			chrome.storage.sync.set({"multivalue": currentmultinotetext});
+			chrome.storage.sync.set({"txtvalue": currentnotetext, "multivalue": currentmultinotetext});
 		});
 	}
 });
@@ -110,8 +108,8 @@ function onClickHandler(info){
 		chrome.tabs.create({url: writereview, active:true});
 	}else if(info.menuItemId == "totlshareemail"){
 		var sturnoffthelightemail = "mailto:your@email.com?subject=" + chrome.i18n.getMessage("sharetexta") + "&body=" + chrome.i18n.getMessage("sharetextb") + " " + linkproduct; chrome.tabs.create({url: sturnoffthelightemail, active:true});
-	}else if(info.menuItemId == "totlsharetwitter"){
-		var slinkproductcodeurl = encodeURIComponent(chrome.i18n.getMessage("sharetextd") + " " + linkproduct); chrome.tabs.create({url: "https://twitter.com/intent/tweet?text=" + slinkproductcodeurl, active:true});
+	}else if(info.menuItemId == "totlsharex"){
+		var slinkproductcodeurl = encodeURIComponent(chrome.i18n.getMessage("sharetextd") + " " + linkproduct); chrome.tabs.create({url: "https://x.com/intent/tweet?text=" + slinkproductcodeurl, active:true});
 	}else if(info.menuItemId == "totlsharefacebook"){
 		chrome.tabs.create({url: "https://www.facebook.com/sharer/sharer.php?u=" + linkproduct, active:true});
 	}else if(info.menuItemId == "totlsubscribe"){
@@ -126,18 +124,36 @@ function onClickHandler(info){
 		chrome.tabs.create({url: "https://api.whatsapp.com/send?text=" + chrome.i18n.getMessage("sharetextd") + "%0a" + linkproduct, active:true});
 	}else if(info.menuItemId == "snpage"){
 		var selectedtext = info.selectionText;
-		chrome.storage.sync.get(["txtvalue", "richtext", "plaintext"], function(items){
+		chrome.storage.sync.get(["txtvalue", "richtext", "plaintext", "multiple", "multivalue"], function(items){
 			var theValue = items["txtvalue"]; if(theValue == null){ theValue = i18nfirsttext; }
 			var richtext = items["richtext"]; if(richtext == null){ richtext = false; }
 			var plaintext = items["plaintext"]; if(plaintext == null){ plaintext = true; }
+			var multiple = items["multiple"]; if(multiple == null){ multiple = false; }
+			var multiValue = items["multivalue"]; if(multiValue == null){ multiValue = [{"note":i18nfirsttext}]; }
 
 			// add text on next line
-			if(richtext == true){
-				currentnotetext = theValue + "<br>" + selectedtext;
+			if(multiple == true){
+				// multiple note
+				var noteValue = multiValue[0].note;
+				if(richtext == true){
+					noteValue = noteValue + "<br>" + selectedtext;
+				}else{
+					noteValue = noteValue + "\n" + selectedtext;
+				}
+				multiValue[0].note = noteValue;
+				currentmultinotetext = multiValue;
+				chrome.storage.sync.set({"multivalue": currentmultinotetext});
+				chrome.runtime.sendMessage({msg: "setnotemulti", value: currentmultinotetext});
 			}else{
-				currentnotetext = theValue + "\n" + selectedtext;
+				// single note
+				if(richtext == true){
+					currentnotetext = theValue + "<br>" + selectedtext;
+				}else{
+					currentnotetext = theValue + "\n" + selectedtext;
+				}
+				chrome.storage.sync.set({"txtvalue": currentnotetext});
+				chrome.runtime.sendMessage({msg: "setnotetext", value: currentnotetext});
 			}
-			chrome.storage.sync.set({"txtvalue": currentnotetext});
 		});
 	}
 }
@@ -209,12 +225,12 @@ if(chrome.contextMenus){
 			browsercontext(sharemenupostonvkontakte, "totlsharevkontakte", {"16": "images/IconVkontakte.png", "32": "images/IconVkontakte@2x.png"}, parent);
 			browsercontext(sharemenupostonfacebook, "totlsharefacebook", {"16": "images/IconFacebook.png", "32": "images/IconFacebook@2x.png"}, parent);
 			browsercontext(sharemenupostonwhatsapp, "totlsharewhatsapp", {"16": "images/IconWhatsApp.png", "32": "images/IconWhatsApp@2x.png"}, parent);
-			browsercontext(sharemenupostonx, "totlsharetwitter", {"16": "images/IconTwitter.png", "32": "images/IconTwitter@2x.png"}, parent);
+			browsercontext(sharemenupostonx, "totlsharex", {"16": "images/IconX.png", "32": "images/IconX@2x.png"}, parent);
 		}else{
 			// all users
 			browsercontext(sharemenupostonfacebook, "totlsharefacebook", {"16": "images/IconFacebook.png", "32": "images/IconFacebook@2x.png"}, parent);
 			browsercontext(sharemenupostonwhatsapp, "totlsharewhatsapp", {"16": "images/IconWhatsApp.png", "32": "images/IconWhatsApp@2x.png"}, parent);
-			browsercontext(sharemenupostonx, "totlsharetwitter", {"16": "images/IconTwitter.png", "32": "images/IconTwitter@2x.png"}, parent);
+			browsercontext(sharemenupostonx, "totlsharex", {"16": "images/IconX.png", "32": "images/IconX@2x.png"}, parent);
 		}
 
 		chrome.contextMenus.create({"title": "", "type":"separator", "id": "totlsepartor", "contexts": contexts});
@@ -297,9 +313,6 @@ chrome.storage.onChanged.addListener(function(changes){
 			}
 			);
 		}
-	}
-	if(changes["txtvalue"]){
-		if(changes["txtvalue"].newValue){ chrome.runtime.sendMessage({msg: "setnotetext", value: changes["txtvalue"].newValue}); }
 	}
 	if(changes["counter"]){
 		chrome.runtime.sendMessage({msg: "setcounter", value: changes["counter"].newValue});
