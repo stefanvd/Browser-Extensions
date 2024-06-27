@@ -639,6 +639,34 @@ window.addEventListener("DOMContentLoaded", () => {
 		print();
 	});
 
+	// Function to set cursor to the end of the input field
+	const setCursorToEnd = () => {
+		console.log("run the cursotr to end");
+		if(richtext == true){
+			const powerTextDiv = document.getElementById("powertext");
+			if(powerTextDiv){
+				const range = document.createRange();
+				const selection = window.getSelection();
+				range.selectNodeContents(powerTextDiv);
+				range.collapse(false);
+				selection.removeAllRanges();
+				selection.addRange(range);
+				powerTextDiv.focus();
+			}
+		}else{
+			const input = document.getElementById("maintext");
+			if(input){
+				// Focus the input field
+				input.focus();
+				// Set cursor position to the end
+				input.setSelectionRange(input.value.length, input.value.length);
+			}
+		}
+	};
+
+	// Set a timeout to execute the function after 1,5 seconds (1500 milliseconds)
+	setTimeout(setCursorToEnd, 1500);
+
 });
 
 var showingcopybadge = false;

@@ -165,7 +165,7 @@ function read_options(){
 	chrome.storage.sync.get(["icon", "firstDate", "contextmenus", "optionskipremember", "firstsawrate", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsize", "print", "password", "enterpassword", "plaintext", "richtext", "multiple", "preventclose", "texttabname"], function(items){
 		if(items["icon"]){ $("btnpreview").src = items["icon"]; }
 		if(items["contextmenus"] == true)$("contextmenus").checked = true;
-		if(items["optionskipremember"] == true){ $("optionskipremember").checked = true; $("firstcheckboxskipremember").checked = true; }
+		if(items["optionskipremember"] == true)$("optionskipremember").checked = true;
 		if(items["counter"] == true)$("counter").checked = true;
 		if(items["copy"] == true)$("copy").checked = true;
 		if(items["speech"] == true)$("speech").checked = true;
