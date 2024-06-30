@@ -28,6 +28,14 @@
       "size": 32
     }]
   },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+T",
+        "mac": "MacCtrl+Shift+T"
+      }
+    }
+  },
   "permissions": ["contextMenus", "storage", "unlimitedStorage"],
   "browser_specific_settings": {
     "gecko": {

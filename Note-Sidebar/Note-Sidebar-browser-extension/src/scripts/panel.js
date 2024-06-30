@@ -641,7 +641,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
 	// Function to set cursor to the end of the input field
 	const setCursorToEnd = () => {
-		console.log("run the cursotr to end");
 		if(richtext == true){
 			const powerTextDiv = document.getElementById("powertext");
 			if(powerTextDiv){
@@ -666,7 +665,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
 	// Set a timeout to execute the function after 1,5 seconds (1500 milliseconds)
 	setTimeout(setCursorToEnd, 1500);
-
 });
 
 var showingcopybadge = false;

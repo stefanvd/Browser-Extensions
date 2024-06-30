@@ -33,6 +33,10 @@ function isFirefox(){
 
 // Function to check if the current browser is Chrome / Chromium
 function isChrome(){
+	return typeof chrome !== "undefined";
+}
+// Function to check if the current browser is support chrome.sidePanel
+function isChromePanel(){
 	return typeof chrome !== "undefined" && typeof chrome.sidePanel !== "undefined";
 }
 
@@ -48,7 +52,8 @@ if(isChrome()){
 	// Importing the constants
 	// eslint-disable-next-line no-undef
 	importScripts("constants.js");
-
+}
+if(isChromePanel()){
 	chrome.sidePanel.setPanelBehavior({openPanelOnActionClick: true}).catch((error) => console.error(error));
 }
 
@@ -288,12 +293,14 @@ chrome.storage.sync.get(["icon"], function(items){
 			items["icon"] = "/images/icon38.png";
 		}
 	}
-	chrome.action.setIcon({
-		path : {
-			"19": items["icon"],
-			"38": items["icon"]
-		}
-	});
+	if(chrome.action){
+		chrome.action.setIcon({
+			path : {
+				"19": items["icon"],
+				"38": items["icon"]
+			}
+		});
+	}
 });
 
 chrome.storage.onChanged.addListener(function(changes){

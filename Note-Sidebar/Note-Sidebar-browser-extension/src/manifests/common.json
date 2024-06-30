@@ -11,14 +11,6 @@
       "128": "images/icon128.png"
     },
     "default_locale": "en",
-    "commands": {
-      "_execute_action": {
-        "suggested_key": {
-          "default": "Ctrl+Shift+T",
-          "mac": "MacCtrl+Shift+T"
-        }
-      }
-    },
     "content_security_policy": {
       "extension_pages": "default-src 'none'; style-src 'self' 'unsafe-inline'; media-src https://www.stefanvd.net; frame-src https://www.youtube.com https://www.stefanvd.net; connect-src https://www.stefanvd.net; script-src 'self'; img-src 'self' https://www.stefanvd.net * data:; object-src 'none'"
     },
