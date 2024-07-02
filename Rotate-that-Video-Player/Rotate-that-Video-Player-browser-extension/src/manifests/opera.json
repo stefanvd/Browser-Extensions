@@ -1,0 +1,16 @@
+{
+  "name": "__MSG_name__",
+  "background": {
+    "service_worker": "scripts/background.js"
+  },
+  "sidebar_action": {
+    "default_icon": {
+      "16": "images/icon16.png",
+      "32": "images/icon32.png"
+    },
+    "default_title": "__MSG_name__",
+    "default_panel": "panel.html",
+    "open_at_install": true
+  },
+  "permissions": ["contextMenus", "storage", "unlimitedStorage"]
+}

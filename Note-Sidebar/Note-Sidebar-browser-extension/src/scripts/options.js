@@ -433,7 +433,7 @@ chrome.runtime.onMessage.addListener(function(msg){
 
 				var textperm = "";
 				var newpermspandes = document.createElement("span");
-				if(x == "activeTab"){ textperm = chrome.i18n.getMessage("permissionactivetab"); }else if(x == "contextMenus"){ textperm = chrome.i18n.getMessage("permissioncontextmenu"); }else if(x == "storage"){ textperm = chrome.i18n.getMessage("permissionstorage"); }else if(x == "tabs"){ textperm = chrome.i18n.getMessage("permissiontabs"); }else if(x == "scripting"){ textperm = chrome.i18n.getMessage("permissionscripting"); }
+				if(x == "activeTab"){ textperm = chrome.i18n.getMessage("permissionactivetab"); }else if(x == "contextMenus"){ textperm = chrome.i18n.getMessage("permissioncontextmenu"); }else if(x == "storage"){ textperm = chrome.i18n.getMessage("permissionstorage"); }else if(x == "tabs"){ textperm = chrome.i18n.getMessage("permissiontabs"); }else if(x == "scripting"){ textperm = chrome.i18n.getMessage("permissionunlimitedstorage"); }else if(x == "unlimitedStorage"){ textperm = chrome.i18n.getMessage("permissionscripting"); }else if(x == "sidePanel"){ textperm = chrome.i18n.getMessage("permissionsidepanel"); }
 				newpermspandes.textContent = textperm;
 				newpermspandes.className = "item";
 				newperm.appendChild(newpermspandes);

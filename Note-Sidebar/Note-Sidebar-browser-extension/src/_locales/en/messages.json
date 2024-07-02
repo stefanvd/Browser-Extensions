@@ -177,5 +177,7 @@
     "note": {"message": "Note"},
     "despreventclosetabs": {"message": "Show a warning before closing a tab"},
     "closetab": {"message": "Do you wan to close this tab?"},
-    "destexttabname": {"message": "Show the title of the first line in the tab"}
+    "destexttabname": {"message": "Show the title of the first line in the tab"},
+    "permissionunlimitedstorage": {"message": "This allows you to save unlimited text in your storage."},
+    "permissionsidepanel": {"message": "This opens the side panel in your web browser."}
 }

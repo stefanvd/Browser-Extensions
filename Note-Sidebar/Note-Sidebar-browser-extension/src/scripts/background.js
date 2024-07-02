@@ -59,7 +59,7 @@ if(isChromePanel()){
 
 // --- General code
 
-chrome.runtime.onMessage.addListener(function request(request){
+chrome.runtime.onMessage.addListener(function request(request, sender){
 	// eye protection & autodim & shortcut
 	switch(request.name){
 	case"bckreload":
@@ -77,6 +77,14 @@ chrome.runtime.onMessage.addListener(function request(request){
 		break;
 	case"hardsave":
 		chrome.storage.sync.set({"txtvalue": currentnotetext, "multivalue": currentmultinotetext});
+		break;
+	case"getallpermissions":
+		var result = "";
+		chrome.permissions.getAll(function(permissions){
+			result = permissions.permissions;
+			chrome.tabs.sendMessage(sender.tab.id, {text: "receiveallpermissions", value: result});
+		});
+		break;
 	}
 	return true;
 });
