@@ -27,7 +27,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 //================================================
 
 function $(id){ return document.getElementById(id); }
-var currentrotate = 0; var currenttop = 0; var currentleft = 0; var currentscale = 100; var job = null; var darkmode; var showrotate; var showtop; var showleft; var showscale;
+var currentrotate = 0; var currenttop = 0; var currentleft = 0; var currentscale = 100; var job = null; var darkmode; var showrotate; var showtop; var showleft; var showscale; var showflip; var currentscalex = 100; var currentscaley = 100;
 
 // popup is active, communcation is enabled
 chrome.runtime.connect({name: "popup"});
@@ -52,6 +52,17 @@ function rotate(ratio){
 	updateTabValues();
 }
 
+function scalex(ratio){
+	currentscalex = ratio;
+	updateTabValues();
+}
+
+function scaley(ratio){
+	currentscaley = ratio;
+	updateTabValues();
+}
+
+
 function updateTabValues(){
 	// console.log("currenttop", currenttop, "currentleft", currentleft, "currentscale", currentscale, "currentrotate", currentrotate);
 	chrome.tabs.query({windowId: chrome.windows.WINDOW_ID_CURRENT, active: true}, function(tabs){
@@ -64,13 +75,19 @@ function updateTabValues(){
 		document.getElementById("scalerange").value = Math.round(currentscale);
 		document.getElementById("number").value = Math.round(currentrotate);
 		document.getElementById("range").value = Math.round(currentrotate);
+		document.getElementById("scalenumber").value = Math.round(currentscale);
+		document.getElementById("scalerange").value = Math.round(currentscale);
+		document.getElementById("scalexnumber").value = Math.round(currentscalex);
+		document.getElementById("scalexrange").value = Math.round(currentscalex);
+		document.getElementById("scaleynumber").value = Math.round(currentscaley);
+		document.getElementById("scaleyrange").value = Math.round(currentscaley);
 
 		if(tab && tab.url && (tab.url.startsWith("http://") || tab.url.startsWith("https://"))){
 			chrome.scripting.executeScript({
 				target: {tabId: tab.id},
 				// eslint-disable-next-line no-undef
 				function: startRotate,
-				args: [currentrotate, currenttop, currentleft, currentscale]
+				args: [currentrotate, currenttop, currentleft, currentscale, currentscalex, currentscaley]
 			});
 		}
 
@@ -83,7 +100,9 @@ function updateTabValues(){
 			rotatevalue: currentrotate,
 			leftvalue: currentleft,
 			scalevalue: currentscale,
-			urlwebsite: domain
+			urlwebsite: domain,
+			scalexvalue: currentscalex,
+			scaleyvalue: currentscaley
 		};
 		chrome.runtime.sendMessage(message);
 	});
@@ -191,6 +210,51 @@ function wheelscale(event){
 	event.returnValue = false;
 }
 
+var tempcurrentpopupscalex = "";
+function handlescalex(delta){
+	tempcurrentpopupscalex = document.getElementById("scalexnumber").value;
+	if(delta < 0){
+		tempcurrentpopupscalex -= Number(1);
+		if(tempcurrentpopupscalex != 0 && tempcurrentpopupscalex >= 1){ document.getElementById("scalexnumber").value = tempcurrentpopupscalex; scalex(tempcurrentpopupscalex); }
+	}else{
+		if(tempcurrentpopupscalex != 0 && tempcurrentpopupscalex < 600){ tempcurrentpopupscalex = Number(tempcurrentpopupscalex) + Number(1); document.getElementById("scalexnumber").value = tempcurrentpopupscalex; scalex(tempcurrentpopupscalex); }
+	}
+	tempcurrentpopupscalex = ""; // reset
+}
+
+function wheelscalex(event){
+	var delta = 0;
+	if(!event){ event = window.event; }
+	if(event.wheelDelta){ delta = event.wheelDelta / 120; }
+	if(delta){ handlescalex(delta); } // do the UP and DOWN job
+	// prevent the mouse default actions using scroll
+	if(event.preventDefault){ event.preventDefault(); }
+	event.returnValue = false;
+}
+
+var tempcurrentpopupscaley = "";
+function handlescaley(delta){
+	tempcurrentpopupscaley = document.getElementById("scaleynumber").value;
+	if(delta < 0){
+		tempcurrentpopupscaley -= Number(1);
+		if(tempcurrentpopupscaley != 0 && tempcurrentpopupscaley >= 1){ document.getElementById("scaleynumber").value = tempcurrentpopupscaley; scaley(tempcurrentpopupscaley); }
+	}else{
+		if(tempcurrentpopupscaley != 0 && tempcurrentpopupscaley < 600){ tempcurrentpopupscaley = Number(tempcurrentpopupscaley) + Number(1); document.getElementById("scaleynumber").value = tempcurrentpopupscaley; scaley(tempcurrentpopupscaley); }
+	}
+	tempcurrentpopupscaley = ""; // reset
+}
+
+function wheelscaley(event){
+	var delta = 0;
+	if(!event){ event = window.event; }
+	if(event.wheelDelta){ delta = event.wheelDelta / 120; }
+	if(delta){ handlescaley(delta); } // do the UP and DOWN job
+	// prevent the mouse default actions using scroll
+	if(event.preventDefault){ event.preventDefault(); }
+	event.returnValue = false;
+}
+
+
 function checkForHTML5Video(){
 	var videoTags = document.getElementsByTagName("video");
 	if(videoTags.length > 0){
@@ -213,6 +277,10 @@ document.addEventListener("DOMContentLoaded", function(){
 	document.addEventListener("contextmenu", function(e){
 		e.preventDefault();
 	}, false);
+
+	document.getElementById("options").addEventListener("click", function(){
+		chrome.runtime.openOptionsPage();
+	});
 
 	chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
 		chrome.scripting.executeScript({
@@ -242,12 +310,13 @@ document.addEventListener("DOMContentLoaded", function(){
 		window.open(linksupport, "_blank");
 	});
 
-	chrome.storage.sync.get(["darkmode", "showrotate", "showtop", "showleft", "showscale"], function(response){
+	chrome.storage.sync.get(["darkmode", "showrotate", "showtop", "showleft", "showscale", "showflip"], function(response){
 		darkmode = response.darkmode; if(darkmode == null)darkmode = 2; // default Operating System
 		showrotate = response.showrotate; if(showrotate == null)showrotate = true;
 		showtop = response.showtop; if(showtop == null)showtop = true;
 		showleft = response.showleft; if(showleft == null)showleft = true;
 		showscale = response.showscale; if(showscale == null)showscale = true;
+		showflip = response.showflip; if(showflip == null)showflip = false;
 		// default popup design
 		document.getElementById("type").className = "modern";
 		document.documentElement.className = "modern";
@@ -269,7 +338,7 @@ document.addEventListener("DOMContentLoaded", function(){
 			document.body.className = "transparent";
 		}else{
 			// dark mode
-			var thattheme;
+			var thattheme = "light";
 			switch(darkmode){
 			case 1:
 				thattheme = "dark";
@@ -287,6 +356,12 @@ document.addEventListener("DOMContentLoaded", function(){
 			}
 		}
 		document.body.className = thattheme + " general";
+
+		if(showflip == true){
+			$("flipcontainer").className = "";
+		}else{
+			$("flipcontainer").className = "hidden";
+		}
 	});
 
 	// default settings
@@ -301,11 +376,15 @@ document.addEventListener("DOMContentLoaded", function(){
 				currenttop = result[domain]["topposition"] || 0;
 				currentleft = result[domain]["leftposition"] || 0;
 				currentscale = result[domain]["scale"] || 100;
+				currentscalex = result[domain]["scalex"] || 100;
+				currentscaley = result[domain]["scaley"] || 100;
 			}else{
 				currentrotate = 0;
 				currenttop = 0;
 				currentleft = 0;
 				currentscale = 100;
+				currentscalex = 100;
+				currentscaley = 100;
 			}
 
 			document.getElementById("number").value = Math.round(currentrotate);
@@ -319,6 +398,12 @@ document.addEventListener("DOMContentLoaded", function(){
 
 			document.getElementById("scalenumber").value = Math.round(currentscale);
 			document.getElementById("scalerange").value = Math.round(currentscale);
+
+			document.getElementById("scalexnumber").value = Math.round(currentscalex);
+			document.getElementById("scalexrange").value = Math.round(currentscalex);
+
+			document.getElementById("scaleynumber").value = Math.round(currentscaley);
+			document.getElementById("scaleyrange").value = Math.round(currentscaley);
 		});
 	});
 
@@ -353,4 +438,18 @@ document.addEventListener("DOMContentLoaded", function(){
 	$("scalerange").addEventListener("input", function(){ scaleshowValue(this.value); });
 	$("scalerange").addEventListener("change", function(){ scaleshowValue(this.value); });
 	$("scalenumber").addEventListener("change", function(){ scaleshowValue(this.value); });
+
+	function scalexshowValue(newValue){ document.getElementById("scalexrange").value = newValue; document.getElementById("scalexnumber").value = newValue; scalex(newValue); }
+	$("scalexrange").addEventListener("mousewheel", wheelscalex, {passive: false});
+	$("scalexrange").addEventListener("dblclick", function(){ scalexshowValue(100); });
+	$("scalexrange").addEventListener("input", function(){ scalexshowValue(this.value); });
+	$("scalexrange").addEventListener("change", function(){ scalexshowValue(this.value); });
+	$("scalexnumber").addEventListener("change", function(){ scalexshowValue(this.value); });
+
+	function scaleyshowValue(newValue){ document.getElementById("scaleyrange").value = newValue; document.getElementById("scaleynumber").value = newValue; scaley(newValue); }
+	$("scaleyrange").addEventListener("mousewheel", wheelscaley, {passive: false});
+	$("scaleyrange").addEventListener("dblclick", function(){ scaleyshowValue(100); });
+	$("scaleyrange").addEventListener("input", function(){ scaleyshowValue(this.value); });
+	$("scaleyrange").addEventListener("change", function(){ scaleyshowValue(this.value); });
+	$("scaleynumber").addEventListener("change", function(){ scaleyshowValue(this.value); });
 });

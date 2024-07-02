@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-function startRotate(videorotate, videotop, videoleft, videoscale){
+function startRotate(videorotate, videotop, videoleft, videoscale, videoscalex, videoscaley){
 	// Check if the class is already added to the document body head
 	var styleElement = document.getElementById("stefanvdrotate-style");
 	if(!styleElement){
@@ -10,7 +10,7 @@ function startRotate(videorotate, videotop, videoleft, videoscale){
 	}
 
 	// Generate CSS rule based on the current values
-	const transformValue = `rotate(${videorotate}deg) scale(${videoscale / 100}) translate(${videoleft}px, ${videotop}px)`;
+	const transformValue = `rotate(${videorotate}deg) scale(${videoscale / 100}) translate(${videoleft}px, ${videotop}px) scaleX(${videoscalex / 100}) scaleY(${videoscaley / 100})`;
 	var cssRule = ".stefanvdrotate { transform: " + transformValue + "; }";
 
 	// Update the style element with the new CSS rule
@@ -49,7 +49,7 @@ function startRotate(videorotate, videotop, videoleft, videoscale){
 	}
 
 	// console.log("videorotate", videorotate, "videotop", videotop, "videoleft", videoleft, "videoscale=", videoscale);
-	if(videorotate == 0 && videotop == 0 && videoleft == 0 && videoscale == 100){
+	if(videorotate == 0 && videotop == 0 && videoleft == 0 && videoscale == 100 && videoscalex == 100 && videoscaley == 100){
 		var item = document.getElementById("stefanvdrotate-style");
 		if(item){
 			item.parentNode.removeChild(item);

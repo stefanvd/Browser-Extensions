@@ -31,14 +31,16 @@ function updateVideoStyle(response){
 	var videotop = response.topposition;
 	var videoleft = response.leftposition;
 	var videoscale = response.scale;
+	var videoscalex = response.scalex;
+	var videoscaley = response.scaley;
 	// console.log("videorotate", videorotate, "videotop", videotop, "videoleft", videoleft, "videoscale", videoscale);
 	// eslint-disable-next-line no-undef
-	startRotate(videorotate, videotop, videoleft, videoscale);
+	startRotate(videorotate, videotop, videoleft, videoscale, videoscalex, videoscaley);
 }
 
 function setvideorotate(){
 	chrome.runtime.sendMessage({name: "getSetting", urlwebsite: location.host}, function(response){
-		if(response.rotate != 0 || response.topposition != 0 || response.leftposition != 0 || response.scale != 100){
+		if(response.rotate != 0 || response.topposition != 0 || response.leftposition != 0 || response.scale != 100 || response.scalex != 100 || response.scaley != 100){
 			updateVideoStyle(response);
 		}
 	});
@@ -73,6 +75,8 @@ function rotateVideo(degree){
 		var toposition = result[location.host]["topposition"] || 0;
 		var leftposition = result[location.host]["leftposition"] || 0;
 		var scale = result[location.host]["scale"] || 100;
+		var scalex = result[location.host]["scalex"] || 100;
+		var scaley = result[location.host]["scaley"] || 100;
 		// console.log("degree=", degree);
 		var newRotation;
 		if(degree === 0 || (currentRotation + degree) % 360 === 0){
@@ -81,7 +85,7 @@ function rotateVideo(degree){
 			newRotation = (currentRotation + degree) % 360;
 		}
 		// console.log("newRotation=", newRotation);
-		var newobject = {"rotate": newRotation, "topposition": toposition, "leftposition": leftposition, "scale": scale};
+		var newobject = {"rotate": newRotation, "topposition": toposition, "leftposition": leftposition, "scale": scale, "scalex": scalex, "scaley": scaley};
 		chrome.storage.sync.set({[location.host]: newobject}, function(){
 			shortcutvideorotate();
 		});

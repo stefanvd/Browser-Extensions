@@ -30,14 +30,14 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 // eslint-disable-next-line no-undef
 importScripts("constants.js");
 
-var newrotatevalue; var newtopposition; var newleftposition; var newscale; var newurlwebsite;
+var newrotatevalue; var newtopposition; var newleftposition; var newscale; var newurlwebsite; var newscalex; var newscaley;
 chrome.runtime.onConnect.addListener(function(port){
 	if(port.name === "popup"){
 		port.onDisconnect.addListener(function(){
 			// console.log("popup has been closed");
 			// now it will save the new data
 			// that to reduce the saving limit of the browser extension
-			var newobject = {"rotate": newrotatevalue, "topposition": newtopposition, "leftposition": newleftposition, "scale": newscale};
+			var newobject = {"rotate": newrotatevalue, "topposition": newtopposition, "leftposition": newleftposition, "scale": newscale, "scalex": newscalex, "scaley": newscaley};
 			chrome.storage.sync.set({[newurlwebsite]: newobject});
 		});
 	}
@@ -49,7 +49,7 @@ chrome.runtime.onMessage.addListener(function request(request, sender, sendRespo
 		chrome.storage.sync.get([request.urlwebsite], function(result){
 			if(!chrome.runtime.lastError){
 				// if a correct URL and not a Chrome settins page, then continue here
-				sendResponse({rotate: result[request.urlwebsite]["rotate"], topposition: result[request.urlwebsite]["topposition"], leftposition: result[request.urlwebsite]["leftposition"], scale: result[request.urlwebsite]["scale"]});
+				sendResponse({rotate: result[request.urlwebsite]["rotate"], topposition: result[request.urlwebsite]["topposition"], leftposition: result[request.urlwebsite]["leftposition"], scale: result[request.urlwebsite]["scale"], scalex: result[request.urlwebsite]["scalex"], scaley: result[request.urlwebsite]["scaley"]});
 			}
 		});
 	}else if(request.name == "setSetting"){
@@ -58,6 +58,8 @@ chrome.runtime.onMessage.addListener(function request(request, sender, sendRespo
 		newleftposition = request.leftvalue;
 		newscale = request.scalevalue;
 		newurlwebsite = request.urlwebsite;
+		newscalex = request.scalexvalue;
+		newscaley = request.scaleyvalue;
 	}else if(request.name == "bckreload"){
 		installation();
 	}
@@ -87,8 +89,8 @@ function onClickHandler(info){
 		chrome.tabs.create({url: writereview, active:true});
 	}else if(info.menuItemId == "totlshareemail"){
 		var sturnoffthelightemail = "mailto:your@email.com?subject=" + chrome.i18n.getMessage("sharetexta") + "&body=" + chrome.i18n.getMessage("sharetextb") + " " + linkproduct; chrome.tabs.create({url: sturnoffthelightemail, active:true});
-	}else if(info.menuItemId == "totlsharetwitter"){
-		var slinkproductcodeurl = encodeURIComponent(chrome.i18n.getMessage("sharetextd") + " " + linkproduct); chrome.tabs.create({url: "https://twitter.com/intent/tweet?text=" + slinkproductcodeurl, active:true});
+	}else if(info.menuItemId == "totlsharex"){
+		var slinkproductcodeurl = encodeURIComponent(chrome.i18n.getMessage("sharetextd") + " " + linkproduct); chrome.tabs.create({url: "https://x.com/intent/tweet?text=" + slinkproductcodeurl, active:true});
 	}else if(info.menuItemId == "totlsharefacebook"){
 		chrome.tabs.create({url: "https://www.facebook.com/sharer/sharer.php?u=" + linkproduct, active:true});
 	}else if(info.menuItemId == "totlsubscribe"){
@@ -116,7 +118,7 @@ var sharemenuwelcomeguidetitle = chrome.i18n.getMessage("sharemenuwelcomeguideti
 var sharemenutellafriend = chrome.i18n.getMessage("sharemenutellafriend");
 var sharemenupostonx = chrome.i18n.getMessage("sharemenupostonx");
 var sharemenupostonfacebook = chrome.i18n.getMessage("sharemenupostonfacebook");
-var sharemenuratetitle = chrome.i18n.getMessage("sharemenuratetitle");
+// var sharemenuratetitle = chrome.i18n.getMessage("sharemenuratetitle");
 var sharemenudonatetitle = chrome.i18n.getMessage("sharemenudonatetitle");
 var sharemenusubscribetitle = chrome.i18n.getMessage("desremyoutube");
 var sharemenupostonweibo = chrome.i18n.getMessage("sharemenupostonweibo");
@@ -153,7 +155,7 @@ if(chrome.contextMenus){
 
 		browsercontext(sharemenuwelcomeguidetitle, "totlguideemenu", {"16": "images/IconGuide.png", "32": "images/IconGuide@2x.png"});
 		browsercontext(sharemenudonatetitle, "totldevelopmenu", {"16": "images/IconDonate.png", "32": "images/IconDonate@2x.png"});
-		browsercontext(sharemenuratetitle, "totlratemenu", {"16": "images/IconStar.png", "32": "images/IconStar@2x.png"});
+		// browsercontext(sharemenuratetitle, "totlratemenu", {"16": "images/IconStar.png", "32": "images/IconStar@2x.png"});
 
 		// Create a parent item and two children.
 		var parent = null;
@@ -171,12 +173,12 @@ if(chrome.contextMenus){
 			browsercontext(sharemenupostonvkontakte, "totlsharevkontakte", {"16": "images/IconVkontakte.png", "32": "images/IconVkontakte@2x.png"}, parent);
 			browsercontext(sharemenupostonfacebook, "totlsharefacebook", {"16": "images/IconFacebook.png", "32": "images/IconFacebook@2x.png"}, parent);
 			browsercontext(sharemenupostonwhatsapp, "totlsharewhatsapp", {"16": "images/IconWhatsApp.png", "32": "images/IconWhatsApp@2x.png"}, parent);
-			browsercontext(sharemenupostonx, "totlsharetwitter", {"16": "images/IconTwitter.png", "32": "images/IconTwitter@2x.png"}, parent);
+			browsercontext(sharemenupostonx, "totlsharex", {"16": "images/IconX.png", "32": "images/IconX@2x.png"}, parent);
 		}else{
 			// all users
 			browsercontext(sharemenupostonfacebook, "totlsharefacebook", {"16": "images/IconFacebook.png", "32": "images/IconFacebook@2x.png"}, parent);
 			browsercontext(sharemenupostonwhatsapp, "totlsharewhatsapp", {"16": "images/IconWhatsApp.png", "32": "images/IconWhatsApp@2x.png"}, parent);
-			browsercontext(sharemenupostonx, "totlsharetwitter", {"16": "images/IconTwitter.png", "32": "images/IconTwitter@2x.png"}, parent);
+			browsercontext(sharemenupostonx, "totlsharex", {"16": "images/IconX.png", "32": "images/IconX@2x.png"}, parent);
 		}
 
 		chrome.contextMenus.create({"title": "", "type":"separator", "id": "totlsepartor", "contexts": contexts});

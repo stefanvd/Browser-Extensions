@@ -141,5 +141,10 @@
     "titlenotfound": {"message": "Video Not Found"},
     "desnotfound": {"message": "There is no video found on the current web page. Please try another page."},
     "desvideotry": {"message": "Try this video"},
-    "helpextension": {"message": "Browser Extension Help"}
+    "helpextension": {"message": "Browser Extension Help"},
+    "searchplaceholder": {"message": "Search"},
+    "titleflip": {"message": "Flip video"},
+    "desshowflip": {"message": "Show the slider to flip the video horizontally and vertically"},
+    "scalexname": {"message": "Scale X"},
+    "scaleyname": {"message": "Scale Y"}
 }

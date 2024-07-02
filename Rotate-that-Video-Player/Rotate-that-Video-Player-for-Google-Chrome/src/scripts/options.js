@@ -36,7 +36,7 @@ function defaultgetsettings(){
 
 // Option to save current value
 function save_options(){
-	chrome.storage.sync.set({"icon": $("btnpreview").src, "optionskipremember": $("optionskipremember").checked, "showrotate": $("showrotate").checked, "showtop": $("showtop").checked, "showleft": $("showleft").checked, "showscale": $("showscale").checked});
+	chrome.storage.sync.set({"icon": $("btnpreview").src, "optionskipremember": $("optionskipremember").checked, "showrotate": $("showrotate").checked, "showtop": $("showtop").checked, "showleft": $("showleft").checked, "showscale": $("showscale").checked, "showflip": $("showflip").checked});
 }
 
 var firstdefaultvalues = {};
@@ -149,13 +149,14 @@ function read_options(){
 		showhidemodal("materialModalYouTube", "hide", "true");
 	}
 
-	chrome.storage.sync.get(["icon", "firstDate", "optionskipremember", "firstsawrate", "showrotate", "showtop", "showleft", "showscale"], function(items){
+	chrome.storage.sync.get(["icon", "firstDate", "optionskipremember", "firstsawrate", "showrotate", "showtop", "showleft", "showscale", "showflip"], function(items){
 		if(items["icon"]){ $("btnpreview").src = items["icon"]; }
 		if(items["optionskipremember"] == true){ $("optionskipremember").checked = true; $("firstcheckboxskipremember").checked = true; }
 		if(items["showrotate"] == true){ $("showrotate").checked = true; $("showrotate").checked = true; }
 		if(items["showtop"] == true){ $("showtop").checked = true; $("showtop").checked = true; }
 		if(items["showleft"] == true){ $("showleft").checked = true; $("showleft").checked = true; }
 		if(items["showscale"] == true){ $("showscale").checked = true; $("showscale").checked = true; }
+		if(items["showflip"] == true){ $("showflip").checked = true; $("showflip").checked = true; }
 
 		// show remember page
 		var firstmonth = false;
@@ -492,8 +493,8 @@ function domcontentloaded(){
 	if($("shareboxfacebook")){
 		$("shareboxfacebook").addEventListener("click", function(){ window.open("https://www.facebook.com/sharer.php?u=" + stefanvdurl + "&t=" + sharetext + "", "Share to Facebook", "width=600,height=460,menubar=no,location=no,status=no"); });
 	}
-	if($("shareboxtwitter")){
-		$("shareboxtwitter").addEventListener("click", function(){ window.open("https://twitter.com/share?url=" + stefanvdaacodeurl + "&text=" + sharetext + "", "Share to Twitter", "width=600,height=460,menubar=no,location=no,status=no"); });
+	if($("shareboxx")){
+		$("shareboxx").addEventListener("click", function(){ window.open("https://x.com/share?url=" + stefanvdaacodeurl + "&text=" + sharetext + "", "Share to X", "width=600,height=460,menubar=no,location=no,status=no"); });
 	}
 
 	var isMenuClick = false;

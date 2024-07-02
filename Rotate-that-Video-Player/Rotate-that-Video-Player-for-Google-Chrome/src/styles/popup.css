@@ -111,7 +111,7 @@ html.modern{width:300px;height:50px}
 .modern .panel .title{padding-bottom:10px;margin:0;display:block;font-weight:bold;-webkit-user-select:none;user-select:none;cursor:default;font-size:14px}
 .modern .panel .titleb{padding-bottom:5px;margin:0 0 0 12px;display:block;font-weight:bold;-webkit-user-select:none;user-select:none;cursor:default;font-size:12px;opacity:.6}
 .modern .panel .slider{position:relative}
-.modern .panel .slider .sliderlabel{position:absolute;font-size:10px;color:var(--totl-slider-text-color);top:0px;left:7px;-webkit-user-select:none;user-select:none;cursor:default;height:100%;display:flex;align-items:center}
+.modern .panel .slider .sliderlabel{pointer-events:none;position:absolute;font-size:10px;color:var(--totl-slider-text-color);top:0px;left:7px;-webkit-user-select:none;user-select:none;cursor:default;height:100%;display:flex;align-items:center}
 .modern .panel .number{position:absolute;top:-4px;right:0}
 .modern .groupbox{margin:0 0 4px 0;display:flex;justify-content:space-between;gap:8px;flex-direction:column}
 .modern .groupbox .slider{display:inline-block;height:22px}
