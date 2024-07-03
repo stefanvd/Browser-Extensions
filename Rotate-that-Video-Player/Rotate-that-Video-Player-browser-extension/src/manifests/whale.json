@@ -1,23 +1,32 @@
 {
-  "name": "__MSG_name__",
-  "side_panel": {
-    "default_path": "panel.html"
-  },
-  "action": {
-    "default_title": "__MSG_name__"
-  },
+  "name": "__MSG_namefull__",
   "background": {
     "service_worker": "scripts/background.js"
   },
   "commands": {
-    "_execute_action": {
+    "toggle-feature-rotateclockwise": {
       "suggested_key": {
-        "default": "Ctrl+Shift+T",
-        "mac": "MacCtrl+Shift+T"
-      }
+        "default": "Ctrl+Shift+1",
+        "mac": "MacCtrl+Shift+1"
+      },
+      "description": "__MSG_titlerotateclockwise__"
+    },
+    "toggle-feature-rotatecounter": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+2",
+        "mac": "MacCtrl+Shift+2"
+      },
+      "description": "__MSG_titlerotatecounter__"
+    },
+    "toggle-feature-rotatereset": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+3",
+        "mac": "MacCtrl+Shift+3"
+      },
+      "description": "__MSG_titlerotatereset__"
     }
   },
   "offline_enabled": true,
   "minimum_chrome_version": "114",
-  "permissions": ["contextMenus", "storage", "sidePanel", "unlimitedStorage"]
+  "permissions": ["activeTab", "scripting", "storage", "contextMenus"]
 }

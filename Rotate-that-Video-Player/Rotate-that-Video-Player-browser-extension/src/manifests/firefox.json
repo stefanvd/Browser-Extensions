@@ -3,15 +3,6 @@
   "background": {
     "scripts": ["scripts/constants.js","scripts/background.js"]
   },
-  "sidebar_action": {
-    "default_icon": {
-      "16": "images/icon16.png",
-      "32": "images/icon32.png"
-    },
-    "default_title": "__MSG_name__",
-    "default_panel": "panel.html",
-    "open_at_install":true
-  },
   "action": {
     "default_icon": {
       "16": "images/icon16.png",
@@ -29,17 +20,32 @@
     }]
   },
   "commands": {
-    "_execute_action": {
+    "toggle-feature-rotateclockwise": {
       "suggested_key": {
-        "default": "Ctrl+Shift+T",
-        "mac": "MacCtrl+Shift+T"
-      }
+        "default": "Ctrl+Shift+1",
+        "mac": "MacCtrl+Shift+1"
+      },
+      "description": "__MSG_titlerotateclockwise__"
+    },
+    "toggle-feature-rotatecounter": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+2",
+        "mac": "MacCtrl+Shift+2"
+      },
+      "description": "__MSG_titlerotatecounter__"
+    },
+    "toggle-feature-rotatereset": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+3",
+        "mac": "MacCtrl+Shift+3"
+      },
+      "description": "__MSG_titlerotatereset__"
     }
   },
-  "permissions": ["contextMenus", "storage", "unlimitedStorage"],
+  "permissions": ["activeTab", "scripting", "storage", "contextMenus"],
   "browser_specific_settings": {
     "gecko": {
-        "id": "notesidebar@stefanvd.net",
+        "id": "rotatethatvideoplayer@stefanvd.net",
         "strict_min_version": "113.0"
     }
   }
