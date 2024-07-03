@@ -36,7 +36,7 @@ function defaultgetsettings(){
 
 // Option to save current value
 function save_options(){
-	chrome.storage.sync.set({"icon": $("btnpreview").src, "optionskipremember": $("optionskipremember").checked, "showrotate": $("showrotate").checked, "showtop": $("showtop").checked, "showleft": $("showleft").checked, "showscale": $("showscale").checked, "showflip": $("showflip").checked});
+	chrome.storage.sync.set({"icon": $("btnpreview").src, "optionskipremember": $("optionskipremember").checked, "showrotate": $("showrotate").checked, "showtop": $("showtop").checked, "showleft": $("showleft").checked, "showscale": $("showscale").checked, "showflip": $("showflip").checked, "showreset": $("showreset").checked});
 }
 
 var firstdefaultvalues = {};
@@ -149,7 +149,7 @@ function read_options(){
 		showhidemodal("materialModalYouTube", "hide", "true");
 	}
 
-	chrome.storage.sync.get(["icon", "firstDate", "optionskipremember", "firstsawrate", "showrotate", "showtop", "showleft", "showscale", "showflip"], function(items){
+	chrome.storage.sync.get(["icon", "firstDate", "optionskipremember", "firstsawrate", "showrotate", "showtop", "showleft", "showscale", "showflip", "showreset"], function(items){
 		if(items["icon"]){ $("btnpreview").src = items["icon"]; }
 		if(items["optionskipremember"] == true){ $("optionskipremember").checked = true; $("firstcheckboxskipremember").checked = true; }
 		if(items["showrotate"] == true){ $("showrotate").checked = true; $("showrotate").checked = true; }
@@ -157,6 +157,7 @@ function read_options(){
 		if(items["showleft"] == true){ $("showleft").checked = true; $("showleft").checked = true; }
 		if(items["showscale"] == true){ $("showscale").checked = true; $("showscale").checked = true; }
 		if(items["showflip"] == true){ $("showflip").checked = true; $("showflip").checked = true; }
+		if(items["showreset"] == true){ $("showreset").checked = true; $("showreset").checked = true; }
 
 		// show remember page
 		var firstmonth = false;

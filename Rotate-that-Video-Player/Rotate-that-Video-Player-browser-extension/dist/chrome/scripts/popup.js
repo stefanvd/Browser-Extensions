@@ -282,6 +282,17 @@ document.addEventListener("DOMContentLoaded", function(){
 		chrome.runtime.openOptionsPage();
 	});
 
+	document.getElementById("reset").addEventListener("click", function(){
+		showValue(0);
+		rotate(0);
+		displayinput(0);
+		topshowValue(0);
+		leftshowValue(0);
+		scaleshowValue(100);
+		scalexshowValue(100);
+		scaleyshowValue(100);
+	});
+
 	chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
 		chrome.scripting.executeScript({
 			target: {tabId: tabs[0].id},

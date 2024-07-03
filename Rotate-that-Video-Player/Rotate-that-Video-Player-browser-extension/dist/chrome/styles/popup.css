@@ -124,6 +124,7 @@ html.modern{width:300px;height:50px}
 .modern .icon svg{fill:var(--totl-svg-button-background)}
 .modern .func{display:flex;height:32px;padding:0 12px;line-height:32px;overflow:hidden;border-radius:5px;cursor:default;margin:5px 0}
 .modern .func:hover{background:var(--totl-svg-button-background-hover);color:var(--totl-primary-font-color)}
+.modern .otherbox ul{flex-direction:column}
 .modern ul{padding:0;list-style:none;overflow:hidden;margin:0;height:22px;width:100%;display:flex;gap:0;justify-content:space-evenly}
 .modern ul.button_group li{height:22px;float:left;overflow:hidden;border-radius:5px;cursor:default;width:100%;display:flex}
 .modern ul.button_group li .btnregular{user-select:none;-webkit-user-select:none;padding:0 12px;line-height:22px;color:var(--totl-primary-font-color);text-decoration:none;display:inline-block;height:22px;text-align:center;font-weight:bold;width:100%;cursor:pointer}

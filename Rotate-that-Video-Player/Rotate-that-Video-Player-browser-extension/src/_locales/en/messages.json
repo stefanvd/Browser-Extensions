@@ -146,5 +146,8 @@
     "titleflip": {"message": "Flip video"},
     "desshowflip": {"message": "Show the slider to flip the video horizontally and vertically"},
     "scalexname": {"message": "Scale X"},
-    "scaleyname": {"message": "Scale Y"}
+    "scaleyname": {"message": "Scale Y"},
+    "titlereset": {"message": "Reset button"},
+    "desshowreset": {"message": "Show the reset button to return to the default scale values"},
+    "titelpopupreset": {"message": "Reset"}
 }
