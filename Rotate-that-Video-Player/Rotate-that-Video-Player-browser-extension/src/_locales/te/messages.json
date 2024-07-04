@@ -1,5 +1,6 @@
 {
     "name": {"message": "Rotate that Video Player"},
+    "nameshort": {"message": "RtVP"},
     "namefull": {"message": "Rotate that Video Player"},
     "namechrome": {"message": "Rotate that Video Player for Google Chrome"},
     "nameedge": {"message": "Rotate that Video Player for Microsoft Edge"},

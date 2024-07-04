@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "short_name": "__MSG_name__",
+    "short_name": "__MSG_nameshort__",
     "homepage_url": "https://www.stefanvd.net/support/",  
     "description": "__MSG_description__",
     "author": "Stefan vd",
