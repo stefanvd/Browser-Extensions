@@ -1,0 +1,61 @@
+{
+  "name": "__MSG_nameedge__",
+  "action": {
+    "default_title": "__MSG_name__",
+    "default_icon": {
+      "16": "images/iconstick16.png",
+      "19": "images/iconstick19.png",
+      "20": "images/iconstick20.png",
+      "32": "images/iconstick32.png",
+      "38": "images/iconstick38.png",
+      "40": "images/iconstick40.png",
+      "64": "images/iconstick64.png"
+    }
+  },
+  "background": {
+    "service_worker": "scripts/background.js"
+  },
+  "commands": {
+    "toggle-feature-zoomin": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+1",
+        "mac": "MacCtrl+Shift+1"
+      },
+      "description": "__MSG_titleshortzoomin__"
+    },
+    "toggle-feature-zoomout": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+2",
+        "mac": "MacCtrl+Shift+2"
+      },
+      "description": "__MSG_titleshortzoomout__"
+    },
+    "toggle-feature-zoomreset": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+0",
+        "mac": "MacCtrl+Shift+0"
+      },
+      "description": "__MSG_titleshortzoomreset__"
+    },
+    "toggle-feature-magnify": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+M",
+        "mac": "MacCtrl+Shift+M"
+      },
+      "description": "__MSG_titleshortzoommagnify__"
+    },
+    "toggle-feature-predefined1": {
+      "description": "__MSG_titleshortpredefined1__"
+    },
+    "toggle-feature-predefined2": {
+      "description": "__MSG_titleshortpredefined2__"
+    },
+    "toggle-feature-predefined3": {
+      "description": "__MSG_titleshortpredefined3__"
+    }
+  },
+  "offline_enabled": true,
+  "minimum_chrome_version": "103",
+  "permissions": ["tabs", "contextMenus", "storage", "scripting", "webNavigation", "system.display"],
+  "host_permissions": ["<all_urls>"]
+}
