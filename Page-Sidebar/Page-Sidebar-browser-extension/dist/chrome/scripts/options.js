@@ -65,7 +65,6 @@ function defaultgetsettings(){
 		if(items["googlesidepanel"] == null){ firstdefaultvalues["googlesidepanel"] = true; }
 		if(items["defaultzoom"] == null){ firstdefaultvalues["defaultzoom"] = 100; }
 		if(items["step"] == null){ firstdefaultvalues["step"] = 5; }
-		if(items["multipletabs"] == null){ firstdefaultvalues["multipletabs"] = true; }
 
 		// Save the init value
 		chrome.storage.sync.set(firstdefaultvalues, function(){
@@ -168,7 +167,7 @@ function read_options(){
 		showhidemodal("materialModalYouTube", "hide", "true");
 	}
 
-	chrome.storage.sync.get(["icon", "firstDate", "contextmenus", "optionskipremember", "firstsawrate", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "typepanellasttime", "websitezoomname", "opentab", "opencopy", "opennonebookmarks", "openbrowserbookmarks", "openquickbookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10", "googlesidepanel", "zoom", "defaultzoom", "step"], function(items){
+	chrome.storage.sync.get(["icon", "firstDate", "contextmenus", "optionskipremember", "firstsawrate", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "typepanellasttime", "websitezoomname", "opentab", "opencopy", "opennonebookmarks", "openbrowserbookmarks", "openquickbookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10", "googlesidepanel", "zoom", "defaultzoom", "step", "multipletabs"], function(items){
 		if(items["icon"]){ $("btnpreview").src = items["icon"]; }
 		if(items["contextmenus"] == true)$("contextmenus").checked = true;
 		if(items["optionskipremember"] == true){ $("optionskipremember").checked = true; }
@@ -213,6 +212,7 @@ function read_options(){
 		if(items["zoom"] == true){ $("zoom").checked = true; }
 		if(items["defaultzoom"]){ $("defaultzoom").value = items["defaultzoom"]; }
 		if(items["step"]){ $("step").value = items["step"]; }
+		if(items["multipletabs"] == true){ $("multipletabs").checked = true; }
 
 		// show remember page
 		var firstmonth = false;
