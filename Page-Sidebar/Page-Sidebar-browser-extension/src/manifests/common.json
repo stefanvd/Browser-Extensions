@@ -1,0 +1,28 @@
+{
+    "manifest_version": 3,
+    "short_name": "__MSG_name__",
+    "homepage_url": "https://www.stefanvd.net/support/",  
+    "description": "__MSG_description__",
+    "author": "Stefan vd",
+    "version": "1.0.12",
+    "icons": {
+      "16": "images/icon16.png",
+      "24": "images/icon24.png",
+      "32": "images/icon32.png",
+      "48": "images/icon48.png",
+      "96": "images/icon96.png",
+      "128": "images/icon128.png"
+    },
+    "default_locale": "en",
+    "content_scripts": [{
+      "all_frames": true,
+      "js": ["/scripts/communicate.js"],
+      "match_about_blank": true,
+      "matches": [ "*://*/*" ],
+      "run_at": "document_start"
+    }],
+    "options_ui": {
+      "page": "options.html",
+      "open_in_tab": true
+    }
+  }

@@ -1,0 +1,46 @@
+{
+  "name": "__MSG_name__",
+  "background": {
+    "scripts": ["scripts/constants.js","scripts/background.js"]
+  },
+  "sidebar_action": {
+    "default_icon": {
+      "16": "images/icon16.png",
+      "32": "images/icon32.png"
+    },
+    "default_title": "__MSG_name__",
+    "default_panel": "panel.html",
+    "open_at_install":true
+  },
+  "action": {
+    "default_icon": {
+      "16": "images/icon16.png",
+      "32": "images/icon32.png"
+    },
+    "default_title": "__MSG_name__"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+P",
+        "mac": "MacCtrl+Shift+P"
+      }
+    },
+    "toggle-feature-openweb": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+N",
+        "mac": "MacCtrl+Shift+N"
+      },
+      "description": "__MSG_titelcurrenttab__"
+    }
+  },
+  "host_permissions": [ "*://*/*" ],
+  "permissions": ["contextMenus", "storage", "declarativeNetRequestWithHostAccess"],
+  "optional_permissions": ["bookmarks"],
+  "browser_specific_settings": {
+    "gecko": {
+        "id": "pagesidebar@stefanvd.net",
+        "strict_min_version": "113.0"
+    }
+  }
+}
