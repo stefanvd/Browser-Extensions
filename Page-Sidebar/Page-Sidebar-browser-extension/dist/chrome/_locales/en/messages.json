@@ -173,6 +173,6 @@
     "allowhostpermission": {"message": "Allow the host permission to show any website here in the sidebar"},
     "btnallowhost": {"message": "Allow on all websites"},
     "searchplaceholder": {"message": "Search"},
-    "multipletabs": {"message": "Tabs"},
+    "titelmultipletabs": {"message": "Tabs"},
     "desmultipletabs": {"message": "Open multiple tabs in the sidebar"}
   }
