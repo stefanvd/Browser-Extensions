@@ -3,9 +3,9 @@ const exbrowser = "chrome";
 // values: "chrome", "safari", "edge", "firefox", "opera", "yandex", "whale"
 const linkredirectionoptions = "https://www.stefanvd.net/project/page-sidebar/browser/options/";
 const linkdeveloperwebsite = "https://www.stefanvd.net";
-const linkproduct = "https://chromewebstore.google.com/detail/page-sidebar-open-any-pag/gkkebamcfeaggmcfciekfakbmlgckdnh";
+const linkproduct = "https://chromewebstore.google.com/detail/" + chrome.runtime.id;
 const linkdonate = "https://www.stefanvd.net/donate/";
-const writereview = "https://chromewebstore.google.com/detail/page-sidebar-open-any-pag/gkkebamcfeaggmcfciekfakbmlgckdnh/reviews";
+const writereview = "https://chromewebstore.google.com/detail/" + chrome.runtime.id + "/reviews";
 const linkchangelog = "https://www.stefanvd.net/project/page-sidebar/browser/google-chrome/changelog/";
 const linktranslate = "https://www.stefanvd.net/project/translate/";
 const linksupport = "https://www.stefanvd.net/support/";

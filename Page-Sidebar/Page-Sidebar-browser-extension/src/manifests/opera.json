@@ -3,30 +3,33 @@
   "background": {
     "service_worker": "scripts/background.js"
   },
+  "sidebar_action": {
+    "default_icon": {
+      "16": "images/icon16.png",
+      "32": "images/icon32.png"
+    },
+    "default_title": "__MSG_name__",
+    "default_panel": "panel.html",
+    "open_at_install": true
+  },
   "commands": {
-    "toggle-feature-rotateclockwise": {
+    "_execute_sidebar_action": {
       "suggested_key": {
-        "default": "Ctrl+Shift+1",
-        "mac": "MacCtrl+Shift+1"
-      },
-      "description": "__MSG_titlerotateclockwise__"
+        "default": "Ctrl+Shift+P",
+        "mac": "MacCtrl+Shift+P"
+      }
     },
-    "toggle-feature-rotatecounter": {
+    "toggle-feature-openweb": {
       "suggested_key": {
-        "default": "Ctrl+Shift+2",
-        "mac": "MacCtrl+Shift+2"
+        "default": "Ctrl+Shift+N",
+        "mac": "MacCtrl+Shift+N"
       },
-      "description": "__MSG_titlerotatecounter__"
-    },
-    "toggle-feature-rotatereset": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+3",
-        "mac": "MacCtrl+Shift+3"
-      },
-      "description": "__MSG_titlerotatereset__"
+      "description": "__MSG_titelcurrenttab__"
     }
   },
   "offline_enabled": true,
   "minimum_chrome_version": "114",
-  "permissions": ["activeTab", "scripting", "storage", "contextMenus"]
+  "host_permissions": [ "<all_urls>" ],
+  "permissions": ["contextMenus", "storage", "declarativeNetRequestWithHostAccess"],
+  "optional_permissions": ["bookmarks"]
 }

@@ -174,5 +174,7 @@
     "btnallowhost": {"message": "Allow on all websites"},
     "searchplaceholder": {"message": "Search"},
     "titelmultipletabs": {"message": "Tabs"},
-    "desmultipletabs": {"message": "Open multiple tabs in the sidebar"}
+    "desmultipletabs": {"message": "Open multiple tabs in the sidebar"},
+    "titelnavbuttons": {"message": "Navigation buttons"},
+    "desnavbuttons": {"message": "Show the navigation button to go back and to the next page"}
   }

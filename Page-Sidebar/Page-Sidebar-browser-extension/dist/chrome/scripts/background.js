@@ -26,14 +26,25 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
+// Importing the constants
+// Execute if importScripts is support such as Google Chrome and not Firefox
+if(typeof importScripts !== "undefined"){
+	// eslint-disable-next-line no-undef
+	importScripts("constants.js");
+}
+
 // Function to check if the current browser is Firefox
 function isFirefox(){
 	return typeof browser !== "undefined" && typeof browser.sidebarAction !== "undefined";
 }
 
-// Function to check if the current browser is Chrome / Chromium
-function isChrome(){
+// Function to check if the current browser is support chrome.sidePanel
+function isChromePanel(){
 	return typeof chrome !== "undefined" && typeof chrome.sidePanel !== "undefined";
+}
+
+if(isChromePanel()){
+	chrome.sidePanel.setPanelBehavior({openPanelOnActionClick: true}).catch((error) => console.error(error));
 }
 
 // Execute Firefox-specific code
@@ -43,17 +54,7 @@ if(isFirefox()){
 	});
 }
 
-// Execute Chrome-specific code
-if(isChrome()){
-	// Importing the constants
-	// eslint-disable-next-line no-undef
-	importScripts("constants.js");
-
-	chrome.sidePanel.setPanelBehavior({openPanelOnActionClick: true}).catch((error) => console.error(error));
-}
-
 // --- General code
-
 chrome.runtime.onMessage.addListener(function request(request, sender, response){
 	// eye protection & autodim & shortcut
 	switch(request.name){
@@ -345,12 +346,14 @@ chrome.storage.sync.get(["icon"], function(items){
 			items["icon"] = "/images/icon38.png";
 		}
 	}
-	chrome.action.setIcon({
-		path : {
-			"19": items["icon"],
-			"38": items["icon"]
-		}
-	});
+	if(chrome.action && typeof chrome.action.setIcon === "function"){
+		chrome.action.setIcon({
+			path : {
+				"19": items["icon"],
+				"38": items["icon"]
+			}
+		});
+	}
 });
 
 // update on refresh tab
@@ -364,7 +367,9 @@ chrome.tabs.onUpdated.addListener(function(){
 					items["icon"] = "/images/icon38.png";
 				}
 			}
-			chrome.action.setIcon({tabId : thattab.id, path : {"19": items["icon"], "38": items["icon"]}});
+			if(chrome.action && typeof chrome.action.setIcon === "function"){
+				chrome.action.setIcon({tabId : thattab.id, path : {"19": items["icon"], "38": items["icon"]}});
+			}
 		});
 	});
 });
@@ -376,12 +381,14 @@ chrome.storage.onChanged.addListener(function(changes){
 			chrome.tabs.query({}, function(tabs){
 				var i, l = tabs.length;
 				for(i = 0; i < l; i++){
-					chrome.action.setIcon({tabId : tabs[i].id,
-						path : {
-							"19": changes["icon"].newValue,
-							"38": changes["icon"].newValue
-						}
-					});
+					if(chrome.action && typeof chrome.action.setIcon === "function"){
+						chrome.action.setIcon({tabId : tabs[i].id,
+							path : {
+								"19": changes["icon"].newValue,
+								"38": changes["icon"].newValue
+							}
+						});
+					}
 				}
 			}
 			);
@@ -390,6 +397,11 @@ chrome.storage.onChanged.addListener(function(changes){
 	if(changes["navtop"]){
 		if(changes["navtop"].newValue == true){
 			chrome.runtime.sendMessage({msg: "setnavtop"});
+		}
+	}
+	if(changes["navbuttons"]){
+		if(changes["navbuttons"].newValue == true || changes["navbuttons"].newValue == false){
+			chrome.runtime.sendMessage({msg: "setnavbuttons"});
 		}
 	}
 	if(changes["navbottom"]){
@@ -488,6 +500,9 @@ chrome.storage.onChanged.addListener(function(changes){
 		if(changes["typepanellasttime"].newValue == true){
 			chrome.runtime.sendMessage({msg: "settypepanellasttime"});
 		}
+	}
+	if(changes["multipletabs"]){
+		chrome.runtime.sendMessage({msg: "setmultipletabs"});
 	}
 });
 

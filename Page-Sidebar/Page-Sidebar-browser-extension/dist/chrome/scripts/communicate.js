@@ -32,6 +32,8 @@ if(window.top !== window && window.parent === window.top){
 		if(b){
 			const origin = chrome.runtime.getURL("");
 			addEventListener("hashchange", () => top.postMessage({method: "navigate", href: location.href}, origin));
+			addEventListener("load", () => top.postMessage({method: "navigate", href: location.href}, origin));
+			addEventListener("popstate", () => top.postMessage({method: "navigate", href: location.href}, origin));
 			addEventListener("message", (e) => {
 				if(e.data?.method === "navigate-verified" && e.origin.includes(chrome.runtime.id)){
 					navigation.addEventListener("navigate", (e) => {
@@ -43,6 +45,12 @@ if(window.top !== window && window.parent === window.top){
 					});
 				}else if(e.data?.method === "changeZoomScale"){
 					document.body.style.zoom = e.data.zoom;
+				}else if(e.data?.method === "goBackWebpage"){
+					window.history.back();
+				}else if(e.data?.method === "goNextWebpage"){
+					window.history.forward();
+				}else if(e.data?.method == "goReloadWebpage"){
+					location.reload();
 				}
 			});
 			top.postMessage({method: "navigate", href: location.href}, origin);

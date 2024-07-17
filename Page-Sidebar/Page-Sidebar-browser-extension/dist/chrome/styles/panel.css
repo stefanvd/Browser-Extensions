@@ -32,7 +32,6 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
   --ext-primary-font-color:#000;
   --ext-secundar-background:#efefef;
   --ext-secundar-background-hover:#d9d9d9;
-  --ext-svg-fill-color-hover:#ebebeb;
   --ext-border-line:#dddddd;
   --ext-dropmenu-li-background-hover:#EEEEEE;
   --ext-dropmenu-li-background-active:#F5F5F5;
@@ -40,6 +39,13 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
   --ext-button-background:rgba(244,244,244,.4);
   --ext-button-background-active:rgba(158,158,158,.2);
   --ext-button-background-hover:rgba(158,158,158,.4);
+  --ext-svg-fill-color-hover:#d9d9d9;
+  --ext-close-color-hover:#d9d9d9;
+  --ext-tab-background-color:#f2f2f2;
+  --ext-tab-active-background-color:#ffffff;
+  --ext-tab-inactive-background-color:#dddddd;
+  --ext-tab-active-hover-background-color:#ffffff9b;
+  --ext-tab-inactive-hover-background-color:#dddddd9b;
 }
 
 /* Dark mode */
@@ -49,7 +55,6 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
     --ext-primary-font-color:#fff;
     --ext-secundar-background:#2a2a2a;
     --ext-secundar-background-hover:#3c3c3c;
-    --ext-svg-fill-color-hover:#474747;
     --ext-border-line:#37383a;
     --ext-dropmenu-li-background-hover:#424242;
     --ext-dropmenu-li-background-active:#4e4e4e;
@@ -57,6 +62,13 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
     --ext-button-background:rgba(244,244,244,.4);
     --ext-button-background-active:rgba(158,158,158,.2);
     --ext-button-background-hover:rgba(158,158,158,.4);
+    --ext-svg-fill-color-hover:#474747;
+    --ext-close-color-hover:#474747;
+    --ext-tab-background-color:#2b2b2b;
+    --ext-tab-active-background-color:#222222;
+    --ext-tab-inactive-background-color:#000000;
+    --ext-tab-active-hover-background-color:#2222229b;
+    --ext-tab-inactive-hover-background-color:#0000009b;
   }
 }
 
@@ -68,7 +80,8 @@ body{margin:0;padding:0;width:100%;height:100vh;background:var(--ext-primary-bac
 .hostpermission button:active{background-color:var(--ext-button-background-active)}
 .hostpermission button:hover{background-color:var(--ext-button-background-hover)}
 iframe{border:none;width:100%;height:100%;box-sizing:border-box;margin:0px}
-#preview{border:0}
+#webcontent{height:100%}
+#webcontent iframe{border:0}
 .blurlayer{z-index:2000;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);background-color:rgba(0, 0, 0, 0.5)}
 .web{position:relative}
 #drag-drop-navbar{z-index:2000;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);background-color:rgba(0, 0, 0, 0.5);width:100%;height:48px;border:2px dashed #ccc;display:flex;justify-content:center;align-items:center;position:fixed;left:0;top:0;z-index:2500;bottom:0;right:0;box-sizing:border-box;border-radius:0px}
@@ -99,10 +112,13 @@ iframe{border:none;width:100%;height:100%;box-sizing:border-box;margin:0px}
 #btngo{display:flex;height:30px;min-width:40px;background:transparent;border:0;align-items:center;justify-content:center;border-radius:30px}
 #btngo:hover{background:var(--ext-svg-fill-color-hover);cursor:pointer}
 #btnhome{display:flex;height:30px;width:30px;min-width:30px;background:transparent;border:0;align-items:center;justify-content:center;border-radius:30px}
+#btnprev{height:30px;width:30px;min-width:30px;background:transparent;border:0;align-items:center;justify-content:center;border-radius:30px}
+#btnnext{height:30px;width:30px;min-width:30px;background:transparent;border:0;align-items:center;justify-content:center;border-radius:30px}
+#btnreload{height:30px;width:30px;min-width:30px;background:transparent;border:0;align-items:center;justify-content:center;border-radius:30px}
 #btncopy{height:30px;width:30px;min-width:30px;background:transparent;border:0;align-items:center;justify-content:center;border-radius:30px}
 #btntab{height:30px;width:30px;min-width:30px;background:transparent;border:0;align-items:center;justify-content:center;border-radius:30px}
 #btnbookmarks{height:30px;width:30px;min-width:30px;background:transparent;border:0;align-items:center;justify-content:center;border-radius:30px}
-#btnhome:hover,#btntab:hover,#btncopy:hover,#btnbookmarks:hover{background:var(--ext-svg-fill-color-hover);cursor:pointer}
+#btnprev:hover,#btnnext:hover,#btnreload:hover,#btnhome:hover,#btntab:hover,#btncopy:hover,#btnbookmarks:hover{background:var(--ext-svg-fill-color-hover);cursor:pointer}
 .icon{display:flex}
 .icon svg{fill:var(--ext-primary-font-color)}
 #menubookmarks{position:absolute;left:10px;z-index:3000}
@@ -131,7 +147,35 @@ iframe{border:none;width:100%;height:100%;box-sizing:border-box;margin:0px}
 .collapse-handle{width:8px;height:40px;background-color:var(--ext-border-line);cursor:pointer;position:absolute;top:0;left:0;bottom:0;margin:auto}
 .collapse-handle:hover{opacity:.8}
 .zoom-panel.collapsed .zoom-button,.zoom-panel.collapsed .zoom-level{display:none}
+/* Begin tabs */
+.tab-bar{gap:5px;height:42px;overflow-x:hidden;overflow-y:hidden;display:flex;align-items:flex-start;background-color:var(--ext-tab-background-color);padding:10px 10px 0px 10px}
+.tab-bar:hover{overflow-x:auto}
+.tab{user-select:none;min-width:fit-content;justify-content:space-between;display:inline-flex;padding:8px 12px;background-color:var(--ext-tab-inactive-background-color);border-radius:8px 8px 0 0;cursor:pointer;align-items:flex-end;border-bottom:1px solid var(--ext-tab-inactive-background-color)}
+.tab:hover{background-color:var(--ext-tab-inactive-hover-background-color);}
+.tab.active:hover{background-color:var(--ext-tab-active-hover-background-color);}
+.tab .title{padding:2px;cursor:pointer;border-radius:16px;width:16px;height:16px;display:flex;align-items:center;justify-content:center}
+.tab.active{background-color:var(--ext-tab-active-background-color);border-bottom:2px solid #007bff}
+.tab-content{display:none;padding:10px}
+.tab-content.active{display:block}
+.tab-close{font-family:system-ui,sans-serif;line-height:12px;text-align:center;cursor:pointer;margin-left:5px;font-size:16px;border-radius:16px;width:16px;height:16px;padding:2px}
+.tab-close:hover{background:var(--ext-close-color-hover)}
+.add-tab{font-family:system-ui,sans-serif;cursor:pointer;user-select:none;font-size:16px;border-radius:32px;min-width:32px;width:32px;height:32px;display:flex;align-items:center;line-height:32px;justify-content:center}
+.add-tab:hover{background:var(--ext-svg-fill-color-hover)}
+.enablebar{top:48px;height:calc(100% - 48px)}
+.regularbar{top:0;height:100%}
+/* End tabs */
 @keyframes h3{0%{opacity:0}50%{opacity:0}80%{opacity:1;transform:scale(1.5) translate(0,4px)}}
 @keyframes p{0%{opacity:0}80%{opacity:0;transform:scale(1.5) translate(0,12px)}100%{opacity:1;transform:scale(1)}}
 @keyframes wrapper{0%{opacity:0}20%{opacity:0;transform:translate(0,-100px)}40%{opacity:0.98;transform:translate(0,0)}80%{opacity:0.98;transform:translate(0,0)}100%{opacity:0;transform:translate(0, -100px)}}
 .hidden{display:none}
+/* width */
+.tab-bar::-webkit-scrollbar{width:10px;height:4px}
+/* Track */
+.tab-bar::-webkit-scrollbar-track{background:#f1f1f1}
+/* Handle */
+::-webkit-scrollbar-thumb{background:#888}
+/* Handle on hover */
+.tab-bar::-webkit-scrollbar-thumb:hover{background:#555}
+@media print{    
+.texttoolbar{display:none!important}
+}
