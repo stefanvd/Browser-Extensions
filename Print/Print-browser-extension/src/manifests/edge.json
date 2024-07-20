@@ -1,0 +1,24 @@
+{
+  "name": "__MSG_nameedge__",
+  "action": {
+    "default_title": "__MSG_name__",
+    "default_icon": {
+      "19": "images/default.png",
+      "38": "images/default@2x.png"
+    }
+  },
+  "background": {
+    "service_worker": "scripts/background.js"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+P",
+        "mac": "MacCtrl+Shift+P"
+      }
+    }
+  },
+  "offline_enabled": true,
+  "minimum_chrome_version": "116",
+  "permissions": ["activeTab", "contextMenus", "storage", "scripting"]
+}

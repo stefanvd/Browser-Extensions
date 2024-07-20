@@ -1,0 +1,24 @@
+{
+    "manifest_version": 3,
+    "short_name": "__MSG_name__",
+    "homepage_url": "https://www.stefanvd.net/support/",  
+    "description": "__MSG_description__",
+    "author": "Stefan vd",
+    "version": "2.4",
+    "icons": {
+      "16": "images/icon16.png",
+      "24": "images/icon24.png",
+      "32": "images/icon32.png",
+      "48": "images/icon48.png",
+      "96": "images/icon96.png",
+      "128": "images/icon128.png"
+    },
+    "default_locale": "en",
+    "content_security_policy": {
+      "extension_pages": "default-src 'none'; style-src 'self'; media-src https://www.stefanvd.net; child-src https://www.youtube.com https://www.stefanvd.net; connect-src https://www.stefanvd.net; script-src 'self'; img-src 'self' https://www.stefanvd.net * data:; object-src 'none'"
+    },
+    "options_ui": {
+      "page": "options.html",
+      "open_in_tab": true
+    }
+  }

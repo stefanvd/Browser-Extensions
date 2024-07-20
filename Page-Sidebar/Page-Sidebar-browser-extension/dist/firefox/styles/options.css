@@ -220,7 +220,7 @@ section>div:only-of-type{-webkit-box-flex:1}
 #mainview-content section a:visited{color:rgb(51, 103, 214)}
 #mainview-content section a:hover{color:rgb(51, 103, 214)}
 .btnspace{margin:0 8px 0 0}
-.grey-text{color:grey}
+.gray-text{color:grey}
 .hidden{display:none}
 .item{font-style:italic}
 .donate-content{display:flex;align-items:center;height:100%}
