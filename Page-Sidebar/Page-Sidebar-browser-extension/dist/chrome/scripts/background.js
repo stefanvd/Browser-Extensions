@@ -131,8 +131,8 @@ function onClickHandler(info, tab){
 		chrome.tabs.create({url: writereview, active:true});
 	}else if(info.menuItemId == "totlshareemail"){
 		var sturnoffthelightemail = "mailto:your@email.com?subject=" + chrome.i18n.getMessage("sharetexta") + "&body=" + chrome.i18n.getMessage("sharetextb") + " " + linkproduct; chrome.tabs.create({url: sturnoffthelightemail, active:true});
-	}else if(info.menuItemId == "totlsharetwitter"){
-		var slinkproductcodeurl = encodeURIComponent(chrome.i18n.getMessage("sharetextd") + " " + linkproduct); chrome.tabs.create({url: "https://twitter.com/intent/tweet?text=" + slinkproductcodeurl, active:true});
+	}else if(info.menuItemId == "totlsharex"){
+		var slinkproductcodeurl = encodeURIComponent(chrome.i18n.getMessage("sharetextd") + " " + linkproduct); chrome.tabs.create({url: "https://x.com/intent/tweet?text=" + slinkproductcodeurl, active:true});
 	}else if(info.menuItemId == "totlsharefacebook"){
 		chrome.tabs.create({url: "https://www.facebook.com/sharer/sharer.php?u=" + linkproduct, active:true});
 	}else if(info.menuItemId == "totlsubscribe"){
@@ -250,12 +250,12 @@ if(chrome.contextMenus){
 			browsercontext(sharemenupostonvkontakte, "totlsharevkontakte", {"16": "images/IconVkontakte.png", "32": "images/IconVkontakte@2x.png"}, parent);
 			browsercontext(sharemenupostonfacebook, "totlsharefacebook", {"16": "images/IconFacebook.png", "32": "images/IconFacebook@2x.png"}, parent);
 			browsercontext(sharemenupostonwhatsapp, "totlsharewhatsapp", {"16": "images/IconWhatsApp.png", "32": "images/IconWhatsApp@2x.png"}, parent);
-			browsercontext(sharemenupostonx, "totlsharetwitter", {"16": "images/IconTwitter.png", "32": "images/IconTwitter@2x.png"}, parent);
+			browsercontext(sharemenupostonx, "totlsharex", {"16": "images/IconX.png", "32": "images/IconX@2x.png"}, parent);
 		}else{
 			// all users
 			browsercontext(sharemenupostonfacebook, "totlsharefacebook", {"16": "images/IconFacebook.png", "32": "images/IconFacebook@2x.png"}, parent);
 			browsercontext(sharemenupostonwhatsapp, "totlsharewhatsapp", {"16": "images/IconWhatsApp.png", "32": "images/IconWhatsApp@2x.png"}, parent);
-			browsercontext(sharemenupostonx, "totlsharetwitter", {"16": "images/IconTwitter.png", "32": "images/IconTwitter@2x.png"}, parent);
+			browsercontext(sharemenupostonx, "totlsharex", {"16": "images/IconX.png", "32": "images/IconX@2x.png"}, parent);
 		}
 
 		chrome.contextMenus.create({"title": "", "type":"separator", "id": "totlsepartor", "contexts": contexts});
@@ -449,6 +449,11 @@ chrome.storage.onChanged.addListener(function(changes){
 			chrome.runtime.sendMessage({msg: "setopencopy"});
 		}
 	}
+	if(changes["gobutton"]){
+		if(changes["gobutton"].newValue == true || changes["gobutton"].newValue == false){
+			chrome.runtime.sendMessage({msg: "setgobutton"});
+		}
+	}
 	if(changes["opennonebookmarks"]){
 		if(changes["opennonebookmarks"].newValue == true){
 			chrome.runtime.sendMessage({msg: "setopennonebookmarks"});
@@ -503,6 +508,19 @@ chrome.storage.onChanged.addListener(function(changes){
 	}
 	if(changes["multipletabs"]){
 		chrome.runtime.sendMessage({msg: "setmultipletabs"});
+	}
+	if(changes["typehomezone"]){
+		if(changes["typehomezone"].newValue == true){
+			chrome.runtime.sendMessage({msg: "settypehomezone"});
+		}
+	}
+	if(changes["typehomecustom"]){
+		if(changes["typehomecustom"].newValue == true){
+			chrome.runtime.sendMessage({msg: "settypehomecustom"});
+		}
+	}
+	if(changes["websitehomepagename"]){
+		chrome.runtime.sendMessage({msg: "setwebsitehomepagename"});
 	}
 });
 

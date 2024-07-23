@@ -26,7 +26,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-var selectedsearch, searchgoogle, searchbing, searchduckduckgo, searchbaidu, searchyandex, typepanelzone, typepanelcustom, typepanellasttime, websitezoomname, websitelasttime, navtop, navbottom, navhidden, opentab, opencopy, opennonebookmarks, openbrowserbookmarks, openquickbookmarks, googlesidepanel, zoom, defaultzoom, step, multipletabs, multivalues, navbuttons;
+var selectedsearch, searchgoogle, searchbing, searchduckduckgo, searchbaidu, searchyandex, typepanelzone, typepanelcustom, typepanellasttime, websitezoomname, websitelasttime, navtop, navbottom, navhidden, opentab, opencopy, opennonebookmarks, openbrowserbookmarks, openquickbookmarks, googlesidepanel, zoom, defaultzoom, step, multipletabs, multivalues, navbuttons, gobutton, typehomezone, typehomecustom, websitehomepagename;
 
 var faviconserver = "https://s2.googleusercontent.com/s2/favicons?domain=";
 var emptypage = "about:blank";
@@ -235,7 +235,7 @@ function init(){
 		zoomPanel.classList.toggle("collapsed");
 	});
 
-	chrome.storage.sync.get(["firstDate", "optionskipremember", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "typepanellasttime", "websitezoomname", "websitelasttime", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "opentab", "opencopy", "opennonebookmarks", "openbrowserbookmarks", "openquickbookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10", "googlesidepanel", "zoom", "defaultzoom", "step", "multipletabs", "multivalues", "navbuttons"], function(items){
+	chrome.storage.sync.get(["firstDate", "optionskipremember", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "typepanellasttime", "websitezoomname", "websitelasttime", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "opentab", "opencopy", "opennonebookmarks", "openbrowserbookmarks", "openquickbookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10", "googlesidepanel", "zoom", "defaultzoom", "step", "multipletabs", "multivalues", "navbuttons", "gobutton"], function(items){
 		searchgoogle = items["searchgoogle"]; if(searchgoogle == null){ searchgoogle = true; }
 		googlesidepanel = items["googlesidepanel"]; if(googlesidepanel == null){ googlesidepanel = true; }
 		searchbing = items["searchbing"]; if(searchbing == null){ searchbing = false; }
@@ -284,6 +284,13 @@ function init(){
 			document.getElementById("btncopy").className = "icon";
 		}else{
 			document.getElementById("btncopy").className = "hidden";
+		}
+
+		gobutton = items["gobutton"]; if(gobutton == null){ gobutton = true; }
+		if(gobutton == true){
+			document.getElementById("btngo").className = "icon";
+		}else{
+			document.getElementById("btngo").className = "hidden";
 		}
 
 		navbuttons = items["navbuttons"]; if(navbuttons == null){ navbuttons = false; }
@@ -840,8 +847,8 @@ function handleDrop(e){
 }
 
 function actionHome(){
-	if(typepanelcustom == true){
-		openweb(websitezoomname, true);
+	if(typehomecustom == true){
+		openweb(websitehomepagename, true);
 	}else{
 		if(multipletabs == true){
 			// Current active tab
@@ -856,9 +863,9 @@ function actionHome(){
 			document.getElementById("webcontent").getElementsByTagName("iframe")[index].src = emptypage;
 			document.getElementById("webcontent").getElementsByTagName("iframe")[index].src.className = "hidden";
 
-			if(typepanelcustom == true){
-				openweb(websitezoomname, true);
-			}else if(typepanelzone == true){
+			if(typehomecustom == true){
+				openweb(websitehomepagename, true);
+			}else if(typehomezone == true){
 				document.getElementById("drag-drop-info").className = "show";
 				document.getElementById("drag-drop-zone").className = "show";
 			}
@@ -866,9 +873,9 @@ function actionHome(){
 			document.getElementById("webcontent").getElementsByTagName("iframe")[0].src = emptypage;
 			document.getElementById("webcontent").getElementsByTagName("iframe")[0].src.className = "hidden";
 
-			if(typepanelcustom == true){
-				openweb(websitezoomname, true);
-			}else if(typepanelzone == true){
+			if(typehomecustom == true){
+				openweb(websitehomepagename, true);
+			}else if(typehomezone == true){
 				document.getElementById("drag-drop-info").className = "show";
 				document.getElementById("drag-drop-zone").className = "show";
 			}
@@ -1123,6 +1130,15 @@ chrome.runtime.onMessage.addListener(function(request){
 				document.getElementById("btncopy").className = "hidden";
 			}
 		});
+	}else if(request.msg == "setgobutton"){
+		chrome.storage.sync.get(["gobutton"], function(items){
+			gobutton = items["gobutton"]; if(gobutton == null){ gobutton = true; }
+			if(gobutton == true){
+				document.getElementById("btngo").className = "icon";
+			}else{
+				document.getElementById("btngo").className = "hidden";
+			}
+		});
 	}else if(request.msg == "setnavbuttons"){
 		chrome.storage.sync.get(["navbuttons"], function(items){
 			navbuttons = items["navbuttons"]; if(navbuttons == null){ navbuttons = false; }
@@ -1237,6 +1253,20 @@ chrome.runtime.onMessage.addListener(function(request){
 			removeWebs();
 			// show the tab bar or not
 			applyStyles(multipletabs);
+		});
+	}else if(request.msg == "settypehomezone"){
+		chrome.storage.sync.get(["typehomezone"], function(items){
+			typehomezone = items.typehomezone; if(typehomezone == null)typehomezone = true;
+			typehomecustom = false;
+		});
+	}else if(request.msg == "settypehomecustom"){
+		chrome.storage.sync.get(["typehomecustom"], function(items){
+			typehomecustom = items.typehomecustom; if(typehomecustom == null)typehomecustom = true;
+			typehomezone = false;
+		});
+	}else if(request.msg == "setwebsitehomepagename"){
+		chrome.storage.sync.get(["websitehomepagename"], function(items){
+			websitehomepagename = items.websitehomepagename; if(websitehomepagename == null)websitehomepagename = "https://www.google.com";
 		});
 	}
 });

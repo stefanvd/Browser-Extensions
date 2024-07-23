@@ -213,7 +213,7 @@ section{position:relative;-webkit-box-orient:horizontal;border-bottom:var(--totl
 section>h3{font-size:105%;font-weight:700;margin:0;width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 section>div:only-of-type{-webkit-box-flex:1}
 .page section:last-child{margin-bottom:20px}
-#websitezoomname{width:200px;margin-left:30px}
+#websitezoomname,#websitehomepagename{width:200px;margin-left:30px}
 /* Hyperlinks */
 #mainview-content section a{color:rgb(51, 103, 214);text-decoration:underline}
 #mainview-content section a:active{color:rgb(51, 103, 214)}
@@ -264,8 +264,8 @@ section>div:only-of-type{-webkit-box-flex:1}
 /* share box */
 #shareboxyoutube{background:url(../images/youtube@2x.png)left top no-repeat;background:-webkit-image-set(url(../images/youtube.png) 1x,url(../images/youtube@2x.png) 2x);width:25px;height:18px;display:inline-block;background-size:cover;margin-left:10px;margin-right:10px;cursor:pointer}
 #shareboxfacebook{background:url(../images/facebook@2x.png)left top no-repeat;background:-webkit-image-set(url(../images/facebook.png) 1x,url(../images/facebook@2x.png) 2x);width:18px;height:18px;display:inline-block;background-size:cover;margin-right:10px;cursor:pointer}
-#shareboxtwitter{background:url(../images/twitter@2x.png)left top no-repeat;background:-webkit-image-set(url(../images/twitter.png) 1x,url(../images/twitter@2x.png) 2x);width:18px;height:18px;display:inline-block;background-size:cover;cursor:pointer}
-#shareboxrate:hover,#shareboxyoutube:hover,#shareboxfacebook:hover,#shareboxtwitter:hover{opacity:.8;cursor:pointer}
+#shareboxx{background:url(../images/x@2x.png)left top no-repeat;background:-webkit-image-set(url(../images/x.png) 1x,url(../images/x@2x.png) 2x);width:18px;height:18px;display:inline-block;background-size:cover;cursor:pointer}
+#shareboxrate:hover,#shareboxyoutube:hover,#shareboxfacebook:hover,#shareboxx:hover{opacity:.8;cursor:pointer}
 .probox{top:0;position:absolute;background:#FDD835;color:black;font-size:12px;padding:2px 12px;border-radius:2px;display:inline-block}
 .proboxtext{display:inline-flex;line-height:18px;padding:15px 15px 10px;gap:25px}
 .proboxbutton,.proboxbutton:hover{background:#4285f4;color:white}
