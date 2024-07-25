@@ -31,9 +31,11 @@ if(window.top !== window && window.parent === window.top){
 	chrome.runtime.sendMessage({name: "sidepanelopen"}, (b) => {
 		if(b){
 			const origin = chrome.runtime.getURL("");
-			addEventListener("hashchange", () => top.postMessage({method: "navigate", href: location.href}, origin));
-			addEventListener("load", () => top.postMessage({method: "navigate", href: location.href}, origin));
-			addEventListener("popstate", () => top.postMessage({method: "navigate", href: location.href}, origin));
+			const sendNavigateMessage = () => top.postMessage({method: "navigate", href: location.href}, origin);
+
+			addEventListener("hashchange", sendNavigateMessage);
+			addEventListener("load", sendNavigateMessage);
+			addEventListener("popstate", sendNavigateMessage);
 			addEventListener("message", (e) => {
 				if(e.data?.method === "navigate-verified" && e.origin.includes(chrome.runtime.id)){
 					navigation.addEventListener("navigate", (e) => {
@@ -43,6 +45,13 @@ if(window.top !== window && window.parent === window.top){
 							href
 						}, origin);
 					});
+
+					// Trigger the "complete" message on initial load
+					const href = location.href;
+					top.postMessage({
+						method: "complete",
+						href
+					}, origin);
 				}else if(e.data?.method === "changeZoomScale"){
 					document.body.style.zoom = e.data.zoom;
 				}else if(e.data?.method === "goBackWebpage"){
@@ -53,7 +62,9 @@ if(window.top !== window && window.parent === window.top){
 					location.reload();
 				}
 			});
-			top.postMessage({method: "navigate", href: location.href}, origin);
+
+			// Initial send navigate message on script load
+			sendNavigateMessage();
 		}
 	});
 }

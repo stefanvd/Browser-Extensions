@@ -46,10 +46,6 @@ window.addEventListener("message", (e) => {
 	// console.log("FIRST WEBSITE URL=", e.data.href);
 	if(e.data?.method === "navigate"){
 		// console.log("NAVIGATE URL=", e.data.href);
-		// Save website favicon image for current active tab
-		updatetabicon(e.data.href);
-		// Save website URL in tab
-		updatesaveurl(e.data.href);
 		if(e.source){
 			e.source.postMessage({
 				method: "navigate-verified"
@@ -62,9 +58,14 @@ window.addEventListener("message", (e) => {
 		if(typepanellasttime == true){
 			chrome.storage.sync.set({"websitelasttime": e.data.href});
 		}
+		// set zoom level
 		if(zoom == true && zoomLevel != 100){
 			updateZoomLevel();
 		}
+		// Save website favicon image for current active tab
+		updatetabicon(e.data.href);
+		// Save website URL in tab
+		updatesaveurl(e.data.href);
 	}
 });
 
@@ -235,7 +236,7 @@ function init(){
 		zoomPanel.classList.toggle("collapsed");
 	});
 
-	chrome.storage.sync.get(["firstDate", "optionskipremember", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "typepanellasttime", "websitezoomname", "websitelasttime", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "opentab", "opencopy", "opennonebookmarks", "openbrowserbookmarks", "openquickbookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10", "googlesidepanel", "zoom", "defaultzoom", "step", "multipletabs", "multivalues", "navbuttons", "gobutton"], function(items){
+	chrome.storage.sync.get(["firstDate", "optionskipremember", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "typepanellasttime", "websitezoomname", "websitelasttime", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "opentab", "opencopy", "opennonebookmarks", "openbrowserbookmarks", "openquickbookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10", "googlesidepanel", "zoom", "defaultzoom", "step", "multipletabs", "multivalues", "navbuttons", "gobutton", "typehomezone", "typehomecustom"], function(items){
 		searchgoogle = items["searchgoogle"]; if(searchgoogle == null){ searchgoogle = true; }
 		googlesidepanel = items["googlesidepanel"]; if(googlesidepanel == null){ googlesidepanel = true; }
 		searchbing = items["searchbing"]; if(searchbing == null){ searchbing = false; }
@@ -246,8 +247,11 @@ function init(){
 		defaultzoom = items["defaultzoom"]; if(defaultzoom == null){ defaultzoom = 100; }
 		step = items["step"]; if(step == null){ step = 5; }
 		multipletabs = items["multipletabs"]; if(multipletabs == null){ multipletabs = false; }
-		multivalues = items["multivalues"]; if(multivalues == null){ multivalues = [{"note":""}]; }
+		multivalues = items["multivalues"]; if(multivalues == null){ multivalues = [{"note":emptypage}]; }
 		navbuttons = items["navbuttons"]; if(navbuttons == null){ navbuttons = false; }
+		typehomezone = items["typehomezone"]; if(typehomezone == null){ typehomezone = false; }
+		typehomecustom = items["typehomecustom"]; if(typehomecustom == null){ typehomecustom = false; }
+		websitehomepagename = items["websitehomepagename"]; if(websitehomepagename == null)websitehomepagename = "https://www.google.com";
 
 		// show the tab strip bar or not
 		applyStyles(multipletabs);
@@ -421,7 +425,7 @@ function applyStyles(multipletabs){
 }
 
 function createTabContent(){
-	if(multivalues == null){ multivalues = [{"note":""}]; }
+	if(multivalues == null){ multivalues = [{"note":emptypage}]; }
 
 	// there is already website from before, so drag drop zone must not be visible
 	document.getElementById("drag-drop-info").className = "hidden";
@@ -464,8 +468,12 @@ function updatetabicon(url){
 		// Update the image source in the active tab
 		if(activeTab){
 			var imgElement = activeTab.querySelector("img");
-			if(imgElement){
-				imgElement.src = newImageSrc;
+			if(url == emptypage){
+				imgElement.src = "/images/icon16@2x.png";
+			}else{
+				if(imgElement){
+					imgElement.src = newImageSrc;
+				}
 			}
 		}
 	}
@@ -484,7 +492,9 @@ function updatesaveurl(url){
 			}
 		});
 		multivalues[index]["note"] = url;
-		save();
+		if(typepanellasttime == true){
+			save();
+		}
 	}
 }
 
@@ -860,24 +870,38 @@ function actionHome(){
 					index = i;
 				}
 			});
-			document.getElementById("webcontent").getElementsByTagName("iframe")[index].src = emptypage;
-			document.getElementById("webcontent").getElementsByTagName("iframe")[index].src.className = "hidden";
 
 			if(typehomecustom == true){
 				openweb(websitehomepagename, true);
 			}else if(typehomezone == true){
+				// clear it
+				document.getElementById("webcontent").getElementsByTagName("iframe")[index].src = emptypage;
+				document.getElementById("webcontent").getElementsByTagName("iframe")[index].className = "hidden";
+				// show drag drop
 				document.getElementById("drag-drop-info").className = "show";
 				document.getElementById("drag-drop-zone").className = "show";
+
+				// update icon
+				updatetabicon(emptypage);
+				// save empty URL for drag drop
+				updatesaveurl(emptypage);
 			}
 		}else{
-			document.getElementById("webcontent").getElementsByTagName("iframe")[0].src = emptypage;
-			document.getElementById("webcontent").getElementsByTagName("iframe")[0].src.className = "hidden";
-
 			if(typehomecustom == true){
 				openweb(websitehomepagename, true);
+				updatesaveurl(websitehomepagename);
 			}else if(typehomezone == true){
+				// clear it
+				document.getElementById("webcontent").getElementsByTagName("iframe")[index].src = emptypage;
+				document.getElementById("webcontent").getElementsByTagName("iframe")[index].className = "hidden";
+				// show drag drop
 				document.getElementById("drag-drop-info").className = "show";
 				document.getElementById("drag-drop-zone").className = "show";
+
+				// update icon
+				updatetabicon(emptypage);
+				// save empty URL for drag drop
+				updatesaveurl(emptypage);
 			}
 		}
 	}
@@ -928,7 +952,6 @@ const openweb = async(currenturl) => {
 	}else{
 		index = 0;
 	}
-
 
 	await chrome.declarativeNetRequest.updateSessionRules({
 		removeRuleIds: [1],
@@ -1240,7 +1263,7 @@ chrome.runtime.onMessage.addListener(function(request){
 	}else if(request.msg == "setmultipletabs"){
 		chrome.storage.sync.get(["multipletabs", "multivalues"], function(items){
 			multipletabs = items["multipletabs"]; if(multipletabs == null){ multipletabs = false; }
-			multivalues = items["multivalues"]; if(multivalues == null){ multivalues = [{"note":""}]; }
+			multivalues = items["multivalues"]; if(multivalues == null){ multivalues = [{"note":emptypage}]; }
 
 			document.getElementById("drag-drop-info").className = "show";
 			document.getElementById("drag-drop-zone").className = "show";
