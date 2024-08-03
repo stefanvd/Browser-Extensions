@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-const exbrowser = "chrome";
+const exbrowser = "safari";
 // values: "chrome", "safari", "edge", "firefox", "opera", "yandex", "whale"
 const linkredirectionoptions = "https://stefanvd.net/project/rotate-that-video-player/browser/options/";
 const linkdeveloperwebsite = "https://www.stefanvd.net";

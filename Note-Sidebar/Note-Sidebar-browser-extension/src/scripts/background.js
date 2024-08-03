@@ -256,7 +256,7 @@ if(chrome.contextMenus){
 var contextmenus;
 chrome.storage.sync.get(["contextmenus"], function(items){
 	contextmenus = items.contextmenus; if(contextmenus == null)contextmenus = true;
-	if(items["contextmenus"]){ checkcontextmenus(); }
+	if(contextmenus){ checkcontextmenus(); }
 });
 
 // context menu for page

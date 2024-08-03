@@ -1,0 +1,99 @@
+{
+	"manifest_version": 3,
+	"short_name": "__MSG_name__",
+	"homepage_url": "https://www.stefanvd.net/support/",
+	"description": "__MSG_description__",
+	"author": "Stefan vd",
+	"version": "1.8.1",
+	"icons": {
+		"16": "images/icon16.png",
+		"24": "images/icon24.png",
+		"32": "images/icon32.png",
+		"48": "images/icon48.png",
+		"96": "images/icon96.png",
+		"128": "images/icon128.png"
+	},
+	"default_locale": "en",
+	"content_security_policy": {
+		"extension_pages": "default-src 'none'; style-src 'self'; media-src https://www.stefanvd.net; frame-src https://www.youtube.com https://www.stefanvd.net; connect-src https://www.stefanvd.net; script-src 'self'; img-src 'self' https://www.stefanvd.net * data:; object-src 'none'"
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"*://*/*"
+			],
+			"js": [
+				"scripts/constants.js",
+				"scripts/content.js"
+			],
+			"css": [
+				"styles/fs.css"
+			],
+			"run_at": "document_end"
+		}
+	],
+	"options_ui": {
+		"page": "options.html",
+		"open_in_tab": true
+	},
+	"name": "__MSG_name__",
+	"background": {
+		"scripts": [
+			"scripts/constants.js",
+			"scripts/background.js"
+		]
+	},
+	"action": {
+		"default_icon": {
+			"16": "images/icon16.png",
+			"32": "images/icon32.png"
+		},
+		"default_title": "__MSG_name__",
+		"theme_icons": [
+			{
+				"light": "images/whiteicon16.png",
+				"dark": "images/icon16.png",
+				"size": 16
+			},
+			{
+				"light": "images/whiteicon32.png",
+				"dark": "images/icon32.png",
+				"size": 32
+			}
+		]
+	},
+	"commands": {
+		"_execute_action": {
+			"suggested_key": {
+				"default": "Ctrl+Shift+F",
+				"mac": "MacCtrl+Shift+F"
+			}
+		}
+	},
+	"web_accessible_resources": [
+		{
+			"resources": [
+				"/scripts/video-player-status.js"
+			],
+			"matches": [
+				"<all_urls>"
+			]
+		}
+	],
+	"permissions": [
+		"contextMenus",
+		"tabs",
+		"storage",
+		"scripting"
+	],
+	"host_permissions": [
+		"<all_urls>"
+	],
+	"browser_specific_settings": {
+		"gecko": {
+			"id": "fullscreen@stefanvd.net",
+			"strict_min_version": "113.0"
+		},
+		"gecko_android": {}
+	}
+}

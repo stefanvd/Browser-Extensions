@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-const exbrowser = "opera";
+const exbrowser = "whale";
 // values: "chrome", "safari", "edge", "firefox", "opera", "yandex", "whale"
 const linkredirectionoptions = "https://www.stefanvd.net/project/note-sidebar/browser/options/";
 const linkdeveloperwebsite = "https://www.stefanvd.net";
