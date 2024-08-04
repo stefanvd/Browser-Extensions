@@ -42,17 +42,19 @@ function eventsubmitFunc(selector, callback){
 }
 
 function getalldomains(a){
-	var atmosphereDomainsBox = $(a);
-	var atmosphereDomains = {};
-	var atmospherei;
-	var atmospherel = atmosphereDomainsBox.length;
-	for(atmospherei = 0; atmospherei < atmospherel; atmospherei++){ atmosphereDomains[atmosphereDomainsBox.options[atmospherei].value] = true; }
-	return JSON.stringify(atmosphereDomains);
+	var thatDomainsBox = $(a);
+	var theDomains = {};
+	var domi;
+	var doml = thatDomainsBox.length;
+	for(domi = 0; domi < doml; domi++){ theDomains[thatDomainsBox.options[domi].value] = true; }
+
+	return JSON.stringify(theDomains);
 }
 
 // Option to save current value
 function save_options(){
 	chrome.runtime.sendMessage({name: "getallpermissions"});
+
 
 	chrome.storage.sync.set({"icon": $("btnpreview").src, "contextmenus":$("contextmenus").checked, "autofullscreen":$("autofullscreen").checked, "optionskipremember":$("optionskipremember").checked, "fullscreenweb":$("fullscreenweb").checked, "fullscreenwindow":$("fullscreenwindow").checked, "fullscreenpopup":$("fullscreenpopup").checked, "fullscreenvideo":$("fullscreenvideo").checked, "allwindows":$("allwindows").checked, "videoinwindow":$("videoinwindow").checked, "videooutwindow":$("videooutwindow").checked, "autostartup":$("autostartup").checked, "startupallwindow":$("startupallwindow").checked, "startupcurrentwindow":$("startupcurrentwindow").checked, "autofullscreenDomains":getalldomains("autofullscreenDomainsBox"), "autofullscreenchecklistwhite":$("autofullscreenchecklistwhite").checked, "autofullscreenchecklistblack":$("autofullscreenchecklistblack").checked, "autofullscreenonly":$("autofullscreenonly").checked});
 }
@@ -72,7 +74,7 @@ chrome.storage.sync.get(["icon", "contextmenus", "fullscreenweb", "fullscreenwin
 	if(items["fullscreenweb"] == null && items["fullscreenwindow"] == null && items["fullscreenvideo"] == null){ firstdefaultvalues["fullscreenweb"] = true; firstdefaultvalues["fullscreenwindow"] = false; firstdefaultvalues["fullscreenpopup"] = false; firstdefaultvalues["fullscreenvideo"] = false; }
 	if(items["videoinwindow"] == null && items["videooutwindow"] == null){ firstdefaultvalues["videoinwindow"] = true; firstdefaultvalues["videooutwindow"] = false; }
 	if(items["startupallwindow"] == null && items["startupcurrentwindow"] == null){ firstdefaultvalues["startupallwindow"] = true; firstdefaultvalues["startupcurrentwindow"] = false; }
-	if(items["autofullscreenDomains"] == null || items["atmosphereDomains"] == null || items["autostopDomains"] == null || items["videotoolDomains"] == null || items["videovolumeDomains"] == null || items["gamepadDomains"] == null){
+	if(items["autofullscreenDomains"] == null){
 		firstdefaultvalues["autofullscreenDomains"] = JSON.stringify({"https://www.youtube.com": true, "https://vimeo.com": true});
 	}
 	// find no localstore autofullscreen whitelist

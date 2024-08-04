@@ -27,8 +27,11 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 //================================================
 
 // Importing the constants
-// eslint-disable-next-line no-undef
-importScripts("constants.js");
+// Execute if importScripts is support such as Google Chrome and not Firefox
+if(typeof importScripts !== "undefined"){
+	// eslint-disable-next-line no-undef
+	importScripts("constants.js");
+}
 
 chrome.runtime.onMessage.addListener(function request(request, sender){
 	switch(request.name){
@@ -51,12 +54,6 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 			}
 		}
 		);
-		break;
-	case"contextmenuon":
-		checkcontextmenus();
-		break;
-	case"contextmenuoff":
-		removecontexmenus();
 		break;
 	case"getallpermissions":
 		var result = "";
@@ -219,83 +216,90 @@ chrome.windows.onFocusChanged.addListener(function(){
 var oldwindowstatus;
 var fullscreenweb = null, fullscreenwindow = null, fullscreenpopup = null, fullscreenvideo = null, allwindows = null, autostartup = null, autostartupall = null, autostartupcurrent = null, videoinwindow = null;
 
+async function getPopupOpenLength(){
+	var total = (await chrome.runtime.getContexts({contextTypes: ["POPUP"]})).length;
+	return total;
+}
+
 // Set click to zero at beginning
 let clickbutton = 0;
 // Declare a timer variable
 let timer;
-var openactionclick = function(tab){
+chrome.action.onClicked.addListener(async(tab) => {
 	clickbutton += 1;
-	if(clickbutton == 2){
-		// console.log("Doubleclick");
-		clearTimeout(timer);
-		chrome.action.setPopup({tabId: tab.id, popup:"palette.html"});
-		chrome.action.openPopup();
-	}
-
 	timer = setTimeout(function(){
-		// console.log("Singelclick");
-		if(clickbutton == 1){
-			chrome.windows.getCurrent(function(window){
-				chrome.storage.sync.get(["fullscreenweb", "fullscreenwindow", "fullscreenpopup", "fullscreenvideo", "allwindows", "videoinwindow"], function(items){
-					fullscreenweb = items["fullscreenweb"]; if(fullscreenweb == null)fullscreenweb = true;
-					fullscreenwindow = items["fullscreenwindow"];
-					fullscreenpopup = items["fullscreenpopup"];
-					fullscreenvideo = items["fullscreenvideo"];
-					allwindows = items["allwindows"];
-					videoinwindow = items["videoinwindow"];
+		getPopupOpenLength().then((thatpanellength) => {
+			if(thatpanellength != 0){
+				// console.log("Doubleclick");
+				// console.log("yes popup open")
+				clickbutton = 0;
+				clearTimeout(timer);
+			}else{
+				// console.log("no popup open")
+				if(clickbutton == 1){
+					chrome.windows.getCurrent(function(window){
+						chrome.storage.sync.get(["fullscreenweb", "fullscreenwindow", "fullscreenpopup", "fullscreenvideo", "allwindows", "videoinwindow"], function(items){
+							fullscreenweb = items["fullscreenweb"]; if(fullscreenweb == null)fullscreenweb = true;
+							fullscreenwindow = items["fullscreenwindow"];
+							fullscreenpopup = items["fullscreenpopup"];
+							fullscreenvideo = items["fullscreenvideo"];
+							allwindows = items["allwindows"];
+							videoinwindow = items["videoinwindow"];
 
-					if(fullscreenweb == true){
-						if(allwindows == true){
-							chrome.windows.getAll({}, function(windows){
-								windows.forEach(function(window){
+							if(fullscreenweb == true){
+								if(allwindows == true){
+									chrome.windows.getAll({}, function(windows){
+										windows.forEach(function(window){
+											if(window.state == "fullscreen"){
+												chrome.windows.update(window.id, {state: oldwindowstatus});
+											}else{
+												oldwindowstatus = window.state;
+												chrome.windows.update(window.id, {state: "fullscreen"});
+											}
+										});
+									});
+								}else{
+									// Firefox extension do not use the Full Screen API, permission issue. So use the Chrome window method
+									// Bug Chrome: do not restore previous state
 									if(window.state == "fullscreen"){
 										chrome.windows.update(window.id, {state: oldwindowstatus});
 									}else{
 										oldwindowstatus = window.state;
 										chrome.windows.update(window.id, {state: "fullscreen"});
 									}
-								});
-							});
-						}else{
-							// Firefox extension do not use the Full Screen API, permission issue. So use the Chrome window method
-							// Bug Chrome: do not restore previous state
-							if(window.state == "fullscreen"){
-								chrome.windows.update(window.id, {state: oldwindowstatus});
-							}else{
-								oldwindowstatus = window.state;
-								chrome.windows.update(window.id, {state: "fullscreen"});
-							}
 
-							// Chromium web browsers
-							// Old way
-							// if(tab.url.match(/^http/i)||tab.url.match(/^file/i)){
-							// chrome.scripting.executeScript({
-							// 	target: {tabId: tab.id},
-							//	files: ["scripts/fullscreen.js"]
-							// });
-							// }
-						}
-					}else if(fullscreenwindow == true){
-						setfullscreenwindow();
-					}else if(fullscreenpopup == true){
-						setfullscreenpopup();
-					}else if(fullscreenvideo == true){
-						if(videoinwindow == true){
-							chrome.tabs.sendMessage(tab.id, {name: "govideoinwindow"});
-						}else{
-							setfullscreenvideo(tab);
-						}
-					}
-				});
-			});
-		}
-		clickbutton = 0;
-		// Clear all timers
-		clearTimeout(timer);
+									// Chromium web browsers
+									// Old way
+									// if(tab.url.match(/^http/i)||tab.url.match(/^file/i)){
+									// chrome.scripting.executeScript({
+									// 	target: {tabId: tab.id},
+									//	files: ["scripts/fullscreen.js"]
+									// });
+									// }
+								}
+							}else if(fullscreenwindow == true){
+								setfullscreenwindow();
+							}else if(fullscreenpopup == true){
+								setfullscreenpopup();
+							}else if(fullscreenvideo == true){
+								if(videoinwindow == true){
+									chrome.tabs.sendMessage(tab.id, {name: "govideoinwindow"});
+								}else{
+									setfullscreenvideo(tab);
+								}
+							}
+						});
+					});
+				}
+				clickbutton = 0;
+				// Clear all timers
+				clearTimeout(timer);
+			}
+		});
 		chrome.action.setPopup({tabId: tab.id, popup:""});
 	}, 250);
-};
-chrome.action.onClicked.addListener(openactionclick);
+	chrome.action.setPopup({tabId: tab.id, popup:"palette.html"});
+});
 
 let getcurrentscreensize = new Promise((resolve) => {
 	chrome.system.display.getInfo(function(display_properties){
@@ -460,7 +464,7 @@ var sharemenuwelcomeguidetitle = chrome.i18n.getMessage("sharemenuwelcomeguideti
 var sharemenutellafriend = chrome.i18n.getMessage("sharemenutellafriend");
 var sharemenupostonx = chrome.i18n.getMessage("sharemenupostonx");
 var sharemenupostonfacebook = chrome.i18n.getMessage("sharemenupostonfacebook");
-var sharemenuratetitle = chrome.i18n.getMessage("sharemenuratetitle");
+// var sharemenuratetitle = chrome.i18n.getMessage("sharemenuratetitle");
 var sharemenudonatetitle = chrome.i18n.getMessage("sharemenudonatetitle");
 var sharemenusubscribetitle = chrome.i18n.getMessage("desremyoutube");
 var sharemenupostonweibo = chrome.i18n.getMessage("sharemenupostonweibo");
@@ -497,7 +501,7 @@ if(chrome.contextMenus){
 
 		browsercontext(sharemenuwelcomeguidetitle, "totlguideemenu", {"16": "images/IconGuide.png", "32": "images/IconGuide@2x.png"});
 		browsercontext(sharemenudonatetitle, "totldevelopmenu", {"16": "images/IconDonate.png", "32": "images/IconDonate@2x.png"});
-		browsercontext(sharemenuratetitle, "totlratemenu", {"16": "images/IconStar.png", "32": "images/IconStar@2x.png"});
+		// browsercontext(sharemenuratetitle, "totlratemenu", {"16": "images/IconStar.png", "32": "images/IconStar@2x.png"});
 
 		// Create a parent item and two children.
 		var parent = null;
@@ -530,12 +534,14 @@ if(chrome.contextMenus){
 	}
 }
 
+var contextmenus;
 chrome.storage.sync.get(["contextmenus"], function(items){
-	if(items["contextmenus"]){ checkcontextmenus(); }
+	contextmenus = items.contextmenus; if(contextmenus == null)contextmenus = true;
+	if(contextmenus){ checkcontextmenus(); }
 });
 
 // context menu for page and video
-var menuvideo = null; var menuimage = null; var menupage = null;
+var menuitems = null;
 var contextmenuadded = false;
 var contextarrayvideo = [];
 var contextarrayimage = [];
@@ -544,26 +550,32 @@ var contextsvideo = null;
 var contextsimage = null;
 var contextspage = null;
 
-var videotitle = chrome.i18n.getMessage("videotitle");
-var imagetitle = chrome.i18n.getMessage("imagetitle");
-var pagetitle = chrome.i18n.getMessage("pagetitle");
+function addwebpagecontext(a, b, c, d){
+	var k;
+	var addvideolength = b.length;
+	for(k = 0; k < addvideolength; k++){
+		var contextvideo = b[k];
+		menuitems = chrome.contextMenus.create({"title": a, "type":"normal", "id": d, "contexts":[contextvideo]});
+		c.push(menuitems);
+	}
+}
+
 function checkcontextmenus(){
 	if(chrome.contextMenus){
 		if(contextmenuadded == false){
 			contextmenuadded = true;
-
 			// video
+			var videotitle = chrome.i18n.getMessage("videotitle");
 			var contextsvideo = ["video"];
-			menuvideo = chrome.contextMenus.create({"title": videotitle, "type":"normal", "id": "fsvideo", "contexts":contextsvideo});
-			contextarrayvideo.push(menuvideo);
+			addwebpagecontext(videotitle, contextsvideo, contextarrayvideo, "fsvideo");
 			// image
+			var imagetitle = chrome.i18n.getMessage("imagetitle");
 			var contextsimage = ["image"];
-			menuimage = chrome.contextMenus.create({"title": imagetitle, "type":"normal", "id": "fsimage", "contexts":contextsimage});
-			contextarrayimage.push(menuimage);
+			addwebpagecontext(imagetitle, contextsimage, contextarrayimage, "fsimage");
 			// page
+			var pagetitle = chrome.i18n.getMessage("pagetitle");
 			var contextspage = ["page"];
-			menupage = chrome.contextMenus.create({"title": pagetitle, "type":"normal", "id": "fspage", "contexts":contextspage});
-			contextarraypage.push(menupage);
+			addwebpagecontext(pagetitle, contextspage, contextarraypage, "fspage");
 		}
 	}
 }

@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 	chrome.storage.sync.get(["darkmode", "firstDate", "optionskipremember", "firstsawrate", "fullscreenweb", "fullscreenwindow", "fullscreenpopup", "fullscreenvideo", "videoinwindow", "videooutwindow"], function(items){
 		darkmode = items["darkmode"]; if(darkmode == null)darkmode = false; // default false
-		fullscreenweb = items["fullscreenweb"]; if(fullscreenweb == null)fullscreenweb = false; // default true
+		fullscreenweb = items["fullscreenweb"]; if(fullscreenweb == null)fullscreenweb = true; // default true
 		fullscreenwindow = items["fullscreenwindow"]; if(fullscreenwindow == null)fullscreenwindow = false; // default false
 		fullscreenpopup = items["fullscreenpopup"]; if(fullscreenpopup == null)fullscreenpopup = false; // default false
 		fullscreenvideo = items["fullscreenvideo"]; if(fullscreenvideo == null)fullscreenvideo = false; // default false

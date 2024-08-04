@@ -4,7 +4,7 @@
 	"homepage_url": "https://www.stefanvd.net/support/",
 	"description": "__MSG_description__",
 	"author": "Stefan vd",
-	"version": "1.8.1",
+	"version": "1.8.2",
 	"icons": {
 		"16": "images/icon16.png",
 		"24": "images/icon24.png",
@@ -32,17 +32,6 @@
 			"run_at": "document_end"
 		}
 	],
-	"web_accessible_resources": [
-		{
-			"resources": [
-				"/scripts/video-player-status.js"
-			],
-			"matches": [
-				"<all_urls>"
-			],
-			"use_dynamic_url": true
-		}
-	],
 	"options_ui": {
 		"page": "options.html",
 		"open_in_tab": true
@@ -66,6 +55,17 @@
 			}
 		}
 	},
+	"web_accessible_resources": [
+		{
+			"resources": [
+				"/scripts/video-player-status.js"
+			],
+			"matches": [
+				"<all_urls>"
+			],
+			"use_dynamic_url": true
+		}
+	],
 	"offline_enabled": true,
 	"minimum_chrome_version": "114",
 	"permissions": [
