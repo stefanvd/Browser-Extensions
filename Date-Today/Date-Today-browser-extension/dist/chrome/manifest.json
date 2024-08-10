@@ -4,7 +4,7 @@
 	"homepage_url": "https://www.stefanvd.net/support/",
 	"description": "__MSG_description__",
 	"author": "Stefan vd",
-	"version": "1.4.4",
+	"version": "1.4.5",
 	"icons": {
 		"16": "images/icon16.png",
 		"24": "images/icon24.png",

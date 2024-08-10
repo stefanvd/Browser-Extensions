@@ -27,8 +27,11 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 //================================================
 
 // Importing the constants
-// eslint-disable-next-line no-undef
-importScripts("constants.js");
+// Execute if importScripts is support such as Google Chrome and not Firefox
+if(typeof importScripts !== "undefined"){
+	// eslint-disable-next-line no-undef
+	importScripts("constants.js");
+}
 
 var twelfh = null, badge = null, lightcolor = null, clockbck = null, colorhours = null, colorminutes = null, clockanalog = null, clocktickpoint = null, colorbackground = null, colordots = null, badgeclock = null, badgedate = null, badgeweek = null, badgemonth = null, badgedatesystema = null, badgedatesystemb = null, textcanvascolor = null, stamptypeA = null, stamptypeB = null, stamptypeC = null, stamptypeD = null, stamptypeE = null, datetoday = null, badgetop = null, badgebottom = null, hidemonth = null;
 var pastetext;
@@ -395,8 +398,10 @@ if(chrome.contextMenus){
 
 chrome.contextMenus.onClicked.addListener(onClickHandler);
 
+var stamp;
 chrome.storage.sync.get(["stamp"], function(items){
-	if(items["stamp"]){ checkcontextmenus(); }
+	stamp = items.stamp; if(stamp == null)stamp = false;
+	if(stamp){ checkcontextmenus(); }
 });
 
 // context menu for page and video

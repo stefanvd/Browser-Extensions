@@ -564,6 +564,11 @@ function domcontentloaded(){
 	$("a2").addEventListener("click", function(){ document.images["preview"].src = "/images/paw19@2x.png"; });
 	$("a3").addEventListener("click", function(){ document.images["preview"].src = "/images/feet19-dark@2x.png"; });
 	$("a4").addEventListener("click", function(){ document.images["preview"].src = "/images/paw19-dark@2x.png"; });
+	$("a5").addEventListener("click", function(){ document.images["preview"].src = "/images/pawblue19@2x.png"; });
+	$("a6").addEventListener("click", function(){ document.images["preview"].src = "/images/pawred19@2x.png"; });
+	$("a7").addEventListener("click", function(){ document.images["preview"].src = "/images/pawyellow19@2x.png"; });
+	$("a8").addEventListener("click", function(){ document.images["preview"].src = "/images/pawgreen19@2x.png"; });
+	$("a9").addEventListener("click", function(){ document.images["preview"].src = "/images/pawpink19@2x.png"; });
 
 	// save browser icon styles
 	var buttoncolor = document.getElementsByClassName("buttoncolor");
