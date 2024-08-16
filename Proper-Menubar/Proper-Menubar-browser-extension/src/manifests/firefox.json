@@ -1,5 +1,6 @@
 {
   "name": "__MSG_name__",
+  "short_name": "__MSG_name__",
   "background": {
     "scripts": ["scripts/constants.js","scripts/background.js"]
   },

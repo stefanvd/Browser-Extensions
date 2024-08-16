@@ -1,5 +1,6 @@
 {
   "name": "__MSG_nameopera__",
+  "short_name": "__MSG_name__",
   "action": {
     "default_icon": {
       "19": "images/icon19.png",
