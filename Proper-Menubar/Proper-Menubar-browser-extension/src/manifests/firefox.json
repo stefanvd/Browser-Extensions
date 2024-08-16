@@ -43,6 +43,16 @@
       "description": "__MSG_titelshortfocus__"
     }
   },
+  "web_accessible_resources": [{
+    "resources": [ "images/slice1.png",
+    "images/slice2.png",
+    "images/slice3.png",
+    "images/slice4.png",
+    "images/slice5.png",
+    "images/slice6.png",
+    "styles/toolbar.css"],
+    "matches": ["<all_urls>"]
+  }],
   "permissions": ["contextMenus", "activeTab", "storage", "webNavigation", "scripting"],
   "optional_permissions": ["pageCapture", "clipboardWrite", "clipboardRead", "bookmarks", "downloads"],
   "host_permissions": ["<all_urls>"],

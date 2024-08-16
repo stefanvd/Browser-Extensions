@@ -34,6 +34,17 @@
       "description": "__MSG_titelshortfocus__"
     }
   },
+  "web_accessible_resources": [{
+    "resources": [ "images/slice1.png",
+    "images/slice2.png",
+    "images/slice3.png",
+    "images/slice4.png",
+    "images/slice5.png",
+    "images/slice6.png",
+    "styles/toolbar.css"],
+    "matches": ["<all_urls>"],
+    "use_dynamic_url": true
+  }],
   "offline_enabled": true,
   "minimum_chrome_version": "114",
   "permissions": ["contextMenus", "activeTab", "storage", "webNavigation", "scripting"],
