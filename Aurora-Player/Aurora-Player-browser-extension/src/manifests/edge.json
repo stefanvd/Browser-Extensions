@@ -1,0 +1,26 @@
+{
+  "name": "__MSG_name__",
+  "action": {
+    "default_icon": {
+      "16": "images/toolbar-icon-16.png",
+      "19": "images/toolbar-icon-19.png",
+      "32": "images/toolbar-icon-32.png",
+      "38": "images/toolbar-icon-38.png"
+    },
+    "default_title": "__MSG_name__"
+  },
+  "background": {
+    "service_worker": "scripts/background.js"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+A",
+        "mac": "MacCtrl+Shift+A"
+      }
+    }
+  },
+  "offline_enabled": true,
+  "minimum_chrome_version": "114",
+  "permissions": [ "activeTab", "scripting" ]
+}

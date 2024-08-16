@@ -1,0 +1,11 @@
+{
+    "name": {
+        "message": "Aurora Player"
+    },
+    "description": {
+        "message": "Öffnen Sie das aktuelle Video in der Aurora Player-App, um atemberaubende Leuchteffekte zu erzielen."
+    },
+    "errornovideo": {
+        "message": "Auf der aktuellen Webseite wurde kein Video gefunden."
+    }
+}

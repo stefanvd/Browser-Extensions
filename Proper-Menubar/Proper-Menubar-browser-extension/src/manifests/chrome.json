@@ -1,0 +1,41 @@
+{
+  "name": "__MSG_namechrome__",
+  "action": {
+    "default_icon": {
+      "19": "images/icon19.png",
+      "38": "images/icon38.png"
+    },
+    "default_title": "__MSG_name__",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "scripts/background.js"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+M",
+        "mac": "MacCtrl+Shift+M"
+      }
+    },
+    "toggle-feature-propermenubar": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+P",
+        "mac": "MacCtrl+Shift+P"
+      },
+      "description": "__MSG_titelshortproper__"
+    },
+    "toggle-feature-focus": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+1",
+        "mac": "MacCtrl+Shift+1"
+      },
+      "description": "__MSG_titelshortfocus__"
+    }
+  },
+  "offline_enabled": true,
+  "minimum_chrome_version": "114",
+  "permissions": ["contextMenus", "activeTab", "storage", "webNavigation", "scripting"],
+  "optional_permissions": ["pageCapture", "clipboardWrite", "clipboardRead", "bookmarks"],
+  "host_permissions": ["<all_urls>"]
+}

@@ -1,0 +1,11 @@
+{
+    "name": {
+        "message": "Aurora Player"
+    },
+    "description": {
+        "message": "Aurora Player アプリで現在のビデオを開くと、素晴らしいグロー効果が得られます。"
+    },
+    "errornovideo": {
+        "message": "現在の Web ページにはビデオが見つかりません。"
+    }
+}

@@ -1,0 +1,11 @@
+{
+    "name": {
+        "message": "Aurora Player"
+    },
+    "description": {
+        "message": "Open de huidige video in de Aurora Player-app voor verbluffende gloedeffecten."
+    },
+    "errornovideo": {
+        "message": "Er is geen video gevonden op de huidige webpagina."
+    }
+}
