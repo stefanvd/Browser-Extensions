@@ -13,8 +13,18 @@ const linkwelcome = "https://www.stefanvd.net/project/proper-menubar/browser/fir
 const linkuninstall = "https://www.stefanvd.net/project/proper-menubar/browser/firefox/uninstall/";
 const linkguide = "https://www.stefanvd.net/project/proper-menubar/browser/firefox/guide/";
 const linkproductdescription = "https://www.stefanvd.net/project/proper-menubar/browser/";
-const browsernewtab = "null";
+const browsernewtab = "about:blank";
 const browserstore = "https://addons.mozilla.org";
 const linkyoutube = "https://www.youtube.com/@stefanvandamme?sub_confirmation=1";
 const devmode = true;
 const devdonate = false;
+
+const browserextensions = "about:addons";
+const browsersettings = "about:preferences";
+const browserdownloads = "about:downloads";
+const browserpolicy = "about:policies";
+const browserinspect = "about:devtools";
+const browserflags = "about:config";
+const browserabout = "about:support";
+const browserbookmarks = "https://getpocket.com/a/queue";
+const browserhistory = "https://myactivity.google.com/myactivity";

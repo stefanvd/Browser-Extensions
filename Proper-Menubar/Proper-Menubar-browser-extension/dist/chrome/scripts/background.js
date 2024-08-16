@@ -27,8 +27,11 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 //================================================
 
 // Importing the constants
-// eslint-disable-next-line no-undef
-importScripts("constants.js");
+// Execute if importScripts is support such as Google Chrome and not Firefox
+if(typeof importScripts !== "undefined"){
+	// eslint-disable-next-line no-undef
+	importScripts("constants.js");
+}
 
 // Not for Safari web browser, it use the content script way in the manifest.json file
 // because Safari 15.4 and 16.0 do not support script "injectImmediately" and not stable "webNavigation.onCommitted" on iOS
@@ -42,8 +45,9 @@ if(exbrowser != "safari"){
 }
 
 // constants.js = Constants
+// g.js = Google
 // content.js = Bar
-const scriptList = ["scripts/constants.js", "scripts/content.js"];
+const scriptList = ["scripts/constants.js", "scripts/g.js", "scripts/content.js"];
 const injectScriptsTo = (tabId, url) => {
 	if(url.match(/^http/i) || url.match(/^file/i)){
 		// JavaScript
@@ -69,16 +73,6 @@ const injectScriptsTo = (tabId, url) => {
 	}
 };
 //---
-
-var saveAs = function(blob, name){
-	var object_url = window.URL.createObjectURL(blob);
-	var save_link = document.createElementNS("http://www.w3.org/1999/xhtml", "a");
-	save_link.href = object_url;
-	save_link.download = name;
-	var event = new MouseEvent("click");
-	save_link.dispatchEvent(event);
-};
-
 chrome.runtime.onMessage.addListener(function request(request, sender, sendResponse){
 	if(request.name == "stefanproper"){
 		chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
@@ -125,14 +119,20 @@ chrome.runtime.onMessage.addListener(function request(request, sender, sendRespo
 	}else if(request.name == "stefansavemhtml"){
 		// Permissions must be requested from inside a user gesture
 		chrome.permissions.request({
-			permissions: ["pageCapture"]
+			permissions: ["pageCapture", "downloads"]
 		}, function(granted){
 			// The callback argument will be true if the user granted the permissions.
 			if(granted){
 				chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
 					var tab = tabs[0];
-					chrome.pageCapture.saveAsMHTML({"tabId": tab.id}, function(data){
-						saveAs(data, tab.title + ".mhtml");
+					chrome.pageCapture.saveAsMHTML({"tabId": tab.id}, async(blob) => {
+						const content = await blob.text();
+						const url = "data:application/x-mimearchive;base64," + btoa(content);
+						const downloadId = await chrome.downloads.download({
+							url,
+							filename: tab.title + ".mhtml"
+						});
+						console.log("Download ID:", downloadId);
 					});
 				});
 			}else{
@@ -452,8 +452,8 @@ function onClickHandler(info){
 		chrome.tabs.create({url: writereview, active:true});
 	}else if(info.menuItemId == "totlshareemail"){
 		var sturnoffthelightemail = "mailto:your@email.com?subject=" + chrome.i18n.getMessage("sharetexta") + "&body=" + chrome.i18n.getMessage("sharetextb") + " " + linkproduct; chrome.tabs.create({url: sturnoffthelightemail, active:true});
-	}else if(info.menuItemId == "totlsharetwitter"){
-		var slinkproductcodeurl = encodeURIComponent(chrome.i18n.getMessage("sharetextd") + " " + linkproduct); chrome.tabs.create({url: "https://twitter.com/intent/tweet?text=" + slinkproductcodeurl, active:true});
+	}else if(info.menuItemId == "totlsharex"){
+		var slinkproductcodeurl = encodeURIComponent(chrome.i18n.getMessage("sharetextd") + " " + linkproduct); chrome.tabs.create({url: "https://x.com/intent/tweet?text=" + slinkproductcodeurl, active:true});
 	}else if(info.menuItemId == "totlsharefacebook"){
 		chrome.tabs.create({url: "https://www.facebook.com/sharer/sharer.php?u=" + linkproduct, active:true});
 	}else if(info.menuItemId == "totlsubscribe"){
@@ -538,12 +538,12 @@ if(chrome.contextMenus){
 			browsercontext(sharemenupostonvkontakte, "totlsharevkontakte", {"16": "images/IconVkontakte.png", "32": "images/IconVkontakte@2x.png"}, parent);
 			browsercontext(sharemenupostonfacebook, "totlsharefacebook", {"16": "images/IconFacebook.png", "32": "images/IconFacebook@2x.png"}, parent);
 			browsercontext(sharemenupostonwhatsapp, "totlsharewhatsapp", {"16": "images/IconWhatsApp.png", "32": "images/IconWhatsApp@2x.png"}, parent);
-			browsercontext(sharemenusendatweet, "totlsharetwitter", {"16": "images/IconTwitter.png", "32": "images/IconTwitter@2x.png"}, parent);
+			browsercontext(sharemenusendatweet, "totlsharex", {"16": "images/IconX.png", "32": "images/IconX@2x.png"}, parent);
 		}else{
 			// all users
 			browsercontext(sharemenupostonfacebook, "totlsharefacebook", {"16": "images/IconFacebook.png", "32": "images/IconFacebook@2x.png"}, parent);
 			browsercontext(sharemenupostonwhatsapp, "totlsharewhatsapp", {"16": "images/IconWhatsApp.png", "32": "images/IconWhatsApp@2x.png"}, parent);
-			browsercontext(sharemenusendatweet, "totlsharetwitter", {"16": "images/IconTwitter.png", "32": "images/IconTwitter@2x.png"}, parent);
+			browsercontext(sharemenusendatweet, "totlsharex", {"16": "images/IconX.png", "32": "images/IconX@2x.png"}, parent);
 		}
 
 		chrome.contextMenus.create({"title": "", "type":"separator", "id": "totlsepartor", "contexts": contexts});

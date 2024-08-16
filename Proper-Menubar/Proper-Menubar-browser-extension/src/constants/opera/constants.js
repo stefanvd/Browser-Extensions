@@ -18,3 +18,13 @@ const browserstore = "https://addons.opera.com";
 const linkyoutube = "https://www.youtube.com/@stefanvandamme?sub_confirmation=1";
 const devmode = true;
 const devdonate = false;
+
+const browserextensions = "chrome://extensions/";
+const browsersettings = "chrome://settings/";
+const browserdownloads = "chrome://downloads/";
+const browserpolicy = "chrome://policy/";
+const browserinspect = "chrome://inspect/";
+const browserflags = "chrome://flags/";
+const browserabout = "chrome://settings/help";
+const browserbookmarks = "chrome://bookmarks/";
+const browserhistory = "chrome://history/";

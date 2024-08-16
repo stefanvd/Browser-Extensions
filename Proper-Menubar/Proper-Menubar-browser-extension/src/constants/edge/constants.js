@@ -18,3 +18,13 @@ const browserstore = "https://microsoftedge.microsoft.com";
 const linkyoutube = "https://www.youtube.com/@stefanvandamme?sub_confirmation=1";
 const devmode = true;
 const devdonate = false;
+
+const browserextensions = "edge://extensions/";
+const browsersettings = "edge://settings/";
+const browserdownloads = "edge://downloads/";
+const browserpolicy = "edge://policy/";
+const browserinspect = "edge://inspect/";
+const browserflags = "edge://flags/";
+const browserabout = "edge://settings/help";
+const browserbookmarks = "edge://bookmarks/";
+const browserhistory = "edge://history/";

@@ -283,10 +283,10 @@ section>div:only-of-type{-webkit-box-flex:1}
 #welcomelamp{margin-right:5px}
 #rememberlamp{margin-right:5px}
 /* share box */
-#shareboxyoutube{background:url(/images/youtube@2x.png)left top no-repeat;background:-webkit-image-set(url(/images/youtube.png) 1x,url(/images/youtube@2x.png) 2x);background:image-set(url(/images/youtube.png) 1x,url(/images/youtube@2x.png) 2x);width:25px;height:18px;display:inline-block;background-size:cover;margin-left:10px;margin-right:10px;cursor:pointer}
-#shareboxfacebook{background:url(/images/facebook@2x.png)left top no-repeat;background:-webkit-image-set(url(/images/facebook.png) 1x,url(/images/facebook@2x.png) 2x);background:image-set(url(/images/facebook.png) 1x,url(/images/facebook@2x.png) 2x);width:18px;height:18px;display:inline-block;background-size:cover;margin-right:10px;cursor:pointer}
-#shareboxtwitter{background:url(/images/twitter@2x.png)left top no-repeat;background:-webkit-image-set(url(/images/twitter.png) 1x,url(/images/twitter@2x.png) 2x);background:image-set(url(/images/twitter.png) 1x,url(/images/twitter@2x.png) 2x);width:18px;height:18px;display:inline-block;background-size:cover;cursor:pointer}
-#shareboxrate:hover,#shareboxyoutube:hover,#shareboxfacebook:hover,#shareboxtwitter:hover{opacity:.8;cursor:pointer}
+#shareboxyoutube{background:url(../images/youtube@2x.png)left top no-repeat;background:-webkit-image-set(url(../images/youtube.png) 1x,url(../images/youtube@2x.png) 2x);width:25px;height:18px;display:inline-block;background-size:cover;margin-left:10px;margin-right:10px;cursor:pointer}
+#shareboxfacebook{background:url(../images/facebook@2x.png)left top no-repeat;background:-webkit-image-set(url(../images/facebook.png) 1x,url(../images/facebook@2x.png) 2x);width:18px;height:18px;display:inline-block;background-size:cover;margin-right:10px;cursor:pointer}
+#shareboxx{background:url(../images/x@2x.png)left top no-repeat;background:-webkit-image-set(url(../images/x.png) 1x,url(../images/x@2x.png) 2x);width:18px;height:18px;display:inline-block;background-size:cover;cursor:pointer}
+#shareboxrate:hover,#shareboxyoutube:hover,#shareboxfacebook:hover,#shareboxx:hover{opacity:.8;cursor:pointer}
 .probox{top:0;position:absolute;background:#FDD835;color:black;font-size:12px;padding:2px 12px;border-radius:2px;display:inline-block}
 .proboxtext{display:inline-flex;line-height:18px;padding:15px 15px 10px;gap:25px}
 .proboxbutton,.proboxbutton:hover{background:#4285f4;color:white}

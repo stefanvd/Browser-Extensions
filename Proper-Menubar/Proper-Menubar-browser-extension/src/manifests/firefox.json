@@ -23,15 +23,31 @@
   "commands": {
     "_execute_action": {
       "suggested_key": {
-        "default": "Ctrl+Shift+D",
-        "mac": "MacCtrl+Shift+D"
+        "default": "Ctrl+Shift+M",
+        "mac": "MacCtrl+Shift+M"
       }
+    },
+    "toggle-feature-propermenubar": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+P",
+        "mac": "MacCtrl+Shift+P"
+      },
+      "description": "__MSG_titelshortproper__"
+    },
+    "toggle-feature-focus": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+1",
+        "mac": "MacCtrl+Shift+1"
+      },
+      "description": "__MSG_titelshortfocus__"
     }
   },
-  "permissions": [ "activeTab", "contextMenus", "storage", "alarms" ],
+  "permissions": ["contextMenus", "activeTab", "storage", "webNavigation", "scripting"],
+  "optional_permissions": ["pageCapture", "clipboardWrite", "clipboardRead", "bookmarks", "downloads"],
+  "host_permissions": ["<all_urls>"],
   "browser_specific_settings": {
     "gecko": {
-        "id": "datetoday@stefanvd.net",
+        "id": "propermenubar@stefanvd.net",
         "strict_min_version": "113.0"
     },
     "gecko_android": {}

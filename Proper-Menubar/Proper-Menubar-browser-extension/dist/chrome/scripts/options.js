@@ -572,7 +572,7 @@ chrome.runtime.onMessage.addListener(function(msg){
 
 				var textperm = "";
 				var newpermspandes = document.createElement("span");
-				if(x == "activeTab"){ textperm = chrome.i18n.getMessage("permissionactivetab"); }else if(x == "contextMenus"){ textperm = chrome.i18n.getMessage("permissioncontextmenu"); }else if(x == "storage"){ textperm = chrome.i18n.getMessage("permissionstorage"); }else if(x == "tabs"){ textperm = chrome.i18n.getMessage("permissiontabs"); }else if(x == "pageCapture"){ textperm = chrome.i18n.getMessage("permissionpagecapture"); }else if(x == "clipboardWrite"){ textperm = chrome.i18n.getMessage("permissionclipwrite"); }else if(x == "clipboardRead"){ textperm = chrome.i18n.getMessage("permissionclipread"); }else if(x == "bookmarks"){ textperm = chrome.i18n.getMessage("permissionbookmarks"); }else if(x == "scripting"){ textperm = chrome.i18n.getMessage("permissionscripting"); }else if(x == "webNavigation"){ textperm = chrome.i18n.getMessage("permissionwebnavigation"); }
+				if(x == "activeTab"){ textperm = chrome.i18n.getMessage("permissionactivetab"); }else if(x == "contextMenus"){ textperm = chrome.i18n.getMessage("permissioncontextmenu"); }else if(x == "storage"){ textperm = chrome.i18n.getMessage("permissionstorage"); }else if(x == "tabs"){ textperm = chrome.i18n.getMessage("permissiontabs"); }else if(x == "pageCapture"){ textperm = chrome.i18n.getMessage("permissionpagecapture"); }else if(x == "clipboardWrite"){ textperm = chrome.i18n.getMessage("permissionclipwrite"); }else if(x == "clipboardRead"){ textperm = chrome.i18n.getMessage("permissionclipread"); }else if(x == "bookmarks"){ textperm = chrome.i18n.getMessage("permissionbookmarks"); }else if(x == "scripting"){ textperm = chrome.i18n.getMessage("permissionscripting"); }else if(x == "webNavigation"){ textperm = chrome.i18n.getMessage("permissionwebnavigation"); }else if(x == "downloads"){ textperm = chrome.i18n.getMessage("permissiondownloads"); }
 				newpermspandes.textContent = textperm;
 				newpermspandes.className = "item";
 				newperm.appendChild(newpermspandes);
@@ -669,8 +669,8 @@ function domcontentloaded(){
 	if($("shareboxfacebook")){
 		$("shareboxfacebook").addEventListener("click", function(){ window.open("https://www.facebook.com/sharer.php?u=" + stefanvdurl + "&t=" + sharetext + "", "Share to Facebook", "width=600,height=460,menubar=no,location=no,status=no"); });
 	}
-	if($("shareboxtwitter")){
-		$("shareboxtwitter").addEventListener("click", function(){ window.open("https://twitter.com/share?url=" + stefanvdaacodeurl + "&text=" + sharetext + "", "Share to Twitter", "width=600,height=460,menubar=no,location=no,status=no"); });
+	if($("shareboxx")){
+		$("shareboxx").addEventListener("click", function(){ window.open("https://x.com/share?url=" + stefanvdaacodeurl + "&text=" + sharetext + "", "Share to X", "width=600,height=460,menubar=no,location=no,status=no"); });
 	}
 
 	var isMenuClick = false;
@@ -866,6 +866,23 @@ function domcontentloaded(){
 	$("removepermissionmhtml").addEventListener("click", function(){
 		chrome.permissions.remove({
 			permissions: ["pageCapture"]
+		}, function(removed){
+			if(removed){
+				// The permissions have been removed.
+				var txtpermission = chrome.i18n.getMessage("wpermissionremoved");
+				window.alert(txtpermission);
+			}else{
+				// The permissions have not been removed (e.g., you tried to remove
+				// required permissions).
+				var txtpermissionnot = chrome.i18n.getMessage("wpermissionnotremoved");
+				window.alert(txtpermissionnot);
+			}
+		});
+	});
+
+	$("removepermissiondownloads").addEventListener("click", function(){
+		chrome.permissions.remove({
+			permissions: ["downloads"]
 		}, function(removed){
 			if(removed){
 				// The permissions have been removed.

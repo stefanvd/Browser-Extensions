@@ -36,6 +36,6 @@
   "offline_enabled": true,
   "minimum_chrome_version": "114",
   "permissions": ["contextMenus", "activeTab", "storage", "webNavigation", "scripting"],
-  "optional_permissions": ["pageCapture", "clipboardWrite", "clipboardRead", "bookmarks"],
+  "optional_permissions": ["pageCapture", "clipboardWrite", "clipboardRead", "bookmarks", "downloads"],
   "host_permissions": ["<all_urls>"]
 }
