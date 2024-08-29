@@ -59,8 +59,8 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 #stefanvdbuttonsbox{display:inline-block}
 #stefanvdpinterestshare{display:inline-block;cursor:pointer;margin-left:30px;border-radius:3px;box-shadow:rgba(0,0,0,0.5) 0 1px 3px;height:34px;width:123px;background:#dd4b39;color:white;font-size:16px;display:flex;align-items:center;justify-content:center}
 #stefanvdfacebookshare{display:inline-block;cursor:pointer;margin-left:30px;border-radius:3px;box-shadow:rgba(0,0,0,0.5) 0 1px 3px;height:34px;width:123px;background:#3c5a9a;color:white;font-size:16px;display:flex;align-items:center;justify-content:center}
-#stefanvdtwittershare{display:inline-block;cursor:pointer;margin-left:30px;border-radius:3px;box-shadow:rgba(0,0,0,0.5) 0 1px 3px;height:34px;width:123px;color:white;font-size:16px;display:flex;align-items:center;justify-content:center;background:#000000;font-size:16px;display:flex;align-items:center;justify-content:center}
-#stefanvdpinterestshare:hover,#stefanvdfacebookshare:hover,#stefanvdtwittershare:hover{opacity:.8}
+#stefanvdxshare{display:inline-block;cursor:pointer;margin-left:30px;border-radius:3px;box-shadow:rgba(0,0,0,0.5) 0 1px 3px;height:34px;width:123px;color:white;font-size:16px;display:flex;align-items:center;justify-content:center;background:#000000;font-size:16px;display:flex;align-items:center;justify-content:center}
+#stefanvdpinterestshare:hover,#stefanvdfacebookshare:hover,#stefanvdxshare:hover{opacity:.8}
 /* aa */
 #stefanvdaapaneltopl{font-weight:700;color:#fff;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.5),inset 0 1px rgba(255,255,255,0.3),inset 0 10px rgba(255,255,255,0.2),inset 0 10px 20px rgba(255,255,255,0.25),inset 0 -15px 30px rgba(0,0,0,0.3);border-radius:5px;top:60px;left:10px;position:fixed;z-index:2147483647;padding:4px;width:28px}
 #stefanvdaapaneltopr{font-weight:700;color:#fff;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.5),inset 0 1px rgba(255,255,255,0.3),inset 0 10px rgba(255,255,255,0.2),inset 0 10px 20px rgba(255,255,255,0.25),inset 0 -15px 30px rgba(0,0,0,0.3);border-radius:5px;top:60px;right:10px;position:fixed;z-index:2147483647;padding:4px;width:28px}

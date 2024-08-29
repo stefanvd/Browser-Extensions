@@ -29,12 +29,6 @@
   },
   "web_accessible_resources": [{
     "resources": ["images/arrow.png",
-    "images/sharegoogleplus.png",
-    "images/sharetwitter.png",
-    "images/sharefacebook.png",
-    "images/sharegoogleplus@2x.png",
-    "images/sharetwitter@2x.png",
-    "images/sharefacebook@2x.png",
     "images/icon16.png",
     "styles/aa.css"],
     "matches": ["<all_urls>"]

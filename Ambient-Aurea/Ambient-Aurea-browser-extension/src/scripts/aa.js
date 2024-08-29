@@ -187,9 +187,9 @@ chrome.storage.sync.get(["getimgurl", "interval", "fadein", "fadeout", "lightcol
 			newdivshare.appendChild(sharefb);
 
 			var sharetw = document.createElement("div");
-			sharetw.setAttribute("id", "stefanvdtwittershare");
+			sharetw.setAttribute("id", "stefanvdxshare");
 			sharetw.innerText = "X";
-			sharetw.addEventListener("click", function(){ window.open("https://twitter.com/share?url=" + currentencodeurl + "&text=Try this out, I am focus the image with Ambient Aurea browser extension! @ambientaurea", "Share to Twitter", "width=600,height=460,menubar=no,location=no,status=no"); });
+			sharetw.addEventListener("click", function(){ window.open("https://x.com/share?url=" + currentencodeurl + "&text=Try this out, I am focus the image with Ambient Aurea browser extension! @ambientaurea", "Share to X", "width=600,height=460,menubar=no,location=no,status=no"); });
 			newdivshare.appendChild(sharetw);
 		}
 	}
