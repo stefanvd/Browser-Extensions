@@ -6,6 +6,7 @@
   "nameopera": {"message": "Ambient Aurea for Opera"},
   "nameedge": {"message": "Ambient Aurea for Microsoft Edge"},
   "namesafari": {"message": "Ambient Aurea for Safari"},
+  "namewhale": {"message": "Ambient Aurea for Naver Whale"},
   "description": {"message": "Instantly craft stunning photo galleries with ambient lighting effects in a single click."},
   "browserbutton": {"message": "Ambient Aurea"},
   "textfoot": {"message": "This software is licensed under the CC-GNU GPL. To view a copy of this license, visit"},
