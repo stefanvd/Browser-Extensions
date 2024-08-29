@@ -88,6 +88,8 @@ chrome.runtime.onMessage.addListener(function request(request, sender, sendRespo
 		sendResponse(true);
 	}else if(request.name == "stefancleannewtab"){
 		chrome.tabs.create({url: browsernewtab});
+	}else if(request.name == "bckreload"){
+		installation();
 	}else if(request.name == "stefancleannewwindow"){
 		chrome.windows.create({url: browsernewtab});
 	}else if(request.name == "stefancleannewwindowincognito"){

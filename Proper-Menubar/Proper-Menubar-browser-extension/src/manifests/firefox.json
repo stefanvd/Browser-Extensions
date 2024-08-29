@@ -54,13 +54,12 @@
     "matches": ["<all_urls>"]
   }],
   "permissions": ["contextMenus", "activeTab", "storage", "webNavigation", "scripting"],
-  "optional_permissions": ["pageCapture", "clipboardWrite", "clipboardRead", "bookmarks", "downloads"],
+  "optional_permissions": ["clipboardWrite", "clipboardRead", "bookmarks", "downloads"],
   "host_permissions": ["<all_urls>"],
   "browser_specific_settings": {
     "gecko": {
         "id": "propermenubar@stefanvd.net",
         "strict_min_version": "113.0"
-    },
-    "gecko_android": {}
+    }
   }
 }

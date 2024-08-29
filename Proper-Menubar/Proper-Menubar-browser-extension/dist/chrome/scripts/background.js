@@ -88,6 +88,8 @@ chrome.runtime.onMessage.addListener(function request(request, sender, sendRespo
 		sendResponse(true);
 	}else if(request.name == "stefancleannewtab"){
 		chrome.tabs.create({url: browsernewtab});
+	}else if(request.name == "bckreload"){
+		installation();
 	}else if(request.name == "stefancleannewwindow"){
 		chrome.windows.create({url: browsernewtab});
 	}else if(request.name == "stefancleannewwindowincognito"){
@@ -117,29 +119,58 @@ chrome.runtime.onMessage.addListener(function request(request, sender, sendRespo
 	}else if(request.name == "stefanhistory"){
 		chrome.tabs.create({url: browserhistory});
 	}else if(request.name == "stefansavemhtml"){
-		// Permissions must be requested from inside a user gesture
-		chrome.permissions.request({
-			permissions: ["pageCapture", "downloads"]
-		}, function(granted){
-			// The callback argument will be true if the user granted the permissions.
-			if(granted){
-				chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
-					var tab = tabs[0];
-					chrome.pageCapture.saveAsMHTML({"tabId": tab.id}, async(blob) => {
-						const content = await blob.text();
-						const url = "data:application/x-mimearchive;base64," + btoa(content);
-						const downloadId = await chrome.downloads.download({
-							url,
-							filename: tab.title + ".mhtml"
+		if(exbrowser == "firefox"){
+			// Permissions must be requested from inside a user gesture
+			chrome.permissions.request({
+				permissions: ["downloads"]
+			}, function(granted){
+				// The callback argument will be true if the user granted the permissions.
+				if(granted){
+					chrome.scripting.executeScript({
+						target: {tabId: sender.tab.id},
+						function: getHtmlContent
+					}).then((results) => {
+						const htmlContent = results[0].result;
+						const blob = new Blob([htmlContent], {type: "text/html"});
+						const url = URL.createObjectURL(blob);
+						const filename = `saved_page_${sender.tab.id}.html`;
+
+						chrome.downloads.download({
+							url: url,
+							filename: filename,
+							saveAs: true
 						});
-						console.log("Download ID:", downloadId);
 					});
-				});
-			}else{
-				var txtpermission = chrome.i18n.getMessage("permissionoption");
-				window.alert(txtpermission);
-			}
-		});
+				}else{
+					var txtpermission = chrome.i18n.getMessage("permissionoption");
+					window.alert(txtpermission);
+				}
+			});
+		}else{
+			// Permissions must be requested from inside a user gesture
+			chrome.permissions.request({
+				permissions: ["pageCapture", "downloads"]
+			}, function(granted){
+				// The callback argument will be true if the user granted the permissions.
+				if(granted){
+					chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
+						var tab = tabs[0];
+						chrome.pageCapture.saveAsMHTML({"tabId": tab.id}, async(blob) => {
+							const content = await blob.text();
+							const url = "data:application/x-mimearchive;base64," + btoa(content);
+							const downloadId = await chrome.downloads.download({
+								url,
+								filename: tab.title + ".mhtml"
+							});
+							console.log("Download ID:", downloadId);
+						});
+					});
+				}else{
+					var txtpermission = chrome.i18n.getMessage("permissionoption");
+					window.alert(txtpermission);
+				}
+			});
+		}
 	}else if(request.name == "stefancuttext"){
 		// Permissions must be requested from inside a user gesture
 		chrome.permissions.request({
@@ -427,6 +458,10 @@ chrome.runtime.onMessage.addListener(function request(request, sender, sendRespo
 	}
 	return true;
 });
+
+function getHtmlContent(){
+	return document.documentElement.outerHTML;
+}
 
 // update when click on the tab
 chrome.tabs.onHighlighted.addListener(function(tabs){

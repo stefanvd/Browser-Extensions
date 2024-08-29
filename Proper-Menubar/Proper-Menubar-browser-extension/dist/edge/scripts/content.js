@@ -565,133 +565,95 @@ function addtoolbar(){
 		newtoolbarul.className = "stefanvdpropermenubarroot";
 		newtoolbardiv.appendChild(newtoolbarul);
 
+		// gmail app
+		// https://mail.google.com/a/turnoffthelights.com
+		// calendar
+		// https://calendar.google.com/a/turnoffthelights.com
+		// drive
+		// https://drive.google.com/a/turnoffthelights.com
+
 		if(googleproducts == true){
-			if(typeof googlebarDomains == "string"){
+			// Parse googlebarDomains if it's a string
+			if(typeof googlebarDomains === "string"){
 				googlebarDomains = JSON.parse(googlebarDomains);
-				var pbuf = [];
-				for(var domain in googlebarDomains)
-					pbuf.push(domain);
-				for(var j = 0; j < pbuf.length; j++){
-					if(pbuf[j] == "link1a"){ createlink(i18nlink1a, productlink1, "link1s"); }
-					if(pbuf[j] == "link2a"){ createlink(i18nlink2a, productlink2, "link2s"); }
-					if(pbuf[j] == "link3a"){ createlink(i18nlink3a, productlink3, "link3s"); }
-					if(pbuf[j] == "link4a"){ createlink(i18nlink4a, productlink4, "link4s"); }
-					if(pbuf[j] == "link5a"){ createlink(i18nlink5a, productlink5, "link5s"); }
-					if(pbuf[j] == "link6a"){ createlink(i18nlink6a, productlink6, "link6s"); }
-					if(pbuf[j] == "link7a"){ createlink(i18nlink7a, productlink7, "link7s"); }
-					if(pbuf[j] == "link8a"){ createlink(i18nlink8a, productlink8, "link8s"); }
-					if(pbuf[j] == "link9a"){ createlink(i18nlink9a, productlink9, "link9s"); }
-					if(pbuf[j] == "link10a"){ createlink(i18nlink10a, productlink10, "link10s"); }
-					if(pbuf[j] == "link11a"){ createlink(i18nlink11a, productlink11, "link11s"); }
-					if(pbuf[j] == "link12a"){ createlink(i18nlink12a, productlink12, "link12s"); }
-					if(pbuf[j] == "link13a"){ createlink(i18nlink13a, productlink13, "link13s"); }
-					if(pbuf[j] == "link14a"){ createlink(i18nlink14a, productlink14, "link14s"); }
-					if(pbuf[j] == "link15a"){ createlink(i18nlink15a, productlink15, "link15s"); }
-					if(pbuf[j] == "link16a"){ createlink(i18nlink16a, productlink16, "link16s"); }
-					if(pbuf[j] == "link17a"){ createlink(i18nlink17a, productlink17, "link17s"); }
-					if(pbuf[j] == "link18a"){ createlink(i18nlink18a, productlink18, "link18s"); }
-					if(pbuf[j] == "link19a"){ createlink(i18nlink19a, productlink19, "link19s"); }
-					if(pbuf[j] == "link20a"){ createlink(i18nlink20a, productlink20, "link20s"); }
-					if(pbuf[j] == "link22a"){ createlink(i18nlink22a, productlink22, "link22s"); }
-					if(pbuf[j] == "link23a"){ createlink(i18nlink23a, productlink23, "link23s"); }
-					if(pbuf[j] == "link24a"){ createlink(i18nlink24a, productlink24, "link24s"); }
-					if(pbuf[j] == "link25a"){ createlink(i18nlink25a, productlink25, "link25s"); }
-					if(pbuf[j] == "link26a"){ createlink(i18nlink26a, productlink26, "link26s"); }
-					if(pbuf[j] == "link27a"){ createlink(i18nlink27a, productlink27, "link27s"); }
-					if(pbuf[j] == "link28a"){ createlink(i18nlink28a, productlink28, "link28s"); }
-					if(pbuf[j] == "link29a"){ createlink(i18nlink29a, productlink29, "link29s"); }
-					if(pbuf[j] == "link30a"){ createlink(i18nlink30a, productlink30, "link30s"); }
-					if(pbuf[j] == "link31a"){ createlink(i18nlink31a, productlink31, "link31s"); }
-					if(pbuf[j] == "link32a"){ createlink(i18nlink32a, productlink32, "link32s"); }
-					if(pbuf[j] == "link33a"){ createlink(i18nlink33a, productlink33, "link33s"); }
-					if(pbuf[j] == "link34a"){ createlink(i18nlink34a, productlink34, "link34s"); }
-					if(pbuf[j] == "link35a"){ createlink(i18nlink35a, productlink35, "link35s"); }
-					if(pbuf[j] == "link36a"){ createlink(i18nlink36a, productlink36, "link36s"); }
-					if(pbuf[j] == "link37a"){ createlink(i18nlink37a, productlink37, "link37s"); }
-					if(pbuf[j] == "link38a"){ createlink(i18nlink38a, productlink38, "link38s"); }
-					if(pbuf[j] == "link39a"){ createlink(i18nlink39a, productlink39, "link39s"); }
-					if(pbuf[j] == "link40a"){ createlink(i18nlink40a, productlink40, "link40s"); }
-					if(pbuf[j] == "link41a"){ createlink(i18nlink41a, productlink41, "link41s"); }
-					if(pbuf[j] == "link42a"){ createlink(i18nlink42a, productlink42, "link42s"); }
-					if(pbuf[j] == "link43a"){ createlink(i18nlink43a, productlink43, "link43s"); }
-					if(pbuf[j] == "link44a"){ createlink(i18nlink44a, productlink44, "link44s"); }
-					if(pbuf[j] == "link45a"){ createlink(i18nlink45a, productlink45, "link45s"); }
-					if(pbuf[j] == "link46a"){ createlink(i18nlink46a, productlink46, "link46s"); }
-					if(pbuf[j] == "link47a"){ createlink(i18nlink47a, productlink47, "link47s"); }
-					if(pbuf[j] == "link48a"){ createlink(i18nlink48a, productlink48, "link48s"); }
-					if(pbuf[j] == "link49a"){ createlink(i18nlink49a, productlink49, "link49s"); }
-					if(pbuf[j] == "link50a"){ createlink(i18nlink50a, productlink50, "link50s"); }
-					if(pbuf[j] == "link51a"){ createlink(i18nlink51a, productlink51, "link51s"); }
-					if(pbuf[j] == "link52a"){ createlink(i18nlink52a, productlink52, "link52s"); }
-					if(pbuf[j] == "link53a"){ createlink(i18nlink53a, productlink53, "link53s"); }
-					if(pbuf[j] == "link21a"){ createlink(i18nlink21a, productlink21, "link21s"); }
-				}
 			}
 
-			if(search == true){
-				// gmail app
-				// https://mail.google.com/a/turnoffthelights.com
-				// calendar
-				// https://calendar.google.com/a/turnoffthelights.com
-				// drive
-				// https://drive.google.com/a/turnoffthelights.com
+			const domainKeys = Object.keys(googlebarDomains || {});
+			const links = [
+				{key: "link1a", i18n: i18nlink1a, product: productlink1, selector: "link1s", searchLink: productlinksearch1},
+				{key: "link2a", i18n: i18nlink2a, product: productlink2, selector: "link2s", searchLink: productlinksearch2},
+				{key: "link3a", i18n: i18nlink3a, product: productlink3, selector: "link3s", searchLink: productlinksearch3},
+				{key: "link4a", i18n: i18nlink4a, product: productlink4, selector: "link4s", searchLink: productlinksearch4},
+				{key: "link5a", i18n: i18nlink5a, product: productlink5, selector: "link5s", searchLink: productlinksearch5},
+				{key: "link6a", i18n: i18nlink6a, product: productlink6, selector: "link6s", searchLink: productlinksearch6},
+				{key: "link7a", i18n: i18nlink7a, product: productlink7, selector: "link7s", searchLink: productlinksearch7},
+				{key: "link8a", i18n: i18nlink8a, product: productlink8, selector: "link8s", searchLink: productlinksearch8},
+				{key: "link9a", i18n: i18nlink9a, product: productlink9, selector: "link9s", searchLink: productlinksearch9},
+				{key: "link10a", i18n: i18nlink10a, product: productlink10, selector: "link10s", searchLink: productlinksearch10},
+				{key: "link11a", i18n: i18nlink11a, product: productlink11, selector: "link11s", searchLink: productlinksearch11},
+				{key: "link12a", i18n: i18nlink12a, product: productlink12, selector: "link12s", searchLink: productlinksearch12},
+				{key: "link13a", i18n: i18nlink13a, product: productlink13, selector: "link13s", searchLink: productlinksearch13},
+				{key: "link14a", i18n: i18nlink14a, product: productlink14, selector: "link14s", searchLink: productlinksearch14},
+				{key: "link15a", i18n: i18nlink15a, product: productlink15, selector: "link15s", searchLink: productlinksearch15},
+				{key: "link16a", i18n: i18nlink16a, product: productlink16, selector: "link16s", searchLink: productlinksearch16},
+				{key: "link17a", i18n: i18nlink17a, product: productlink17, selector: "link17s", searchLink: productlinksearch17},
+				{key: "link18a", i18n: i18nlink18a, product: productlink18, selector: "link18s", searchLink: productlinksearch18},
+				{key: "link19a", i18n: i18nlink19a, product: productlink19, selector: "link19s", searchLink: productlinksearch19},
+				{key: "link20a", i18n: i18nlink20a, product: productlink20, selector: "link20s", searchLink: productlinksearch20},
+				{key: "link22a", i18n: i18nlink22a, product: productlink22, selector: "link22s", searchLink: productlinksearch22},
+				{key: "link23a", i18n: i18nlink23a, product: productlink23, selector: "link23s", searchLink: productlinksearch23},
+				{key: "link24a", i18n: i18nlink24a, product: productlink24, selector: "link24s", searchLink: productlinksearch24},
+				{key: "link25a", i18n: i18nlink25a, product: productlink25, selector: "link25s", searchLink: productlinksearch25},
+				{key: "link26a", i18n: i18nlink26a, product: productlink26, selector: "link26s", searchLink: productlinksearch26},
+				{key: "link27a", i18n: i18nlink27a, product: productlink27, selector: "link27s", searchLink: productlinksearch27},
+				{key: "link28a", i18n: i18nlink28a, product: productlink28, selector: "link28s", searchLink: productlinksearch28},
+				{key: "link29a", i18n: i18nlink29a, product: productlink29, selector: "link29s", searchLink: productlinksearch29},
+				{key: "link30a", i18n: i18nlink30a, product: productlink30, selector: "link30s", searchLink: productlinksearch30},
+				{key: "link31a", i18n: i18nlink31a, product: productlink31, selector: "link31s", searchLink: productlinksearch31},
+				{key: "link32a", i18n: i18nlink32a, product: productlink32, selector: "link32s", searchLink: productlinksearch32},
+				{key: "link33a", i18n: i18nlink33a, product: productlink33, selector: "link33s", searchLink: productlinksearch33},
+				{key: "link34a", i18n: i18nlink34a, product: productlink34, selector: "link34s", searchLink: productlinksearch34},
+				{key: "link35a", i18n: i18nlink35a, product: productlink35, selector: "link35s", searchLink: productlinksearch35},
+				{key: "link36a", i18n: i18nlink36a, product: productlink36, selector: "link36s", searchLink: productlinksearch36},
+				{key: "link37a", i18n: i18nlink37a, product: productlink37, selector: "link37s", searchLink: productlinksearch37},
+				{key: "link38a", i18n: i18nlink38a, product: productlink38, selector: "link38s", searchLink: productlinksearch38},
+				{key: "link39a", i18n: i18nlink39a, product: productlink39, selector: "link39s", searchLink: productlinksearch39},
+				{key: "link40a", i18n: i18nlink40a, product: productlink40, selector: "link40s", searchLink: productlinksearch40},
+				{key: "link41a", i18n: i18nlink41a, product: productlink41, selector: "link41s", searchLink: productlinksearch41},
+				{key: "link42a", i18n: i18nlink42a, product: productlink42, selector: "link42s", searchLink: productlinksearch42},
+				{key: "link43a", i18n: i18nlink43a, product: productlink43, selector: "link43s", searchLink: productlinksearch43},
+				{key: "link44a", i18n: i18nlink44a, product: productlink44, selector: "link44s", searchLink: productlinksearch44},
+				{key: "link45a", i18n: i18nlink45a, product: productlink45, selector: "link45s", searchLink: productlinksearch45},
+				{key: "link46a", i18n: i18nlink46a, product: productlink46, selector: "link46s", searchLink: productlinksearch46},
+				{key: "link47a", i18n: i18nlink47a, product: productlink47, selector: "link47s", searchLink: productlinksearch47},
+				{key: "link48a", i18n: i18nlink48a, product: productlink48, selector: "link48s", searchLink: productlinksearch48},
+				{key: "link49a", i18n: i18nlink49a, product: productlink49, selector: "link49s", searchLink: productlinksearch49},
+				{key: "link50a", i18n: i18nlink50a, product: productlink50, selector: "link50s", searchLink: productlinksearch50},
+				{key: "link51a", i18n: i18nlink51a, product: productlink51, selector: "link51s", searchLink: productlinksearch51},
+				{key: "link52a", i18n: i18nlink52a, product: productlink52, selector: "link52s", searchLink: productlinksearch52},
+				{key: "link53a", i18n: i18nlink53a, product: productlink53, selector: "link53s", searchLink: productlinksearch53},
+				// other
+				{key: "link21a", i18n: i18nlink21a, product: productlink21, selector: "link21s", searchLink: productlinksearch21}
+			];
 
-				var pushnewtab = "_blank";
-				if(existingtab == true){ pushnewtab = "_self"; }else{ pushnewtab = "_blank"; }
+			// Create links based on googlebarDomains
+			links.forEach((link) => {
+				if(domainKeys.includes(link.key)){
+					createlink(link.i18n, link.product, link.selector);
+				}
+			});
 
-				if(SD("link1s")){ SD("link1s").addEventListener("click", function(){ propopenurl(productlinksearch1, pushnewtab); }, false); }
-				if(SD("link2s")){ SD("link2s").addEventListener("click", function(){ propopenurl(productlinksearch2, pushnewtab); }, false); }
-				if(SD("link3s")){ SD("link3s").addEventListener("click", function(){ propopenurl(productlinksearch3, pushnewtab); }, false); }
-				if(SD("link4s")){ SD("link4s").addEventListener("click", function(){ propopenurl(productlinksearch4, pushnewtab); }, false); }
-				if(SD("link5s")){ SD("link5s").addEventListener("click", function(){ propopenurl(productlinksearch5, pushnewtab); }, false); }
-				if(SD("link6s")){ SD("link6s").addEventListener("click", function(){ propopenurl(productlinksearch6, pushnewtab); }, false); }
-				if(SD("link7s")){ SD("link7s").addEventListener("click", function(){ propopenurl(productlinksearch7, pushnewtab); }, false); }
-				if(SD("link8s")){ SD("link8s").addEventListener("click", function(){ propopenurl(productlinksearch8, pushnewtab); }, false); }
-				if(SD("link9s")){ SD("link9s").addEventListener("click", function(){ propopenurl(productlinksearch9, pushnewtab); }, false); }
-				if(SD("link10s")){ SD("link10s").addEventListener("click", function(){ propopenurl(productlinksearch10, pushnewtab); }, false); }
-				if(SD("link11s")){ SD("link11s").addEventListener("click", function(){ propopenurl(productlinksearch11, pushnewtab); }, false); }
-				if(SD("link12s")){ SD("link12s").addEventListener("click", function(){ propopenurl(productlinksearch12, pushnewtab); }, false); }
-				if(SD("link13s")){ SD("link13s").addEventListener("click", function(){ propopenurl(productlinksearch13, pushnewtab); }, false); }
-				if(SD("link14s")){ SD("link14s").addEventListener("click", function(){ propopenurl(productlinksearch14, pushnewtab); }, false); }
-				if(SD("link15s")){ SD("link15s").addEventListener("click", function(){ propopenurl(productlinksearch15, pushnewtab); }, false); }
-				if(SD("link16s")){ SD("link16s").addEventListener("click", function(){ propopenurl(productlinksearch16, pushnewtab); }, false); }
-				if(SD("link17s")){ SD("link17s").addEventListener("click", function(){ propopenurl(productlinksearch17, pushnewtab); }, false); }
-				if(SD("link18s")){ SD("link18s").addEventListener("click", function(){ propopenurl(productlinksearch18, pushnewtab); }, false); }
-				if(SD("link19s")){ SD("link19s").addEventListener("click", function(){ propopenurl(productlinksearch19, pushnewtab); }, false); }
-				if(SD("link20s")){ SD("link20s").addEventListener("click", function(){ propopenurl(productlinksearch20, pushnewtab); }, false); }
-				if(SD("link22s")){ SD("link22s").addEventListener("click", function(){ propopenurl(productlinksearch22, pushnewtab); }, false); }
-				if(SD("link23s")){ SD("link23s").addEventListener("click", function(){ propopenurl(productlinksearch23, pushnewtab); }, false); }
-				if(SD("link24s")){ SD("link24s").addEventListener("click", function(){ propopenurl(productlinksearch24, pushnewtab); }, false); }
-				if(SD("link25s")){ SD("link25s").addEventListener("click", function(){ propopenurl(productlinksearch25, pushnewtab); }, false); }
-				if(SD("link26s")){ SD("link26s").addEventListener("click", function(){ propopenurl(productlinksearch26, pushnewtab); }, false); }
-				if(SD("link27s")){ SD("link27s").addEventListener("click", function(){ propopenurl(productlinksearch27, pushnewtab); }, false); }
-				if(SD("link28s")){ SD("link28s").addEventListener("click", function(){ propopenurl(productlinksearch28, pushnewtab); }, false); }
-				if(SD("link29s")){ SD("link29s").addEventListener("click", function(){ propopenurl(productlinksearch29, pushnewtab); }, false); }
-				if(SD("link30s")){ SD("link30s").addEventListener("click", function(){ propopenurl(productlinksearch30, pushnewtab); }, false); }
-				if(SD("link31s")){ SD("link31s").addEventListener("click", function(){ propopenurl(productlinksearch31, pushnewtab); }, false); }
-				if(SD("link32s")){ SD("link32s").addEventListener("click", function(){ propopenurl(productlinksearch32, pushnewtab); }, false); }
-				if(SD("link33s")){ SD("link33s").addEventListener("click", function(){ propopenurl(productlinksearch33, pushnewtab); }, false); }
-				if(SD("link34s")){ SD("link34s").addEventListener("click", function(){ propopenurl(productlinksearch34, pushnewtab); }, false); }
-				if(SD("link35s")){ SD("link35s").addEventListener("click", function(){ propopenurl(productlinksearch35, pushnewtab); }, false); }
-				if(SD("link36s")){ SD("link36s").addEventListener("click", function(){ propopenurl(productlinksearch36, pushnewtab); }, false); }
-				if(SD("link37s")){ SD("link37s").addEventListener("click", function(){ propopenurl(productlinksearch37, pushnewtab); }, false); }
-				if(SD("link38s")){ SD("link38s").addEventListener("click", function(){ propopenurl(productlinksearch38, pushnewtab); }, false); }
-				if(SD("link39s")){ SD("link39s").addEventListener("click", function(){ propopenurl(productlinksearch39, pushnewtab); }, false); }
-				if(SD("link40s")){ SD("link40s").addEventListener("click", function(){ propopenurl(productlinksearch40, pushnewtab); }, false); }
-				if(SD("link41s")){ SD("link41s").addEventListener("click", function(){ propopenurl(productlinksearch41, pushnewtab); }, false); }
-				if(SD("link42s")){ SD("link42s").addEventListener("click", function(){ propopenurl(productlinksearch42, pushnewtab); }, false); }
-				if(SD("link43s")){ SD("link43s").addEventListener("click", function(){ propopenurl(productlinksearch43, pushnewtab); }, false); }
-				if(SD("link44s")){ SD("link44s").addEventListener("click", function(){ propopenurl(productlinksearch44, pushnewtab); }, false); }
-				if(SD("link45s")){ SD("link45s").addEventListener("click", function(){ propopenurl(productlinksearch45, pushnewtab); }, false); }
-				if(SD("link46s")){ SD("link46s").addEventListener("click", function(){ propopenurl(productlinksearch46, pushnewtab); }, false); }
-				if(SD("link47s")){ SD("link47s").addEventListener("click", function(){ propopenurl(productlinksearch47, pushnewtab); }, false); }
-				if(SD("link48s")){ SD("link48s").addEventListener("click", function(){ propopenurl(productlinksearch48, pushnewtab); }, false); }
-				if(SD("link49s")){ SD("link49s").addEventListener("click", function(){ propopenurl(productlinksearch49, pushnewtab); }, false); }
-				if(SD("link50s")){ SD("link50s").addEventListener("click", function(){ propopenurl(productlinksearch50, pushnewtab); }, false); }
-				if(SD("link51s")){ SD("link51s").addEventListener("click", function(){ propopenurl(productlinksearch51, pushnewtab); }, false); }
-				if(SD("link52s")){ SD("link52s").addEventListener("click", function(){ propopenurl(productlinksearch52, pushnewtab); }, false); }
-				if(SD("link53s")){ SD("link53s").addEventListener("click", function(){ propopenurl(productlinksearch53, pushnewtab); }, false); }
-				if(SD("link21s")){ SD("link21s").addEventListener("click", function(){ propopenurl(productlinksearch21, pushnewtab); }, false); }
+			if(search === true){
+				const pushNewTab = existingtab ? "_self" : "_blank";
+				const keyword = getkeyword();
+
+				links.forEach((link) => {
+					const element = SD(link.selector);
+					if(element){
+						const finalLink = keyword ? link.searchLink : link.product;
+						element.addEventListener("click", () => propopenurl(finalLink, pushNewTab), false);
+					}
+				});
 			}
 		}else{
 			// Regular file menu bar
@@ -1112,24 +1074,23 @@ if(document.body){
 }
 
 function propopenurl(a, b){
-	var thatkeyword = getkeyword();
-	var openthat = a(country, thatkeyword);
+	const thatkeyword = getkeyword();
+	const openthat = thatkeyword ? a(country, thatkeyword) : a;
 	chrome.runtime.sendMessage({name: "stefanthaturl", url: openthat, tabaction: b});
 }
 
 function getkeyword(){
 	try{
-		var inputs = document.getElementsByTagName("input");
-		var index;
-		var keyword;
-		for(index = 0; index < inputs.length; ++index){
-			// deal with inputs[index] element.
-			if(inputs[index].getAttribute("name") == "q"){ keyword = inputs[index].value; }
+		const inputs = document.getElementsByTagName("input");
+		for(let input of inputs){
+			if(input.getAttribute("name") === "q"){
+				return input.value;
+			}
 		}
 	}catch(e){
 		// console.log(e);
 	}
-	return keyword;
+	return"";
 }
 
 // Open local file

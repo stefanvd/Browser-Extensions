@@ -309,7 +309,6 @@ function read_options(){
 			var gbuf = [];
 			for(var sdomain in googlebarDomains)
 				gbuf.push(sdomain);
-			gbuf.sort();
 
 			var webi;
 			var webl = gbuf.length;
@@ -937,7 +936,7 @@ function domcontentloaded(){
 	}
 
 	// Reset settings
-	$("resetbrowserextension").addEventListener("click", function(){ chrome.storage.sync.clear(); location.reload(); });
+	$("resetbrowserextension").addEventListener("click", function(){ chrome.storage.sync.clear(); chrome.runtime.sendMessage({name: "bckreload"}); location.reload(); });
 
 	// Review box
 	$("war").addEventListener("click", function(){ window.open(writereview, "_blank"); $("sectionreviewbox").style.display = "none"; chrome.storage.sync.set({"reviewedlastonversion": chrome.runtime.getManifest().version}); });

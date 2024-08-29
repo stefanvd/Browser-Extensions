@@ -1,0 +1,48 @@
+{
+  "name": "__MSG_name__",
+  "background": {
+    "scripts": ["scripts/constants.js","scripts/background.js"]
+  },
+  "action": {
+    "default_icon": {
+      "16": "images/icon16.png",
+      "32": "images/icon32.png"
+    },
+    "default_title": "__MSG_browserbutton__",
+    "theme_icons": [{
+      "light": "images/whiteicon16.png",
+      "dark": "images/icon16.png",
+      "size": 16
+    }, {
+      "light": "images/whiteicon32.png",
+      "dark": "images/icon32.png",
+      "size": 32
+    }]
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+A",
+        "mac": "MacCtrl+Shift+A"
+      }
+    }
+  },
+  "web_accessible_resources": [{
+    "resources": ["images/arrow.png",
+    "images/sharegoogleplus.png",
+    "images/sharetwitter.png",
+    "images/sharefacebook.png",
+    "images/sharegoogleplus@2x.png",
+    "images/sharetwitter@2x.png",
+    "images/sharefacebook@2x.png",
+    "images/icon16.png",
+    "styles/aa.css"],
+    "matches": ["<all_urls>"]
+  }],
+  "browser_specific_settings": {
+    "gecko": {
+        "id": "ambientaurea@stefanvd.net",
+        "strict_min_version": "113.0"
+    }
+  }
+}

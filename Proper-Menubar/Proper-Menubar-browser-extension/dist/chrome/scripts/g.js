@@ -69,7 +69,7 @@ var productlink12 = "https://mobile.google." + country + "";
 var productlink13 = "https://books.google." + country + "";
 var productlink14 = "https://docs.google." + country + "";
 var productlink15 = "https://pay.google." + country + "";
-var productlink16 = "https://shopping.google." + country + "";
+var productlink16 = "https://shopping.google.com";
 var productlink17 = "https://www.blogger." + country + "";
 var productlink18 = "https://finance.google." + country + "";
 var productlink19 = "https://photos.google." + country + "";
@@ -123,7 +123,7 @@ var productlinksearch12 = function(a, b){ return"https://mobile.google." + a + "
 var productlinksearch13 = function(a, b){ return"https://www.google." + a + "/search?tbm=bks&q=" + b + ""; };
 var productlinksearch14 = function(a, b){ return"https://docs.google." + a + ""; };
 var productlinksearch15 = function(a, b){ return"https://pay.google." + a + ""; };
-var productlinksearch16 = function(a, b){ return"https://shopping.google." + a + "search?tbm=shop&q=" + b + ""; };
+var productlinksearch16 = function(a, b){ return"https://www.google." + a + "/search?tbm=shop&q=" + b + ""; };
 var productlinksearch17 = function(a, b){ return"https://www.blogger." + a + ""; };
 var productlinksearch18 = function(a, b){ return"https://finance.google.com/finance?q=" + b; };
 var productlinksearch19 = function(a, b){ return"https://photos.google." + a + ""; };

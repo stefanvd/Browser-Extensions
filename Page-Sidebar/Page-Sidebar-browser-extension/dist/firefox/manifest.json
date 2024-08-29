@@ -4,7 +4,6 @@
 	"homepage_url": "https://www.stefanvd.net/support/",
 	"description": "__MSG_description__",
 	"author": "Stefan vd",
-	"version": "1.2.1",
 	"icons": {
 		"16": "images/icon16.png",
 		"24": "images/icon24.png",
@@ -31,6 +30,7 @@
 		"page": "options.html",
 		"open_in_tab": true
 	},
+	"version": "1.2.2",
 	"name": "__MSG_name__",
 	"background": {
 		"scripts": [
@@ -84,7 +84,6 @@
 		"gecko": {
 			"id": "pagesidebar@stefanvd.net",
 			"strict_min_version": "113.0"
-		},
-		"gecko_android": {}
+		}
 	}
 }

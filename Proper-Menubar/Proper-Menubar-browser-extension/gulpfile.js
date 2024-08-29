@@ -12,12 +12,19 @@ const buildExtension = (browser) => {
 	const destination = `${outputDir}/${browser}`;
 
 	// manifest file
-	const mergeOverride = {version: packageDef.version};
 	const commonManifest = "./src/manifests/common.json";
 	const browserManifest = `./src/manifests/${browser}.json`;
 
+	// get the version number from the package.json file
+	// and add it in the manifest.json file
 	src([commonManifest, browserManifest])
-		.pipe(mergeJson({fileName: "manifest.json", mergeOverride}))
+		.pipe(mergeJson({
+			fileName: "manifest.json",
+			edit: (json) => {
+				json.version = packageDef.version;
+				return json;
+			}
+		}))
 		.pipe(dest(`${destination}/`));
 
 	const browserConstantFile = `./src/constants/${browser}/constants.js`;
