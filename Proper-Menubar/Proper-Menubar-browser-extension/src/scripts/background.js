@@ -472,7 +472,7 @@ chrome.runtime.onMessage.addListener(function request(request, sender, sendRespo
 chrome.tabs.onHighlighted.addListener(function(tabs){
 	var currentTabId = tabs.tabIds[0];
 	chrome.tabs.get(currentTabId, function(tab){
-		chrome.tabs.sendMessage(tab.id, {action: "toolbarrefresh"}, function(){
+		chrome.tabs.sendMessage(tab.id, {action: "addremove"}, function(){
 			if(chrome.runtime.lastError){
 				// console.log("Menu Error: " + chrome.runtime.lastError.message);
 				// content script is not added here
@@ -679,7 +679,7 @@ chrome.commands.onCommand.addListener(function(command){
 function refreshtoolbar(){
 	chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
 		for(var i = 0; i < tabs.length; ++i){
-			chrome.tabs.sendMessage(tabs[i].id, {action: "toolbarrefresh"}, function(){
+			chrome.tabs.sendMessage(tabs[i].id, {action: "addremove"}, function(){
 				if(chrome.runtime.lastError){
 					// console.log("Menu Error: " + chrome.runtime.lastError.message);
 					// content script is not added here

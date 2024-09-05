@@ -4,7 +4,6 @@
 	"homepage_url": "https://www.stefanvd.net/support/",
 	"description": "__MSG_description__",
 	"author": "Stefan vd",
-	"version": "2.4.0",
 	"icons": {
 		"16": "images/icon16.png",
 		"24": "images/icon24.png",
@@ -39,6 +38,7 @@
 		"storage",
 		"scripting"
 	],
+	"version": "2.4.0",
 	"name": "__MSG_namechrome__",
 	"action": {
 		"default_icon": {

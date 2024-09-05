@@ -1248,53 +1248,6 @@ chrome.runtime.onMessage.addListener(function request(request){
 				removetoolbar();
 			}
 		});
-	}else if(request.action == "toolbarrefresh"){
-		chrome.storage.sync.get(["country", "addbar", "dropshadow", "toolbarDomains", "allsites", "toolbaronly", "getpositiontop", "getpositionbottom", "toolbarwhite", "toolbarblack", "backgroundhex", "backgroundimagesource", "opacity", "backgroundcolor", "backgroundimage", "allsites", "fontcolor", "googlesites", "search", "existingtab", "display", "hovertextcolor", "hoverbackground", "googleproducts", "menuproducts", "googlebarDomains"], function(items){
-			country = items.country;
-			if(country == null){
-				var userLang = navigator.language || navigator.userLanguage;
-				if(userLang == "en-US"){ country = "com"; }else if(userLang == "en-UK"){ country = "co.uk"; }else if(userLang == "en-IE"){ country = "ie"; }else if(userLang == "en-AU"){ country = "au"; }else if(userLang == "en-CA"){ country = "ca"; }else if(userLang == "ar-AR"){ country = "ar"; }else if(userLang == "de-DE"){ country = "de"; }else if(userLang == "ru-RU"){ country = "ru"; }else if(userLang == "it-IT"){ country = "it"; }else if(userLang == "es-ES"){ country = "es"; }else if(userLang == "ja-JP"){ country = "co.jp"; }else if(userLang == "pl-PL"){ country = "pl"; }else if(userLang == "pt-PT"){ country = "pt"; }else if(userLang == "nl-NL"){ country = "nl"; }else if(userLang == "nl-BE"){ country = "be"; }else if(userLang == "fi-FI"){ country = "fi"; }else if(userLang == "fr-CA"){ country = "ca"; }else if(userLang == "fr-BE"){ country = "be"; }else if(userLang == "fr-FR"){ country = "fr"; }else if(userLang == "uk-UK"){ country = "uk"; }else if(userLang == "sv-SV"){ country = "sv"; }else if(userLang == "th-TH"){ country = "th"; }else if(userLang == "tr-TR"){ country = "tr"; }else{ country = "com"; }
-				chrome.storage.sync.set({"country": country});
-			}
-			addbar = items["addbar"]; if(addbar == null)addbar = true;
-			dropshadow = items["dropshadow"]; if(dropshadow == null)dropshadow = true;
-			allsites = items["allsites"]; if(allsites == null)allsites = true;
-			toolbaronly = items["toolbaronly"]; if(toolbaronly == null)toolbaronly = false;
-			toolbarDomains = items["toolbarDomains"];
-			if(typeof toolbarDomains == "undefined")
-				toolbarDomains = JSON.stringify({"https://www.google.com": true, "https://www.youtube.com": true});
-			getpositiontop = items["getpositiontop"]; if(getpositiontop == null)getpositiontop = true;
-			getpositionbottom = items["getpositionbottom"]; if(getpositionbottom == null)getpositionbottom = false;
-			toolbarwhite = items["toolbarwhite"]; if(toolbarwhite == null)toolbarwhite = true;
-			toolbarblack = items["toolbarblack"]; if(toolbarblack == null)toolbarblack = false;
-			googlebarDomains = items["googlebarDomains"];
-			if(typeof googlebarDomains == "undefined")
-				googlebarDomains = JSON.stringify({"link1a": true, "link2a": true, "link3a": true, "link4a": true, "link5a": true, "link6a": true, "link7a": true, "link8a": true, "link9a": true, "link10a": true, "link11a": true, "link12a": true, "link13a": true, "link14a": true, "link15a": true, "link16a": true, "link17a": true, "link18a": true, "link19a": true, "link20a": true, "link21a": true, "link22a": true, "link23a": true, "link24a": true, "link25a": true, "link26a": true, "link27a": true, "link28a": true});
-
-			backgroundhex = items["backgroundhex"]; if(backgroundhex == null)backgroundhex = "#2d2d2d";
-			backgroundimagesource = items["backgroundimagesource"];
-			opacity = items["opacity"]; if(opacity == null)opacity = "100";
-			backgroundcolor = items["backgroundcolor"]; if(backgroundcolor == null)backgroundcolor = true;
-			backgroundimage = items["backgroundimage"]; if(backgroundimage == null)backgroundimage = false;
-			fontcolor = items["fontcolor"]; if(fontcolor == null)fontcolor = "#cccccc";
-			googlesites = items["googlesites"]; if(googlesites == null)googlesites = false;
-			search = items["search"]; if(search == null)search = true;
-			existingtab = items["existingtab"];
-			display = items["display"]; if(display == null)display = 13;
-			hovertextcolor = items["hovertextcolor"]; if(hovertextcolor == null)hovertextcolor = "#ffffff";
-			hoverbackground = items["hoverbackground"]; if(hoverbackground == null)hoverbackground = "#444444";
-			googleproducts = items["googleproducts"]; if(googleproducts == null)googleproducts = false;
-			menuproducts = items["menuproducts"]; if(menuproducts == null)menuproducts = true;
-			hovermenu = items["hovermenu"]; if(hovermenu == null)hovermenu = true;
-
-			// refresh it
-			if(addbar == true){
-				removetoolbar();
-				addtoolbar();
-			}
-			// window.location.reload();
-		});
-
 	}
 
 });
