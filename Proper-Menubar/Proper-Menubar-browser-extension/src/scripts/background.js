@@ -460,10 +460,6 @@ chrome.runtime.onMessage.addListener(function request(request, sender, sendRespo
 			result = permissions.permissions;
 			chrome.tabs.sendMessage(sender.tab.id, {text: "receiveallpermissions", value: result});
 		});
-	}else if(request.name == "contextmenuon"){
-		checkcontextmenus();
-	}else if(request.name == "contextmenuoff"){
-		removecontexmenus();
 	}
 	return true;
 });

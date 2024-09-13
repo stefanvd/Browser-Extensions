@@ -1,0 +1,38 @@
+{
+  "name": "__MSG_nameedge__",
+  "action": {
+    "default_icon": {
+      "19": "images/icon19.png",
+      "38": "images/icon38.png"
+    },
+    "default_title": "__MSG_name__",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "scripts/background.js"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+M",
+        "mac": "MacCtrl+Shift+M"
+      }
+    },
+    "toggle-feature-snow": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+W",
+        "mac": "MacCtrl+Shift+W"
+      },
+      "description": "__MSG_titelshortsnow__"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["scripts/constants.js", "scripts/snowstorm.js"]
+    }
+  ],
+  "offline_enabled": true,
+  "minimum_chrome_version": "116",
+  "permissions": ["activeTab", "storage", "scripting", "contextMenus"]
+}
