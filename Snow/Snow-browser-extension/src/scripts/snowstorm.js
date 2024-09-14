@@ -45,7 +45,7 @@ chrome.runtime.onMessage.addListener(function request(request){
 	if(request.action == "addremove"){
 		chrome.storage.sync.get(["addbar", "snowAmount", "snowColor", "colorOption", "snowShape", "snowSize", "snowSpeed", "windDirectionControl", "snowOnBottom"], function(items){
 			addbar = items["addbar"]; if(addbar == null)addbar = true;
-			snowAmount = items["snowAmount"]; if(snowAmount == null)snowAmount = 100;
+			snowAmount = items["snowAmount"]; if(snowAmount == null)snowAmount = 500;
 			snowColor = items["snowColor"]; if(snowColor == null)snowColor = "#ffffff";
 			colorOption = items["colorOption"]; if(colorOption == null)colorOption = "solid";
 			snowShape = items["snowShape"]; if(snowShape == null)snowShape = "dot";
