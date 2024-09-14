@@ -103,38 +103,60 @@ chrome.runtime.onMessage.addListener(function request(request){
 
 // Function to create and add the canvas
 function createCanvas(){
-	// Create a canvas element
-	var canvas = document.createElement("canvas");
+	// Create a shadow host
+	var shadowHost = document.createElement("div");
+	shadowHost.id = "stefanvdsnowhost";
+	document.body.appendChild(shadowHost);
 
-	// Set the id attribute
-	canvas.id = "stefanvdsnowcanvas";
+	// Attach a shadow root to the shadow host
+	var shadow = shadowHost.attachShadow({mode: "open"});
 
-	// Append the canvas to the body or another container
-	document.body.appendChild(canvas);
-
-	// Add stylesheet for the canvas
+	// Create a style element inside the shadow DOM
 	var style = document.createElement("style");
 	style.type = "text/css";
 	style.id = "stefanvdcanvasstyle";
 	style.textContent = "#stefanvdsnowcanvas{position:fixed;top:0;left:0;bottom:0;right:0;pointer-events:none;height:100%;width:100%;z-index:990}";
-	document.head.appendChild(style);
+
+	// Append the style to the shadow root
+	shadow.appendChild(style);
+
+	// Append your canvas inside the shadow DOM as well
+	var canvas = document.createElement("canvas");
+	canvas.id = "stefanvdsnowcanvas";
+	shadow.appendChild(canvas);
+
 	addSnow();
 }
 
-// Function to remove the canvas
+// Function to remove the canvas and the shadow DOM
 function removeCanvas(){
 	removeSnow();
-	// Find the canvas element
-	var canvas = document.getElementById("stefanvdsnowcanvas");
 
-	// Check if the canvas exists
-	if(canvas){
-		document.body.removeChild(canvas);
-	}
-	// Remove the stylesheet
-	var style = document.getElementById("stefanvdcanvasstyle");
-	if(style){
-		document.head.removeChild(style);
+	// Find the shadow host element (assuming it's already created)
+	let shadowHost = document.querySelector("#stefanvdsnowhost"); // or use an ID/class if necessary
+
+	// Check if the shadow host exists
+	if(shadowHost){
+		var shadow = shadowHost.shadowRoot;
+
+		// Find the canvas element inside the shadow DOM
+		var canvas = shadow.getElementById("stefanvdsnowcanvas");
+
+		// Check if the canvas exists inside the shadow DOM and remove it
+		if(canvas){
+			shadow.removeChild(canvas);
+		}
+
+		// Find the stylesheet inside the shadow DOM
+		var style = shadow.getElementById("stefanvdcanvasstyle");
+
+		// Check if the stylesheet exists and remove it
+		if(style){
+			shadow.removeChild(style);
+		}
+
+		// Remove the shadow host itself from the document body
+		document.body.removeChild(shadowHost);
 	}
 }
 
@@ -142,16 +164,31 @@ let canvas, ctx, snowflakes, mouseX, animationFrameId;
 const SnowEffect = (function(){
 
 	function init(){
-		canvas = document.getElementById("stefanvdsnowcanvas");
-		ctx = canvas.getContext("2d");
-		canvas.width = window.innerWidth;
-		canvas.height = window.innerHeight;
+		// Find the shadow host element (assuming it's already created)
+		let shadowHost = document.querySelector("#stefanvdsnowhost"); // or use an ID/class if necessary
 
-		snowflakes = [];
-		mouseX = canvas.width / 2;
+		// Check if the shadow host exists and get the shadow DOM
+		if(shadowHost){
+			let shadow = shadowHost.shadowRoot;
 
-		window.addEventListener("resize", onResize);
-		window.addEventListener("mousemove", onMouseMove);
+			// Retrieve the canvas from the shadow DOM
+			canvas = shadow.getElementById("stefanvdsnowcanvas");
+
+			if(canvas){
+				// Initialize the canvas context and properties
+				ctx = canvas.getContext("2d");
+				canvas.width = window.innerWidth;
+				canvas.height = window.innerHeight;
+
+				// Initialize other variables
+				snowflakes = [];
+				mouseX = canvas.width / 2;
+
+				// Add event listeners for resize and mousemove
+				window.addEventListener("resize", onResize);
+				window.addEventListener("mousemove", onMouseMove);
+			}
+		}
 	}
 
 	function onResize(){

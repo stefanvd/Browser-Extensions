@@ -50,7 +50,7 @@ var firstdefaultvalues = {};
 chrome.storage.sync.get(["icon", "snowAmount", "snowColor", "colorOption", "snowShape", "snowSize", "snowSpeed", "windDirectionControl", "snowOnBottom"], function(items){
 	// find no localstore
 	if(items["icon"] == null){ firstdefaultvalues["icon"] = "/images/icon38.png"; }
-	if(items["snowAmount"] == null){ firstdefaultvalues["snowAmount"] = 100; }
+	if(items["snowAmount"] == null){ firstdefaultvalues["snowAmount"] = 500; }
 	if(items["snowColor"] == null){ firstdefaultvalues["snowColor"] = "#ffffff"; }
 	if(items["colorOption"] == null){ firstdefaultvalues["colorOption"] = "solid"; }
 	if(items["snowShape"] == null){ firstdefaultvalues["snowShape"] = "dot"; }

@@ -79,13 +79,13 @@ document.addEventListener("DOMContentLoaded", function(){
 
 	chrome.storage.sync.get(["addbar", "snowAmount", "snowColor", "colorOption", "snowShape", "snowSize", "snowSpeed", "windDirectionControl", "snowOnBottom"], function(items){
 		addbar = items["addbar"]; if(addbar == null)addbar = true;
-		snowAmount = items["snowAmount"]; if(snowAmount == null)snowAmount = 100;
+		snowAmount = items["snowAmount"]; if(snowAmount == null)snowAmount = 500;
 		snowColor = items["snowColor"]; if(snowColor == null)snowColor = "#ffffff";
 		colorOption = items["colorOption"]; if(colorOption == null)colorOption = "solid";
 		snowShape = items["snowShape"]; if(snowShape == null)snowShape = "dot";
 		snowSize = items["snowSize"]; if(snowSize == null)snowSize = 3;
 		snowSpeed = items["snowSpeed"]; if(snowSpeed == null)snowSpeed = 2;
-		windDirectionControl = items["windDirectionControl"]; if(windDirectionControl == null)windDirectionControl = true;
+		windDirectionControl = items["windDirectionControl"]; if(windDirectionControl == null)windDirectionControl = false;
 		snowOnBottom = items["snowOnBottom"]; if(snowOnBottom == null)snowOnBottom = true;
 
 		if(addbar == true){
