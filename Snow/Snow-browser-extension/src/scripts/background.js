@@ -133,7 +133,7 @@ function init(){
 		snowShape = items["snowShape"]; if(snowShape == null)snowShape = "dot";
 		snowSize = items["snowSize"]; if(snowSize == null)snowSize = 3;
 		snowSpeed = items["snowSpeed"]; if(snowSpeed == null)snowSpeed = 2;
-		windDirectionControl = items["windDirectionControl"]; if(windDirectionControl == null)windDirectionControl = true;
+		windDirectionControl = items["windDirectionControl"]; if(windDirectionControl == null)windDirectionControl = false;
 		snowOnBottom = items["snowOnBottom"]; if(snowOnBottom == null)snowOnBottom = true;
 	});
 }
@@ -185,6 +185,34 @@ chrome.tabs.onHighlighted.addListener(function(tabs){
 		});
 	});
 });
+
+
+chrome.storage.sync.get(["icon"], function(items){
+	if(items["icon"] == undefined){ items["icon"] = "/images/icon38.png"; }
+	chrome.action.setIcon({
+		path : {
+			"19": items["icon"],
+			"38": items["icon"]
+		}
+	});
+});
+
+chrome.tabs.onUpdated.addListener(function(){
+	getCurrentTab().then((thattab) => {
+		chrome.storage.sync.get(["icon"], function(items){
+			if(items["icon"] == undefined){
+				items["icon"] = "/images/icon38.png";
+			}
+			chrome.action.setIcon({tabId : thattab.id, path : {"19": items["icon"], "38": items["icon"]}});
+		});
+	});
+});
+
+async function getCurrentTab(){
+	let queryOptions = {active: true, currentWindow: true};
+	let tabs = await chrome.tabs.query(queryOptions);
+	return tabs[0];
+}
 
 // contextMenus
 function onClickHandler(info){

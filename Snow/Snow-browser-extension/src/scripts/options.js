@@ -47,10 +47,17 @@ function save_options(){
 
 var firstdefaultvalues = {};
 // Option default value to read if there is no current value from chrome.storage AND init default value
-chrome.storage.sync.get(["icon"], function(items){
-	// find no localstore zoomengine
-	if(items["icon"] == null){ firstdefaultvalues["icon"] = "/images/default@2x.png"; }
-	// find no localstore lightimage
+chrome.storage.sync.get(["icon", "snowAmount", "snowColor", "colorOption", "snowShape", "snowSize", "snowSpeed", "windDirectionControl", "snowOnBottom"], function(items){
+	// find no localstore
+	if(items["icon"] == null){ firstdefaultvalues["icon"] = "/images/icon38.png"; }
+	if(items["snowAmount"] == null){ firstdefaultvalues["snowAmount"] = 100; }
+	if(items["snowColor"] == null){ firstdefaultvalues["snowColor"] = "#ffffff"; }
+	if(items["colorOption"] == null){ firstdefaultvalues["colorOption"] = "solid"; }
+	if(items["snowShape"] == null){ firstdefaultvalues["snowShape"] = "dot"; }
+	if(items["snowSize"] == null){ firstdefaultvalues["snowSize"] = 3; }
+	if(items["snowSpeed"] == null){ firstdefaultvalues["snowSpeed"] = 2; }
+	if(items["windDirectionControl"] == null){ firstdefaultvalues["windDirectionControl"] = false; }
+	if(items["snowOnBottom"] == null){ firstdefaultvalues["snowOnBottom"] = true; }
 	// Save the init value
 	chrome.storage.sync.set(firstdefaultvalues, function(){
 		// console.log('Settings saved');

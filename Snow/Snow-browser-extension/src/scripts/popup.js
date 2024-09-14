@@ -156,3 +156,21 @@ document.addEventListener("DOMContentLoaded", function(){
 	$("openoptions").addEventListener("click", function(){ window.open(chrome.runtime.getURL("options.html")); });
 	$("opensupport").addEventListener("click", function(){ window.open(linksupport); });
 });
+
+var darkmode;
+chrome.storage.sync.get(["darkmode"], function(items){
+	darkmode = items["darkmode"]; if(darkmode == null)darkmode = 2; // default Operating System
+
+	// dark mode
+	if(darkmode == 1){
+		document.body.className = "dark";
+	}else if(darkmode == 0){
+		document.body.className = "light";
+	}else if(darkmode == 2){
+		if(window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches){
+			document.body.className = "dark";
+		}else{
+			document.body.className = "light";
+		}
+	}
+});

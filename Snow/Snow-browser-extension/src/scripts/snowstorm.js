@@ -51,7 +51,7 @@ chrome.runtime.onMessage.addListener(function request(request){
 			snowShape = items["snowShape"]; if(snowShape == null)snowShape = "dot";
 			snowSize = items["snowSize"]; if(snowSize == null)snowSize = 3;
 			snowSpeed = items["snowSpeed"]; if(snowSpeed == null)snowSpeed = 2;
-			windDirectionControl = items["windDirectionControl"]; if(windDirectionControl == null)windDirectionControl = true;
+			windDirectionControl = items["windDirectionControl"]; if(windDirectionControl == null)windDirectionControl = false;
 			snowOnBottom = items["snowOnBottom"]; if(snowOnBottom == null)snowOnBottom = true;
 
 			if(addbar == true){
@@ -70,7 +70,7 @@ chrome.runtime.onMessage.addListener(function request(request){
 			snowShape = items["snowShape"]; if(snowShape == null)snowShape = "dot";
 			snowSize = items["snowSize"]; if(snowSize == null)snowSize = 3;
 			snowSpeed = items["snowSpeed"]; if(snowSpeed == null)snowSpeed = 2;
-			windDirectionControl = items["windDirectionControl"]; if(windDirectionControl == null)windDirectionControl = true;
+			windDirectionControl = items["windDirectionControl"]; if(windDirectionControl == null)windDirectionControl = false;
 			snowOnBottom = items["snowOnBottom"]; if(snowOnBottom == null)snowOnBottom = true;
 
 			removeCanvas();
@@ -81,7 +81,7 @@ chrome.runtime.onMessage.addListener(function request(request){
 	}else if(request.action == "refreshcontent"){
 		// from popup panel
 		const snowSettings = request.snowSettings;
-		console.log("Received snow settings:", snowSettings)
+		// console.log("Received snow settings:", snowSettings);
 
 		addbar = snowSettings["addbar"]; if(addbar == null)addbar = true;
 		snowAmount = snowSettings["snowAmount"]; if(snowAmount == null)snowAmount = 100;
@@ -90,8 +90,9 @@ chrome.runtime.onMessage.addListener(function request(request){
 		snowShape = snowSettings["snowShape"]; if(snowShape == null)snowShape = "dot";
 		snowSize = snowSettings["snowSize"]; if(snowSize == null)snowSize = 3;
 		snowSpeed = snowSettings["snowSpeed"]; if(snowSpeed == null)snowSpeed = 2;
-		windDirectionControl = snowSettings["windDirectionControl"]; if(windDirectionControl == null)windDirectionControl = true;
+		windDirectionControl = snowSettings["windDirectionControl"]; if(windDirectionControl == null)windDirectionControl = false;
 		snowOnBottom = snowSettings["snowOnBottom"]; if(snowOnBottom == null)snowOnBottom = true;
+
 
 		removeCanvas();
 		if(addbar == true){
@@ -102,11 +103,6 @@ chrome.runtime.onMessage.addListener(function request(request){
 
 // Function to create and add the canvas
 function createCanvas(){
-	// Check if the canvas already exists
-	if(document.getElementById("stefanvdsnowcanvas")){
-		return;
-	}
-
 	// Create a canvas element
 	var canvas = document.createElement("canvas");
 
@@ -120,14 +116,14 @@ function createCanvas(){
 	var style = document.createElement("style");
 	style.type = "text/css";
 	style.id = "stefanvdcanvasstyle";
-	style.textContent = "#stefanvdsnowcanvas{position:absolute;top:0;left:0;pointer-events:none;height:100%;width:100%;z-index:990}";
+	style.textContent = "#stefanvdsnowcanvas{position:fixed;top:0;left:0;bottom:0;right:0;pointer-events:none;height:100%;width:100%;z-index:990}";
 	document.head.appendChild(style);
-
-	addSnowLayer();
+	addSnow();
 }
 
 // Function to remove the canvas
 function removeCanvas(){
+	removeSnow();
 	// Find the canvas element
 	var canvas = document.getElementById("stefanvdsnowcanvas");
 
@@ -142,174 +138,210 @@ function removeCanvas(){
 	}
 }
 
+let canvas, ctx, snowflakes, mouseX, animationFrameId;
+const SnowEffect = (function(){
 
-
-var canvas;
-var ctx;
-var snowflakes = [];
-var mouseX;
-function addSnowLayer(){
-
-	console.log("create addSnowLayer")
-	canvas = document.getElementById("stefanvdsnowcanvas");
-	ctx = canvas.getContext("2d");
-
-	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight;
-
-	snowflakes = [];
-	mouseX = canvas.width / 2;
-
-	window.addEventListener("mousemove", (e) => {
-		mouseX = e.clientX;
-	});
-
-	window.addEventListener("resize", () => {
+	function init(){
+		canvas = document.getElementById("stefanvdsnowcanvas");
+		ctx = canvas.getContext("2d");
 		canvas.width = window.innerWidth;
 		canvas.height = window.innerHeight;
-	});
 
-	createSnowflakes();
-	animateSnow();
-}
+		snowflakes = [];
+		mouseX = canvas.width / 2;
 
-class Snowflake{
-	constructor(){
-		this.x = Math.random() * canvas.width;
-		this.y = Math.random() * canvas.height;
-		this.radius = Math.random() * snowSize + 1;
-		this.speedY = Math.random() * snowSpeed + 0.5;
-		this.speedX = 0;
-		this.opacity = 1;
-		this.stuck = false;
-		this.color = colorOption === "solid" ? snowColor : getRandomColor();
-		this.shape = snowShape;
+		window.addEventListener("resize", onResize);
+		window.addEventListener("mousemove", onMouseMove);
 	}
 
-	update(){
-		if(!this.stuck){
-			if(windDirectionControl){
-				const direction = mouseX - canvas.width / 2;
-				this.speedX = direction / 200;
-			}else{
-				this.speedX = 0;
-			}
+	function onResize(){
+		if(canvas){
+			canvas.width = window.innerWidth;
+			canvas.height = window.innerHeight;
+		}
+	}
 
-			this.y += this.speedY;
-			this.x += this.speedX;
+	function onMouseMove(e){
+		mouseX = e.clientX;
+	}
+
+	class Snowflake{
+		constructor(){
+			this.x = Math.random() * canvas.width;
+			this.y = Math.random() * canvas.height;
+			this.radius = Math.random() * snowSize + 1;
+			this.speedY = Math.random() * snowSpeed + 0.5;
+			this.speedX = 0;
+			this.opacity = 1;
+			this.stuck = false;
+			this.color = colorOption === "solid" ? snowColor : getRandomColor();
+			this.shape = snowShape;
 		}
 
-		if(snowOnBottom && this.y >= canvas.height){
-			this.y = canvas.height;
-			this.speedY = 0;
-			this.stuck = true;
-			this.opacity -= 0.005;
-			if(this.opacity <= 0){
+		update(){
+			if(!this.stuck){
+				if(windDirectionControl){
+					const direction = mouseX - canvas.width / 2;
+					this.speedX = direction / 200;
+				}else{
+					this.speedX = 0;
+				}
+
+				this.y += this.speedY;
+				this.x += this.speedX;
+			}
+
+			if(snowOnBottom && this.y >= canvas.height){
+				this.y = canvas.height;
+				this.speedY = 0;
+				this.stuck = true;
+				this.opacity -= 0.005;
+				if(this.opacity <= 0){
+					this.reset();
+				}
+			}
+
+			if(this.x > canvas.width){
+				this.x = 0;
+			}else if(this.x < 0){
+				this.x = canvas.width;
+			}
+
+			if(this.y > canvas.height && !snowOnBottom){
 				this.reset();
 			}
 		}
 
-		if(this.x > canvas.width){
-			this.x = 0;
-		}else if(this.x < 0){
-			this.x = canvas.width;
+		reset(){
+			this.x = Math.random() * canvas.width;
+			this.y = 0;
+			this.radius = Math.random() * snowSize + 1;
+			this.speedY = Math.random() * snowSpeed + 0.5;
+			this.opacity = 1;
+			this.stuck = false;
+			this.color = colorOption === "solid" ? snowColor : getRandomColor();
+			this.shape = snowShape;
 		}
 
-		if(this.y > canvas.height && !snowOnBottom){
-			this.reset();
+		draw(){
+			ctx.save();
+			ctx.fillStyle = `rgba(${hexToRgb(this.color)}, ${this.opacity})`;
+			ctx.translate(this.x, this.y);
+
+			if(this.shape === "dot"){
+				ctx.beginPath();
+				ctx.arc(0, 0, this.radius, 0, Math.PI * 2);
+				ctx.fill();
+				ctx.closePath();
+			}else if(this.shape === "star"){
+				this.drawStar(5, this.radius, this.radius / 2);
+			}else if(this.shape === "snowflake"){
+				this.drawSnowflake();
+			}
+
+			ctx.restore();
 		}
-	}
 
-	reset(){
-		this.x = Math.random() * canvas.width;
-		this.y = 0;
-		this.radius = Math.random() * snowSize + 1;
-		this.speedY = Math.random() * snowSpeed + 0.5;
-		this.opacity = 1;
-		this.stuck = false;
-		this.color = colorOption === "solid" ? snowColor : getRandomColor();
-		this.shape = snowShape;
-	}
+		drawStar(points, outerRadius, innerRadius){
+			let angle = Math.PI / points;
 
-	draw(){
-		ctx.save();
-		ctx.fillStyle = `rgba(${hexToRgb(this.color)}, ${this.opacity})`;
-		ctx.translate(this.x, this.y);
-
-		if(this.shape === "dot"){
 			ctx.beginPath();
-			ctx.arc(0, 0, this.radius, 0, Math.PI * 2);
-			ctx.fill();
+			for(let i = 0; i < 2 * points; i++){
+				const radius = i % 2 === 0 ? outerRadius : innerRadius;
+				const x = Math.cos(i * angle) * radius;
+				const y = Math.sin(i * angle) * radius;
+				ctx.lineTo(x, y);
+			}
 			ctx.closePath();
-		}else if(this.shape === "star"){
-			this.drawStar(5, this.radius, this.radius / 2);
-		}else if(this.shape === "snowflake"){
-			this.drawSnowflake();
+			ctx.fill();
 		}
 
-		ctx.restore();
-	}
-
-	drawStar(points, outerRadius, innerRadius){
-		let angle = Math.PI / points;
-
-		ctx.beginPath();
-		for(let i = 0; i < 2 * points; i++){
-			const radius = i % 2 === 0 ? outerRadius : innerRadius;
-			const x = Math.cos(i * angle) * radius;
-			const y = Math.sin(i * angle) * radius;
-			ctx.lineTo(x, y);
+		drawSnowflake(){
+			ctx.font = `${this.radius * 5}px Arial`; // Adjust size using the radius
+			ctx.fillText("❄", -this.radius, this.radius); // Position slightly adjusted for centering
 		}
-		ctx.closePath();
-		ctx.fill();
 	}
 
-	// Updated method to draw the Unicode snowflake symbol
-	drawSnowflake(){
-		ctx.font = `${this.radius * 5}px Arial`; // Adjust size using the radius
-		ctx.fillText("❄", -this.radius, this.radius); // Position slightly adjusted for centering
+	function getRandomColor(){
+		const letters = "0123456789ABCDEF";
+		let color = "#";
+		for(let i = 0; i < 6; i++){
+			color += letters[Math.floor(Math.random() * 16)];
+		}
+		return color;
 	}
-}
 
-function getRandomColor(){
-	const letters = "0123456789ABCDEF";
-	let color = "#";
-	for(let i = 0; i < 6; i++){
-		color += letters[Math.floor(Math.random() * 16)];
+	function hexToRgb(hex){
+		let r = parseInt(hex.slice(1, 3), 16);
+		let g = parseInt(hex.slice(3, 5), 16);
+		let b = parseInt(hex.slice(5, 7), 16);
+		return`${r}, ${g}, ${b}`;
 	}
-	return color;
-}
 
-function hexToRgb(hex){
-	let r = parseInt(hex.slice(1, 3), 16);
-	let g = parseInt(hex.slice(3, 5), 16);
-	let b = parseInt(hex.slice(5, 7), 16);
-	return`${r}, ${g}, ${b}`;
-}
-
-function createSnowflakes(){
-	snowflakes = [];
-	for(let i = 0; i < snowAmount; i++){
-		snowflakes.push(new Snowflake());
-	}
-}
-
-function animateSnow(){
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-	if(snowflakes.length < snowAmount){
-		const difference = snowAmount - snowflakes.length;
-		for(let i = 0; i < difference; i++){
+	function createSnowflakes(){
+		snowflakes = [];
+		for(let i = 0; i < snowAmount; i++){
 			snowflakes.push(new Snowflake());
 		}
-	}else if(snowflakes.length > snowAmount){
-		snowflakes.splice(0, snowflakes.length - snowAmount);
 	}
 
-	snowflakes.forEach((snowflake) => {
-		snowflake.update();
-		snowflake.draw();
-	});
+	function animateSnow(){
+		if(!ctx)return; // Safety check for context
 
-	requestAnimationFrame(animateSnow);
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+		if(snowflakes.length < snowAmount){
+			const difference = snowAmount - snowflakes.length;
+			for(let i = 0; i < difference; i++){
+				snowflakes.push(new Snowflake());
+			}
+		}else if(snowflakes.length > snowAmount){
+			snowflakes.splice(0, snowflakes.length - snowAmount);
+		}
+
+		snowflakes.forEach((snowflake) => {
+			snowflake.update();
+			snowflake.draw();
+		});
+
+		animationFrameId = requestAnimationFrame(animateSnow);
+	}
+
+	function addSnow(){
+		if(animationFrameId)return; // Prevent adding multiple snow effects
+		init();
+		createSnowflakes();
+		animateSnow();
+	}
+
+	function removeSnow(){
+		if(!animationFrameId)return; // If no animation is running, return early
+		cancelAnimationFrame(animationFrameId);
+		animationFrameId = null;
+
+		window.removeEventListener("resize", onResize);
+		window.removeEventListener("mousemove", onMouseMove);
+
+		// Clear canvas and reset variables
+		if(ctx){
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+		}
+
+		snowflakes = [];
+		canvas = null;
+		ctx = null;
+	}
+
+	return{
+		addSnow,
+		removeSnow
+	};
+})();
+
+function addSnow(){
+	SnowEffect.addSnow();
+}
+
+function removeSnow(){
+	SnowEffect.removeSnow();
 }
