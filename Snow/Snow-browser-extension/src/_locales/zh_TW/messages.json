@@ -5,6 +5,7 @@
 "namewhale":{"message":"Snow for Naver Whale"},
 "nameopera":{"message":"Snow for Opera"},
 "namesafari":{"message":"Snow for Safari"},
+"nameedge":{"message":"Snow for Microsoft Edge"},
 "description":{"message":"體驗頁面上飄落的雪花帶來的暴風雪效果。將其變成雪花紛飛的冬季仙境。"},
 "titelshortsnow":{"message":"Toggle to show the current web page in snow mode"},
 "sharemenupostonweibo": {"message": "Post on Weibo"},
