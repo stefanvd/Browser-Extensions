@@ -34,5 +34,5 @@
   ],
   "offline_enabled": true,
   "minimum_chrome_version": "116",
-  "permissions": ["activeTab", "storage", "scripting", "contextMenus"]
+  "permissions": ["activeTab", "storage", "contextMenus"]
 }

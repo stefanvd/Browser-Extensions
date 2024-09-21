@@ -32,7 +32,7 @@
       "js": ["scripts/constants.js", "scripts/snowstorm.js"]
     }
   ],
-  "permissions": ["activeTab", "storage", "scripting", "contextMenus"],
+  "permissions": ["activeTab", "storage", "contextMenus"],
   "browser_specific_settings": {
     "gecko": {
         "id": "snow@stefanvd.net",

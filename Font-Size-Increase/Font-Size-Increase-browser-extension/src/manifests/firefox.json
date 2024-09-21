@@ -1,0 +1,42 @@
+{
+  "name": "__MSG_name__",
+  "background": {
+    "scripts": ["scripts/constants.js","scripts/background.js"]
+  },
+  "action": {
+    "default_icon": {
+      "19": "images/icon19.png",
+      "38": "images/icon38.png"
+    },
+    "default_title": "__MSG_name__"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+M",
+        "mac": "MacCtrl+Shift+M"
+      }
+    },
+    "toggle-feature-fontreset": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+W",
+        "mac": "MacCtrl+Shift+W"
+      },
+      "description": "__MSG_pagetitle__"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["scripts/constants.js", "scripts/content.js"]
+    }
+  ],
+  "permissions": ["activeTab", "storage", "contextMenus"],
+  "browser_specific_settings": {
+    "gecko": {
+        "id": "fontsizeincrease@stefanvd.net",
+        "strict_min_version": "113.0"
+    },
+    "gecko_android": {}
+  }
+}
