@@ -3,9 +3,9 @@ const exbrowser = "firefox";
 // values: "chrome", "safari", "edge", "firefox", "opera", "yandex", "whale"
 const linkredirectionoptions = "https://www.stefanvd.net/project/font-size-increase/browser/options/";
 const linkdeveloperwebsite = "https://www.stefanvd.net";
-const linkproduct = "https://addons.mozilla.org/en-US/firefox/addon/font-size-increase/";
+const linkproduct = "https://addons.mozilla.org/en-US/firefox/addon/font-size-increase-for-firefox/";
 const linkdonate = "https://www.stefanvd.net/donate/";
-const writereview = "https://addons.mozilla.org/en-US/firefox/addon/font-size-increase/reviews";
+const writereview = "https://addons.mozilla.org/en-US/firefox/addon/font-size-increase-for-firefox/reviews";
 const linkchangelog = "https://www.stefanvd.net/project/font-size-increase/browser/firefox/changelog/";
 const linktranslate = "https://www.stefanvd.net/project/translate/";
 const linksupport = "https://www.stefanvd.net/support/";
