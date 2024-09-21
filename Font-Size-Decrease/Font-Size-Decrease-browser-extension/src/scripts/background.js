@@ -145,10 +145,12 @@ var openactionclick = function(tab){
 
 			chrome.storage.sync.get(["doubleclick"], function(items){
 				doubleclick = items["doubleclick"]; if(doubleclick == null)doubleclick = true;
-				chrome.scripting.executeScript({
-					target: {tabId: tab.id},
-					func: codereset
-				});
+				if(doubleclick == true){
+					chrome.scripting.executeScript({
+						target: {tabId: tab.id},
+						func: codereset
+					});
+				}
 			});
 		}
 

@@ -39,15 +39,16 @@ function defaultgetsettings(){
 function save_options(){
 	chrome.runtime.sendMessage({name: "getallpermissions"});
 
-	chrome.storage.sync.set({"icon": $("btnpreview").src, "optionskipremember": $("optionskipremember").checked, "contextmenus": $("contextmenus").checked, "fontMax": $("fontMax").value});
+	chrome.storage.sync.set({"icon": $("btnpreview").src, "optionskipremember": $("optionskipremember").checked, "contextmenus": $("contextmenus").checked, "fontMax": $("fontMax").value, "doubleclick": $("doubleclick").checked});
 }
 
 var firstdefaultvalues = {};
 // Option default value to read if there is no current value from chrome.storage AND init default value
-chrome.storage.sync.get(["icon", "fontMax"], function(items){
+chrome.storage.sync.get(["icon", "fontMax", "doubleclick"], function(items){
 	// find no localstore
 	if(items["icon"] == null){ firstdefaultvalues["icon"] = "/images/icon38.png"; }
 	if(items["fontMax"] == null){ firstdefaultvalues["fontMax"] = 120; }
+	if(items["doubleclick"] == null){ firstdefaultvalues["doubleclick"] = true; }
 	// Save the init value
 	chrome.storage.sync.set(firstdefaultvalues, function(){
 		// console.log('Settings saved');
@@ -142,11 +143,12 @@ function read_options(){
 		showhidemodal("materialModalYouTube", "hide", "true");
 	}
 
-	chrome.storage.sync.get(["firstDate", "icon", "countremember", "optionskipremember", "contextmenus", "firstsawrate", "fontMax"], function(items){
+	chrome.storage.sync.get(["firstDate", "icon", "countremember", "optionskipremember", "contextmenus", "firstsawrate", "fontMax", "doubleclick"], function(items){
 		if(items["icon"]){ $("btnpreview").src = items["icon"]; }
 		if(items["optionskipremember"] == true)$("optionskipremember").checked = true;
 		if(items["contextmenus"] == true)$("contextmenus").checked = true;
 		if(items["fontMax"]){ $("fontMax").value = items["fontMax"]; }
+		if(items["doubleclick"] == true)$("doubleclick").checked = true;
 
 		// show remember page
 		var firstmonth = false;
