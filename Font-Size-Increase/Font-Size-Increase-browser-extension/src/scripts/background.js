@@ -2,7 +2,7 @@
 /*
 
 Font Size Increase
-Increase the font size on the current page with a single click.
+Increase font size on any web page with one click.
 Copyright (C) 2024 Stefan vd
 www.stefanvd.net
 
@@ -57,69 +57,66 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 
 // Function to reset the font size for all elements
 function codereset(){
-	var root = document.documentElement;
+	// Traverse all elements on the page
+	function resetFontSizeRecursively(element){
+		// Check if the element has the original font size stored
+		if(element.hasAttribute("data-default-fontsize")){
+			// Restore the original font size
+			element.style.setProperty("font-size", element.getAttribute("data-default-fontsize"), "important");
+			element.removeAttribute("data-default-fontsize");
+		}
 
-	// Reset root element
-	if(root.hasAttribute("data-default-fontsize")){
-		root.style.setProperty("font-size", root.getAttribute("data-default-fontsize"), "important");
-		root.removeAttribute("data-default-fontsize");
+		// Traverse child elements recursively
+		Array.from(element.children).forEach((child) => {
+			resetFontSizeRecursively(child);
+		});
 	}
 
-	// Reset all inputs, buttons, and anchors
-	["input", "button", "a"].forEach((tag) => {
-		var elements = document.querySelectorAll(tag);
-		elements.forEach((el) => {
-			if(el.hasAttribute("data-default-fontsize")){
-				el.style.setProperty("font-size", el.getAttribute("data-default-fontsize"), "important");
-				el.removeAttribute("data-default-fontsize");
-			}
-		});
-	});
+	// Start resetting font sizes from the body
+	resetFontSizeRecursively(document.body);
 }
 
-var maximumFontSize; // Maximum font size in px
 // Function to increase the font size for all elements
 function codesetsize(){
 	chrome.storage.sync.get(["fontMax"], function(items){
-		maximumFontSize = items["fontMax"]; if(maximumFontSize == null)maximumFontSize = 120;
+		let maximumFontSize = items["fontMax"];
+		if(maximumFontSize == null) maximumFontSize = 120;
 
-		// Get the root element (html)
-		var root = document.documentElement;
+		// Function to set the font size for an individual element
+		function setFontSize(el){
+			let computedStyleEl = window.getComputedStyle(el, null);
+			let elementFontSize = computedStyleEl.getPropertyValue("font-size");
 
-		// Check and store the original font size if not already stored
-		let computedStyle = window.getComputedStyle(root, null);
-		let rootFontSize = computedStyle.getPropertyValue("font-size");
+			// Store the original font size if not already stored
+			if(!el.hasAttribute("data-default-fontsize")){
+				el.setAttribute("data-default-fontsize", elementFontSize);
+			}
 
-		if(!root.hasAttribute("data-default-fontsize")){
-			root.setAttribute("data-default-fontsize", rootFontSize);
+			// Parse the current font size, increase it, and ensure it's within the max limit
+			let currentFontSizeEl = parseFloat(elementFontSize.replace("px", ""));
+			let newFontSizeEl = Math.min(currentFontSizeEl + 1, maximumFontSize); // Ensure it's not greater than the max size
+
+			// Apply the new font size to the element using !important
+			el.style.setProperty("font-size", newFontSizeEl + "px", "important");
 		}
 
-		// Convert the font size to a number and increment it
-		let currentFontSize = parseFloat(rootFontSize.replace("px", ""));
-		let newFontSize = Math.min(currentFontSize + 1, maximumFontSize); // Ensure it's not greater than 120px
+		// Recursively apply font size to all elements with text
+		function applyFontSizeRecursively(element){
+			// Check if element has text content or contains child elements with text
+			if(element.childElementCount === 0 && element.textContent.trim() !== ""){
+				setFontSize(element); // Only apply if the element contains text
+			}else if(element.childElementCount > 0){
+				// If the element has children, apply the size change to all children
+				Array.from(element.children).forEach((child) => {
+					applyFontSizeRecursively(child);
+				});
+			}
+			// Always apply to the current element itself
+			setFontSize(element);
+		}
 
-		// Set the new font size for the root element
-		root.style.setProperty("font-size", newFontSize + "px", "important");
-
-		// Handle specific elements (input, button, a) that may not inherit the root font-size
-		["input", "button", "a"].forEach((tag) => {
-			var elements = document.querySelectorAll(tag);
-			elements.forEach((el) => {
-				let computedStyleEl = window.getComputedStyle(el, null);
-				let elementFontSize = computedStyleEl.getPropertyValue("font-size");
-
-				// Store the original font size if not already stored
-				if(!el.hasAttribute("data-default-fontsize")){
-					el.setAttribute("data-default-fontsize", elementFontSize);
-				}
-
-				let currentFontSizeEl = parseFloat(elementFontSize.replace("px", ""));
-				let newFontSizeEl = Math.min(currentFontSizeEl + 1, maximumFontSize); // Ensure it's not greater than 120px
-
-				// Apply the new font size to the element
-				el.style.setProperty("font-size", newFontSizeEl + "px", "important");
-			});
-		});
+		// Start applying font size from the body
+		applyFontSizeRecursively(document.body);
 	});
 }
 
@@ -211,7 +208,7 @@ if(chrome.contextMenus){
 var sharemenusharetitle = chrome.i18n.getMessage("sharemenusharetitle");
 var sharemenuwelcomeguidetitle = chrome.i18n.getMessage("sharemenuwelcomeguidetitle");
 var sharemenutellafriend = chrome.i18n.getMessage("sharemenutellafriend");
-var sharemenusendatweet = chrome.i18n.getMessage("sharemenusendatweet");
+var sharemenusendapost = chrome.i18n.getMessage("sharemenusendapost");
 var sharemenupostonfacebook = chrome.i18n.getMessage("sharemenupostonfacebook");
 // var sharemenuratetitle = chrome.i18n.getMessage("sharemenuratetitle");
 var sharemenudonatetitle = chrome.i18n.getMessage("sharemenudonatetitle");
@@ -268,12 +265,12 @@ if(chrome.contextMenus){
 			browsercontext(sharemenupostonvkontakte, "totlsharevkontakte", {"16": "images/IconVkontakte.png", "32": "images/IconVkontakte@2x.png"}, parent);
 			browsercontext(sharemenupostonfacebook, "totlsharefacebook", {"16": "images/IconFacebook.png", "32": "images/IconFacebook@2x.png"}, parent);
 			browsercontext(sharemenupostonwhatsapp, "totlsharewhatsapp", {"16": "images/IconWhatsApp.png", "32": "images/IconWhatsApp@2x.png"}, parent);
-			browsercontext(sharemenusendatweet, "totlsharex", {"16": "images/IconX.png", "32": "images/IconX@2x.png"}, parent);
+			browsercontext(sharemenusendapost, "totlsharex", {"16": "images/IconX.png", "32": "images/IconX@2x.png"}, parent);
 		}else{
 			// all users
 			browsercontext(sharemenupostonfacebook, "totlsharefacebook", {"16": "images/IconFacebook.png", "32": "images/IconFacebook@2x.png"}, parent);
 			browsercontext(sharemenupostonwhatsapp, "totlsharewhatsapp", {"16": "images/IconWhatsApp.png", "32": "images/IconWhatsApp@2x.png"}, parent);
-			browsercontext(sharemenusendatweet, "totlsharex", {"16": "images/IconX.png", "32": "images/IconX@2x.png"}, parent);
+			browsercontext(sharemenusendapost, "totlsharex", {"16": "images/IconX.png", "32": "images/IconX@2x.png"}, parent);
 		}
 
 		chrome.contextMenus.create({"title": "", "type":"separator", "id": "totlsepartor", "contexts": contexts});

@@ -2,7 +2,7 @@
 /*
 
 Font Size Decrease
-Decrease the font size on the current page with a single click.
+Decrease font size on any web page with one click.
 Copyright (C) 2024 Stefan vd
 www.stefanvd.net
 
@@ -57,70 +57,66 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 
 // Function to reset the font size for all elements
 function codereset(){
-	var root = document.documentElement;
+	// Traverse all elements on the page
+	function resetFontSizeRecursively(element){
+		// Check if the element has the original font size stored
+		if(element.hasAttribute("data-default-fontsize")){
+			// Restore the original font size
+			element.style.setProperty("font-size", element.getAttribute("data-default-fontsize"), "important");
+			element.removeAttribute("data-default-fontsize");
+		}
 
-	// Reset root element
-	if(root.hasAttribute("data-default-fontsize")){
-		root.style.setProperty("font-size", root.getAttribute("data-default-fontsize"), "important");
-		root.removeAttribute("data-default-fontsize");
+		// Traverse child elements recursively
+		Array.from(element.children).forEach((child) => {
+			resetFontSizeRecursively(child);
+		});
 	}
 
-	// Reset all inputs, buttons, and anchors
-	["input", "button", "a"].forEach((tag) => {
-		var elements = document.querySelectorAll(tag);
-		elements.forEach((el) => {
-			if(el.hasAttribute("data-default-fontsize")){
-				el.style.setProperty("font-size", el.getAttribute("data-default-fontsize"), "important");
-				el.removeAttribute("data-default-fontsize");
-			}
-		});
-	});
+	// Start resetting font sizes from the body
+	resetFontSizeRecursively(document.body);
 }
 
-var minimumFontSize = 10; // Set a minimum font size
 // Function to decrease the font size for all elements
 function codesetsize(){
 	chrome.storage.sync.get(["fontMin"], function(items){
-		minimumFontSize = items["fontMin"];
-		if(minimumFontSize == null) minimumFontSize = 6;
+		let minimumFontSize = items["fontMin"];
+		if(minimumFontSize == null) minimumFontSize = 4; // Set a default minimum font size
 
-		// Get the root element (html)
-		var root = document.documentElement;
+		// Function to set the font size for an individual element
+		function setFontSize(el){
+			let computedStyleEl = window.getComputedStyle(el, null);
+			let elementFontSize = computedStyleEl.getPropertyValue("font-size");
 
-		// Check and store the original font size if not already stored
-		let computedStyle = window.getComputedStyle(root, null);
-		let rootFontSize = computedStyle.getPropertyValue("font-size");
+			// Store the original font size if not already stored
+			if(!el.hasAttribute("data-default-fontsize")){
+				el.setAttribute("data-default-fontsize", elementFontSize);
+			}
 
-		if(!root.hasAttribute("data-default-fontsize")){
-			root.setAttribute("data-default-fontsize", rootFontSize);
+			// Parse the current font size, decrease it, and ensure it's within the min limit
+			let currentFontSizeEl = parseFloat(elementFontSize.replace("px", ""));
+			let newFontSizeEl = Math.max(currentFontSizeEl - 1, minimumFontSize); // Ensure it's not less than the min size
+
+			// Apply the new font size to the element using !important
+			el.style.setProperty("font-size", newFontSizeEl + "px", "important");
 		}
 
-		// Convert the font size to a number and decrement it
-		let currentFontSize = parseFloat(rootFontSize.replace("px", ""));
-		let newFontSize = Math.max(currentFontSize - 1, minimumFontSize); // Ensure it's not smaller than the minimum font size
+		// Recursively apply font size to all elements with text
+		function applyFontSizeRecursively(element){
+			// Check if element has text content or contains child elements with text
+			if(element.childElementCount === 0 && element.textContent.trim() !== ""){
+				setFontSize(element); // Only apply if the element contains text
+			}else if(element.childElementCount > 0){
+				// If the element has children, apply the size change to all children
+				Array.from(element.children).forEach((child) => {
+					applyFontSizeRecursively(child);
+				});
+			}
+			// Always apply to the current element itself
+			setFontSize(element);
+		}
 
-		// Set the new font size for the root element
-		root.style.setProperty("font-size", newFontSize + "px", "important");
-
-		// Handle specific elements (input, button, a) that may not inherit the root font-size
-		["input", "button", "a"].forEach((tag) => {
-			var elements = document.querySelectorAll(tag);
-			elements.forEach((el) => {
-				let computedStyleEl = window.getComputedStyle(el, null);
-				let elementFontSize = computedStyleEl.getPropertyValue("font-size");
-
-				// Store the original font size if not already stored
-				if(!el.hasAttribute("data-default-fontsize")){
-					el.setAttribute("data-default-fontsize", elementFontSize);
-				}
-
-				let currentFontSizeEl = parseFloat(elementFontSize.replace("px", ""));
-				let newFontSizeEl = Math.max(currentFontSizeEl - 1, minimumFontSize); // Ensure it's not smaller than the minimum font size
-
-				// Apply the new font size to the element
-				el.style.setProperty("font-size", newFontSizeEl + "px", "important");
-			});
-		});
+		// Start applying font size from the body
+		applyFontSizeRecursively(document.body);
 	});
 }
 
@@ -184,7 +180,7 @@ function onClickHandler(info){
 	}else if(info.menuItemId == "totlshareemail"){
 		var sturnoffthelightemail = "mailto:your@email.com?subject=" + chrome.i18n.getMessage("sharetexta") + "&body=" + chrome.i18n.getMessage("sharetextb") + " " + linkproduct; chrome.tabs.create({url: sturnoffthelightemail, active:true});
 	}else if(info.menuItemId == "totlsharex"){
-		var slinkproductcodeurl = encodeURIComponent(chrome.i18n.getMessage("sharetextd") + " " + linkproduct); chrome.tabs.create({url: "https://x.com/intent/tweet?text=" + slinkproductcodeurl, active:true});
+		var slinkproductcodeurl = encodeURIComponent(chrome.i18n.getMessage("sharetextd") + " " + linkproduct); chrome.tabs.create({url: "https://x.com/intent/Post?text=" + slinkproductcodeurl, active:true});
 	}else if(info.menuItemId == "totlsharefacebook"){
 		chrome.tabs.create({url: "https://www.facebook.com/sharer/sharer.php?u=" + linkproduct, active:true});
 	}else if(info.menuItemId == "totlsubscribe"){
@@ -212,7 +208,7 @@ if(chrome.contextMenus){
 var sharemenusharetitle = chrome.i18n.getMessage("sharemenusharetitle");
 var sharemenuwelcomeguidetitle = chrome.i18n.getMessage("sharemenuwelcomeguidetitle");
 var sharemenutellafriend = chrome.i18n.getMessage("sharemenutellafriend");
-var sharemenusendatweet = chrome.i18n.getMessage("sharemenusendatweet");
+var sharemenusendapost = chrome.i18n.getMessage("sharemenusendapost");
 var sharemenupostonfacebook = chrome.i18n.getMessage("sharemenupostonfacebook");
 // var sharemenuratetitle = chrome.i18n.getMessage("sharemenuratetitle");
 var sharemenudonatetitle = chrome.i18n.getMessage("sharemenudonatetitle");
@@ -269,12 +265,12 @@ if(chrome.contextMenus){
 			browsercontext(sharemenupostonvkontakte, "totlsharevkontakte", {"16": "images/IconVkontakte.png", "32": "images/IconVkontakte@2x.png"}, parent);
 			browsercontext(sharemenupostonfacebook, "totlsharefacebook", {"16": "images/IconFacebook.png", "32": "images/IconFacebook@2x.png"}, parent);
 			browsercontext(sharemenupostonwhatsapp, "totlsharewhatsapp", {"16": "images/IconWhatsApp.png", "32": "images/IconWhatsApp@2x.png"}, parent);
-			browsercontext(sharemenusendatweet, "totlsharex", {"16": "images/IconX.png", "32": "images/IconX@2x.png"}, parent);
+			browsercontext(sharemenusendapost, "totlsharex", {"16": "images/IconX.png", "32": "images/IconX@2x.png"}, parent);
 		}else{
 			// all users
 			browsercontext(sharemenupostonfacebook, "totlsharefacebook", {"16": "images/IconFacebook.png", "32": "images/IconFacebook@2x.png"}, parent);
 			browsercontext(sharemenupostonwhatsapp, "totlsharewhatsapp", {"16": "images/IconWhatsApp.png", "32": "images/IconWhatsApp@2x.png"}, parent);
-			browsercontext(sharemenusendatweet, "totlsharex", {"16": "images/IconX.png", "32": "images/IconX@2x.png"}, parent);
+			browsercontext(sharemenusendapost, "totlsharex", {"16": "images/IconX.png", "32": "images/IconX@2x.png"}, parent);
 		}
 
 		chrome.contextMenus.create({"title": "", "type":"separator", "id": "totlsepartor", "contexts": contexts});

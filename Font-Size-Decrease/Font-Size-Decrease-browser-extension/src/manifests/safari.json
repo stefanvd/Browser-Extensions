@@ -27,11 +27,11 @@
   },
   "content_scripts": [
     {
-      "matches": ["http://*/*", "https://*/*"],
+      "matches": ["*://*.stefanvd.net/*"],
       "js": ["scripts/constants.js", "scripts/content.js"]
     }
   ],
   "offline_enabled": true,
   "minimum_chrome_version": "116",
-  "permissions": ["activeTab", "storage", "contextMenus"]
+  "permissions": ["activeTab", "scripting", "storage", "contextMenus"]
 }

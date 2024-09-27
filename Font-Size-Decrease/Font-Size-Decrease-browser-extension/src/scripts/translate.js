@@ -2,7 +2,7 @@
 /*
 
 Font Size Decrease
-Decrease the font size on the current page with a single click.
+Decrease font size on any web page with one click.
 Copyright (C) 2024 Stefan vd
 www.stefanvd.net
 

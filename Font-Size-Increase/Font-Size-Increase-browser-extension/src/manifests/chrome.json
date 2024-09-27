@@ -27,7 +27,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["http://*/*", "https://*/*"],
+      "matches": ["*://*.stefanvd.net/*"],
       "js": ["scripts/constants.js", "scripts/content.js"]
     }
   ],

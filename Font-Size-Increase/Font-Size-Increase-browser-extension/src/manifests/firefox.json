@@ -27,11 +27,11 @@
   },
   "content_scripts": [
     {
-      "matches": ["http://*/*", "https://*/*"],
+      "matches": ["*://*.stefanvd.net/*"],
       "js": ["scripts/constants.js", "scripts/content.js"]
     }
   ],
-  "permissions": ["activeTab", "storage", "contextMenus"],
+  "permissions": ["activeTab", "scripting", "storage", "contextMenus"],
   "browser_specific_settings": {
     "gecko": {
         "id": "fontsizeincrease@stefanvd.net",

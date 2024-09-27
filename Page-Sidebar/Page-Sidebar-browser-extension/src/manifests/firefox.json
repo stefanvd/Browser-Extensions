@@ -34,7 +34,7 @@
       "description": "__MSG_titelcurrenttab__"
     }
   },
-  "host_permissions": [ "*://*/*" ],
+  "host_permissions": ["*://*/*"],
   "permissions": ["contextMenus", "storage", "declarativeNetRequestWithHostAccess"],
   "optional_permissions": ["bookmarks"],
   "browser_specific_settings": {

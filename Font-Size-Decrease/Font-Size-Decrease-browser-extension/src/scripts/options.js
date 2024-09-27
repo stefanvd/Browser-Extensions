@@ -2,7 +2,7 @@
 /*
 
 Font Size Decrease
-Decrease the font size on the current page with a single click.
+Decrease font size on any web page with one click.
 Copyright (C) 2024 Stefan vd
 www.stefanvd.net
 
@@ -39,15 +39,15 @@ function defaultgetsettings(){
 function save_options(){
 	chrome.runtime.sendMessage({name: "getallpermissions"});
 
-	chrome.storage.sync.set({"icon": $("btnpreview").src, "optionskipremember": $("optionskipremember").checked, "contextmenus": $("contextmenus").checked, "fontMax": $("fontMax").value, "doubleclick": $("doubleclick").checked});
+	chrome.storage.sync.set({"icon": $("btnpreview").src, "optionskipremember": $("optionskipremember").checked, "contextmenus": $("contextmenus").checked, "fontMin": $("fontMin").value, "doubleclick": $("doubleclick").checked});
 }
 
 var firstdefaultvalues = {};
 // Option default value to read if there is no current value from chrome.storage AND init default value
-chrome.storage.sync.get(["icon", "fontMax", "doubleclick"], function(items){
+chrome.storage.sync.get(["icon", "fontMin", "doubleclick"], function(items){
 	// find no localstore
 	if(items["icon"] == null){ firstdefaultvalues["icon"] = "/images/icon38.png"; }
-	if(items["fontMax"] == null){ firstdefaultvalues["fontMax"] = 120; }
+	if(items["fontMin"] == null){ firstdefaultvalues["fontMin"] = 4; }
 	if(items["doubleclick"] == null){ firstdefaultvalues["doubleclick"] = true; }
 	// Save the init value
 	chrome.storage.sync.set(firstdefaultvalues, function(){

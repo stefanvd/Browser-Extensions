@@ -29,7 +29,7 @@
   },
   "offline_enabled": true,
   "minimum_chrome_version": "114",
-  "host_permissions": [ "<all_urls>" ],
+  "host_permissions": ["<all_urls>"],
   "permissions": ["contextMenus", "storage", "declarativeNetRequestWithHostAccess"],
   "optional_permissions": ["bookmarks"]
 }
