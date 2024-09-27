@@ -874,18 +874,18 @@ let previousFileURL = null; // Store the previous file URL
 
 function handleDrop(e){
 	e.preventDefault();
-	console.log("link drop here", e);
+	// console.log("link drop here", e);
 
 	// Check if files were dropped
 	const files = e.dataTransfer.files;
 	if(files.length > 0){
 		// Handle file drop
 		const file = files[0]; // Get the first file (assuming single file drop)
-		console.log("Dropped file: ", file);
+		// console.log("Dropped file: ", file);
 
 		// Create a local file URL for the new dropped file
 		const fileURL = URL.createObjectURL(file);
-		console.log("Local file URL: ", fileURL);
+		// console.log("Local file URL: ", fileURL);
 
 		// Open or handle the file here
 		openweb(fileURL, true); // Your function for opening the file
