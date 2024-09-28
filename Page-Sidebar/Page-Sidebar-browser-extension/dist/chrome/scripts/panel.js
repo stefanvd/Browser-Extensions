@@ -982,7 +982,6 @@ function actionHome(){
 
 function actionGo(){
 	var searchInput = document.getElementById("searchbar").value.trim();
-	console.log("STARTsearchInput=",searchInput);
 	// Check if the input is a valid URL
 	// capture groups:
 	// 1: protocol (https://)
@@ -992,20 +991,16 @@ function actionGo(){
 	// 5: fragment (#chat/home)
 	var urlRegex = /^(https?:\/\/)?((?:[\da-z.-]+)+\.(?:[a-z.]{2,})+)?((?:\/[-a-z\d%_.~+]*)*)(\?[;&a-z\d%_.~+=-]*)?(#.*)?$/i;
 	if(urlRegex.test(searchInput)){
-		console.log("A ", searchInput)
+		// If it is a URL, navigate to the page
 		if(searchInput.startsWith("http://www.") || searchInput.startsWith("https://www.")){
-			console.log("B ", searchInput)
-			// If it's a URL, navigate to the page
 			openweb(searchInput, true);
 		}else if(searchInput.startsWith("http://") || searchInput.startsWith("https://")){
-			console.log("C ", searchInput)
 			openweb(searchInput, true);
 		}else{
 			openweb("https://" + searchInput, true);
 		}
 	}else{
 		if(searchInput.startsWith("file:///")){
-			console.log("D ", searchInput)
 			openweb(searchInput, true);
 		}else{
 			// If it is not a URL, perform a text search
@@ -1021,8 +1016,6 @@ function handleKeyPress(event){
 }
 
 const openweb = async(currenturl) => {
-
-	console.log("that webopen=",currenturl)
 	var index = -1;
 	if(multipletabs){
 		// Current active tab

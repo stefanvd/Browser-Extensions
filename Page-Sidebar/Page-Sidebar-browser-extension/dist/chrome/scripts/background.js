@@ -154,32 +154,55 @@ function onClickHandler(info, tab){
 			if(tab){
 				var currentpage = tab.url;
 				// console.log("currentpage= " + currentpage);
-				chrome.sidePanel.open({windowId: tab.windowId}, function(){
-					// wait when panel is open, then send the message
+				if(exbrowser == "opera"){
+					// Opera
 					setTimeout(function(){
 						chrome.runtime.sendMessage({msg: "setpage", value: currentpage});
 					}, 500);
-				});
+				}else{
+					// Chromium
+					// console.log("currentpage= " + currentpage);
+					chrome.sidePanel.open({windowId: tab.windowId}, function(){
+						// wait when panel is open, then send the message
+						setTimeout(function(){
+							chrome.runtime.sendMessage({msg: "setpage", value: currentpage});
+						}, 500);
+					});
+				}
 			}
 		});
 	}else if(info.menuItemId == "snpage"){
 		var selectedlink = info.linkUrl;
 		// console.log("selectedlink= " + selectedlink);
-		chrome.sidePanel.open({windowId: tab.windowId}, function(){
+		if(exbrowser == "opera"){
 			// wait when panel is open, then send the message
 			setTimeout(function(){
 				chrome.runtime.sendMessage({msg: "setpage", value: selectedlink});
 			}, 500);
-		});
+		}else{
+			chrome.sidePanel.open({windowId: tab.windowId}, function(){
+				// wait when panel is open, then send the message
+				setTimeout(function(){
+					chrome.runtime.sendMessage({msg: "setpage", value: selectedlink});
+				}, 500);
+			});
+		}
 	}else if(info.menuItemId == "slpage"){
 		var searchquery = info.selectionText;
 		// console.log("searchquery= " + searchquery);
-		chrome.sidePanel.open({windowId: tab.windowId}, function(){
+		if(exbrowser == "opera"){
 			// wait when panel is open, then send the message
 			setTimeout(function(){
 				chrome.runtime.sendMessage({msg: "setsearch", value: searchquery});
 			}, 500);
-		});
+		}else{
+			chrome.sidePanel.open({windowId: tab.windowId}, function(){
+				// wait when panel is open, then send the message
+				setTimeout(function(){
+					chrome.runtime.sendMessage({msg: "setsearch", value: searchquery});
+				}, 500);
+			});
+		}
 	}
 }
 

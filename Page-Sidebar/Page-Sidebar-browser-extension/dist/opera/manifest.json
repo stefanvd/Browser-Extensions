@@ -4,7 +4,6 @@
 	"homepage_url": "https://www.stefanvd.net/support/",
 	"description": "__MSG_description__",
 	"author": "Stefan vd",
-	"version": "1.2.1",
 	"icons": {
 		"16": "images/icon16.png",
 		"24": "images/icon24.png",
@@ -31,6 +30,7 @@
 		"page": "options.html",
 		"open_in_tab": true
 	},
+	"version": "1.2.3",
 	"name": "__MSG_namefull__",
 	"background": {
 		"service_worker": "scripts/background.js"
