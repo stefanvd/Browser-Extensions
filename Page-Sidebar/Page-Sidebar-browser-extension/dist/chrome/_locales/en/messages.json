@@ -181,5 +181,6 @@
     "desgobutton": {"message": "Show the go button"},
     "titelhomepage": {"message": "Homepage"},
     "despreventclose": {"message": "Show a message to confirm you want to close that tab"},
-    "closetab": {"message": "Do you wan to close this tab?"}
+    "closetab": {"message": "Do you wan to close this tab?"},
+    "desdragnewtab": {"message": "When dragging and dropping a new link, it will open in a new tab"}
   }

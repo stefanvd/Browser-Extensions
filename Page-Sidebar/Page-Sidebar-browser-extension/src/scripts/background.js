@@ -548,6 +548,9 @@ chrome.storage.onChanged.addListener(function(changes){
 	if(changes["preventclose"]){
 		chrome.runtime.sendMessage({msg: "setpreventclose", value: changes["preventclose"].newValue});
 	}
+	if(changes["dragnewtab"]){
+		chrome.runtime.sendMessage({msg: "setdragnewtab", value: changes["dragnewtab"].newValue});
+	}
 });
 
 chrome.runtime.setUninstallURL(linkuninstall);
