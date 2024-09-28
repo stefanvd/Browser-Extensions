@@ -4,6 +4,7 @@ const mergeJson = require("gulp-merge-json");
 const rename = require("gulp-rename");
 const fs = require("fs-extra");
 const{join} = require("path");
+const zip = require("gulp-zip"); // Add gulp-zip for zipping
 
 const outputDir = "dist";
 const packageDef = require("./package.json");
@@ -71,8 +72,15 @@ const buildExtension = (browser) => {
 	return commonFiles;
 };
 
+const zipExtension = (browser) => {
+	const zipName = `${packageDef.name}-${browser}-extension-${packageDef.version}.zip`;
+	return src(`${outputDir}/${browser}/**/*`)
+		.pipe(zip(zipName))
+		.pipe(dest(`${outputDir}`));
+};
+
 const createTask = (browser) => {
-	return series(() => buildExtension(browser));
+	return series(() => buildExtension(browser), () => zipExtension(browser));
 };
 
 exports.chrome = createTask("chrome");
@@ -81,4 +89,12 @@ exports.edge = createTask("edge");
 exports.opera = createTask("opera");
 exports.safari = createTask("safari");
 exports.whale = createTask("whale");
-exports.yandex = createTask("yandex");
+
+exports.browserzip = series(
+	createTask("chrome"),
+	createTask("firefox"),
+	createTask("edge"),
+	createTask("opera"),
+	createTask("safari"),
+	createTask("whale")
+);

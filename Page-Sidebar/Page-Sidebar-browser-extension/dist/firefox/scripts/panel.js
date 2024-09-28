@@ -26,7 +26,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-var selectedsearch, searchgoogle, searchbing, searchduckduckgo, searchbaidu, searchyandex, typepanelzone, typepanelcustom, typepanellasttime, websitezoomname, websitelasttime, navtop, navbottom, navhidden, opentab, opencopy, opennonebookmarks, openbrowserbookmarks, openquickbookmarks, googlesidepanel, zoom, defaultzoom, step, multipletabs, multivalues, navbuttons, gobutton, typehomezone, typehomecustom, websitehomepagename, preventclose;
+var selectedsearch, searchgoogle, searchbing, searchduckduckgo, searchbaidu, searchyandex, typepanelzone, typepanelcustom, typepanellasttime, websitezoomname, websitelasttime, navtop, navbottom, navhidden, opentab, opencopy, opennonebookmarks, openbrowserbookmarks, openquickbookmarks, googlesidepanel, zoom, defaultzoom, step, multipletabs, multivalues, navbuttons, gobutton, typehomezone, typehomecustom, websitehomepagename, preventclose, dragnewtab;
 
 var faviconserver = "https://s2.googleusercontent.com/s2/favicons?domain=";
 var emptypage = "about:blank";
@@ -270,7 +270,7 @@ function init(){
 		zoomPanel.classList.toggle("collapsed");
 	});
 
-	chrome.storage.sync.get(["firstDate", "optionskipremember", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "typepanellasttime", "websitezoomname", "websitelasttime", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "opentab", "opencopy", "opennonebookmarks", "openbrowserbookmarks", "openquickbookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10", "googlesidepanel", "zoom", "defaultzoom", "step", "multipletabs", "multivalues", "navbuttons", "gobutton", "typehomezone", "typehomecustom", "websitehomepagename", "preventclose"], function(items){
+	chrome.storage.sync.get(["firstDate", "optionskipremember", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "typepanellasttime", "websitezoomname", "websitelasttime", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "opentab", "opencopy", "opennonebookmarks", "openbrowserbookmarks", "openquickbookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10", "googlesidepanel", "zoom", "defaultzoom", "step", "multipletabs", "multivalues", "navbuttons", "gobutton", "typehomezone", "typehomecustom", "websitehomepagename", "preventclose", "dragnewtab"], function(items){
 		searchgoogle = items["searchgoogle"]; if(searchgoogle == null){ searchgoogle = true; }
 		googlesidepanel = items["googlesidepanel"]; if(googlesidepanel == null){ googlesidepanel = true; }
 		searchbing = items["searchbing"]; if(searchbing == null){ searchbing = false; }
@@ -287,6 +287,7 @@ function init(){
 		typehomecustom = items["typehomecustom"]; if(typehomecustom == null){ typehomecustom = false; }
 		websitehomepagename = items["websitehomepagename"]; if(websitehomepagename == null)websitehomepagename = "https://www.google.com";
 		preventclose = items["preventclose"]; if(preventclose == null){ preventclose = false; }
+		dragnewtab = items["dragnewtab"]; if(dragnewtab == null){ dragnewtab = false; }
 
 		// show the tab strip bar or not
 		applyStyles(multipletabs);
@@ -870,27 +871,76 @@ function actionOpenTab(){
 	window.open(iframeURL, "_blank");
 }
 
+let previousFileURL = null; // Store the previous file URL
+
 function handleDrop(e){
 	e.preventDefault();
-	// console.log("drop");
+	// console.log("link drop here", e);
+
+	// Check if files were dropped
+	const files = e.dataTransfer.files;
+	if(files.length > 0){
+		// Handle file drop
+		const file = files[0]; // Get the first file (assuming single file drop)
+		// console.log("Dropped file: ", file);
+
+		// Create a local file URL for the new dropped file
+		const fileURL = URL.createObjectURL(file);
+		// console.log("Local file URL: ", fileURL);
+
+		// Open or handle the file here
+		if(multipletabs == true && dragnewtab == true){
+			// create a new tab
+			createNewTab();
+		}
+		// open the existing tab
+		openweb(fileURL, true);
+
+		// Delay revoking the previous file URL until the iframe has fully loaded the new file
+		if(previousFileURL){
+			// Revoke the previous file URL after a short delay to prevent early revocation
+			setTimeout(() => {
+				URL.revokeObjectURL(previousFileURL);
+				// console.log("Revoked previous file URL: ", previousFileURL);
+			}, 1000); // Adjust the delay if needed
+		}
+
+		// Store the new file URL for future revoking
+		previousFileURL = fileURL;
+
+		return;
+	}
+
+	// If no file was dropped, check for URLs
 	const currenturl = e.dataTransfer.getData("text/uri-list");
 	if(currenturl){
 		try{
 			const o = new URL(currenturl);
 			if(o.hostname){
-				return openweb(currenturl, true);
+				// Revoke the previous file URL if any (cleanup when switching to web URLs)
+				if(previousFileURL){
+					URL.revokeObjectURL(previousFileURL);
+					previousFileURL = null; // Reset for future local file drops
+				}
+
+				if(multipletabs == true && dragnewtab == true){
+					// create a new tab
+					createNewTab();
+				}
+				return openweb(currenturl, true); // Handle web URLs
+
 			}
-		}catch(e){
-			// console.log(e);
+		}catch(error){
+			console.error("Error processing dropped URL", error);
 		}
 	}
 
+	// Fallback to plain text handling
 	const selectedText = e.dataTransfer.getData("text/plain").trim();
 	if(selectedText){
 		performSearch(selectedsearch, selectedText);
 	}
 }
-
 function actionHome(){
 	if(typehomecustom == true){
 		openweb(websitehomepagename, true);
@@ -953,7 +1003,7 @@ function actionGo(){
 	// 5: fragment (#chat/home)
 	var urlRegex = /^(https?:\/\/)?((?:[\da-z.-]+)+\.(?:[a-z.]{2,})+)?((?:\/[-a-z\d%_.~+]*)*)(\?[;&a-z\d%_.~+=-]*)?(#.*)?$/i;
 	if(urlRegex.test(searchInput)){
-		// If it's a URL, navigate to the page
+		// If it is a URL, navigate to the page
 		if(searchInput.startsWith("http://www.") || searchInput.startsWith("https://www.")){
 			openweb(searchInput, true);
 		}else if(searchInput.startsWith("http://") || searchInput.startsWith("https://")){
@@ -962,8 +1012,12 @@ function actionGo(){
 			openweb("https://" + searchInput, true);
 		}
 	}else{
-		// If it is not a URL, perform a search
-		performSearch(selectedsearch, searchInput);
+		if(searchInput.startsWith("file:///")){
+			openweb(searchInput, true);
+		}else{
+			// If it is not a URL, perform a text search
+			performSearch(selectedsearch, searchInput);
+		}
 	}
 }
 
@@ -1004,8 +1058,7 @@ const openweb = async(currenturl) => {
 				urlFilter: "*",
 				resourceTypes: ["main_frame", "sub_frame", "xmlhttprequest", "websocket"],
 			},
-		},
-		],
+		}],
 	});
 
 	const dragDropNavbar = document.getElementById("drag-drop-navbar");
@@ -1014,20 +1067,26 @@ const openweb = async(currenturl) => {
 
 	const iframe = document.getElementById("webcontent").getElementsByTagName("iframe")[index];
 	if(iframe){
-		// set active panel
-		iframe.className = "active";
-		// open that web page
-		iframe.src = currenturl;
-		// update save tab URL
-		updatesaveurl(currenturl);
-		// update icon
-		updatetabicon(currenturl);
-		// check empty
-		if(iframe.src != "" || iframe.src != null || iframe.src != emptypage){
-			dragDropNavbar.className = "hidden";
-			dragDropZone.className = "hidden";
-			dragDropInfo.className = "hidden";
-		}
+		// Clear iframe content before setting a new URL
+		iframe.src = "about:blank";
+
+		// Wait for the iframe to reset, then load the new URL
+		setTimeout(() => {
+			// set active panel
+			iframe.className = "active";
+			// open that web page
+			iframe.src = currenturl;
+			// Update save tab URL
+			updatesaveurl(currenturl);
+			// Update icon
+			updatetabicon(currenturl);
+			// Hide drag-and-drop UI elements if the URL is not empty
+			if(iframe.src != "" || iframe.src != null || iframe.src != emptypage){
+				dragDropNavbar.className = "hidden";
+				dragDropZone.className = "hidden";
+				dragDropInfo.className = "hidden";
+			}
+		}, 50); // Small delay to ensure iframe resets properly
 	}
 };
 
@@ -1331,6 +1390,12 @@ chrome.runtime.onMessage.addListener(function(request){
 			preventclose = true;
 		}else{
 			preventclose = false;
+		}
+	}else if(request.msg == "setdragnewtab"){
+		if(request.value == true){
+			dragnewtab = true;
+		}else{
+			dragnewtab = false;
 		}
 	}
 });

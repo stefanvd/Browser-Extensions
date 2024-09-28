@@ -81,7 +81,6 @@ body{margin:0;padding:0;width:100%;height:100vh;background:var(--ext-primary-bac
 .hostpermission button:hover{background-color:var(--ext-button-background-hover)}
 iframe{border:none;width:100%;height:100%;box-sizing:border-box;margin:0px}
 #webcontent{height:100%}
-#webcontent iframe{border:0}
 .blurlayer{z-index:2000;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);background-color:rgba(0, 0, 0, 0.5)}
 .web{position:relative}
 #drag-drop-navbar{z-index:2000;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);background-color:rgba(0, 0, 0, 0.5);width:100%;height:48px;border:2px dashed #ccc;display:flex;justify-content:center;align-items:center;position:fixed;left:0;top:0;z-index:2500;bottom:0;right:0;box-sizing:border-box;border-radius:0px}
@@ -127,7 +126,7 @@ iframe{border:none;width:100%;height:100%;box-sizing:border-box;margin:0px}
 #menubookmarks .showitem{display:block}
 #menubookmarks .hideitem{display:none}
 #menubookmarks ul:empty{display:none}
-#menubookmarks ul{border-radius:4px;background:var(--ext-primary-background);list-style:none;padding:10px 0;margin:0;box-shadow:0 2px 4px 0 rgba(0,0,0,0.16),0 2px 8px 0 rgba(0,0,0,0.12)}
+#menubookmarks ul{border-radius:4px;background:var(--ext-primary-background);list-style:none;padding:10px 0;margin:0;box-shadow:0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 8px 0 rgba(0, 0, 0, 0.12)}
 #menubookmarks ul li{position:relative;height:48px;user-select:none;width:100%;display:flex}
 #menubookmarks ul li a{display:inline-block;height:100%;line-height:48px;user-select:none;padding:0 16px;color:var(--ext-primary-font-color);cursor:pointer;justify-content:flex-start;align-items:center;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%}
 #menubookmarks ul li a img{display:inline-block;vertical-align:middle}
@@ -135,14 +134,29 @@ iframe{border:none;width:100%;height:100%;box-sizing:border-box;margin:0px}
 #menubookmarks ul li span{padding-left:16px;color:var(--ext-primary-font-color);cursor:pointer;display:flex;justify-content:flex-start;align-items:center}
 #menubookmarks ul a:hover,#menubookmarks ul span:hover{background-color:var(--ext-dropmenu-li-background-hover)}
 #menubookmarks ul a:active,#menubookmarks ul span:active{background-color:var(--ext-dropmenu-li-background-active)}
-#menubookmarks ul ul{max-height:480px;overflow:auto;position:absolute;top:0;background:var(--ext-primary-background);z-index:1;right:-200px;width:200px}
+/* Style for first-level submenus (shown to the right) */
+#menubookmarks ul ul { position:absolute;top:0;left:100%;background:var(--ext-primary-background);z-index:1;width:200px;padding:0;margin:0}
+/* Style for second-level submenus (shown to the right) */
+#menubookmarks ul ul ul {position:absolute;top:0;left:100%;background:var(--ext-primary-background);z-index:1;width:100%;padding:0;margin:0}
+/* Style for third-level submenus (shown to the right) */
+#menubookmarks ul ul ul ul{position:absolute;top:0;left:100%;background:var(--ext-primary-background);z-index:1;width:100%;padding:0;margin:0}
+/* Style for four-level submenus (shown to the right) */
+#menubookmarks ul ul ul ul ul{position:absolute;top:0;left:100%;background:var(--ext-primary-background);z-index:1;width:100%;padding:0;margin:0}
+/* Media query for screens smaller than 600px */
+@media (max-width: 680px){
+#menubookmarks ul ul{position:absolute;right:0;top:0;left:60px;padding:0;margin:0;overflow:visible}
+#menubookmarks ul ul ul{position:absolute;top:0px;left:60px;width:100%;padding:0;margin:0;overflow:visible}
+#menubookmarks ul ul ul ul{position:absolute;top:0px;left:60px;background:var(--ext-primary-background);z-index:1;width:100%;padding:0;margin:0}
+#menubookmarks ul ul ul ul ul{position:absolute;top:100%;left:0px;background:var(--ext-primary-background);z-index:1;width:100%;padding:0;margin:0}
+}
+/* copy panel */
 .stefanvdremote{overflow:hidden;z-index:2147483647!important;box-shadow:0px 0px 1px black;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);background:var(--ext-primary-background);position:absolute;top:0;left:0;right:0;width:230pt;opacity:0.98;height:50pt;border-radius:25pt;margin:0 auto;margin-top:20pt;animation:wrapper 4.0s both;color:var(--ext-primary-font-color)}
 .stefanvdremote h3{text-align:center;margin:0;font-size:15px;padding-top:10pt;animation:h3 2.5s}
 .stefanvdremote p{text-align:center;margin:0;font-size:13px;color:#888;padding-top:4pt;animation:p 2.5s}
 .zoom-panel{font-family:Arial;gap:8px;z-index:2500;position:fixed;top:50%;right:0;transform:translateY(-50%);background-color:var(--ext-primary-background);padding:20px;box-shadow:0px 0px 10px rgba(0, 0, 0, 0.1);border-radius:25px 0 0 25px;display:flex;flex-direction:column;align-items:center;transition:width 0.3s ease, padding 0.3s ease}
 .zoom-panel.collapsed{width:8px;padding:20px 0px}
 .zoom-button{user-select:none;background-color:var(--ext-secundar-background);color:var(--ext-primary-font-color);font-size:20px;border:none;border-radius:50%;width:40px;height:40px;cursor:pointer;transition:background-color 0.3s ease}
-.zoom-button:hover{background-color:var(--ext-secundar-background-hover);}
+.zoom-button:hover{background-color:var(--ext-secundar-background-hover)}
 .zoom-level{user-select:none;font-size:14px;color:var(--ext-primary-font-color)}
 .collapse-handle{width:8px;height:40px;background-color:var(--ext-border-line);cursor:pointer;position:absolute;top:0;left:0;bottom:0;margin:auto}
 .collapse-handle:hover{opacity:.8}
@@ -151,8 +165,8 @@ iframe{border:none;width:100%;height:100%;box-sizing:border-box;margin:0px}
 .tab-bar{gap:5px;height:42px;overflow-x:hidden;overflow-y:hidden;display:flex;align-items:flex-start;background-color:var(--ext-tab-background-color);padding:10px 10px 0px 10px}
 .tab-bar:hover{overflow-x:auto}
 .tab{user-select:none;min-width:fit-content;justify-content:space-between;display:inline-flex;padding:8px 12px;background-color:var(--ext-tab-inactive-background-color);border-radius:8px 8px 0 0;cursor:pointer;align-items:flex-end;border-bottom:1px solid var(--ext-tab-inactive-background-color)}
-.tab:hover{background-color:var(--ext-tab-inactive-hover-background-color);}
-.tab.active:hover{background-color:var(--ext-tab-active-hover-background-color);}
+.tab:hover{background-color:var(--ext-tab-inactive-hover-background-color)}
+.tab.active:hover{background-color:var(--ext-tab-active-hover-background-color)}
 .tab .title{padding:2px;cursor:pointer;border-radius:16px;width:16px;height:16px;display:flex;align-items:center;justify-content:center}
 .tab.active{background-color:var(--ext-tab-active-background-color);border-bottom:2px solid #007bff}
 .tab-content{display:none;padding:10px}
