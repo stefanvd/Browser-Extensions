@@ -1210,6 +1210,8 @@ chrome.runtime.onMessage.addListener(function(request){
 	}else if(request.msg == "setnavhidden"){
 		var getpc = document.getElementById("psidebar");
 		getpc.className = "container clean";
+		var menubookmarks = document.getElementById("menubookmarks");
+		menubookmarks.className = "hidden";
 	}else if(request.msg == "setrefreshsearch"){
 		chrome.storage.sync.get(["searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex"], function(items){
 			searchgoogle = items["searchgoogle"]; if(searchgoogle == null){ searchgoogle = true; }
