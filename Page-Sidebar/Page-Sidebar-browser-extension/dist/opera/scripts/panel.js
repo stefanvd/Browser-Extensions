@@ -492,24 +492,38 @@ function toggleDragDropZone(iframeID){
 	}
 }
 
+function getFaviconUrl(url){
+	if(url === emptypage){
+		// Empty page
+		console.log("Favicon logic for emptypage URL=", url);
+		return"/images/icon16@2x.png";
+	}else if(url.startsWith("file://") || url.startsWith("blob:")){
+		// File or Blob URL
+		console.log("Favicon logic for file/blob URL=", url);
+		return"/images/icon16@2x.png";
+	}else if(url.startsWith("http://") || url.startsWith("https://")){
+		// HTTP or HTTPS URL
+		console.log("Favicon logic for web URL=", url);
+		return faviconserver + getDomain(url);
+	}else{
+		// Default case
+		console.log("Favicon logic for other URL=", url);
+		return"/images/icon16@2x.png";
+	}
+}
+
 function updatetabicon(url){
 	if(multipletabs == true){
-		// multi
-		// Define the new image URL
-		var newImageSrc = faviconserver + getDomain(url);
-
 		// Get the active tab element
 		var activeTab = document.querySelector("#tabstrip .tab.active");
+		console.log("stefan url=", url);
 
 		// Update the image source in the active tab
 		if(activeTab){
 			var imgElement = activeTab.querySelector("img");
-			if(url == emptypage){
-				imgElement.src = "/images/icon16@2x.png";
-			}else{
-				if(imgElement){
-					imgElement.src = newImageSrc;
-				}
+			if(imgElement){
+				// Use the universal getFaviconUrl function
+				imgElement.src = getFaviconUrl(url);
 			}
 		}
 	}
@@ -595,11 +609,7 @@ function createAllTabsInBar(createnoweb){
 		newTab.appendChild(titleDiv);
 		var favicon = document.createElement("img");
 		var currenttabfavicon = document.getElementById("webcontent").getElementsByTagName("iframe")[i].src;
-		if(currenttabfavicon == emptypage){
-			favicon.src = "/images/icon16@2x.png";
-		}else{
-			favicon.src = faviconserver + getDomain(currenttabfavicon);
-		}
+		favicon.src = getFaviconUrl(currenttabfavicon);
 		favicon.alt = "Favicon";
 		favicon.height = 16;
 		favicon.width = 16;

@@ -30,7 +30,7 @@
 		"page": "options.html",
 		"open_in_tab": true
 	},
-	"version": "1.2.3",
+	"version": "1.2.7",
 	"name": "__MSG_name__",
 	"background": {
 		"scripts": [

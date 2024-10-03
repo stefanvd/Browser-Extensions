@@ -4,7 +4,7 @@ const mergeJson = require("gulp-merge-json");
 const rename = require("gulp-rename");
 const fs = require("fs-extra");
 const{join} = require("path");
-const zip = require("gulp-zip"); // Add gulp-zip for zipping
+const{exec} = require("child_process");
 
 const outputDir = "dist";
 const packageDef = require("./package.json");
@@ -16,8 +16,7 @@ const buildExtension = (browser) => {
 	const commonManifest = "./src/manifests/common.json";
 	const browserManifest = `./src/manifests/${browser}.json`;
 
-	// get the version number from the package.json file
-	// and add it in the manifest.json file
+	// get the version number from the package.json file and add it in the manifest.json file
 	src([commonManifest, browserManifest])
 		.pipe(mergeJson({
 			fileName: "manifest.json",
@@ -72,29 +71,45 @@ const buildExtension = (browser) => {
 	return commonFiles;
 };
 
-const zipExtension = (browser) => {
-	const zipName = `${packageDef.name}-${browser}-extension-${packageDef.version}.zip`;
-	return src(`${outputDir}/${browser}/**/*`)
-		.pipe(zip(zipName))
-		.pipe(dest(`${outputDir}`));
+// Helper function to run npm scripts for zipping
+const runZipCommand = (browser) => {
+	return(cb) => {
+		exec(`npm run ${browser}-create-zip`, (err, stdout, stderr) => {
+			if(err){
+				console.error(`Error during ${browser} zipping:`, stderr);
+			}else{
+				console.log(`Zipped ${browser} successfully:`, stdout);
+			}
+			cb(err);
+		});
+	};
 };
 
-const createTask = (browser) => {
-	return series(() => buildExtension(browser), () => zipExtension(browser));
-};
+// Build tasks for each browser
+exports.chrome = () => buildExtension("chrome");
+exports.firefox = () => buildExtension("firefox");
+exports.opera = () => buildExtension("opera");
+exports.edge = () => buildExtension("edge");
+exports.safari = () => buildExtension("safari");
+exports.whale = () => buildExtension("whale");
 
-exports.chrome = createTask("chrome");
-exports.firefox = createTask("firefox");
-exports.edge = createTask("edge");
-exports.opera = createTask("opera");
-exports.safari = createTask("safari");
-exports.whale = createTask("whale");
+// Zipping tasks for each browser
+exports["chrome-zip"] = runZipCommand("chrome");
+exports["firefox-zip"] = runZipCommand("firefox");
+exports["opera-zip"] = runZipCommand("opera");
+exports["edge-zip"] = runZipCommand("edge");
+exports["whale-zip"] = runZipCommand("whale");
 
+// Main task to build and zip all browsers sequentially
 exports.browserzip = series(
-	createTask("chrome"),
-	createTask("firefox"),
-	createTask("edge"),
-	createTask("opera"),
-	createTask("safari"),
-	createTask("whale")
+	exports.chrome,
+	exports["chrome-zip"],
+	exports.firefox,
+	exports["firefox-zip"],
+	exports.opera,
+	exports["opera-zip"],
+	exports.edge,
+	exports["edge-zip"],
+	exports.whale,
+	exports["whale-zip"]
 );
