@@ -3,7 +3,7 @@
 	"homepage_url": "https://www.stefanvd.net/support/",
 	"description": "__MSG_description__",
 	"author": "Stefan vd",
-	"version": "1.6.1",
+	"version": "1.6.2",
 	"icons": {
 		"48": "images/icon-48.png",
 		"96": "images/icon-96.png",
