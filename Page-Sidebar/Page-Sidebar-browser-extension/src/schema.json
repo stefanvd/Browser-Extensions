@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "properties": {
+    "SuppressWelcomePage": {
+      "type": "boolean"
+    },
+    "TypeHomeCustom": {
+      "type": "boolean"
+    },
+    "WebsiteHomepagename": {
+      "type": "string"
+    },
+    "TypePanelCustom": {
+      "type": "boolean"
+    },
+    "WebsiteStartname": {
+      "type": "string"
+    },
+    "SearchGoogle": {
+      "type": "boolean"
+    },
+    "SearchGoogleSidepanel": {
+      "type": "boolean"
+    },
+    "ButtonCopyURL": {
+      "type": "boolean"
+    },
+    "ButtonOpenTab": {
+      "type": "boolean"
+    },
+    "NoBookmarks": {
+      "type": "boolean"
+    },
+    "DisableReminder": {
+      "type": "boolean"
+    }
+  }
+}

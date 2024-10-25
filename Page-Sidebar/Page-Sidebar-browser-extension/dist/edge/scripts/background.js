@@ -521,8 +521,8 @@ chrome.storage.onChanged.addListener(function(changes){
 			chrome.runtime.sendMessage({msg: "settypepanelcustom"});
 		}
 	}
-	if(changes["websitezoomname"]){
-		chrome.runtime.sendMessage({msg: "setwebsitezoomname"});
+	if(changes["websitestartname"]){
+		chrome.runtime.sendMessage({msg: "setwebsitestartname"});
 	}
 	if(changes["typepanellasttime"]){
 		if(changes["typepanellasttime"].newValue == true){
@@ -565,8 +565,102 @@ function initwelcome(){
 	});
 }
 
+// saving group policy values
+var savinggroup = {};
+function setsavegroup(a, b){
+	if(a == true){ savinggroup[b] = true; }else if(a == false){ savinggroup[b] = false; }
+}
+
+function readgrouppolicy(items){
+	if(chrome.runtime.lastError){
+		// console.error("managed error: " + chrome.runtime.lastError.message);
+	}else{
+		// console.log("items", items);
+		if(items.SuppressWelcomePage == true){
+			var crrinstall = new Date().getTime();
+			chrome.storage.sync.set({"firstRun": false, "version": "1.0", "firstDate": crrinstall});
+		}else{
+			// no value, then show the page
+			initwelcome();
+		}
+
+		setsavegroup(items.TypeHomeCustom, "typehomecustom");
+		if(items.WebsiteHomepagename != ""){ savinggroup["websitehomepagename"] = items.WebsiteHomepagename; }
+
+		setsavegroup(items.TypePanelCustom, "typepanelcustom");
+		if(items.WebsiteStartname != ""){ savinggroup["websitestartname"] = items.WebsiteStartname; }
+
+		setsavegroup(items.SearchGoogle, "searchgoogle");
+		setsavegroup(items.SearchGoogleSidepanel, "googlesidepanel");
+		setsavegroup(items.ButtonCopyURL, "opencopy");
+		setsavegroup(items.ButtonOpenTab, "opentab");
+		setsavegroup(items.NoBookmarks, "opennonebookmarks");
+		setsavegroup(items.DisableReminder, "optionskipremember");
+
+		// save total group policy
+		chrome.storage.sync.set(savinggroup);
+	}
+}
+
+var policygrouparray = {};
+if(chrome.storage.managed){
+	chrome.storage.managed.onChanged.addListener(function(changes){
+		// save in memory
+		Object.keys(changes).forEach(function(policyName){
+			policygrouparray[policyName] = changes[policyName].newValue;
+		});
+
+		// update saving group policy values
+		var updatesavinggroup = {};
+
+		if(changes["TypeHomeCustom"]){
+			updatesavinggroup["typehomecustom"] = changes["TypeHomeCustom"].newValue;
+		}
+		if(changes["WebsiteHomepagename"]){
+			updatesavinggroup["websitehomepagename"] = changes["WebsiteHomepagename"].newValue;
+		}
+		if(changes["TypePanelCustom"]){
+			updatesavinggroup["typepanelcustom"] = changes["TypePanelCustom"].newValue;
+		}
+		if(changes["WebsiteStartname"]){
+			updatesavinggroup["websitestartname"] = changes["WebsiteStartname"].newValue;
+		}
+		if(changes["SearchGoogle"]){
+			updatesavinggroup["searchgoogle"] = changes["SearchGoogle"].newValue;
+		}
+		if(changes["SearchGoogleSidepanel"]){
+			updatesavinggroup["googlesidepanel"] = changes["SearchGoogleSidepanel"].newValue;
+		}
+		if(changes["ButtonCopyURL"]){
+			updatesavinggroup["opencopy"] = changes["ButtonCopyURL"].newValue;
+		}
+		if(changes["ButtonOpenTab"]){
+			updatesavinggroup["opentab"] = changes["ButtonOpenTab"].newValue;
+		}
+		if(changes["NoBookmarks"]){
+			updatesavinggroup["opennonebookmarks"] = changes["NoBookmarks"].newValue;
+		}
+		if(changes["DisableReminder"]){
+			updatesavinggroup["optionskipremember"] = changes["DisableReminder"].newValue;
+		}
+
+		// update save total group policy
+		chrome.storage.sync.set(updatesavinggroup);
+	});
+}
+
 function installation(){
-	initwelcome();
+	if(chrome.storage.managed){
+		chrome.storage.managed.get(function(items){
+			readgrouppolicy(items);
+			// save in memory
+			Object.keys(items).forEach(function(policyName){
+				policygrouparray[policyName] = items[policyName];
+			});
+		});
+	}else{
+		initwelcome();
+	}
 }
 
 chrome.runtime.onInstalled.addListener(function(){

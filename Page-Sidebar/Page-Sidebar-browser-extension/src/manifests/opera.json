@@ -31,5 +31,8 @@
   "minimum_chrome_version": "114",
   "host_permissions": ["<all_urls>"],
   "permissions": ["contextMenus", "storage", "declarativeNetRequestWithHostAccess"],
-  "optional_permissions": ["bookmarks"]
+  "optional_permissions": ["bookmarks"],
+  "storage": {
+    "managed_schema": "schema.json"
+  }
 }

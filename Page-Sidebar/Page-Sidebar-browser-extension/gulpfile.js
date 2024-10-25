@@ -34,6 +34,7 @@ const buildExtension = (browser) => {
 
 	// html, scripts, styles files
 	const sourceFiles = src([
+		"./src/schema.json",
 		"!**/index.js",
 		"./src/LICENSE",
 		"./src/**/*.html",
