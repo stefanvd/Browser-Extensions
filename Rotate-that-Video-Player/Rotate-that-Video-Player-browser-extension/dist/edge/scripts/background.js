@@ -26,6 +26,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
+// Importing the constants
 // Execute if importScripts is support such as Google Chrome and not Firefox
 if(typeof importScripts !== "undefined"){
 	// eslint-disable-next-line no-undef
