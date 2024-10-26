@@ -585,9 +585,11 @@ function readgrouppolicy(items){
 		}
 
 		setsavegroup(items.TypeHomeCustom, "typehomecustom");
+		if(items.TypeHomeCustom == true){ savinggroup["typehomezone"] = false; }
 		if(items.WebsiteHomepagename != ""){ savinggroup["websitehomepagename"] = items.WebsiteHomepagename; }
 
 		setsavegroup(items.TypePanelCustom, "typepanelcustom");
+		if(items.TypePanelCustom == true){ savinggroup["typepanelzone"] = false; savinggroup["typepanellasttime"] = false; }
 		if(items.WebsiteStartname != ""){ savinggroup["websitestartname"] = items.WebsiteStartname; }
 
 		setsavegroup(items.SearchGoogle, "searchgoogle");
@@ -595,6 +597,7 @@ function readgrouppolicy(items){
 		setsavegroup(items.ButtonCopyURL, "opencopy");
 		setsavegroup(items.ButtonOpenTab, "opentab");
 		setsavegroup(items.NoBookmarks, "opennonebookmarks");
+		if(items.NoBookmarks == true){ savinggroup["openbrowserbookmarks"] = false; savinggroup["openquickbookmarks"] = false; }
 		setsavegroup(items.DisableReminder, "optionskipremember");
 
 		// save total group policy
@@ -615,12 +618,15 @@ if(chrome.storage.managed){
 
 		if(changes["TypeHomeCustom"]){
 			updatesavinggroup["typehomecustom"] = changes["TypeHomeCustom"].newValue;
+			updatesavinggroup["typehomezone"] = !changes["TypeHomeCustom"].newValue;
 		}
 		if(changes["WebsiteHomepagename"]){
 			updatesavinggroup["websitehomepagename"] = changes["WebsiteHomepagename"].newValue;
 		}
 		if(changes["TypePanelCustom"]){
 			updatesavinggroup["typepanelcustom"] = changes["TypePanelCustom"].newValue;
+			updatesavinggroup["typepanelzone"] = !changes["TypePanelCustom"].newValue;
+			updatesavinggroup["typepanellasttime"] = !changes["TypePanelCustom"].newValue;
 		}
 		if(changes["WebsiteStartname"]){
 			updatesavinggroup["websitestartname"] = changes["WebsiteStartname"].newValue;
@@ -639,6 +645,8 @@ if(chrome.storage.managed){
 		}
 		if(changes["NoBookmarks"]){
 			updatesavinggroup["opennonebookmarks"] = changes["NoBookmarks"].newValue;
+			updatesavinggroup["openbrowserbookmarks"] = !changes["NoBookmarks"].newValue;
+			updatesavinggroup["openquickbookmarks"] = !changes["NoBookmarks"].newValue;
 		}
 		if(changes["DisableReminder"]){
 			updatesavinggroup["optionskipremember"] = changes["DisableReminder"].newValue;

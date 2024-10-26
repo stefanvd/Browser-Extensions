@@ -970,8 +970,10 @@ function actionHome(){
 				openweb(websitehomepagename, true);
 			}else if(typehomezone == true){
 				// clear it
-				document.getElementById("webcontent").getElementsByTagName("iframe")[index].src = emptypage;
-				document.getElementById("webcontent").getElementsByTagName("iframe")[index].className = "hidden";
+				if(index >= 0){
+					document.getElementById("webcontent").getElementsByTagName("iframe")[index].src = emptypage;
+					document.getElementById("webcontent").getElementsByTagName("iframe")[index].className = "hidden";
+				}
 				// show drag drop
 				document.getElementById("drag-drop-info").className = "show";
 				document.getElementById("drag-drop-zone").className = "show";
@@ -987,8 +989,10 @@ function actionHome(){
 				updatesaveurl(websitehomepagename);
 			}else if(typehomezone == true){
 				// clear it
-				document.getElementById("webcontent").getElementsByTagName("iframe")[index].src = emptypage;
-				document.getElementById("webcontent").getElementsByTagName("iframe")[index].className = "hidden";
+				if(index >= 0){
+					document.getElementById("webcontent").getElementsByTagName("iframe")[index].src = emptypage;
+					document.getElementById("webcontent").getElementsByTagName("iframe")[index].className = "hidden";
+				}
 				// show drag drop
 				document.getElementById("drag-drop-info").className = "show";
 				document.getElementById("drag-drop-zone").className = "show";
@@ -1004,29 +1008,31 @@ function actionHome(){
 
 function actionGo(){
 	var searchInput = document.getElementById("searchbar").value.trim();
-	// Check if the input is a valid URL
-	// capture groups:
-	// 1: protocol (https://)
-	// 2: domain (mail.google.com)
-	// 3: path (/chat/u/0/)
-	// 4: query string (?view=list)
-	// 5: fragment (#chat/home)
-	var urlRegex = /^(https?:\/\/)?((?:[\da-z.-]+)+\.(?:[a-z.]{2,})+)?((?:\/[-a-z\d%_.~+]*)*)(\?[;&a-z\d%_.~+=-]*)?(#.*)?$/i;
-	if(urlRegex.test(searchInput)){
-		// If it is a URL, navigate to the page
-		if(searchInput.startsWith("http://www.") || searchInput.startsWith("https://www.")){
-			openweb(searchInput, true);
-		}else if(searchInput.startsWith("http://") || searchInput.startsWith("https://")){
-			openweb(searchInput, true);
+	if(searchInput != ""){
+		// Check if the input is a valid URL
+		// capture groups:
+		// 1: protocol (https://)
+		// 2: domain (mail.google.com)
+		// 3: path (/chat/u/0/)
+		// 4: query string (?view=list)
+		// 5: fragment (#chat/home)
+		var urlRegex = /^(https?:\/\/)?((?:[\da-z.-]+)+\.(?:[a-z.]{2,})+)?((?:\/[-a-z\d%_.~+]*)*)(\?[;&a-z\d%_.~+=-]*)?(#.*)?$/i;
+		if(urlRegex.test(searchInput)){
+			// If it is a URL, navigate to the page
+			if(searchInput.startsWith("http://www.") || searchInput.startsWith("https://www.")){
+				openweb(searchInput, true);
+			}else if(searchInput.startsWith("http://") || searchInput.startsWith("https://")){
+				openweb(searchInput, true);
+			}else{
+				openweb("https://" + searchInput, true);
+			}
 		}else{
-			openweb("https://" + searchInput, true);
-		}
-	}else{
-		if(searchInput.startsWith("file:///")){
-			openweb(searchInput, true);
-		}else{
-			// If it is not a URL, perform a text search
-			performSearch(selectedsearch, searchInput);
+			if(searchInput.startsWith("file:///")){
+				openweb(searchInput, true);
+			}else{
+				// If it is not a URL, perform a text search
+				performSearch(selectedsearch, searchInput);
+			}
 		}
 	}
 }
