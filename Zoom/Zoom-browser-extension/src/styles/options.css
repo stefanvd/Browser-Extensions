@@ -483,7 +483,7 @@ button[disabled],input[type=button][disabled],input[type=submit][disabled],butto
 .rateactiontext{display:flex;justify-content:center;flex-direction:column;align-items:center;font-size:16px;text-align:center}
 .rating:not(:checked) > input{position:absolute;top:-9999px;clip:rect(0,0,0,0)}
 .rating:not(:checked) > label{float:right;width:1em;padding:0 .1em;overflow:hidden;white-space:nowrap;cursor:pointer;font-size:365%;line-height:1.2;color:#727272}
-.rating:not(:checked) > label:before{content:'★ '}
+.rating:not(:checked) > label:before{content:'★ ';font-size-adjust:from-font}
 .rating > input:checked ~ label{color:gold}
 .rating:not(:checked) > label:hover,
 .rating:not(:checked) > label:hover ~ label{color:gold}

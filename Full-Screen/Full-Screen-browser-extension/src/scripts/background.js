@@ -302,10 +302,16 @@ chrome.action.onClicked.addListener(async(tab) => {
 });
 
 let getcurrentscreensize = new Promise((resolve) => {
-	chrome.system.display.getInfo(function(display_properties){
-		// console.log("screen", [display_properties[0].bounds.width, display_properties[0].bounds.height]);
-		resolve([display_properties[0].bounds.width, display_properties[0].bounds.height]);
-	});
+	if(exbrowser != "firefox"){
+		chrome.system.display.getInfo(function(display_properties){
+			// console.log("screen", [display_properties[0].bounds.width, display_properties[0].bounds.height]);
+			resolve([display_properties[0].bounds.width, display_properties[0].bounds.height]);
+		});
+	}else{
+		const width = window.screen.width;
+		const height = window.screen.height;
+		resolve([width, height]);
+	}
 });
 
 function createpopup(websiteurl){
