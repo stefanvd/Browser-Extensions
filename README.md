@@ -6,7 +6,7 @@ They are all available for all web browsers such as Google Chrome, Safari, Opera
 For questions or help, visit:\
 https://www.stefanvd.net/support/
 
-Please feel free to use and enjoy it! If you are able to make a donation of any amount, it would be greatly appreciated.
+Please feel free to use and enjoy it! If you are able to make a donation of any amount, it would be greatly appreciated.\
 https://www.stefanvd.net/donate/
 
 ## Installation
