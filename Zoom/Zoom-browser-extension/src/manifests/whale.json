@@ -56,6 +56,6 @@
   },
   "offline_enabled": true,
   "minimum_chrome_version": "103",
-  "permissions": ["tabs", "contextMenus", "storage", "scripting", "webNavigation", "system.display"],
+  "permissions": ["tabs", "contextMenus", "storage", "scripting", "webNavigation", "system.display", "unlimitedStorage"],
   "host_permissions": ["<all_urls>"]
 }
