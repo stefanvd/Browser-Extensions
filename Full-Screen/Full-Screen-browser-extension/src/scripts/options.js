@@ -55,13 +55,12 @@ function getalldomains(a){
 function save_options(){
 	chrome.runtime.sendMessage({name: "getallpermissions"});
 
-
-	chrome.storage.sync.set({"icon": $("btnpreview").src, "contextmenus":$("contextmenus").checked, "autofullscreen":$("autofullscreen").checked, "optionskipremember":$("optionskipremember").checked, "fullscreenweb":$("fullscreenweb").checked, "fullscreenwindow":$("fullscreenwindow").checked, "fullscreenpopup":$("fullscreenpopup").checked, "fullscreenvideo":$("fullscreenvideo").checked, "allwindows":$("allwindows").checked, "videoinwindow":$("videoinwindow").checked, "videooutwindow":$("videooutwindow").checked, "autostartup":$("autostartup").checked, "startupallwindow":$("startupallwindow").checked, "startupcurrentwindow":$("startupcurrentwindow").checked, "autofullscreenDomains":getalldomains("autofullscreenDomainsBox"), "autofullscreenchecklistwhite":$("autofullscreenchecklistwhite").checked, "autofullscreenchecklistblack":$("autofullscreenchecklistblack").checked, "autofullscreenonly":$("autofullscreenonly").checked});
+	chrome.storage.sync.set({"icon": $("btnpreview").src, "contextmenus":$("contextmenus").checked, "autofullscreen":$("autofullscreen").checked, "optionskipremember":$("optionskipremember").checked, "fullscreenweb":$("fullscreenweb").checked, "fullscreenwindow":$("fullscreenwindow").checked, "fullscreenpopup":$("fullscreenpopup").checked, "fullscreenvideo":$("fullscreenvideo").checked, "allwindows":$("allwindows").checked, "videoinwindow":$("videoinwindow").checked, "videooutwindow":$("videooutwindow").checked, "autostartup":$("autostartup").checked, "startupallwindow":$("startupallwindow").checked, "startupcurrentwindow":$("startupcurrentwindow").checked, "autofullscreenDomains":getalldomains("autofullscreenDomainsBox"), "autofullscreenchecklistwhite":$("autofullscreenchecklistwhite").checked, "autofullscreenchecklistblack":$("autofullscreenchecklistblack").checked, "autofullscreenonly":$("autofullscreenonly").checked, "fullpopup":$("fullpopup").checked, "custompopup":$("custompopup").checked, "custompopuppixelwidth":$("custompopuppixelwidth").value, "custompopuppixelheight":$("custompopuppixelheight").value});
 }
 
 var firstdefaultvalues = {};
 // Option default value to read if there is no current value from chrome.storage AND init default value
-chrome.storage.sync.get(["icon", "contextmenus", "fullscreenweb", "fullscreenwindow", "fullscreenpopup", "fullscreenvideo", "videoinwindow", "videooutwindow", "startupallwindow", "startupcurrentwindow", "autofullscreenDomains", "autofullscreenchecklistwhite", "autofullscreenchecklistblack"], function(items){
+chrome.storage.sync.get(["icon", "contextmenus", "fullscreenweb", "fullscreenwindow", "fullscreenpopup", "fullscreenvideo", "videoinwindow", "videooutwindow", "startupallwindow", "startupcurrentwindow", "autofullscreenDomains", "autofullscreenchecklistwhite", "autofullscreenchecklistblack", "fullpopup", "custompopup", "custompopuppixelwidth", "custompopuppixelheight"], function(items){
 	// find no localstore zoomengine
 	if(items["icon"] == null){
 		if(exbrowser == "safari"){
@@ -79,6 +78,9 @@ chrome.storage.sync.get(["icon", "contextmenus", "fullscreenweb", "fullscreenwin
 	}
 	// find no localstore autofullscreen whitelist
 	if(items["autofullscreenchecklistwhite"] == null && items["autofullscreenchecklistblack"] == null){ firstdefaultvalues["autofullscreenchecklistwhite"] = true; firstdefaultvalues["autofullscreenchecklistblack"] = false; }
+	if(items["fullpopup"] == null && items["custompopup"] == null){ firstdefaultvalues["fullpopup"] = true; firstdefaultvalues["custompopup"] = false; }
+	if(items["custompopuppixelwidth"] == null){ firstdefaultvalues["custompopuppixelwidth"] = 600; }
+	if(items["custompopuppixelheight"] == null){ firstdefaultvalues["custompopuppixelheight"] = 400; }
 	// Save the init value
 	chrome.storage.sync.set(firstdefaultvalues, function(){
 		// console.log('Settings saved');
@@ -173,7 +175,7 @@ function read_options(){
 		showhidemodal("materialModalYouTube", "hide", "true");
 	}
 
-	chrome.storage.sync.get(["icon", "firstDate", "contextmenus", "autofullscreen", "countremember", "optionskipremember", "fullscreenweb", "fullscreenwindow", "fullscreenpopup", "fullscreenvideo", "allwindows", "videoinwindow", "videooutwindow", "firstsawrate", "autostartup", "startupallwindow", "startupcurrentwindow", "autofullscreenDomains", "autofullscreenchecklistwhite", "autofullscreenchecklistblack", "autofullscreenonly"], function(items){
+	chrome.storage.sync.get(["icon", "firstDate", "contextmenus", "autofullscreen", "countremember", "optionskipremember", "fullscreenweb", "fullscreenwindow", "fullscreenpopup", "fullscreenvideo", "allwindows", "videoinwindow", "videooutwindow", "firstsawrate", "autostartup", "startupallwindow", "startupcurrentwindow", "autofullscreenDomains", "autofullscreenchecklistwhite", "autofullscreenchecklistblack", "autofullscreenonly", "fullpopup", "custompopup", "custompopuppixelwidth", "custompopuppixelheight"], function(items){
 		if(items["icon"]){ $("btnpreview").src = items["icon"]; }
 		if(items["contextmenus"] == true)$("contextmenus").checked = true;
 		if(items["autofullscreen"] == true)$("autofullscreen").checked = true;
@@ -191,6 +193,10 @@ function read_options(){
 		if(items["autofullscreenchecklistwhite"] == true)$("autofullscreenchecklistwhite").checked = true;
 		if(items["autofullscreenchecklistblack"] == true)$("autofullscreenchecklistblack").checked = true;
 		if(items["autofullscreenonly"] == true)$("autofullscreenonly").checked = true;
+		if(items["fullpopup"] == true)$("fullpopup").checked = true;
+		if(items["custompopup"] == true)$("custompopup").checked = true;
+		if(items["custompopuppixelwidth"])$("custompopuppixelwidth").value = items["custompopuppixelwidth"];
+		if(items["custompopuppixelheight"])$("custompopuppixelheight").value = items["custompopuppixelheight"];
 
 		// autofullscreen - Excluded domains - sort these alphabetically
 		var autofullscreenDomains = items["autofullscreenDomains"];
@@ -399,6 +405,15 @@ function test(){
 		$("videoinwindow").disabled = true;
 		$("videooutwindow").disabled = true;
 	}
+
+	if($("fullpopup").checked){
+		$("custompopuppixelwidth").disabled = true;
+		$("custompopuppixelheight").disabled = true;
+	}else{
+		$("custompopuppixelwidth").disabled = false;
+		$("custompopuppixelheight").disabled = false;
+	}
+
 }
 
 function ariacheck(){

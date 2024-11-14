@@ -314,18 +314,32 @@ let getcurrentscreensize = new Promise((resolve) => {
 	}
 });
 
+var fullpopup, custompopup, custompopuppixelwidth, custompopuppixelheight, screenWidth, screenHeight;
 function createpopup(websiteurl){
 	getcurrentscreensize.then(
 		(result) => {
-			var screenWidth = result[0];
-			var screenHeight = result[1];
-			chrome.windows.create({
-				url: websiteurl,
-				type: "popup",
-				focused: true,
-				// state: "maximized" // no support for that in "popup" (Google Chrome and Firefox)
-				width: screenWidth,
-				height: screenHeight
+			chrome.storage.sync.get(["fullpopup", "custompopup", "custompopuppixelwidth", "custompopuppixelheight"], function(items){
+				fullpopup = items["fullpopup"]; if(fullpopup == null)fullpopup = true;
+				custompopup = items["custompopup"]; if(custompopup == null)custompopup = true;
+				custompopuppixelwidth = items["custompopuppixelwidth"]; if(custompopuppixelwidth == null)custompopuppixelwidth = 600;
+				custompopuppixelheight = items["custompopuppixelheight"]; if(custompopuppixelheight == null)custompopuppixelheight = 400;
+
+				if(fullpopup == true){
+					screenWidth = result[0];
+					screenHeight = result[1];
+				}else{
+					screenWidth = parseInt(custompopuppixelwidth);
+					screenHeight = parseInt(custompopuppixelheight);
+				}
+				chrome.windows.create({
+					url: websiteurl,
+					type: "popup",
+					focused: true,
+					// state: "maximized" // no support for that in "popup" (Google Chrome and Firefox)
+					width: screenWidth,
+					height: screenHeight
+				});
+
 			});
 		}
 	);

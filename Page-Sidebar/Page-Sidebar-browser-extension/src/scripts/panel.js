@@ -516,7 +516,7 @@ function updatetabicon(url){
 	if(multipletabs == true){
 		// Get the active tab element
 		var activeTab = document.querySelector("#tabstrip .tab.active");
-		console.log("stefan url=", url);
+		// console.log("stefan url=", url);
 
 		// Update the image source in the active tab
 		if(activeTab){

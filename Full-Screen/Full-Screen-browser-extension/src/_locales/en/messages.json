@@ -159,5 +159,9 @@
     "titelblacklist": {"message": "Blacklist"},
     "desautofullscreenonly": {"message": "Full screen only the following video site(s):"},
     "addbutton": {"message": "Add"},
-    "deletebutton": {"message": "Delete"}
+    "deletebutton": {"message": "Delete"},
+    "titelpopupsize": {"message": "Popup size"},
+    "desfullpopup": {"message": "Choose the desktop screen size"},
+    "descustompopup": {"message": "Custom Popup size"},
+    "desautodimsizepixel": {"message": "pixel"}
 }

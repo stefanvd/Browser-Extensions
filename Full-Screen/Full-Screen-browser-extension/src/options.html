@@ -47,9 +47,8 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 <div id="loading">
 <div id="loadingcenter">
 <div id="productwelcomeimageload">
-	<div class="icon">
-		<img id="loadinglamp" alt="Full Screen" width="16" height="16" src="images/icon16.png" srcset="images/icon16.png 1x, images/icon16@2x.png 2x">Full Screen™</div>
-	</div>
+	<div class="icon"><img id="loadinglamp" loading="lazy" alt="Full Screen" width="16" height="16" src="images/icon16.png" srcset="images/icon16.png 1x, images/icon16@2x.png 2x">Full Screen™</div>
+</div>
 <div id="progressbar"><div id="progress"><div id="pbaranim"></div></div></div>
 </div>
 <span id="loadinghelp"><span data-i18n="pagestillloading"></span> <a href="https://www.stefanvd.net/support/" target="_blank" data-i18n="pagehelp" rel="noopener"></a>!</span>
@@ -279,11 +278,25 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				</div>
 				</section>
 				<section>
-				<h3 data-i18n="titelallwindows"></h3>
-				<div>
-					<div class="md-checkbox">
-						<input id="allwindows" type="checkbox" role="checkbox" aria-checked="false" aria-labelledby="allwindows">
-						<label for="allwindows"><div><span data-i18n="desallwindows"></span></div></label>
+					<h3 data-i18n="titelpopupsize"></h3>
+					<div role="radiogroup" aria-labelledby="defaultpopupsize">
+						<div class="md-radio">
+							<input id="fullpopup" type="radio" name="popupsize" value="full" role="radio" aria-labelledby="defaultpopupsize">
+							<label for="fullpopup"><div><span data-i18n="desfullpopup"></span></div></label>
+						</div>
+						<div class="md-radio">
+							<input id="custompopup" type="radio" name="popupsize" value="custom" role="radio" aria-labelledby="defaultpopupsize">
+							<label for="custompopup"><div><span data-i18n="descustompopup"></span> <input id="custompopuppixelwidth" type="number" min="1" max="800" step="1" value="0" maxlength="1" size="1"> x <input id="custompopuppixelheight" type="number" min="1" max="800" step="1" value="0" maxlength="1" size="1"><span data-i18n="desautodimsizepixel"></span>.</div></label>
+						</div>
+					</div>
+					</section>
+				<section>
+					<h3 data-i18n="titelallwindows"></h3>
+					<div>
+						<div class="md-checkbox">
+							<input id="allwindows" type="checkbox" role="checkbox" aria-checked="false" aria-labelledby="allwindows">
+							<label for="allwindows"><div><span data-i18n="desallwindows"></span></div></label>
+						</div>
 					</div>
 				</section>
 				<section>
