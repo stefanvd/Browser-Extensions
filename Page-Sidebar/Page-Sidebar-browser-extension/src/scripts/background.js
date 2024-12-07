@@ -551,6 +551,9 @@ chrome.storage.onChanged.addListener(function(changes){
 	if(changes["dragnewtab"]){
 		chrome.runtime.sendMessage({msg: "setdragnewtab", value: changes["dragnewtab"].newValue});
 	}
+	if(changes["mutetab"]){
+		chrome.runtime.sendMessage({msg: "setmutetab", value: changes["mutetab"].newValue});
+	}
 });
 
 chrome.runtime.setUninstallURL(linkuninstall);

@@ -180,5 +180,15 @@
     "destexttabname": {"message": "Show the title of the first line in the tab"},
     "permissionunlimitedstorage": {"message": "This allows you to save unlimited text in your storage."},
     "permissionsidepanel": {"message": "This opens the side panel in your web browser."},
-    "searchplaceholder": {"message": "Search"}
+    "searchplaceholder": {"message": "Search"},
+    "titelsave": {"message": "Save"},
+    "dessave": {"message": "Show the save button"},
+    "descopysavedone": {"message": "Text has been saved to your storage"},
+    "titlesavetextdone": {"message": "Saved"},
+    "destabdesign": {"message": "Tab bar"},
+    "desselectdesign": {"message": "Selection box"},
+    "titeldownload": {"message": "Download"},
+    "desdownload": {"message": "Download the current note"},
+    "titelfind": {"message": "Find Text"},
+    "desfind": {"message": "Find the text and highlight it"}
 }

@@ -201,7 +201,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 						<label for="print"><div><span data-i18n="desprint"></span></div></label>
 					</div>
 				</div>
-				</section>
+			</section>
 			<section>
 			<h3 data-i18n="titelcopy"></h3>
 			<div>
@@ -226,6 +226,33 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 					<div class="md-checkbox">
 						<input id="voices" type="checkbox">
 						<label for="voices"><div><span data-i18n="desvoices"></span></div></label>
+					</div>
+				</div>
+			</section>
+			<section>
+				<h3 data-i18n="titelsave"></h3>
+				<div>
+					<div class="md-checkbox">
+						<input id="save" type="checkbox">
+						<label for="save"><div><span data-i18n="dessave"></span></div></label>
+					</div>
+				</div>
+			</section>
+			<section>
+				<h3 data-i18n="titeldownload"></h3>
+				<div>
+					<div class="md-checkbox">
+						<input id="download" type="checkbox">
+						<label for="download"><div><span data-i18n="desdownload"></span></div></label>
+					</div>
+				</div>
+			</section>
+			<section>
+				<h3 data-i18n="titelfind"></h3>
+				<div>
+					<div class="md-checkbox">
+						<input id="find" type="checkbox">
+						<label for="find"><div><span data-i18n="desfind"></span></div></label>
 					</div>
 				</div>
 			</section>
@@ -376,11 +403,19 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 					</div>
 				</section>
 				<section>
-					<h3 data-i18n="titeltabs"></h3>
+					<h3 id="typedesign" data-i18n="titeltabs"></h3>
 					<div>
 						<div class="md-checkbox">	
 							<input id="multiple" type="checkbox">
 							<label for="multiple"><div><span data-i18n="destabs"></span></div></label>
+						</div>
+						<div class="md-radio md-subin">
+							<input id="bartabdesign" type="radio" name="uidesign" value="tab" role="radio" aria-checked="true" aria-labelledby="typedesign">
+							<label for="bartabdesign"><div><span data-i18n="destabdesign"></span></div></label>
+						</div>
+						<div class="md-radio md-subin">
+							<input id="barselectdesign" type="radio" name="uidesign" value="select" role="radio" aria-checked="false" aria-labelledby="typedesign">
+							<label for="barselectdesign"><div><span data-i18n="desselectdesign"></span></div></label>
 						</div>
 						<div class="md-checkbox">	
 							<input id="preventclose" type="checkbox">

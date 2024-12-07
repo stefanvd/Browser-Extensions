@@ -26,7 +26,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-var selectedsearch, searchgoogle, searchbing, searchduckduckgo, searchbaidu, searchyandex, typepanelzone, typepanelcustom, typepanellasttime, websitestartname, websitelasttime, navtop, navbottom, navhidden, opentab, opencopy, opennonebookmarks, openbrowserbookmarks, openquickbookmarks, googlesidepanel, zoom, defaultzoom, step, multipletabs, multivalues, navbuttons, gobutton, typehomezone, typehomecustom, websitehomepagename, preventclose, dragnewtab;
+var selectedsearch, searchgoogle, searchbing, searchduckduckgo, searchbaidu, searchyandex, typepanelzone, typepanelcustom, typepanellasttime, websitestartname, websitelasttime, navtop, navbottom, navhidden, opentab, opencopy, opennonebookmarks, openbrowserbookmarks, openquickbookmarks, googlesidepanel, zoom, defaultzoom, step, multipletabs, multivalues, navbuttons, gobutton, typehomezone, typehomecustom, websitehomepagename, preventclose, dragnewtab, mutetab;
 
 var faviconserver = "https://s2.googleusercontent.com/s2/favicons?domain=";
 var emptypage = "about:blank";
@@ -52,7 +52,7 @@ window.addEventListener("message", (e) => {
 			}, "*");
 		}
 	}else if(e.data?.method === "complete"){
-		// console.log("VISITED WEBSITE URL=", e.data.href);
+		// console.log("VISITED WEBSITE URL=", e.data.href, e.data.iframeId);
 		currentSidePanelURL = e.data.href;
 		// save the URL for close the panel
 		if(typepanellasttime == true){
@@ -62,10 +62,16 @@ window.addEventListener("message", (e) => {
 		if(zoom == true && zoomLevel != 100){
 			updateZoomLevel();
 		}
+
+		// set mute
+		if(mutetab == true){
+			e.source.postMessage({method: "goMuteOnWebpage"}, "*");
+		}
+
 		// Save website favicon image for current active tab
-		updatetabicon(e.data.href);
+		frameupdatetabicon(e.data.href, e.data.iframeId);
 		// Save website URL in tab
-		updatesaveurl(e.data.href);
+		frameupdatesaveurl(e.data.href, e.data.iframeId);
 	}
 });
 
@@ -270,7 +276,7 @@ function init(){
 		zoomPanel.classList.toggle("collapsed");
 	});
 
-	chrome.storage.sync.get(["firstDate", "optionskipremember", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "typepanellasttime", "websitestartname", "websitelasttime", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "opentab", "opencopy", "opennonebookmarks", "openbrowserbookmarks", "openquickbookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10", "googlesidepanel", "zoom", "defaultzoom", "step", "multipletabs", "multivalues", "navbuttons", "gobutton", "typehomezone", "typehomecustom", "websitehomepagename", "preventclose", "dragnewtab"], function(items){
+	chrome.storage.sync.get(["firstDate", "optionskipremember", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "typepanellasttime", "websitestartname", "websitelasttime", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "opentab", "opencopy", "opennonebookmarks", "openbrowserbookmarks", "openquickbookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10", "googlesidepanel", "zoom", "defaultzoom", "step", "multipletabs", "multivalues", "navbuttons", "gobutton", "typehomezone", "typehomecustom", "websitehomepagename", "preventclose", "dragnewtab", "mutetab"], function(items){
 		searchgoogle = items["searchgoogle"]; if(searchgoogle == null){ searchgoogle = true; }
 		googlesidepanel = items["googlesidepanel"]; if(googlesidepanel == null){ googlesidepanel = true; }
 		searchbing = items["searchbing"]; if(searchbing == null){ searchbing = false; }
@@ -288,6 +294,7 @@ function init(){
 		websitehomepagename = items["websitehomepagename"]; if(websitehomepagename == null)websitehomepagename = "https://www.google.com";
 		preventclose = items["preventclose"]; if(preventclose == null){ preventclose = false; }
 		dragnewtab = items["dragnewtab"]; if(dragnewtab == null){ dragnewtab = false; }
+		mutetab = items["mutetab"]; if(mutetab == null){ mutetab = false; }
 
 		// show the tab strip bar or not
 		applyStyles(multipletabs);
@@ -495,20 +502,47 @@ function toggleDragDropZone(iframeID){
 function getFaviconUrl(url){
 	if(url === emptypage){
 		// Empty page
-		console.log("Favicon logic for emptypage URL=", url);
+		// console.log("Favicon logic for emptypage URL=", url);
 		return"/images/icon16@2x.png";
 	}else if(url.startsWith("file://") || url.startsWith("blob:")){
 		// File or Blob URL
-		console.log("Favicon logic for file/blob URL=", url);
+		// console.log("Favicon logic for file/blob URL=", url);
 		return"/images/icon16@2x.png";
 	}else if(url.startsWith("http://") || url.startsWith("https://")){
 		// HTTP or HTTPS URL
-		console.log("Favicon logic for web URL=", url);
+		// console.log("Favicon logic for web URL=", url);
 		return faviconserver + getDomain(url);
 	}else{
 		// Default case
-		console.log("Favicon logic for other URL=", url);
+		// console.log("Favicon logic for other URL=", url);
 		return"/images/icon16@2x.png";
+	}
+}
+
+function frameupdatetabicon(url, iframeId){
+	if(multipletabs == true){
+		var iframes = document.getElementById("webcontent").getElementsByTagName("iframe");
+		var index = -1;
+
+		// Find the index of the iframe using iframeId
+		for(var i = 0; i < iframes.length; i++){
+			if(iframes[i].id == iframeId){
+				index = i;
+				break;
+			}
+		}
+
+		// Get the active tab element
+		var thatTab = document.querySelector("#tabstrip .tab:nth-child(" + (index + 1) + ")");
+
+		// Update the image source in the active tab
+		if(thatTab){
+			var imgElement = thatTab.querySelector("img");
+			if(imgElement){
+				// Use the universal getFaviconUrl function
+				imgElement.src = getFaviconUrl(url);
+			}
+		}
 	}
 }
 
@@ -524,6 +558,33 @@ function updatetabicon(url){
 			if(imgElement){
 				// Use the universal getFaviconUrl function
 				imgElement.src = getFaviconUrl(url);
+			}
+		}
+	}
+}
+
+function frameupdatesaveurl(url, iframeId){
+	// Only save if multiple tabs are enabled
+	if(multipletabs){
+		var iframes = document.getElementById("webcontent").getElementsByTagName("iframe");
+		var index = -1;
+
+		// Find the index of the iframe using iframeId
+		for(var i = 0; i < iframes.length; i++){
+			if(iframes[i].id === iframeId){
+				index = i;
+				break;
+			}
+		}
+
+		// If the iframe is found, save the URL to the corresponding tab
+		if(index !== -1){
+			console.log("Saving URL for iframeId = " + iframeId + ", index = " + index);
+			multivalues[index]["note"] = url;
+
+			// Save the changes if necessary
+			if(typepanellasttime == true){
+				save();
 			}
 		}
 	}
@@ -576,8 +637,14 @@ function setActiveTabContent(numb){
 	for(var i = 0; i < iframes.length; i++){
 		if(i === numb){
 			iframes[i].className = "active";
+			if(mutetab == true){
+				iframes[i].contentWindow.postMessage({method: "goMuteOffWebpage"}, "*");
+			}
 		}else{
 			iframes[i].className = "hidden";
+			if(mutetab == true){
+				iframes[i].contentWindow.postMessage({method: "goMuteOnWebpage"}, "*");
+			}
 		}
 	}
 }
@@ -614,7 +681,10 @@ function createAllTabsInBar(createnoweb){
 		favicon.height = 16;
 		favicon.width = 16;
 		titleDiv.appendChild(favicon); // Append favicon inside the link
-		newTab.innerHTML += "<div class=\"tab-close\">x</div>";
+		const closeButton = document.createElement("div");
+		closeButton.classList.add("tab-close");
+		closeButton.textContent = "x";
+		newTab.appendChild(closeButton);
 		tabContainer.insertBefore(newTab, tabContainer.lastElementChild);
 	}
 }
@@ -631,7 +701,10 @@ function createNewTab(){
 	favicon.height = 16;
 	favicon.width = 16;
 	titleDiv.appendChild(favicon); // Append favicon inside the link
-	newTab.innerHTML += "<div class=\"tab-close\">x</div>";
+	const closeButton = document.createElement("div");
+	closeButton.classList.add("tab-close");
+	closeButton.textContent = "x";
+	newTab.appendChild(closeButton);
 	tabContainer.insertBefore(newTab, tabContainer.lastElementChild);
 	setActiveTab(newTab);
 
@@ -661,6 +734,14 @@ function createNewTab(){
 function createiframe(url){
 	var webcontent = document.getElementById("webcontent");
 	var iframe = document.createElement("iframe");
+	const iframeId = "iframe_" + Date.now() + "_" + Math.random().toString(36).substr(2, 9);
+	iframe.setAttribute("id", iframeId);
+	iframe.onload = () => {
+		iframe.contentWindow.postMessage({
+			method: "setIframeId",
+			iframeId
+		}, "*");
+	};
 	iframe.src = url;
 	iframe.allow = "camera; clipboard-write; fullscreen; microphone; geolocation";
 	iframe.className = "hidden";
@@ -951,6 +1032,7 @@ function handleDrop(e){
 		performSearch(selectedsearch, selectedText);
 	}
 }
+
 function actionHome(){
 	if(typehomecustom == true){
 		openweb(websitehomepagename, true);
@@ -1414,6 +1496,12 @@ chrome.runtime.onMessage.addListener(function(request){
 			dragnewtab = true;
 		}else{
 			dragnewtab = false;
+		}
+	}else if(request.msg == "setmutetab"){
+		if(request.value == true){
+			mutetab = true;
+		}else{
+			mutetab = false;
 		}
 	}
 });

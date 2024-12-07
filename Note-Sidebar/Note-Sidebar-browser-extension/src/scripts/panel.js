@@ -26,9 +26,9 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-var maintext; var powertext; var theValue; var multiValue; var counter; var copy; var speech; var voices; var fontsize; var lineheight; var colorlight; var colordark; var backgroundlight; var backgrounddark; var backgroundcolor; var backgroundimage; var backgroundsource; var backgroundsize; var printicon; var password; var enterpassword; var richtext; var plaintext; var multiple; var preventclose; var texttabname;
+var maintext; var powertext; var theValue; var multiValue; var counter; var copy; var speech; var voices; var fontsize; var lineheight; var colorlight; var colordark; var backgroundlight; var backgrounddark; var backgroundcolor; var backgroundimage; var backgroundsource; var backgroundsize; var printicon; var password; var enterpassword; var richtext; var plaintext; var multiple; var preventclose; var texttabname; var save; var bartabdesign; var barselectdesign; var download; var find; var textarea; var highlightedText; var searchInput; var searchBox;
 
-function save(){
+function notesave(){
 	var savingtext;
 	if(plaintext == true){
 		savingtext = maintext.value;
@@ -57,6 +57,8 @@ var i18ntitelcopytext = chrome.i18n.getMessage("titlecopytextdone");
 var i18ndescopytext = chrome.i18n.getMessage("descopytextdone");
 var i18nnote = chrome.i18n.getMessage("note");
 var i18nclosetab = chrome.i18n.getMessage("closetab");
+var i18ntitelsavetext = chrome.i18n.getMessage("titlesavetextdone");
+var i18ndessavetext = chrome.i18n.getMessage("descopysavedone");
 
 function focuspassword(){
 	document.getElementById("inputpass").focus();
@@ -71,9 +73,24 @@ function removeObjectAtIndex(index, array){
 }
 
 function removeTabs(){
+	// That is for regular tab bar
+	// Remove all elements with the class "tab" inside "tabstrip"
 	var tabs = document.getElementById("tabstrip").querySelectorAll(".tab");
 	tabs.forEach(function(tab){
 		tab.parentNode.removeChild(tab);
+	});
+
+	// That is for selection box
+	// Remove the <select> element with class "tab-select"
+	var selectElement = document.querySelector(".tab-select");
+	if(selectElement){
+		selectElement.parentNode.removeChild(selectElement);
+	}
+
+	// Remove all <button> elements with the class "sel-close"
+	var buttons = document.querySelectorAll(".sel-close");
+	buttons.forEach(function(button){
+		button.parentNode.removeChild(button);
 	});
 }
 
@@ -110,25 +127,135 @@ function createAllTabsInBar(){
 		newTab.innerHTML += "<div class=\"tab-close\">x</div>";
 		tabContainer.insertBefore(newTab, tabContainer.lastElementChild);
 	}
+
+	if(barselectdesign == true){
+		// Create the selection box dynamically
+		const selectBox = document.createElement("select");
+		selectBox.classList.add("tab-select");
+		tabContainer.appendChild(selectBox);
+
+		// Event listener for tab switching
+		selectBox.addEventListener("change", function(){
+			hideSearchBox();
+			switchToTab(this.value);
+		});
+		for(var j = 0; j < totaltabs; j++){
+			// Add an option to the selection box for each tab
+			const option = document.createElement("option");
+			option.value = j; // Tab index
+			option.textContent = i18nnote + parseInt(j + 1);
+			selectBox.appendChild(option);
+		}
+
+		// Add close button to the tab
+		const closeButton = document.createElement("button");
+		closeButton.classList.add("sel-close");
+		closeButton.textContent = "x";
+		closeButton.addEventListener("click", function(){
+			hideSearchBox();
+			removeTab();
+		});
+		tabContainer.appendChild(closeButton);
+	}
+}
+
+function removeTab(){
+	var continueremove = false;
+	if(preventclose == true){
+		// Example usage
+		var userResponse = showConfirmationDialog();
+		if(userResponse == 1){
+			// yes
+			continueremove = true;
+			// remove tab
+		}else{
+			// no
+			continueremove = false;
+			// do nothing
+		}
+	}else{
+		continueremove = true;
+	}
+
+	if(continueremove == true){
+		if(multiValue.length > 1){
+			const index = document.getElementById("tabstrip").dataset.active;
+			multiValue = removeObjectAtIndex(index, multiValue);
+
+			document.getElementById("tabstrip").dataset.active = multiValue.length - 1;
+			setActiveTabContent(multiValue.length - 1);
+
+			notesave();
+
+			if(barselectdesign == true){
+				// remove all tabs
+				removeTabs();
+				// create all tabs, and set active
+				createAllTabsInBar();
+				// set the current active tab
+				document.getElementById("tabstrip").dataset.active = 0;
+				const tabs = document.querySelectorAll(".tab");
+				tabs.forEach((t) => t.classList.remove("active"));
+				const firstTab = tabs[0];
+				firstTab.classList.add("active");
+				setActiveTabContent(0);
+
+				updatetabname();
+			}
+		}
+	}
+}
+
+// Function to switch to a specific tab by index
+function switchToTab(index){
+	// Clear active state from all tabs
+	const tabs = tabContainer.querySelectorAll(".tab");
+	tabs.forEach((tab) => tab.classList.remove("active"));
+
+	switchtab(index);
 }
 
 function createNewTab(){
-	const newTab = document.createElement("div");
-	newTab.classList.add("tab");
-	const titleDiv = document.createElement("div");
-	titleDiv.classList.add("title");
-	titleDiv.textContent = i18nnote + ` ${tabContainer.children.length}`;
-	newTab.appendChild(titleDiv);
-	newTab.innerHTML += "<div class=\"tab-close\">x</div>";
-	tabContainer.insertBefore(newTab, tabContainer.lastElementChild);
-	setActiveTab(newTab);
+	hideSearchBox();
+	if(bartabdesign == true){
+		const newTab = document.createElement("div");
+		newTab.classList.add("tab");
+		const titleDiv = document.createElement("div");
+		titleDiv.classList.add("title");
+		titleDiv.textContent = i18nnote + ` ${tabContainer.children.length}`;
+		newTab.appendChild(titleDiv);
+		newTab.innerHTML += "<div class=\"tab-close\">x</div>";
+		tabContainer.insertBefore(newTab, tabContainer.lastElementChild);
+		setActiveTab(newTab);
+	}else{
+		const newTab = document.createElement("div");
+		newTab.classList.add("tab");
+		const titleDiv = document.createElement("div");
+		titleDiv.classList.add("title");
+		titleDiv.textContent = i18nnote + ` ${tabContainer.children.length}`;
+		newTab.appendChild(titleDiv);
+		newTab.innerHTML += "<div class=\"sel-close\">x</div>";
+		tabContainer.insertBefore(newTab, tabContainer.lastElementChild);
+		setActiveTab(newTab);
+
+		// Add the new tab to the selection box
+		var tabs = document.getElementById("tabstrip").querySelectorAll(".tab");
+		const tabIndex = tabs.length - 1;
+		newTab.dataset.tabIndex = tabIndex;
+		var selectBox = document.querySelector(".tab-select");
+		const option = document.createElement("option");
+		option.value = tabIndex; // Tab index
+		option.textContent = i18nnote + ` ${tabIndex + 1}`;
+		selectBox.appendChild(option);
+		selectBox.value = tabIndex;
+	}
 
 	// Adding a new object to the array
 	multiValue.push({"note": ""});
 	// set the current active tab
 	document.getElementById("tabstrip").dataset.active = multiValue.length - 1;
 	setActiveTabContent(multiValue.length - 1);
-	save();
+	notesave();
 }
 // End tabs functions
 
@@ -181,6 +308,30 @@ function hardsave(){
 }
 // End Hard Saving ---
 
+function switchtab(number){
+	// save previous text
+	var previoustab = document.getElementById("tabstrip").dataset.active;
+	if(plaintext == true){
+		multiValue[previoustab].note = document.getElementById("maintext").value;
+	}else if(richtext == true){
+		multiValue[previoustab].note = document.getElementById("powertext").innerHTML;
+	}
+
+	// change tab
+	// set that to active tab
+	const tabs = document.querySelectorAll(".tab");
+	tabs.forEach((t) => t.classList.remove("active"));
+	const firstTab = tabs[number];
+	firstTab.classList.add("active");
+	document.getElementById("tabstrip").dataset.active = number;
+	setActiveTabContent(number);
+
+	// recount characters
+	if(counter == true){
+		countcharacters();
+	}
+}
+
 var tabContainer;
 function init(){
 	// open connnection to background that the panel is open
@@ -190,6 +341,8 @@ function init(){
 	tabContainer = document.querySelector(".tab-bar");
 
 	tabContainer.addEventListener("click", function(event){
+		hideSearchBox();
+
 		// save previous text
 		var previoustab = document.getElementById("tabstrip").dataset.active;
 		if(plaintext == true){
@@ -215,6 +368,7 @@ function init(){
 
 	tabContainer.addEventListener("click", function(event){
 		if(event.target.classList.contains("tab-close")){
+			hideSearchBox();
 			var continueremove = false;
 			if(preventclose == true){
 				// Example usage
@@ -240,21 +394,25 @@ function init(){
 					document.getElementById("tabstrip").dataset.active = multiValue.length - 1;
 					setActiveTabContent(multiValue.length - 1);
 
-					save();
+					notesave();
 
-					// remove all tabs
-					removeTabs();
-					// create all tabs, and set active
-					createAllTabsInBar();
-					// set the current active tab
-					document.getElementById("tabstrip").dataset.active = 0;
-					const tabs = document.querySelectorAll(".tab");
-					tabs.forEach((t) => t.classList.remove("active"));
-					const firstTab = tabs[0];
-					firstTab.classList.add("active");
-					setActiveTabContent(0);
+					if(bartabdesign == true){
+						// remove all tabs
+						removeTabs();
+						// create all tabs, and set active
+						createAllTabsInBar();
+						// set the current active tab
+						document.getElementById("tabstrip").dataset.active = 0;
+						const tabs = document.querySelectorAll(".tab");
+						tabs.forEach((t) => t.classList.remove("active"));
+						const firstTab = tabs[0];
+						firstTab.classList.add("active");
+						setActiveTabContent(0);
 
-					updatetabname();
+						updatetabname();
+					}else{
+						// have the own function, see class "sel-close"
+					}
 				}
 			}
 		}
@@ -265,7 +423,7 @@ function init(){
 
 	maintext = document.querySelector("#maintext");
 	powertext = document.querySelector("#powertext");
-	chrome.storage.sync.get(["firstDate", "optionskipremember", "txtvalue", "multivalue", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsource", "backgroundsize", "print", "password", "enterpassword", "richtext", "plaintext", "multiple", "preventclose", "texttabname"], function(items){
+	chrome.storage.sync.get(["firstDate", "optionskipremember", "txtvalue", "multivalue", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsource", "backgroundsize", "print", "password", "enterpassword", "richtext", "plaintext", "multiple", "preventclose", "texttabname", "save", "bartabdesign", "barselectdesign", "download", "find"], function(items){
 		theValue = items["txtvalue"]; if(theValue == null){ theValue = i18nfirsttext; }
 		multiValue = items["multivalue"]; if(multiValue == null){ multiValue = [{"note":i18nfirsttext}]; }
 		counter = items["counter"]; if(counter == null){ counter = true; }
@@ -290,6 +448,11 @@ function init(){
 		multiple = items["multiple"]; if(multiple == null){ multiple = false; }
 		preventclose = items["preventclose"]; if(preventclose == null){ preventclose = false; }
 		texttabname = items["texttabname"]; if(texttabname == null){ texttabname = false; }
+		save = items["save"]; if(save == null){ save = false; }
+		bartabdesign = items["bartabdesign"]; if(bartabdesign == null){ bartabdesign = true; }
+		barselectdesign = items["barselectdesign"]; if(barselectdesign == null){ barselectdesign = false; }
+		download = items["download"]; if(download == null){ download = false; }
+		find = items["find"]; if(find == null){ find = false; }
 
 		if(password == true){
 			var darklayer = document.createElement("div");
@@ -384,6 +547,18 @@ function init(){
 			document.getElementById("printtext").className = "hidden";
 		}
 
+		if(save == true){
+			document.getElementById("savetext").className = "btn-save";
+		}else{
+			document.getElementById("savetext").className = "hidden";
+		}
+
+		if(download == true){
+			document.getElementById("downloadtext").className = "btn-download";
+		}else{
+			document.getElementById("downloadtext").className = "hidden";
+		}
+
 		if(backgroundimage == true){
 			addbackgroundpaper();
 		}
@@ -393,14 +568,14 @@ function init(){
 
 		if(plaintext == true){
 			maintext.oninput = function(){
-				save();
+				notesave();
 				countcharacters();
 				updatetabname();
 				hardsave();
 			};
 		}else if(richtext == true){
 			powertext.oninput = function(){
-				save();
+				notesave();
 				countcharacters();
 				updatetabname();
 				hardsave();
@@ -409,6 +584,23 @@ function init(){
 
 		// on the end update tab names or not
 		updatetabname();
+
+		// Find that text
+		if(plaintext == true){
+			textarea = document.getElementById("maintext");
+		}else if(richtext == true){
+			textarea = document.getElementById("powertext");
+		}
+
+		highlightedText = document.getElementById("highlighted-text");
+		searchInput = document.getElementById("search-input");
+		searchBox = document.getElementById("search-box");
+		const closeSearchButton = document.getElementById("close-search-box");
+
+		// Event listeners
+		textarea.addEventListener("scroll", syncScroll);
+		searchInput.addEventListener("input", updateHighlight);
+		closeSearchButton.addEventListener("click", hideSearchBox);
 	});
 
 	document.querySelector(".close").addEventListener("click", () => {
@@ -500,6 +692,8 @@ function updatetabname(){
 			// multi
 			// Get the tab titles
 			var tabTitles = document.querySelectorAll(".tab .title");
+			// Get the select element
+			var selectElement = document.querySelector(".tab-select");
 
 			// Loop through each tab title
 			tabTitles.forEach(function(title, index){
@@ -515,6 +709,14 @@ function updatetabname(){
 
 				// Update the tab title with the first line of the note text
 				title.textContent = firstLine;
+
+				// Also update the select option text
+				if(selectElement){
+					// Ensure the 'options' property exists and the index is within bounds
+					if(selectElement.options && selectElement.options[index]){
+						selectElement.options[index].textContent = firstLine;
+					}
+				}
 			});
 		}else{
 			// single
@@ -635,8 +837,49 @@ window.addEventListener("DOMContentLoaded", () => {
 		}
 	});
 
+	document.getElementById("savetext").addEventListener("click", () => {
+		notesave();
+		if(showingsavebadge == false){
+			showsavetextbadge();
+		}
+	});
+
+	document.getElementById("downloadtext").addEventListener("click", () => {
+		var notecontent;
+		if(plaintext == true){
+			notecontent = document.getElementById("maintext").value;
+		}else if(richtext == true){
+			notecontent = document.getElementById("powertext").innerHTML;
+		}
+		// Create a Blob object with the note content
+		const blob = new Blob([notecontent], {type: "text/plain"});
+
+		// Create a download link
+		const link = document.createElement("a");
+		link.href = URL.createObjectURL(blob);
+		link.download = "note.txt"; // Default filename for the download
+
+		// Trigger the download
+		link.click();
+
+		// Clean up the URL object
+		URL.revokeObjectURL(link.href);
+	});
+
 	document.getElementById("printtext").addEventListener("click", () => {
 		print();
+	});
+
+	document.getElementById("findtext").addEventListener("click", () => {
+		if(searchBox.className === "hidden"){
+			searchBox.className = "";
+			searchInput.focus();
+			updateHighlight();
+		}else{
+			searchBox.className = "hidden";
+			clearHighlights();
+			highlightedText.textContent = "";
+		}
 	});
 
 	// Function to set cursor to the end of the input field
@@ -667,27 +910,109 @@ window.addEventListener("DOMContentLoaded", () => {
 	setTimeout(setCursorToEnd, 1500);
 });
 
-var showingcopybadge = false;
-function showcopytextbadge(){
+function clearHighlights(){
+	var text;
+	if(plaintext === true){
+		text = textarea.value;
+		// Escape < and > for display purposes
+		text = text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+	}else if(richtext === true){
+		text = textarea.innerHTML;
+	}
+	highlightedText.innerHTML = text.replace(/\n/g, "<br>");
+}
+
+// Function to update the highlighted text
+function updateHighlight(){
+	var searchQuery = "";
+	if(searchInput){
+		searchQuery = searchInput.value.toLowerCase();
+	}
+
+	var text;
+	if(plaintext === true){
+		text = textarea.value; // Get original text
+	}else if(richtext === true){
+		text = textarea.innerHTML;
+	}
+
+	if(!searchQuery){
+		if(plaintext === true){
+			// Escape < and > for display purposes
+			highlightedText.innerHTML = text.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, "<br>");
+		}else if(richtext === true){
+			highlightedText.innerHTML = text.replace(/\n/g, "<br>"); // Preserve line breaks
+		}
+		return;
+	}
+
+	// Use regex to find matches for the search term in the original text
+	const regex = new RegExp(searchQuery, "gi");
+
+	let highlighted = text.replace(regex, (match) => {
+		return`<span class="highlight">${match}</span>`;
+	});
+
+	if(plaintext === true){
+		// Escape < and > for non-highlighted parts of the text
+		highlighted = highlighted
+			.replace(/&(?!(lt|gt|amp);)/g, "&amp;") // Escape standalone & to prevent misinterpretation
+			.replace(/</g, "&lt;") // Escape <
+			.replace(/>/g, "&gt;") // Escape >
+			.replace(/&lt;span class="highlight"&gt;/g, "<span class=\"highlight\">") // Restore highlight opening tag
+			.replace(/&lt;\/span&gt;/g, "</span>"); // Restore highlight closing tag
+
+		highlightedText.innerHTML = highlighted.replace(/\n/g, "<br>"); // Preserve line breaks
+	}else if(richtext === true){
+		highlightedText.innerHTML = highlighted; // Preserve line breaks
+	}
+}
+
+// Synchronize the textarea and highlighted text
+function syncScroll(){
+	highlightedText.scrollTop = textarea.scrollTop;
+}
+
+function hideSearchBox(){
+	searchBox.className = "hidden";
+	clearHighlights();
+	highlightedText.textContent = "";
+}
+
+function showBadge(title, description){
 	var div = document.createElement("div");
 	div.setAttribute("id", "stefanvdremoteadd");
 	div.className = "stefanvdremote";
 	document.body.appendChild(div);
 
 	var h3 = document.createElement("h3");
-	h3.innerText = i18ntitelcopytext;
+	h3.innerText = title;
 	div.appendChild(h3);
 
 	var p = document.createElement("p");
-	p.innerText = i18ndescopytext;
+	p.innerText = description;
 	div.appendChild(p);
-	showingcopybadge = true;
 
 	window.setTimeout(function(){
 		var element = document.getElementById("stefanvdremoteadd");
 		element.parentNode.removeChild(element);
-		showingcopybadge = false;
 	}, 4000);
+}
+
+var showingcopybadge = false;
+function showcopytextbadge(){
+	if(!showingcopybadge){
+		showingcopybadge = true;
+		showBadge(i18ntitelcopytext, i18ndescopytext);
+	}
+}
+
+var showingsavebadge = false;
+function showsavetextbadge(){
+	if(!showingsavebadge){
+		showingsavebadge = true;
+		showBadge(i18ntitelsavetext, i18ndessavetext);
+	}
 }
 
 function applyStyles(multiple, richtext){
@@ -696,18 +1021,22 @@ function applyStyles(multiple, richtext){
 		if(richtext){
 			document.getElementById("tabstrip").className = "tab-bar";
 			document.getElementById("powertext").className = "enablebar";
+			document.getElementById("highlighted-text").className = "enablebar";
 		}else{
 			document.getElementById("tabstrip").className = "tab-bar";
 			document.getElementById("maintext").className = "enablebar";
+			document.getElementById("highlighted-text").className = "enablebar";
 		}
 	}else{
 		// single note
 		if(richtext){
 			document.getElementById("tabstrip").className = "hidden";
 			document.getElementById("powertext").className = "regularbar";
+			document.getElementById("highlighted-text").className = "regularbar";
 		}else{
 			document.getElementById("tabstrip").className = "hidden";
 			document.getElementById("maintext").className = "regularbar";
+			document.getElementById("highlighted-text").className = "regularbar";
 		}
 	}
 }
@@ -715,6 +1044,12 @@ function applyStyles(multiple, richtext){
 function createTabContent(){
 	if(multiple == true){
 		if(multiValue == null){ multiValue = [{"note":i18nfirsttext}]; }
+
+		if(bartabdesign == true){
+			document.getElementById("tabstrip").setAttribute("data-hide", "false");
+		}else{
+			document.getElementById("tabstrip").setAttribute("data-hide", "true");
+		}
 
 		// remove all tabs
 		removeTabs();
@@ -760,10 +1095,12 @@ chrome.runtime.onMessage.addListener(function(request){
 		}else if(richtext == true){
 			document.querySelector("#powertext").innerHTML = request.value;
 		}
+		updatetabname();
 	}else if(request.msg == "setnotemulti"){
 		multiValue = request.value;
 		applyStyles(request.value, richtext);
 		createTabContent();
+		updatetabname();
 	}else if(request.msg == "setcounter"){
 		if(request.value == true){
 			countcharacters();
@@ -833,6 +1170,8 @@ chrome.runtime.onMessage.addListener(function(request){
 		location.reload();
 	}else if(request.msg == "setmultiple"){
 		multiple = request.value;
+		theValue = request.singletext;
+		multiValue = request.tabtext;
 		applyStyles(request.value, richtext);
 		createTabContent();
 	}else if(request.msg == "setpreventclose"){
@@ -842,11 +1181,17 @@ chrome.runtime.onMessage.addListener(function(request){
 			preventclose = false;
 		}
 	}else if(request.msg == "settexttabname"){
+		hideSearchBox();
 		if(request.value == true){
 			texttabname = true;
 			updatetabname();
 		}else{
 			texttabname = false;
+			if(bartabdesign == true){
+				document.getElementById("tabstrip").setAttribute("data-hide", "false");
+			}else{
+				document.getElementById("tabstrip").setAttribute("data-hide", "true");
+			}
 			// remove all tabs
 			removeTabs();
 			createAllTabsInBar();
@@ -856,6 +1201,67 @@ chrome.runtime.onMessage.addListener(function(request){
 			tabs.forEach((t) => t.classList.remove("active"));
 			const firstTab = tabs[0];
 			firstTab.classList.add("active");
+			setActiveTabContent(0);
+		}
+	}else if(request.msg == "setlineheight"){
+		lineheight = request.value;
+		removestylecode();
+		addstylecode();
+	}else if(request.msg == "setsave"){
+		if(request.value == true){
+			document.getElementById("savetext").className = "btn-save";
+		}else{
+			document.getElementById("savetext").className = "hidden";
+		}
+	}else if(request.msg == "setdownload"){
+		if(request.value == true){
+			document.getElementById("downloadtext").className = "btn-download";
+		}else{
+			document.getElementById("downloadtext").className = "hidden";
+		}
+	}else if(request.msg == "setbartabdesign"){
+		bartabdesign = true;
+		barselectdesign = false;
+
+		hideSearchBox();
+
+		document.getElementById("tabstrip").setAttribute("data-hide", "false");
+		// remove all tabs
+		removeTabs();
+		createAllTabsInBar();
+		// set the current active tab
+		document.getElementById("tabstrip").dataset.active = 0;
+		const tabs = document.querySelectorAll(".tab");
+		tabs.forEach((t) => t.classList.remove("active"));
+		const firstTab = tabs[0];
+		firstTab.classList.add("active");
+		setActiveTabContent(0);
+
+		updatetabname();
+	}else if(request.msg == "setbarselectdesign"){
+		bartabdesign = false;
+		barselectdesign = true;
+
+		hideSearchBox();
+
+		document.getElementById("tabstrip").setAttribute("data-hide", "true");
+		// remove all tabs
+		removeTabs();
+		createAllTabsInBar();
+		// set the current active tab
+		document.getElementById("tabstrip").dataset.active = 0;
+		const tabs = document.querySelectorAll(".tab");
+		tabs.forEach((t) => t.classList.remove("active"));
+		const firstTab = tabs[0];
+		firstTab.classList.add("active");
+		setActiveTabContent(0);
+
+		updatetabname();
+	}else if(request.msg == "setfind"){
+		if(request.value == true){
+			document.getElementById("findtext").className = "btn-find";
+		}else{
+			document.getElementById("findtext").className = "hidden";
 		}
 	}
 });

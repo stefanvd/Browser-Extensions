@@ -33,7 +33,7 @@ var darkmode = false;
 var firstdefaultvalues = {};
 function defaultgetsettings(){
 	// Option default value to read if there is no current value from chrome.storage AND init default value
-	chrome.storage.sync.get(["icon", "contextmenus", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsize", "print", "password", "enterpassword", "richtext", "plaintext"], function(items){
+	chrome.storage.sync.get(["icon", "contextmenus", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsize", "print", "password", "enterpassword", "richtext", "plaintext", "save", "bartabdesign", "barselectdesign", "download", "find"], function(items){
 		// find no localstore zoomengine
 		if(items["icon"] == null){
 			if(exbrowser == "safari"){
@@ -59,6 +59,10 @@ function defaultgetsettings(){
 		if(items["password"] == null){ firstdefaultvalues["password"] = false; }
 		if(items["enterpassword"] == null){ firstdefaultvalues["enterpassword"] = ""; }
 		if(items["richtext"] == null && items["plaintext"] == null){ firstdefaultvalues["richtext"] = false; firstdefaultvalues["plaintext"] = true; }
+		if(items["save"] == null){ firstdefaultvalues["save"] = false; }
+		if(items["bartabdesign"] == null && items["barselectdesign"] == null){ firstdefaultvalues["bartabdesign"] = true; firstdefaultvalues["barselectdesign"] = false; }
+		if(items["download"] == null){ firstdefaultvalues["download"] = false; }
+		if(items["find"] == null){ firstdefaultvalues["find"] = false; }
 
 		// find no localstore lightimage
 		// Save the init value
@@ -71,7 +75,7 @@ function defaultgetsettings(){
 
 // Option to save current value
 function save_options(){
-	chrome.storage.sync.set({"icon": $("btnpreview").src, "optionskipremember":$("optionskipremember").checked, "contextmenus":$("contextmenus").checked, "counter":$("counter").checked, "copy":$("copy").checked, "speech":$("speech").checked, "voices":$("voices").checked, "fontsize":$("fontsize").value, "lineheight":$("lineheight").value, "colorlight":$("colorlight").value, "colordark":$("colordark").value, "backgroundlight":$("backgroundlight").value, "backgrounddark":$("backgrounddark").value, "backgroundcolor":$("backgroundcolor").checked, "backgroundimage":$("backgroundimage").checked, "backgroundsize":$("backgroundsize").value, "print":$("print").checked, "password":$("password").checked, "richtext":$("richtext").checked, "plaintext":$("plaintext").checked, "multiple":$("multiple").checked, "preventclose":$("preventclose").checked, "texttabname":$("texttabname").checked});
+	chrome.storage.sync.set({"icon": $("btnpreview").src, "optionskipremember":$("optionskipremember").checked, "contextmenus":$("contextmenus").checked, "counter":$("counter").checked, "copy":$("copy").checked, "speech":$("speech").checked, "voices":$("voices").checked, "fontsize":$("fontsize").value, "lineheight":$("lineheight").value, "colorlight":$("colorlight").value, "colordark":$("colordark").value, "backgroundlight":$("backgroundlight").value, "backgrounddark":$("backgrounddark").value, "backgroundcolor":$("backgroundcolor").checked, "backgroundimage":$("backgroundimage").checked, "backgroundsize":$("backgroundsize").value, "print":$("print").checked, "password":$("password").checked, "richtext":$("richtext").checked, "plaintext":$("plaintext").checked, "multiple":$("multiple").checked, "preventclose":$("preventclose").checked, "texttabname":$("texttabname").checked, "save":$("save").checked, "bartabdesign":$("bartabdesign").checked, "barselectdesign":$("barselectdesign").checked, "download":$("download").checked, "find":$("find").checked});
 }
 
 function read_options(){
@@ -162,7 +166,7 @@ function read_options(){
 		showhidemodal("materialModalYouTube", "hide", "true");
 	}
 
-	chrome.storage.sync.get(["icon", "firstDate", "contextmenus", "optionskipremember", "firstsawrate", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsize", "print", "password", "enterpassword", "plaintext", "richtext", "multiple", "preventclose", "texttabname"], function(items){
+	chrome.storage.sync.get(["icon", "firstDate", "contextmenus", "optionskipremember", "firstsawrate", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsize", "print", "password", "enterpassword", "plaintext", "richtext", "multiple", "preventclose", "texttabname", "save", "bartabdesign", "barselectdesign", "download", "find"], function(items){
 		if(items["icon"]){ $("btnpreview").src = items["icon"]; }
 		if(items["contextmenus"] == true)$("contextmenus").checked = true;
 		if(items["optionskipremember"] == true)$("optionskipremember").checked = true;
@@ -187,6 +191,11 @@ function read_options(){
 		if(items["multiple"] == true)$("multiple").checked = true;
 		if(items["preventclose"] == true)$("preventclose").checked = true;
 		if(items["texttabname"] == true)$("texttabname").checked = true;
+		if(items["save"] == true)$("save").checked = true;
+		if(items["bartabdesign"] == true)$("bartabdesign").checked = true;
+		if(items["barselectdesign"] == true)$("barselectdesign").checked = true;
+		if(items["download"] == true)$("download").checked = true;
+		if(items["find"] == true)$("find").checked = true;
 
 		// show remember page
 		var firstmonth = false;
@@ -329,6 +338,14 @@ function test(){
 		document.getElementById("enterpassword").disabled = true;
 		document.getElementById("confirmpassword").disabled = true;
 	}
+
+	if(document.getElementById("multiple").checked){
+		document.getElementById("bartabdesign").disabled = false;
+		document.getElementById("barselectdesign").disabled = false;
+	}else{
+		document.getElementById("bartabdesign").disabled = true;
+		document.getElementById("barselectdesign").disabled = true;
+	}
 }
 
 function ariacheck(){
@@ -441,7 +458,6 @@ chrome.runtime.onMessage.addListener(function(msg){
 		});
 	}
 });
-
 
 function setmetatheme(a){
 	const metas = document.getElementsByTagName("meta");
