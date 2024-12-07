@@ -661,7 +661,7 @@ if(chrome.storage.managed){
 }
 
 function installation(){
-	if(chrome.storage.managed){
+	if(chrome.storage.managed && exbrowser != "firefox"){
 		chrome.storage.managed.get(function(items){
 			readgrouppolicy(items);
 			// save in memory
