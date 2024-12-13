@@ -36,6 +36,164 @@ if(window.location.href.match(/^http(s)?:\/\/(www\.)?stefanvd.net/i)){
 	}
 }
 
+var faviconserver = "https://s2.googleusercontent.com/s2/favicons?domain=";
+function createbrowserbookmark(){
+	chrome.runtime.sendMessage({action: "getBookmarks"}, (response) => {
+		if(response.type == true){
+			if(response.resp){
+				renderBookmarks(response.resp[0].children, SD("list"));
+			}
+		}else{
+			if(response.resp){
+				renderBookmarks(response.resp[0].children, SD("list"));
+			}
+		}
+	});
+}
+
+function renderBookmarks(bookmarks, parentElement){
+	var rgb = hex2rgb(backgroundhex);
+	bookmarks.forEach(function(bookmark){
+		if(parentElement){
+			if(bookmark.children){
+				// Create a sublist for folders
+				var sublist = document.createElement("ul");
+				sublist.style.background = "rgba(" + rgb.red + "," + rgb.green + "," + rgb.blue + "," + (opacity / 100) + ")";
+				sublist.className = "hideitem";
+
+				// Check if folder has children
+				if(bookmark.children.length > 0){
+					renderBookmarks(bookmark.children, sublist);
+				}else{
+					// Add "empty" menu item if folder is empty
+					var emptyItem = document.createElement("li");
+					emptyItem.textContent = "(" + chrome.i18n.getMessage("titelempty") + ")";
+					emptyItem.style.color = fontcolor;
+					emptyItem.className = "empty-item";
+					sublist.appendChild(emptyItem);
+				}
+
+				var listItemsub = document.createElement("li");
+				var folderLink = document.createElement("a");
+				folderLink.href = "#";
+				folderLink.style.color = fontcolor;
+
+				// Create folder icon
+				var folderIcon = document.createElement("img");
+				folderIcon.src = chrome.runtime.getURL("images/folder@2x.png");
+				folderIcon.alt = "Folder Icon";
+				folderIcon.height = 16;
+				folderIcon.width = 16;
+				folderLink.appendChild(folderIcon); // Append folder icon inside the link
+
+				// Create span for bookmark title
+				var titleSpan = document.createElement("div");
+				titleSpan.textContent = bookmark.title;
+				folderLink.appendChild(titleSpan);
+
+				// Create arrow element for folder
+				var arrow = document.createElement("div");
+				arrow.textContent = "⌃";
+				arrow.style.marginLeft = "10px";
+				arrow.style.float = "right";
+				arrow.style.transform = "rotate(90deg)";
+				folderLink.appendChild(arrow);
+
+				listItemsub.appendChild(folderLink);
+				listItemsub.appendChild(sublist);
+				parentElement.appendChild(listItemsub);
+
+				// Add event listeners for mouseenter and mouseleave
+				listItemsub.addEventListener("mouseenter", function(){
+					sublist.className = "showitem";
+				});
+
+				listItemsub.addEventListener("mouseleave", function(){
+					sublist.className = "hideitem";
+				});
+
+				// Folder is expanded or collapsed
+				folderLink.addEventListener("click", function(event){
+					event.preventDefault();
+					if(sublist.className === "hideitem"){
+						sublist.className = "showitem";
+					}else{
+						sublist.className = "hideitem";
+					}
+				});
+
+				// Add class for CSS styling
+				listItemsub.classList.add("bookmark-item");
+			}else{
+				// Create list item for bookmarks
+				var listItem = document.createElement("li");
+				var link = document.createElement("a");
+				link.href = bookmark.url;
+				link.style.color = fontcolor;
+				link.addEventListener("click", function(event){
+					// Prevent the default action of following the link
+					event.preventDefault();
+					openweb(bookmark.url, existingtab);
+					SD("btnfile").checked = false;
+					SD("btnedit").checked = false;
+					SD("btnview").checked = false;
+					SD("btnhistory").checked = false;
+					SD("btnbookmarks").checked = false;
+					SD("btnwindow").checked = false;
+					SD("btnhelp").checked = false;
+					let existingDiv = SD("menubookmarks");
+					if(existingDiv){
+						existingDiv.parentNode.removeChild(existingDiv); // Remove the div
+					}
+				});
+
+				// Create favicon
+				var favicon = document.createElement("img");
+				favicon.src = faviconserver + getDomain(bookmark.url);
+				favicon.alt = "Favicon";
+				favicon.height = 16;
+				favicon.width = 16;
+				link.appendChild(favicon); // Append favicon inside the link
+
+				// Create span for bookmark title
+				var titleSpanRoot = document.createElement("div");
+				titleSpanRoot.textContent = bookmark.title;
+				link.appendChild(titleSpanRoot);
+
+				listItem.appendChild(link);
+				parentElement.appendChild(listItem);
+
+				// Add class for CSS styling
+				listItem.classList.add("bookmark-item");
+			}
+		}
+	});
+}
+
+// Function to extract domain from URL
+function getDomain(url){
+	var domain;
+	// Find & remove protocol (http, https, ftp) and get domain
+	if(url.indexOf("://") > -1){
+		domain = url.split("/")[2];
+	}else{
+		domain = url.split("/")[0];
+	}
+	// Find & remove port number
+	domain = domain.split(":")[0];
+	return domain;
+}
+
+function openweb(url, openInNewTab){
+	if(openInNewTab == true){
+		// Open the URL in the current window
+		window.location.href = url;
+	}else{
+		// Open the URL in a new tab
+		window.open(url, "_blank");
+	}
+}
+
 function hex2rgb(hex){
 	if(hex[0] == "#") hex = hex.substr(1);
 	if(hex.length == 3){
@@ -62,7 +220,7 @@ function createmenubar(a, b, c, d, e){
 
 		// automatically open new panel with hover
 		if(hovermenu == true){
-			newdropdown.addEventListener("mouseover", function(){
+			newdropdown.addEventListener("mouseover", function(event){
 				if(SD("btnfile").checked || SD("btnedit").checked || SD("btnview").checked || SD("btnhistory").checked || SD("btnbookmarks").checked || SD("btnwindow").checked || SD("btnhelp").checked){
 					SD("btnfile").checked = false;
 					SD("btnedit").checked = false;
@@ -73,6 +231,13 @@ function createmenubar(a, b, c, d, e){
 					SD("btnhelp").checked = false;
 					// enable the current panel
 					SD(this.getAttribute("for")).checked = true;
+				}
+
+				if(event.target.id != "hyperbtnviewbookmarks"){
+					let existingDiv = SD("menubookmarks");
+					if(existingDiv){
+						existingDiv.parentNode.removeChild(existingDiv); // Remove the div
+					}
 				}
 			}, false);
 		}
@@ -376,6 +541,8 @@ var i18nmenu46a = chrome.i18n.getMessage("menu46a");
 var i18nmenu47a = chrome.i18n.getMessage("menu47a");
 var i18nmenu48a = chrome.i18n.getMessage("menu48a");
 
+var i18nviewbookmarks = chrome.i18n.getMessage("menuviewbookmarks");
+
 var taskchangepositiontop = false;
 var x, w, v, y, z, q;
 var newtoolbardiv;
@@ -512,7 +679,7 @@ function addtoolbar(){
 
 		// inject CSS for the hover effect
 		try{
-			var pmcssbar = "#stefanvdnavwrappe #stefanvdpropermenubarnav li:hover a,#stefanvdnavwrappe #stefanvdpropermenubarnav a:focus,#stefanvdnavwrappe #stefanvdpropermenubarnav a:active{padding:0 7px;line-height:30px!important;color:" + hovertextcolor + "!important;background:" + hoverbackground + "!important;text-decoration:none;height:30px;font-weight:normal}#stefanvdnavwrappe #stefanvdpropermenubarclose:hover{color:" + hovertextcolor + "!important}#stefanvdnavwrappe #stefanvdpropermenubarnav label a:hover{color:" + hovertextcolor + "!important;background:" + hoverbackground + "!important;}";
+			var pmcssbar = "#stefanvdnavwrappe #stefanvdpropermenubarnav li:hover a,#stefanvdnavwrappe #stefanvdpropermenubarnav a:focus,#stefanvdnavwrappe #stefanvdpropermenubarnav a:active{padding:0 7px;line-height:30px!important;color:" + hovertextcolor + "!important;background:" + hoverbackground + "!important;text-decoration:none;height:30px;font-weight:normal}#stefanvdnavwrappe #stefanvdpropermenubarclose:hover{color:" + hovertextcolor + "!important}#stefanvdnavwrappe #stefanvdpropermenubarnav label a:hover{color:" + hovertextcolor + "!important;background:" + hoverbackground + "!important;}#menubookmarks a:hover{background:" + hoverbackground + "}";
 
 			if($("csspropermenubar")){
 				var elem = el.shadowRoot.getElementById("csspropermenubar");
@@ -530,7 +697,15 @@ function addtoolbar(){
 
 		//---
 		var newtoolbar = document.createElement("div");
+		newtoolbar.addEventListener("contextmenu", function(e){
+			e.preventDefault();
+		}, false);
 		newtoolbar.setAttribute("id", "stefanvdnavwrappe");
+		if(getpositionbottom == false){
+			newtoolbar.dataset.bar = "top";
+		}else{
+			newtoolbar.dataset.bar = "bottom";
+		}
 		newtoolbar.style.display = "none"; // Hide the menu until everything is loaded
 		newtoolbar.style.zIndex = "2147483647";
 		newtoolbar.style.width = "100%";
@@ -669,6 +844,12 @@ function addtoolbar(){
 						SD("btnbookmarks").checked = false;
 						SD("btnwindow").checked = false;
 						SD("btnhelp").checked = false;
+
+						// remove browser bookmarks panel
+						var element = SD("menubookmarks");
+						if(element){
+							element.parentNode.removeChild(element);
+						}
 					}
 				}
 			});
@@ -806,6 +987,93 @@ function addtoolbar(){
 			SD("menu33s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanbookmarkaddall"});
 			}, false);
+			createline("panelbookmarks");
+			var panelbookmarks = SD("panelbookmarks");
+			const div = document.createElement("div");
+			const ul = document.createElement("ul");
+			div.appendChild(ul);
+			const li = document.createElement("li");
+			ul.appendChild(li);
+			const a = document.createElement("a");
+			a.id = "hyperbtnviewbookmarks";
+			a.innerText = i18nviewbookmarks;
+			a.style.color = fontcolor;
+
+			let menubookmarks; // Variable to store the reference of the "menubookmarks" div
+			a.addEventListener("mouseover", function(event){
+				// Parent container where the new div will be added
+				const parentNav = SD("stefanvdnavwrappe");
+
+				var rgb = hex2rgb(backgroundhex);
+				// Check if the div with ID "menubookmarks" already exists inside the parent container
+				let existingDiv = SD("menubookmarks");
+				if(!existingDiv){
+					// Create the new div if it doesn't exist
+					menubookmarks = document.createElement("div");
+					menubookmarks.style.background = "rgba(" + rgb.red + "," + rgb.green + "," + rgb.blue + "," + (opacity / 100) + ")";
+					menubookmarks.id = "menubookmarks";
+					if(getpositionbottom == false){
+						menubookmarks.className = "top";
+					}else{
+						menubookmarks.className = "bottom";
+					}
+
+					// Add ul and other elements inside the new div
+					const newUl = document.createElement("ul");
+					newUl.id = "list";
+					menubookmarks.appendChild(newUl);
+
+					// Get the position of the hovered element
+					const rect = event.target.getBoundingClientRect();
+
+					// Set the position of the new div
+					menubookmarks.style.position = "absolute";
+					if(getpositionbottom == false){
+						menubookmarks.style.top = `${rect.top + window.scrollY - 5}px`;
+						menubookmarks.style.left = `${rect.right + window.scrollX - 8}px`;
+					}else{
+						menubookmarks.style.bottom = "30px";
+						menubookmarks.style.left = `${rect.right + window.scrollX - 8}px`;
+					}
+
+					// Add event listeners to remove the div when the mouse leaves
+					menubookmarks.addEventListener("mouseleave", function(){
+						// Remove the div when the mouse leaves the "menubookmarks" area
+						if(document.body.contains(menubookmarks)){
+							let existingDiv = SD("menubookmarks");
+							if(existingDiv){
+								existingDiv.parentNode.removeChild(existingDiv); // Remove the div
+							}
+							menubookmarks = null;
+						}
+					});
+
+					// Append the new div to the "stefanvdpropermenubarnav" container
+					parentNav.appendChild(menubookmarks);
+					createbrowserbookmark();
+				}
+			});
+
+			a.addEventListener("mouseleave", function(event){
+				// Check if the mouse moved to the "menubookmarks" area
+				const relatedTarget = event.relatedTarget;
+				if(menubookmarks && (!relatedTarget || !menubookmarks.contains(relatedTarget))){
+					let existingDiv = SD("menubookmarks");
+					if(existingDiv){
+						existingDiv.parentNode.removeChild(existingDiv); // Remove the div
+					}
+				}
+			});
+			li.appendChild(a);
+
+			var arrow = document.createElement("div");
+			arrow.textContent = "⌃";
+			arrow.style.margin = "0 10px";
+			arrow.style.float = "right";
+			arrow.style.transform = "rotate(90deg)";
+			a.appendChild(arrow);
+
+			panelbookmarks.appendChild(div);
 
 			// Window
 			var rootwindow = ["btnwindow", "w"];
@@ -922,7 +1190,6 @@ function addtoolbar(){
 				}
 			});
 			// End root menu shortcut
-
 		}
 	}
 }
@@ -1119,7 +1386,7 @@ function fileSelected(input){
 }
 
 var addbar = null; var dropshadow = null; var allsites = null; var toolbaronly = null; var toolbarDomains = null; var getpositiontop = null; var getpositionbottom = null; var toolbarwhite = null; var toolbarblack = null;
-var opacity = null; var backgroundcolor = null; var backgroundhex = null; var backgroundimagesource = null; var backgroundimage = null; var country = null; var fontcolor = null; var googlesites = null; var search = null; var existingtab = null; var display = null; var hovertextcolor = null; var hoverbackground = null; var googleproducts = null; var menuproducts = null; var googlebarDomains = null, hovermenu = null;
+var opacity = null; var backgroundcolor = null; var backgroundhex = null; var backgroundimagesource = null; var backgroundimage = null; var country = null; var fontcolor = null; var googlesites = null; var search = null; var existingtab = null; var display = null; var hovertextcolor = null; var hoverbackground = null; var googleproducts = null; var menuproducts = null; var googlebarDomains = null, hovermenu = null; var filterbydomain = null; var filterbypage = null; var currenturl = null;
 
 chrome.runtime.onMessage.addListener(function request(request){
 	if(request.action == "goselectall"){
@@ -1145,7 +1412,7 @@ chrome.runtime.onMessage.addListener(function request(request){
 			btnFile.focus();
 		}
 	}else if(request.action == "addremove"){
-		chrome.storage.sync.get(["country", "addbar", "dropshadow", "toolbarDomains", "allsites", "toolbaronly", "getpositiontop", "getpositionbottom", "toolbarwhite", "toolbarblack", "backgroundhex", "backgroundimagesource", "opacity", "backgroundcolor", "backgroundimage", "allsites", "fontcolor", "googlesites", "search", "existingtab", "display", "hovertextcolor", "hoverbackground", "googleproducts", "menuproducts", "googlebarDomains", "hovermenu"], function(items){
+		chrome.storage.sync.get(["country", "addbar", "dropshadow", "toolbarDomains", "allsites", "toolbaronly", "getpositiontop", "getpositionbottom", "toolbarwhite", "toolbarblack", "backgroundhex", "backgroundimagesource", "opacity", "backgroundcolor", "backgroundimage", "allsites", "fontcolor", "googlesites", "search", "existingtab", "display", "hovertextcolor", "hoverbackground", "googleproducts", "menuproducts", "googlebarDomains", "hovermenu", "filterbydomain", "filterbypage"], function(items){
 			country = items.country;
 			if(country == null){
 				var userLang = navigator.language || navigator.userLanguage;
@@ -1182,11 +1449,31 @@ chrome.runtime.onMessage.addListener(function request(request){
 			googleproducts = items["googleproducts"]; if(googleproducts == null)googleproducts = false;
 			menuproducts = items["menuproducts"]; if(menuproducts == null)menuproducts = true;
 			hovermenu = items["hovermenu"]; if(hovermenu == null)hovermenu = true;
-
+			filterbydomain = items["filterbydomain"]; if(filterbydomain == null)filterbydomain = true;
+			filterbypage = items["filterbypage"]; if(filterbypage == null)filterbypage = false;
 			if(addbar == true){
 				var urlinthelist = false;
 				if(toolbaronly == true){
-					var currenturl = window.location.protocol + "//" + window.location.host;
+					currenturl = window.location.href;
+					var filtermatch = currenturl.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/);
+					// console.log("filtermatch=", currenturl);
+					if(filterbydomain == true){
+						if(filtermatch){
+							currenturl = filtermatch[0];
+							// Remove trailing slash if it exists
+							if(currenturl.endsWith("/")){
+								currenturl = currenturl.slice(0, -1);
+							}
+						}
+					}
+					// Remove the trailing slash only if the URL is the root domain
+					if(currenturl.endsWith("/")){
+						const domainPattern = /^[\w-]+:\/{2}[\w.:-]+\/?$/;
+						if(domainPattern.test(currenturl)){
+							currenturl = currenturl.slice(0, -1);
+						}
+					}
+					// console.log("filtermatch=", currenturl);
 					var blackrabbit = false;
 					if(typeof toolbarDomains == "string"){
 						toolbarDomains = JSON.parse(toolbarDomains);

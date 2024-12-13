@@ -115,7 +115,7 @@
 "sharemenusendatweet": {"message": "Send a Post"},
 "sharemenupostonfacebook": {"message": "Post on Facebook"},
 "sharemenuratetitle": {"message": "Rate this extension"},
-"sharemenudonatetitle": {"message": "Support Development"},
+"sharemenudonatetitle": {"message": "Make a donation"},
 "advancedoptions": {"message": "Advanced Options"},
 "help": {"message": "Help"},
 "about": {"message": "About"},
@@ -299,5 +299,12 @@
 "pagetitle": {"message": "Toggle Proper Menubar Visibility"},
 "barnotvisible": {"message": "Proper Menubar cannot be displayed on this page."},
 "permissionwebnavigation": {"message": "This is needed to instantly make the bar visible on the current web page before the web page is loaded."},
-"titelshortfocus": {"message": "Focus the Proper Menubar"}
+"titelshortfocus": {"message": "Focus the Proper Menubar"},
+"menuviewbookmarks": {"message": "View Bookmarks"},
+"allowbookmarks": {"message": "Allow Bookmarks Permission"},
+"helpdisplaybookmarks": {"message": "How to display my bookmarks here?"},
+"titelfiltertype": {"message": "Filter type"},
+"desfilterbydomain": {"message": "Filter at domain level"},
+"desfilterbypage": {"message": "Filter at web page level"},
+"titelempty": {"message": "empty"}
 }

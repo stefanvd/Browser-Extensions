@@ -460,6 +460,32 @@ chrome.runtime.onMessage.addListener(function request(request, sender, sendRespo
 			result = permissions.permissions;
 			chrome.tabs.sendMessage(sender.tab.id, {text: "receiveallpermissions", value: result});
 		});
+	}else if(request.action === "getBookmarks"){
+		chrome.permissions.contains({
+			permissions: ["bookmarks"]
+		}, (result) => {
+			if(result){
+				chrome.bookmarks.getTree((bookmarkTreeNodes) => {
+					sendResponse({type: true, resp: bookmarkTreeNodes});
+				});
+			}else{
+				chrome.permissions.request({
+					permissions: ["bookmarks"]
+				}, function(granted){
+					if(granted){
+						chrome.bookmarks.getTree((bookmarkTreeNodes) => {
+							sendResponse({type: true, resp: bookmarkTreeNodes});
+						});
+					}else{
+						var txtpermission = chrome.i18n.getMessage("permissionoption");
+						console.log(txtpermission);
+						var help = [{"children":[{"dateAdded":1714683612274, "id":"1", "index":0, "parentId":"0", "title":chrome.i18n.getMessage("helpdisplaybookmarks"), "url": helpenablebookmark}]}];
+						sendResponse({type: false, resp: help});
+					}
+				});
+			}
+		});
+		return true;
 	}
 	return true;
 });
@@ -519,7 +545,7 @@ var sharemenuwelcomeguidetitle = chrome.i18n.getMessage("sharemenuwelcomeguideti
 var sharemenutellafriend = chrome.i18n.getMessage("sharemenutellafriend");
 var sharemenusendatweet = chrome.i18n.getMessage("sharemenusendatweet");
 var sharemenupostonfacebook = chrome.i18n.getMessage("sharemenupostonfacebook");
-var sharemenuratetitle = chrome.i18n.getMessage("sharemenuratetitle");
+// var sharemenuratetitle = chrome.i18n.getMessage("sharemenuratetitle");
 var sharemenudonatetitle = chrome.i18n.getMessage("sharemenudonatetitle");
 var sharemenusubscribetitle = chrome.i18n.getMessage("desremyoutube");
 var sharemenupostonweibo = chrome.i18n.getMessage("sharemenupostonweibo");
@@ -556,7 +582,7 @@ if(chrome.contextMenus){
 
 		browsercontext(sharemenuwelcomeguidetitle, "totlguideemenu", {"16": "images/IconGuide.png", "32": "images/IconGuide@2x.png"});
 		browsercontext(sharemenudonatetitle, "totldevelopmenu", {"16": "images/IconDonate.png", "32": "images/IconDonate@2x.png"});
-		browsercontext(sharemenuratetitle, "totlratemenu", {"16": "images/IconStar.png", "32": "images/IconStar@2x.png"});
+		// browsercontext(sharemenuratetitle, "totlratemenu", {"16": "images/IconStar.png", "32": "images/IconStar@2x.png"});
 
 		// Create a parent item and two children.
 		var parent = null;

@@ -292,7 +292,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 					<table id="toolbarwhitelist">
 						<tr>
 							<td><span data-i18n="titelwebsite"></span>:</td>
-							<td><input id="toolbarwebsiteurl" type="url" required pattern="(https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*))|((https?|ftp)://)?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})" placeholder="https://www.example.com"aria-label="The URL box to type a website for the Finance feature"></td>
+							<td><input id="toolbarwebsiteurl" type="url" required pattern="^((https?:\/\/(localhost|www\.)?[a-zA-Z0-9@:%_.+-~#?&\/=]{1,256}\.[a-z]{2,6}\b([a-zA-Z0-9@:%_.+-~#?&\/=]*))|(https?:\/\/localhost(:\d{1,5})?([a-zA-Z0-9@:%_.+-~#?&\/=]*))|((ftp):\/\/[a-zA-Z0-9@:%_.+-~#?&\/=]{1,256}\.[a-z]{2,6}\b([a-zA-Z0-9@:%_.+-~#?&\/=]*))|((https?|ftp):\/\/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}([a-zA-Z0-9@:%_.+-~#?&\/=]*)))$" placeholder="https://www.example.com" aria-label="The URL box to type a website for the Finance feature"></td>
 							<td><button type="submit" id="toolbaraddbutton" name="add" aria-label="Add"><span data-i18n="addbutton"></span></button></td>
 						</tr>
 						<tr>
@@ -309,6 +309,19 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 					<div class="md-radio md-subin">
 						<input id="toolbarblack" type="radio" name="toolbarlist" value="black" role="radio" aria-checked="false" aria-labelledby="toolbaronly">
 						<label for="toolbarblack"><div><span data-i18n="titeltoolbarblacklist"></span></div></label>
+					</div>
+				</div>
+				<div>
+					<div><span data-i18n="titelfiltertype"></span></div>
+				</div>
+				<div role="radiogroup" aria-labelledby="websitefilter">
+					<div class="md-radio md-subin">
+						<input id="filterbydomain" type="radio" name="pagefilter" value="domain" role="radio" aria-checked="true" aria-labelledby="websitefilter">
+						<label for="filterbydomain"><div><span data-i18n="desfilterbydomain"></span></div></label>
+					</div>
+					<div class="md-radio md-subin">
+						<input id="filterbypage" type="radio" name="pagefilter" value="page" role="radio" aria-checked="false" aria-labelledby="websitefilter">
+						<label for="filterbypage"><div><span data-i18n="desfilterbypage"></span></div></label>
 					</div>
 				</div>
 			</div>

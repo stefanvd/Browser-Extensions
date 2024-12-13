@@ -170,6 +170,7 @@
         "browserflags": "writable",
         "browserabout": "writable",
         "browserbookmarks": "writable",
-        "browserhistory": "writable"
+        "browserhistory": "writable",
+        "helpenablebookmark": "writable"
     }
 }
