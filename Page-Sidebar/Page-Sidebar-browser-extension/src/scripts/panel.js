@@ -40,8 +40,6 @@ document.addEventListener("DOMContentLoaded", init);
 var i18ntitelcopytext = chrome.i18n.getMessage("titlecopytextdone");
 var i18ndescopytext = chrome.i18n.getMessage("descopytextdone");
 
-// Detect URL to open back in new web browser tab
-var currentSidePanelURL = "";
 window.addEventListener("message", (e) => {
 	// console.log("FIRST WEBSITE URL=", e.data.href);
 	if(e.data?.method === "navigate"){
@@ -53,7 +51,6 @@ window.addEventListener("message", (e) => {
 		}
 	}else if(e.data?.method === "complete"){
 		// console.log("VISITED WEBSITE URL=", e.data.href, e.data.iframeId);
-		currentSidePanelURL = e.data.href;
 		// save the URL for close the panel
 		if(typepanellasttime == true){
 			chrome.storage.sync.set({"websitelasttime": e.data.href});
@@ -870,8 +867,16 @@ function actionCopyTab(){
 	// Create a temporary textarea element to hold the text
 	const textarea = document.createElement("textarea");
 
+	var index;
+	if(multipletabs == true){
+		index = getActiveTabIndex();
+	}else{
+		index = 0;
+	}
+	const iframeURL = document.getElementById("webcontent").getElementsByTagName("iframe")[index].src;
+
 	// Assign the text you want to copy to the textarea
-	const textToCopy = currentSidePanelURL;
+	const textToCopy = iframeURL;
 	textarea.value = textToCopy;
 
 	// Set the textarea to be invisible
@@ -963,7 +968,13 @@ function actionPrevTab(){
 }
 
 function actionOpenTab(){
-	var iframeURL = currentSidePanelURL;
+	var index;
+	if(multipletabs == true){
+		index = getActiveTabIndex();
+	}else{
+		index = 0;
+	}
+	const iframeURL = document.getElementById("webcontent").getElementsByTagName("iframe")[index].src;
 	window.open(iframeURL, "_blank");
 }
 
