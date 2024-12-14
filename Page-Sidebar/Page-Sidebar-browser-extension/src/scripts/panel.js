@@ -938,7 +938,12 @@ function getActiveTabIndex(){
 }
 
 function postMessageToIframe(method){
-	const index = getActiveTabIndex();
+	var index;
+	if(multipletabs == true){
+		index = getActiveTabIndex();
+	}else{
+		index = 0;
+	}
 	if(index !== -1){
 		const iframe = document.getElementById("webcontent").getElementsByTagName("iframe")[index];
 		iframe.contentWindow.postMessage({method: method}, "*");
@@ -1165,26 +1170,20 @@ const openweb = async(currenturl) => {
 
 	const iframe = document.getElementById("webcontent").getElementsByTagName("iframe")[index];
 	if(iframe){
-		// Clear iframe content before setting a new URL
-		iframe.src = "about:blank";
-
-		// Wait for the iframe to reset, then load the new URL
-		setTimeout(() => {
-			// set active panel
-			iframe.className = "active";
-			// open that web page
-			iframe.src = currenturl;
-			// Update save tab URL
-			updatesaveurl(currenturl);
-			// Update icon
-			updatetabicon(currenturl);
-			// Hide drag-and-drop UI elements if the URL is not empty
-			if(iframe.src != "" || iframe.src != null || iframe.src != emptypage){
-				dragDropNavbar.className = "hidden";
-				dragDropZone.className = "hidden";
-				dragDropInfo.className = "hidden";
-			}
-		}, 50); // Small delay to ensure iframe resets properly
+		// set active panel
+		iframe.className = "active";
+		// open that web page
+		iframe.src = currenturl;
+		// Update save tab URL
+		updatesaveurl(currenturl);
+		// Update icon
+		updatetabicon(currenturl);
+		// Hide drag-and-drop UI elements if the URL is not empty
+		if(iframe.src != "" || iframe.src != null || iframe.src != emptypage){
+			dragDropNavbar.className = "hidden";
+			dragDropZone.className = "hidden";
+			dragDropInfo.className = "hidden";
+		}
 	}
 };
 
