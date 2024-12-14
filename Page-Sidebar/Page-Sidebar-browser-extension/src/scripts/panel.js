@@ -576,7 +576,6 @@ function frameupdatesaveurl(url, iframeId){
 
 		// If the iframe is found, save the URL to the corresponding tab
 		if(index !== -1){
-			console.log("Saving URL for iframeId = " + iframeId + ", index = " + index);
 			multivalues[index]["note"] = url;
 
 			// Save the changes if necessary
@@ -656,6 +655,7 @@ function removeWebs(){
 	}
 }
 
+// create tabs with drag and drop in the tab strip
 function createAllTabsInBar(createnoweb){
 	var totaltabs = multivalues.length;
 	// Loop to create the specified number of tabs
@@ -684,7 +684,142 @@ function createAllTabsInBar(createnoweb){
 		newTab.appendChild(closeButton);
 		tabContainer.insertBefore(newTab, tabContainer.lastElementChild);
 	}
+
+	// Add the event listeners for drag-and-drop functionality
+	const tabStrip = document.getElementById("tabstrip");
+	const addTabButton = tabStrip.querySelector(".add-tab");
+
+	// Function to initialize draggable tabs and their event listeners
+	const tabs = tabStrip.querySelectorAll(".tab");
+
+	tabs.forEach((tab) => {
+		tab.setAttribute("draggable", "true");
+
+		// Remove any existing event listeners to avoid duplication
+		tab.removeEventListener("dragstart", dragStartHandler);
+		tab.removeEventListener("dragend", dragEndHandler);
+
+		// Add new event listeners
+		tab.addEventListener("dragstart", dragStartHandler);
+		tab.addEventListener("dragend", dragEndHandler);
+	});
+
+
+	// Allow drag over on the tab strip
+	tabStrip.addEventListener("dragover", (e) => {
+		e.preventDefault();
+
+		const draggingTab = tabStrip.querySelector(".dragging");
+		const afterElement = getDragAfterElement(tabStrip, e.clientX);
+
+		// Prevent placing the dragged tab on the right side of the "add-tab" button
+		if(afterElement === addTabButton || afterElement == null){
+			tabStrip.insertBefore(draggingTab, addTabButton);
+		}else{
+			tabStrip.insertBefore(draggingTab, afterElement);
+		}
+	});
+
+	// Handle drag drop to move iframe
+	tabStrip.addEventListener("drop", (e) => {
+		e.preventDefault();
+
+		const draggingIndex = parseInt(e.dataTransfer.getData("draggingIndex"));
+		const draggingTab = tabStrip.querySelector(".dragging");
+		const tabs = Array.from(tabStrip.querySelectorAll(".tab")); // Update tab list after rearranging
+		const newTabIndex = tabs.indexOf(draggingTab);
+
+		moveIframe(draggingIndex, newTabIndex);
+	});
 }
+
+// Drag start handler
+function dragStartHandler(e){
+	const tabStrip = document.getElementById("tabstrip");
+	const tabs = Array.from(tabStrip.querySelectorAll(".tab")); // Update tab list
+	const index = tabs.indexOf(this); // Get the current index
+	this.classList.add("dragging");
+	e.dataTransfer.setData("draggingIndex", index); // Store the index of the tab being dragged
+}
+
+// Drag end handler
+function dragEndHandler(){
+	this.classList.remove("dragging");
+}
+
+// Function to move the iframe in the same order as the tabs
+function moveIframe(oldIndex, newIndex){
+	const webContentContainer = document.getElementById("webcontent");
+	const iframes = Array.from(webContentContainer.querySelectorAll("iframe")); // Cache NodeList as a static array
+
+	if(oldIndex === newIndex || !iframes[oldIndex])return; // No change or invalid index
+
+	const iframeToMove = iframes[oldIndex]; // Get the iframe to move
+
+	// Move iframe to the new position
+	if(newIndex < oldIndex){
+		webContentContainer.insertBefore(iframeToMove, iframes[newIndex]);
+	}else{
+		// Handle insertion after the new index
+		if(newIndex + 1 < iframes.length){
+			webContentContainer.insertBefore(iframeToMove, iframes[newIndex + 1]);
+		}else{
+			webContentContainer.appendChild(iframeToMove); // Append at the end if it's last
+		}
+	}
+
+	// Update iframe order and save changes
+	updateIframeOrder();
+
+	// Check which tab is now active
+	var activeindex = getActiveTabIndex();
+	// Set this tab and iframe as visible
+	setActiveTabContent(activeindex);
+}
+
+function getDragAfterElement(container, x){
+	const draggableElements = [...container.querySelectorAll(".tab:not(.dragging)")];
+
+	return draggableElements.reduce((closest, child) => {
+		const box = child.getBoundingClientRect();
+		const offset = x - box.left - box.width / 2;
+		if(offset < 0 && offset > closest.offset){
+			return{offset: offset, element: child};
+		}else{
+			return closest;
+		}
+	}, {offset: Number.NEGATIVE_INFINITY}).element;
+}
+
+function updateIframeOrder(){
+	// Only update if multiple tabs are enabled
+	if(multipletabs){
+		var iframes = document.getElementById("webcontent").getElementsByTagName("iframe");
+
+		// Iterate over all iframes and update the multivalues array
+		for(var i = 0; i < iframes.length; i++){
+			var iframeSrc = iframes[i].src;
+
+			// Update the corresponding multivalues entry
+			if(multivalues[i]){
+				multivalues[i]["note"] = iframeSrc;
+
+				// Get the tab element
+				var thatTab = document.querySelector("#tabstrip .tab:nth-child(" + (i + 1) + ")");
+
+				// Update the image source in the active tab
+				if(thatTab){
+					var imgElement = thatTab.querySelector("img");
+					if(imgElement){
+						// Use the universal getFaviconUrl function
+						imgElement.src = getFaviconUrl(iframeSrc);
+					}
+				}
+			}
+		}
+	}
+}
+// end create tab strip
 
 function createNewTab(){
 	const newTab = document.createElement("div");
