@@ -559,6 +559,12 @@ function init(){
 			document.getElementById("downloadtext").className = "hidden";
 		}
 
+		if(find == true){
+			document.getElementById("findtext").className = "btn-find";
+		}else{
+			document.getElementById("findtext").className = "hidden";
+		}
+
 		if(backgroundimage == true){
 			addbackgroundpaper();
 		}

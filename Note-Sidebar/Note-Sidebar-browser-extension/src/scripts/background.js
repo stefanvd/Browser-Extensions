@@ -44,7 +44,8 @@ if(isFirefox()){
 }
 
 // Execute Chrome-specific code
-if(exbrowser != "firefox"){
+const firefoxextension = navigator.userAgent.toLowerCase().includes("firefox");
+if(!firefoxextension){
 	// Importing the constants
 	// eslint-disable-next-line no-undef
 	importScripts("constants.js");
