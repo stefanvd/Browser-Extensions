@@ -462,6 +462,36 @@ chrome.storage.onChanged.addListener(function(changes){
 			chrome.runtime.sendMessage({msg: "setrefreshsearch"});
 		}
 	}
+	if(changes["searchyahoo"]){
+		if(changes["searchyahoo"].newValue == true){
+			chrome.runtime.sendMessage({msg: "setrefreshsearch"});
+		}
+	}
+	if(changes["search360"]){
+		if(changes["search360"].newValue == true){
+			chrome.runtime.sendMessage({msg: "setrefreshsearch"});
+		}
+	}
+	if(changes["searchsogou"]){
+		if(changes["searchsogou"].newValue == true){
+			chrome.runtime.sendMessage({msg: "setrefreshsearch"});
+		}
+	}
+	if(changes["searchchatgpt"]){
+		if(changes["searchchatgpt"].newValue == true){
+			chrome.runtime.sendMessage({msg: "setrefreshsearch"});
+		}
+	}
+	if(changes["searchgemini"]){
+		if(changes["searchgemini"].newValue == true){
+			chrome.runtime.sendMessage({msg: "setrefreshsearch"});
+		}
+	}
+	if(changes["searchwikipedia"]){
+		if(changes["searchwikipedia"].newValue == true){
+			chrome.runtime.sendMessage({msg: "setrefreshsearch"});
+		}
+	}
 	if(changes["opentab"]){
 		if(changes["opentab"].newValue == true || changes["opentab"].newValue == false){
 			chrome.runtime.sendMessage({msg: "setopentab"});

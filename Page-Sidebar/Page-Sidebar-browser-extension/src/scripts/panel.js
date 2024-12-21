@@ -26,7 +26,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-var selectedsearch, searchgoogle, searchbing, searchduckduckgo, searchbaidu, searchyandex, typepanelzone, typepanelcustom, typepanellasttime, websitestartname, websitelasttime, navtop, navbottom, navhidden, opentab, opencopy, opennonebookmarks, openbrowserbookmarks, openquickbookmarks, googlesidepanel, zoom, defaultzoom, step, multipletabs, multivalues, navbuttons, gobutton, typehomezone, typehomecustom, websitehomepagename, preventclose, dragnewtab, mutetab;
+var selectedsearch, searchgoogle, searchbing, searchduckduckgo, searchbaidu, searchyandex, typepanelzone, typepanelcustom, typepanellasttime, websitestartname, websitelasttime, navtop, navbottom, navhidden, opentab, opencopy, opennonebookmarks, openbrowserbookmarks, openquickbookmarks, googlesidepanel, zoom, defaultzoom, step, multipletabs, multivalues, navbuttons, gobutton, typehomezone, typehomecustom, websitehomepagename, preventclose, dragnewtab, mutetab, searchyahoo, search360, searchsogou, searchchatgpt, searchgemini, searchwikipedia;
 
 var faviconserver = "https://s2.googleusercontent.com/s2/favicons?domain=";
 var emptypage = "about:blank";
@@ -113,6 +113,9 @@ function init(){
 	// show all the active permissions in a list
 	chrome.runtime.sendMessage({name: "getallhost"});
 	//----
+
+	// check the drag drop tab strip
+	dragtabstrip();
 
 	// Begin multiple tabs
 	tabContainer = document.querySelector(".tab-bar");
@@ -273,7 +276,7 @@ function init(){
 		zoomPanel.classList.toggle("collapsed");
 	});
 
-	chrome.storage.sync.get(["firstDate", "optionskipremember", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "typepanellasttime", "websitestartname", "websitelasttime", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "opentab", "opencopy", "opennonebookmarks", "openbrowserbookmarks", "openquickbookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10", "googlesidepanel", "zoom", "defaultzoom", "step", "multipletabs", "multivalues", "navbuttons", "gobutton", "typehomezone", "typehomecustom", "websitehomepagename", "preventclose", "dragnewtab", "mutetab"], function(items){
+	chrome.storage.sync.get(["firstDate", "optionskipremember", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "typepanellasttime", "websitestartname", "websitelasttime", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "opentab", "opencopy", "opennonebookmarks", "openbrowserbookmarks", "openquickbookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10", "googlesidepanel", "zoom", "defaultzoom", "step", "multipletabs", "multivalues", "navbuttons", "gobutton", "typehomezone", "typehomecustom", "websitehomepagename", "preventclose", "dragnewtab", "mutetab", "searchyahoo", "search360", "searchsogou", "searchchatgpt", "searchgemini", "searchwikipedia"], function(items){
 		searchgoogle = items["searchgoogle"]; if(searchgoogle == null){ searchgoogle = true; }
 		googlesidepanel = items["googlesidepanel"]; if(googlesidepanel == null){ googlesidepanel = true; }
 		searchbing = items["searchbing"]; if(searchbing == null){ searchbing = false; }
@@ -292,6 +295,12 @@ function init(){
 		preventclose = items["preventclose"]; if(preventclose == null){ preventclose = false; }
 		dragnewtab = items["dragnewtab"]; if(dragnewtab == null){ dragnewtab = false; }
 		mutetab = items["mutetab"]; if(mutetab == null){ mutetab = false; }
+		searchyahoo = items["searchyahoo"]; if(searchyahoo == null){ searchyahoo = false; }
+		search360 = items["search360"]; if(search360 == null){ search360 = false; }
+		searchsogou = items["searchsogou"]; if(searchsogou == null){ searchsogou = false; }
+		searchchatgpt = items["searchchatgpt"]; if(searchchatgpt == null){ searchchatgpt = false; }
+		searchgemini = items["searchgemini"]; if(searchgemini == null){ searchgemini = false; }
+		searchwikipedia = items["searchwikipedia"]; if(searchwikipedia == null){ searchwikipedia = false; }
 
 		// show the tab strip bar or not
 		applyStyles(multipletabs);
@@ -314,6 +323,18 @@ function init(){
 			selectedsearch = "searchbaidu";
 		}else if(searchyandex){
 			selectedsearch = "searchyandex";
+		}else if(searchyahoo){
+			selectedsearch = "searchyahoo";
+		}else if(search360){
+			selectedsearch = "search360";
+		}else if(searchsogou){
+			selectedsearch = "searchsogou";
+		}else if(searchchatgpt){
+			selectedsearch = "searchchatgpt";
+		}else if(searchgemini){
+			selectedsearch = "searchgemini";
+		}else if(searchwikipedia){
+			selectedsearch = "searchwikipedia";
 		}else{
 			selectedsearch = "searchgoogle"; // default
 		}
@@ -668,6 +689,9 @@ function createAllTabsInBar(createnoweb){
 		// create the tab block
 		const newTab = document.createElement("div");
 		newTab.classList.add("tab");
+		newTab.setAttribute("draggable", "true");
+		newTab.addEventListener("dragstart", dragStartHandler);
+		newTab.addEventListener("dragend", dragEndHandler);
 		const titleDiv = document.createElement("div");
 		titleDiv.classList.add("title");
 		newTab.appendChild(titleDiv);
@@ -684,53 +708,6 @@ function createAllTabsInBar(createnoweb){
 		newTab.appendChild(closeButton);
 		tabContainer.insertBefore(newTab, tabContainer.lastElementChild);
 	}
-
-	// Add the event listeners for drag-and-drop functionality
-	const tabStrip = document.getElementById("tabstrip");
-	const addTabButton = tabStrip.querySelector(".add-tab");
-
-	// Function to initialize draggable tabs and their event listeners
-	const tabs = tabStrip.querySelectorAll(".tab");
-
-	tabs.forEach((tab) => {
-		tab.setAttribute("draggable", "true");
-
-		// Remove any existing event listeners to avoid duplication
-		tab.removeEventListener("dragstart", dragStartHandler);
-		tab.removeEventListener("dragend", dragEndHandler);
-
-		// Add new event listeners
-		tab.addEventListener("dragstart", dragStartHandler);
-		tab.addEventListener("dragend", dragEndHandler);
-	});
-
-
-	// Allow drag over on the tab strip
-	tabStrip.addEventListener("dragover", (e) => {
-		e.preventDefault();
-
-		const draggingTab = tabStrip.querySelector(".dragging");
-		const afterElement = getDragAfterElement(tabStrip, e.clientX);
-
-		// Prevent placing the dragged tab on the right side of the "add-tab" button
-		if(afterElement === addTabButton || afterElement == null){
-			tabStrip.insertBefore(draggingTab, addTabButton);
-		}else{
-			tabStrip.insertBefore(draggingTab, afterElement);
-		}
-	});
-
-	// Handle drag drop to move iframe
-	tabStrip.addEventListener("drop", (e) => {
-		e.preventDefault();
-
-		const draggingIndex = parseInt(e.dataTransfer.getData("draggingIndex"));
-		const draggingTab = tabStrip.querySelector(".dragging");
-		const tabs = Array.from(tabStrip.querySelectorAll(".tab")); // Update tab list after rearranging
-		const newTabIndex = tabs.indexOf(draggingTab);
-
-		moveIframe(draggingIndex, newTabIndex);
-	});
 }
 
 // Drag start handler
@@ -824,6 +801,9 @@ function updateIframeOrder(){
 function createNewTab(){
 	const newTab = document.createElement("div");
 	newTab.classList.add("tab");
+	newTab.setAttribute("draggable", "true");
+	newTab.addEventListener("dragstart", dragStartHandler);
+	newTab.addEventListener("dragend", dragEndHandler);
 	const titleDiv = document.createElement("div");
 	titleDiv.classList.add("title");
 	newTab.appendChild(titleDiv);
@@ -861,6 +841,39 @@ function createNewTab(){
 	if(typepanellasttime == true){
 		save();
 	}
+}
+
+function dragtabstrip(){
+	// Add the event listeners for drag-and-drop functionality
+	const tabStrip = document.getElementById("tabstrip");
+	const addTabButton = tabStrip.querySelector(".add-tab");
+
+	// Allow drag over on the tab strip
+	tabStrip.addEventListener("dragover", (e) => {
+		e.preventDefault();
+
+		const draggingTab = tabStrip.querySelector(".dragging");
+		const afterElement = getDragAfterElement(tabStrip, e.clientX);
+
+		// Prevent placing the dragged tab on the right side of the "add-tab" button
+		if(afterElement === addTabButton || afterElement == null){
+			tabStrip.insertBefore(draggingTab, addTabButton);
+		}else{
+			tabStrip.insertBefore(draggingTab, afterElement);
+		}
+	});
+
+	// Handle drag drop to move iframe
+	tabStrip.addEventListener("drop", (e) => {
+		e.preventDefault();
+
+		const draggingIndex = parseInt(e.dataTransfer.getData("draggingIndex"));
+		const draggingTab = tabStrip.querySelector(".dragging");
+		const tabs = Array.from(tabStrip.querySelectorAll(".tab")); // Update tab list after rearranging
+		const newTabIndex = tabs.indexOf(draggingTab);
+
+		moveIframe(draggingIndex, newTabIndex);
+	});
 }
 
 function createiframe(url){
@@ -1382,6 +1395,24 @@ function performSearch(searchEngine, query){
 	case"searchyandex":
 		openweb("https://yandex.com/search/?text=" + encodeURIComponent(query), true);
 		break;
+	case"searchyahoo":
+		openweb("https://search.yahoo.com/search?p=" + encodeURIComponent(query), true);
+		break;
+	case"search360":
+		openweb("https://www.so.com/s?q=" + encodeURIComponent(query), true);
+		break;
+	case"searchsogou":
+		openweb("https://www.sogou.com/web?query=" + encodeURIComponent(query), true);
+		break;
+	case"searchchatgpt":
+		openweb("https://chatgpt.com/?q=" + encodeURIComponent(query), true);
+		break;
+	case"searchgemini":
+		openweb("https://gemini.google.com/?q=" + encodeURIComponent(query), true);
+		break;
+	case"searchwikipedia":
+		openweb("https://wikipedia.org/wiki/" + encodeURIComponent(query), true);
+		break;
 	default:
 		openweb("https://www.google.com/search?q=" + encodeURIComponent(query), true);
 		break;
@@ -1425,12 +1456,18 @@ chrome.runtime.onMessage.addListener(function(request){
 		openweb(request.value, true);
 	}else if(request.msg == "setsearch"){
 		// console.log("received = " + request.value);
-		chrome.storage.sync.get(["searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex"], function(items){
+		chrome.storage.sync.get(["searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "searchyahoo", "search360", "searchsogou", "searchchatgpt", "searchgemini", "searchwikipedia"], function(items){
 			searchgoogle = items["searchgoogle"]; if(searchgoogle == null){ searchgoogle = true; }
 			searchbing = items["searchbing"]; if(searchbing == null){ searchbing = false; }
 			searchduckduckgo = items["searchduckduckgo"]; if(searchduckduckgo == null){ searchduckduckgo = false; }
 			searchbaidu = items["searchbaidu"]; if(searchbaidu == null){ searchbaidu = false; }
 			searchyandex = items["searchyandex"]; if(searchyandex == null){ searchyandex = false; }
+			searchyahoo = items["searchyahoo"]; if(searchyahoo == null){ searchyahoo = false; }
+			search360 = items["search360"]; if(search360 == null){ search360 = false; }
+			searchsogou = items["searchsogou"]; if(searchsogou == null){ searchsogou = false; }
+			searchchatgpt = items["searchchatgpt"]; if(searchchatgpt == null){ searchchatgpt = false; }
+			searchgemini = items["searchgemini"]; if(searchgemini == null){ searchgemini = false; }
+			searchwikipedia = items["searchwikipedia"]; if(searchwikipedia == null){ searchwikipedia = false; }
 			if(searchgoogle){
 				selectedsearch = "searchgoogle";
 			}else if(searchbing){
@@ -1441,6 +1478,18 @@ chrome.runtime.onMessage.addListener(function(request){
 				selectedsearch = "searchbaidu";
 			}else if(searchyandex){
 				selectedsearch = "searchyandex";
+			}else if(searchyahoo){
+				selectedsearch = "searchyahoo";
+			}else if(search360){
+				selectedsearch = "search360";
+			}else if(searchsogou){
+				selectedsearch = "searchsogou";
+			}else if(searchchatgpt){
+				selectedsearch = "searchchatgpt";
+			}else if(searchgemini){
+				selectedsearch = "searchgemini";
+			}else if(searchwikipedia){
+				selectedsearch = "searchwikipedia";
 			}
 			performSearch(selectedsearch, request.value);
 		});
@@ -1456,12 +1505,18 @@ chrome.runtime.onMessage.addListener(function(request){
 		var menubookmarks = document.getElementById("menubookmarks");
 		menubookmarks.className = "hidden";
 	}else if(request.msg == "setrefreshsearch"){
-		chrome.storage.sync.get(["searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex"], function(items){
+		chrome.storage.sync.get(["searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "searchyahoo", "search360", "searchsogou", "searchchatgpt", "searchgemini", "searchwikipedia"], function(items){
 			searchgoogle = items["searchgoogle"]; if(searchgoogle == null){ searchgoogle = true; }
 			searchbing = items["searchbing"]; if(searchbing == null){ searchbing = false; }
 			searchduckduckgo = items["searchduckduckgo"]; if(searchduckduckgo == null){ searchduckduckgo = false; }
 			searchbaidu = items["searchbaidu"]; if(searchbaidu == null){ searchbaidu = false; }
 			searchyandex = items["searchyandex"]; if(searchyandex == null){ searchyandex = false; }
+			searchyahoo = items["searchyahoo"]; if(searchyahoo == null){ searchyahoo = false; }
+			search360 = items["search360"]; if(search360 == null){ search360 = false; }
+			searchsogou = items["searchsogou"]; if(searchsogou == null){ searchsogou = false; }
+			searchchatgpt = items["searchchatgpt"]; if(searchchatgpt == null){ searchchatgpt = false; }
+			searchgemini = items["searchgemini"]; if(searchgemini == null){ searchgemini = false; }
+			searchwikipedia = items["searchwikipedia"]; if(searchwikipedia == null){ searchwikipedia = false; }
 			if(searchgoogle){
 				selectedsearch = "searchgoogle";
 			}else if(searchbing){
@@ -1472,6 +1527,18 @@ chrome.runtime.onMessage.addListener(function(request){
 				selectedsearch = "searchbaidu";
 			}else if(searchyandex){
 				selectedsearch = "searchyandex";
+			}else if(searchyahoo){
+				selectedsearch = "searchyahoo";
+			}else if(search360){
+				selectedsearch = "search360";
+			}else if(searchsogou){
+				selectedsearch = "searchsogou";
+			}else if(searchchatgpt){
+				selectedsearch = "searchchatgpt";
+			}else if(searchgemini){
+				selectedsearch = "searchgemini";
+			}else if(searchwikipedia){
+				selectedsearch = "searchwikipedia";
 			}
 		});
 	}else if(request.msg == "setopentab"){
