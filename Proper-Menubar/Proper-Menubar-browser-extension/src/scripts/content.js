@@ -1451,7 +1451,11 @@ chrome.runtime.onMessage.addListener(function request(request){
 			hovermenu = items["hovermenu"]; if(hovermenu == null)hovermenu = true;
 			filterbydomain = items["filterbydomain"]; if(filterbydomain == null)filterbydomain = true;
 			filterbypage = items["filterbypage"]; if(filterbypage == null)filterbypage = false;
+
 			if(addbar == true){
+				// remove bar code
+				removetoolbar();
+				// add new bar
 				var urlinthelist = false;
 				if(toolbaronly == true){
 					currenturl = window.location.href;
