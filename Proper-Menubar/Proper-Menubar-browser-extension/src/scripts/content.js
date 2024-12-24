@@ -1364,18 +1364,53 @@ function getkeyword(){
 function runopenfile(){
 	// <input type="file" id="attachment" style="display: none;" onchange="fileSelected(this)"/>
 	// <input type="button" id="btnAttachment" onclick="openAttachment()" value="File"/>
-	var input = document.createElement("input");
-	input.type = "file";
-	input.id = "attachment";
-	input.className = "stefanvdhidden";
-	input.addEventListener("change", function(){ fileSelected(this); });
-	el.shadowRoot.appendChild(input);
 
-	el.shadowRoot.getElementById("attachment").click();
+	if(exbrowser == "firefox"){
+		// old way
+		var input = document.createElement("input");
+		input.type = "file";
+		input.id = "attachment";
+		input.className = "stefanvdhidden";
+		input.addEventListener("change", function(){ fileSelected(this); });
+		el.shadowRoot.appendChild(input);
 
-	var element = SD("attachment");
-	if(element){
-		element.parentNode.removeChild(element);
+		el.shadowRoot.getElementById("attachment").click();
+
+		var element = SD("attachment");
+		if(element){
+			element.parentNode.removeChild(element);
+		}
+	}else{
+		// new Chromium way
+		openFileInNewTab();
+	}
+}
+
+async function openFileInNewTab(){
+	try{
+		// Open the file picker without restricting to specific file types
+		const[fileHandle] = await window.showOpenFilePicker({
+			excludeAcceptAllOption: false,
+			multiple: false
+		});
+
+		// Get the file from the handle
+		const file = await fileHandle.getFile();
+
+		// Create a Blob from the file content
+		const blob = new Blob([await file.arrayBuffer()], {type: file.type || "application/octet-stream"});
+
+		// Create a URL for the Blob
+		const blobUrl = URL.createObjectURL(blob);
+
+		// Open the Blob URL in a new tab
+		window.open(blobUrl, "_blank");
+	}catch(err){
+		if(err.name === "AbortError"){
+			console.log("File picker was closed without selecting a file.");
+		}else{
+			console.error("An error occurred:", err);
+		}
 	}
 }
 
