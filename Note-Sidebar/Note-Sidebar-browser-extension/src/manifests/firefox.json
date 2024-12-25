@@ -41,7 +41,6 @@
     "gecko": {
         "id": "notesidebar@stefanvd.net",
         "strict_min_version": "113.0"
-    },
-    "gecko_android": {}
+    }
   }
 }

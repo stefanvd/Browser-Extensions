@@ -56,48 +56,17 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 #stefanvdnavwrappe[data-bar="top"] #panelfile, #stefanvdnavwrappe[data-bar="top"] #paneledit, #stefanvdnavwrappe[data-bar="top"] #panelview, #stefanvdnavwrappe[data-bar="top"] #panelhistory, #stefanvdnavwrappe[data-bar="top"] #panelbookmarks, #stefanvdnavwrappe[data-bar="top"] #panelwindow, #stefanvdnavwrappe[data-bar="top"] #panelhelp{border-bottom-right-radius:5px;border-bottom-left-radius:5px}
 #stefanvdnavwrappe[data-bar="bottom"] #panelfile, #stefanvdnavwrappe[data-bar="bottom"] #paneledit, #stefanvdnavwrappe[data-bar="bottom"] #panelview, #stefanvdnavwrappe[data-bar="bottom"] #panelhistory, #stefanvdnavwrappe[data-bar="bottom"] #panelbookmarks, #stefanvdnavwrappe[data-bar="bottom"] #panelwindow, #stefanvdnavwrappe[data-bar="bottom"] #panelhelp{border-top-right-radius:5px;border-top-left-radius:5px}
 /* Browser bookmarks */
-#menubookmarks .empty-item{font-family:Arial,Helvetica,sans-serif!important;font-size:12px;display:inline-block;height:100%;line-height:30px;user-select:none;padding:0 18px 0 7px;cursor:pointer;justify-content:flex-start;align-items:center;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%}
-#menubookmarks{z-index:3000;padding:5px 0 5px 0;border-radius:5px}
-#menubookmarks .showitem{display:block}
-#menubookmarks .hideitem{display:none}
-#menubookmarks ul:empty{display:none}
-#menubookmarks ul{border-radius:4px;list-style:none;padding:0;margin:0;box-shadow:0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 8px 0 rgba(0, 0, 0, 0.12)}
-#menubookmarks ul li{position:relative;height:30px;user-select:none;width:100%;display:flex}
-#menubookmarks ul li a{font-family:Arial,Helvetica,sans-serif!important;font-size:12px;display:inline-block;height:100%;line-height:30px;user-select:none;padding:0 18px 0 7px;cursor:pointer;justify-content:flex-start;align-items:center;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%}
-#menubookmarks ul li a img{display:inline-block;vertical-align:middle}
-#menubookmarks ul li a div{display:initial;margin-left:8px;vertical-align:middle}
-#menubookmarks ul li span{padding-left:16px;cursor:pointer;display:flex;justify-content:flex-start;align-items:center}
-/* nav top */
-/* Style for first-level submenus (shown to the right) */
-#menubookmarks.top ul ul{position:absolute;top:0;left:calc(100% - 8px);z-index:1;width:200px;padding:5px 0 5px 0;margin:0;border-bottom-right-radius:5px;border-bottom-left-radius:5px}
-/* Style for second-level submenus (shown to the right) */
-#menubookmarks.top ul ul ul{position:absolute;top:0;left:calc(100% - 8px);z-index:1;width:100%;padding:5px 0 5px 0;margin:0;border-bottom-right-radius:5px;border-bottom-left-radius:5px}
-/* Style for third-level submenus (shown to the right) */
-#menubookmarks.top ul ul ul ul{position:absolute;top:0;left:calc(100% - 8px);z-index:1;width:100%;padding:5px 0 5px 0;margin:0;border-bottom-right-radius:5px;border-bottom-left-radius:5px}
-/* Style for four-level submenus (shown to the right) */
-#menubookmarks.top ul ul ul ul ul{position:absolute;top:0;left:calc(100% - 8px);z-index:1;width:100%;padding:5px 0 5px 0;margin:0;border-bottom-right-radius:5px;border-bottom-left-radius:5px}
-/* nav bottom */
-/* Style for first-level submenus (shown to the right) */
-#menubookmarks.bottom ul ul{position:absolute;bottom:0;left:calc(100% - 8px);z-index:1;width:100%;padding:5px 0 5px 0;margin:0;border-bottom-right-radius:5px;border-bottom-left-radius:5px}
-/* Style for second-level submenus (shown to the right) */
-#menubookmarks.bottom ul ul ul{position:absolute;bottom:0;left:calc(100% - 8px);z-index:1;width:100%;padding:5px 0 5px 0;margin:0;border-bottom-right-radius:5px;border-bottom-left-radius:5px}
-/* Style for third-level submenus (shown to the right) */
-#menubookmarks.bottom ul ul ul ul{position:absolute;bottom:0;left:calc(100% - 8px);z-index:1;width:100%;padding:5px 0 5px 0;margin:0;border-bottom-right-radius:5px;border-bottom-left-radius:5px}
-/* Style for four-level submenus (shown to the right) */
-#menubookmarks.bottom ul ul ul ul ul{position:absolute;bottom:0;left:calc(100% - 8px);z-index:1;width:100%;padding:5px 0 5px 0;margin:0;border-bottom-right-radius:5px;border-bottom-left-radius:5px}
-/* Media query for screens smaller than 600px */
-@media (max-width:680px){
-/* nav top */
-#menubookmarks.top ul ul{position:absolute;right:0;top:0;left:60px;padding:5px 0 5px 0;margin:0;border-bottom-right-radius:5px;border-bottom-left-radius:5px;overflow:visible}
-#menubookmarks.top ul ul ul{position:absolute;top:0px;left:60px;width:100%;padding:5px 0 5px 0;margin:0;border-bottom-right-radius:5px;border-bottom-left-radius:5px;overflow:visible}
-#menubookmarks.top ul ul ul ul{position:absolute;top:0px;left:60px;z-index:1;width:100%;padding:5px 0 5px 0;margin:0;border-bottom-right-radius:5px;border-bottom-left-radius:5px;overflow:visible}
-#menubookmarks.top ul ul ul ul ul{position:absolute;top:100%;left:0px;z-index:1;width:100%;padding:5px 0 5px 0;margin:0;border-bottom-right-radius:5px;border-bottom-left-radius:5px;overflow:visible}
-/* nav bottom */
-#menubookmarks.bottom ul ul{position:absolute;right:0;bottom:0;z-index:1;width:100%;padding:5px 0 5px 0;margin:0;border-bottom-right-radius:5px;border-bottom-left-radius:5px;overflow:visible}
-#menubookmarks.bottom ul ul ul{position:absolute;bottom:0px;left:60px;z-index:1;width:100%;padding:5px 0 5px 0;margin:0;border-bottom-right-radius:5px;border-bottom-left-radius:5px;overflow:visible}
-#menubookmarks.bottom ul ul ul ul{position:absolute;bottom:0px;left:60px;z-index:1;width:100%;padding:5px 0 5px 0;margin:0;border-bottom-right-radius:5px;border-bottom-left-radius:5px;overflow:visible}
-#menubookmarks.bottom ul ul ul ul ul{position:absolute;bottom:100%;left:0px;z-index:1;width:100%;padding:5px 0 5px 0;margin:0;border-bottom-right-radius:5px;border-bottom-left-radius:5px;overflow:visible}
-}
+#menubookmarks{z-index:3000;border-radius:5px;box-shadow:0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 8px 0 rgba(0, 0, 0, 0.12)}
+.submenu-panel{border-radius:5px;box-shadow:0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 8px 0 rgba(0, 0, 0, 0.12)}
+.showitem{display:block}
+.hideitem{display:none}
+#menubookmarks ul:empty, .submenu-panel ul:empty{display:none}
+#menubookmarks ul, .submenu-panel ul{border-radius:4px;list-style:none;padding:5px 0 5px 0;margin:0}
+#menubookmarks ul li,.submenu-panel ul li{position:relative;height:30px;user-select:none;width:100%;display:flex}
+#menubookmarks ul li a ,.submenu-panel ul li a{font-family:Arial,Helvetica,sans-serif!important;font-size:12px;display:inline-block;height:100%;line-height:30px;user-select:none;padding:0 18px 0 7px;cursor:pointer;justify-content:flex-start;align-items:center;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%}
+#menubookmarks ul li a img, .submenu-panel ul li a img{display:inline-block;vertical-align:middle}
+#menubookmarks ul li a div, .submenu-panel ul li a div{display:initial;margin-left:8px;vertical-align:middle}
+#menubookmarks ul li span, .submenu-panel ul li span{padding-left:16px;cursor:pointer;display:flex;justify-content:flex-start;align-items:center}
 @media print{
 #stefanvdpropermenubar{display:none!important}
 }

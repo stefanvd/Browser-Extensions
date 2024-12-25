@@ -51,87 +51,109 @@ function createbrowserbookmark(){
 	});
 }
 
-function renderBookmarks(bookmarks, parentElement){
-	var rgb = hex2rgb(backgroundhex);
+// Begin bookmarks structure
+function renderBookmarks(bookmarks, parentElement, zIndexLevel = 3000){
+	const navWrapper = SD("stefanvdnavwrappe");
+	const rgb = hex2rgb(backgroundhex);
+	let openPanels = []; // To track open panels
+
 	bookmarks.forEach(function(bookmark){
 		if(parentElement){
 			if(bookmark.children){
-				// Create a sublist for folders
-				var sublist = document.createElement("ul");
-				sublist.style.background = "rgba(" + rgb.red + "," + rgb.green + "," + rgb.blue + "," + (opacity / 100) + ")";
-				sublist.className = "hideitem";
+				let submenuPanel = navWrapper.querySelector(`[data-bookmark-id="${bookmark.id}"]`);
 
-				// Check if folder has children
-				if(bookmark.children.length > 0){
-					renderBookmarks(bookmark.children, sublist);
-				}else{
-					// Add "empty" menu item if folder is empty
-					var emptyItem = document.createElement("li");
-					emptyItem.textContent = "(" + chrome.i18n.getMessage("titelempty") + ")";
-					emptyItem.style.color = fontcolor;
-					emptyItem.className = "empty-item";
-					sublist.appendChild(emptyItem);
+				if(!submenuPanel){
+					submenuPanel = document.createElement("div");
+					submenuPanel.setAttribute("data-bookmark-id", bookmark.id);
+					submenuPanel.className = "submenu-panel hideitem";
+					submenuPanel.style.position = "fixed";
+					submenuPanel.style.zIndex = zIndexLevel;
+					submenuPanel.style.maxHeight = "300px";
+					submenuPanel.style.overflow = "auto";
+
+					const submenuList = document.createElement("ul");
+					submenuList.style.background = `rgba(${rgb.red}, ${rgb.green}, ${rgb.blue}, ${opacity / 100})`;
+
+					if(bookmark.children.length > 0){
+						renderBookmarks(bookmark.children, submenuList, zIndexLevel + 1);
+					}else{
+						// Add a placeholder for empty folders
+						const emptyMessage = document.createElement("li");
+						const folderLink = document.createElement("a");
+						submenuList.appendChild(emptyMessage);
+						folderLink.textContent = "(" + chrome.i18n.getMessage("titelempty") + ")";
+						folderLink.href = "#";
+						folderLink.style.color = fontcolor;
+						emptyMessage.appendChild(folderLink);
+					}
+
+					submenuPanel.appendChild(submenuList);
+					navWrapper.appendChild(submenuPanel);
 				}
 
-				var listItemsub = document.createElement("li");
-				var folderLink = document.createElement("a");
+				const listItemsub = document.createElement("li");
+				listItemsub.setAttribute("data-bookmark-id", bookmark.id);
+
+				const folderLink = document.createElement("a");
 				folderLink.href = "#";
 				folderLink.style.color = fontcolor;
 
-				// Create folder icon
-				var folderIcon = document.createElement("img");
+				const folderIcon = document.createElement("img");
 				folderIcon.src = chrome.runtime.getURL("images/folder@2x.png");
 				folderIcon.alt = "Folder Icon";
 				folderIcon.height = 16;
 				folderIcon.width = 16;
-				folderLink.appendChild(folderIcon); // Append folder icon inside the link
+				folderLink.appendChild(folderIcon);
 
-				// Create span for bookmark title
-				var titleSpan = document.createElement("div");
+				const titleSpan = document.createElement("div");
 				titleSpan.textContent = bookmark.title;
 				folderLink.appendChild(titleSpan);
 
-				// Create arrow element for folder
-				var arrow = document.createElement("div");
-				arrow.textContent = "⌃";
-				arrow.style.marginLeft = "10px";
-				arrow.style.float = "right";
-				arrow.style.transform = "rotate(90deg)";
-				folderLink.appendChild(arrow);
-
 				listItemsub.appendChild(folderLink);
-				listItemsub.appendChild(sublist);
 				parentElement.appendChild(listItemsub);
 
-				// Add event listeners for mouseenter and mouseleave
 				listItemsub.addEventListener("mouseenter", function(){
-					sublist.className = "showitem";
-				});
+					const parentRect = listItemsub.getBoundingClientRect();
+					const navWrapperRect = navWrapper.getBoundingClientRect();
 
-				listItemsub.addEventListener("mouseleave", function(){
-					sublist.className = "hideitem";
-				});
-
-				// Folder is expanded or collapsed
-				folderLink.addEventListener("click", function(event){
-					event.preventDefault();
-					if(sublist.className === "hideitem"){
-						sublist.className = "showitem";
+					submenuPanel.style.left = `${parentRect.right - navWrapperRect.left - 8}px`;
+					if(getpositionbottom == false){
+						submenuPanel.style.top = `${parentRect.top - navWrapperRect.top}px`;
 					}else{
-						sublist.className = "hideitem";
+						submenuPanel.style.bottom = `${navWrapperRect.top - parentRect.bottom + 30}px`;
+					}
+					submenuPanel.style.zIndex = zIndexLevel + 1;
+
+					submenuPanel.className = "submenu-panel showitem";
+					if(!openPanels.includes(submenuPanel)){
+						openPanels.push(submenuPanel);
 					}
 				});
 
-				// Add class for CSS styling
+				submenuPanel.addEventListener("mouseenter", function(){
+					submenuPanel.className = "submenu-panel showitem";
+				});
+
+				listItemsub.addEventListener("mouseleave", function(event){
+					if(!submenuPanel.contains(event.relatedTarget)){
+						closePanel(submenuPanel);
+					}
+				});
+
+				submenuPanel.addEventListener("mouseleave", function(event){
+					if(!navWrapper.contains(event.relatedTarget)){
+						closePanel(submenuPanel);
+					}
+				});
+
 				listItemsub.classList.add("bookmark-item");
 			}else{
-				// Create list item for bookmarks
-				var listItem = document.createElement("li");
-				var link = document.createElement("a");
+				const listItem = document.createElement("li");
+				const link = document.createElement("a");
 				link.href = bookmark.url;
 				link.style.color = fontcolor;
+
 				link.addEventListener("click", function(event){
-					// Prevent the default action of following the link
 					event.preventDefault();
 					openweb(bookmark.url, existingtab);
 					SD("btnfile").checked = false;
@@ -141,34 +163,51 @@ function renderBookmarks(bookmarks, parentElement){
 					SD("btnbookmarks").checked = false;
 					SD("btnwindow").checked = false;
 					SD("btnhelp").checked = false;
-					let existingDiv = SD("menubookmarks");
+
+					const existingDiv = SD("menubookmarks");
 					if(existingDiv){
-						existingDiv.parentNode.removeChild(existingDiv); // Remove the div
+						existingDiv.parentNode.removeChild(existingDiv);
 					}
+
+					openPanels.forEach((panel) => {
+						panel.className = "submenu-panel hideitem";
+					});
+					openPanels = [];
 				});
 
-				// Create favicon
-				var favicon = document.createElement("img");
+				const favicon = document.createElement("img");
 				favicon.src = faviconserver + getDomain(bookmark.url);
 				favicon.alt = "Favicon";
 				favicon.height = 16;
 				favicon.width = 16;
-				link.appendChild(favicon); // Append favicon inside the link
+				link.appendChild(favicon);
 
-				// Create span for bookmark title
-				var titleSpanRoot = document.createElement("div");
+				const titleSpanRoot = document.createElement("div");
 				titleSpanRoot.textContent = bookmark.title;
 				link.appendChild(titleSpanRoot);
 
 				listItem.appendChild(link);
 				parentElement.appendChild(listItem);
 
-				// Add class for CSS styling
 				listItem.classList.add("bookmark-item");
 			}
 		}
 	});
+
+	function closePanel(panel){
+		panel.className = "submenu-panel hideitem";
+		openPanels = openPanels.filter((openPanel) => openPanel !== panel);
+	}
+
+	// Close all panels if the mouse leaves the entire navWrapper
+	navWrapper.addEventListener("mouseleave", function(){
+		openPanels.forEach((panel) => {
+			panel.className = "submenu-panel hideitem";
+		});
+		openPanels = [];
+	});
 }
+// End bookmarks structure
 
 // Function to extract domain from URL
 function getDomain(url){
@@ -679,7 +718,7 @@ function addtoolbar(){
 
 		// inject CSS for the hover effect
 		try{
-			var pmcssbar = "#stefanvdnavwrappe #stefanvdpropermenubarnav li:hover a,#stefanvdnavwrappe #stefanvdpropermenubarnav a:focus,#stefanvdnavwrappe #stefanvdpropermenubarnav a:active{padding:0 7px;line-height:30px!important;color:" + hovertextcolor + "!important;background:" + hoverbackground + "!important;text-decoration:none;height:30px;font-weight:normal}#stefanvdnavwrappe #stefanvdpropermenubarclose:hover{color:" + hovertextcolor + "!important}#stefanvdnavwrappe #stefanvdpropermenubarnav label a:hover{color:" + hovertextcolor + "!important;background:" + hoverbackground + "!important;}#menubookmarks a:hover{background:" + hoverbackground + "}";
+			var pmcssbar = "#stefanvdnavwrappe #stefanvdpropermenubarnav li:hover a,#stefanvdnavwrappe #stefanvdpropermenubarnav a:focus,#stefanvdnavwrappe #stefanvdpropermenubarnav a:active{padding:0 7px;line-height:30px!important;color:" + hovertextcolor + "!important;background:" + hoverbackground + "!important;text-decoration:none;height:30px;font-weight:normal}#stefanvdnavwrappe #stefanvdpropermenubarclose:hover{color:" + hovertextcolor + "!important}#stefanvdnavwrappe #stefanvdpropermenubarnav label a:hover{color:" + hovertextcolor + "!important;background:" + hoverbackground + "!important;}#menubookmarks a:hover,.bookmark-item a:hover{background:" + hoverbackground + "}";
 
 			if($("csspropermenubar")){
 				var elem = el.shadowRoot.getElementById("csspropermenubar");
@@ -1027,9 +1066,9 @@ function addtoolbar(){
 					const rect = event.target.getBoundingClientRect();
 
 					// Set the position of the new div
-					menubookmarks.style.position = "absolute";
+					menubookmarks.style.position = "fixed";
 					if(getpositionbottom == false){
-						menubookmarks.style.top = `${rect.top + window.scrollY - 5}px`;
+						menubookmarks.style.top = `${rect.top - 5}px`;
 						menubookmarks.style.left = `${rect.right + window.scrollX - 8}px`;
 					}else{
 						menubookmarks.style.bottom = "30px";
