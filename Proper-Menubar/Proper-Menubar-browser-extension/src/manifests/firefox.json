@@ -50,6 +50,7 @@
     "images/slice4.png",
     "images/slice5.png",
     "images/slice6.png",
+    "images/folder@2x.png",
     "styles/toolbar.css"],
     "matches": ["<all_urls>"]
   }],

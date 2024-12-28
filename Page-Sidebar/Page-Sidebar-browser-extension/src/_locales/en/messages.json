@@ -182,5 +182,8 @@
     "titelhomepage": {"message": "Homepage"},
     "despreventclose": {"message": "Show a message to confirm you want to close that tab"},
     "closetab": {"message": "Do you wan to close this tab?"},
-    "desdragnewtab": {"message": "When dragging and dropping a new link, it will open in a new tab"}
+    "desdragnewtab": {"message": "When dragging and dropping a new link, it will open in a new tab"},
+    "desmutetab": {"message": "Mute sound from other tabs when they are not active"},
+    "titelai": {"message": "AI"},
+    "titelencyclopedia": {"message": "Encyclopedia"}
   }

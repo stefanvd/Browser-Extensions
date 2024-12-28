@@ -18,7 +18,7 @@ const browserstore = "https://addons.mozilla.org";
 const linkyoutube = "https://www.youtube.com/@stefanvandamme?sub_confirmation=1";
 const devmode = true;
 const devdonate = false;
-
+const helpenablebookmark = "https://www.stefanvd.net/support/how-to-display-bookmarks-proper-menubar/";
 const browserextensions = "about:addons";
 const browsersettings = "about:preferences";
 const browserdownloads = "about:downloads";

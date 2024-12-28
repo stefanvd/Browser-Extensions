@@ -462,6 +462,36 @@ chrome.storage.onChanged.addListener(function(changes){
 			chrome.runtime.sendMessage({msg: "setrefreshsearch"});
 		}
 	}
+	if(changes["searchyahoo"]){
+		if(changes["searchyahoo"].newValue == true){
+			chrome.runtime.sendMessage({msg: "setrefreshsearch"});
+		}
+	}
+	if(changes["search360"]){
+		if(changes["search360"].newValue == true){
+			chrome.runtime.sendMessage({msg: "setrefreshsearch"});
+		}
+	}
+	if(changes["searchsogou"]){
+		if(changes["searchsogou"].newValue == true){
+			chrome.runtime.sendMessage({msg: "setrefreshsearch"});
+		}
+	}
+	if(changes["searchchatgpt"]){
+		if(changes["searchchatgpt"].newValue == true){
+			chrome.runtime.sendMessage({msg: "setrefreshsearch"});
+		}
+	}
+	if(changes["searchgemini"]){
+		if(changes["searchgemini"].newValue == true){
+			chrome.runtime.sendMessage({msg: "setrefreshsearch"});
+		}
+	}
+	if(changes["searchwikipedia"]){
+		if(changes["searchwikipedia"].newValue == true){
+			chrome.runtime.sendMessage({msg: "setrefreshsearch"});
+		}
+	}
 	if(changes["opentab"]){
 		if(changes["opentab"].newValue == true || changes["opentab"].newValue == false){
 			chrome.runtime.sendMessage({msg: "setopentab"});
@@ -550,6 +580,9 @@ chrome.storage.onChanged.addListener(function(changes){
 	}
 	if(changes["dragnewtab"]){
 		chrome.runtime.sendMessage({msg: "setdragnewtab", value: changes["dragnewtab"].newValue});
+	}
+	if(changes["mutetab"]){
+		chrome.runtime.sendMessage({msg: "setmutetab", value: changes["mutetab"].newValue});
 	}
 });
 
@@ -658,7 +691,7 @@ if(chrome.storage.managed){
 }
 
 function installation(){
-	if(chrome.storage.managed){
+	if(chrome.storage.managed && exbrowser != "firefox"){
 		chrome.storage.managed.get(function(items){
 			readgrouppolicy(items);
 			// save in memory

@@ -45,12 +45,12 @@ function save_options(){
 	var googlebarDomains = {};
 	for(var j = 0; j < googlebarDomainsBox.length; j++){ googlebarDomains[googlebarDomainsBox.options[j].value] = true; }
 
-	chrome.storage.sync.set({"icon": $("btnpreview").src, "opacity": $("opacity").value, "country":$("country").value, "backgroundhex":$("backgroundhex").value, "backgroundimagesource":$("backgroundimagesource").value, "backgroundcolor":$("backgroundcolor").checked, "backgroundimage":$("backgroundimage").checked, "dropshadow":$("dropshadow").checked, "allsites":$("allsites").checked, "fontcolor":$("fontcolor").value, "googlesites":$("googlesites").checked, "search":$("search").checked, "existingtab":$("existingtab").checked, "toolbarDomains": JSON.stringify(toolbarDomains), "optionskipremember":$("optionskipremember").checked, "display":$("display").value, "hovertextcolor":$("hovertextcolor").value, "hoverbackground":$("hoverbackground").value, "getpositiontop": $("getpositiontop").checked, "getpositionbottom": $("getpositionbottom").checked, "toolbarwhite": $("toolbarwhite").checked, "toolbarblack": $("toolbarblack").checked, "toolbaronly":$("toolbaronly").checked, "googleproducts":$("googleproducts").checked, "menuproducts":$("menuproducts").checked, "googlebarDomains": JSON.stringify(googlebarDomains), "hovermenu": $("hovermenu").checked, "contextmenus": $("contextmenus").checked});
+	chrome.storage.sync.set({"icon": $("btnpreview").src, "opacity": $("opacity").value, "country":$("country").value, "backgroundhex":$("backgroundhex").value, "backgroundimagesource":$("backgroundimagesource").value, "backgroundcolor":$("backgroundcolor").checked, "backgroundimage":$("backgroundimage").checked, "dropshadow":$("dropshadow").checked, "allsites":$("allsites").checked, "fontcolor":$("fontcolor").value, "googlesites":$("googlesites").checked, "search":$("search").checked, "existingtab":$("existingtab").checked, "toolbarDomains": JSON.stringify(toolbarDomains), "optionskipremember":$("optionskipremember").checked, "display":$("display").value, "hovertextcolor":$("hovertextcolor").value, "hoverbackground":$("hoverbackground").value, "getpositiontop": $("getpositiontop").checked, "getpositionbottom": $("getpositionbottom").checked, "toolbarwhite": $("toolbarwhite").checked, "toolbarblack": $("toolbarblack").checked, "toolbaronly":$("toolbaronly").checked, "googleproducts":$("googleproducts").checked, "menuproducts":$("menuproducts").checked, "googlebarDomains": JSON.stringify(googlebarDomains), "hovermenu": $("hovermenu").checked, "contextmenus": $("contextmenus").checked, "filterbydomain": $("filterbydomain").checked, "filterbypage": $("filterbypage").checked});
 }
 
 var firstdefaultvalues = {};
 // Option default value to read if there is no current value from chrome.storage AND init default value
-chrome.storage.sync.get(["backgroundcolor", "backgroundimage", "googlesites", "allsites", "dropshadow", "display", "search", "hovertextcolor", "hoverbackground", "getpositiontop", "getpositionbottom", "toolbarwhite", "toolbarblack", "googleproducts", "menuproducts", "hovermenu"], function(items){
+chrome.storage.sync.get(["backgroundcolor", "backgroundimage", "googlesites", "allsites", "dropshadow", "display", "search", "hovertextcolor", "hoverbackground", "getpositiontop", "getpositionbottom", "toolbarwhite", "toolbarblack", "googleproducts", "menuproducts", "hovermenu", "filterbydomain", "filterbypage"], function(items){
 	// find no localstore zoomengine
 	if(items["backgroundcolor"] == null && items["backgroundimage"] == null){ firstdefaultvalues["backgroundcolor"] = true; firstdefaultvalues["backgroundimage"] = false; }
 	if(items["allsites"] == null){ firstdefaultvalues["allsites"] = true; }
@@ -63,6 +63,7 @@ chrome.storage.sync.get(["backgroundcolor", "backgroundimage", "googlesites", "a
 	if(items["toolbarwhite"] == null && items["toolbarblack"] == null){ firstdefaultvalues["toolbarwhite"] = true; firstdefaultvalues["toolbarblack"] = false; }
 	if(items["googleproducts"] == null && items["menuproducts"] == null){ firstdefaultvalues["googleproducts"] = false; firstdefaultvalues["menuproducts"] = true; }
 	if(items["hovermenu"] == null){ firstdefaultvalues["hovermenu"] = true; }
+	if(items["filterbydomain"] == null && items["filterbypage"] == null){ firstdefaultvalues["filterbydomain"] = true; firstdefaultvalues["filterbypage"] = false; }
 
 	// find no localstore lightimage
 	// Save the init value
@@ -159,7 +160,7 @@ function read_options(){
 		showhidemodal("materialModalYouTube", "hide", "true");
 	}
 
-	chrome.storage.sync.get(["icon", "firstDate", "opacity", "country", "backgroundhex", "backgroundimagesource", "backgroundcolor", "backgroundimage", "googlesites", "dropshadow", "allsites", "fontcolor", "search", "existingtab", "propermenuDomains", "countremember", "optionskipremember", "display", "hovertextcolor", "hoverbackground", "firstsawrate", "introduce", "getpositiontop", "getpositionbottom", "toolbarwhite", "toolbarblack", "toolbaronly", "googleproducts", "menuproducts", "googlebarDomains", "toolbarDomains", "hovermenu", "contextmenus"], function(items){
+	chrome.storage.sync.get(["icon", "firstDate", "opacity", "country", "backgroundhex", "backgroundimagesource", "backgroundcolor", "backgroundimage", "googlesites", "dropshadow", "allsites", "fontcolor", "search", "existingtab", "propermenuDomains", "countremember", "optionskipremember", "display", "hovertextcolor", "hoverbackground", "firstsawrate", "introduce", "getpositiontop", "getpositionbottom", "toolbarwhite", "toolbarblack", "toolbaronly", "googleproducts", "menuproducts", "googlebarDomains", "toolbarDomains", "hovermenu", "contextmenus", "filterbydomain", "filterbypage"], function(items){
 		if(items["icon"]){ $("btnpreview").src = items["icon"]; }
 		if(items["opacity"]){ $("opacity").value = items["opacity"]; }else{ $("opacity").value = "100"; }
 		if(items["country"]){ $("country").value = items["country"]; }else{ $("country").value = "com"; }
@@ -186,6 +187,8 @@ function read_options(){
 		if(items["menuproducts"] == true)$("menuproducts").checked = true;
 		if(items["hovermenu"] == true)$("hovermenu").checked = true;
 		if(items["contextmenus"] == true)$("contextmenus").checked = true;
+		if(items["filterbydomain"] == true)$("filterbydomain").checked = true;
+		if(items["filterbypage"] == true)$("filterbypage").checked = true;
 
 		// show remember page
 		var firstmonth = false;

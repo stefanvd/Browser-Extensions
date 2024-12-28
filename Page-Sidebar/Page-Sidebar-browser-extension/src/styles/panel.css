@@ -27,7 +27,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 
 /* Light mode */
-:root {
+:root{
   --ext-primary-background:#fff;
   --ext-primary-font-color:#000;
   --ext-secundar-background:#efefef;
@@ -136,18 +136,18 @@ iframe{border:none;width:100%;height:100%;box-sizing:border-box;margin:0px}
 #menubookmarks ul a:active,#menubookmarks ul span:active{background-color:var(--ext-dropmenu-li-background-active)}
 /* nav top */
 /* Style for first-level submenus (shown to the right) */
-.container.top #menubookmarks ul ul { position:absolute;top:0;left:100%;background:var(--ext-primary-background);z-index:1;width:200px;padding:0;margin:0}
+.container.top #menubookmarks ul ul{position:absolute;top:0;left:100%;background:var(--ext-primary-background);z-index:1;width:200px;padding:0;margin:0}
 /* Style for second-level submenus (shown to the right) */
-.container.top #menubookmarks ul ul ul {position:absolute;top:0;left:100%;background:var(--ext-primary-background);z-index:1;width:100%;padding:0;margin:0}
+.container.top #menubookmarks ul ul ul{position:absolute;top:0;left:100%;background:var(--ext-primary-background);z-index:1;width:100%;padding:0;margin:0}
 /* Style for third-level submenus (shown to the right) */
 .container.top #menubookmarks ul ul ul ul{position:absolute;top:0;left:100%;background:var(--ext-primary-background);z-index:1;width:100%;padding:0;margin:0}
 /* Style for four-level submenus (shown to the right) */
 .container.top #menubookmarks ul ul ul ul ul{position:absolute;top:0;left:100%;background:var(--ext-primary-background);z-index:1;width:100%;padding:0;margin:0}
 /* nav bottom */
 /* Style for first-level submenus (shown to the right) */
-.container.bottom #menubookmarks ul ul { position:absolute;bottom:0;left:100%;background:var(--ext-primary-background);z-index:1;width:200px;padding:0;margin:0}
+.container.bottom #menubookmarks ul ul{position:absolute;bottom:0;left:100%;background:var(--ext-primary-background);z-index:1;width:200px;padding:0;margin:0}
 /* Style for second-level submenus (shown to the right) */
-.container.bottom #menubookmarks ul ul ul {position:absolute;bottom:0;left:100%;background:var(--ext-primary-background);z-index:1;width:100%;padding:0;margin:0}
+.container.bottom #menubookmarks ul ul ul{position:absolute;bottom:0;left:100%;background:var(--ext-primary-background);z-index:1;width:100%;padding:0;margin:0}
 /* Style for third-level submenus (shown to the right) */
 .container.bottom #menubookmarks ul ul ul ul{position:absolute;bottom:0;left:100%;background:var(--ext-primary-background);z-index:1;width:100%;padding:0;margin:0}
 /* Style for four-level submenus (shown to the right) */
@@ -183,7 +183,7 @@ iframe{border:none;width:100%;height:100%;box-sizing:border-box;margin:0px}
 .tab{user-select:none;min-width:fit-content;justify-content:space-between;display:inline-flex;padding:8px 12px;background-color:var(--ext-tab-inactive-background-color);border-radius:8px 8px 0 0;cursor:pointer;align-items:flex-end;border-bottom:1px solid var(--ext-tab-inactive-background-color)}
 .tab:hover{background-color:var(--ext-tab-inactive-hover-background-color)}
 .tab.active:hover{background-color:var(--ext-tab-active-hover-background-color)}
-.tab .title{padding:2px;cursor:pointer;border-radius:16px;width:16px;height:16px;display:flex;align-items:center;justify-content:center}
+.tab .title{padding:2px;cursor:pointer;border-radius:16px;width:16px;height:16px;display:flex;align-items:center;justify-content:center;pointer-events:none}
 .tab.active{background-color:var(--ext-tab-active-background-color);border-bottom:2px solid #007bff}
 .tab-content{display:none;padding:10px}
 .tab-content.active{display:block}

@@ -26,7 +26,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-var selectedsearch, searchgoogle, searchbing, searchduckduckgo, searchbaidu, searchyandex, typepanelzone, typepanelcustom, typepanellasttime, websitestartname, websitelasttime, navtop, navbottom, navhidden, opentab, opencopy, opennonebookmarks, openbrowserbookmarks, openquickbookmarks, googlesidepanel, zoom, defaultzoom, step, multipletabs, multivalues, navbuttons, gobutton, typehomezone, typehomecustom, websitehomepagename, preventclose, dragnewtab;
+var selectedsearch, searchgoogle, searchbing, searchduckduckgo, searchbaidu, searchyandex, typepanelzone, typepanelcustom, typepanellasttime, websitestartname, websitelasttime, navtop, navbottom, navhidden, opentab, opencopy, opennonebookmarks, openbrowserbookmarks, openquickbookmarks, googlesidepanel, zoom, defaultzoom, step, multipletabs, multivalues, navbuttons, gobutton, typehomezone, typehomecustom, websitehomepagename, preventclose, dragnewtab, mutetab, searchyahoo, search360, searchsogou, searchchatgpt, searchgemini, searchwikipedia;
 
 var faviconserver = "https://s2.googleusercontent.com/s2/favicons?domain=";
 var emptypage = "about:blank";
@@ -40,8 +40,6 @@ document.addEventListener("DOMContentLoaded", init);
 var i18ntitelcopytext = chrome.i18n.getMessage("titlecopytextdone");
 var i18ndescopytext = chrome.i18n.getMessage("descopytextdone");
 
-// Detect URL to open back in new web browser tab
-var currentSidePanelURL = "";
 window.addEventListener("message", (e) => {
 	// console.log("FIRST WEBSITE URL=", e.data.href);
 	if(e.data?.method === "navigate"){
@@ -52,8 +50,7 @@ window.addEventListener("message", (e) => {
 			}, "*");
 		}
 	}else if(e.data?.method === "complete"){
-		// console.log("VISITED WEBSITE URL=", e.data.href);
-		currentSidePanelURL = e.data.href;
+		// console.log("VISITED WEBSITE URL=", e.data.href, e.data.iframeId);
 		// save the URL for close the panel
 		if(typepanellasttime == true){
 			chrome.storage.sync.set({"websitelasttime": e.data.href});
@@ -62,10 +59,16 @@ window.addEventListener("message", (e) => {
 		if(zoom == true && zoomLevel != 100){
 			updateZoomLevel();
 		}
+
+		// set mute
+		if(mutetab == true){
+			e.source.postMessage({method: "goMuteOnWebpage"}, "*");
+		}
+
 		// Save website favicon image for current active tab
-		updatetabicon(e.data.href);
+		frameupdatetabicon(e.data.href, e.data.iframeId);
 		// Save website URL in tab
-		updatesaveurl(e.data.href);
+		frameupdatesaveurl(e.data.href, e.data.iframeId);
 	}
 });
 
@@ -110,6 +113,9 @@ function init(){
 	// show all the active permissions in a list
 	chrome.runtime.sendMessage({name: "getallhost"});
 	//----
+
+	// check the drag drop tab strip
+	dragtabstrip();
 
 	// Begin multiple tabs
 	tabContainer = document.querySelector(".tab-bar");
@@ -270,7 +276,7 @@ function init(){
 		zoomPanel.classList.toggle("collapsed");
 	});
 
-	chrome.storage.sync.get(["firstDate", "optionskipremember", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "typepanellasttime", "websitestartname", "websitelasttime", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "opentab", "opencopy", "opennonebookmarks", "openbrowserbookmarks", "openquickbookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10", "googlesidepanel", "zoom", "defaultzoom", "step", "multipletabs", "multivalues", "navbuttons", "gobutton", "typehomezone", "typehomecustom", "websitehomepagename", "preventclose", "dragnewtab"], function(items){
+	chrome.storage.sync.get(["firstDate", "optionskipremember", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "typepanellasttime", "websitestartname", "websitelasttime", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "opentab", "opencopy", "opennonebookmarks", "openbrowserbookmarks", "openquickbookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10", "googlesidepanel", "zoom", "defaultzoom", "step", "multipletabs", "multivalues", "navbuttons", "gobutton", "typehomezone", "typehomecustom", "websitehomepagename", "preventclose", "dragnewtab", "mutetab", "searchyahoo", "search360", "searchsogou", "searchchatgpt", "searchgemini", "searchwikipedia"], function(items){
 		searchgoogle = items["searchgoogle"]; if(searchgoogle == null){ searchgoogle = true; }
 		googlesidepanel = items["googlesidepanel"]; if(googlesidepanel == null){ googlesidepanel = true; }
 		searchbing = items["searchbing"]; if(searchbing == null){ searchbing = false; }
@@ -288,6 +294,13 @@ function init(){
 		websitehomepagename = items["websitehomepagename"]; if(websitehomepagename == null)websitehomepagename = "https://www.google.com";
 		preventclose = items["preventclose"]; if(preventclose == null){ preventclose = false; }
 		dragnewtab = items["dragnewtab"]; if(dragnewtab == null){ dragnewtab = false; }
+		mutetab = items["mutetab"]; if(mutetab == null){ mutetab = false; }
+		searchyahoo = items["searchyahoo"]; if(searchyahoo == null){ searchyahoo = false; }
+		search360 = items["search360"]; if(search360 == null){ search360 = false; }
+		searchsogou = items["searchsogou"]; if(searchsogou == null){ searchsogou = false; }
+		searchchatgpt = items["searchchatgpt"]; if(searchchatgpt == null){ searchchatgpt = false; }
+		searchgemini = items["searchgemini"]; if(searchgemini == null){ searchgemini = false; }
+		searchwikipedia = items["searchwikipedia"]; if(searchwikipedia == null){ searchwikipedia = false; }
 
 		// show the tab strip bar or not
 		applyStyles(multipletabs);
@@ -310,6 +323,18 @@ function init(){
 			selectedsearch = "searchbaidu";
 		}else if(searchyandex){
 			selectedsearch = "searchyandex";
+		}else if(searchyahoo){
+			selectedsearch = "searchyahoo";
+		}else if(search360){
+			selectedsearch = "search360";
+		}else if(searchsogou){
+			selectedsearch = "searchsogou";
+		}else if(searchchatgpt){
+			selectedsearch = "searchchatgpt";
+		}else if(searchgemini){
+			selectedsearch = "searchgemini";
+		}else if(searchwikipedia){
+			selectedsearch = "searchwikipedia";
 		}else{
 			selectedsearch = "searchgoogle"; // default
 		}
@@ -495,20 +520,47 @@ function toggleDragDropZone(iframeID){
 function getFaviconUrl(url){
 	if(url === emptypage){
 		// Empty page
-		console.log("Favicon logic for emptypage URL=", url);
+		// console.log("Favicon logic for emptypage URL=", url);
 		return"/images/icon16@2x.png";
 	}else if(url.startsWith("file://") || url.startsWith("blob:")){
 		// File or Blob URL
-		console.log("Favicon logic for file/blob URL=", url);
+		// console.log("Favicon logic for file/blob URL=", url);
 		return"/images/icon16@2x.png";
 	}else if(url.startsWith("http://") || url.startsWith("https://")){
 		// HTTP or HTTPS URL
-		console.log("Favicon logic for web URL=", url);
+		// console.log("Favicon logic for web URL=", url);
 		return faviconserver + getDomain(url);
 	}else{
 		// Default case
-		console.log("Favicon logic for other URL=", url);
+		// console.log("Favicon logic for other URL=", url);
 		return"/images/icon16@2x.png";
+	}
+}
+
+function frameupdatetabicon(url, iframeId){
+	if(multipletabs == true){
+		var iframes = document.getElementById("webcontent").getElementsByTagName("iframe");
+		var index = -1;
+
+		// Find the index of the iframe using iframeId
+		for(var i = 0; i < iframes.length; i++){
+			if(iframes[i].id == iframeId){
+				index = i;
+				break;
+			}
+		}
+
+		// Get the active tab element
+		var thatTab = document.querySelector("#tabstrip .tab:nth-child(" + (index + 1) + ")");
+
+		// Update the image source in the active tab
+		if(thatTab){
+			var imgElement = thatTab.querySelector("img");
+			if(imgElement){
+				// Use the universal getFaviconUrl function
+				imgElement.src = getFaviconUrl(url);
+			}
+		}
 	}
 }
 
@@ -524,6 +576,32 @@ function updatetabicon(url){
 			if(imgElement){
 				// Use the universal getFaviconUrl function
 				imgElement.src = getFaviconUrl(url);
+			}
+		}
+	}
+}
+
+function frameupdatesaveurl(url, iframeId){
+	// Only save if multiple tabs are enabled
+	if(multipletabs){
+		var iframes = document.getElementById("webcontent").getElementsByTagName("iframe");
+		var index = -1;
+
+		// Find the index of the iframe using iframeId
+		for(var i = 0; i < iframes.length; i++){
+			if(iframes[i].id === iframeId){
+				index = i;
+				break;
+			}
+		}
+
+		// If the iframe is found, save the URL to the corresponding tab
+		if(index !== -1){
+			multivalues[index]["note"] = url;
+
+			// Save the changes if necessary
+			if(typepanellasttime == true){
+				save();
 			}
 		}
 	}
@@ -576,8 +654,14 @@ function setActiveTabContent(numb){
 	for(var i = 0; i < iframes.length; i++){
 		if(i === numb){
 			iframes[i].className = "active";
+			if(mutetab == true){
+				iframes[i].contentWindow.postMessage({method: "goMuteOffWebpage"}, "*");
+			}
 		}else{
 			iframes[i].className = "hidden";
+			if(mutetab == true){
+				iframes[i].contentWindow.postMessage({method: "goMuteOnWebpage"}, "*");
+			}
 		}
 	}
 }
@@ -592,6 +676,7 @@ function removeWebs(){
 	}
 }
 
+// create tabs with drag and drop in the tab strip
 function createAllTabsInBar(createnoweb){
 	var totaltabs = multivalues.length;
 	// Loop to create the specified number of tabs
@@ -604,6 +689,9 @@ function createAllTabsInBar(createnoweb){
 		// create the tab block
 		const newTab = document.createElement("div");
 		newTab.classList.add("tab");
+		newTab.setAttribute("draggable", "true");
+		newTab.addEventListener("dragstart", dragStartHandler);
+		newTab.addEventListener("dragend", dragEndHandler);
 		const titleDiv = document.createElement("div");
 		titleDiv.classList.add("title");
 		newTab.appendChild(titleDiv);
@@ -614,14 +702,108 @@ function createAllTabsInBar(createnoweb){
 		favicon.height = 16;
 		favicon.width = 16;
 		titleDiv.appendChild(favicon); // Append favicon inside the link
-		newTab.innerHTML += "<div class=\"tab-close\">x</div>";
+		const closeButton = document.createElement("div");
+		closeButton.classList.add("tab-close");
+		closeButton.textContent = "x";
+		newTab.appendChild(closeButton);
 		tabContainer.insertBefore(newTab, tabContainer.lastElementChild);
 	}
 }
 
+// Drag start handler
+function dragStartHandler(e){
+	const tabStrip = document.getElementById("tabstrip");
+	const tabs = Array.from(tabStrip.querySelectorAll(".tab")); // Update tab list
+	const index = tabs.indexOf(this); // Get the current index
+	this.classList.add("dragging");
+	e.dataTransfer.setData("draggingIndex", index); // Store the index of the tab being dragged
+}
+
+// Drag end handler
+function dragEndHandler(){
+	this.classList.remove("dragging");
+}
+
+// Function to move the iframe in the same order as the tabs
+function moveIframe(oldIndex, newIndex){
+	const webContentContainer = document.getElementById("webcontent");
+	const iframes = Array.from(webContentContainer.querySelectorAll("iframe")); // Cache NodeList as a static array
+
+	if(oldIndex === newIndex || !iframes[oldIndex])return; // No change or invalid index
+
+	const iframeToMove = iframes[oldIndex]; // Get the iframe to move
+
+	// Move iframe to the new position
+	if(newIndex < oldIndex){
+		webContentContainer.insertBefore(iframeToMove, iframes[newIndex]);
+	}else{
+		// Handle insertion after the new index
+		if(newIndex + 1 < iframes.length){
+			webContentContainer.insertBefore(iframeToMove, iframes[newIndex + 1]);
+		}else{
+			webContentContainer.appendChild(iframeToMove); // Append at the end if it's last
+		}
+	}
+
+	// Update iframe order and save changes
+	updateIframeOrder();
+
+	// Check which tab is now active
+	var activeindex = getActiveTabIndex();
+	// Set this tab and iframe as visible
+	setActiveTabContent(activeindex);
+}
+
+function getDragAfterElement(container, x){
+	const draggableElements = [...container.querySelectorAll(".tab:not(.dragging)")];
+
+	return draggableElements.reduce((closest, child) => {
+		const box = child.getBoundingClientRect();
+		const offset = x - box.left - box.width / 2;
+		if(offset < 0 && offset > closest.offset){
+			return{offset: offset, element: child};
+		}else{
+			return closest;
+		}
+	}, {offset: Number.NEGATIVE_INFINITY}).element;
+}
+
+function updateIframeOrder(){
+	// Only update if multiple tabs are enabled
+	if(multipletabs){
+		var iframes = document.getElementById("webcontent").getElementsByTagName("iframe");
+
+		// Iterate over all iframes and update the multivalues array
+		for(var i = 0; i < iframes.length; i++){
+			var iframeSrc = iframes[i].src;
+
+			// Update the corresponding multivalues entry
+			if(multivalues[i]){
+				multivalues[i]["note"] = iframeSrc;
+
+				// Get the tab element
+				var thatTab = document.querySelector("#tabstrip .tab:nth-child(" + (i + 1) + ")");
+
+				// Update the image source in the active tab
+				if(thatTab){
+					var imgElement = thatTab.querySelector("img");
+					if(imgElement){
+						// Use the universal getFaviconUrl function
+						imgElement.src = getFaviconUrl(iframeSrc);
+					}
+				}
+			}
+		}
+	}
+}
+// end create tab strip
+
 function createNewTab(){
 	const newTab = document.createElement("div");
 	newTab.classList.add("tab");
+	newTab.setAttribute("draggable", "true");
+	newTab.addEventListener("dragstart", dragStartHandler);
+	newTab.addEventListener("dragend", dragEndHandler);
 	const titleDiv = document.createElement("div");
 	titleDiv.classList.add("title");
 	newTab.appendChild(titleDiv);
@@ -631,7 +813,10 @@ function createNewTab(){
 	favicon.height = 16;
 	favicon.width = 16;
 	titleDiv.appendChild(favicon); // Append favicon inside the link
-	newTab.innerHTML += "<div class=\"tab-close\">x</div>";
+	const closeButton = document.createElement("div");
+	closeButton.classList.add("tab-close");
+	closeButton.textContent = "x";
+	newTab.appendChild(closeButton);
 	tabContainer.insertBefore(newTab, tabContainer.lastElementChild);
 	setActiveTab(newTab);
 
@@ -658,9 +843,50 @@ function createNewTab(){
 	}
 }
 
+function dragtabstrip(){
+	// Add the event listeners for drag-and-drop functionality
+	const tabStrip = document.getElementById("tabstrip");
+	const addTabButton = tabStrip.querySelector(".add-tab");
+
+	// Allow drag over on the tab strip
+	tabStrip.addEventListener("dragover", (e) => {
+		e.preventDefault();
+
+		const draggingTab = tabStrip.querySelector(".dragging");
+		const afterElement = getDragAfterElement(tabStrip, e.clientX);
+
+		// Prevent placing the dragged tab on the right side of the "add-tab" button
+		if(afterElement === addTabButton || afterElement == null){
+			tabStrip.insertBefore(draggingTab, addTabButton);
+		}else{
+			tabStrip.insertBefore(draggingTab, afterElement);
+		}
+	});
+
+	// Handle drag drop to move iframe
+	tabStrip.addEventListener("drop", (e) => {
+		e.preventDefault();
+
+		const draggingIndex = parseInt(e.dataTransfer.getData("draggingIndex"));
+		const draggingTab = tabStrip.querySelector(".dragging");
+		const tabs = Array.from(tabStrip.querySelectorAll(".tab")); // Update tab list after rearranging
+		const newTabIndex = tabs.indexOf(draggingTab);
+
+		moveIframe(draggingIndex, newTabIndex);
+	});
+}
+
 function createiframe(url){
 	var webcontent = document.getElementById("webcontent");
 	var iframe = document.createElement("iframe");
+	const iframeId = "iframe_" + Date.now() + "_" + Math.random().toString(36).substr(2, 9);
+	iframe.setAttribute("id", iframeId);
+	iframe.onload = () => {
+		iframe.contentWindow.postMessage({
+			method: "setIframeId",
+			iframeId
+		}, "*");
+	};
 	iframe.src = url;
 	iframe.allow = "camera; clipboard-write; fullscreen; microphone; geolocation";
 	iframe.className = "hidden";
@@ -789,8 +1015,16 @@ function actionCopyTab(){
 	// Create a temporary textarea element to hold the text
 	const textarea = document.createElement("textarea");
 
+	var index;
+	if(multipletabs == true){
+		index = getActiveTabIndex();
+	}else{
+		index = 0;
+	}
+	const iframeURL = document.getElementById("webcontent").getElementsByTagName("iframe")[index].src;
+
 	// Assign the text you want to copy to the textarea
-	const textToCopy = currentSidePanelURL;
+	const textToCopy = iframeURL;
 	textarea.value = textToCopy;
 
 	// Set the textarea to be invisible
@@ -857,7 +1091,12 @@ function getActiveTabIndex(){
 }
 
 function postMessageToIframe(method){
-	const index = getActiveTabIndex();
+	var index;
+	if(multipletabs == true){
+		index = getActiveTabIndex();
+	}else{
+		index = 0;
+	}
 	if(index !== -1){
 		const iframe = document.getElementById("webcontent").getElementsByTagName("iframe")[index];
 		iframe.contentWindow.postMessage({method: method}, "*");
@@ -877,7 +1116,13 @@ function actionPrevTab(){
 }
 
 function actionOpenTab(){
-	var iframeURL = currentSidePanelURL;
+	var index;
+	if(multipletabs == true){
+		index = getActiveTabIndex();
+	}else{
+		index = 0;
+	}
+	const iframeURL = document.getElementById("webcontent").getElementsByTagName("iframe")[index].src;
 	window.open(iframeURL, "_blank");
 }
 
@@ -951,6 +1196,7 @@ function handleDrop(e){
 		performSearch(selectedsearch, selectedText);
 	}
 }
+
 function actionHome(){
 	if(typehomecustom == true){
 		openweb(websitehomepagename, true);
@@ -1083,26 +1329,20 @@ const openweb = async(currenturl) => {
 
 	const iframe = document.getElementById("webcontent").getElementsByTagName("iframe")[index];
 	if(iframe){
-		// Clear iframe content before setting a new URL
-		iframe.src = "about:blank";
-
-		// Wait for the iframe to reset, then load the new URL
-		setTimeout(() => {
-			// set active panel
-			iframe.className = "active";
-			// open that web page
-			iframe.src = currenturl;
-			// Update save tab URL
-			updatesaveurl(currenturl);
-			// Update icon
-			updatetabicon(currenturl);
-			// Hide drag-and-drop UI elements if the URL is not empty
-			if(iframe.src != "" || iframe.src != null || iframe.src != emptypage){
-				dragDropNavbar.className = "hidden";
-				dragDropZone.className = "hidden";
-				dragDropInfo.className = "hidden";
-			}
-		}, 50); // Small delay to ensure iframe resets properly
+		// set active panel
+		iframe.className = "active";
+		// open that web page
+		iframe.src = currenturl;
+		// Update save tab URL
+		updatesaveurl(currenturl);
+		// Update icon
+		updatetabicon(currenturl);
+		// Hide drag-and-drop UI elements if the URL is not empty
+		if(iframe.src != "" || iframe.src != null || iframe.src != emptypage){
+			dragDropNavbar.className = "hidden";
+			dragDropZone.className = "hidden";
+			dragDropInfo.className = "hidden";
+		}
 	}
 };
 
@@ -1155,6 +1395,24 @@ function performSearch(searchEngine, query){
 	case"searchyandex":
 		openweb("https://yandex.com/search/?text=" + encodeURIComponent(query), true);
 		break;
+	case"searchyahoo":
+		openweb("https://search.yahoo.com/search?p=" + encodeURIComponent(query), true);
+		break;
+	case"search360":
+		openweb("https://www.so.com/s?q=" + encodeURIComponent(query), true);
+		break;
+	case"searchsogou":
+		openweb("https://www.sogou.com/web?query=" + encodeURIComponent(query), true);
+		break;
+	case"searchchatgpt":
+		openweb("https://chatgpt.com/?q=" + encodeURIComponent(query), true);
+		break;
+	case"searchgemini":
+		openweb("https://gemini.google.com/?q=" + encodeURIComponent(query), true);
+		break;
+	case"searchwikipedia":
+		openweb("https://wikipedia.org/wiki/" + encodeURIComponent(query), true);
+		break;
 	default:
 		openweb("https://www.google.com/search?q=" + encodeURIComponent(query), true);
 		break;
@@ -1198,12 +1456,18 @@ chrome.runtime.onMessage.addListener(function(request){
 		openweb(request.value, true);
 	}else if(request.msg == "setsearch"){
 		// console.log("received = " + request.value);
-		chrome.storage.sync.get(["searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex"], function(items){
+		chrome.storage.sync.get(["searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "searchyahoo", "search360", "searchsogou", "searchchatgpt", "searchgemini", "searchwikipedia"], function(items){
 			searchgoogle = items["searchgoogle"]; if(searchgoogle == null){ searchgoogle = true; }
 			searchbing = items["searchbing"]; if(searchbing == null){ searchbing = false; }
 			searchduckduckgo = items["searchduckduckgo"]; if(searchduckduckgo == null){ searchduckduckgo = false; }
 			searchbaidu = items["searchbaidu"]; if(searchbaidu == null){ searchbaidu = false; }
 			searchyandex = items["searchyandex"]; if(searchyandex == null){ searchyandex = false; }
+			searchyahoo = items["searchyahoo"]; if(searchyahoo == null){ searchyahoo = false; }
+			search360 = items["search360"]; if(search360 == null){ search360 = false; }
+			searchsogou = items["searchsogou"]; if(searchsogou == null){ searchsogou = false; }
+			searchchatgpt = items["searchchatgpt"]; if(searchchatgpt == null){ searchchatgpt = false; }
+			searchgemini = items["searchgemini"]; if(searchgemini == null){ searchgemini = false; }
+			searchwikipedia = items["searchwikipedia"]; if(searchwikipedia == null){ searchwikipedia = false; }
 			if(searchgoogle){
 				selectedsearch = "searchgoogle";
 			}else if(searchbing){
@@ -1214,6 +1478,18 @@ chrome.runtime.onMessage.addListener(function(request){
 				selectedsearch = "searchbaidu";
 			}else if(searchyandex){
 				selectedsearch = "searchyandex";
+			}else if(searchyahoo){
+				selectedsearch = "searchyahoo";
+			}else if(search360){
+				selectedsearch = "search360";
+			}else if(searchsogou){
+				selectedsearch = "searchsogou";
+			}else if(searchchatgpt){
+				selectedsearch = "searchchatgpt";
+			}else if(searchgemini){
+				selectedsearch = "searchgemini";
+			}else if(searchwikipedia){
+				selectedsearch = "searchwikipedia";
 			}
 			performSearch(selectedsearch, request.value);
 		});
@@ -1229,12 +1505,18 @@ chrome.runtime.onMessage.addListener(function(request){
 		var menubookmarks = document.getElementById("menubookmarks");
 		menubookmarks.className = "hidden";
 	}else if(request.msg == "setrefreshsearch"){
-		chrome.storage.sync.get(["searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex"], function(items){
+		chrome.storage.sync.get(["searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "searchyahoo", "search360", "searchsogou", "searchchatgpt", "searchgemini", "searchwikipedia"], function(items){
 			searchgoogle = items["searchgoogle"]; if(searchgoogle == null){ searchgoogle = true; }
 			searchbing = items["searchbing"]; if(searchbing == null){ searchbing = false; }
 			searchduckduckgo = items["searchduckduckgo"]; if(searchduckduckgo == null){ searchduckduckgo = false; }
 			searchbaidu = items["searchbaidu"]; if(searchbaidu == null){ searchbaidu = false; }
 			searchyandex = items["searchyandex"]; if(searchyandex == null){ searchyandex = false; }
+			searchyahoo = items["searchyahoo"]; if(searchyahoo == null){ searchyahoo = false; }
+			search360 = items["search360"]; if(search360 == null){ search360 = false; }
+			searchsogou = items["searchsogou"]; if(searchsogou == null){ searchsogou = false; }
+			searchchatgpt = items["searchchatgpt"]; if(searchchatgpt == null){ searchchatgpt = false; }
+			searchgemini = items["searchgemini"]; if(searchgemini == null){ searchgemini = false; }
+			searchwikipedia = items["searchwikipedia"]; if(searchwikipedia == null){ searchwikipedia = false; }
 			if(searchgoogle){
 				selectedsearch = "searchgoogle";
 			}else if(searchbing){
@@ -1245,6 +1527,18 @@ chrome.runtime.onMessage.addListener(function(request){
 				selectedsearch = "searchbaidu";
 			}else if(searchyandex){
 				selectedsearch = "searchyandex";
+			}else if(searchyahoo){
+				selectedsearch = "searchyahoo";
+			}else if(search360){
+				selectedsearch = "search360";
+			}else if(searchsogou){
+				selectedsearch = "searchsogou";
+			}else if(searchchatgpt){
+				selectedsearch = "searchchatgpt";
+			}else if(searchgemini){
+				selectedsearch = "searchgemini";
+			}else if(searchwikipedia){
+				selectedsearch = "searchwikipedia";
 			}
 		});
 	}else if(request.msg == "setopentab"){
@@ -1414,6 +1708,12 @@ chrome.runtime.onMessage.addListener(function(request){
 			dragnewtab = true;
 		}else{
 			dragnewtab = false;
+		}
+	}else if(request.msg == "setmutetab"){
+		if(request.value == true){
+			mutetab = true;
+		}else{
+			mutetab = false;
 		}
 	}
 });

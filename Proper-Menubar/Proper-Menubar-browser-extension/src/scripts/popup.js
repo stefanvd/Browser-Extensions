@@ -198,7 +198,6 @@ function createmenubar(a, b, c, d, e){
 	newdropdowncontentli.appendChild(newdropdowncontentlia);
 }
 
-
 var i18nlink1a = chrome.i18n.getMessage("link1a");
 var i18nlink2a = chrome.i18n.getMessage("link2a");
 var i18nlink3a = chrome.i18n.getMessage("link3a");

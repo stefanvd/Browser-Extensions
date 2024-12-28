@@ -31,10 +31,6 @@ function isFirefox(){
 	return typeof browser !== "undefined" && typeof browser.sidebarAction !== "undefined";
 }
 
-// Function to check if the current browser is Chrome / Chromium
-function isChrome(){
-	return typeof chrome !== "undefined";
-}
 // Function to check if the current browser is support chrome.sidePanel
 function isChromePanel(){
 	return typeof chrome !== "undefined" && typeof chrome.sidePanel !== "undefined";
@@ -48,7 +44,8 @@ if(isFirefox()){
 }
 
 // Execute Chrome-specific code
-if(isChrome()){
+const firefoxextension = navigator.userAgent.toLowerCase().includes("firefox");
+if(!firefoxextension){
 	// Importing the constants
 	// eslint-disable-next-line no-undef
 	importScripts("constants.js");
@@ -183,7 +180,7 @@ var sharemenuwelcomeguidetitle = chrome.i18n.getMessage("sharemenuwelcomeguideti
 var sharemenutellafriend = chrome.i18n.getMessage("sharemenutellafriend");
 var sharemenupostonx = chrome.i18n.getMessage("sharemenupostonx");
 var sharemenupostonfacebook = chrome.i18n.getMessage("sharemenupostonfacebook");
-var sharemenuratetitle = chrome.i18n.getMessage("sharemenuratetitle");
+// var sharemenuratetitle = chrome.i18n.getMessage("sharemenuratetitle");
 var sharemenudonatetitle = chrome.i18n.getMessage("sharemenudonatetitle");
 var sharemenusubscribetitle = chrome.i18n.getMessage("desremyoutube");
 var sharemenupostonweibo = chrome.i18n.getMessage("sharemenupostonweibo");
@@ -220,7 +217,7 @@ if(chrome.contextMenus){
 
 		browsercontext(sharemenuwelcomeguidetitle, "totlguideemenu", {"16": "images/IconGuide.png", "32": "images/IconGuide@2x.png"});
 		browsercontext(sharemenudonatetitle, "totldevelopmenu", {"16": "images/IconDonate.png", "32": "images/IconDonate@2x.png"});
-		browsercontext(sharemenuratetitle, "totlratemenu", {"16": "images/IconStar.png", "32": "images/IconStar@2x.png"});
+		// browsercontext(sharemenuratetitle, "totlratemenu", {"16": "images/IconStar.png", "32": "images/IconStar@2x.png"});
 
 		// Create a parent item and two children.
 		var parent = null;
@@ -378,7 +375,31 @@ chrome.storage.onChanged.addListener(function(changes){
 		chrome.runtime.sendMessage({msg: "settype", value: changes["plaintext"].newValue});
 	}
 	if(changes["multiple"]){
-		chrome.runtime.sendMessage({msg: "setmultiple", value: changes["multiple"].newValue});
+		// convert to single text or multiple text
+		chrome.storage.sync.get(["txtvalue", "multiple", "multivalue"], function(items){
+			var theValue = items["txtvalue"]; if(theValue == null){ theValue = i18nfirsttext; }
+			var multiple = items["multiple"]; if(multiple == null){ multiple = false; }
+			var multiValue = items["multivalue"]; if(multiValue == null){ multiValue = [{"note":i18nfirsttext}]; }
+
+			if(multiple){
+				// Reset and convert txtvalue to multiValue
+				multiValue = theValue ? [{"note": theValue}] : [];
+				theValue = ""; // Reset txtvalue
+			}else{
+				// Reset and convert multiValue to txtvalue
+				theValue = multiValue.map((item) => item.note).join("\n");
+				multiValue = []; // Reset multiValue
+			}
+
+			// Save the updated values back to storage
+			chrome.storage.sync.set({"txtvalue": theValue, "multivalue": multiValue}, function(){
+				// update background
+				currentnotetext = theValue;
+				currentmultinotetext = multiValue;
+
+				chrome.runtime.sendMessage({msg: "setmultiple", value: changes["multiple"].newValue, singletext: theValue, tabtext: multiValue});
+			});
+		});
 	}
 	if(changes["preventclose"]){
 		chrome.runtime.sendMessage({msg: "setpreventclose", value: changes["preventclose"].newValue});
@@ -386,9 +407,26 @@ chrome.storage.onChanged.addListener(function(changes){
 	if(changes["texttabname"]){
 		chrome.runtime.sendMessage({msg: "settexttabname", value: changes["texttabname"].newValue});
 	}
+	if(changes["save"]){
+		chrome.runtime.sendMessage({msg: "setsave", value: changes["save"].newValue});
+	}
+	if(changes["download"]){
+		chrome.runtime.sendMessage({msg: "setdownload", value: changes["download"].newValue});
+	}
+	if(changes["bartabdesign"]){
+		if(changes["bartabdesign"].newValue == true){
+			chrome.runtime.sendMessage({msg: "setbartabdesign"});
+		}
+	}
+	if(changes["barselectdesign"]){
+		if(changes["barselectdesign"].newValue == true){
+			chrome.runtime.sendMessage({msg: "setbarselectdesign"});
+		}
+	}
+	if(changes["find"]){
+		chrome.runtime.sendMessage({msg: "setfind", value: changes["find"].newValue});
+	}
 });
-
-chrome.runtime.setUninstallURL(linkuninstall);
 
 function initwelcome(){
 	chrome.storage.sync.get(["firstRun"], function(chromeset){
@@ -407,4 +445,7 @@ function installation(){
 chrome.runtime.onInstalled.addListener(function(){
 	installation();
 	init();
+	if(chrome.runtime.setUninstallURL){
+		chrome.runtime.setUninstallURL(linkuninstall);
+	}
 });

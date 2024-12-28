@@ -29,7 +29,6 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 #stefanvdnavwrappe:not(:defined) > * {display:none}
 .stefanvdhidden{display:none}
 #stefanvdnavwrappe{margin:0 auto;background-color:#2D2D2D;height:30px;width:100%;-webkit-user-select:none;user-select:none}
-
 #stefanvdnavwrappe #stefanvdpropermenubarnav{-webkit-font-smoothing:antialiased;font-family:Arial,Helvetica,sans-serif!important;font-size:13px;padding-top:4px;width:100%!important}
 #stefanvdnavwrappe #stefanvdpropermenubarnav,#stefanvdnavwrappe #stefanvdpropermenubarnav ul{padding:0;margin:0;list-style:none;font-family:Arial,Helvetica,sans-serif}
 #stefanvdnavwrappe #stefanvdpropermenubarnav .stefanvdpropermenubarroot{display:flex;flex-wrap:nowrap}
@@ -47,12 +46,27 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 /* Browser menu bar */
 #stefanvdnavwrappe hr{margin:0;height:1px;background:gray;width:100%;border:0}
 #stefanvdpropermenubarbrowserdropdown{position:relative;display:inline-block}
-#stefanvdnavwrappe #panelfile, #stefanvdnavwrappe #paneledit, #stefanvdnavwrappe #panelview, #stefanvdnavwrappe #panelhistory, #stefanvdnavwrappe #panelbookmarks, #stefanvdnavwrappe #panelwindow, #stefanvdnavwrappe #panelhelp{min-width:200px;display:none;position:absolute;box-shadow:0px 8px 16px 0px rgba(0,0,0,0.2);background:white;padding:0;border-bottom-right-radius:5px;border-bottom-left-radius:5px;overflow:hidden;padding-bottom:5px}
+#stefanvdnavwrappe #panelfile, #stefanvdnavwrappe #paneledit, #stefanvdnavwrappe #panelview, #stefanvdnavwrappe #panelhistory, #stefanvdnavwrappe #panelbookmarks, #stefanvdnavwrappe #panelwindow, #stefanvdnavwrappe #panelhelp{min-width:200px;display:none;position:absolute;box-shadow:0px 8px 16px 0px rgba(0,0,0,0.2);background:white;padding:0;overflow:hidden;padding-bottom:5px}
 #stefanvdnavwrappe #panelfile li, #stefanvdnavwrappe #paneledit li, #stefanvdnavwrappe #panelview li, #stefanvdnavwrappe #panelhistory li, #stefanvdnavwrappe #panelbookmarks li, #stefanvdnavwrappe #panelwindow li, #stefanvdnavwrappe #panelhelp li{width:100%}
 #stefanvdnavwrappe #btnfile:hover #panelfile li, #stefanvdnavwrappe #btnedit:hover #paneledit li, #stefanvdnavwrappe #btnview:hover #panelview li, #stefanvdnavwrappe #btnhistory:hover #panelhistory li, #stefanvdnavwrappe #btnbookmarks:hover #panelbookmarks li, #stefanvdnavwrappe #btnwindow:hover #panelwindow li, #stefanvdnavwrappe #btnhelp:hover #panelhelp li{width:100%;color:#fff;text-align:left}
 #stefanvdnavwrappe #btnfile:hover #panelfile li:hover, #stefanvdnavwrappe #btnedit:hover #paneledit li:hover, #stefanvdnavwrappe #btnview:hover #panelview li:hover, #stefanvdnavwrappe #btnhistory:hover #panelhistory li:hover, #stefanvdnavwrappe #btnbookmarks:hover #panelbookmarks li:hover, #stefanvdnavwrappe #btnwindow:hover #panelwindow li:hover, #stefanvdnavwrappe #btnhelp:hover #panelhelp li:hover{color:#fff;opacity:.8}
 #stefanvdnavwrappe #btnfile:checked ~ .panelfile, #stefanvdnavwrappe #btnedit:checked ~ .paneledit, #stefanvdnavwrappe #btnview:checked ~ .panelview, #stefanvdnavwrappe #btnhistory:checked ~ .panelhistory, #stefanvdnavwrappe #btnbookmarks:checked ~ .panelbookmarks, #stefanvdnavwrappe #btnwindow:checked ~ .panelwindow, #stefanvdnavwrappe #btnhelp:checked ~ .panelhelp{display:block}
 #stefanvdnavwrappe input{display:none}
+/* Border floating panel */
+#stefanvdnavwrappe[data-bar="top"] #panelfile, #stefanvdnavwrappe[data-bar="top"] #paneledit, #stefanvdnavwrappe[data-bar="top"] #panelview, #stefanvdnavwrappe[data-bar="top"] #panelhistory, #stefanvdnavwrappe[data-bar="top"] #panelbookmarks, #stefanvdnavwrappe[data-bar="top"] #panelwindow, #stefanvdnavwrappe[data-bar="top"] #panelhelp{border-bottom-right-radius:5px;border-bottom-left-radius:5px}
+#stefanvdnavwrappe[data-bar="bottom"] #panelfile, #stefanvdnavwrappe[data-bar="bottom"] #paneledit, #stefanvdnavwrappe[data-bar="bottom"] #panelview, #stefanvdnavwrappe[data-bar="bottom"] #panelhistory, #stefanvdnavwrappe[data-bar="bottom"] #panelbookmarks, #stefanvdnavwrappe[data-bar="bottom"] #panelwindow, #stefanvdnavwrappe[data-bar="bottom"] #panelhelp{border-top-right-radius:5px;border-top-left-radius:5px}
+/* Browser bookmarks */
+#menubookmarks{z-index:3000;border-radius:5px;box-shadow:0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 8px 0 rgba(0, 0, 0, 0.12)}
+.submenu-panel{border-radius:5px;box-shadow:0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 8px 0 rgba(0, 0, 0, 0.12)}
+.showitem{display:block}
+.hideitem{display:none}
+#menubookmarks ul:empty, .submenu-panel ul:empty{display:none}
+#menubookmarks ul, .submenu-panel ul{border-radius:4px;list-style:none;padding:5px 0 5px 0;margin:0}
+#menubookmarks ul li,.submenu-panel ul li{position:relative;height:30px;user-select:none;width:100%;display:flex}
+#menubookmarks ul li a ,.submenu-panel ul li a{font-family:Arial,Helvetica,sans-serif!important;font-size:12px;display:inline-block;height:100%;line-height:30px;user-select:none;padding:0 18px 0 7px;cursor:pointer;justify-content:flex-start;align-items:center;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%}
+#menubookmarks ul li a img, .submenu-panel ul li a img{display:inline-block;vertical-align:middle}
+#menubookmarks ul li a div, .submenu-panel ul li a div{display:initial;margin-left:8px;vertical-align:middle}
+#menubookmarks ul li span, .submenu-panel ul li span{padding-left:16px;cursor:pointer;display:flex;justify-content:flex-start;align-items:center}
 @media print{
 #stefanvdpropermenubar{display:none!important}
 }

@@ -31,27 +31,37 @@ if(window.top !== window && window.parent === window.top){
 	chrome.runtime.sendMessage({name: "sidepanelopen"}, (b) => {
 		if(b){
 			const origin = chrome.runtime.getURL("");
-			const sendNavigateMessage = () => top.postMessage({method: "navigate", href: location.href}, origin);
+			let iframeId = null;
+
+			const sendNavigateMessage = () => {
+				if(iframeId){
+					top.postMessage({method: "navigate", href: location.href, iframeId}, origin);
+				}
+			};
 
 			addEventListener("hashchange", sendNavigateMessage);
 			addEventListener("load", sendNavigateMessage);
 			addEventListener("popstate", sendNavigateMessage);
 			addEventListener("message", (e) => {
-				if(e.data?.method === "navigate-verified" && e.origin.includes(chrome.runtime.id)){
+				if(e.data?.method === "setIframeId"){
+					iframeId = e.data.iframeId;
+					const href = location.href;
+					if(iframeId){
+						top.postMessage({method: "navigate", href, iframeId}, origin);
+					}
+				}else if(e.data?.method === "navigate-verified" && e.origin.includes(chrome.runtime.id)){
 					navigation.addEventListener("navigate", (e) => {
 						const href = e.destination.url;
-						top.postMessage({
-							method: "complete",
-							href
-						}, origin);
+						if(iframeId){
+							top.postMessage({method: "complete", href, iframeId}, origin);
+						}
 					});
 
 					// Trigger the "complete" message on initial load
 					const href = location.href;
-					top.postMessage({
-						method: "complete",
-						href
-					}, origin);
+					if(iframeId){
+						top.postMessage({method: "complete", href, iframeId}, origin);
+					}
 				}else if(e.data?.method === "changeZoomScale"){
 					document.body.style.zoom = e.data.zoom;
 				}else if(e.data?.method === "goBackWebpage"){
@@ -60,6 +70,10 @@ if(window.top !== window && window.parent === window.top){
 					window.history.forward();
 				}else if(e.data?.method == "goReloadWebpage"){
 					location.reload();
+				}else if(e.data?.method == "goMuteOnWebpage"){
+					toggleMuteOn();
+				}else if(e.data?.method == "goMuteOffWebpage"){
+					toggleMuteOff();
 				}
 			});
 
@@ -67,4 +81,40 @@ if(window.top !== window && window.parent === window.top){
 			sendNavigateMessage();
 		}
 	});
+}
+
+function toggleMuteOn(){
+	// Find all video elements on the page and mute them
+	const videos = document.querySelectorAll("video");
+	videos.forEach((video) => {
+		video.muted = true;
+	});
+
+	// Use a MutationObserver to ensure dynamically added videos are muted
+	const observer = new MutationObserver(() => {
+		const newVideos = document.querySelectorAll("video:not([data-muted])");
+		newVideos.forEach((video) => {
+			video.muted = true;
+			video.setAttribute("data-muted", "true"); // Mark as processed
+		});
+	});
+
+	observer.observe(document.body, {childList: true, subtree: true});
+
+	// Store the observer so it can be disconnected when muting is turned off
+	window._videoMuteObserver = observer;
+}
+
+function toggleMuteOff(){
+	// Unmute all video elements on the page
+	const videos = document.querySelectorAll("video");
+	videos.forEach((video) => {
+		video.muted = false;
+	});
+
+	// Disconnect the MutationObserver if it's active
+	if(window._videoMuteObserver){
+		window._videoMuteObserver.disconnect();
+		delete window._videoMuteObserver;
+	}
 }
