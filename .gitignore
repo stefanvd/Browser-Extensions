@@ -1,1 +1,5 @@
 .DS_Store
+/node_modules
+/obj/Debug
+/.vs/Browser-Extensions/FileContentIndex
+/.vs/Browser-Extensions/v17
