@@ -3,7 +3,7 @@
 
 Date Today
 The best clock to see in one glance the current day and time. With an option to see the digital clock in the browser toolbar.
-Copyright (C) 2024 Stefan vd
+Copyright (C) 2025 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -213,6 +213,10 @@ document.addEventListener("DOMContentLoaded", function(){
 			var m = time.getMinutes();
 			// var s = time.getSeconds();
 
+			$("daynumber").innerText = this_date;
+			$("month").innerText = this_month_name_array[this_month];
+			$("day").innerText = this_weekday_name_array[this_weekday];
+
 			if(twelfh == true){
 				if(h >= 12){ h -= 12; tic = "pm "; }else{ tic = "am "; }
 				if(h == 0){ h = 12; }
@@ -285,9 +289,6 @@ document.addEventListener("DOMContentLoaded", function(){
 		tic = null;
 
 		startTime();
-		$("daynumber").innerText = this_date;
-		$("month").innerText = this_month_name_array[this_month];
-		$("day").innerText = this_weekday_name_array[this_weekday];
 
 		$("remembernever").addEventListener("change", function(){
 			if($("remembernever").checked == true){ chrome.storage.sync.set({"optionskipremember": true}); }else{ chrome.storage.sync.set({"optionskipremember": false}); }
