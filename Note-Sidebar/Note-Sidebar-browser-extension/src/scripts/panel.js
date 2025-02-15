@@ -3,7 +3,7 @@
 
 Note Sidebar
 Simple note sidebar which can be used to write a note, record thoughts, to-do list, meeting notes, etc.
-Copyright (C) 2024 Stefan vd
+Copyright (C) 2025 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -26,7 +26,45 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-var maintext; var powertext; var theValue; var multiValue; var counter; var copy; var speech; var voices; var fontsize; var lineheight; var colorlight; var colordark; var backgroundlight; var backgrounddark; var backgroundcolor; var backgroundimage; var backgroundsource; var backgroundsize; var printicon; var password; var enterpassword; var richtext; var plaintext; var multiple; var preventclose; var texttabname; var save; var bartabdesign; var barselectdesign; var download; var find; var textarea; var highlightedText; var searchInput; var searchBox;
+var maintext; var powertext; var txtvalue; var multivalue; var counter; var copy; var speech; var voices; var fontsize; var lineheight; var colorlight; var colordark; var backgroundlight; var backgrounddark; var backgroundcolor; var backgroundimage; var backgroundsource; var backgroundsize; var printicon; var password; var enterpassword; var richtext; var plaintext; var multiple; var preventclose; var texttabname; var save; var bartabdesign; var barselectdesign; var download; var find; var textarea; var highlightedText; var searchInput; var searchBox; var richtexttoolbar;
+
+function wrapText(tag){
+	let selection = window.getSelection();
+	if(!selection.rangeCount)return;
+	let range = selection.getRangeAt(0);
+	let span = document.createElement(tag);
+	span.appendChild(range.extractContents());
+	range.insertNode(span);
+	notesave();
+}
+
+function changeBlockStyle(tag){
+	let selection = window.getSelection();
+	if(!selection.rangeCount)return;
+	let range = selection.getRangeAt(0);
+	let parent = selection.focusNode.parentElement;
+
+	if(parent && parent.tagName.toLowerCase() !== "div"){
+		let newElement = document.createElement(tag);
+		newElement.innerHTML = parent.innerHTML.replace(/\n/g, "<br>");
+		parent.replaceWith(newElement);
+	}else{
+		let newElement = document.createElement(tag);
+		newElement.innerHTML = range.extractContents().textContent.replace(/\n/g, "<br>");
+		range.deleteContents();
+		range.insertNode(newElement);
+	}
+	notesave();
+}
+
+function clearFormatting(){
+	let editor = document.getElementById("powertext");
+	let text = editor.innerHTML.replace(/<[^>]+>/g, function(match){
+		return match === "<br>" ? "<br>" : "";
+	});
+	editor.innerHTML = `${text}`;
+	notesave();
+}
 
 function notesave(){
 	var savingtext;
@@ -39,13 +77,13 @@ function notesave(){
 	if(multiple == true){
 		var previoustab = document.getElementById("tabstrip").dataset.active;
 		if(plaintext == true){
-			multiValue[previoustab].note = savingtext;
+			multivalue[previoustab].note = savingtext;
 		}else if(richtext == true){
-			multiValue[previoustab].note = savingtext;
+			multivalue[previoustab].note = savingtext;
 		}
-		chrome.runtime.sendMessage({name: "newmultinotetext", value: multiValue});
+		chrome.runtime.sendMessage({name: "newmultinotetext", value: multivalue});
 	}else{
-		theValue = savingtext;
+		txtvalue = savingtext;
 		chrome.runtime.sendMessage({name: "newnotetext", value: savingtext});
 	}
 }
@@ -102,7 +140,7 @@ function setActiveTab(tab){
 
 function setActiveTabContent(numb){
 	// Retrieve the note value
-	var noteValue = multiValue[numb].note;
+	var noteValue = multivalue[numb].note;
 	if(!noteValue){
 		noteValue = "";
 	}
@@ -115,7 +153,7 @@ function setActiveTabContent(numb){
 }
 
 function createAllTabsInBar(){
-	var totaltabs = multiValue.length;
+	var totaltabs = multivalue.length;
 	// Loop to create the specified number of tabs
 	for(var i = 0; i < totaltabs; i++){
 		const newTab = document.createElement("div");
@@ -178,12 +216,12 @@ function removeTab(){
 	}
 
 	if(continueremove == true){
-		if(multiValue.length > 1){
+		if(multivalue.length > 1){
 			const index = document.getElementById("tabstrip").dataset.active;
-			multiValue = removeObjectAtIndex(index, multiValue);
+			multivalue = removeObjectAtIndex(index, multivalue);
 
-			document.getElementById("tabstrip").dataset.active = multiValue.length - 1;
-			setActiveTabContent(multiValue.length - 1);
+			document.getElementById("tabstrip").dataset.active = multivalue.length - 1;
+			setActiveTabContent(multivalue.length - 1);
 
 			notesave();
 
@@ -251,10 +289,10 @@ function createNewTab(){
 	}
 
 	// Adding a new object to the array
-	multiValue.push({"note": ""});
+	multivalue.push({"note": ""});
 	// set the current active tab
-	document.getElementById("tabstrip").dataset.active = multiValue.length - 1;
-	setActiveTabContent(multiValue.length - 1);
+	document.getElementById("tabstrip").dataset.active = multivalue.length - 1;
+	setActiveTabContent(multivalue.length - 1);
 	notesave();
 }
 // End tabs functions
@@ -312,9 +350,9 @@ function switchtab(number){
 	// save previous text
 	var previoustab = document.getElementById("tabstrip").dataset.active;
 	if(plaintext == true){
-		multiValue[previoustab].note = document.getElementById("maintext").value;
+		multivalue[previoustab].note = document.getElementById("maintext").value;
 	}else if(richtext == true){
-		multiValue[previoustab].note = document.getElementById("powertext").innerHTML;
+		multivalue[previoustab].note = document.getElementById("powertext").innerHTML;
 	}
 
 	// change tab
@@ -346,9 +384,9 @@ function init(){
 		// save previous text
 		var previoustab = document.getElementById("tabstrip").dataset.active;
 		if(plaintext == true){
-			multiValue[previoustab].note = document.getElementById("maintext").value;
+			multivalue[previoustab].note = document.getElementById("maintext").value;
 		}else if(richtext == true){
-			multiValue[previoustab].note = document.getElementById("powertext").innerHTML;
+			multivalue[previoustab].note = document.getElementById("powertext").innerHTML;
 		}
 
 		// change tab
@@ -387,12 +425,12 @@ function init(){
 			}
 
 			if(continueremove == true){
-				if(multiValue.length > 1){
+				if(multivalue.length > 1){
 					const index = [...event.target.parentNode.parentNode.children].indexOf(event.target.parentNode);
-					multiValue = removeObjectAtIndex(index, multiValue);
+					multivalue = removeObjectAtIndex(index, multivalue);
 
-					document.getElementById("tabstrip").dataset.active = multiValue.length - 1;
-					setActiveTabContent(multiValue.length - 1);
+					document.getElementById("tabstrip").dataset.active = multivalue.length - 1;
+					setActiveTabContent(multivalue.length - 1);
 
 					notesave();
 
@@ -423,9 +461,9 @@ function init(){
 
 	maintext = document.querySelector("#maintext");
 	powertext = document.querySelector("#powertext");
-	chrome.storage.sync.get(["firstDate", "optionskipremember", "txtvalue", "multivalue", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsource", "backgroundsize", "print", "password", "enterpassword", "richtext", "plaintext", "multiple", "preventclose", "texttabname", "save", "bartabdesign", "barselectdesign", "download", "find"], function(items){
-		theValue = items["txtvalue"]; if(theValue == null){ theValue = i18nfirsttext; }
-		multiValue = items["multivalue"]; if(multiValue == null){ multiValue = [{"note":i18nfirsttext}]; }
+	chrome.storage.sync.get(["firstDate", "optionskipremember", "txtvalue", "multivalue", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsource", "backgroundsize", "print", "password", "enterpassword", "richtext", "plaintext", "multiple", "preventclose", "texttabname", "save", "bartabdesign", "barselectdesign", "download", "find", "richtexttoolbar"], function(items){
+		txtvalue = items["txtvalue"]; if(txtvalue == null){ txtvalue = i18nfirsttext; }
+		multivalue = items["multivalue"]; if(multivalue == null){ multivalue = [{"note":i18nfirsttext}]; }
 		counter = items["counter"]; if(counter == null){ counter = true; }
 		copy = items["copy"]; if(copy == null){ copy = true; }
 		speech = items["speech"]; if(speech == null){ speech = true; }
@@ -453,6 +491,39 @@ function init(){
 		barselectdesign = items["barselectdesign"]; if(barselectdesign == null){ barselectdesign = false; }
 		download = items["download"]; if(download == null){ download = false; }
 		find = items["find"]; if(find == null){ find = false; }
+		find = items["find"]; if(find == null){ find = false; }
+		richtexttoolbar = items["richtexttoolbar"]; if(richtexttoolbar == null){ richtexttoolbar = false; }
+
+		if(richtexttoolbar == true){
+			document.getElementById("richtexttoolbar").className = "richtexttoolbar";
+		}else{
+			document.getElementById("richtexttoolbar").className = "hidden";
+		}
+
+		document.getElementById("btnbold").addEventListener("click", function(){
+			wrapText("b");
+		}, false);
+		document.getElementById("btnitalic").addEventListener("click", function(){
+			wrapText("i");
+		}, false);
+		document.getElementById("btnunderline").addEventListener("click", function(){
+			wrapText("u");
+		}, false);
+		document.getElementById("btnstrikethrough").addEventListener("click", function(){
+			wrapText("s");
+		}, false);
+		document.getElementById("btnh1").addEventListener("click", function(){
+			changeBlockStyle("h1");
+		}, false);
+		document.getElementById("btnh2").addEventListener("click", function(){
+			changeBlockStyle("h2");
+		}, false);
+		document.getElementById("btnp").addEventListener("click", function(){
+			changeBlockStyle("p");
+		}, false);
+		document.getElementById("btnclearformat").addEventListener("click", function(){
+			clearFormatting();
+		}, false);
 
 		if(password == true){
 			var darklayer = document.createElement("div");
@@ -692,6 +763,10 @@ function updatebackgroundpaper(){
 	}
 }
 
+function stripHtmlTags(str){
+	return str.replace(/<[^>]*>/g, ""); // Removes all HTML tags
+}
+
 function updatetabname(){
 	if(texttabname == true){
 		if(multiple == true){
@@ -703,9 +778,14 @@ function updatetabname(){
 
 			// Loop through each tab title
 			tabTitles.forEach(function(title, index){
+				// Ensure the note exists before processing
+				var noteText = multivalue[index]?.note || "";
+
 				// Get the first line of the note text
-				var firstLine = multiValue[index].note.split("\n")[0].trim();
-				if(firstLine == ""){
+				var firstLine = noteText.split("\n")[0].trim();
+				firstLine = stripHtmlTags(firstLine);
+
+				if(!firstLine){
 					// If note text is empty, show default text with index number
 					firstLine = i18nnote + (index + 1);
 				}else if(firstLine.length > 15){
@@ -714,7 +794,9 @@ function updatetabname(){
 				}
 
 				// Update the tab title with the first line of the note text
-				title.textContent = firstLine;
+				if(title){
+					title.textContent = firstLine;
+				}
 
 				// Also update the select option text
 				if(selectElement){
@@ -1025,10 +1107,19 @@ function applyStyles(multiple, richtext){
 	if(multiple){
 		// multiple notes
 		if(richtext){
-			document.getElementById("tabstrip").className = "tab-bar";
-			document.getElementById("powertext").className = "enablebar";
-			document.getElementById("highlighted-text").className = "enablebar";
+			if(richtexttoolbar == true){
+				document.getElementById("richtexttoolbar").className = "richtexttoolbar";
+				document.getElementById("tabstrip").className = "tab-bar";
+				document.getElementById("powertext").className = "enablerichbarmulti";
+				document.getElementById("highlighted-text").className = "enablerichbarmulti";
+			}else{
+				document.getElementById("richtexttoolbar").className = "hidden";
+				document.getElementById("tabstrip").className = "tab-bar";
+				document.getElementById("powertext").className = "enablebar";
+				document.getElementById("highlighted-text").className = "enablebar";
+			}
 		}else{
+			document.getElementById("richtexttoolbar").className = "hidden";
 			document.getElementById("tabstrip").className = "tab-bar";
 			document.getElementById("maintext").className = "enablebar";
 			document.getElementById("highlighted-text").className = "enablebar";
@@ -1036,10 +1127,19 @@ function applyStyles(multiple, richtext){
 	}else{
 		// single note
 		if(richtext){
-			document.getElementById("tabstrip").className = "hidden";
-			document.getElementById("powertext").className = "regularbar";
-			document.getElementById("highlighted-text").className = "regularbar";
+			if(richtexttoolbar == true){
+				document.getElementById("richtexttoolbar").className = "richtexttoolbar";
+				document.getElementById("tabstrip").className = "hidden";
+				document.getElementById("powertext").className = "enablerichbarsingle";
+				document.getElementById("highlighted-text").className = "enablerichbarsingle";
+			}else{
+				document.getElementById("richtexttoolbar").className = "hidden";
+				document.getElementById("tabstrip").className = "hidden";
+				document.getElementById("powertext").className = "regularbar";
+				document.getElementById("highlighted-text").className = "regularbar";
+			}
 		}else{
+			document.getElementById("richtexttoolbar").className = "hidden";
 			document.getElementById("tabstrip").className = "hidden";
 			document.getElementById("maintext").className = "regularbar";
 			document.getElementById("highlighted-text").className = "regularbar";
@@ -1049,7 +1149,7 @@ function applyStyles(multiple, richtext){
 
 function createTabContent(){
 	if(multiple == true){
-		if(multiValue == null){ multiValue = [{"note":i18nfirsttext}]; }
+		if(multivalue == null){ multivalue = [{"note":i18nfirsttext}]; }
 
 		if(bartabdesign == true){
 			document.getElementById("tabstrip").setAttribute("data-hide", "false");
@@ -1074,15 +1174,15 @@ function createTabContent(){
 		}
 	}else{
 		if(plaintext == true){
-			if(!theValue){
-				theValue = "";
+			if(!txtvalue){
+				txtvalue = "";
 			}
-			maintext.value = theValue;
+			maintext.value = txtvalue;
 		}else if(richtext == true){
-			if(!theValue){
-				theValue = "";
+			if(!txtvalue){
+				txtvalue = "";
 			}
-			powertext.innerHTML = theValue;
+			powertext.innerHTML = txtvalue;
 		}
 	}
 
@@ -1103,8 +1203,8 @@ chrome.runtime.onMessage.addListener(function(request){
 		}
 		updatetabname();
 	}else if(request.msg == "setnotemulti"){
-		multiValue = request.value;
-		applyStyles(request.value, richtext);
+		multivalue = request.value;
+		applyStyles(multivalue, richtext);
 		createTabContent();
 		updatetabname();
 	}else if(request.msg == "setcounter"){
@@ -1176,38 +1276,44 @@ chrome.runtime.onMessage.addListener(function(request){
 		location.reload();
 	}else if(request.msg == "setmultiple"){
 		multiple = request.value;
-		theValue = request.singletext;
-		multiValue = request.tabtext;
-		applyStyles(request.value, richtext);
+		txtvalue = request.singletext;
+		multivalue = request.tabtext;
+		applyStyles(multiple, richtext);
 		createTabContent();
+
+		updatetabname();
 	}else if(request.msg == "setpreventclose"){
-		if(request.value == true){
-			preventclose = true;
-		}else{
-			preventclose = false;
+		if(multiple == true){
+			if(request.value == true){
+				preventclose = true;
+			}else{
+				preventclose = false;
+			}
 		}
 	}else if(request.msg == "settexttabname"){
-		hideSearchBox();
-		if(request.value == true){
-			texttabname = true;
-			updatetabname();
-		}else{
-			texttabname = false;
-			if(bartabdesign == true){
-				document.getElementById("tabstrip").setAttribute("data-hide", "false");
+		if(multiple == true){
+			hideSearchBox();
+			if(request.value == true){
+				texttabname = true;
+				updatetabname();
 			}else{
-				document.getElementById("tabstrip").setAttribute("data-hide", "true");
+				texttabname = false;
+				if(bartabdesign == true){
+					document.getElementById("tabstrip").setAttribute("data-hide", "false");
+				}else{
+					document.getElementById("tabstrip").setAttribute("data-hide", "true");
+				}
+				// remove all tabs
+				removeTabs();
+				createAllTabsInBar();
+				// set the current active tab
+				document.getElementById("tabstrip").dataset.active = 0;
+				const tabs = document.querySelectorAll(".tab");
+				tabs.forEach((t) => t.classList.remove("active"));
+				const firstTab = tabs[0];
+				firstTab.classList.add("active");
+				setActiveTabContent(0);
 			}
-			// remove all tabs
-			removeTabs();
-			createAllTabsInBar();
-			// set the current active tab
-			document.getElementById("tabstrip").dataset.active = 0;
-			const tabs = document.querySelectorAll(".tab");
-			tabs.forEach((t) => t.classList.remove("active"));
-			const firstTab = tabs[0];
-			firstTab.classList.add("active");
-			setActiveTabContent(0);
 		}
 	}else if(request.msg == "setlineheight"){
 		lineheight = request.value;
@@ -1269,5 +1375,13 @@ chrome.runtime.onMessage.addListener(function(request){
 		}else{
 			document.getElementById("findtext").className = "hidden";
 		}
+	}else if(request.msg == "setrichtexttoolbar"){
+		richtexttoolbar = request.value;
+		if(richtexttoolbar == true){
+			document.getElementById("richtexttoolbar").className = "richtexttoolbar";
+		}else{
+			document.getElementById("richtexttoolbar").className = "hidden";
+		}
+		applyStyles(multiple, richtext);
 	}
 });

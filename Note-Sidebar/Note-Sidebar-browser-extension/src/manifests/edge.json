@@ -19,5 +19,5 @@
   },
   "offline_enabled": true,
   "minimum_chrome_version": "114",
-  "permissions": ["contextMenus", "storage", "sidePanel", "unlimitedStorage"]
+  "permissions": ["contextMenus", "storage", "sidePanel", "unlimitedStorage", "scripting", "activeTab"]
 }

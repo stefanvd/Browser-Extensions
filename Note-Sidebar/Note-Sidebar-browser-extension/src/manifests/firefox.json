@@ -36,7 +36,7 @@
       }
     }
   },
-  "permissions": ["contextMenus", "storage", "unlimitedStorage"],
+  "permissions": ["contextMenus", "storage", "unlimitedStorage", "scripting", "activeTab"],
   "browser_specific_settings": {
     "gecko": {
         "id": "notesidebar@stefanvd.net",

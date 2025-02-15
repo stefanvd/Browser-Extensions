@@ -3,7 +3,7 @@
 
 Note Sidebar
 Simple note sidebar which can be used to write a note, record thoughts, to-do list, meeting notes, etc.
-Copyright (C) 2024 Stefan vd
+Copyright (C) 2025 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -92,10 +92,10 @@ var currentmultinotetext;
 
 function init(){
 	chrome.storage.sync.get(["txtvalue", "multivalue"], function(items){
-		var theValue = items["txtvalue"]; if(theValue == null){ theValue = i18nfirsttext; }
-		var multiValue = items["multivalue"]; if(multiValue == null){ multiValue = [{"note":i18nfirsttext}]; }
-		currentnotetext = theValue;
-		currentmultinotetext = multiValue;
+		var txtvalue = items["txtvalue"]; if(txtvalue == null){ txtvalue = i18nfirsttext; }
+		var multivalue = items["multivalue"]; if(multivalue == null){ multivalue = [{"note":i18nfirsttext}]; }
+		currentnotetext = txtvalue;
+		currentmultinotetext = multivalue;
 	});
 }
 
@@ -104,6 +104,25 @@ chrome.runtime.onConnect.addListener((port) => {
 		port.onDisconnect.addListener(() => {
 			// console.log("Notesidebar Sidepanel closed");
 			chrome.storage.sync.set({"txtvalue": currentnotetext, "multivalue": currentmultinotetext});
+		});
+	}
+});
+
+chrome.commands.onCommand.addListener((command) => {
+	if(command === "copytext_action"){
+		chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+			if(tabs.length === 0)return;
+			chrome.scripting.executeScript({target: {tabId: tabs[0].id},
+				function: () => window.getSelection().toString()
+			}, (injectionResults) => {
+				if(chrome.runtime.lastError){
+					console.error(chrome.runtime.lastError.message);
+					return;
+				}
+				const selectedtext = injectionResults[0].result;
+				// console.log("hello copy= " + selectedtext);
+				addTextToLastContentNote(selectedtext);
+			});
 		});
 	}
 });
@@ -134,38 +153,60 @@ function onClickHandler(info){
 		chrome.tabs.create({url: "https://api.whatsapp.com/send?text=" + chrome.i18n.getMessage("sharetextd") + "%0a" + linkproduct, active:true});
 	}else if(info.menuItemId == "snpage"){
 		var selectedtext = info.selectionText;
-		chrome.storage.sync.get(["txtvalue", "richtext", "plaintext", "multiple", "multivalue"], function(items){
-			var theValue = items["txtvalue"]; if(theValue == null){ theValue = i18nfirsttext; }
-			var richtext = items["richtext"]; if(richtext == null){ richtext = false; }
-			var plaintext = items["plaintext"]; if(plaintext == null){ plaintext = true; }
-			var multiple = items["multiple"]; if(multiple == null){ multiple = false; }
-			var multiValue = items["multivalue"]; if(multiValue == null){ multiValue = [{"note":i18nfirsttext}]; }
-
-			// add text on next line
-			if(multiple == true){
-				// multiple note
-				var noteValue = multiValue[0].note;
-				if(richtext == true){
-					noteValue = noteValue + "<br>" + selectedtext;
-				}else{
-					noteValue = noteValue + "\n" + selectedtext;
-				}
-				multiValue[0].note = noteValue;
-				currentmultinotetext = multiValue;
-				chrome.storage.sync.set({"multivalue": currentmultinotetext});
-				chrome.runtime.sendMessage({msg: "setnotemulti", value: currentmultinotetext});
-			}else{
-				// single note
-				if(richtext == true){
-					currentnotetext = theValue + "<br>" + selectedtext;
-				}else{
-					currentnotetext = theValue + "\n" + selectedtext;
-				}
-				chrome.storage.sync.set({"txtvalue": currentnotetext});
-				chrome.runtime.sendMessage({msg: "setnotetext", value: currentnotetext});
-			}
-		});
+		addTextToLastContentNote(selectedtext);
 	}
+}
+
+function addTextToLastContentNote(thatselectedtext){
+	chrome.storage.sync.get(["txtvalue", "richtext", "plaintext", "multiple", "multivalue"], function(items){
+		var txtvalue = items["txtvalue"]; if(txtvalue == null){ txtvalue = i18nfirsttext; }
+		var richtext = items["richtext"]; if(richtext == null){ richtext = false; }
+		var plaintext = items["plaintext"]; if(plaintext == null){ plaintext = true; }
+		var multiple = items["multiple"]; if(multiple == null){ multiple = false; }
+		var multivalue = items["multivalue"]; if(multivalue == null){ multivalue = [{"note":i18nfirsttext}]; }
+
+		// add text on next line
+		if(multiple == true){
+			// multiple note
+			var noteValue = multivalue[0].note;
+			if(richtext == true){
+				noteValue = noteValue + "<br>" + thatselectedtext;
+			}else{
+				noteValue = noteValue + "\n" + thatselectedtext;
+			}
+			multivalue[0].note = noteValue;
+			currentmultinotetext = multivalue;
+			chrome.storage.sync.set({"multivalue": currentmultinotetext});
+
+			chrome.runtime.sendMessage({msg: "setnotemulti", value: currentmultinotetext}, function(){
+				var lastError = chrome.runtime.lastError;
+				if(lastError){
+					// error panel not open
+					// console.log(lastError.message);
+					// 'Could not establish connection. Receiving end does not exist.'
+					return;
+				}
+			});
+		}else{
+			// single note
+			if(richtext == true){
+				currentnotetext = txtvalue + "<br>" + thatselectedtext;
+			}else{
+				currentnotetext = txtvalue + "\n" + thatselectedtext;
+			}
+			chrome.storage.sync.set({"txtvalue": currentnotetext});
+
+			chrome.runtime.sendMessage({msg: "setnotetext", value: currentnotetext}, function(){
+				var lastError = chrome.runtime.lastError;
+				if(lastError){
+					// error panel not open
+					// console.log(lastError.message);
+					// 'Could not establish connection. Receiving end does not exist.'
+					return;
+				}
+			});
+		}
+	});
 }
 
 // check to remove all contextmenus
@@ -290,6 +331,13 @@ function onchangestorage(a, b, c, d){
 	}
 }
 
+async function getCurrentTab(){
+	let queryOptions = {active: true, currentWindow: true};
+	let tabs = await chrome.tabs.query(queryOptions);
+	return tabs[0];
+}
+
+
 chrome.storage.sync.get(["icon"], function(items){
 	if(items["icon"] == undefined){
 		if(exbrowser == "safari"){
@@ -298,7 +346,7 @@ chrome.storage.sync.get(["icon"], function(items){
 			items["icon"] = "/images/icon38.png";
 		}
 	}
-	if(chrome.action){
+	if(chrome.action && typeof chrome.action.setIcon === "function"){
 		chrome.action.setIcon({
 			path : {
 				"19": items["icon"],
@@ -308,6 +356,24 @@ chrome.storage.sync.get(["icon"], function(items){
 	}
 });
 
+// update on refresh tab
+chrome.tabs.onUpdated.addListener(function(){
+	getCurrentTab().then((thattab) => {
+		chrome.storage.sync.get(["icon"], function(items){
+			if(items["icon"] == undefined){
+				if(exbrowser == "safari"){
+					items["icon"] = "/images/icon38.png";
+				}else{
+					items["icon"] = "/images/icon38.png";
+				}
+			}
+			if(chrome.action && typeof chrome.action.setIcon === "function"){
+				chrome.action.setIcon({tabId : thattab.id, path : {"19": items["icon"], "38": items["icon"]}});
+			}
+		});
+	});
+});
+
 chrome.storage.onChanged.addListener(function(changes){
 	onchangestorage(changes, "contextmenus", checkcontextmenus, removecontexmenus);
 	if(changes["icon"]){
@@ -315,12 +381,14 @@ chrome.storage.onChanged.addListener(function(changes){
 			chrome.tabs.query({}, function(tabs){
 				var i, l = tabs.length;
 				for(i = 0; i < l; i++){
-					chrome.action.setIcon({tabId : tabs[i].id,
-						path : {
-							"19": changes["icon"].newValue,
-							"38": changes["icon"].newValue
-						}
-					});
+					if(chrome.action && typeof chrome.action.setIcon === "function"){
+						chrome.action.setIcon({tabId : tabs[i].id,
+							path : {
+								"19": changes["icon"].newValue,
+								"38": changes["icon"].newValue
+							}
+						});
+					}
 				}
 			}
 			);
@@ -376,28 +444,31 @@ chrome.storage.onChanged.addListener(function(changes){
 	}
 	if(changes["multiple"]){
 		// convert to single text or multiple text
-		chrome.storage.sync.get(["txtvalue", "multiple", "multivalue"], function(items){
-			var theValue = items["txtvalue"]; if(theValue == null){ theValue = i18nfirsttext; }
-			var multiple = items["multiple"]; if(multiple == null){ multiple = false; }
-			var multiValue = items["multivalue"]; if(multiValue == null){ multiValue = [{"note":i18nfirsttext}]; }
+		const multiple = changes["multiple"].newValue;
+		chrome.storage.sync.get(["txtvalue", "multivalue"], function(items){
+			var txtvalue = items["txtvalue"]; if(txtvalue == null){ txtvalue = i18nfirsttext; }
+			var multivalue = items["multivalue"]; if(multivalue == null){ multivalue = [{"note":i18nfirsttext}]; }
 
-			if(multiple){
-				// Reset and convert txtvalue to multiValue
-				multiValue = theValue ? [{"note": theValue}] : [];
-				theValue = ""; // Reset txtvalue
-			}else{
-				// Reset and convert multiValue to txtvalue
-				theValue = multiValue.map((item) => item.note).join("\n");
-				multiValue = []; // Reset multiValue
+			// Only convert if there was a previous setting value
+			if(changes["multiple"].oldValue !== undefined){
+				if(multiple){
+					// Reset and convert txtvalue to multivalue
+					multivalue = txtvalue ? [{"note": txtvalue}] : [];
+					txtvalue = ""; // Reset txtvalue
+				}else{
+					// Reset and convert multivalue to txtvalue
+					txtvalue = multivalue.map((item) => item.note).join("\n");
+					multivalue = []; // Reset multivalue
+				}
 			}
 
 			// Save the updated values back to storage
-			chrome.storage.sync.set({"txtvalue": theValue, "multivalue": multiValue}, function(){
+			chrome.storage.sync.set({"txtvalue": txtvalue, "multivalue": multivalue}, function(){
 				// update background
-				currentnotetext = theValue;
-				currentmultinotetext = multiValue;
+				currentnotetext = txtvalue;
+				currentmultinotetext = multivalue;
 
-				chrome.runtime.sendMessage({msg: "setmultiple", value: changes["multiple"].newValue, singletext: theValue, tabtext: multiValue});
+				chrome.runtime.sendMessage({msg: "setmultiple", value: changes["multiple"].newValue, singletext: txtvalue, tabtext: multivalue});
 			});
 		});
 	}
@@ -425,6 +496,9 @@ chrome.storage.onChanged.addListener(function(changes){
 	}
 	if(changes["find"]){
 		chrome.runtime.sendMessage({msg: "setfind", value: changes["find"].newValue});
+	}
+	if(changes["richtexttoolbar"]){
+		chrome.runtime.sendMessage({msg: "setrichtexttoolbar", value: changes["richtexttoolbar"].newValue});
 	}
 });
 

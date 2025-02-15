@@ -3,7 +3,7 @@
 
 Note Sidebar
 Simple note sidebar which can be used to write a note, record thoughts, to-do list, meeting notes, etc.
-Copyright (C) 2024 Stefan vd
+Copyright (C) 2025 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -75,7 +75,7 @@ function defaultgetsettings(){
 
 // Option to save current value
 function save_options(){
-	chrome.storage.sync.set({"icon": $("btnpreview").src, "optionskipremember":$("optionskipremember").checked, "contextmenus":$("contextmenus").checked, "counter":$("counter").checked, "copy":$("copy").checked, "speech":$("speech").checked, "voices":$("voices").checked, "fontsize":$("fontsize").value, "lineheight":$("lineheight").value, "colorlight":$("colorlight").value, "colordark":$("colordark").value, "backgroundlight":$("backgroundlight").value, "backgrounddark":$("backgrounddark").value, "backgroundcolor":$("backgroundcolor").checked, "backgroundimage":$("backgroundimage").checked, "backgroundsize":$("backgroundsize").value, "print":$("print").checked, "password":$("password").checked, "richtext":$("richtext").checked, "plaintext":$("plaintext").checked, "multiple":$("multiple").checked, "preventclose":$("preventclose").checked, "texttabname":$("texttabname").checked, "save":$("save").checked, "bartabdesign":$("bartabdesign").checked, "barselectdesign":$("barselectdesign").checked, "download":$("download").checked, "find":$("find").checked});
+	chrome.storage.sync.set({"icon": $("btnpreview").src, "optionskipremember":$("optionskipremember").checked, "contextmenus":$("contextmenus").checked, "counter":$("counter").checked, "copy":$("copy").checked, "speech":$("speech").checked, "voices":$("voices").checked, "fontsize":$("fontsize").value, "lineheight":$("lineheight").value, "colorlight":$("colorlight").value, "colordark":$("colordark").value, "backgroundlight":$("backgroundlight").value, "backgrounddark":$("backgrounddark").value, "backgroundcolor":$("backgroundcolor").checked, "backgroundimage":$("backgroundimage").checked, "backgroundsize":$("backgroundsize").value, "print":$("print").checked, "password":$("password").checked, "richtext":$("richtext").checked, "plaintext":$("plaintext").checked, "multiple":$("multiple").checked, "preventclose":$("preventclose").checked, "texttabname":$("texttabname").checked, "save":$("save").checked, "bartabdesign":$("bartabdesign").checked, "barselectdesign":$("barselectdesign").checked, "download":$("download").checked, "find":$("find").checked, "richtexttoolbar":$("richtexttoolbar").checked});
 }
 
 function read_options(){
@@ -166,7 +166,7 @@ function read_options(){
 		showhidemodal("materialModalYouTube", "hide", "true");
 	}
 
-	chrome.storage.sync.get(["icon", "firstDate", "contextmenus", "optionskipremember", "firstsawrate", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsize", "print", "password", "enterpassword", "plaintext", "richtext", "multiple", "preventclose", "texttabname", "save", "bartabdesign", "barselectdesign", "download", "find"], function(items){
+	chrome.storage.sync.get(["icon", "firstDate", "contextmenus", "optionskipremember", "firstsawrate", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsize", "print", "password", "enterpassword", "plaintext", "richtext", "multiple", "preventclose", "texttabname", "save", "bartabdesign", "barselectdesign", "download", "find", "richtexttoolbar"], function(items){
 		if(items["icon"]){ $("btnpreview").src = items["icon"]; }
 		if(items["contextmenus"] == true)$("contextmenus").checked = true;
 		if(items["optionskipremember"] == true)$("optionskipremember").checked = true;
@@ -196,6 +196,7 @@ function read_options(){
 		if(items["barselectdesign"] == true)$("barselectdesign").checked = true;
 		if(items["download"] == true)$("download").checked = true;
 		if(items["find"] == true)$("find").checked = true;
+		if(items["richtexttoolbar"] == true)$("richtexttoolbar").checked = true;
 
 		// show remember page
 		var firstmonth = false;
@@ -342,9 +343,20 @@ function test(){
 	if(document.getElementById("multiple").checked){
 		document.getElementById("bartabdesign").disabled = false;
 		document.getElementById("barselectdesign").disabled = false;
+		document.getElementById("preventclose").disabled = false;
+		document.getElementById("texttabname").disabled = false;
+
 	}else{
 		document.getElementById("bartabdesign").disabled = true;
 		document.getElementById("barselectdesign").disabled = true;
+		document.getElementById("preventclose").disabled = true;
+		document.getElementById("texttabname").disabled = true;
+	}
+
+	if(document.getElementById("richtext").checked){
+		document.getElementById("richtexttoolbar").disabled = false;
+	}else{
+		document.getElementById("richtexttoolbar").disabled = true;
 	}
 }
 
@@ -716,8 +728,8 @@ function domcontentloaded(){
 	$("exportnotes").addEventListener("click", function(){
 
 		chrome.storage.sync.get(["txtvalue", "multivalue"], function(items){
-			var theValue = items["txtvalue"]; if(theValue == null){ theValue = i18nfirsttext; }
-			var multiValue = items["multivalue"]; if(multiValue == null){ multiValue = [{"note":i18nfirsttext}]; }
+			var txtvalue = items["txtvalue"]; if(txtvalue == null){ txtvalue = i18nfirsttext; }
+			var multivalue = items["multivalue"]; if(multivalue == null){ multivalue = [{"note":i18nfirsttext}]; }
 
 			if(document.getElementById("multiple").checked){
 				// multiple note
@@ -735,7 +747,7 @@ function domcontentloaded(){
 					};
 				}());
 
-				let data = JSON.stringify(multiValue), fileName = "export-notes.txt";
+				let data = JSON.stringify(multivalue), fileName = "export-notes.txt";
 				saveData(data, fileName);
 			}else{
 				// single note
@@ -753,7 +765,7 @@ function domcontentloaded(){
 					};
 				}());
 
-				let data = theValue, fileName = "export-notes.txt";
+				let data = txtvalue, fileName = "export-notes.txt";
 				saveData(data, fileName);
 			}
 		});

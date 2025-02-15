@@ -12,5 +12,5 @@
     "default_panel": "panel.html",
     "open_at_install": true
   },
-  "permissions": ["contextMenus", "storage", "unlimitedStorage"]
+  "permissions": ["contextMenus", "storage", "unlimitedStorage", "scripting", "activeTab"]
 }
