@@ -34,6 +34,13 @@
         "default": "Ctrl+Shift+T",
         "mac": "MacCtrl+Shift+T"
       }
+    },
+    "copytext_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+A",
+        "mac": "MacCtrl+Shift+A"
+      },
+      "description": "__MSG_copytext__"
     }
   },
   "permissions": ["contextMenus", "storage", "unlimitedStorage", "scripting", "activeTab"],
