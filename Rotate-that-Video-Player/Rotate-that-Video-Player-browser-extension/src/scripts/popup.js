@@ -3,7 +3,7 @@
 
 Rotate that Video Player
 Improve your video experience by effortlessly rotating your video clips by 90, 180, or 270 degrees.
-Copyright (C) 2024 Stefan vd
+Copyright (C) 2025 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -328,7 +328,7 @@ document.addEventListener("DOMContentLoaded", function(){
 		showleft = response.showleft; if(showleft == null)showleft = true;
 		showscale = response.showscale; if(showscale == null)showscale = true;
 		showflip = response.showflip; if(showflip == null)showflip = false;
-		showreset = response.showreset; if(showreset == null)showreset = false;
+		showreset = response.showreset; if(showreset == null)showreset = true;
 		// default popup design
 		document.getElementById("type").className = "modern";
 		document.documentElement.className = "modern";
