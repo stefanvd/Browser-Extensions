@@ -3,7 +3,7 @@
 
 Page Sidebar
 Effortlessly open any website in your web browser's sidebar – streamline your workflow instantly!
-Copyright (C) 2024 Stefan vd
+Copyright (C) 2025 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -74,6 +74,14 @@ if(window.top !== window && window.parent === window.top){
 					toggleMuteOn();
 				}else if(e.data?.method == "goMuteOffWebpage"){
 					toggleMuteOff();
+				}else if(e.data?.method == "goCopyCurrentWebpage"){
+					const href = location.href;
+					top.postMessage({method: "copyCurrentURL", href, iframeId}, origin);
+				}else if(e.data?.method == "goNewTabCurrentWebpage"){
+					const href = location.href;
+					top.postMessage({method: "newtabCurrentURL", href, iframeId}, origin);
+				}else if(e.data?.method == "goHorizDisableWebpage"){
+					disablehorizontalscroll();
 				}
 			});
 
@@ -117,4 +125,10 @@ function toggleMuteOff(){
 		window._videoMuteObserver.disconnect();
 		delete window._videoMuteObserver;
 	}
+}
+
+function disablehorizontalscroll(){
+	// Disable horizontal scrolling on the page
+	document.body.style.overflowX = "hidden";
+	document.documentElement.style.overflowX = "hidden";
 }

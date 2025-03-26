@@ -3,7 +3,7 @@
 
 Page Sidebar
 Effortlessly open any website in your web browser's sidebar – streamline your workflow instantly!
-Copyright (C) 2024 Stefan vd
+Copyright (C) 2025 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -26,7 +26,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-var selectedsearch, searchgoogle, searchbing, searchduckduckgo, searchbaidu, searchyandex, typepanelzone, typepanelcustom, typepanellasttime, websitestartname, websitelasttime, navtop, navbottom, navhidden, opentab, opencopy, opennonebookmarks, openbrowserbookmarks, openquickbookmarks, googlesidepanel, zoom, defaultzoom, step, multipletabs, multivalues, navbuttons, gobutton, typehomezone, typehomecustom, websitehomepagename, preventclose, dragnewtab, mutetab, searchyahoo, search360, searchsogou, searchchatgpt, searchgemini, searchwikipedia;
+var selectedsearch, searchgoogle, searchbing, searchduckduckgo, searchbaidu, searchyandex, typepanelzone, typepanelcustom, typepanellasttime, websitestartname, websitelasttime, navtop, navbottom, navhidden, opentab, opencopy, opennonebookmarks, openbrowserbookmarks, openquickbookmarks, googlesidepanel, zoom, defaultzoom, step, multipletabs, multivalues, navbuttons, gobutton, typehomezone, typehomecustom, websitehomepagename, preventclose, dragnewtab, mutetab, searchyahoo, search360, searchsogou, searchchatgpt, searchgemini, searchwikipedia, disablehorizontalscroll;
 
 var faviconserver = "https://s2.googleusercontent.com/s2/favicons?domain=";
 var emptypage = "about:blank";
@@ -65,10 +65,19 @@ window.addEventListener("message", (e) => {
 			e.source.postMessage({method: "goMuteOnWebpage"}, "*");
 		}
 
+		// set to disable horizontal scroll
+		if(disablehorizontalscroll == true){
+			e.source.postMessage({method: "goHorizDisableWebpage"}, "*");
+		}
+
 		// Save website favicon image for current active tab
 		frameupdatetabicon(e.data.href, e.data.iframeId);
 		// Save website URL in tab
 		frameupdatesaveurl(e.data.href, e.data.iframeId);
+	}else if(e.data?.method === "copyCurrentURL"){
+		createcopymessage(e.data.href);
+	}else if(e.data?.method === "newtabCurrentURL"){
+		createnewtabmessage(e.data.href);
 	}
 });
 
@@ -276,7 +285,7 @@ function init(){
 		zoomPanel.classList.toggle("collapsed");
 	});
 
-	chrome.storage.sync.get(["firstDate", "optionskipremember", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "typepanellasttime", "websitestartname", "websitelasttime", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "opentab", "opencopy", "opennonebookmarks", "openbrowserbookmarks", "openquickbookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10", "googlesidepanel", "zoom", "defaultzoom", "step", "multipletabs", "multivalues", "navbuttons", "gobutton", "typehomezone", "typehomecustom", "websitehomepagename", "preventclose", "dragnewtab", "mutetab", "searchyahoo", "search360", "searchsogou", "searchchatgpt", "searchgemini", "searchwikipedia"], function(items){
+	chrome.storage.sync.get(["firstDate", "optionskipremember", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "typepanellasttime", "websitestartname", "websitelasttime", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "opentab", "opencopy", "opennonebookmarks", "openbrowserbookmarks", "openquickbookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10", "googlesidepanel", "zoom", "defaultzoom", "step", "multipletabs", "multivalues", "navbuttons", "gobutton", "typehomezone", "typehomecustom", "websitehomepagename", "preventclose", "dragnewtab", "mutetab", "searchyahoo", "search360", "searchsogou", "searchchatgpt", "searchgemini", "searchwikipedia", "disablehorizontalscroll"], function(items){
 		searchgoogle = items["searchgoogle"]; if(searchgoogle == null){ searchgoogle = true; }
 		googlesidepanel = items["googlesidepanel"]; if(googlesidepanel == null){ googlesidepanel = true; }
 		searchbing = items["searchbing"]; if(searchbing == null){ searchbing = false; }
@@ -301,6 +310,7 @@ function init(){
 		searchchatgpt = items["searchchatgpt"]; if(searchchatgpt == null){ searchchatgpt = false; }
 		searchgemini = items["searchgemini"]; if(searchgemini == null){ searchgemini = false; }
 		searchwikipedia = items["searchwikipedia"]; if(searchwikipedia == null){ searchwikipedia = false; }
+		disablehorizontalscroll = items["disablehorizontalscroll"]; if(disablehorizontalscroll == null){ disablehorizontalscroll = false; }
 
 		// show the tab strip bar or not
 		applyStyles(multipletabs);
@@ -657,6 +667,10 @@ function setActiveTabContent(numb){
 			if(mutetab == true){
 				iframes[i].contentWindow.postMessage({method: "goMuteOffWebpage"}, "*");
 			}
+
+			if(disablehorizontalscroll == true){
+				iframes[i].contentWindow.postMessage({method: "goHorizDisableWebpage"}, "*");
+			}
 		}else{
 			iframes[i].className = "hidden";
 			if(mutetab == true){
@@ -1012,19 +1026,24 @@ function getDomain(url){
 }
 
 function actionCopyTab(){
-	// Create a temporary textarea element to hold the text
-	const textarea = document.createElement("textarea");
-
 	var index;
 	if(multipletabs == true){
 		index = getActiveTabIndex();
 	}else{
 		index = 0;
 	}
-	const iframeURL = document.getElementById("webcontent").getElementsByTagName("iframe")[index].src;
+
+	var webcontent = document.getElementById("webcontent");
+	var iframes = webcontent.getElementsByTagName("iframe");
+	iframes[index].contentWindow.postMessage({method: "goCopyCurrentWebpage"}, "*");
+}
+
+function createcopymessage(thaturl){
+	// Create a temporary textarea element to hold the text
+	const textarea = document.createElement("textarea");
 
 	// Assign the text you want to copy to the textarea
-	const textToCopy = iframeURL;
+	const textToCopy = thaturl;
 	textarea.value = textToCopy;
 
 	// Set the textarea to be invisible
@@ -1122,7 +1141,13 @@ function actionOpenTab(){
 	}else{
 		index = 0;
 	}
-	const iframeURL = document.getElementById("webcontent").getElementsByTagName("iframe")[index].src;
+
+	var webcontent = document.getElementById("webcontent");
+	var iframes = webcontent.getElementsByTagName("iframe");
+	iframes[index].contentWindow.postMessage({method: "goNewTabCurrentWebpage"}, "*");
+}
+
+function createnewtabmessage(iframeURL){
 	window.open(iframeURL, "_blank");
 }
 
@@ -1714,6 +1739,12 @@ chrome.runtime.onMessage.addListener(function(request){
 			mutetab = true;
 		}else{
 			mutetab = false;
+		}
+	}else if(request.msg == "setdisablehorizontalscroll"){
+		if(request.value == true){
+			disablehorizontalscroll = true;
+		}else{
+			disablehorizontalscroll = false;
 		}
 	}
 });

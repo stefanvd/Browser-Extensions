@@ -3,7 +3,7 @@
 
 Page Sidebar
 Effortlessly open any website in your web browser's sidebar – streamline your workflow instantly!
-Copyright (C) 2024 Stefan vd
+Copyright (C) 2025 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -583,6 +583,9 @@ chrome.storage.onChanged.addListener(function(changes){
 	}
 	if(changes["mutetab"]){
 		chrome.runtime.sendMessage({msg: "setmutetab", value: changes["mutetab"].newValue});
+	}
+	if(changes["disablehorizontalscroll"]){
+		chrome.runtime.sendMessage({msg: "setdisablehorizontalscroll", value: changes["disablehorizontalscroll"].newValue});
 	}
 });
 

@@ -185,5 +185,7 @@
     "desdragnewtab": {"message": "When dragging and dropping a new link, it will open in a new tab"},
     "desmutetab": {"message": "Mute sound from other tabs when they are not active"},
     "titelai": {"message": "AI"},
-    "titelencyclopedia": {"message": "Encyclopedia"}
+    "titelencyclopedia": {"message": "Encyclopedia"},
+    "titelscrollbars": {"message": "Scroll bars"},
+    "desdisablehorizontalscroll": {"message": "Disable the horizontal scroll bar"}
   }
