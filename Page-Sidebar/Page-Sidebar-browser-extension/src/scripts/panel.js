@@ -26,7 +26,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-var selectedsearch, searchgoogle, searchbing, searchduckduckgo, searchbaidu, searchyandex, typepanelzone, typepanelcustom, typepanellasttime, websitestartname, websitelasttime, navtop, navbottom, navhidden, opentab, opencopy, opennonebookmarks, openbrowserbookmarks, openquickbookmarks, googlesidepanel, zoom, defaultzoom, step, multipletabs, multivalues, navbuttons, gobutton, typehomezone, typehomecustom, websitehomepagename, preventclose, dragnewtab, mutetab, searchyahoo, search360, searchsogou, searchchatgpt, searchgemini, searchwikipedia, disablehorizontalscroll;
+var selectedsearch, searchgoogle, searchbing, searchduckduckgo, searchbaidu, searchyandex, typepanelzone, typepanelcustom, typepanellasttime, websitestartname, websitelasttime, navtop, navbottom, navhidden, opentab, opencopy, opennonebookmarks, openbrowserbookmarks, openquickbookmarks, googlesidepanel, zoom, defaultzoom, step, multipletabs, multivalues, navbuttons, gobutton, typehomezone, typehomecustom, websitehomepagename, preventclose, dragnewtab, mutetab, searchyahoo, search360, searchsogou, searchchatgpt, searchgemini, searchwikipedia, disablehorizontalscroll, openallnewtab, refreshtime, autorefresh, showrefreshpanel;
 
 var faviconserver = "https://s2.googleusercontent.com/s2/favicons?domain=";
 var emptypage = "about:blank";
@@ -39,14 +39,20 @@ document.addEventListener("DOMContentLoaded", init);
 
 var i18ntitelcopytext = chrome.i18n.getMessage("titlecopytextdone");
 var i18ndescopytext = chrome.i18n.getMessage("descopytextdone");
+var i18nmesrefreshed = chrome.i18n.getMessage("mesrefreshed");
+var i18nrefreshing = chrome.i18n.getMessage("mesrefreshing");
+
+var i18nbtnon = chrome.i18n.getMessage("btnon");
+var i18nbtnoff = chrome.i18n.getMessage("btnoff");
 
 window.addEventListener("message", (e) => {
-	// console.log("FIRST WEBSITE URL=", e.data.href);
+	// console.log("FIRST WEBSITE URL=", e.data.href, "data", e.data?.method);
 	if(e.data?.method === "navigate"){
 		// console.log("NAVIGATE URL=", e.data.href);
 		if(e.source){
 			e.source.postMessage({
-				method: "navigate-verified"
+				method: "navigate-verified",
+				extensionID: chrome.runtime.id
 			}, "*");
 		}
 	}else if(e.data?.method === "complete"){
@@ -70,6 +76,13 @@ window.addEventListener("message", (e) => {
 			e.source.postMessage({method: "goHorizDisableWebpage"}, "*");
 		}
 
+		// set to open all links in new web browser tab
+		if(openallnewtab == true){
+			e.source.postMessage({method: "goOpenAllInNewTab"}, "*");
+		}else{
+			e.source.postMessage({method: "goOpenAllInCurrentPanel"}, "*");
+		}
+
 		// Save website favicon image for current active tab
 		frameupdatetabicon(e.data.href, e.data.iframeId);
 		// Save website URL in tab
@@ -88,6 +101,9 @@ var zoomLevelDisplay;
 var zoomLevel = 100;
 var collapseHandle;
 var zoomPanel;
+
+var refreshHandle;
+var refreshPanel;
 // Function to update zoom level display
 function updateZoomLevel(){
 	zoomLevelDisplay.textContent = zoomLevel + "%";
@@ -114,6 +130,50 @@ function showConfirmationDialog(){
 		return 0; // 'No' clicked
 	}
 }
+
+let actiontimer;
+let countdownInterval;
+
+function starttimer(timeInSeconds){
+	let remainingTime = timeInSeconds;
+	const btn = document.getElementById("currenttime");
+
+	// Display initial message with start time
+	btn.innerText = chrome.i18n.getMessage("mesnextrefresh", remainingTime.toString());
+
+	// Clear any previous intervals
+	clearInterval(actiontimer);
+	clearInterval(countdownInterval);
+
+	// Countdown timer display
+	countdownInterval = setInterval(() => {
+		remainingTime--;
+		if(remainingTime > 0){
+			btn.innerText = chrome.i18n.getMessage("mesnextrefresh", remainingTime.toString());
+		}else{
+			btn.innerText = i18nrefreshing;
+		}
+	}, 1000);
+
+	// Main refresh action and restart logic
+	actiontimer = setInterval(() => {
+		// Do the refresh
+		// refresh all tabs
+		const iframes = document.getElementById("webcontent").getElementsByTagName("iframe");
+		for(let i = 0; i < iframes.length; i++){
+			iframes[i].contentWindow.postMessage({method: "goReloadWebpage"}, "*");
+		}
+
+		// Log or show refresh done
+		btn.innerText = i18nmesrefreshed;
+
+		// Restart the timer
+		clearInterval(actiontimer);
+		clearInterval(countdownInterval);
+		setTimeout(() => starttimer(timeInSeconds), 1000); // Wait 1s before restarting
+	}, timeInSeconds * 1000);
+}
+
 
 var tabContainer;
 var isMenuClick = false;
@@ -285,7 +345,14 @@ function init(){
 		zoomPanel.classList.toggle("collapsed");
 	});
 
-	chrome.storage.sync.get(["firstDate", "optionskipremember", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "typepanellasttime", "websitestartname", "websitelasttime", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "opentab", "opencopy", "opennonebookmarks", "openbrowserbookmarks", "openquickbookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10", "googlesidepanel", "zoom", "defaultzoom", "step", "multipletabs", "multivalues", "navbuttons", "gobutton", "typehomezone", "typehomecustom", "websitehomepagename", "preventclose", "dragnewtab", "mutetab", "searchyahoo", "search360", "searchsogou", "searchchatgpt", "searchgemini", "searchwikipedia", "disablehorizontalscroll"], function(items){
+	refreshHandle = document.getElementById("refresh-handle");
+	refreshPanel = document.getElementById("refreshbar");
+
+	refreshHandle.addEventListener("click", function(){
+		refreshPanel.classList.toggle("collapsed");
+	});
+
+	chrome.storage.sync.get(["firstDate", "optionskipremember", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "typepanellasttime", "websitestartname", "websitelasttime", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "opentab", "opencopy", "opennonebookmarks", "openbrowserbookmarks", "openquickbookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10", "googlesidepanel", "zoom", "defaultzoom", "step", "multipletabs", "multivalues", "navbuttons", "gobutton", "typehomezone", "typehomecustom", "websitehomepagename", "preventclose", "dragnewtab", "mutetab", "searchyahoo", "search360", "searchsogou", "searchchatgpt", "searchgemini", "searchwikipedia", "disablehorizontalscroll", "openallnewtab", "refreshtime", "autorefresh", "showrefreshpanel"], function(items){
 		searchgoogle = items["searchgoogle"]; if(searchgoogle == null){ searchgoogle = true; }
 		googlesidepanel = items["googlesidepanel"]; if(googlesidepanel == null){ googlesidepanel = true; }
 		searchbing = items["searchbing"]; if(searchbing == null){ searchbing = false; }
@@ -311,9 +378,44 @@ function init(){
 		searchgemini = items["searchgemini"]; if(searchgemini == null){ searchgemini = false; }
 		searchwikipedia = items["searchwikipedia"]; if(searchwikipedia == null){ searchwikipedia = false; }
 		disablehorizontalscroll = items["disablehorizontalscroll"]; if(disablehorizontalscroll == null){ disablehorizontalscroll = false; }
+		openallnewtab = items["openallnewtab"]; if(openallnewtab == null){ openallnewtab = false; }
+		refreshtime = items["refreshtime"]; if(refreshtime == null){ refreshtime = 10; }
+		autorefresh = items["autorefresh"]; if(autorefresh == null){ autorefresh = false; }
+		showrefreshpanel = items["showrefreshpanel"]; if(showrefreshpanel == null){ showrefreshpanel = false; }
 
 		// show the tab strip bar or not
 		applyStyles(multipletabs);
+
+		// show the button
+		if(autorefresh == true){
+			document.getElementById("btnstartaction").innerText = i18nbtnon;
+		}else{
+			document.getElementById("btnstartaction").innerText = i18nbtnoff;
+			document.getElementById("currenttime").innerText = "";
+		}
+
+		// set the timer
+		if(showrefreshpanel == true && autorefresh == true){
+			starttimer(refreshtime);
+		}
+
+		// show timer panel
+		if(showrefreshpanel == true){
+			document.getElementById("refreshbar").className = "refresh-panel";
+			document.getElementById("btnstartaction").addEventListener("click", function(){
+				if(document.getElementById("btnstartaction").innerText == i18nbtnon){
+					// stop the timer
+					clearInterval(actiontimer);
+					clearInterval(countdownInterval);
+					document.getElementById("btnstartaction").innerText = i18nbtnoff;
+					document.getElementById("currenttime").innerText = "";
+				}else{
+					// start the timer
+					starttimer(refreshtime);
+					document.getElementById("btnstartaction").innerText = i18nbtnon;
+				}
+			}, false);
+		}
 
 		//---
 		if(zoom == true){
@@ -670,6 +772,12 @@ function setActiveTabContent(numb){
 
 			if(disablehorizontalscroll == true){
 				iframes[i].contentWindow.postMessage({method: "goHorizDisableWebpage"}, "*");
+			}
+
+			if(openallnewtab == true){
+				iframes[i].contentWindow.postMessage({method: "goOpenAllInNewTab"}, "*");
+			}else{
+				iframes[i].contentWindow.postMessage({method: "goOpenAllInCurrentPanel"}, "*");
 			}
 		}else{
 			iframes[i].className = "hidden";
@@ -1329,24 +1437,8 @@ const openweb = async(currenturl) => {
 		index = 0;
 	}
 
-	await chrome.declarativeNetRequest.updateSessionRules({
-		removeRuleIds: [1],
-		addRules: [{
-			id: 1,
-			priority: 1,
-			action: {
-				type: "modifyHeaders",
-				responseHeaders: [
-					{header: "x-frame-options", operation: "remove"},
-					{header: "content-security-policy", operation: "remove"},
-				],
-			},
-			condition: {
-				urlFilter: "*",
-				resourceTypes: ["main_frame", "sub_frame", "xmlhttprequest", "websocket"],
-			},
-		}],
-	});
+	// see background for the chrome.declarativeNetRequest
+	// that filter the x-frame-options and content-security-policy
 
 	const dragDropNavbar = document.getElementById("drag-drop-navbar");
 	const dragDropZone = document.getElementById("drag-drop-zone");
@@ -1745,6 +1837,68 @@ chrome.runtime.onMessage.addListener(function(request){
 			disablehorizontalscroll = true;
 		}else{
 			disablehorizontalscroll = false;
+		}
+	}else if(request.msg == "setopenallnewtab"){
+		if(request.value == true){
+			openallnewtab = true;
+		}else{
+			openallnewtab = false;
+		}
+
+		// refresh all tabs
+		const iframes = document.getElementById("webcontent").getElementsByTagName("iframe");
+		for(let i = 0; i < iframes.length; i++){
+			iframes[i].contentWindow.postMessage({method: "goReloadWebpage"}, "*");
+		}
+	}else if(request.msg == "setautorefresh"){
+		if(request.value == true){
+			autorefresh = true;
+			// stop the timer
+			clearInterval(actiontimer);
+			clearInterval(countdownInterval);
+			document.getElementById("btnstartaction").innerText = i18nbtnoff;
+			document.getElementById("currenttime").innerText = "";
+			actiontimer = null;
+			// start again
+			starttimer(refreshtime);
+			document.getElementById("btnstartaction").innerText = i18nbtnon;
+		}else{
+			autorefresh = false;
+			// stop the timer
+			clearInterval(actiontimer);
+			clearInterval(countdownInterval);
+			document.getElementById("btnstartaction").innerText = i18nbtnoff;
+			document.getElementById("currenttime").innerText = "";
+			actiontimer = null;
+		}
+	}else if(request.msg == "setrefreshtime"){
+		refreshtime = request.value;
+		// stop the timer
+		clearInterval(actiontimer);
+		clearInterval(countdownInterval);
+		document.getElementById("btnstartaction").innerText = i18nbtnoff;
+		document.getElementById("currenttime").innerText = "";
+		actiontimer = null;
+		// start again
+		starttimer(refreshtime);
+		document.getElementById("btnstartaction").innerText = i18nbtnon;
+	}else if(request.msg == "setshowrefreshpanel"){
+		if(request.value == true){
+			document.getElementById("refreshbar").className = "refresh-panel";
+			showrefreshpanel = true;
+			if(autorefresh == true){
+				starttimer(refreshtime);
+				document.getElementById("btnstartaction").innerText = i18nbtnon;
+			}
+		}else{
+			document.getElementById("refreshbar").className = "hidden";
+			showrefreshpanel = false;
+			// stop the timer
+			clearInterval(actiontimer);
+			clearInterval(countdownInterval);
+			document.getElementById("btnstartaction").innerText = i18nbtnoff;
+			document.getElementById("currenttime").innerText = "";
+			actiontimer = null;
 		}
 	}
 });

@@ -587,6 +587,18 @@ chrome.storage.onChanged.addListener(function(changes){
 	if(changes["disablehorizontalscroll"]){
 		chrome.runtime.sendMessage({msg: "setdisablehorizontalscroll", value: changes["disablehorizontalscroll"].newValue});
 	}
+	if(changes["openallnewtab"]){
+		chrome.runtime.sendMessage({msg: "setopenallnewtab", value: changes["openallnewtab"].newValue});
+	}
+	if(changes["autorefresh"]){
+		chrome.runtime.sendMessage({msg: "setautorefresh", value: changes["autorefresh"].newValue});
+	}
+	if(changes["refreshtime"]){
+		chrome.runtime.sendMessage({msg: "setrefreshtime", value: changes["refreshtime"].newValue});
+	}
+	if(changes["showrefreshpanel"]){
+		chrome.runtime.sendMessage({msg: "setshowrefreshpanel", value: changes["showrefreshpanel"].newValue});
+	}
 });
 
 chrome.runtime.setUninstallURL(linkuninstall);
@@ -707,6 +719,26 @@ function installation(){
 	}
 }
 
-chrome.runtime.onInstalled.addListener(function(){
+const createCspRule = ({
+	id: 1,
+	priority: 1,
+	action: {
+		type: "modifyHeaders",
+		responseHeaders: [
+			{header: "x-frame-options", operation: "remove"},
+			{header: "content-security-policy", operation: "remove"},
+		]
+	},
+	condition: {
+		urlFilter: "|*://*/*",
+		resourceTypes: ["main_frame", "sub_frame", "xmlhttprequest", "websocket"]
+	}
+});
+
+chrome.runtime.onInstalled.addListener(async() => {
 	installation();
+	await chrome.declarativeNetRequest.updateDynamicRules({
+		removeRuleIds: [1],
+		addRules: [createCspRule]
+	});
 });

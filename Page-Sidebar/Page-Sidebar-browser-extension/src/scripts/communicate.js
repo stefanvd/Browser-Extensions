@@ -49,14 +49,20 @@ if(window.top !== window && window.parent === window.top){
 					if(iframeId){
 						top.postMessage({method: "navigate", href, iframeId}, origin);
 					}
-				}else if(e.data?.method === "navigate-verified" && e.origin.includes(chrome.runtime.id)){
-					navigation.addEventListener("navigate", (e) => {
-						const href = e.destination.url;
-						if(iframeId){
-							top.postMessage({method: "complete", href, iframeId}, origin);
-						}
-					});
+				}else if(e.data?.method === "navigate-verified" && e.data?.extensionID == chrome.runtime.id){
+					// chrome.runtime.id gives the extension ID, but in Firefox it is a random internal ID,
+					// so it will not work for origin comparison in Firefox.
+					// We need to check the origin of the message to verify that it comes from the extension.
 
+					// support currently only Chromium web browsers
+					if(typeof navigation !== "undefined"){
+						navigation.addEventListener("navigate", (e) => {
+							const href = e.destination.url;
+							if(iframeId){
+								top.postMessage({method: "complete", href, iframeId}, origin);
+							}
+						});
+					}
 					// Trigger the "complete" message on initial load
 					const href = location.href;
 					if(iframeId){
@@ -82,6 +88,10 @@ if(window.top !== window && window.parent === window.top){
 					top.postMessage({method: "newtabCurrentURL", href, iframeId}, origin);
 				}else if(e.data?.method == "goHorizDisableWebpage"){
 					disablehorizontalscroll();
+				}else if(e.data?.method == "goOpenAllInNewTab"){
+					openallinnewtab();
+				}else if(e.data?.method == "goOpenAllInCurrentPanel"){
+					openallcurrentpanel();
 				}
 			});
 
@@ -131,4 +141,41 @@ function disablehorizontalscroll(){
 	// Disable horizontal scrolling on the page
 	document.body.style.overflowX = "hidden";
 	document.documentElement.style.overflowX = "hidden";
+}
+
+
+function openallinnewtab(){
+	// Intercept all anchor (<a>) clicks and open them in a new tab
+	document.addEventListener("click", function(event){
+		let target = event.target.closest("a"); // Find closest anchor tag
+
+		if(target && target.href){
+			event.preventDefault(); // Stop default behavior
+			window.open(target.href, "_blank"); // Open link in a new tab
+		}
+	}, true);
+
+	// Override window.open to always open in a new tab
+	const originalOpen = window.open;
+	window.open = function(url, target, features){
+		return originalOpen.call(window, url, "_blank", features);
+	};
+}
+
+function openallcurrentpanel(){
+	// Intercept all anchor (<a>) clicks and open them in a new tab
+	document.addEventListener("click", function(event){
+		let target = event.target.closest("a"); // Find closest anchor tag
+
+		if(target && target.href){
+			event.preventDefault(); // Stop default behavior
+			window.open(target.href, "_self"); // Open link in a new tab
+		}
+	}, true);
+
+	// Override window.open to always open in a new tab
+	const originalOpen = window.open;
+	window.open = function(url, target, features){
+		return originalOpen.call(window, url, "_self", features);
+	};
 }

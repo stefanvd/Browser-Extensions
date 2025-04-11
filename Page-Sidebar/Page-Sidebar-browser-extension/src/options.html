@@ -401,6 +401,31 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 					</div>
 				</section>
 				<section>
+					<h3 data-i18n="titelopenallnewtab"></h3>
+					<div>
+						<div class="md-checkbox">
+							<input id="openallnewtab" type="checkbox">
+							<label for="openallnewtab"><div><span data-i18n="desopenallnewtab"></span></div></label>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3 data-i18n="titleautorefresh"></h3>
+					<div>
+						<div class="md-checkbox">
+							<input id="showrefreshpanel" type="checkbox">
+							<label for="showrefreshpanel"><div><span data-i18n="desshowrefreshpanel"></span></div></label>
+						</div>
+						<div class="md-checkbox md-subin">
+							<input id="autorefresh" type="checkbox">
+							<label for="autorefresh"><div><span data-i18n="desstartrefresh"></span></div></label>
+						</div>
+						<div class="md-number md-subin">
+							<label><span data-i18n="desautorefresh"></span><input type="number" id="refreshtime" aria-label="Refresh" min="1" max="400" step="1" value="100" maxlength="3" size="4" required="">s</label>
+						</div>
+					</div>
+				</section>
+				<section>
 					<h3 data-i18n="titelquickbookmarks"></h3>
 					<div>
 						<div class="md-radio">
@@ -628,6 +653,16 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 	</ul>
 </div>
 </div>
+<div id="supportpanel">
+	<div class="container">
+		<div class="logo">💬</div>
+		<div class="description">
+			<div class="title"><span data-i18n="supporttitle"></span></div>
+			<div class="text"><span data-i18n="supporttext"></span></div>
+		</div>
+	</div>
+	<button id="supportclose" class="close" title="Close">X</button>
+</div>  
 <script type="text/javascript" src="scripts/translate.js"></script>
 </body>
 </html>

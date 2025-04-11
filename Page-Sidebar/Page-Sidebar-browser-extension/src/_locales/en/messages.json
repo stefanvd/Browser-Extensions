@@ -187,5 +187,18 @@
     "titelai": {"message": "AI"},
     "titelencyclopedia": {"message": "Encyclopedia"},
     "titelscrollbars": {"message": "Scroll bars"},
-    "desdisablehorizontalscroll": {"message": "Disable the horizontal scroll bar"}
+    "desdisablehorizontalscroll": {"message": "Disable the horizontal scroll bar"},
+    "titelopenallnewtab": {"message": "Links"},
+    "desopenallnewtab": {"message": "Open all links in the web browser tab"},
+    "titleautorefresh": {"message": "Auto refresh"},
+    "desautorefresh": {"message": "Auto refresh the current page every chosen seconds"},
+    "desstartrefresh": {"message": "Start automatically the refresh timer when open the panel"},
+    "desshowrefreshpanel": {"message": "Show the refresh panel"},
+    "mesrefreshed": {"message": "Refreshed. Starting again…"},
+    "mesrefreshing": {"message": "Refreshing…"},
+    "mesnextrefresh":{"message":"Next refresh in $time$s","placeholders":{"time":{"content":"$1","example":"123"}}},
+    "btnon": {"message": "ON"},
+    "btnoff": {"message": "OFF"},
+    "supporttitle": {"message": "Need Help?"},
+    "supporttext": {"message": "Got questions or need support? I am here to help."}
   }
