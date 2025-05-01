@@ -725,8 +725,11 @@ const createCspRule = ({
 	action: {
 		type: "modifyHeaders",
 		responseHeaders: [
+			{header: "frame-options", operation: "remove"},
 			{header: "x-frame-options", operation: "remove"},
-			{header: "content-security-policy", operation: "remove"},
+			{header: "frame-ancestors", operation: "remove"},
+			// comment this because it blocks some sites CSP
+			// {header: "content-security-policy", operation: "remove"},
 		]
 	},
 	condition: {

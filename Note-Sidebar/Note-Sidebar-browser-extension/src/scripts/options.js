@@ -75,7 +75,7 @@ function defaultgetsettings(){
 
 // Option to save current value
 function save_options(){
-	chrome.storage.sync.set({"icon": $("btnpreview").src, "optionskipremember":$("optionskipremember").checked, "contextmenus":$("contextmenus").checked, "counter":$("counter").checked, "copy":$("copy").checked, "speech":$("speech").checked, "voices":$("voices").checked, "fontsize":$("fontsize").value, "lineheight":$("lineheight").value, "colorlight":$("colorlight").value, "colordark":$("colordark").value, "backgroundlight":$("backgroundlight").value, "backgrounddark":$("backgrounddark").value, "backgroundcolor":$("backgroundcolor").checked, "backgroundimage":$("backgroundimage").checked, "backgroundsize":$("backgroundsize").value, "print":$("print").checked, "password":$("password").checked, "richtext":$("richtext").checked, "plaintext":$("plaintext").checked, "multiple":$("multiple").checked, "preventclose":$("preventclose").checked, "texttabname":$("texttabname").checked, "save":$("save").checked, "bartabdesign":$("bartabdesign").checked, "barselectdesign":$("barselectdesign").checked, "download":$("download").checked, "find":$("find").checked, "richtexttoolbar":$("richtexttoolbar").checked});
+	chrome.storage.sync.set({"icon": $("btnpreview").src, "optionskipremember":$("optionskipremember").checked, "contextmenus":$("contextmenus").checked, "counter":$("counter").checked, "copy":$("copy").checked, "speech":$("speech").checked, "voices":$("voices").checked, "fontsize":$("fontsize").value, "lineheight":$("lineheight").value, "colorlight":$("colorlight").value, "colordark":$("colordark").value, "backgroundlight":$("backgroundlight").value, "backgrounddark":$("backgrounddark").value, "backgroundcolor":$("backgroundcolor").checked, "backgroundimage":$("backgroundimage").checked, "backgroundsize":$("backgroundsize").value, "print":$("print").checked, "password":$("password").checked, "richtext":$("richtext").checked, "plaintext":$("plaintext").checked, "multiple":$("multiple").checked, "preventclose":$("preventclose").checked, "texttabname":$("texttabname").checked, "save":$("save").checked, "bartabdesign":$("bartabdesign").checked, "barselectdesign":$("barselectdesign").checked, "download":$("download").checked, "find":$("find").checked, "richtexttoolbar":$("richtexttoolbar").checked, "richtextshortcut":$("richtextshortcut").checked});
 }
 
 function read_options(){
@@ -166,7 +166,7 @@ function read_options(){
 		showhidemodal("materialModalYouTube", "hide", "true");
 	}
 
-	chrome.storage.sync.get(["icon", "firstDate", "contextmenus", "optionskipremember", "firstsawrate", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsize", "print", "password", "enterpassword", "plaintext", "richtext", "multiple", "preventclose", "texttabname", "save", "bartabdesign", "barselectdesign", "download", "find", "richtexttoolbar"], function(items){
+	chrome.storage.sync.get(["icon", "firstDate", "contextmenus", "optionskipremember", "firstsawrate", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsize", "print", "password", "enterpassword", "plaintext", "richtext", "multiple", "preventclose", "texttabname", "save", "bartabdesign", "barselectdesign", "download", "find", "richtexttoolbar", "richtextshortcut"], function(items){
 		if(items["icon"]){ $("btnpreview").src = items["icon"]; }
 		if(items["contextmenus"] == true)$("contextmenus").checked = true;
 		if(items["optionskipremember"] == true)$("optionskipremember").checked = true;
@@ -197,6 +197,7 @@ function read_options(){
 		if(items["download"] == true)$("download").checked = true;
 		if(items["find"] == true)$("find").checked = true;
 		if(items["richtexttoolbar"] == true)$("richtexttoolbar").checked = true;
+		if(items["richtextshortcut"] == true)$("richtextshortcut").checked = true;
 
 		// show remember page
 		var firstmonth = false;
@@ -251,6 +252,19 @@ function read_options(){
 				}
 			}
 		}
+
+		// support panel
+		if($("optionskipremember").checked == true){
+			$("supportpanel").className = "hidden";
+		}
+		$("supportpanel").addEventListener("click", function(e){
+			if(e.target.id != "supportclose"){
+				window.open(linksupport, "_blank");
+			}
+		}, false);
+		$("supportclose").addEventListener("click", function(){
+			$("supportpanel").className = "hidden";
+		}, false);
 
 		// donation bar
 		if(devdonate == true){
@@ -355,8 +369,10 @@ function test(){
 
 	if(document.getElementById("richtext").checked){
 		document.getElementById("richtexttoolbar").disabled = false;
+		document.getElementById("richtextshortcut").disabled = false;
 	}else{
 		document.getElementById("richtexttoolbar").disabled = true;
+		document.getElementById("richtextshortcut").disabled = true;
 	}
 }
 

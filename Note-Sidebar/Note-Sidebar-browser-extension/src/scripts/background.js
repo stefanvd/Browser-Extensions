@@ -500,6 +500,9 @@ chrome.storage.onChanged.addListener(function(changes){
 	if(changes["richtexttoolbar"]){
 		chrome.runtime.sendMessage({msg: "setrichtexttoolbar", value: changes["richtexttoolbar"].newValue});
 	}
+	if(changes["richtextshortcut"]){
+		chrome.runtime.sendMessage({msg: "setrichtextshortcut", value: changes["richtextshortcut"].newValue});
+	}
 });
 
 function initwelcome(){

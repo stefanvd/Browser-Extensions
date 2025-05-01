@@ -192,5 +192,15 @@
     "titelfind": {"message": "Find Text"},
     "desfind": {"message": "Find the text and highlight it"},
     "copytext": {"message": "Copy selected text to sidebar"},
-    "desrichtexttoolbar": {"message": "Show the rich text toolbar in the sidebar"}
+    "desrichtexttoolbar": {"message": "Show the rich text toolbar in the sidebar"},
+    "btnon": {"message": "ON"},
+    "btnoff": {"message": "OFF"},
+    "supporttitle": {"message": "Need Help?"},
+    "supporttext": {"message": "Got questions or need support? I am here to help."},
+    "samplebold": {"message": "Bold"},
+    "sampleitalic": {"message": "Italic"},
+    "sampleunderline": {"message": "Underline"},
+    "samplestrike": {"message": "Strikethrough"},
+    "sampleformat": {"message": "Clear format"},
+    "desrichtextshortcut": {"message": "Optional keyboard shortcuts"}
 }

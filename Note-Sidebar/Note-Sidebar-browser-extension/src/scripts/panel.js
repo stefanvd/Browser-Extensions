@@ -26,15 +26,59 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-var maintext; var powertext; var txtvalue; var multivalue; var counter; var copy; var speech; var voices; var fontsize; var lineheight; var colorlight; var colordark; var backgroundlight; var backgrounddark; var backgroundcolor; var backgroundimage; var backgroundsource; var backgroundsize; var printicon; var password; var enterpassword; var richtext; var plaintext; var multiple; var preventclose; var texttabname; var save; var bartabdesign; var barselectdesign; var download; var find; var textarea; var highlightedText; var searchInput; var searchBox; var richtexttoolbar;
+var maintext; var powertext; var txtvalue; var multivalue; var counter; var copy; var speech; var voices; var fontsize; var lineheight; var colorlight; var colordark; var backgroundlight; var backgrounddark; var backgroundcolor; var backgroundimage; var backgroundsource; var backgroundsize; var printicon; var password; var enterpassword; var richtext; var plaintext; var multiple; var preventclose; var texttabname; var save; var bartabdesign; var barselectdesign; var download; var find; var textarea; var highlightedText; var searchInput; var searchBox; var richtexttoolbar; var richtextshortcut;
 
 function wrapText(tag){
-	let selection = window.getSelection();
+	const selection = window.getSelection();
 	if(!selection.rangeCount)return;
-	let range = selection.getRangeAt(0);
-	let span = document.createElement(tag);
-	span.appendChild(range.extractContents());
-	range.insertNode(span);
+
+	const range = selection.getRangeAt(0);
+	const container = range.commonAncestorContainer;
+
+	// Ensure the selection is inside #powertext
+	const powertext = document.getElementById("powertext");
+	if(!powertext.contains(container))return;
+
+	function findWrappingTag(node, tagName){
+		while(node && node !== document.body){
+			if(node.nodeType === 1 && node.tagName === tagName.toUpperCase()){
+				return node;
+			}
+			node = node.parentNode;
+		}
+		return null;
+	}
+
+	const existingTag = findWrappingTag(container, tag);
+	if(existingTag){
+		// Unwrap: move children out of the tag
+		const parent = existingTag.parentNode;
+		const children = Array.from(existingTag.childNodes);
+
+		children.forEach((child) => parent.insertBefore(child, existingTag));
+		parent.removeChild(existingTag);
+
+		// Restore selection over unwrapped content
+		if(children.length > 0){
+			selection.removeAllRanges();
+			const newRange = document.createRange();
+			newRange.setStartBefore(children[0]);
+			newRange.setEndAfter(children[children.length - 1]);
+			selection.addRange(newRange);
+		}
+	}else{
+		// Wrap
+		const el = document.createElement(tag);
+		el.appendChild(range.extractContents());
+		range.insertNode(el);
+
+		// Restore selection
+		selection.removeAllRanges();
+		const newRange = document.createRange();
+		newRange.selectNodeContents(el);
+		selection.addRange(newRange);
+	}
+
 	notesave();
 }
 
@@ -58,12 +102,48 @@ function changeBlockStyle(tag){
 }
 
 function clearFormatting(){
-	let editor = document.getElementById("powertext");
-	let text = editor.innerHTML.replace(/<[^>]+>/g, function(match){
-		return match === "<br>" ? "<br>" : "";
-	});
-	editor.innerHTML = `${text}`;
-	notesave();
+	const selection = window.getSelection();
+	if(!selection.rangeCount)return;
+
+	const range = selection.getRangeAt(0);
+	const container = range.commonAncestorContainer;
+
+	// Ensure the selection is inside #powertext
+	const powertext = document.getElementById("powertext");
+	if(!powertext.contains(container))return;
+
+	// Function to remove the parent tag of the selected range
+	function removeParentTag(node){
+		while(node && node !== document.body){
+			// Ensure the node is inside #powertext, but not the powertext div itself
+			if(node.nodeType === 1 && node !== powertext && powertext.contains(node)){
+				const parentNode = node.parentNode;
+				const fragment = document.createDocumentFragment();
+
+				// Move all child nodes of the parent element into the document fragment
+				while(node.firstChild){
+					fragment.appendChild(node.firstChild);
+				}
+
+				// Replace the parent element with its children
+				parentNode.replaceChild(fragment, node);
+				return true;
+			}
+			node = node.parentNode;
+		}
+		return false;
+	}
+
+	// If the selection is wrapped in a tag, remove it
+	if(removeParentTag(container)){
+		// Optional: restore selection
+		selection.removeAllRanges();
+		const newRange = document.createRange();
+		newRange.selectNodeContents(container);
+		selection.addRange(newRange);
+
+		notesave();
+	}
 }
 
 function notesave(){
@@ -461,7 +541,7 @@ function init(){
 
 	maintext = document.querySelector("#maintext");
 	powertext = document.querySelector("#powertext");
-	chrome.storage.sync.get(["firstDate", "optionskipremember", "txtvalue", "multivalue", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsource", "backgroundsize", "print", "password", "enterpassword", "richtext", "plaintext", "multiple", "preventclose", "texttabname", "save", "bartabdesign", "barselectdesign", "download", "find", "richtexttoolbar"], function(items){
+	chrome.storage.sync.get(["firstDate", "optionskipremember", "txtvalue", "multivalue", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsource", "backgroundsize", "print", "password", "enterpassword", "richtext", "plaintext", "multiple", "preventclose", "texttabname", "save", "bartabdesign", "barselectdesign", "download", "find", "richtexttoolbar", "richtextshortcut"], function(items){
 		txtvalue = items["txtvalue"]; if(txtvalue == null){ txtvalue = i18nfirsttext; }
 		multivalue = items["multivalue"]; if(multivalue == null){ multivalue = [{"note":i18nfirsttext}]; }
 		counter = items["counter"]; if(counter == null){ counter = true; }
@@ -493,6 +573,7 @@ function init(){
 		find = items["find"]; if(find == null){ find = false; }
 		find = items["find"]; if(find == null){ find = false; }
 		richtexttoolbar = items["richtexttoolbar"]; if(richtexttoolbar == null){ richtexttoolbar = false; }
+		richtextshortcut = items["richtextshortcut"]; if(richtextshortcut == null){ richtextshortcut = false; }
 
 		if(richtexttoolbar == true){
 			document.getElementById("richtexttoolbar").className = "richtexttoolbar";
@@ -638,6 +719,10 @@ function init(){
 
 		if(backgroundimage == true){
 			addbackgroundpaper();
+		}
+
+		if(richtextshortcut == true){
+			addRichTextShortcut();
 		}
 
 		// Add stylesheet
@@ -997,6 +1082,41 @@ window.addEventListener("DOMContentLoaded", () => {
 	// Set a timeout to execute the function after 1,5 seconds (1500 milliseconds)
 	setTimeout(setCursorToEnd, 1500);
 });
+
+function addRichTextShortcut(){
+	const element = document.getElementById("powertext");
+	if(element){
+		element.addEventListener("keydown", createrichtextshortcut);
+	}
+}
+
+function removeRichTextShortcut(){
+	const element = document.getElementById("powertext");
+	if(element){
+		element.removeEventListener("keydown", createrichtextshortcut);
+	}
+}
+
+function createrichtextshortcut(e){
+	if(richtext !== true)return;
+
+	const selection = window.getSelection();
+	if(!selection.rangeCount)return;
+
+	// Ctrl + Shift + S → Strikethrough toggle
+	if((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === "s"){
+		e.preventDefault();
+		wrapText("s");
+	}
+
+	// Ctrl + Shift + C → Clear formatting
+	if((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === "c"){
+		e.preventDefault();
+		clearFormatting();
+	}
+
+	notesave();
+}
 
 function clearHighlights(){
 	var text;
@@ -1383,5 +1503,11 @@ chrome.runtime.onMessage.addListener(function(request){
 			document.getElementById("richtexttoolbar").className = "hidden";
 		}
 		applyStyles(multiple, richtext);
+	}else if(request.msg == "setrichtextshortcut"){
+		if(request.value == true){
+			addRichTextShortcut();
+		}else{
+			removeRichTextShortcut();
+		}
 	}
 });
