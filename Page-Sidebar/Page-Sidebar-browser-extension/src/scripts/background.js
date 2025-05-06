@@ -599,6 +599,9 @@ chrome.storage.onChanged.addListener(function(changes){
 	if(changes["showrefreshpanel"]){
 		chrome.runtime.sendMessage({msg: "setshowrefreshpanel", value: changes["showrefreshpanel"].newValue});
 	}
+	if(changes["csp"]){
+		updateRulesFromStorage();
+	}
 });
 
 chrome.runtime.setUninstallURL(linkuninstall);
@@ -719,29 +722,41 @@ function installation(){
 	}
 }
 
-const createCspRule = ({
-	id: 1,
-	priority: 1,
-	action: {
-		type: "modifyHeaders",
-		responseHeaders: [
-			{header: "frame-options", operation: "remove"},
-			{header: "x-frame-options", operation: "remove"},
-			{header: "frame-ancestors", operation: "remove"},
-			// comment this because it blocks some sites CSP
-			// {header: "content-security-policy", operation: "remove"},
-		]
-	},
-	condition: {
-		urlFilter: "|*://*/*",
-		resourceTypes: ["main_frame", "sub_frame", "xmlhttprequest", "websocket"]
+function createCspRule(removeCSP){
+	const responseHeaders = [
+		{header: "frame-options", operation: "remove"},
+		{header: "x-frame-options", operation: "remove"}
+	];
+
+	if(removeCSP){
+		responseHeaders.push({header: "content-security-policy", operation: "remove"});
 	}
-});
+
+	return{
+		id: 1,
+		priority: 1,
+		action: {
+			type: "modifyHeaders",
+			responseHeaders
+		},
+		condition: {
+			urlFilter: "|*://*/*",
+			resourceTypes: ["main_frame", "sub_frame", "xmlhttprequest", "websocket"]
+		}
+	};
+}
+
+async function updateRulesFromStorage(){
+	chrome.storage.sync.get("csp", async(data) => {
+		const rule = createCspRule(data.csp ?? true);
+		await chrome.declarativeNetRequest.updateDynamicRules({
+			removeRuleIds: [1],
+			addRules: [rule]
+		});
+	});
+}
 
 chrome.runtime.onInstalled.addListener(async() => {
 	installation();
-	await chrome.declarativeNetRequest.updateDynamicRules({
-		removeRuleIds: [1],
-		addRules: [createCspRule]
-	});
+	updateRulesFromStorage();
 });

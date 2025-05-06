@@ -200,5 +200,7 @@
     "btnon": {"message": "ON"},
     "btnoff": {"message": "OFF"},
     "supporttitle": {"message": "Need Help?"},
-    "supporttext": {"message": "Got questions or need support? I am here to help."}
+    "supporttext": {"message": "Got questions or need support? I am here to help."},
+    "titelcsp": {"message": "Content Security Policy"},
+    "descsp": {"message": "Allow the extension to load the 'Content Security Policy'"}
   }
