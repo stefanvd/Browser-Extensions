@@ -1010,7 +1010,7 @@ function createiframe(url){
 		}, "*");
 	};
 	iframe.src = url;
-	iframe.allow = "camera; clipboard-write; fullscreen; microphone; geolocation";
+	iframe.allow = "camera; clipboard-read; clipboard-write; fullscreen; microphone; geolocation";
 	iframe.className = "hidden";
 	webcontent.appendChild(iframe);
 }
