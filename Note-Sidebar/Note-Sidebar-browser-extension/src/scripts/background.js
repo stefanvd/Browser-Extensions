@@ -526,3 +526,8 @@ chrome.runtime.onInstalled.addListener(function(){
 		chrome.runtime.setUninstallURL(linkuninstall);
 	}
 });
+
+chrome.runtime.onUpdateAvailable.addListener(function(){
+	// save the current note before update
+	chrome.storage.sync.set({"txtvalue": currentnotetext, "multivalue": currentmultinotetext});
+});
