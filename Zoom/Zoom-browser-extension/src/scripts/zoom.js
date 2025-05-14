@@ -322,74 +322,77 @@ function setdefaultfontsize(){
 var zoommousescroll; var zoommousebuttonleft; var zoommousebuttonright; var zoommousescrollup; var zoommousescrolldown;
 var rightmousehold = false;
 var zoommagcircle; var zoommagsquare; var zoommagszoomlevel; var zoommagszoomsize;
-chrome.storage.sync.get(["zoommousescroll", "zoommousebuttonleft", "zoommousebuttonright", "zoommousescrollup", "zoommousescrolldown", "zoommagcircle", "zoommagsquare", "zoommagszoomlevel", "zoommagszoomsize"], function(response){
-	zoommousescroll = response.zoommousescroll; if(zoommousescroll == null)zoommousescroll = false; // default zoommousescroll false
-	zoommousebuttonleft = response.zoommousebuttonleft; if(zoommousebuttonleft == null)zoommousebuttonleft = true; // default zoommousebuttonleft false
-	zoommousebuttonright = response.zoommousebuttonright; if(zoommousebuttonright == null)zoommousebuttonright = false; // default zoommousebuttonright false
-	zoommousescrollup = response.zoommousescrollup; if(zoommousescrollup == null)zoommousescrollup = true; // default zoommousescrollup false
-	zoommousescrolldown = response.zoommousescrolldown; if(zoommousescrolldown == null)zoommousescrolldown = false; // default zoommousescrolldown false
-	zoommagcircle = response.zoommagcircle; if(zoommagcircle == null)zoommagcircle = true;
-	zoommagsquare = response.zoommagsquare; if(zoommagsquare == null)zoommagsquare = false;
-	zoommagszoomlevel = response.zoommagszoomlevel; if(zoommagszoomlevel == null)zoommagszoomlevel = 2;
-	zoommagszoomsize = response.zoommagszoomsize; if(zoommagszoomsize == null)zoommagszoomsize = 200;
 
-	if(zoommousescroll == true){
-		// add CSS
-		var css = ".stefanvdstopscrolling{height:100%!important;overflow:hidden!important}",
-			head = document.head || document.getElementsByTagName("head")[0],
-			style = document.createElement("style");
-		style.type = "text/css";
-		style.setAttribute("id", "szoomstyle");
-		if(style.styleSheet){
-			style.styleSheet.cssText = css;
-		}else{
-			style.appendChild(document.createTextNode(css));
+document.addEventListener("DOMContentLoaded", function(){
+	chrome.storage.sync.get(["zoommousescroll", "zoommousebuttonleft", "zoommousebuttonright", "zoommousescrollup", "zoommousescrolldown", "zoommagcircle", "zoommagsquare", "zoommagszoomlevel", "zoommagszoomsize"], function(response){
+		zoommousescroll = response.zoommousescroll; if(zoommousescroll == null)zoommousescroll = false; // default zoommousescroll false
+		zoommousebuttonleft = response.zoommousebuttonleft; if(zoommousebuttonleft == null)zoommousebuttonleft = true; // default zoommousebuttonleft false
+		zoommousebuttonright = response.zoommousebuttonright; if(zoommousebuttonright == null)zoommousebuttonright = false; // default zoommousebuttonright false
+		zoommousescrollup = response.zoommousescrollup; if(zoommousescrollup == null)zoommousescrollup = true; // default zoommousescrollup false
+		zoommousescrolldown = response.zoommousescrolldown; if(zoommousescrolldown == null)zoommousescrolldown = false; // default zoommousescrolldown false
+		zoommagcircle = response.zoommagcircle; if(zoommagcircle == null)zoommagcircle = true;
+		zoommagsquare = response.zoommagsquare; if(zoommagsquare == null)zoommagsquare = false;
+		zoommagszoomlevel = response.zoommagszoomlevel; if(zoommagszoomlevel == null)zoommagszoomlevel = 2;
+		zoommagszoomsize = response.zoommagszoomsize; if(zoommagszoomsize == null)zoommagszoomsize = 200;
+
+		if(zoommousescroll == true){
+			// add CSS
+			var css = ".stefanvdstopscrolling{height:100%!important;overflow:hidden!important}",
+				head = document.head || document.getElementsByTagName("head")[0],
+				style = document.createElement("style");
+			style.type = "text/css";
+			style.setAttribute("id", "szoomstyle");
+			if(style.styleSheet){
+				style.styleSheet.cssText = css;
+			}else{
+				style.appendChild(document.createTextNode(css));
+			}
+			head.appendChild(style);
+
+			document.body.addEventListener("mousedown", function(e){
+				e = e || window.event;
+				if(zoommousebuttonleft == true){
+					if(e.which == 1){
+						rightmousehold = true;
+						// prevent scrolling
+						document.body.classList.add("stefanvdstopscrolling");
+					}
+				}else{
+					if(e.which == 3){
+						rightmousehold = true;
+						// prevent scrolling
+						document.body.classList.add("stefanvdstopscrolling");
+					}
+				}
+			});
+			document.body.addEventListener("mouseup", function(){
+				rightmousehold = false;
+				if(document.body.classList.contains("stefanvdstopscrolling")){
+					document.body.classList.remove("stefanvdstopscrolling");
+				}
+			});
+
+			window.addEventListener("wheel", function(e){
+				if(zoommousescrollup == true){
+					if(e.deltaY < 0 && rightmousehold == true){
+						// console.log('scrolling up');
+						chrome.runtime.sendMessage({name: "contentzoomout"});
+					}
+					if(e.deltaY > 0 && rightmousehold == true){
+						// console.log('scrolling down');
+						chrome.runtime.sendMessage({name: "contentzoomin"});
+					}
+				}else{
+					if(e.deltaY < 0 && rightmousehold == true){
+						// console.log('scrolling up');
+						chrome.runtime.sendMessage({name: "contentzoomin"});
+					}
+					if(e.deltaY > 0 && rightmousehold == true){
+						// console.log('scrolling down');
+						chrome.runtime.sendMessage({name: "contentzoomout"});
+					}
+				}
+			});
 		}
-		head.appendChild(style);
-
-		document.body.addEventListener("mousedown", function(e){
-			e = e || window.event;
-			if(zoommousebuttonleft == true){
-				if(e.which == 1){
-					rightmousehold = true;
-					// prevent scrolling
-					document.body.classList.add("stefanvdstopscrolling");
-				}
-			}else{
-				if(e.which == 3){
-					rightmousehold = true;
-					// prevent scrolling
-					document.body.classList.add("stefanvdstopscrolling");
-				}
-			}
-		});
-		document.body.addEventListener("mouseup", function(){
-			rightmousehold = false;
-			if(document.body.classList.contains("stefanvdstopscrolling")){
-				document.body.classList.remove("stefanvdstopscrolling");
-			}
-		});
-
-		window.addEventListener("wheel", function(e){
-			if(zoommousescrollup == true){
-				if(e.deltaY < 0 && rightmousehold == true){
-					// console.log('scrolling up');
-					chrome.runtime.sendMessage({name: "contentzoomout"});
-				}
-				if(e.deltaY > 0 && rightmousehold == true){
-					// console.log('scrolling down');
-					chrome.runtime.sendMessage({name: "contentzoomin"});
-				}
-			}else{
-				if(e.deltaY < 0 && rightmousehold == true){
-					// console.log('scrolling up');
-					chrome.runtime.sendMessage({name: "contentzoomin"});
-				}
-				if(e.deltaY > 0 && rightmousehold == true){
-					// console.log('scrolling down');
-					chrome.runtime.sendMessage({name: "contentzoomout"});
-				}
-			}
-		});
-	}
+	});
 });
