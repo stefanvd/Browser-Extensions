@@ -1,15 +1,11 @@
 {
-  "name": "__MSG_namesafari__",
+  "name": "__MSG_name__",
+  "description": "__MSG_descriptionshort__",
   "action": {
     "default_title": "__MSG_name__",
     "default_icon": {
-      "16": "images/iconstick16.png",
-      "19": "images/iconstick19.png",
-      "20": "images/iconstick20.png",
-      "32": "images/iconstick32.png",
-      "38": "images/iconstick38.png",
-      "40": "images/iconstick40.png",
-      "64": "images/iconstick64.png"
+      "19": "images/iconstick19safari.png",
+      "38": "images/iconstick38safari.png"
     }
   },
   "background": {
@@ -54,8 +50,18 @@
       "description": "__MSG_titleshortpredefined3__"
     }
   },
-  "offline_enabled": true,
-  "minimum_chrome_version": "103",
-  "permissions": ["tabs", "contextMenus", "storage", "scripting", "webNavigation", "system.display", "unlimitedStorage"],
-  "host_permissions": ["<all_urls>"]
+    "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["scripts/zoom.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "permissions": ["tabs", "contextMenus", "storage", "scripting", "webNavigation", "unlimitedStorage"],
+  "host_permissions": ["<all_urls>"],
+  "browser_specific_settings": {
+    "safari": {
+      "strict_min_version": "15.4"
+    }
+  }
 }

@@ -16,5 +16,5 @@ const linkproductdescription = "https://www.stefanvd.net/project/zoom/browser/";
 const browsernewtab = "whale://newtab/";
 const browserstore = "https://store.whale.naver.com";
 const linkyoutube = "https://www.youtube.com/@stefanvandamme?sub_confirmation=1";
-const devmode = true;
+const devmode = false;
 const devdonate = false;

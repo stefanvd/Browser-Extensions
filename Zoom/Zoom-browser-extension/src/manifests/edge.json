@@ -1,5 +1,6 @@
 {
   "name": "__MSG_nameedge__",
+  "description": "__MSG_description__",
   "action": {
     "default_title": "__MSG_name__",
     "default_icon": {
