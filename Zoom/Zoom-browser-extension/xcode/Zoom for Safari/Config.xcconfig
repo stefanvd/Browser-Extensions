@@ -9,5 +9,5 @@
 // https://developer.apple.com/documentation/xcode/adding-a-build-configuration-file-to-your-project
 
 // Update the version number here for all platforms
-VERSION = 2.8.17
-BUILD_NUMBER = 8
+VERSION = 2.8.18
+BUILD_NUMBER = 9

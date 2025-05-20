@@ -1345,7 +1345,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = "$(VERSION)";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -1380,7 +1380,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = "$(VERSION)";
 				OTHER_LDFLAGS = (
 					"-framework",
