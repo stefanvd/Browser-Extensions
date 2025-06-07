@@ -62,7 +62,14 @@ chrome.runtime.onMessage.addListener(function request(request, sender, response)
 		installation();
 		break;
 	case"sidepanelopen":
-		response(!sender.documentId);
+		// Chrome uses chrome.sidePanel API, Opera uses opr.sidebarAction API
+		if(typeof opr !== "undefined" && typeof opr.sidebarAction !== "undefined"){
+			// Opera - always allow since it uses a different sidebar mechanism
+			response(true);
+		}else{
+			// Chrome - use documentId to check if it's a sidebar panel
+			response(!sender.documentId);
+		}
 		break;
 	case"getallpermissions":
 		var result = "";
@@ -713,9 +720,11 @@ function installation(){
 		chrome.storage.managed.get(function(items){
 			readgrouppolicy(items);
 			// save in memory
-			Object.keys(items).forEach(function(policyName){
-				policygrouparray[policyName] = items[policyName];
-			});
+			if(items && typeof items === "object"){
+				Object.keys(items).forEach(function(policyName){
+					policygrouparray[policyName] = items[policyName];
+				});
+			}
 		});
 	}else{
 		initwelcome();

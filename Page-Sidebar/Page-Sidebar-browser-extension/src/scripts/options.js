@@ -350,7 +350,7 @@ function read_options(){
 		$("version_number").innerText = manifestData.version;
 
 		test(); // do the test
-
+		ariacheck();
 	});// chrome storage end
 } // end read
 
@@ -494,17 +494,9 @@ function test(){
 }
 
 function ariacheck(){
-	var inputs = document.querySelectorAll("input");
-	var i;
-	var l = inputs.length;
+	var inputs = document.querySelectorAll("input[role='checkbox'], input[role='radio']"), i, l = inputs.length;
 	for(i = 0; i < l; i++){
-		if(inputs[i].getAttribute("role") == "radio" || inputs[i].getAttribute("role") == "checkbox"){
-			if(inputs[i].checked == true){
-				inputs[i].setAttribute("aria-checked", true);
-			}else{
-				inputs[i].setAttribute("aria-checked", false);
-			}
-		}
+		inputs[i].checked == true ? inputs[i].setAttribute("aria-checked", true) : inputs[i].setAttribute("aria-checked", false);
 	}
 }
 
@@ -765,13 +757,11 @@ function domcontentloaded(){
 
 	// Detect click / change to save the page and test it.
 	var inputs = document.querySelectorAll("input");
-	var i;
-	var l = inputs.length;
+	var i, l = inputs.length;
 	for(i = 0; i < l; i++){ inputs[i].addEventListener("change", test); inputs[i].addEventListener("change", ariacheck); inputs[i].addEventListener("change", save_options); }
 
 	var select = document.querySelectorAll("select");
-	var j;
-	var m = select.length;
+	var j, m = select.length;
 	for(j = 0; j < m; j++){ select[j].addEventListener("change", test); select[j].addEventListener("change", ariacheck); select[j].addEventListener("change", save_options); }
 
 	// bookmark

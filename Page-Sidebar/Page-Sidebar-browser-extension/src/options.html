@@ -51,7 +51,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 </div>
 <div id="progressbar"><div id="progress"><div id="pbaranim"></div></div></div>
 </div>
-<span id="loadinghelp"><span data-i18n="pagestillloading"></span> <a href="https://www.stefanvd.net/support/" target="_blank" data-i18n="pagehelp" rel="noopener"></a>!</span>
+<span id="loadinghelp"><span data-i18n="pagestillloading"></span> <a href="https://www.stefanvd.net/support/" target="_blank" data-i18n="pagehelp" rel="noopener" title="Stefan vd Support"></a>!</span>
 </div>
 
 <div id="main-content" role="main">
@@ -76,8 +76,8 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 			</div>
 		</div>
 	</header>
-	<input type="checkbox" id="reveal-menu" role="button">
-	
+	<input type="checkbox" id="reveal-menu" role="checkbox" aria-checked="false" aria-label="The button to open the 3 dots menu">
+
 	<div id="md-home">
 			<label for="reveal-menu" id="menu">
 			<div id="menuToggle">
@@ -126,7 +126,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 		<div id="managed-prefs-banner">
 			<div class="donate-content">
 				<span id="managed-prefs-icon">
-					<a class="donatebutton" target="_blank" href="https://www.stefanvd.net/donate/" data-i18n="titledonatebutton" rel="noopener"></a>
+					<a class="donatebutton" target="_blank" href="https://www.stefanvd.net/donate/" data-i18n="titledonatebutton" rel="noopener" title="Donate"></a>
 				</span>
 				<span id="managed-prefs-text" data-i18n="donatepromotext"></span>
 				<div id="managed-prefs-text-close">x</div>
@@ -197,7 +197,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				<h3 data-i18n="titelcontextmenu"></h3>
 				<div>
 					<div class="md-checkbox">
-						<input id="contextmenus" type="checkbox">
+						<input id="contextmenus" type="checkbox" role="checkbox" aria-checked="false" aria-labelledby="contextmenus">
 						<label for="contextmenus"><div><span data-i18n="descontextmenu"></span></div></label>
 					</div>
 				</div>
@@ -228,7 +228,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				<h3 data-i18n="titelzoom"></h3>
 				<div>
 					<div class="md-checkbox">
-						<input id="zoom" type="checkbox">
+						<input id="zoom" type="checkbox" role="checkbox" aria-checked="false" aria-labelledby="zoom">
 						<label for="zoom"><div><span data-i18n="deszoom"></span></div></label>
 					</div>
 					<div class="md-number">
@@ -287,7 +287,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 							<label for="searchgoogle"><div><span>Google</span></div></label>
 						</div>
 						<div class="md-checkbox">	
-							<input id="googlesidepanel" type="checkbox">
+							<input id="googlesidepanel" type="checkbox" role="checkbox" aria-checked="false" aria-labelledby="googlesidepanel">
 							<label for="googlesidepanel"><div><span data-i18n="desgooglesidepanel"></span></div></label>
 						</div>
 						<div class="md-radio">
@@ -338,7 +338,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 					<h3 data-i18n="titelopencopy"></h3>
 					<div>
 						<div class="md-checkbox">	
-							<input id="opencopy" type="checkbox">
+							<input id="opencopy" type="checkbox" role="checkbox" aria-checked="false" aria-labelledby="opencopy">
 							<label for="opencopy"><div><span data-i18n="desopencopy"></span></div></label>
 						</div>
 					</div>
@@ -347,7 +347,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 					<h3 data-i18n="titelopentab"></h3>
 					<div>
 						<div class="md-checkbox">	
-							<input id="opentab" type="checkbox">
+							<input id="opentab" type="checkbox" role="checkbox" aria-checked="false" aria-labelledby="opentab">
 							<label for="opentab"><div><span data-i18n="desopentab"></span></div></label>
 						</div>
 					</div>
@@ -356,7 +356,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 					<h3 data-i18n="titelnavbuttons"></h3>
 					<div>
 						<div class="md-checkbox">	
-							<input id="navbuttons" type="checkbox">
+							<input id="navbuttons" type="checkbox" role="checkbox" aria-checked="false" aria-labelledby="navbuttons">
 							<label for="navbuttons"><div><span data-i18n="desnavbuttons"></span></div></label>
 						</div>
 					</div>
@@ -365,7 +365,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 					<h3 data-i18n="titelgobutton"></h3>
 					<div>
 						<div class="md-checkbox">	
-							<input id="gobutton" type="checkbox">
+							<input id="gobutton" type="checkbox" role="checkbox" aria-checked="false" aria-labelledby="gobutton">
 							<label for="gobutton"><div><span data-i18n="desgobutton"></span></div></label>
 						</div>
 					</div>
@@ -374,19 +374,19 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 					<h3 data-i18n="titelmultipletabs"></h3>
 					<div>
 						<div class="md-checkbox">	
-							<input id="multipletabs" type="checkbox">
+							<input id="multipletabs" type="checkbox" role="checkbox" aria-checked="false" aria-labelledby="multipletabs">
 							<label for="multipletabs"><div><span data-i18n="desmultipletabs"></span></div></label>
 						</div>
 						<div class="md-checkbox md-subin">
-							<input id="preventclose" type="checkbox">
+							<input id="preventclose" type="checkbox" role="checkbox" aria-checked="false" aria-labelledby="preventclose">
 							<label for="preventclose"><div><span data-i18n="despreventclose"></span></div></label>
 						</div>
 						<div class="md-checkbox md-subin">
-							<input id="dragnewtab" type="checkbox">
+							<input id="dragnewtab" type="checkbox" role="checkbox" aria-checked="false" aria-labelledby="dragnewtab">
 							<label for="dragnewtab"><div><span data-i18n="desdragnewtab"></span></div></label>
 						</div>
 						<div class="md-checkbox md-subin">
-							<input id="mutetab" type="checkbox">
+							<input id="mutetab" type="checkbox" role="checkbox" aria-checked="false" aria-labelledby="mutetab">
 							<label for="mutetab"><div><span data-i18n="desmutetab"></span></div></label>
 						</div>
 					</div>
@@ -395,7 +395,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 					<h3 data-i18n="titelscrollbars"></h3>
 					<div>
 						<div class="md-checkbox">
-							<input id="disablehorizontalscroll" type="checkbox">
+							<input id="disablehorizontalscroll" type="checkbox" role="checkbox" aria-checked="false" aria-labelledby="disablehorizontalscroll">
 							<label for="disablehorizontalscroll"><div><span data-i18n="desdisablehorizontalscroll"></span></div></label>
 						</div>
 					</div>
@@ -404,7 +404,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 					<h3 data-i18n="titelopenallnewtab"></h3>
 					<div>
 						<div class="md-checkbox">
-							<input id="openallnewtab" type="checkbox">
+							<input id="openallnewtab" type="checkbox" role="checkbox" aria-checked="false" aria-labelledby="openallnewtab">
 							<label for="openallnewtab"><div><span data-i18n="desopenallnewtab"></span></div></label>
 						</div>
 					</div>
@@ -413,11 +413,11 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 					<h3 data-i18n="titleautorefresh"></h3>
 					<div>
 						<div class="md-checkbox">
-							<input id="showrefreshpanel" type="checkbox">
+							<input id="showrefreshpanel" type="checkbox" role="checkbox" aria-checked="false" aria-labelledby="showrefreshpanel">
 							<label for="showrefreshpanel"><div><span data-i18n="desshowrefreshpanel"></span></div></label>
 						</div>
 						<div class="md-checkbox md-subin">
-							<input id="autorefresh" type="checkbox">
+							<input id="autorefresh" type="checkbox" role="checkbox" aria-checked="false" aria-labelledby="autorefresh">
 							<label for="autorefresh"><div><span data-i18n="desstartrefresh"></span></div></label>
 						</div>
 						<div class="md-number md-subin">
@@ -445,70 +445,70 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 								<form id="formwebsite1" class="bookrow">
 									<input id="websitename1" type="text" class="bookmarkname">
 									<input id="websiteurl1" type="url" required="" pattern="(https?:\/\/(www\.)?[\-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]*))|((https?|f(https?:\/\/(www\.)?[\-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]*))|((https?|ftp):\/\/)?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})tp):\/\/)?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]))|https?:\/\/(www\.)?[\-a-zA-Z0-9@:%._\+~#=]{2,256}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]*)" placeholder="https://www.example.com" class="bookmarkurl">
-									<button type="submit" name="add" class="hidden"></button>
+									<button type="submit" name="add" class="hidden" title="Add Website"></button>
 								</form>
 							</div>
 							<div>
 								<form id="formwebsite2" class="bookrow">
 									<input id="websitename2" type="text" class="bookmarkname">
 									<input id="websiteurl2" type="url" required="" pattern="(https?:\/\/(www\.)?[\-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]*))|((https?|f(https?:\/\/(www\.)?[\-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]*))|((https?|ftp):\/\/)?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})tp):\/\/)?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]))|https?:\/\/(www\.)?[\-a-zA-Z0-9@:%._\+~#=]{2,256}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]*)" placeholder="https://www.example.com" class="bookmarkurl">
-									<button type="submit" name="add" class="hidden"></button>
+									<button type="submit" name="add" class="hidden" title="Add Website"></button>
 								</form>
 							</div>
 							<div>
 								<form id="formwebsite3" class="bookrow">
 									<input id="websitename3" type="text" class="bookmarkname">
 									<input id="websiteurl3" type="url" required="" pattern="(https?:\/\/(www\.)?[\-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]*))|((https?|f(https?:\/\/(www\.)?[\-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]*))|((https?|ftp):\/\/)?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})tp):\/\/)?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]))|https?:\/\/(www\.)?[\-a-zA-Z0-9@:%._\+~#=]{2,256}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]*)" placeholder="https://www.example.com" class="bookmarkurl">
-									<button type="submit" name="add" class="hidden"></button>
+									<button type="submit" name="add" class="hidden" title="Add Website"></button>
 								</form>
 							</div>
 							<div>
 								<form id="formwebsite4" class="bookrow">
 									<input id="websitename4" type="text" class="bookmarkname">
 									<input id="websiteurl4" type="url" required="" pattern="(https?:\/\/(www\.)?[\-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]*))|((https?|f(https?:\/\/(www\.)?[\-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]*))|((https?|ftp):\/\/)?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})tp):\/\/)?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]))|https?:\/\/(www\.)?[\-a-zA-Z0-9@:%._\+~#=]{2,256}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]*)" placeholder="https://www.example.com" class="bookmarkurl">
-									<button type="submit" name="add" class="hidden"></button>
+									<button type="submit" name="add" class="hidden" title="Add Website"></button>
 								</form>
 							</div>
 							<div>
 								<form id="formwebsite5" class="bookrow">
 									<input id="websitename5" type="text" class="bookmarkname">
 									<input id="websiteurl5" type="url" required="" pattern="(https?:\/\/(www\.)?[\-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]*))|((https?|f(https?:\/\/(www\.)?[\-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]*))|((https?|ftp):\/\/)?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})tp):\/\/)?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]))|https?:\/\/(www\.)?[\-a-zA-Z0-9@:%._\+~#=]{2,256}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]*)" placeholder="https://www.example.com" class="bookmarkurl">
-									<button type="submit" name="add" class="hidden"></button>
+									<button type="submit" name="add" class="hidden" title="Add Website"></button>
 								</form>
 							</div>
 							<div>
 								<form id="formwebsite6" class="bookrow">
 									<input id="websitename6" type="text" class="bookmarkname">
 									<input id="websiteurl6" type="url" required="" pattern="(https?:\/\/(www\.)?[\-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]*))|((https?|f(https?:\/\/(www\.)?[\-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]*))|((https?|ftp):\/\/)?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})tp):\/\/)?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]))|https?:\/\/(www\.)?[\-a-zA-Z0-9@:%._\+~#=]{2,256}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]*)" placeholder="https://www.example.com" class="bookmarkurl">
-									<button type="submit" name="add" class="hidden"></button>
+									<button type="submit" name="add" class="hidden" title="Add Website"></button>
 								</form>
 							</div>
 							<div>
 								<form id="formwebsite7" class="bookrow">
 									<input id="websitename7" type="text" class="bookmarkname">
 									<input id="websiteurl7" type="url" required="" pattern="(https?:\/\/(www\.)?[\-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]*))|((https?|f(https?:\/\/(www\.)?[\-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]*))|((https?|ftp):\/\/)?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})tp):\/\/)?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]))|https?:\/\/(www\.)?[\-a-zA-Z0-9@:%._\+~#=]{2,256}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]*)" placeholder="https://www.example.com" class="bookmarkurl">
-									<button type="submit" name="add" class="hidden"></button>
+									<button type="submit" name="add" class="hidden" title="Add Website"></button>
 								</form>
 							</div>
 							<div>
 								<form id="formwebsite8" class="bookrow">
 									<input id="websitename8" type="text" class="bookmarkname">
 									<input id="websiteurl8" type="url" required="" pattern="(https?:\/\/(www\.)?[\-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]*))|((https?|f(https?:\/\/(www\.)?[\-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]*))|((https?|ftp):\/\/)?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})tp):\/\/)?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]))|https?:\/\/(www\.)?[\-a-zA-Z0-9@:%._\+~#=]{2,256}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]*)" placeholder="https://www.example.com" class="bookmarkurl">
-									<button type="submit" name="add" class="hidden"></button>
+									<button type="submit" name="add" class="hidden" title="Add Website"></button>
 								</form>
 							</div>
 							<div>
 								<form id="formwebsite9" class="bookrow">
 									<input id="websitename9" type="text" class="bookmarkname">
 									<input id="websiteurl9" type="url" required="" pattern="(https?:\/\/(www\.)?[\-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]*))|((https?|f(https?:\/\/(www\.)?[\-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]*))|((https?|ftp):\/\/)?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})tp):\/\/)?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]))|https?:\/\/(www\.)?[\-a-zA-Z0-9@:%._\+~#=]{2,256}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]*)" placeholder="https://www.example.com" class="bookmarkurl">
-									<button type="submit" name="add" class="hidden"></button>
+									<button type="submit" name="add" class="hidden" title="Add Website"></button>
 								</form>
 							</div>
 							<div>
 								<form id="formwebsite10" class="bookrow">
 									<input id="websitename10" type="text" class="bookmarkname">
 									<input id="websiteurl10" type="url" required="" pattern="(https?:\/\/(www\.)?[\-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]*))|((https?|f(https?:\/\/(www\.)?[\-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]*))|((https?|ftp):\/\/)?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})tp):\/\/)?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]))|https?:\/\/(www\.)?[\-a-zA-Z0-9@:%._\+~#=]{2,256}\b([\-a-zA-Z0-9@:%_\+.~#?&amp;\/\/=]*)" placeholder="https://www.example.com" class="bookmarkurl">
-									<button type="submit" name="add" class="hidden"></button>
+									<button type="submit" name="add" class="hidden" title="Add Website"></button>
 								</form>
 							</div>
 						</div>
@@ -518,7 +518,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 					<h3 data-i18n="titelcsp"></h3>
 					<div>
 						<div class="md-checkbox">	
-							<input id="csp" type="checkbox">
+							<input id="csp" type="checkbox" role="checkbox" aria-checked="false" aria-labelledby="csp">
 							<label for="csp"><div><span data-i18n="descsp"></span></div></label>
 						</div>
 					</div>
@@ -527,7 +527,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				<h3 data-i18n="titelrememberpage"></h3>
 				<div>
 					<div class="md-checkbox">	
-						<input id="optionskipremember" type="checkbox">
+						<input id="optionskipremember" type="checkbox" role="checkbox" aria-checked="false" aria-labelledby="optionskipremember">
 						<label for="optionskipremember"><div><span data-i18n="desrememberpage"></span></div></label>
 					</div>
 				</div>
@@ -545,7 +545,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				<section>
 				<h3 data-i18n="titelreset"></h3>
 				<div>
-					<label><button id="resetbrowserextension" data-i18n="resetbrowserextension"></button></label>
+					<label><button id="resetbrowserextension" data-i18n="resetbrowserextension" title="Reset Browser Extension Settings"></button></label>
 				</div>
 				</section>
 			</div>
@@ -559,13 +559,13 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 				<span data-i18n="description"></span>
 				<br>
 				<br>
-				<span data-i18n="titelwebsite"></span>: <a href="https://www.stefanvd.net/project/page-sidebar/browser-extension/" target="_blank">www.stefanvd.net/project/page-sidebar/browser-extension/</a>
+				<span data-i18n="titelwebsite"></span>: <a href="https://www.stefanvd.net/project/page-sidebar/browser-extension/" target="_blank" rel="noopener">www.stefanvd.net/project/page-sidebar/browser-extension/</a>
 				<br>
-				<span data-i18n="titeldeveloper"></span>: <a href="https://www.stefanvd.net" target="_blank">www.stefanvd.net</a>
+				<span data-i18n="titeldeveloper"></span>: <a href="https://www.stefanvd.net" target="_blank" rel="noopener">www.stefanvd.net</a>
 				<br>
 				<br>
 				<div class="aboutbuttons">
-				<button id="buttonreportissue" data-i18n="reportbug"></button><button id="buttonchangelog" data-i18n="changelog"></button><button id="buttontranslateme" data-i18n="translateme"></button>
+				<button id="buttonreportissue" data-i18n="reportbug" title="Report Bug"></button><button id="buttonchangelog" data-i18n="changelog" title="Changelog"></button><button id="buttontranslateme" data-i18n="translateme" title="Translate"></button>
 				</div>
 				<br>
 				<div id="permissionlist"></div>
@@ -580,7 +580,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 			</div>
 		</div>
 		<div id="tab3" class="page hidden">
-			<iframe id="welcomeguide" src="" width="100%" height="100%" frameBorder="0" scrolling="no"></iframe>
+			<iframe id="welcomeguide" title="Welcome Guide" src="" width="100%" height="100%" frameBorder="0" scrolling="no"></iframe>
 		</div>
 	</div>
 <!-- dialog -->
