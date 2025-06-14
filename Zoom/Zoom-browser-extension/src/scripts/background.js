@@ -550,7 +550,7 @@ function getZoomValue(thattab){
 
 			const ratio = zoomFactor || 1;
 			const currentRatio = ratio * 100;
-			resolve(Math.ceil(currentRatio));
+			resolve(Math.round(currentRatio));
 		});
 	});
 }
@@ -564,7 +564,7 @@ function sendMessageToTab(thattab, message){
 
 			const ratio = info || 1;
 			const currentRatio = ratio * 100;
-			resolve(Math.ceil(currentRatio));
+			resolve(Math.round(currentRatio));
 		});
 	});
 }
@@ -694,11 +694,14 @@ chrome.tabs.onHighlighted.addListener(function(tab){
 var websitelevel;
 chrome.commands.onCommand.addListener(function(command){
 	if(command == "toggle-feature-zoomin"){
-		zoomview(+1);
+		handleZoomCommand(+1);
 	}else if(command == "toggle-feature-zoomout"){
-		zoomview(-1);
+		handleZoomCommand(-1);
 	}else if(command == "toggle-feature-zoomreset"){
-		zoom(allzoomvalue * 100);
+		chrome.storage.sync.get(["allzoomvalue"], function(response){
+			allzoomvalue = response.allzoomvalue; if(allzoomvalue == null)allzoomvalue = 1;
+			handleZoomCommand(0, allzoomvalue * 100);
+		});
 	}else if(command == "toggle-feature-magnify"){
 		chrome.tabs.query({active: true, currentWindow: true},
 			function(tabs){
@@ -740,8 +743,53 @@ chrome.commands.onCommand.addListener(function(command){
 
 });
 
+async function handleZoomCommand(direction, absoluteZoom){
+	const items = await new Promise((resolve) => {
+		chrome.storage.sync.get(["allzoom", "allzoomvalue", "websitezoom", "badge", "steps", "lightcolor", "zoomchrome", "zoomweb", "zoombydomain", "zoombypage", "zoomfont", "ignoreset"], resolve);
+	});
+
+	// Populate global variables
+	allzoom = items.allzoom ?? false;
+	allzoomvalue = items.allzoomvalue ?? 1;
+	badge = items.badge ?? false;
+	lightcolor = items.lightcolor ?? "#3cb4fe";
+	steps = items.steps ?? 10;
+	zoomchrome = items.zoomchrome ?? false;
+	zoomweb = items.zoomweb ?? true;
+	zoomfont = items.zoomfont ?? false;
+	websitezoom = items.websitezoom;
+	zoombydomain = items.zoombydomain ?? true;
+	zoombypage = items.zoombypage ?? false;
+	ignoreset = items.ignoreset ?? false;
+	if(typeof websitezoom == "undefined" || websitezoom == null){
+		websitezoom = JSON.stringify({"https://www.example.com": ["90"], "https://www.nytimes.com": ["85"]});
+	}
+	websitezoom = JSON.parse(websitezoom);
+
+	const thattab = await getCurrentTab();
+	if(thattab && thattab.url){
+		job = thattab.url;
+		var filtermatch = job.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/);
+		if(zoombydomain == true){ if(filtermatch){ webjob = filtermatch[0]; } }else{ webjob = job; }
+
+		// This check is important because content scripts can't run on all pages.
+		try{
+			const zoomValue = await getCurrentZoomValue(thattab.id);
+			currentRatio = zoomValue / 100;
+			if(absoluteZoom){
+				zoom(absoluteZoom);
+			}else{
+				zoomview(direction);
+			}
+		}catch(e){
+			// Silently fail if the content script is not available.
+			// console.error(e);
+		}
+	}
+}
+
 // contextMenus
-function onClickHandler(info){
+async function onClickHandler(info){
 	var str = info.menuItemId; var respage = str.substring(0, 8); var czl = str.substring(8); var reszoomin = str.substring(0, 8); var reszoomout = str.substring(0, 9); var reszoomreset = str.substring(0, 11);
 	if(respage == "zoompage"){
 		chrome.storage.sync.get(["allzoom", "allzoomvalue", "badge", "zoomchrome", "zoomweb", "websitezoom", "zoombydomain", "zoombypage", "zoomfont", "ignoreset"], function(response){
@@ -763,11 +811,11 @@ function onClickHandler(info){
 				}else if(zoomfont == true){
 					chrome.tabs.sendMessage(tabs[0].id, {text: "changefontsize", value: Math.round(czl)});
 				}
-				setBadgeValue(czl, tabs[0].id);
+				setBadgeValue(czl / 100, tabs[0].id);
 				job = tabs[0].url;
 				if(typeof job !== "undefined"){
 					var filtermatch = job.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/);
-					if(zoombydomain == true){ if(filtermatch){ webjob = filtermatch[0]; } }else{ var webjob = job; }
+					if(zoombydomain == true){ if(filtermatch){ webjob = filtermatch[0]; } }else{ webjob = job; }
 					if(allzoom == true){
 						// save for all zoom feature
 						chrome.storage.sync.set({"allzoomvalue": czl / 100});
@@ -800,11 +848,14 @@ function onClickHandler(info){
 			});
 		});
 	}else if(reszoomin == "ctzoomin"){
-		zoomview(+1);
+		handleZoomCommand(+1);
 	}else if(reszoomout == "ctzoomout"){
-		zoomview(-1);
+		handleZoomCommand(-1);
 	}else if(reszoomreset == "ctzoomreset"){
-		zoom(allzoomvalue * 100);
+		chrome.storage.sync.get(["allzoomvalue"], function(response){
+			allzoomvalue = response.allzoomvalue; if(allzoomvalue == null)allzoomvalue = 1;
+			handleZoomCommand(0, allzoomvalue * 100);
+		});
 	}else if(info.menuItemId == "totlguideemenu"){
 		chrome.tabs.create({url: linkguide, active:true});
 	}else if(info.menuItemId == "totldevelopmenu"){
