@@ -379,14 +379,113 @@ function createNewTab(){
 
 // Function to show a custom confirmation dialog
 function showConfirmationDialog(){
-	// Display the confirmation dialog with custom message
-	var result = confirm(i18nclosetab);
+	if(exbrowser == "opera"){
+		// Opera does not support confirm in this panel
+		return new Promise((resolve) => {
+			// Create modal container
+			const modal = document.createElement("div");
+			modal.style.cssText = `
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba(0, 0, 0, 0.5);
+				display: table;
+				z-index: 3000;
+				font-family: Arial, sans-serif;
+			`;
 
-	// Check the result and return 1 for 'Yes' and 0 for 'No'
-	if(result){
-		return 1; // 'Yes' clicked
+			// Create modal content
+			const modalContent = document.createElement("div");
+			modalContent.style.cssText = `
+				display: table-cell;
+				vertical-align: middle;
+				padding: 20px;
+			`;
+
+			// Create dialog box
+			const dialogBox = document.createElement("div");
+			dialogBox.style.cssText = `
+				background: var(--ext-primary-background, #fff);
+				color: var(--ext-primary-font-color, #000);
+				max-width: 400px;
+				margin: auto;
+				padding: 20px;
+				border-radius: 8px;
+				box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+			`;
+
+			// Add message
+			const message = document.createElement("p");
+			message.textContent = i18nclosetab;
+			message.style.cssText = `
+				margin: 0 0 20px 0;
+				font-size: 14px;
+			`;
+
+			// Create button container
+			const buttonContainer = document.createElement("div");
+			buttonContainer.style.cssText = `
+				display: flex;
+				justify-content: flex-end;
+				gap: 10px;
+			`;
+
+			// Create buttons
+			const okButton = document.createElement("button");
+			okButton.textContent = chrome.i18n.getMessage("titleok");
+			okButton.style.cssText = `
+				padding: 8px 16px;
+				border: none;
+				border-radius: 4px;
+				background: #4285f4;
+				color: white;
+				cursor: pointer;
+			`;
+			okButton.addEventListener("click", () => {
+				document.body.removeChild(modal);
+				resolve(1);
+			});
+
+			const cancelButton = document.createElement("button");
+			cancelButton.textContent = chrome.i18n.getMessage("titlecancel");
+			cancelButton.style.cssText = `
+				padding: 8px 16px;
+				border: none;
+				border-radius: 4px;
+				background: var(--ext-secundar-background, #f1f1f1);
+				color: var(--ext-primary-font-color, #000);
+				cursor: pointer;
+			`;
+			cancelButton.addEventListener("click", () => {
+				document.body.removeChild(modal);
+				resolve(0);
+			});
+
+			// Assemble the modal
+			buttonContainer.appendChild(cancelButton);
+			buttonContainer.appendChild(okButton);
+			dialogBox.appendChild(message);
+			dialogBox.appendChild(buttonContainer);
+			modalContent.appendChild(dialogBox);
+			modal.appendChild(modalContent);
+			document.body.appendChild(modal);
+
+			// Focus the OK button
+			okButton.focus();
+		});
 	}else{
-		return 0; // 'No' clicked
+		// all other web browsers
+		// Display the confirmation dialog with custom message
+		var result = confirm(i18nclosetab);
+
+		// Check the result and return 1 for 'Yes' and 0 for 'No'
+		if(result){
+			return 1; // 'Yes' clicked
+		}else{
+			return 0; // 'No' clicked
+		}
 	}
 }
 

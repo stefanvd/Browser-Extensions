@@ -43,7 +43,7 @@ if(window.top !== window && window.parent === window.top){
 			addEventListener("load", sendNavigateMessage);
 			addEventListener("popstate", sendNavigateMessage);
 			addEventListener("message", (e) => {
-				console.log("Received message:", e.data.method);
+				// console.log("Received message:", e.data.method);
 				if(e.data?.method === "setIframeId"){
 					iframeId = e.data.iframeId;
 					const href = location.href;
