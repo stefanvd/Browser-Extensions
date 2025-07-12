@@ -33,7 +33,7 @@ var darkmode = false;
 var firstdefaultvalues = {};
 function defaultgetsettings(){
 	// Option default value to read if there is no current value from chrome.storage AND init default value
-	chrome.storage.sync.get(["icon", "contextmenus", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsize", "print", "password", "enterpassword", "richtext", "plaintext", "save", "bartabdesign", "barselectdesign", "download", "find"], function(items){
+	chrome.storage.sync.get(["icon", "contextmenus", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsize", "print", "password", "enterpassword", "richtext", "plaintext", "save", "bartabdesign", "barselectdesign", "download", "find", "notesStorageType"], function(items){
 		// find no localstore zoomengine
 		if(items["icon"] == null){
 			if(exbrowser == "safari"){
@@ -63,6 +63,7 @@ function defaultgetsettings(){
 		if(items["bartabdesign"] == null && items["barselectdesign"] == null){ firstdefaultvalues["bartabdesign"] = true; firstdefaultvalues["barselectdesign"] = false; }
 		if(items["download"] == null){ firstdefaultvalues["download"] = false; }
 		if(items["find"] == null){ firstdefaultvalues["find"] = false; }
+		if(items["notesStorageType"] == null){ firstdefaultvalues["notesStorageType"] = "sync"; }
 
 		// find no localstore lightimage
 		// Save the init value
@@ -75,7 +76,7 @@ function defaultgetsettings(){
 
 // Option to save current value
 function save_options(){
-	chrome.storage.sync.set({"icon": $("btnpreview").src, "optionskipremember":$("optionskipremember").checked, "contextmenus":$("contextmenus").checked, "counter":$("counter").checked, "copy":$("copy").checked, "speech":$("speech").checked, "voices":$("voices").checked, "fontsize":$("fontsize").value, "lineheight":$("lineheight").value, "colorlight":$("colorlight").value, "colordark":$("colordark").value, "backgroundlight":$("backgroundlight").value, "backgrounddark":$("backgrounddark").value, "backgroundcolor":$("backgroundcolor").checked, "backgroundimage":$("backgroundimage").checked, "backgroundsize":$("backgroundsize").value, "print":$("print").checked, "password":$("password").checked, "richtext":$("richtext").checked, "plaintext":$("plaintext").checked, "multiple":$("multiple").checked, "preventclose":$("preventclose").checked, "texttabname":$("texttabname").checked, "save":$("save").checked, "bartabdesign":$("bartabdesign").checked, "barselectdesign":$("barselectdesign").checked, "download":$("download").checked, "find":$("find").checked, "richtexttoolbar":$("richtexttoolbar").checked, "richtextshortcut":$("richtextshortcut").checked});
+	chrome.storage.sync.set({"icon": $("btnpreview").src, "optionskipremember":$("optionskipremember").checked, "contextmenus":$("contextmenus").checked, "counter":$("counter").checked, "copy":$("copy").checked, "speech":$("speech").checked, "voices":$("voices").checked, "fontsize":$("fontsize").value, "lineheight":$("lineheight").value, "colorlight":$("colorlight").value, "colordark":$("colordark").value, "backgroundlight":$("backgroundlight").value, "backgrounddark":$("backgrounddark").value, "backgroundcolor":$("backgroundcolor").checked, "backgroundimage":$("backgroundimage").checked, "backgroundsize":$("backgroundsize").value, "print":$("print").checked, "password":$("password").checked, "richtext":$("richtext").checked, "plaintext":$("plaintext").checked, "multiple":$("multiple").checked, "preventclose":$("preventclose").checked, "texttabname":$("texttabname").checked, "save":$("save").checked, "bartabdesign":$("bartabdesign").checked, "barselectdesign":$("barselectdesign").checked, "download":$("download").checked, "find":$("find").checked, "richtexttoolbar":$("richtexttoolbar").checked, "richtextshortcut":$("richtextshortcut").checked, "notesStorageType": $("notesStorageSync").checked ? "sync" : "local"});
 }
 
 function read_options(){
@@ -166,7 +167,7 @@ function read_options(){
 		showhidemodal("materialModalYouTube", "hide", "true");
 	}
 
-	chrome.storage.sync.get(["icon", "firstDate", "contextmenus", "optionskipremember", "firstsawrate", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsize", "print", "password", "enterpassword", "plaintext", "richtext", "multiple", "preventclose", "texttabname", "save", "bartabdesign", "barselectdesign", "download", "find", "richtexttoolbar", "richtextshortcut"], function(items){
+	chrome.storage.sync.get(["icon", "firstDate", "contextmenus", "optionskipremember", "firstsawrate", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsize", "print", "password", "enterpassword", "plaintext", "richtext", "multiple", "preventclose", "texttabname", "save", "bartabdesign", "barselectdesign", "download", "find", "richtexttoolbar", "richtextshortcut", "notesStorageType"], function(items){
 		if(items["icon"]){ $("btnpreview").src = items["icon"]; }
 		if(items["contextmenus"] == true)$("contextmenus").checked = true;
 		if(items["optionskipremember"] == true)$("optionskipremember").checked = true;
@@ -198,6 +199,14 @@ function read_options(){
 		if(items["find"] == true)$("find").checked = true;
 		if(items["richtexttoolbar"] == true)$("richtexttoolbar").checked = true;
 		if(items["richtextshortcut"] == true)$("richtextshortcut").checked = true;
+
+		// Set notesStorageType radio
+		var notesStorageType = items["notesStorageType"];
+		if(notesStorageType === "local"){
+			$("notesStorageLocal").checked = true;
+		}else{
+			$("notesStorageSync").checked = true;
+		}
 
 		// show remember page
 		var firstmonth = false;
@@ -550,9 +559,7 @@ window.addEventListener("load", function(){
 	$("loading").style.display = "none";
 });
 
-document.addEventListener("DOMContentLoaded", domcontentloaded);
-
-function domcontentloaded(){
+document.addEventListener("DOMContentLoaded", function(){
 	checkdarkmode();
 	window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function(){
 		checkdarkmode();
@@ -895,4 +902,4 @@ function domcontentloaded(){
 		document.getElementById("appsearch").placeholder = chrome.i18n.getMessage("searchplaceholder");
 	}
 
-}
+});

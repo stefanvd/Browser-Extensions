@@ -73,7 +73,9 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 		// console.log("currentmultinotetext=", currentmultinotetext);
 		break;
 	case"hardsave":
-		chrome.storage.sync.set({"txtvalue": currentnotetext, "multivalue": currentmultinotetext});
+		getNotesStorageArea(function(storage){
+			storage.set({"txtvalue": currentnotetext, "multivalue": currentmultinotetext});
+		});
 		break;
 	case"getallpermissions":
 		var result = "";
@@ -91,11 +93,13 @@ var currentnotetext;
 var currentmultinotetext;
 
 function init(){
-	chrome.storage.sync.get(["txtvalue", "multivalue"], function(items){
-		var txtvalue = items["txtvalue"]; if(txtvalue == null){ txtvalue = i18nfirsttext; }
-		var multivalue = items["multivalue"]; if(multivalue == null){ multivalue = [{"note":i18nfirsttext}]; }
-		currentnotetext = txtvalue;
-		currentmultinotetext = multivalue;
+	getNotesStorageArea(function(storage){
+		storage.get(["txtvalue", "multivalue"], function(items){
+			var txtvalue = items["txtvalue"]; if(txtvalue == null){ txtvalue = i18nfirsttext; }
+			var multivalue = items["multivalue"]; if(multivalue == null){ multivalue = [{"note":i18nfirsttext}]; }
+			currentnotetext = txtvalue;
+			currentmultinotetext = multivalue;
+		});
 	});
 }
 
@@ -103,7 +107,9 @@ chrome.runtime.onConnect.addListener((port) => {
 	if(port.name === "myNoteSidebar"){
 		port.onDisconnect.addListener(() => {
 			// console.log("Notesidebar Sidepanel closed");
-			chrome.storage.sync.set({"txtvalue": currentnotetext, "multivalue": currentmultinotetext});
+			getNotesStorageArea(function(storage){
+				storage.set({"txtvalue": currentnotetext, "multivalue": currentmultinotetext});
+			});
 		});
 	}
 });
@@ -158,54 +164,56 @@ function onClickHandler(info){
 }
 
 function addTextToLastContentNote(thatselectedtext){
-	chrome.storage.sync.get(["txtvalue", "richtext", "plaintext", "multiple", "multivalue"], function(items){
-		var txtvalue = items["txtvalue"]; if(txtvalue == null){ txtvalue = i18nfirsttext; }
-		var richtext = items["richtext"]; if(richtext == null){ richtext = false; }
-		var plaintext = items["plaintext"]; if(plaintext == null){ plaintext = true; }
-		var multiple = items["multiple"]; if(multiple == null){ multiple = false; }
-		var multivalue = items["multivalue"]; if(multivalue == null){ multivalue = [{"note":i18nfirsttext}]; }
+	getNotesStorageArea(function(storage){
+		storage.get(["txtvalue", "richtext", "plaintext", "multiple", "multivalue"], function(items){
+			var txtvalue = items["txtvalue"]; if(txtvalue == null){ txtvalue = i18nfirsttext; }
+			var richtext = items["richtext"]; if(richtext == null){ richtext = false; }
+			var plaintext = items["plaintext"]; if(plaintext == null){ plaintext = true; }
+			var multiple = items["multiple"]; if(multiple == null){ multiple = false; }
+			var multivalue = items["multivalue"]; if(multivalue == null){ multivalue = [{"note":i18nfirsttext}]; }
 
-		// add text on next line
-		if(multiple == true){
-			// multiple note
-			var noteValue = multivalue[0].note;
-			if(richtext == true){
-				noteValue = noteValue + "<br>" + thatselectedtext;
-			}else{
-				noteValue = noteValue + "\n" + thatselectedtext;
-			}
-			multivalue[0].note = noteValue;
-			currentmultinotetext = multivalue;
-			chrome.storage.sync.set({"multivalue": currentmultinotetext});
-
-			chrome.runtime.sendMessage({msg: "setnotemulti", value: currentmultinotetext}, function(){
-				var lastError = chrome.runtime.lastError;
-				if(lastError){
-					// error panel not open
-					// console.log(lastError.message);
-					// 'Could not establish connection. Receiving end does not exist.'
-					return;
+			// add text on next line
+			if(multiple == true){
+				// multiple note
+				var noteValue = multivalue[0].note;
+				if(richtext == true){
+					noteValue = noteValue + "<br>" + thatselectedtext;
+				}else{
+					noteValue = noteValue + "\n" + thatselectedtext;
 				}
-			});
-		}else{
-			// single note
-			if(richtext == true){
-				currentnotetext = txtvalue + "<br>" + thatselectedtext;
-			}else{
-				currentnotetext = txtvalue + "\n" + thatselectedtext;
-			}
-			chrome.storage.sync.set({"txtvalue": currentnotetext});
+				multivalue[0].note = noteValue;
+				currentmultinotetext = multivalue;
+				storage.set({"multivalue": currentmultinotetext});
 
-			chrome.runtime.sendMessage({msg: "setnotetext", value: currentnotetext}, function(){
-				var lastError = chrome.runtime.lastError;
-				if(lastError){
-					// error panel not open
-					// console.log(lastError.message);
-					// 'Could not establish connection. Receiving end does not exist.'
-					return;
+				chrome.runtime.sendMessage({msg: "setnotemulti", value: currentmultinotetext}, function(){
+					var lastError = chrome.runtime.lastError;
+					if(lastError){
+						// error panel not open
+						// console.log(lastError.message);
+						// 'Could not establish connection. Receiving end does not exist.'
+						return;
+					}
+				});
+			}else{
+				// single note
+				if(richtext == true){
+					currentnotetext = txtvalue + "<br>" + thatselectedtext;
+				}else{
+					currentnotetext = txtvalue + "\n" + thatselectedtext;
 				}
-			});
-		}
+				storage.set({"txtvalue": currentnotetext});
+
+				chrome.runtime.sendMessage({msg: "setnotetext", value: currentnotetext}, function(){
+					var lastError = chrome.runtime.lastError;
+					if(lastError){
+						// error panel not open
+						// console.log(lastError.message);
+						// 'Could not establish connection. Receiving end does not exist.'
+						return;
+					}
+				});
+			}
+		});
 	});
 }
 
@@ -376,6 +384,25 @@ chrome.tabs.onUpdated.addListener(function(){
 
 chrome.storage.onChanged.addListener(function(changes){
 	onchangestorage(changes, "contextmenus", checkcontextmenus, removecontexmenus);
+	// Migrate notes when notesStorageType changes
+	if(changes["notesStorageType"]){
+		var newType = changes["notesStorageType"].newValue;
+		var oldType = changes["notesStorageType"].oldValue;
+		if(newType && oldType && newType !== oldType){
+			var oldStorage = oldType === "local" ? chrome.storage.local : chrome.storage.sync;
+			var newStorage = newType === "local" ? chrome.storage.local : chrome.storage.sync;
+			oldStorage.get(["txtvalue", "multivalue"], function(items){
+				// Write to new storage
+				newStorage.set({
+					"txtvalue": items["txtvalue"] ?? "",
+					"multivalue": items["multivalue"] ?? [{"note":i18nfirsttext}]
+				}, function(){
+					// Remove from old storage
+					oldStorage.remove(["txtvalue", "multivalue"]);
+				});
+			});
+		}
+	}
 	if(changes["icon"]){
 		if(changes["icon"].newValue){
 			chrome.tabs.query({}, function(tabs){
@@ -445,30 +472,32 @@ chrome.storage.onChanged.addListener(function(changes){
 	if(changes["multiple"]){
 		// convert to single text or multiple text
 		const multiple = changes["multiple"].newValue;
-		chrome.storage.sync.get(["txtvalue", "multivalue"], function(items){
-			var txtvalue = items["txtvalue"]; if(txtvalue == null){ txtvalue = i18nfirsttext; }
-			var multivalue = items["multivalue"]; if(multivalue == null){ multivalue = [{"note":i18nfirsttext}]; }
+		getNotesStorageArea(function(storage){
+			storage.get(["txtvalue", "multivalue"], function(items){
+				var txtvalue = items["txtvalue"]; if(txtvalue == null){ txtvalue = i18nfirsttext; }
+				var multivalue = items["multivalue"]; if(multivalue == null){ multivalue = [{"note":i18nfirsttext}]; }
 
-			// Only convert if there was a previous setting value
-			if(changes["multiple"].oldValue !== undefined){
-				if(multiple){
-					// Reset and convert txtvalue to multivalue
-					multivalue = txtvalue ? [{"note": txtvalue}] : [];
-					txtvalue = ""; // Reset txtvalue
-				}else{
-					// Reset and convert multivalue to txtvalue
-					txtvalue = multivalue.map((item) => item.note).join("\n");
-					multivalue = []; // Reset multivalue
+				// Only convert if there was a previous setting value
+				if(changes["multiple"].oldValue !== undefined){
+					if(multiple){
+						// Reset and convert txtvalue to multivalue
+						multivalue = txtvalue ? [{"note": txtvalue}] : [];
+						txtvalue = ""; // Reset txtvalue
+					}else{
+						// Reset and convert multivalue to txtvalue
+						txtvalue = multivalue.map((item) => item.note).join("\n");
+						multivalue = []; // Reset multivalue
+					}
 				}
-			}
 
-			// Save the updated values back to storage
-			chrome.storage.sync.set({"txtvalue": txtvalue, "multivalue": multivalue}, function(){
-				// update background
-				currentnotetext = txtvalue;
-				currentmultinotetext = multivalue;
+				// Save the updated values back to storage
+				storage.set({"txtvalue": txtvalue, "multivalue": multivalue}, function(){
+					// update background
+					currentnotetext = txtvalue;
+					currentmultinotetext = multivalue;
 
-				chrome.runtime.sendMessage({msg: "setmultiple", value: changes["multiple"].newValue, singletext: txtvalue, tabtext: multivalue});
+					chrome.runtime.sendMessage({msg: "setmultiple", value: changes["multiple"].newValue, singletext: txtvalue, tabtext: multivalue});
+				});
 			});
 		});
 	}
@@ -529,5 +558,18 @@ chrome.runtime.onInstalled.addListener(function(){
 
 chrome.runtime.onUpdateAvailable.addListener(function(){
 	// save the current note before update
-	chrome.storage.sync.set({"txtvalue": currentnotetext, "multivalue": currentmultinotetext});
+	getNotesStorageArea(function(storage){
+		storage.set({"txtvalue": currentnotetext, "multivalue": currentmultinotetext});
+	});
 });
+
+// Helper to get the correct storage area for notes
+function getNotesStorageArea(callback){
+	chrome.storage.sync.get(["notesStorageType"], function(items){
+		if(items.notesStorageType === "local"){
+			callback(chrome.storage.local);
+		}else{
+			callback(chrome.storage.sync);
+		}
+	});
+}

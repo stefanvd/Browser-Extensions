@@ -207,5 +207,10 @@
     "warningdes": {
         "message": "This note is $product$ bytes, which is over the 8 KB sync storage limit. It will not be saved unless you shorten it or switch to local storage in Note Sidebar Options page (see the Advanced Options tab under Storage).",
         "placeholders": {"product": {"content": "$1", "example": "8192"}}
-    }
+    },
+    "titlenotestorage": {"message": "Storage"},
+    "desnotestoragesync": {"message": "Save notes in sync"},
+    "desnotestoragelocal": {"message": "Save notes locally"},
+    "notesyncbrowser": {"message": "Notes are synced and available across all your devices, with a limit of 8 KB per note."},
+    "notelocalbrowser": {"message": "Notes are saved locally on this device only and are not synced with other devices. However, you can save larger notes with unlimited storage."}
 }

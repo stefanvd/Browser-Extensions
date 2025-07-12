@@ -167,30 +167,36 @@ function notesave(){
 			multivalue[previoustab].note = savingtext;
 		}
 		// Check actual storage usage for 'multivalue' key
-		chrome.storage.sync.getBytesInUse("multivalue", function(bytesInUse){
-			var newValueSize = getByteSize(multivalue);
-			console.log("Current bytes in use (multivalue):", bytesInUse, "New value size:", newValueSize);
-			if(bytesInUse >= 8192){
-				console.log("B Warning: Multivalue size exceeds 8 KB limit");
-				showWarning(chrome.i18n.getMessage("warningtitle"), chrome.i18n.getMessage("warningdes", String(bytesInUse)));
-			}else{
-				removeWarning();
-			}
-			chrome.runtime.sendMessage({name: "newmultinotetext", value: multivalue});
+		getNotesStorageArea(function(noteStorage){
+			noteStorage.getBytesInUse("multivalue", function(bytesInUse){
+				var newValueSize = getByteSize(multivalue);
+				console.log("Current bytes in use (multivalue):", bytesInUse, "New value size:", newValueSize);
+				if(bytesInUse >= 8192 && noteStorage === chrome.storage.sync){
+					console.log("B Warning: Multivalue size exceeds 8 KB limit");
+					showWarning(chrome.i18n.getMessage("warningtitle"), chrome.i18n.getMessage("warningdes", String(bytesInUse)));
+				}else{
+					removeWarning();
+				}
+				noteStorage.set({"multivalue": multivalue});
+				chrome.runtime.sendMessage({name: "newmultinotetext", value: multivalue});
+			});
 		});
 	}else{
 		// Check actual storage usage for 'txtvalue' key
-		chrome.storage.sync.getBytesInUse("txtvalue", function(bytesInUse){
-			var newValueSize = getByteSize(savingtext);
-			console.log("Current bytes in use (txtvalue):", bytesInUse, "New value size:", newValueSize);
-			if(bytesInUse >= 8192){
-				console.log("A Warning: Multivalue size exceeds 8 KB limit");
-				showWarning(chrome.i18n.getMessage("warningtitle"), chrome.i18n.getMessage("warningdes", String(bytesInUse)));
-			}else{
-				removeWarning();
-			}
-			txtvalue = savingtext;
-			chrome.runtime.sendMessage({name: "newnotetext", value: savingtext});
+		getNotesStorageArea(function(noteStorage){
+			noteStorage.getBytesInUse("txtvalue", function(bytesInUse){
+				var newValueSize = getByteSize(savingtext);
+				console.log("Current bytes in use (txtvalue):", bytesInUse, "New value size:", newValueSize);
+				if(bytesInUse >= 8192 && noteStorage === chrome.storage.sync){
+					console.log("A Warning: Multivalue size exceeds 8 KB limit");
+					showWarning(chrome.i18n.getMessage("warningtitle"), chrome.i18n.getMessage("warningdes", String(bytesInUse)));
+				}else{
+					removeWarning();
+				}
+				txtvalue = savingtext;
+				noteStorage.set({"txtvalue": savingtext});
+				chrome.runtime.sendMessage({name: "newnotetext", value: savingtext});
+			});
 		});
 	}
 }
@@ -667,7 +673,8 @@ function init(){
 
 	maintext = document.querySelector("#maintext");
 	powertext = document.querySelector("#powertext");
-	chrome.storage.sync.get(["firstDate", "optionskipremember", "txtvalue", "multivalue", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsource", "backgroundsize", "print", "password", "enterpassword", "richtext", "plaintext", "multiple", "preventclose", "texttabname", "save", "bartabdesign", "barselectdesign", "download", "find", "richtexttoolbar", "richtextshortcut"], function(items){
+
+	loadNotesAndSettings(function(items){
 		txtvalue = items["txtvalue"]; if(txtvalue == null){ txtvalue = i18nfirsttext; }
 		multivalue = items["multivalue"]; if(multivalue == null){ multivalue = [{"note":i18nfirsttext}]; }
 		counter = items["counter"]; if(counter == null){ counter = true; }
@@ -696,7 +703,6 @@ function init(){
 		bartabdesign = items["bartabdesign"]; if(bartabdesign == null){ bartabdesign = true; }
 		barselectdesign = items["barselectdesign"]; if(barselectdesign == null){ barselectdesign = false; }
 		download = items["download"]; if(download == null){ download = false; }
-		find = items["find"]; if(find == null){ find = false; }
 		find = items["find"]; if(find == null){ find = false; }
 		richtexttoolbar = items["richtexttoolbar"]; if(richtexttoolbar == null){ richtexttoolbar = false; }
 		richtextshortcut = items["richtextshortcut"]; if(richtextshortcut == null){ richtextshortcut = false; }
@@ -1676,3 +1682,26 @@ chrome.runtime.onMessage.addListener(function(request){
 		}
 	}
 });
+
+// Helper to get the correct storage area for notes
+function getNotesStorageArea(callback){
+	chrome.storage.sync.get(["notesStorageType"], function(items){
+		if(items.notesStorageType === "local"){
+			callback(chrome.storage.local);
+		}else{
+			callback(chrome.storage.sync);
+		}
+	});
+}
+
+function loadNotesAndSettings(callback){
+	// Load txtvalue and multivalue from the correct storage
+	getNotesStorageArea(function(noteStorage){
+		noteStorage.get(["txtvalue", "multivalue"], function(noteItems){
+			// Load all other settings from sync
+			chrome.storage.sync.get(["firstDate", "optionskipremember", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsource", "backgroundsize", "print", "password", "enterpassword", "richtext", "plaintext", "multiple", "preventclose", "texttabname", "save", "bartabdesign", "barselectdesign", "download", "find", "richtexttoolbar", "richtextshortcut"], function(settingsItems){
+				callback(Object.assign({}, noteItems, settingsItems));
+			});
+		});
+	});
+}
