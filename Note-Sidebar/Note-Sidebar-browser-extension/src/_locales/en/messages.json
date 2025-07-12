@@ -202,5 +202,10 @@
     "sampleunderline": {"message": "Underline"},
     "samplestrike": {"message": "Strikethrough"},
     "sampleformat": {"message": "Clear format"},
-    "desrichtextshortcut": {"message": "Optional keyboard shortcuts"}
+    "desrichtextshortcut": {"message": "Optional keyboard shortcuts"},
+    "warningtitle": {"message": "Text Too Large"},
+    "warningdes": {
+        "message": "This note is $product$ bytes, which is over the 8 KB sync storage limit. It will not be saved unless you shorten it or switch to local storage in Note Sidebar Options page (see the Advanced Options tab under Storage).",
+        "placeholders": {"product": {"content": "$1", "example": "8192"}}
+    }
 }

@@ -146,6 +146,11 @@ function clearFormatting(){
 	}
 }
 
+// Utility to calculate the size in bytes of a value as stored in chrome.storage (JSON serialized)
+function getByteSize(value){
+	return new Blob([JSON.stringify(value)]).size;
+}
+
 function notesave(){
 	var savingtext;
 	if(plaintext == true){
@@ -161,10 +166,32 @@ function notesave(){
 		}else if(richtext == true){
 			multivalue[previoustab].note = savingtext;
 		}
-		chrome.runtime.sendMessage({name: "newmultinotetext", value: multivalue});
+		// Check actual storage usage for 'multivalue' key
+		chrome.storage.sync.getBytesInUse("multivalue", function(bytesInUse){
+			var newValueSize = getByteSize(multivalue);
+			console.log("Current bytes in use (multivalue):", bytesInUse, "New value size:", newValueSize);
+			if(bytesInUse >= 8192){
+				console.log("B Warning: Multivalue size exceeds 8 KB limit");
+				showWarning(chrome.i18n.getMessage("warningtitle"), chrome.i18n.getMessage("warningdes", String(bytesInUse)));
+			}else{
+				removeWarning();
+			}
+			chrome.runtime.sendMessage({name: "newmultinotetext", value: multivalue});
+		});
 	}else{
-		txtvalue = savingtext;
-		chrome.runtime.sendMessage({name: "newnotetext", value: savingtext});
+		// Check actual storage usage for 'txtvalue' key
+		chrome.storage.sync.getBytesInUse("txtvalue", function(bytesInUse){
+			var newValueSize = getByteSize(savingtext);
+			console.log("Current bytes in use (txtvalue):", bytesInUse, "New value size:", newValueSize);
+			if(bytesInUse >= 8192){
+				console.log("A Warning: Multivalue size exceeds 8 KB limit");
+				showWarning(chrome.i18n.getMessage("warningtitle"), chrome.i18n.getMessage("warningdes", String(bytesInUse)));
+			}else{
+				removeWarning();
+			}
+			txtvalue = savingtext;
+			chrome.runtime.sendMessage({name: "newnotetext", value: savingtext});
+		});
 	}
 }
 
@@ -1286,7 +1313,42 @@ function hideSearchBox(){
 	highlightedText.textContent = "";
 }
 
+// Badge queue to prevent overlapping badges
+let badgeQueue = [];
+let badgeShowing = false;
+
 function showBadge(title, description){
+	badgeQueue.push({title, description});
+	processBadgeQueue();
+}
+
+function showWarning(title, description){
+	var el = document.getElementById("warning");
+	while(el.firstChild)el.removeChild(el.firstChild);
+	el.className = "warning-message";
+
+	var divtitle = document.createElement("div");
+	divtitle.className = "title";
+	divtitle.innerText = title;
+	el.appendChild(divtitle);
+
+	var divdes = document.createElement("div");
+	divdes.className = "description";
+	divdes.innerText = description;
+	el.appendChild(divdes);
+}
+
+function removeWarning(){
+	var el = document.getElementById("warning");
+	el.className = "hidden";
+	while(el.firstChild)el.removeChild(el.firstChild);
+}
+
+function processBadgeQueue(){
+	if(badgeShowing || badgeQueue.length === 0)return;
+	badgeShowing = true;
+	const{title, description} = badgeQueue.shift();
+
 	var div = document.createElement("div");
 	div.setAttribute("id", "stefanvdremoteadd");
 	div.className = "stefanvdremote";
@@ -1302,7 +1364,11 @@ function showBadge(title, description){
 
 	window.setTimeout(function(){
 		var element = document.getElementById("stefanvdremoteadd");
-		element.parentNode.removeChild(element);
+		if(element && element.parentNode){
+			element.parentNode.removeChild(element);
+		}
+		badgeShowing = false;
+		processBadgeQueue();
 	}, 4000);
 }
 

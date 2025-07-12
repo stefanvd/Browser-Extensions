@@ -135,7 +135,7 @@ textarea,#powertext{overflow:auto;background:transparent;width:100%;position:fix
 .enablerichbarmulti{top:94px;height:calc(100% - 94px)}
 .enablerichbarsingle{top:46px;height:calc(100% - 46px)}
 .regularbar{top:0;height:100%}
-#search-box{position:absolute;bottom:60px;left:0;right:0;margin:auto;width:200px;padding:8px;justify-content:center;backdrop-filter:blur(10px);border-radius:8px;border:1px solid #dadce0}
+#search-box{position:absolute;bottom:60px;left:0;right:0;margin:auto;width:200px;padding:8px;justify-content:center;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-radius:8px;border:1px solid #dadce0}
 #search-box .field{display:flex;gap:8px;align-items:center;justify-content:center}
 #search-input{outline:none;border:0;height:28px;background:#ffffff5c;padding:0px 8px}
 #highlighted-text{position:absolute;left:0;width:100%;pointer-events:none;color:transparent;background-color:transparent;overflow-wrap:break-word;font-family:Helvetica,Arial,sans-serif;font-size:var(--ext-font-size);line-height:var(--ext-line-height);padding:15px;overflow-x:hidden;overflow-y:hidden;box-sizing:border-box}
@@ -159,6 +159,10 @@ textarea,#powertext{overflow:auto;background:transparent;width:100%;position:fix
 .richtexttoolbar{height:25px;display:flex;gap:5px;padding:10px;border-bottom:1px solid var(--totl-tab-rightext-line)}
 .richtexttoolbar button{font-size:12px;padding:5px 10px;cursor:pointer;border:none;background:var(--totl-tab-rightext-color);border-radius:5px}
 .richtexttoolbar button:hover{background:var(--totl-tab-rightext-color-hover)}
+/* Warning and Error Messages */
+.warning-message{position:absolute;bottom:40px;background:#ffc10759;color:black;width:calc(100% - 30px);z-index:40;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);padding:10px;font-size:14px;box-sizing:border-box;border:1px solid #e0e0e0;border-radius:15px;margin:15px}
+.warning-message .title{font-size:16px;font-weight: bold;margin-bottom:8px}
+.warning-message .description{font-size:16px;line-height:16px}
 @media print{    
 .texttoolbar{display:none!important}
 }
