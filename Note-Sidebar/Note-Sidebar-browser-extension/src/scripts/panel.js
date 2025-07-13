@@ -146,11 +146,6 @@ function clearFormatting(){
 	}
 }
 
-// Utility to calculate the size in bytes of a value as stored in chrome.storage (JSON serialized)
-function getByteSize(value){
-	return new Blob([JSON.stringify(value)]).size;
-}
-
 function notesave(){
 	var savingtext;
 	if(plaintext == true){
@@ -169,10 +164,11 @@ function notesave(){
 		// Check actual storage usage for 'multivalue' key
 		getNotesStorageArea(function(noteStorage){
 			noteStorage.getBytesInUse("multivalue", function(bytesInUse){
-				var newValueSize = getByteSize(multivalue);
-				console.log("Current bytes in use (multivalue):", bytesInUse, "New value size:", newValueSize);
-				if(bytesInUse >= 8192 && noteStorage === chrome.storage.sync){
-					console.log("B Warning: Multivalue size exceeds 8 KB limit");
+				// console.log("Current bytes in use (multivalue):", bytesInUse);
+				// For sync storage, check if the new value would exceed the 8KB limit
+				if(noteStorage === chrome.storage.sync && bytesInUse >= 8192){
+					// Default web browser storage 8192 bytes = 8 KB
+					// console.log("Warning: Multivalue size exceeds 8 KB limit");
 					showWarning(chrome.i18n.getMessage("warningtitle"), chrome.i18n.getMessage("warningdes", String(bytesInUse)));
 				}else{
 					removeWarning();
@@ -185,10 +181,11 @@ function notesave(){
 		// Check actual storage usage for 'txtvalue' key
 		getNotesStorageArea(function(noteStorage){
 			noteStorage.getBytesInUse("txtvalue", function(bytesInUse){
-				var newValueSize = getByteSize(savingtext);
-				console.log("Current bytes in use (txtvalue):", bytesInUse, "New value size:", newValueSize);
-				if(bytesInUse >= 8192 && noteStorage === chrome.storage.sync){
-					console.log("A Warning: Multivalue size exceeds 8 KB limit");
+				// console.log("Current bytes in use (txtvalue):", bytesInUse);
+				// For sync storage, check if the new value would exceed the 8KB limit
+				if(noteStorage === chrome.storage.sync && bytesInUse >= 8192){
+					// Default web browser storage 8192 bytes = 8 KB
+					// console.log("Warning: New value size exceeds 8 KB limit");
 					showWarning(chrome.i18n.getMessage("warningtitle"), chrome.i18n.getMessage("warningdes", String(bytesInUse)));
 				}else{
 					removeWarning();
