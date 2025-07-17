@@ -996,8 +996,27 @@ function updatetabname(){
 				var noteText = multivalue[index]?.note || "";
 
 				// Get the first line of the note text
-				var firstLine = noteText.split("\n")[0].trim();
-				firstLine = stripHtmlTags(firstLine);
+				var firstLine;
+				if(richtext == true){
+					try{
+						var parser = new DOMParser();
+						var doc = parser.parseFromString(noteText, "text/html");
+
+						// Get the first <div> inside the outer wrapper
+						var innerDivs = doc.body.querySelectorAll("div");
+						if(innerDivs.length > 0){
+							firstLine = innerDivs[0].textContent.trim();
+						}else{
+							firstLine = "";
+						}
+					}catch(e){
+						firstLine = "";
+					}
+				}else{
+					// plaintext default
+					firstLine = noteText.split("\n")[0].trim();
+					firstLine = stripHtmlTags(firstLine);
+				}
 
 				if(!firstLine){
 					// If note text is empty, show default text with index number
