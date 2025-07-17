@@ -1002,9 +1002,6 @@ function updatetabname(){
 				if(!firstLine){
 					// If note text is empty, show default text with index number
 					firstLine = i18nnote + (index + 1);
-				}else if(firstLine.length > 15){
-					// If note text exceeds 15 characters, limit it and append three dots
-					firstLine = firstLine.substring(0, 15) + "…";
 				}
 
 				// Update the tab title with the first line of the note text
