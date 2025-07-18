@@ -26,7 +26,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-var selectedsearch, searchgoogle, searchbing, searchduckduckgo, searchbaidu, searchyandex, typepanelzone, typepanelcustom, typepanellasttime, websitestartname, websitelasttime, navtop, navbottom, navhidden, opentab, opencopy, opennonebookmarks, openbrowserbookmarks, openquickbookmarks, googlesidepanel, zoom, defaultzoom, step, multipletabs, multivalues, navbuttons, gobutton, typehomezone, typehomecustom, websitehomepagename, preventclose, dragnewtab, mutetab, searchyahoo, search360, searchsogou, searchchatgpt, searchgemini, searchwikipedia, disablehorizontalscroll, openallnewtab, refreshtime, autorefresh, showrefreshpanel;
+var selectedsearch, searchgoogle, searchbing, searchduckduckgo, searchbaidu, searchyandex, typepanelzone, typepanelcustom, typepanellasttime, websitestartname, websitelasttime, navtop, navbottom, navhidden, opentab, opencopy, opennonebookmarks, openbrowserbookmarks, openquickbookmarks, googlesidepanel, zoom, defaultzoom, step, multipletabs, multivalues, navbuttons, gobutton, typehomezone, typehomecustom, websitehomepagename, preventclose, dragnewtab, mutetab, searchyahoo, search360, searchsogou, searchchatgpt, searchgemini, searchwikipedia, disablehorizontalscroll, openallnewtab, refreshtime, autorefresh, showrefreshpanel, zoomvisible;
 
 var faviconserver = "https://s2.googleusercontent.com/s2/favicons?domain=";
 var emptypage = "about:blank";
@@ -441,6 +441,12 @@ function init(){
 
 	collapseHandle.addEventListener("click", function(){
 		zoomPanel.classList.toggle("collapsed");
+		// save zoom visibility
+		if(zoomPanel.classList.contains("collapsed")){
+			chrome.storage.sync.set({"zoomvisible": false});
+		}else{
+			chrome.storage.sync.set({"zoomvisible": true});
+		}
 	});
 
 	refreshHandle = document.getElementById("refresh-handle");
@@ -450,7 +456,7 @@ function init(){
 		refreshPanel.classList.toggle("collapsed");
 	});
 
-	chrome.storage.sync.get(["firstDate", "optionskipremember", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "typepanellasttime", "websitestartname", "websitelasttime", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "opentab", "opencopy", "opennonebookmarks", "openbrowserbookmarks", "openquickbookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10", "googlesidepanel", "zoom", "defaultzoom", "step", "multipletabs", "multivalues", "navbuttons", "gobutton", "typehomezone", "typehomecustom", "websitehomepagename", "preventclose", "dragnewtab", "mutetab", "searchyahoo", "search360", "searchsogou", "searchchatgpt", "searchgemini", "searchwikipedia", "disablehorizontalscroll", "openallnewtab", "refreshtime", "autorefresh", "showrefreshpanel"], function(items){
+	chrome.storage.sync.get(["firstDate", "optionskipremember", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "typepanellasttime", "websitestartname", "websitelasttime", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "opentab", "opencopy", "opennonebookmarks", "openbrowserbookmarks", "openquickbookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10", "googlesidepanel", "zoom", "defaultzoom", "step", "multipletabs", "multivalues", "navbuttons", "gobutton", "typehomezone", "typehomecustom", "websitehomepagename", "preventclose", "dragnewtab", "mutetab", "searchyahoo", "search360", "searchsogou", "searchchatgpt", "searchgemini", "searchwikipedia", "disablehorizontalscroll", "openallnewtab", "refreshtime", "autorefresh", "showrefreshpanel", "zoomvisible"], function(items){
 		searchgoogle = items["searchgoogle"]; if(searchgoogle == null){ searchgoogle = true; }
 		googlesidepanel = items["googlesidepanel"]; if(googlesidepanel == null){ googlesidepanel = true; }
 		searchbing = items["searchbing"]; if(searchbing == null){ searchbing = false; }
@@ -480,6 +486,7 @@ function init(){
 		refreshtime = items["refreshtime"]; if(refreshtime == null){ refreshtime = 10; }
 		autorefresh = items["autorefresh"]; if(autorefresh == null){ autorefresh = false; }
 		showrefreshpanel = items["showrefreshpanel"]; if(showrefreshpanel == null){ showrefreshpanel = false; }
+		zoomvisible = items["zoomvisible"]; if(zoomvisible == null){ zoomvisible = true; }
 
 		// show the tab strip bar or not
 		applyStyles(multipletabs);
@@ -517,7 +524,11 @@ function init(){
 
 		//---
 		if(zoom == true){
-			document.getElementById("zoombar").className = "zoom-panel";
+			if(zoomvisible == true){
+				document.getElementById("zoombar").className = "zoom-panel";
+			}else{
+				document.getElementById("zoombar").className = "zoom-panel collapsed";
+			}
 		}
 		zoomLevel = parseInt(defaultzoom);
 		zoomLevelDisplay.textContent = defaultzoom + "%";
