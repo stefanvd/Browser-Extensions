@@ -207,6 +207,7 @@ var i18nnote = chrome.i18n.getMessage("note");
 var i18nclosetab = chrome.i18n.getMessage("closetab");
 var i18ntitelsavetext = chrome.i18n.getMessage("titlesavetextdone");
 var i18ndessavetext = chrome.i18n.getMessage("descopysavedone");
+var i18ntooltipremovenote = chrome.i18n.getMessage("tooltipremovenote");
 
 function focuspassword(){
 	document.getElementById("inputpass").focus();
@@ -298,6 +299,7 @@ function createAllTabsInBar(){
 		// Add close button to the tab
 		const closeButton = document.createElement("button");
 		closeButton.classList.add("sel-close");
+		closeButton.title = i18ntooltipremovenote;
 		closeButton.textContent = "x";
 		closeButton.addEventListener("click", function(){
 			hideSearchBox();

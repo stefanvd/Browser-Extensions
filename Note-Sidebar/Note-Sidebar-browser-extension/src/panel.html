@@ -44,29 +44,29 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 <body>
   <main>
 	<div id="tabstrip" class="tab-bar">
-		<div class="add-tab">+</div>
+		<div class="add-tab" title="Add a new note">+</div>
 	</div>
 	<div id="richtexttoolbar" class="richtexttoolbar">
-        <button id="btnbold"><b>B</b></button>
-        <button id="btnitalic"><i>I</i></button>
-        <button id="btnunderline"><u>U</u></button>
-        <button id="btnstrikethrough"><s>S</s></button>
-		<button id="btnh1">H1</button>
-		<button id="btnh2">H2</button>
-		<button id="btnp">P</button>
-        <button id="btnclearformat">Format Reset</button>
+        <button id="btnbold" title="Bold"><b>B</b></button>
+        <button id="btnitalic" title="Italic"><i>I</i></button>
+        <button id="btnunderline" title="Underline"><u>U</u></button>
+        <button id="btnstrikethrough" title="Strikethrough"><s>S</s></button>
+		<button id="btnh1" title="Header 1">H1</button>
+		<button id="btnh2" title="Header 2">H2</button>
+		<button id="btnp" title="Paragraph">P</button>
+        <button id="btnclearformat" title="Format Reset">Format Reset</button>
     </div>
 	<div id="warning"></div>
 	<div id="singlenote">
 		<div id="highlighted-text"></div>
-		<textarea id="maintext" class="hidden"></textarea>
+		<textarea id="maintext" class="hidden" aria-label="Note Content"></textarea>
 		<div id="powertext" contenteditable="true" class="hidden"></div>
 	</div>
 	<div id="stefanvdpromo" class="hidden">
 		<div class="box">
 			<div class="red"><span data-i18n="stefanvdpromonew"></span></div>
-			<a href="https://www.stefanvd.net/project/browser-extension/?utm_source=notessidebar&utm_medium=referral&utm_campaign=browserextension-promo" target="_blank" rel="noopener"><span data-i18n="stefanvdpromotext"></span></a>
-			<div class="close">x</div>
+			<a href="https://www.stefanvd.net/project/browser-extension/?utm_source=notessidebar&utm_medium=referral&utm_campaign=browserextension-promo" title="Overview of all Stefan Browser Extensions" target="_blank" rel="noopener"><span data-i18n="stefanvdpromotext"></span></a>
+			<div class="close" title="Remove note">x</div>
 		</div>
 	</div>
 	<div class="texttoolbar">
@@ -74,27 +74,27 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 			<select name="voices" id="voices" aria-label="Voices"></select>
 		</div>
 		<div id="boxcharacter" class="hidden"><div id="counter"></div></div>
-		<button id="printtext" class="btn-print" aria-label="Print current text" tooltip="Print">
+		<button id="printtext" class="btn-print" aria-label="Print current text" title="Print">
 			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0,0,256,256"><g fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none"><g transform="scale(17,17)"><path d="M4,2v3h-1.5c-0.82422,0 -1.5,0.67578 -1.5,1.5v4c0,0.82422 0.67578,1.5 1.5,1.5h1.5v2h8v-2h1.5c0.82422,0 1.5,-0.67578 1.5,-1.5v-4c0,-0.82422 -0.67578,-1.5 -1.5,-1.5h-1.5v-3zM5,3h6v2h-6zM2.5,6h11c0.28125,0 0.5,0.21875 0.5,0.5v4c0,0.28125 -0.21875,0.5 -0.5,0.5h-1.5v-2h-8v2h-1.5c-0.28125,0 -0.5,-0.21875 -0.5,-0.5v-4c0,-0.28125 0.21875,-0.5 0.5,-0.5zM3.5,7c-0.27734,0 -0.5,0.22266 -0.5,0.5c0,0.27734 0.22266,0.5 0.5,0.5c0.27734,0 0.5,-0.22266 0.5,-0.5c0,-0.27734 -0.22266,-0.5 -0.5,-0.5zM5,10h6v3h-6z"></path></g></g></svg>
 		</button>
-		<button id="copytext" class="btn-copy" aria-label="Copy to Text" tooltip="Copy to Text">
+		<button id="copytext" class="btn-copy" aria-label="Copy to Text" title="Copy to Text">
 			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0,0,256,256"><g fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none"><g transform="scale(10.66667,10.66667)"><path d="M4,2c-1.105,0 -2,0.895 -2,2v13c0,0.552 0.448,1 1,1c0.552,0 1,-0.448 1,-1v-13h13c0.552,0 1,-0.448 1,-1c0,-0.552 -0.448,-1 -1,-1zM8,6c-1.105,0 -2,0.895 -2,2v12c0,1.105 0.895,2 2,2h12c1.105,0 2,-0.895 2,-2v-12c0,-1.105 -0.895,-2 -2,-2zM8,8h12v12h-12z"></path></g></g></svg>
 		</button>
-		<button id="savetext" class="btn-save" aria-label="Save Note" tooltip="Save Note">
+		<button id="savetext" class="btn-save" aria-label="Save Note" title="Save Note">
 			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0,0,256,256"><g fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none"><g transform="scale(8.53333,8.53333)"><path d="M6,4c-1.105,0 -2,0.895 -2,2v18c0,1.105 0.895,2 2,2h18c1.105,0 2,-0.895 2,-2v-16l-4,-4h-2v6c0,0.552 -0.448,1 -1,1h-9c-0.552,0 -1,-0.448 -1,-1v-6zM16,4v5h2v-5zM10,16h10c1.105,0 2,0.895 2,2v6h-14v-6c0,-1.105 0.895,-2 2,-2z"></path></g></g></svg>
 		</button>
-		<button id="downloadtext" class="btn-save" aria-label="Download Note" tooltip="Download Note">
+		<button id="downloadtext" class="btn-save" aria-label="Download Note" title="Download Note">
 			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0,0,256,256"><g fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none"><g transform="scale(8.53333,8.53333)"><path d="M7,2c-1.105,0 -2,0.895 -2,2v22c0,1.105 0.895,2 2,2h11.75781l-0.87891,-0.87891c-1.172,-1.171 -1.172,-3.07119 0,-4.24219c0.844,-0.845 2.06509,-1.07127 3.12109,-0.69727v-4.18164c0,-1.657 1.343,-3 3,-3c0.353,0 0.686,0.07159 1,0.18359v-5.68359c0,-0.265 -0.10497,-0.51903 -0.29297,-0.70703l-6.5,-6.5c-0.188,-0.188 -0.44203,-0.29297 -0.70703,-0.29297zM17,3.9043l6.0957,6.0957h-5.0957c-0.552,0 -1,-0.448 -1,-1zM23.98438,16.98633c-0.55152,0.00862 -0.99193,0.46214 -0.98437,1.01367v8.58594l-2.29297,-2.29297c-0.18827,-0.19353 -0.4468,-0.30272 -0.7168,-0.30273c-0.40692,0.00011 -0.77321,0.24676 -0.92633,0.62377c-0.15312,0.37701 -0.06255,0.80921 0.22907,1.09303l4,4c0.39053,0.39037 1.02353,0.39037 1.41406,0l4,-4c0.26124,-0.25082 0.36648,-0.62327 0.27512,-0.97371c-0.09136,-0.35044 -0.36503,-0.62411 -0.71547,-0.71547c-0.35044,-0.09136 -0.72289,0.01388 -0.97371,0.27512l-2.29297,2.29297v-8.58594c0.0037,-0.2703 -0.10218,-0.53059 -0.29351,-0.72155c-0.19133,-0.19097 -0.45182,-0.29634 -0.72212,-0.29212z"></path></g></g></svg>
 		</button>
-		<button id="findtext" class="btn-find" aria-label="Find Text" tooltip="Find Text">
+		<button id="findtext" class="btn-find" aria-label="Find Text" title="Find Text">
 			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0,0,256,256"><g fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none"><g transform="scale(5.12,5.12)"><path d="M21,4c-9.377,0 -17,7.623 -17,17c0,9.377 7.623,17 17,17c3.71238,0 7.13915,-1.20892 9.9375,-3.23437l13.14844,13.14844l2.82812,-2.82812l-13.02734,-13.02734c2.55682,-2.97559 4.11328,-6.83496 4.11328,-11.05859c0,-9.377 -7.623,-17 -17,-17zM21,6c8.29612,0 15,6.70388 15,15c0,8.29612 -6.70388,15 -15,15c-8.29612,0 -15,-6.70388 -15,-15c0,-8.29612 6.70388,-15 15,-15zM13,19c-1.10457,0 -2,0.89543 -2,2c0,1.10457 0.89543,2 2,2c1.10457,0 2,-0.89543 2,-2c0,-1.10457 -0.89543,-2 -2,-2zM21,19c-1.10457,0 -2,0.89543 -2,2c0,1.10457 0.89543,2 2,2c1.10457,0 2,-0.89543 2,-2c0,-1.10457 -0.89543,-2 -2,-2zM29,19c-1.10457,0 -2,0.89543 -2,2c0,1.10457 0.89543,2 2,2c1.10457,0 2,-0.89543 2,-2c0,-1.10457 -0.89543,-2 -2,-2z"></path></g></g></svg>
 		</button>
 		<form class="input" id="voice-form">
 			<div id="texttospeech">
-				<button id="startspeech" class="btn-startspeech" aria-label="Start Text to Speech" tooltip="Start Text to Speech">
+				<button type="button" id="startspeech" class="btn-startspeech" aria-label="Start Text to Speech" title="Start Text to Speech">
 					<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0,0,256,256"><g fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none"><g transform="scale(5.12,5.12)"><path d="M24.1875,3c-0.91016,0 -1.85547,0.4375 -2.625,1.21875l-11.625,11.59375c-0.64062,0.56641 -0.9375,1.66406 -0.9375,2.4375v13.5c0,0.76563 0.31641,1.85547 0.90625,2.375l11.59375,11.5625c1.05469,1.07031 2.02734,1.3125 2.65625,1.3125c1.66797,0 2.84375,-1.52344 2.84375,-3.6875v-37c0,-2.27734 -1.46094,-3.3125 -2.8125,-3.3125zM34.71875,12.125c-0.44531,0.05469 -0.80078,0.40234 -0.86328,0.84766c-0.06641,0.44141 0.17188,0.875 0.58203,1.05859c3.90234,2.10547 6.5625,6.21484 6.5625,10.96875c0,4.73828 -2.64844,8.85938 -6.53125,10.96875c-0.48437,0.26563 -0.66016,0.875 -0.39062,1.35938c0.26563,0.48438 0.875,0.66016 1.35938,0.39063c4.50781,-2.44922 7.5625,-7.23437 7.5625,-12.71875c0,-5.5 -3.0625,-10.30469 -7.59375,-12.75c-0.17969,-0.10156 -0.38672,-0.14453 -0.59375,-0.125c-0.03125,0 -0.0625,0 -0.09375,0zM3,15.96875c-1.67578,0 -3.03125,1.35547 -3.03125,3.03125v12c0,1.67578 1.35547,3.03125 3.03125,3.03125h4.46875c-0.32812,-0.78516 -0.46875,-1.62109 -0.46875,-2.28125v-13.5c0,-0.65625 0.16406,-1.48828 0.5,-2.28125zM30.53125,18.40625c-0.48437,0.05859 -0.85156,0.45703 -0.875,0.94531c-0.02344,0.48438 0.30469,0.91797 0.78125,1.02344c2.04688,0.53516 3.5625,2.40234 3.5625,4.625c0,2.22266 -1.51562,4.08984 -3.5625,4.625c-0.53516,0.13672 -0.85547,0.68359 -0.71875,1.21875c0.13672,0.53516 0.68359,0.85547 1.21875,0.71875c2.91406,-0.76172 5.0625,-3.42578 5.0625,-6.5625c0,-3.13672 -2.15234,-5.80078 -5.0625,-6.5625c-0.13281,-0.03906 -0.26953,-0.04687 -0.40625,-0.03125z"></path></g></g></svg>
 				</button>
-				<button id="stopspeech" class="btn-stopspeech hidden" aria-label="Stop Text to Speech" tooltip="Stop Text to Speech">
+				<button type="button" id="stopspeech" class="btn-stopspeech hidden" aria-label="Stop Text to Speech" title="Stop Text to Speech">
 					<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0,0,256,256"><g fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none"><g transform="scale(8,8)"><path d="M6,6v20h20v-20z"></path></g></g></svg>
 				</button>
 			</div>
