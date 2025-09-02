@@ -33,12 +33,12 @@ if(typeof importScripts !== "undefined"){
 	importScripts("constants.js");
 }
 
-var twelfh = null, badge = null, lightcolor = null, clockbck = null, colorhours = null, colorminutes = null, clockanalog = null, clocktickpoint = null, colorbackground = null, colordots = null, badgeclock = null, badgedate = null, badgeweek = null, badgemonth = null, badgedatesystema = null, badgedatesystemb = null, textcanvascolor = null, stamptypeA = null, stamptypeB = null, stamptypeC = null, stamptypeD = null, stamptypeE = null, datetoday = null, badgetop = null, badgebottom = null, hidemonth = null;
+var twelfh = null, badge = null, lightcolor = null, clockbck = null, colorhours = null, colorminutes = null, clockanalog = null, clocktickpoint = null, colorbackground = null, colordots = null, badgeclock = null, badgedate = null, badgeweek = null, badgemonth = null, badgedatesystema = null, badgedatesystemb = null, textcanvascolor = null, stamptypeA = null, stamptypeB = null, stamptypeC = null, stamptypeD = null, stamptypeE = null, datetoday = null, badgetop = null, badgebottom = null, hidemonth = null, stamptypeF = null;
 var pastetext;
 
 // Read current value settings
 function init(){
-	chrome.storage.sync.get(["twelfh", "badge", "lightcolor", "clockbck", "colorhours", "colorminutes", "clockanalog", "clocktickpoint", "colorbackground", "colordots", "badgeclock", "badgedate", "badgeweek", "badgemonth", "badgedatesystema", "badgedatesystemb", "textcanvascolor", "stamptypeA", "stamptypeB", "stamptypeC", "stamptypeD", "stamptypeE", "badgetop", "badgebottom", "hidemonth"], function(response){
+	chrome.storage.sync.get(["twelfh", "badge", "lightcolor", "clockbck", "colorhours", "colorminutes", "clockanalog", "clocktickpoint", "colorbackground", "colordots", "badgeclock", "badgedate", "badgeweek", "badgemonth", "badgedatesystema", "badgedatesystemb", "textcanvascolor", "stamptypeA", "stamptypeB", "stamptypeC", "stamptypeD", "stamptypeE", "badgetop", "badgebottom", "hidemonth", "stamptypeF"], function(response){
 		twelfh = response.twelfh; if(twelfh == null)twelfh = false;
 		badge = response.badge; if(badge == null)badge = false;
 		lightcolor = response.lightcolor; if(lightcolor == null)lightcolor = "#3cb4fe";
@@ -61,6 +61,7 @@ function init(){
 		stamptypeC = response.stamptypeC; if(stamptypeC == null)stamptypeC = false;
 		stamptypeD = response.stamptypeD; if(stamptypeD == null)stamptypeD = false;
 		stamptypeE = response.stamptypeE; if(stamptypeE == null)stamptypeE = false;
+		stamptypeF = response.stamptypeF; if(stamptypeF == null)stamptypeF = false;
 		badgetop = response.badgetop; if(badgetop == null)badgetop = false;
 		badgebottom = response.badgebottom; if(badgebottom == null)badgebottom = true;
 		hidemonth = response.hidemonth; if(hidemonth == null)hidemonth = false;
@@ -219,7 +220,7 @@ function init(){
 			// Write to the action
 			chrome.action.setIcon({imageData:c.getImageData(0, 0, canvas.width, canvas.height)});
 
-			if(stamptypeA == true){ datetoday = this_date + " " + this_month_name_array[this_month] + " " + this_year + " " + hours + ":" + minutes + ":" + seconds + " " + tic; }else if(stamptypeB == true){ datetoday = this_weekday_name_array[this_weekday] + " " + this_date + " " + this_month_name_array[this_month] + " " + this_year + " " + hours + ":" + minutes + ":" + seconds + " " + tic; }else if(stamptypeC == true){ datetoday = this_date + "/" + parseInt(this_month + 1) + "/" + this_year + " " + hours + ":" + minutes + ":" + seconds + " " + tic; }else if(stamptypeD == true){ datetoday = parseInt(this_month + 1) + "/" + this_date + "/" + this_year + " " + hours + ":" + minutes + ":" + seconds + " " + tic; }else if(stamptypeE == true){ datetoday = this_weekday_name_array[this_weekday] + ", " + this_month_name_array[this_month] + " " + this_date + ", " + this_year + " " + hours + ":" + minutes + ":" + seconds + " " + tic; }
+			if(stamptypeA == true){ datetoday = this_date + " " + this_month_name_array[this_month] + " " + this_year + " " + hours + ":" + minutes + ":" + seconds + " " + tic; }else if(stamptypeB == true){ datetoday = this_weekday_name_array[this_weekday] + " " + this_date + " " + this_month_name_array[this_month] + " " + this_year + " " + hours + ":" + minutes + ":" + seconds + " " + tic; }else if(stamptypeC == true){ datetoday = this_date + "/" + parseInt(this_month + 1) + "/" + this_year + " " + hours + ":" + minutes + ":" + seconds + " " + tic; }else if(stamptypeD == true){ datetoday = parseInt(this_month + 1) + "/" + this_date + "/" + this_year + " " + hours + ":" + minutes + ":" + seconds + " " + tic; }else if(stamptypeE == true){ datetoday = this_weekday_name_array[this_weekday] + ", " + this_month_name_array[this_month] + " " + this_date + ", " + this_year + " " + hours + ":" + minutes + ":" + seconds + " " + tic; }else if(stamptypeF == true){ datetoday = this_year + "-" + String(this_month + 1).padStart(2, "0") + "-" + String(this_date).padStart(2, "0") + " " + String(hours).padStart(2, "0") + String(minutes).padStart(2, "0") + tic; }
 
 
 			var badgelabel = "";
@@ -272,7 +273,7 @@ function init(){
 				m = "0" + String(m);
 			}
 
-			if(stamptypeA == true){ pastetext = this_date + " " + this_month_name_array[this_month] + " " + this_year + " " + h + ":" + m + dttic; }else if(stamptypeB == true){ pastetext = this_weekday_name_array[this_weekday] + " " + this_date + " " + this_month_name_array[this_month] + " " + this_year + " " + h + ":" + m + dttic; }else if(stamptypeC == true){ pastetext = this_date + "/" + parseInt(this_month + 1) + "/" + this_year + " " + h + ":" + m + dttic; }else if(stamptypeD == true){ pastetext = parseInt(this_month + 1) + "/" + this_date + "/" + this_year + " " + h + ":" + m + dttic; }else if(stamptypeE == true){ pastetext = this_weekday_name_array[this_weekday] + ", " + this_month_name_array[this_month] + " " + this_date + ", " + this_year + " " + h + ":" + m + dttic; }
+			if(stamptypeA == true){ pastetext = this_date + " " + this_month_name_array[this_month] + " " + this_year + " " + h + ":" + m + dttic; }else if(stamptypeB == true){ pastetext = this_weekday_name_array[this_weekday] + " " + this_date + " " + this_month_name_array[this_month] + " " + this_year + " " + h + ":" + m + dttic; }else if(stamptypeC == true){ pastetext = this_date + "/" + parseInt(this_month + 1) + "/" + this_year + " " + h + ":" + m + dttic; }else if(stamptypeD == true){ pastetext = parseInt(this_month + 1) + "/" + this_date + "/" + this_year + " " + h + ":" + m + dttic; }else if(stamptypeE == true){ pastetext = this_weekday_name_array[this_weekday] + ", " + this_month_name_array[this_month] + " " + this_date + ", " + this_year + " " + h + ":" + m + dttic; }else if(stamptypeF == true){ pastetext = this_year + "-" + String(this_month + 1).padStart(2, "0") + "-" + String(this_date).padStart(2, "0") + " " + String(h).padStart(2, "0") + String(m).padStart(2, "0") + dttic; }
 		}
 
 		startTime();
