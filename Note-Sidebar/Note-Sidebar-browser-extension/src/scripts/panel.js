@@ -1250,8 +1250,8 @@ function createrichtextshortcut(e){
 	const selection = window.getSelection();
 	if(!selection.rangeCount)return;
 
-	// Ctrl + Shift + S → Strikethrough toggle
-	if((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === "s"){
+	// Ctrl + Shift + X → Strikethrough toggle
+	if((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === "x"){
 		e.preventDefault();
 		wrapText("s");
 	}
