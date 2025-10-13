@@ -144,8 +144,12 @@ function disablehorizontalscroll(){
 	document.documentElement.style.overflowX = "hidden";
 }
 
+let openAllInNewTabInitialized = false;
 
 function openallinnewtab(){
+	if(openAllInNewTabInitialized)return;
+	openAllInNewTabInitialized = true;
+
 	// Intercept all anchor (<a>) clicks and open them in a new tab
 	document.addEventListener("click", function(event){
 		let target = event.target.closest("a"); // Find closest anchor tag
