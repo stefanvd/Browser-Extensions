@@ -231,11 +231,12 @@ var sharemenupostonx = chrome.i18n.getMessage("sharemenupostonx");
 var sharemenupostonfacebook = chrome.i18n.getMessage("sharemenupostonfacebook");
 // var sharemenuratetitle = chrome.i18n.getMessage("sharemenuratetitle");
 var sharemenudonatetitle = chrome.i18n.getMessage("sharemenudonatetitle");
-var sharemenusubscribetitle = chrome.i18n.getMessage("desremyoutube");
+// var sharemenusubscribetitle = chrome.i18n.getMessage("desremyoutube");
 var sharemenupostonweibo = chrome.i18n.getMessage("sharemenupostonweibo");
 var sharemenupostonvkontakte = chrome.i18n.getMessage("sharemenupostonvkontakte");
 var sharemenupostonwhatsapp = chrome.i18n.getMessage("sharemenupostonwhatsapp");
 var sharemenupostonqq = chrome.i18n.getMessage("sharemenupostonqq");
+var sharemenuoptions = chrome.i18n.getMessage("titelpopupoptions");
 
 function browsercontext(a, b, c, d){
 	var item = {"title": a, "type": "normal", "id": b, "contexts": contexts};
@@ -292,8 +293,12 @@ if(chrome.contextMenus){
 			browsercontext(sharemenupostonx, "totlsharex", {"16": "images/IconX.png", "32": "images/IconX@2x.png"}, parent);
 		}
 
-		chrome.contextMenus.create({"title": "", "type":"separator", "id": "totlsepartor", "contexts": contexts});
-		browsercontext(sharemenusubscribetitle, "totlsubscribe", {"16": "images/IconYouTube.png", "32": "images/IconYouTube@2x.png"});
+		// browsercontext(sharemenusubscribetitle, "totlsubscribe", {"16": "images/IconYouTube.png", "32": "images/IconYouTube@2x.png"});
+
+		if(exbrowser == "safari" || exbrowser == "firefox"){
+			chrome.contextMenus.create({"title": "", "type":"separator", "id": "totlsepartor", "contexts": contexts});
+			browsercontext(sharemenuoptions, "totloptions", {"16": "images/options.png", "32": "images/options@2x.png"});
+		}
 
 		chrome.contextMenus.onClicked.addListener(onClickHandler);
 	}

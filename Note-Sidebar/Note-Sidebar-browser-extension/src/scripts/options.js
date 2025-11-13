@@ -27,7 +27,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 //================================================
 
 function $(id){ return document.getElementById(id); }
-var youtubeembed = "https://www.youtube.com/embed/?listType=playlist&list=PLfXHh3TKRb4a3QPx9G9YTeyVmqyMURld3";
+var youtubeembed = "https://www.stefanvd.net/browser/extension/embed/?vid=PLfXHh3TKRb4a3QPx9G9YTeyVmqyMURld3";
 var darkmode = false;
 
 var firstdefaultvalues = {};

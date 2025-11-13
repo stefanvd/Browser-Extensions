@@ -26,7 +26,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-var maintext; var powertext; var txtvalue; var multivalue; var counter; var copy; var speech; var voices; var fontsize; var lineheight; var colorlight; var colordark; var backgroundlight; var backgrounddark; var backgroundcolor; var backgroundimage; var backgroundsource; var backgroundsize; var printicon; var password; var enterpassword; var richtext; var plaintext; var multiple; var preventclose; var texttabname; var save; var bartabdesign; var barselectdesign; var download; var find; var textarea; var highlightedText; var searchInput; var searchBox; var richtexttoolbar; var richtextshortcut;
+var maintext; var powertext; var txtvalue; var multivalue; var counter; var copy; var speech; var voices; var fontsize; var lineheight; var colorlight; var colordark; var backgroundlight; var backgrounddark; var backgroundcolor; var backgroundimage; var backgroundsource; var backgroundsize; var printicon; var password; var enterpassword; var richtext; var plaintext; var multiple; var preventclose; var texttabname; var save; var bartabdesign; var barselectdesign; var download; var find; var textarea; var highlightedText; var searchInput; var searchBox; var richtexttoolbar; var richtextshortcut; var selectedvoice;
 
 function wrapText(tag){
 	const selection = window.getSelection();
@@ -582,6 +582,7 @@ function switchtab(number){
 }
 
 var tabContainer;
+var currentVoice;
 function init(){
 	// open connnection to background that the panel is open
 	chrome.runtime.connect({name: "myNoteSidebar"});
@@ -705,6 +706,7 @@ function init(){
 		find = items["find"]; if(find == null){ find = false; }
 		richtexttoolbar = items["richtexttoolbar"]; if(richtexttoolbar == null){ richtexttoolbar = false; }
 		richtextshortcut = items["richtextshortcut"]; if(richtextshortcut == null){ richtextshortcut = false; }
+		selectedvoice = items["selectedvoice"]; if(selectedvoice == null){ selectedvoice = 0; }
 
 		if(richtexttoolbar == true){
 			document.getElementById("richtexttoolbar").className = "richtexttoolbar";
@@ -894,210 +896,36 @@ function init(){
 		textarea.addEventListener("scroll", syncScroll);
 		searchInput.addEventListener("input", updateHighlight);
 		closeSearchButton.addEventListener("click", hideSearchBox);
+
+		// Speech Synthesis - Populate voices list
+		populateVoices();
+		// Speech Synthesis - Load voices
+		if(speechSynthesis.onvoiceschanged !== undefined){
+			speechSynthesis.onvoiceschanged = populateVoices;
+		}
 	});
 
 	document.querySelector(".close").addEventListener("click", () => {
 		document.getElementById("stefanvdpromo").className = "hidden";
 	});
-}
 
-function checkpassword(value){
-	if(value == enterpassword){
-		var elem = document.getElementById("lockscreen");
-		if(elem){
-			elem.parentNode.removeChild(elem);
-		}
-	}
-}
-
-function addstylecode(){
-	const style = document.createElement("style");
-	style.id = "notestyle";
-	style.textContent = `
-	/* Light mode */
-	:root {
-		--ext-primary-background:` + backgroundlight + `;
-		--ext-primary-font-color:#000;
-		--ext-nav-color:` + colorlight + `;
-		--ext-font-size:` + fontsize + `px;
-		--ext-line-height:` + lineheight + `px;
-		--ext-lock-boxshadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
-		--ext-lock-hover:#fbfbfb;
-	}
-	
-	/* Dark mode */
-	@media (prefers-color-scheme: dark) {
-		:root{
-		--ext-primary-background:` + backgrounddark + `;
-		--ext-primary-font-color:#fff;
-		--ext-nav-color:` + colordark + `;
-		--ext-font-size:` + fontsize + `px;
-		--ext-line-height:` + lineheight + `px;
-		--ext-lock-boxshadow: 0 1px 6px 0 rgba(255, 255, 255, 0.28);
-		--ext-lock-hover:#282828;
-		}
-	}
-	`;
-	document.head.appendChild(style);
-}
-
-function removestylecode(){
-	var elem = document.getElementById("notestyle");
-	if(elem){
-		elem.parentNode.removeChild(elem);
-	}
-}
-
-function addbackgroundpaper(){
-	const bck = document.createElement("div");
-	bck.id = "bcknotepaper";
-	bck.className = "notepaper";
-	bck.style.backgroundSize = backgroundsize + "px " + backgroundsize + "px";
-	document.body.appendChild(bck);
-	updatebackgroundpaper();
-}
-
-function removebackgroundpaper(){
-	var elem = document.getElementById("bcknotepaper");
-	if(elem){
-		elem.parentNode.removeChild(elem);
-	}
-}
-
-function updatebackgroundpaper(){
-	var bcknotepaper = document.getElementById("bcknotepaper");
-	if(bcknotepaper){
-		if(backgroundsource == 0){
-			bcknotepaper.style.backgroundImage = "url(" + chrome.runtime.getURL("images/blue-grid.png") + ")";
-		}else if(backgroundsource == 1){
-			bcknotepaper.style.backgroundImage = "url(" + chrome.runtime.getURL("images/black-grid.png") + ")";
-		}else if(backgroundsource == 2){
-			bcknotepaper.style.backgroundImage = "url(" + chrome.runtime.getURL("images/blue-lines.png") + ")";
-		}else if(backgroundsource == 3){
-			bcknotepaper.style.backgroundImage = "url(" + chrome.runtime.getURL("images/black-lines.png") + ")";
-		}
-	}
-}
-
-function stripHtmlTags(str){
-	return str.replace(/<[^>]*>/g, ""); // Removes all HTML tags
-}
-
-function updatetabname(){
-	if(texttabname == true){
-		if(multiple == true){
-			// multi
-			// Get the tab titles
-			var tabTitles = document.querySelectorAll(".tab .title");
-			// Get the select element
-			var selectElement = document.querySelector(".tab-select");
-
-			// Loop through each tab title
-			tabTitles.forEach(function(title, index){
-				// Ensure the note exists before processing
-				var noteText = multivalue[index]?.note || "";
-
-				// Get the first line of the note text
-				var firstLine;
-				if(richtext == true){
-					try{
-						var parser = new DOMParser();
-						var doc = parser.parseFromString(noteText, "text/html");
-
-						// Get the first <div> inside the outer wrapper
-						var innerDivs = doc.body.querySelectorAll("div");
-						if(innerDivs.length > 0){
-							firstLine = innerDivs[0].textContent.trim();
-						}else{
-							firstLine = "";
-						}
-					}catch(e){
-						firstLine = "";
-					}
-				}else{
-					// plaintext default
-					firstLine = noteText.split("\n")[0].trim();
-					firstLine = stripHtmlTags(firstLine);
-				}
-
-				if(!firstLine){
-					// If note text is empty, show default text with index number
-					firstLine = i18nnote + (index + 1);
-				}
-
-				// Update the tab title with the first line of the note text
-				if(title){
-					title.textContent = firstLine;
-				}
-
-				// Also update the select option text
-				if(selectElement){
-					// Ensure the 'options' property exists and the index is within bounds
-					if(selectElement.options && selectElement.options[index]){
-						selectElement.options[index].textContent = firstLine;
-					}
-				}
-			});
-		}else{
-			// single
-		}
-	}else{
-		// update to use the regular tab names
-	}
-}
-
-function countcharacters(){
-	if(plaintext == true){
-		document.getElementById("counter").textContent = document.querySelector("#maintext").value.length;
-	}else if(richtext == true){
-		var content = document.getElementById("powertext").innerText;
-		var charCount = content.length;
-		document.getElementById("counter").textContent = charCount;
-	}
-}
-
-window.addEventListener("DOMContentLoaded", () => {
-	const main = document.getElementsByTagName("main")[0];
-	const voiceSelect = document.getElementById("voices");
-	let voices;
-	let currentVoice;
-
-	const populateVoices = () => {
-		const availableVoices = speechSynthesis.getVoices();
-		voiceSelect.innerHTML = "";
-
-		availableVoices.forEach((voice) => {
-			const option = document.createElement("option");
-			let optionText = `${voice.name} (${voice.lang})`;
-			if(voice.default){
-				optionText += " [" + i18ndefault + "]";
-				if(typeof currentVoice === "undefined"){
-					currentVoice = voice;
-					option.selected = true;
-				}
-			}
-			if(currentVoice === voice){
-				option.selected = true;
-			}
-			option.textContent = optionText;
-			voiceSelect.appendChild(option);
-		});
-		voices = availableVoices;
-	};
-
-	populateVoices();
-	if(speechSynthesis.onvoiceschanged !== undefined){
-		speechSynthesis.onvoiceschanged = populateVoices;
-	}
-
-	voiceSelect.addEventListener("change", (event) => {
+	document.getElementById("voices").addEventListener("change", (event) => {
 		const selectedIndex = event.target.selectedIndex;
 		currentVoice = voices[selectedIndex];
+
+		// save selected voice index selectedIndex;
+		chrome.storage.sync.set({"selectedvoice": selectedIndex});
 	});
 
 	var utterance;
 	document.getElementById("startspeech").addEventListener("click", (event) => {
 		event.preventDefault();
+
+		// set the selected voice
+		var currentvoice = document.getElementById("voices").selectedIndex;
+		currentVoice = voices[currentvoice];
+		// ---
+
 		var toSay;
 		if(richtext == true){
 			toSay = document.getElementById("powertext").innerText.trim();
@@ -1108,12 +936,12 @@ window.addEventListener("DOMContentLoaded", () => {
 		utterance.voice = currentVoice;
 		utterance.rate = 0.85;
 		utterance.addEventListener("start", () => {
-			main.classList.add("speaking");
+			document.getElementsByTagName("main")[0].classList.add("speaking");
 			document.getElementById("startspeech").classList.add("hidden");
 			document.getElementById("stopspeech").classList.remove("hidden");
 		});
 		utterance.addEventListener("end", () => {
-			main.classList.remove("speaking");
+			document.getElementsByTagName("main")[0].classList.remove("speaking");
 			document.getElementById("startspeech").classList.remove("hidden");
 			document.getElementById("stopspeech").classList.add("hidden");
 		});
@@ -1228,7 +1056,200 @@ window.addEventListener("DOMContentLoaded", () => {
 
 	// Set a timeout to execute the function after 1,5 seconds (1500 milliseconds)
 	setTimeout(setCursorToEnd, 1500);
-});
+}
+
+const populateVoices = () => {
+	const availableVoices = speechSynthesis.getVoices();
+	document.getElementById("voices").innerHTML = "";
+
+	availableVoices.forEach((voice) => {
+		const option = document.createElement("option");
+		let optionText = `${voice.name} (${voice.lang})`;
+		if(voice.default){
+			optionText += " [" + i18ndefault + "]";
+			if(typeof currentVoice === "undefined"){
+				currentVoice = voice;
+				option.selected = true;
+			}
+		}
+		if(currentVoice === voice){
+			option.selected = true;
+		}
+		option.textContent = optionText;
+		document.getElementById("voices").appendChild(option);
+	});
+	voices = availableVoices;
+
+	// set selected voice from settings
+	document.getElementById("voices").selectedIndex = selectedvoice;
+	currentVoice = voices[selectedvoice];
+};
+
+function checkpassword(value){
+	if(value == enterpassword){
+		var elem = document.getElementById("lockscreen");
+		if(elem){
+			elem.parentNode.removeChild(elem);
+		}
+	}
+}
+
+function addstylecode(){
+	const style = document.createElement("style");
+	style.id = "notestyle";
+	style.textContent = `
+	/* Light mode */
+	:root {
+		--ext-primary-background:` + backgroundlight + `;
+		--ext-primary-font-color:#000;
+		--ext-nav-color:` + colorlight + `;
+		--ext-font-size:` + fontsize + `px;
+		--ext-line-height:` + lineheight + `px;
+		--ext-lock-boxshadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
+		--ext-lock-hover:#fbfbfb;
+	}
+	
+	/* Dark mode */
+	@media (prefers-color-scheme: dark) {
+		:root{
+		--ext-primary-background:` + backgrounddark + `;
+		--ext-primary-font-color:#fff;
+		--ext-nav-color:` + colordark + `;
+		--ext-font-size:` + fontsize + `px;
+		--ext-line-height:` + lineheight + `px;
+		--ext-lock-boxshadow: 0 1px 6px 0 rgba(255, 255, 255, 0.28);
+		--ext-lock-hover:#282828;
+		}
+	}
+	`;
+	document.head.appendChild(style);
+}
+
+function removestylecode(){
+	var elem = document.getElementById("notestyle");
+	if(elem){
+		elem.parentNode.removeChild(elem);
+	}
+}
+
+function addbackgroundpaper(){
+	const bck = document.createElement("div");
+	bck.id = "bcknotepaper";
+	bck.className = "notepaper";
+	bck.style.backgroundSize = backgroundsize + "px " + backgroundsize + "px";
+	document.body.appendChild(bck);
+	updatebackgroundpaper();
+}
+
+function removebackgroundpaper(){
+	var elem = document.getElementById("bcknotepaper");
+	if(elem){
+		elem.parentNode.removeChild(elem);
+	}
+}
+
+function updatebackgroundpaper(){
+	var bcknotepaper = document.getElementById("bcknotepaper");
+	if(bcknotepaper){
+		if(backgroundsource == 0){
+			bcknotepaper.style.backgroundImage = "url(" + chrome.runtime.getURL("images/blue-grid.png") + ")";
+		}else if(backgroundsource == 1){
+			bcknotepaper.style.backgroundImage = "url(" + chrome.runtime.getURL("images/black-grid.png") + ")";
+		}else if(backgroundsource == 2){
+			bcknotepaper.style.backgroundImage = "url(" + chrome.runtime.getURL("images/blue-lines.png") + ")";
+		}else if(backgroundsource == 3){
+			bcknotepaper.style.backgroundImage = "url(" + chrome.runtime.getURL("images/black-lines.png") + ")";
+		}
+	}
+}
+
+function stripHtmlTags(str){
+	return str.replace(/<[^>]*>/g, ""); // Removes all HTML tags
+}
+
+function updatetabname(){
+	if(texttabname == true){
+		if(multiple == true){
+			// multi
+			// Get the tab titles
+			var tabTitles = document.querySelectorAll(".tab .title");
+			// Get the select element
+			var selectElement = document.querySelector(".tab-select");
+
+			// Loop through each tab title
+			tabTitles.forEach(function(title, index){
+				// Ensure the note exists before processing
+				var noteText = multivalue[index]?.note || "";
+
+				// Get the first line of the note text
+				var firstLine;
+				if(richtext == true){
+					try{
+						// Treat <div> and <br> as line breaks BEFORE parsing
+						let cleanHTML = noteText
+							.replace(/<div[^>]*>/gi, "\n")
+							.replace(/<br\s*\/?>/gi, "\n")
+							.replace(/<\/div>/gi, "");
+
+						const parser = new DOMParser();
+						const doc = parser.parseFromString(cleanHTML, "text/html");
+
+						// Extract text content
+						let text = doc.body.textContent || "";
+						text = text.replace(/\u00a0/g, " "); // replace &nbsp;
+
+						// Split into lines, trim, and remove empty ones
+						const lines = text
+							.split(/\r?\n+/)
+							.map((line) => line.trim())
+							.filter((line) => line.length > 0);
+
+						// First non-empty line
+						firstLine = lines.length > 0 ? lines[0] : "";
+					}catch(e){
+						firstLine = "";
+					}
+				}else{
+					// plaintext default
+					firstLine = noteText.split("\n")[0].trim();
+					firstLine = stripHtmlTags(firstLine);
+				}
+
+				if(!firstLine){
+					// If note text is empty, show default text with index number
+					firstLine = i18nnote + (index + 1);
+				}
+
+				// Update the tab title with the first line of the note text
+				if(title){
+					title.textContent = firstLine;
+				}
+
+				// Also update the select option text
+				if(selectElement){
+					// Ensure the 'options' property exists and the index is within bounds
+					if(selectElement.options && selectElement.options[index]){
+						selectElement.options[index].textContent = firstLine;
+					}
+				}
+			});
+		}else{
+			// single
+		}
+	}else{
+		// update to use the regular tab names
+	}
+}
+
+function countcharacters(){
+	if(plaintext == true){
+		document.getElementById("counter").textContent = document.querySelector("#maintext").value.length;
+	}else if(richtext == true){
+		var content = document.getElementById("powertext").innerText;
+		var charCount = content.length;
+		document.getElementById("counter").textContent = charCount;
+	}
+}
 
 function addRichTextShortcut(){
 	const element = document.getElementById("powertext");
@@ -1714,7 +1735,7 @@ function loadNotesAndSettings(callback){
 	getNotesStorageArea(function(noteStorage){
 		noteStorage.get(["txtvalue", "multivalue"], function(noteItems){
 			// Load all other settings from sync
-			chrome.storage.sync.get(["firstDate", "optionskipremember", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsource", "backgroundsize", "print", "password", "enterpassword", "richtext", "plaintext", "multiple", "preventclose", "texttabname", "save", "bartabdesign", "barselectdesign", "download", "find", "richtexttoolbar", "richtextshortcut"], function(settingsItems){
+			chrome.storage.sync.get(["firstDate", "optionskipremember", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsource", "backgroundsize", "print", "password", "enterpassword", "richtext", "plaintext", "multiple", "preventclose", "texttabname", "save", "bartabdesign", "barselectdesign", "download", "find", "richtexttoolbar", "richtextshortcut", "selectedvoice"], function(settingsItems){
 				callback(Object.assign({}, noteItems, settingsItems));
 			});
 		});

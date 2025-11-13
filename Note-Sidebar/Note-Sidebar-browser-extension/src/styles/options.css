@@ -253,6 +253,8 @@ section>div:only-of-type{-webkit-box-flex:1}
 .videopreview{display:block;float:left;padding-right:24px}
 .videopreview iframe{width:480px;height:270px;box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);border-radius:2px}
 .suggpanel{width:335px;position:relative;display:block;float:left}
+/* warning */
+.warning-text{background:var(--totl-donation-bar);color:black;padding:16px;margin-top:16px;border-radius:2px}
 /* lamp */
 #loadinglamp{margin-right:5px}
 /* share box */
