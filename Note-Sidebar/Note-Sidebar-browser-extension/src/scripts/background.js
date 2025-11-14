@@ -157,6 +157,8 @@ function onClickHandler(info){
 		chrome.tabs.create({url: "https://vk.com/share.php?url=" + linkproduct, active:true});
 	}else if(info.menuItemId == "totlsharewhatsapp"){
 		chrome.tabs.create({url: "https://api.whatsapp.com/send?text=" + chrome.i18n.getMessage("sharetextd") + "%0a" + linkproduct, active:true});
+	}else if(info.menuItemId == "totloptions"){
+		chrome.runtime.openOptionsPage();
 	}else if(info.menuItemId == "snpage"){
 		var selectedtext = info.selectionText;
 		addTextToLastContentNote(selectedtext);

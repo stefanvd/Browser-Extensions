@@ -27,7 +27,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 //================================================
 
 function $(id){ return document.getElementById(id); }
-var youtubeembed = "https://www.youtube.com/embed/?listType=playlist&list=PLfXHh3TKRb4Z-C2w3SLAY_InRNET-DgI1&rel=0";
+var youtubeembed = "https://www.stefanvd.net/browser/extension/embed/?vid=PLfXHh3TKRb4Z-C2w3SLAY_InRNET-DgI1";
 var darkmode = false;
 
 var firstdefaultvalues = {};
@@ -84,7 +84,12 @@ function defaultgetsettings(){
 
 // Option to save current value
 function save_options(){
-	chrome.storage.sync.set({"icon": $("btnpreview").src, "optionskipremember":$("optionskipremember").checked, "contextmenus":$("contextmenus").checked, "searchgoogle": $("searchgoogle").checked, "searchbing": $("searchbing").checked, "searchduckduckgo": $("searchduckduckgo").checked, "searchbaidu": $("searchbaidu").checked, "searchyandex": $("searchyandex").checked, "navtop": $("navtop").checked, "navbottom": $("navbottom").checked, "navhidden": $("navhidden").checked, "typepanelzone": $("typepanelzone").checked, "typepanelcustom": $("typepanelcustom").checked, "typepanellasttime": $("typepanellasttime").checked, "websitestartname": $("websitestartname").value, "opentab": $("opentab").checked, "opencopy": $("opencopy").checked, "opennonebookmarks": $("opennonebookmarks").checked, "openbrowserbookmarks": $("openbrowserbookmarks").checked, "openquickbookmarks": $("openquickbookmarks").checked, "websitename1": $("websitename1").value, "websiteurl1": $("websiteurl1").value, "websitename2": $("websitename2").value, "websiteurl2": $("websiteurl2").value, "websitename3": $("websitename3").value, "websiteurl3": $("websiteurl3").value, "websitename4": $("websitename4").value, "websiteurl4": $("websiteurl4").value, "websitename5": $("websitename5").value, "websiteurl5": $("websiteurl5").value, "websitename6": $("websitename6").value, "websiteurl6": $("websiteurl6").value, "websitename7": $("websitename7").value, "websiteurl7": $("websiteurl7").value, "websitename8": $("websitename8").value, "websiteurl8": $("websiteurl8").value, "websitename9": $("websitename9").value, "websiteurl9": $("websiteurl9").value, "websitename10": $("websitename10").value, "websiteurl10": $("websiteurl10").value, "googlesidepanel": $("googlesidepanel").checked, "zoom":$("zoom").checked, "defaultzoom": $("defaultzoom").value, "step": $("step").value, "multipletabs": $("multipletabs").checked, "navbuttons": $("navbuttons").checked, "gobutton": $("gobutton").checked, "typehomezone": $("typehomezone").checked, "typehomecustom": $("typehomecustom").checked, "websitehomepagename": $("websitehomepagename").value, "preventclose": $("preventclose").checked, "dragnewtab": $("dragnewtab").checked, "mutetab": $("mutetab").checked, "searchyahoo": $("searchyahoo").checked, "search360": $("search360").checked, "searchsogou": $("searchsogou").checked, "searchchatgpt": $("searchchatgpt").checked, "searchgemini": $("searchgemini").checked, "searchwikipedia": $("searchwikipedia").checked, "disablehorizontalscroll": $("disablehorizontalscroll").checked, "openallnewtab": $("openallnewtab").checked, "refreshtime": $("refreshtime").value, "autorefresh": $("autorefresh").checked, "showrefreshpanel": $("showrefreshpanel").checked, "csp": $("csp").checked});
+	// if not saving last opened, then reset the open tab history
+	if($("typepanellasttime").checked == false){
+		chrome.storage.sync.set({"multivalues": [{"note":"about:blank"}]});
+	}
+	// Saving all the items
+	chrome.storage.sync.set({"icon": $("btnpreview").src, "optionskipremember":$("optionskipremember").checked, "contextmenus":$("contextmenus").checked, "searchgoogle": $("searchgoogle").checked, "searchbing": $("searchbing").checked, "searchduckduckgo": $("searchduckduckgo").checked, "searchbaidu": $("searchbaidu").checked, "searchyandex": $("searchyandex").checked, "navtop": $("navtop").checked, "navbottom": $("navbottom").checked, "navhidden": $("navhidden").checked, "typepanelzone": $("typepanelzone").checked, "typepanelcustom": $("typepanelcustom").checked, "typepanellasttime": $("typepanellasttime").checked, "websitestartname": $("websitestartname").value, "opentab": $("opentab").checked, "opencopy": $("opencopy").checked, "opennonebookmarks": $("opennonebookmarks").checked, "openbrowserbookmarks": $("openbrowserbookmarks").checked, "openquickbookmarks": $("openquickbookmarks").checked, "websitename1": $("websitename1").value, "websiteurl1": $("websiteurl1").value, "websitename2": $("websitename2").value, "websiteurl2": $("websiteurl2").value, "websitename3": $("websitename3").value, "websiteurl3": $("websiteurl3").value, "websitename4": $("websitename4").value, "websiteurl4": $("websiteurl4").value, "websitename5": $("websitename5").value, "websiteurl5": $("websiteurl5").value, "websitename6": $("websitename6").value, "websiteurl6": $("websiteurl6").value, "websitename7": $("websitename7").value, "websiteurl7": $("websiteurl7").value, "websitename8": $("websitename8").value, "websiteurl8": $("websiteurl8").value, "websitename9": $("websitename9").value, "websiteurl9": $("websiteurl9").value, "websitename10": $("websitename10").value, "websiteurl10": $("websiteurl10").value, "googlesidepanel": $("googlesidepanel").checked, "zoom":$("zoom").checked, "defaultzoom": $("defaultzoom").value, "step": $("step").value, "multipletabs": $("multipletabs").checked, "navbuttons": $("navbuttons").checked, "gobutton": $("gobutton").checked, "typehomezone": $("typehomezone").checked, "typehomecustom": $("typehomecustom").checked, "websitehomepagename": $("websitehomepagename").value, "preventclose": $("preventclose").checked, "dragnewtab": $("dragnewtab").checked, "mutetab": $("mutetab").checked, "searchyahoo": $("searchyahoo").checked, "search360": $("search360").checked, "searchsogou": $("searchsogou").checked, "searchchatgpt": $("searchchatgpt").checked, "searchgemini": $("searchgemini").checked, "searchwikipedia": $("searchwikipedia").checked, "disablehorizontalscroll": $("disablehorizontalscroll").checked, "openallnewtab": $("openallnewtab").checked, "refreshtime": $("refreshtime").value, "autorefresh": $("autorefresh").checked, "showrefreshpanel": $("showrefreshpanel").checked, "csp": $("csp").checked, "useragent": $("useragent").checked, "useragentstring": $("useragentstring").value});
 }
 
 function read_options(){
@@ -175,7 +180,7 @@ function read_options(){
 		showhidemodal("materialModalYouTube", "hide", "true");
 	}
 
-	chrome.storage.sync.get(["icon", "firstDate", "contextmenus", "optionskipremember", "firstsawrate", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "typepanellasttime", "websitestartname", "opentab", "opencopy", "opennonebookmarks", "openbrowserbookmarks", "openquickbookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10", "googlesidepanel", "zoom", "defaultzoom", "step", "multipletabs", "navbuttons", "gobutton", "typehomezone", "typehomecustom", "websitehomepagename", "preventclose", "dragnewtab", "mutetab", "searchyahoo", "search360", "searchsogou", "searchchatgpt", "searchgemini", "searchwikipedia", "disablehorizontalscroll", "openallnewtab", "refreshtime", "autorefresh", "showrefreshpanel", "csp"], function(items){
+	chrome.storage.sync.get(["icon", "firstDate", "contextmenus", "optionskipremember", "firstsawrate", "searchgoogle", "searchbing", "searchduckduckgo", "searchbaidu", "searchyandex", "navtop", "navbottom", "navhidden", "typepanelzone", "typepanelcustom", "typepanellasttime", "websitestartname", "opentab", "opencopy", "opennonebookmarks", "openbrowserbookmarks", "openquickbookmarks", "websitename1", "websiteurl1", "websitename2", "websiteurl2", "websitename3", "websiteurl3", "websitename4", "websiteurl4", "websitename5", "websiteurl5", "websitename6", "websiteurl6", "websitename7", "websiteurl7", "websitename8", "websiteurl8", "websitename9", "websiteurl9", "websitename10", "websiteurl10", "googlesidepanel", "zoom", "defaultzoom", "step", "multipletabs", "navbuttons", "gobutton", "typehomezone", "typehomecustom", "websitehomepagename", "preventclose", "dragnewtab", "mutetab", "searchyahoo", "search360", "searchsogou", "searchchatgpt", "searchgemini", "searchwikipedia", "disablehorizontalscroll", "openallnewtab", "refreshtime", "autorefresh", "showrefreshpanel", "csp", "useragent", "useragentstring"], function(items){
 		if(items["icon"]){ $("btnpreview").src = items["icon"]; }
 		if(items["contextmenus"] == true)$("contextmenus").checked = true;
 		if(items["optionskipremember"] == true){ $("optionskipremember").checked = true; }
@@ -241,6 +246,8 @@ function read_options(){
 		if(items["autorefresh"] == true){ $("autorefresh").checked = true; }
 		if(items["showrefreshpanel"] == true){ $("showrefreshpanel").checked = true; }
 		if(items["csp"] == true){ $("csp").checked = true; }
+		if(items["useragent"] == true){ $("useragent").checked = true; }
+		if(items["useragentstring"]){ $("useragentstring").value = items["useragentstring"]; }
 
 		// show remember page
 		var firstmonth = false;
@@ -389,6 +396,11 @@ function getHash(url){
 }
 
 function test(){
+	if($("useragent").checked == true){
+		$("useragentstring").disabled = false;
+	}else{
+		$("useragentstring").disabled = true;
+	}
 	if($("zoom").checked == true){
 		$("defaultzoom").disabled = false;
 		$("step").disabled = false;
@@ -416,10 +428,6 @@ function test(){
 		$("websitestartname").disabled = false;
 	}else{
 		$("websitestartname").disabled = true;
-	}
-
-	if($("openbrowserbookmarks").checked == true){
-		chrome.runtime.sendMessage({name: "stefanbookmarkadd"});
 	}
 
 	if($("openquickbookmarks").checked == true){
@@ -764,6 +772,17 @@ function domcontentloaded(){
 	var j, m = select.length;
 	for(j = 0; j < m; j++){ select[j].addEventListener("change", test); select[j].addEventListener("change", ariacheck); select[j].addEventListener("change", save_options); }
 
+	// textaurea
+	const textarea = document.getElementById("useragentstring");
+	let debounceTimer;
+
+	textarea.addEventListener("input", function(){
+		clearTimeout(debounceTimer); // Cancel the previous timer
+		debounceTimer = setTimeout(() => {
+			save_options(); // Call your save function after typing stops
+		}, 500); // 500ms after last keystroke (adjust as needed)
+	});
+
 	// bookmark
 	var bookmarkname = document.getElementsByClassName("bookmarkname");
 	var f, x = bookmarkname.length;
@@ -846,6 +865,43 @@ function domcontentloaded(){
 			}
 		});
 	});
+
+
+	hasBookmarksPermission().then((granted) => {
+		if(granted){
+			console.log("Bookmarks permission is available.");
+			$("bookmarkspanel").className = "hidden";
+		}else{
+			console.log("Bookmarks permission NOT granted.");
+			$("bookmarkspanel").className = "";
+		}
+	});
+
+	$("btnallowbookmarks").addEventListener("click", function(){
+		console.log("STEFAN CLICKED permission bookmarks");
+		const perm = {permissions: ["bookmarks"]};
+		chrome.permissions.request(perm, function(granted){
+			if(!granted){
+				console.warn("User denied bookmarks permission.");
+				return;
+			}
+
+			afterPermissionGranted();
+		});
+	});
+
+	function afterPermissionGranted(){
+		$("bookmarkspanel").className = "hidden";
+		console.log("Bookmarks permission is available.");
+		// safe to run your bookmarks code here
+	}
+
+	async function hasBookmarksPermission(){
+		return await chrome.permissions.contains({
+			permissions: ["bookmarks"]
+		});
+	}
+
 
 	// Save KB download
 	$("tabbasic").addEventListener("click", function(){ Scrolltotop(); ONworkaroundbugpreview(); OFFworkaroundbugfromsafari(); $("welcomeguide").src = ""; memguide(); guidekb = true; mobilecheck(); });

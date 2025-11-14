@@ -28,10 +28,11 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 
 var selectedsearch, searchgoogle, searchbing, searchduckduckgo, searchbaidu, searchyandex, typepanelzone, typepanelcustom, typepanellasttime, websitestartname, websitelasttime, navtop, navbottom, navhidden, opentab, opencopy, opennonebookmarks, openbrowserbookmarks, openquickbookmarks, googlesidepanel, zoom, defaultzoom, step, multipletabs, multivalues, navbuttons, gobutton, typehomezone, typehomecustom, websitehomepagename, preventclose, dragnewtab, mutetab, searchyahoo, search360, searchsogou, searchchatgpt, searchgemini, searchwikipedia, disablehorizontalscroll, openallnewtab, refreshtime, autorefresh, showrefreshpanel, zoomvisible;
 
-var faviconserver = "https://s2.googleusercontent.com/s2/favicons?domain=";
+// var faviconserver = "https://s2.googleusercontent.com/s2/favicons?&domain=";
+var faviconserver = "https://t2.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&size=32&url=";
 var emptypage = "about:blank";
 
-function save(){
+function savepage(){
 	chrome.storage.sync.set({"multivalues": multivalues});
 }
 
@@ -326,7 +327,7 @@ function init(){
 
 					// save the website in array only when this option is enable
 					if(typepanellasttime == true){
-						save();
+						savepage();
 					}
 
 					// Remove the iframe
@@ -750,7 +751,7 @@ function getFaviconUrl(url){
 	}else if(url.startsWith("http://") || url.startsWith("https://")){
 		// HTTP or HTTPS URL
 		// console.log("Favicon logic for web URL=", url);
-		return faviconserver + getDomain(url);
+		return faviconserver + getProtocol(url) + getDomain(url);
 	}else{
 		// Default case
 		// console.log("Favicon logic for other URL=", url);
@@ -822,7 +823,7 @@ function frameupdatesaveurl(url, iframeId){
 
 			// Save the changes if necessary
 			if(typepanellasttime == true){
-				save();
+				savepage();
 			}
 		}
 	}
@@ -842,7 +843,7 @@ function updatesaveurl(url){
 		});
 		multivalues[index]["note"] = url;
 		if(typepanellasttime == true){
-			save();
+			savepage();
 		}
 	}
 }
@@ -1057,7 +1058,9 @@ function createNewTab(){
 		multivalues.push({"note": websitestartname});
 
 		createiframe(websitestartname);
-	}else if(typepanelzone == true || typepanellasttime == true){
+		document.getElementById("drag-drop-info").className = "hidden";
+		document.getElementById("drag-drop-zone").className = "hidden";
+	}else if(typepanelzone == true){
 		// Adding a new object to the array
 		multivalues.push({"note": emptypage});
 
@@ -1070,7 +1073,7 @@ function createNewTab(){
 
 	// save the website in array only when this option is enable
 	if(typepanellasttime == true){
-		save();
+		savepage();
 	}
 }
 
@@ -1133,17 +1136,31 @@ function createmenuitems(items){
 		if(name && url){
 			const listItem = document.createElement("li");
 			const anchor = document.createElement("a");
-			anchor.textContent = name;
 			anchor.href = url;
-			// Open URL in a new tab when clicked
+
+			const favicon = document.createElement("img");
+			favicon.src = getFaviconUrl(url);
+			favicon.alt = "Favicon";
+			favicon.height = 16;
+			favicon.width = 16;
+			favicon.style.verticalAlign = "middle";
+
+			const textDiv = document.createElement("div");
+			textDiv.textContent = name;
+			textDiv.style.display = "inline-block";
+			textDiv.style.marginLeft = "6px";
+			textDiv.style.verticalAlign = "middle";
+
+			anchor.appendChild(favicon);
+			anchor.appendChild(textDiv);
+
 			anchor.addEventListener("click", function(event){
-				// Prevent the default action of following the link
 				event.preventDefault();
 				openweb(url, true);
-				// close panel
 				document.getElementById("menubookmarks").className = "hidden";
 				isMenuClick = false;
 			});
+
 			listItem.appendChild(anchor);
 			menu.appendChild(listItem);
 		}
@@ -1208,7 +1225,7 @@ function renderBookmarks(bookmarks, parentElement){
 				isMenuClick = false;
 			});
 			var favicon = document.createElement("img");
-			favicon.src = faviconserver + getDomain(bookmark.url);
+			favicon.src = faviconserver + getProtocol(bookmark.url) + getDomain(bookmark.url);
 			favicon.alt = "Favicon";
 			favicon.height = 16;
 			favicon.width = 16;
@@ -1240,6 +1257,17 @@ function getDomain(url){
 	// Find & remove port number
 	domain = domain.split(":")[0];
 	return domain;
+}
+
+function getProtocol(url){
+	var protocol;
+	// Check if URL contains protocol
+	if(url.indexOf("://") > -1){
+		protocol = url.split("://")[0] + "://";
+	}else{
+		protocol = "";
+	}
+	return protocol;
 }
 
 function actionCopyTab(){
@@ -1874,13 +1902,11 @@ chrome.runtime.onMessage.addListener(function(request){
 		chrome.storage.sync.get(["typepanelzone"], function(items){
 			typepanelzone = items.typepanelzone; if(typepanelzone == null)typepanelzone = true;
 			typepanelcustom = false;
-			typepanellasttime = false;
 		});
 	}else if(request.msg == "settypepanelcustom"){
 		chrome.storage.sync.get(["typepanelcustom"], function(items){
 			typepanelcustom = items.typepanelcustom; if(typepanelcustom == null)typepanelcustom = false;
 			typepanelzone = false;
-			typepanellasttime = false;
 		});
 	}else if(request.msg == "setwebsitestartname"){
 		chrome.storage.sync.get(["websitestartname"], function(items){
@@ -1889,8 +1915,6 @@ chrome.runtime.onMessage.addListener(function(request){
 	}else if(request.msg == "settypepanellasttime"){
 		chrome.storage.sync.get(["typepanellasttime"], function(items){
 			typepanellasttime = items.typepanellasttime; if(typepanellasttime == null)typepanellasttime = false;
-			typepanelcustom = false;
-			typepanelzone = false;
 		});
 	}else if(request.msg == "setmultipletabs"){
 		chrome.storage.sync.get(["multipletabs", "multivalues"], function(items){
@@ -2009,5 +2033,7 @@ chrome.runtime.onMessage.addListener(function(request){
 			document.getElementById("currenttime").innerText = "";
 			actiontimer = null;
 		}
+	}else if(request.msg == "panelrefresh"){
+		location.reload();
 	}
 });

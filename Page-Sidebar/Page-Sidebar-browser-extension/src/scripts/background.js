@@ -78,17 +78,6 @@ chrome.runtime.onMessage.addListener(function request(request, sender, response)
 			chrome.tabs.sendMessage(sender.tab.id, {text: "receiveallpermissions", value: result});
 		});
 		break;
-	case"stefanbookmarkadd":
-		// Permissions must be requested from inside a user gesture
-		chrome.permissions.request({
-			permissions: ["bookmarks"]
-		}, function(granted){
-			// The callback argument will be true if the user granted the permissions.
-			if(granted){
-				// todo send message back
-			}
-		});
-		break;
 	case"getallhost":
 		// --- Begin Firefox
 		chrome.permissions.contains({
@@ -152,6 +141,8 @@ function onClickHandler(info, tab){
 		chrome.tabs.create({url: "https://vk.com/share.php?url=" + linkproduct, active:true});
 	}else if(info.menuItemId == "totlsharewhatsapp"){
 		chrome.tabs.create({url: "https://api.whatsapp.com/send?text=" + chrome.i18n.getMessage("sharetextd") + "%0a" + linkproduct, active:true});
+	}else if(info.menuItemId == "totloptions"){
+		chrome.runtime.openOptionsPage();
 	}else if(info.menuItemId == "sppage"){
 		chrome.tabs.query({
 			active: true,
@@ -227,11 +218,12 @@ var sharemenupostonx = chrome.i18n.getMessage("sharemenupostonx");
 var sharemenupostonfacebook = chrome.i18n.getMessage("sharemenupostonfacebook");
 // var sharemenuratetitle = chrome.i18n.getMessage("sharemenuratetitle");
 var sharemenudonatetitle = chrome.i18n.getMessage("sharemenudonatetitle");
-var sharemenusubscribetitle = chrome.i18n.getMessage("desremyoutube");
+// var sharemenusubscribetitle = chrome.i18n.getMessage("desremyoutube");
 var sharemenupostonweibo = chrome.i18n.getMessage("sharemenupostonweibo");
 var sharemenupostonvkontakte = chrome.i18n.getMessage("sharemenupostonvkontakte");
 var sharemenupostonwhatsapp = chrome.i18n.getMessage("sharemenupostonwhatsapp");
 var sharemenupostonqq = chrome.i18n.getMessage("sharemenupostonqq");
+var sharemenuoptions = chrome.i18n.getMessage("titelpopupoptions");
 
 function browsercontext(a, b, c, d){
 	var item = {"title": a, "type": "normal", "id": b, "contexts": contexts};
@@ -288,8 +280,12 @@ if(chrome.contextMenus){
 			browsercontext(sharemenupostonx, "totlsharex", {"16": "images/IconX.png", "32": "images/IconX@2x.png"}, parent);
 		}
 
-		chrome.contextMenus.create({"title": "", "type":"separator", "id": "totlsepartor", "contexts": contexts});
-		browsercontext(sharemenusubscribetitle, "totlsubscribe", {"16": "images/IconYouTube.png", "32": "images/IconYouTube@2x.png"});
+		// browsercontext(sharemenusubscribetitle, "totlsubscribe", {"16": "images/IconYouTube.png", "32": "images/IconYouTube@2x.png"});
+
+		if(exbrowser == "safari" || exbrowser == "firefox"){
+			chrome.contextMenus.create({"title": "", "type":"separator", "id": "totlsepartor", "contexts": contexts});
+			browsercontext(sharemenuoptions, "totloptions", {"16": "images/options.png", "32": "images/options@2x.png"});
+		}
 
 		chrome.contextMenus.onClicked.addListener(onClickHandler);
 	}
@@ -606,7 +602,7 @@ chrome.storage.onChanged.addListener(function(changes){
 	if(changes["showrefreshpanel"]){
 		chrome.runtime.sendMessage({msg: "setshowrefreshpanel", value: changes["showrefreshpanel"].newValue});
 	}
-	if(changes["csp"]){
+	if(changes["csp"] || changes["useragent"] || changes["useragentstring"]){
 		updateRulesFromStorage();
 	}
 });
@@ -647,7 +643,7 @@ function readgrouppolicy(items){
 		if(items.WebsiteHomepagename != ""){ savinggroup["websitehomepagename"] = items.WebsiteHomepagename; }
 
 		setsavegroup(items.TypePanelCustom, "typepanelcustom");
-		if(items.TypePanelCustom == true){ savinggroup["typepanelzone"] = false; savinggroup["typepanellasttime"] = false; }
+		if(items.TypePanelCustom == true){ savinggroup["typepanelzone"] = false; }
 		if(items.WebsiteStartname != ""){ savinggroup["websitestartname"] = items.WebsiteStartname; }
 
 		setsavegroup(items.SearchGoogle, "searchgoogle");
@@ -684,7 +680,6 @@ if(chrome.storage.managed){
 		if(changes["TypePanelCustom"]){
 			updatesavinggroup["typepanelcustom"] = changes["TypePanelCustom"].newValue;
 			updatesavinggroup["typepanelzone"] = !changes["TypePanelCustom"].newValue;
-			updatesavinggroup["typepanellasttime"] = !changes["TypePanelCustom"].newValue;
 		}
 		if(changes["WebsiteStartname"]){
 			updatesavinggroup["websitestartname"] = changes["WebsiteStartname"].newValue;
@@ -736,11 +731,9 @@ function createCspRule(removeCSP){
 		{header: "frame-options", operation: "remove"},
 		{header: "x-frame-options", operation: "remove"}
 	];
-
 	if(removeCSP){
 		responseHeaders.push({header: "content-security-policy", operation: "remove"});
 	}
-
 	return{
 		id: 1,
 		priority: 1,
@@ -750,18 +743,60 @@ function createCspRule(removeCSP){
 		},
 		condition: {
 			urlFilter: "|*://*/*",
-			resourceTypes: ["main_frame", "sub_frame", "xmlhttprequest", "websocket"]
+			resourceTypes: ["sub_frame"]
+		}
+	};
+}
+
+function createUserAgentRule(userAgentString){
+	return{
+		id: 2,
+		priority: 1,
+		action: {
+			type: "modifyHeaders",
+			requestHeaders: [
+				{
+					header: "user-agent",
+					operation: "set",
+					value: userAgentString // MUST be a non-empty string
+				}
+			]
+		},
+		condition: {
+			urlFilter: "|*://*/*",
+			resourceTypes: ["sub_frame"]
 		}
 	};
 }
 
 async function updateRulesFromStorage(){
-	chrome.storage.sync.get("csp", async(data) => {
-		const rule = createCspRule(data.csp ?? true);
+	chrome.storage.sync.get(["csp", "useragent", "useragentstring"], async(data) => {
+
+		// Always validate the UA string
+		const uaString = (data.useragentstring || "").trim();
+
+		const cspRule = createCspRule(data.csp ?? true);
+
+		const uaRules = data.useragent && uaString.length > 0 ? [createUserAgentRule(uaString)] : [];
+
 		await chrome.declarativeNetRequest.updateDynamicRules({
-			removeRuleIds: [1],
-			addRules: [rule]
+			removeRuleIds: [1, 2],
+			addRules: [cspRule, ...uaRules]
 		});
+
+		if(isChromePanel()){
+			chrome.runtime.getContexts({contextTypes: ["SIDE_PANEL"]}, (contexts) => {
+				if(contexts && contexts.length > 0){
+					// Sidepanel is currently open → refresh it
+					// console.log("Sidepanel is open, run action");
+					chrome.runtime.sendMessage({msg: "panelrefresh"});
+				}else{
+					// Sidepanel is closed → do nothing
+					// console.log("Sidepanel is not open, skipping refresh");
+				}
+			});
+		}
+
 	});
 }
 

@@ -128,7 +128,7 @@ iframe{border:none;width:100%;height:100%;box-sizing:border-box;margin:0px}
 #menubookmarks ul:empty{display:none}
 #menubookmarks ul{border-radius:4px;background:var(--ext-primary-background);list-style:none;padding:10px 0;margin:0;box-shadow:0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 2px 8px 0 rgba(0, 0, 0, 0.12)}
 #menubookmarks ul li{position:relative;height:48px;user-select:none;width:100%;display:flex}
-#menubookmarks ul li a{display:inline-block;height:100%;line-height:48px;user-select:none;padding:0 16px;color:var(--ext-primary-font-color);cursor:pointer;justify-content:flex-start;align-items:center;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%}
+#menubookmarks ul li a{display:inline-block;height:100%;line-height:48px;user-select:none;padding:0 16px;color:var(--ext-primary-font-color);cursor:pointer;justify-content:flex-start;align-items:center;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%;font-family:Helvetica,Arial,sans-serif;font-size:12px}
 #menubookmarks ul li a img{display:inline-block;vertical-align:middle}
 #menubookmarks ul li a div{display:initial;margin-left:8px;vertical-align:middle}
 #menubookmarks ul li span{padding-left:16px;color:var(--ext-primary-font-color);cursor:pointer;display:flex;justify-content:flex-start;align-items:center}
@@ -166,7 +166,7 @@ iframe{border:none;width:100%;height:100%;box-sizing:border-box;margin:0px}
 .container.bottom #menubookmarks ul ul ul ul ul{position:absolute;bottom:100%;left:0px;background:var(--ext-primary-background);z-index:1;width:100%;padding:0;margin:0}
 }
 /* copy panel */
-.stefanvdremote{overflow:hidden;z-index:2147483647!important;box-shadow:0px 0px 1px black;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);background:var(--ext-primary-background);position:absolute;top:0;left:0;right:0;width:230pt;opacity:0.98;height:50pt;border-radius:25pt;margin:0 auto;margin-top:20pt;animation:wrapper 4.0s both;color:var(--ext-primary-font-color)}
+.stefanvdremote{overflow:hidden;z-index:2147483647!important;box-shadow:0px 0px 1px black;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);background:var(--ext-primary-background);position:absolute;top:0;left:0;right:0;width:230pt;opacity:0.98;height:50pt;border-radius:25pt;margin:0 auto;margin-top:20pt;animation:wrapper 4.0s both;color:var(--ext-primary-font-color)}
 .stefanvdremote h3{text-align:center;margin:0;font-size:15px;padding-top:10pt;animation:h3 2.5s}
 .stefanvdremote p{text-align:center;margin:0;font-size:13px;color:#888;padding-top:4pt;animation:p 2.5s}
 /* zoom panel */
@@ -195,7 +195,7 @@ iframe{border:none;width:100%;height:100%;box-sizing:border-box;margin:0px}
 .enablebar{top:48px;height:calc(100% - 48px)}
 .regularbar{top:0;height:100%}
 /* Refresh panel */
-.refresh-panel{font-family:Arial;gap:4px;z-index:2500;position:absolute;height:48px;left:0px;top:0;right:0;backdrop-filter:blur(10px);display:flex;flex-direction:column;align-items:center;transition:width 0.3s ease, padding 0.3s ease}
+.refresh-panel{font-family:Arial;gap:4px;z-index:2500;position:absolute;height:48px;left:0px;top:0;right:0;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);display:flex;flex-direction:column;align-items:center;transition:width 0.3s ease, padding 0.3s ease}
 .refresh-panel.collapsed{height:8px;padding:0px 20px}
 .refresh-handle{width:40px;height:8px;background-color:var(--ext-border-line);cursor:pointer;margin:0 auto}
 .refresh-handle:hover{opacity:.8}

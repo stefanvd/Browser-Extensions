@@ -40,7 +40,10 @@
   "browser_specific_settings": {
     "gecko": {
         "id": "pagesidebar@stefanvd.net",
-        "strict_min_version": "113.0"
+        "strict_min_version": "113.0",
+        "data_collection_permissions": {
+        "required": ["none"]
+        }
     }
   }
 }

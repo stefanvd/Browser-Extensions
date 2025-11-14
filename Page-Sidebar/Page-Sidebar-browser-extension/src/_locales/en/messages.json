@@ -202,5 +202,11 @@
     "supporttitle": {"message": "Need Help?"},
     "supporttext": {"message": "Got questions or need support? I am here to help."},
     "titelcsp": {"message": "Content Security Policy"},
-    "descsp": {"message": "Allow the extension to load the 'Content Security Policy'"}
+    "descsp": {"message": "Allow the extension to load the 'Content Security Policy'"},
+    "titeluseragent": {"message": "User-Agent Header"},
+    "desuseragent": {"message": "Modify the User-Agent header to force the sidebar to load either the desktop or mobile layout of the website"},
+    "descustomstartpanel": {"message": "Custom start page"},
+    "desbookmarkspermissionnotadded": {"message": "The bookmarks permission is not added"},
+    "desbookmarksallow":{ "message": "Allow bookmarks permission to show your bookmarks in the sidebar"},
+    "btnallowbookmarkspermission":{ "message": "Allow bookmarks"}
   }
