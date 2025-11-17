@@ -3,7 +3,7 @@
 
 Zoom
 Zoom in or out on web content using the zoom button for more comfortable reading.
-Copyright (C) 2024 Stefan vd
+Copyright (C) 2025 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -217,6 +217,9 @@ section>div:only-of-type{-webkit-box-flex:1}
 .detectbox{width:calc(100% - 94px)}
 #websitezoomnumberBox,#websitepresetnumberBox,#screenzoomnumberBox,#websitelevelnumber{width:60px}
 #screenzoomaddbutton,#screenzoomremovebutton,#websitezoomaddbutton,#websitezoomremovebutton,#websitepresetaddbutton,#websitepresetremovebutton{width:100%;max-width:123px;text-overflow:ellipsis;white-space:nowrap}
+code{background:var(--totl-primary-sidebar-background);padding:2px;border:1px solid #d2d2d2;border-radius:2px}
+.regexpanel{line-height:26px}
+.regexmargetop{margin-top:18px}
 /* Hyperlinks */
 #mainview-content section a{color:var(--totl-page-a);text-decoration:underline}
 #mainview-content section a:active{color:var(--totl-page-a)}

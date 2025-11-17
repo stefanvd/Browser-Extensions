@@ -3,7 +3,7 @@
 
 Zoom
 Zoom in or out on web content using the zoom button for more comfortable reading.
-Copyright (C) 2024 Stefan vd
+Copyright (C) 2025 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -33,9 +33,18 @@ if(typeof importScripts !== "undefined"){
 	importScripts("constants.js");
 }
 
-var currentURL; var allzoom; var allzoomvalue; var zoombydomain; var zoombypage; var defaultallscreen; var defaultsinglescreen; var goturlinside = false; var currentscreen; var chromedisplay; var screenzoom; var zoomsingleclick; var zoomnewsingleclick; var zoomdoubleclick; var zoomoutdoubleclick; var contexta; var contextb; var contextc; var websitepreset;
+var currentURL; var allzoom; var allzoomvalue; var zoombydomain; var zoombypage; var zoombyregex; var defaultallscreen; var defaultsinglescreen; var goturlinside = false; var currentscreen; var chromedisplay; var screenzoom; var zoomsingleclick; var zoomnewsingleclick; var zoomdoubleclick; var zoomoutdoubleclick; var contexta; var contextb; var contextc; var websitepreset;
 var currentRatio = 1; var ratio = 1; var job = null;
-var webjob; var websitezoom = {}; var badge; var steps; var lightcolor; var zoomchrome; var zoomweb; var zoomfont; var ignoreset; var webpop;
+var webjob; var websitezoom = {}; var badge; var steps; var lightcolor; var zoomchrome; var zoomweb; var zoomfont; var ignoreset;
+
+function wildcardToRegex(pattern){
+	// Escape regex chars except *
+	let escaped = pattern.replace(/[-\\/\\^$+?.()|[\]{}]/g, "\\$&");
+
+	// * → .*
+	escaped = escaped.replace(/\*/g, ".*");
+	return new RegExp("^" + escaped + "$");
+}
 
 chrome.runtime.onMessage.addListener(function request(request, sender){
 	switch(request.name){
@@ -51,7 +60,7 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 	case"getallRatio":
 		currentURL = request.website;
 		chromedisplay = request.screen;
-		chrome.storage.sync.get(["allzoom", "allzoomvalue", "websitezoom", "badge", "lightcolor", "zoomchrome", "zoomweb", "zoombydomain", "zoombypage", "defaultallscreen", "defaultsinglescreen", "screenzoom", "zoomfont", "ignoreset"], function(response){
+		chrome.storage.sync.get(["allzoom", "allzoomvalue", "websitezoom", "badge", "lightcolor", "zoomchrome", "zoomweb", "zoombydomain", "zoombypage", "zoombyregex", "defaultallscreen", "defaultsinglescreen", "screenzoom", "zoomfont", "ignoreset"], function(response){
 			allzoom = response.allzoom; if(allzoom == null)allzoom = false; // default allzoom false
 			allzoomvalue = response.allzoomvalue; if(allzoomvalue == null)allzoomvalue = 1; // default allzoomvalue value
 			badge = response.badge; if(badge == null)badge = false;
@@ -64,6 +73,7 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 			if(zoombydomain == true){
 				currentURL = currentURL.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0];
 			}
+			zoombyregex = response.zoombyregex; if(zoombyregex == null)zoombyregex = false;
 			defaultallscreen = response.defaultallscreen; if(defaultallscreen == null)defaultallscreen = true;
 			defaultsinglescreen = response.defaultsinglescreen; if(defaultsinglescreen == null)defaultsinglescreen = false;
 			websitezoom = response["websitezoom"];
@@ -76,7 +86,6 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 
 			//---
 			if(defaultsinglescreen == true){
-
 				var screenzoom = response["screenzoom"];
 				screenzoom = JSON.parse(screenzoom);
 				var satbbuf = [];
@@ -91,7 +100,6 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 						allzoomvalue = screenzoom[satbbuf[i]] / 100;
 					}
 				}
-
 			}
 
 			//---
@@ -132,65 +140,49 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 				var isv;
 				var lsv = atbbuf.length;
 				for(isv = 0; isv < lsv; isv++){
-					if(atbbuf[isv] == currentURL){
-						var tempatbbuf = atbbuf[isv];
-						var editzoom = websitezoom[atbbuf[isv]] / 100;
-						chrome.tabs.query({},
-							function(tabs){
-								tabs.forEach(function(tab){
-									var tor = tab.url;
-									if(typeof tor !== "undefined"){
-										var filtermatch = tor.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/);
-										if(zoombydomain == true){ if(filtermatch){ webtor = filtermatch[0]; } }else{ var webtor = tor; }
-										if(webtor == tempatbbuf){
-											if(zoomchrome == true){
-												chrome.tabs.getZoom(sender.tab.id, function(zoomFactor){
-													if(zoomFactor != editzoom){
-														// this to keep to zoom level by tab and not the whole domain (= automatic)
-														if(zoombypage == true){
-															chrome.tabs.setZoomSettings(sender.tab.id, {mode: "automatic", scope: "per-tab"},
-																function(){
-																	if(chrome.runtime.lastError){
-																		// console.log('[ZoomDemoExtension] doSetMode() error: ' + chrome.runtime.lastError.message);
-																	}
-																});
-														}else{
-															chrome.tabs.setZoomSettings(sender.tab.id, {mode: "automatic"/* , scope: 'per-tab'*/},
-																function(){
-																	if(chrome.runtime.lastError){
-																		// console.log('[ZoomDemoExtension] doSetMode() error: ' + chrome.runtime.lastError.message);
-																	}
-																});
-														}
-														chrome.tabs.setZoom(sender.tab.id, editzoom); // needed for the default zoom value such as 110%
-													}
-												});
-											}else if(zoomweb == true){
-												// inject only if different than 1
-												if(editzoom != 1){
-													chrome.tabs.sendMessage(tab.id, {text:"setbodycsszoom", value:editzoom});
-												}
-											}else if(zoomfont == true){
-												chrome.tabs.sendMessage(tab.id, {text: "changefontsize", value: Math.round(editzoom * 100)});
-											}
-											setBadgeValue(editzoom, tab.id);
-										}
-									}
-								});
-							});
-						goturlinside = true;
-					}
-				}
+					let tempatbbuf = atbbuf[isv];
+					let editzoom = websitezoom[atbbuf[isv]] / 100;
 
-				// URL is not in the table, so use the default zoom value (that by screen size)
-				// reset got inside
-				if(goturlinside != true){
-					// use default zoom from the Options page -- normal is 100%
-					chrome.tabs.query({active: true, currentWindow: true},
-						function(){
-							chrome.tabs.getZoom(sender.tab.id, function(zoomFactor){
-								if(zoomFactor != allzoomvalue){
-									if(zoomchrome == true){
+					let matched = false;
+
+					if(zoombyregex === true){
+						// convert wildcard to regex
+						const regex = wildcardToRegex(tempatbbuf);
+						if(regex.test(currentURL)){
+							matched = true;
+						}
+					}else{
+						if(tempatbbuf === currentURL){
+							matched = true;
+						}
+					}
+
+					if(matched == true){
+						var tor = sender.tab.url;
+						var filtermatch = tor.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/);
+						let webtor;
+						if(zoombydomain == true){ if(filtermatch){ webtor = filtermatch[0]; } }else{ webtor = tor; }
+
+						// --- determine if we have a match (supports wildcard when zoombyregex) ---
+						let matchedTab = false;
+						if(zoombyregex == true){
+							const regex = wildcardToRegex(tempatbbuf);
+							if(regex.test(webtor)){
+								matchedTab = true;
+								goturlinside = true;
+							}
+						}else{
+							// ORIGINAL EXACT (or domain) MATCH MODE
+							if(webtor == tempatbbuf){
+								matchedTab = true;
+								goturlinside = true;
+							}
+						}
+
+						if(matchedTab){
+							if(zoomchrome == true){
+								chrome.tabs.getZoom(sender.tab.id, function(zoomFactor){
+									if(zoomFactor != editzoom){
 										// this to keep to zoom level by tab and not the whole domain (= automatic)
 										if(zoombypage == true){
 											chrome.tabs.setZoomSettings(sender.tab.id, {mode: "automatic", scope: "per-tab"},
@@ -207,26 +199,65 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 													}
 												});
 										}
-										// If set not to ignore, then it set it back to the default zoom value that is set by the Zoom browser extension
-										if(ignoreset != true){
-											chrome.tabs.setZoom(sender.tab.id, allzoomvalue); // needed for the default zoom value such as 110%
-											setBadgeValue(allzoomvalue, sender.tab.id);
-										}
-									}else if(zoomweb == true){
-										// inject only if different than 1
-										if(allzoomvalue != 1){
-											chrome.tabs.sendMessage(sender.tab.id, {text:"setbodycsszoom", value:allzoomvalue});
-										}
-										setBadgeValue(allzoomvalue, sender.tab.id);
-									}else if(zoomfont == true){
-										chrome.tabs.sendMessage(sender.tab.id, {text: "changefontsize", value: Math.round(allzoomvalue * 100)});
-										setBadgeValue(allzoomvalue, sender.tab.id);
+										chrome.tabs.setZoom(sender.tab.id, editzoom); // needed for the default zoom value such as 110%
 									}
+								});
+							}else if(zoomweb == true){
+								// inject only if different than 1
+								if(editzoom != 1){
+									chrome.tabs.sendMessage(sender.tab.id, {text:"setbodycsszoom", value:editzoom});
+								}
+							}else if(zoomfont == true){
+								chrome.tabs.sendMessage(sender.tab.id, {text: "changefontsize", value: Math.round(editzoom * 100)});
+							}
+							setBadgeValue(editzoom, sender.tab.id);
+						}
+					}
+				}
+
+				// URL is not in the table, so use the default zoom value (that by screen size)
+				// reset got inside
+				if(goturlinside != true){
+					// use default zoom from the Options page -- normal is 100%
+					chrome.tabs.getZoom(sender.tab.id, function(zoomFactor){
+						if(zoomFactor != allzoomvalue){
+							if(zoomchrome == true){
+								// this to keep to zoom level by tab and not the whole domain (= automatic)
+								if(zoombypage == true){
+									chrome.tabs.setZoomSettings(sender.tab.id, {mode: "automatic", scope: "per-tab"},
+										function(){
+											if(chrome.runtime.lastError){
+												// console.log('[ZoomDemoExtension] doSetMode() error: ' + chrome.runtime.lastError.message);
+											}
+										});
 								}else{
+									chrome.tabs.setZoomSettings(sender.tab.id, {mode: "automatic"/* , scope: 'per-tab'*/},
+										function(){
+											if(chrome.runtime.lastError){
+												// console.log('[ZoomDemoExtension] doSetMode() error: ' + chrome.runtime.lastError.message);
+											}
+										});
+								}
+								// If set not to ignore, then it set it back to the default zoom value that is set by the Zoom browser extension
+								if(ignoreset != true){
+									chrome.tabs.setZoom(sender.tab.id, allzoomvalue); // needed for the default zoom value such as 110%
 									setBadgeValue(allzoomvalue, sender.tab.id);
 								}
-							});
-						});
+							}else if(zoomweb == true){
+								// inject only if different than 1
+								if(allzoomvalue != 1){
+									chrome.tabs.sendMessage(sender.tab.id, {text:"setbodycsszoom", value:allzoomvalue});
+								}
+								setBadgeValue(allzoomvalue, sender.tab.id);
+							}else if(zoomfont == true){
+								chrome.tabs.sendMessage(sender.tab.id, {text: "changefontsize", value: Math.round(allzoomvalue * 100)});
+								setBadgeValue(allzoomvalue, sender.tab.id);
+							}
+						}else{
+							setBadgeValue(allzoomvalue, sender.tab.id);
+						}
+					});
+
 				}
 				goturlinside = false;
 			}
@@ -262,7 +293,6 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 });
 
 function setBadgeValue(thatvalue, thattabid){
-	// console.log("Set badge = " + thatvalue * 100);
 	if(badge == true){
 		chrome.action.setBadgeBackgroundColor({color:lightcolor});
 		chrome.action.setBadgeText({text:"" + Math.round(thatvalue * 100) + "", tabId: thattabid});
@@ -347,8 +377,34 @@ function zoomtab(a, b){
 						var pop = tab.url;
 						if(typeof pop !== "undefined"){
 							var filtermatch = pop.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/);
-							if(zoombydomain == true){ if(filtermatch){ webpop = filtermatch[0]; } }else{ webpop = pop; }
-							if(webpop == webjob){
+							// --- determine comparison string ---
+							let localWebpop;
+							if(zoombydomain == true){
+								// domain only
+								if(filtermatch){ localWebpop = filtermatch[0]; }
+							}else if(zoombyregex == true){
+								// full URL, but matched via wildcard regex
+								localWebpop = pop;
+							}else{
+								// fallback — exact URL match
+								localWebpop = pop;
+							}
+
+							// --- determine if we have a match ---
+							let matched = false;
+
+							if(zoombyregex == true){
+								// PATTERN MATCHING MODE
+								const regex = wildcardToRegex(localWebpop);
+								if(regex.test(webjob)){
+									matched = true;
+								}
+							}else{
+								// ORIGINAL EXACT (or domain) MATCH MODE
+								matched = (localWebpop == webjob);
+							}
+
+							if(matched){
 								try{
 									chrome.tabs.sendMessage(tab.id, {text:"setbodycsszoom", value:b});
 								}catch(e){
@@ -376,8 +432,34 @@ function zoomtab(a, b){
 						var pop = tab.url;
 						if(typeof pop !== "undefined"){
 							var filtermatch = pop.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/);
-							if(zoombydomain == true){ if(filtermatch){ webpop = filtermatch[0]; } }else{ webpop = pop; }
-							if(webpop == webjob){
+							// --- determine comparison string ---
+							let localWebpop;
+							if(zoombydomain == true){
+								// domain only
+								if(filtermatch){ localWebpop = filtermatch[0]; }
+							}else if(zoombyregex == true){
+								// full URL, but matched via wildcard regex
+								localWebpop = pop;
+							}else{
+								// fallback — exact URL match
+								localWebpop = pop;
+							}
+
+							// --- determine if we have a match ---
+							let matched = false;
+
+							if(zoombyregex == true){
+								// PATTERN MATCHING MODE
+								const regex = wildcardToRegex(localWebpop);
+								if(regex.test(webjob)){
+									matched = true;
+								}
+							}else{
+								// ORIGINAL EXACT (or domain) MATCH MODE
+								matched = (localWebpop == webjob);
+							}
+
+							if(matched){
 								chrome.tabs.sendMessage(tab.id, {text: "changefontsize", value: Math.round(b * 100)});
 								setBadgeValue(b, tab.id);
 							}
@@ -878,6 +960,8 @@ async function onClickHandler(info){
 		chrome.tabs.create({url: "https://vk.com/share.php?url=" + linkproduct, active:true});
 	}else if(info.menuItemId == "totlsharewhatsapp"){
 		chrome.tabs.create({url: "https://api.whatsapp.com/send?text=" + chrome.i18n.getMessage("sharetextd") + "%0a" + linkproduct, active:true});
+	}else if(info.menuItemId == "totloptions"){
+		chrome.runtime.openOptionsPage();
 	}else if(info.menuItemId == "totlapplyresetzoom"){
 		// Apply reset zoom to all tabs and in all window
 		chrome.tabs.query({}, function(tabs){
@@ -909,12 +993,13 @@ var sharemenupostonx = chrome.i18n.getMessage("sharemenupostonx");
 var sharemenupostonfacebook = chrome.i18n.getMessage("sharemenupostonfacebook");
 // var sharemenuratetitle = chrome.i18n.getMessage("sharemenuratetitle");
 var sharemenudonatetitle = chrome.i18n.getMessage("sharemenudonatetitle");
-var sharemenusubscribetitle = chrome.i18n.getMessage("desremyoutube");
+// var sharemenusubscribetitle = chrome.i18n.getMessage("desremyoutube");
 var sharemenupostonweibo = chrome.i18n.getMessage("sharemenupostonweibo");
 var sharemenupostonvkontakte = chrome.i18n.getMessage("sharemenupostonvkontakte");
 var sharemenupostonwhatsapp = chrome.i18n.getMessage("sharemenupostonwhatsapp");
 var sharemenupostonqq = chrome.i18n.getMessage("sharemenupostonqq");
 var sharemenuapplyzoomresettitle = chrome.i18n.getMessage("desapplyzoomreset");
+var sharemenuoptions = chrome.i18n.getMessage("titelpopupoptions");
 
 function browsercontext(a, b, c, d){
 	var item = {"title": a, "type": "normal", "id": b, "contexts": contexts};
@@ -972,8 +1057,12 @@ if(chrome.contextMenus){
 			browsercontext(sharemenupostonx, "totlsharex", {"16": "images/IconTwitter.png", "32": "images/IconTwitter@2x.png"}, parent);
 		}
 
-		chrome.contextMenus.create({"title": "", "type":"separator", "id": "totlsepartor", "contexts": contexts});
-		browsercontext(sharemenusubscribetitle, "totlsubscribe", {"16": "images/IconYouTube.png", "32": "images/IconYouTube@2x.png"});
+		// browsercontext(sharemenusubscribetitle, "totlsubscribe", {"16": "images/IconYouTube.png", "32": "images/IconYouTube@2x.png"});
+
+		if(exbrowser == "safari" || exbrowser == "firefox"){
+			chrome.contextMenus.create({"title": "", "type":"separator", "id": "totlsepartor", "contexts": contexts});
+			browsercontext(sharemenuoptions, "totloptions", {"16": "images/options.png", "32": "images/options@2x.png"});
+		}
 
 		chrome.contextMenus.onClicked.addListener(onClickHandler);
 	}

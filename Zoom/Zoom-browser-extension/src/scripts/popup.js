@@ -28,17 +28,33 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 
 function $(id){ return document.getElementById(id); }
 var currentRatio = 1; var ratio = 1; var job = null;
-var darkmode; var allzoom; var allzoomvalue; var webjob; var websitezoom; var badge; var steps; var lightcolor; var zoomchrome; var zoomweb; var zoombydomain; var zoombypage; var defaultsinglescreen; var zoomfont; var counter; var smallpopup; var largepopup; var modernpopup; var prezoombutton; var websitelevel;
+var darkmode; var allzoom; var allzoomvalue; var webjob; var websitezoom; var badge; var steps; var lightcolor; var zoomchrome; var zoomweb; var zoombydomain; var zoombypage; var zoombyregex; var defaultsinglescreen; var zoomfont; var counter; var smallpopup; var largepopup; var modernpopup; var prezoombutton; var websitelevel;
 
 function zoom(ratio){
 	currentRatio = ratio / 100;
 	chrome.tabs.query({active: true, currentWindow: true}, function(tabs){ zoomtab(tabs[0].id, currentRatio); });
 }
 
+function wildcardToRegex(pattern){
+	// Escape regex chars except *
+	let escaped = pattern.replace(/[-\\/\\^$+?.()|[\]{}]/g, "\\$&");
+
+	// * → .*
+	escaped = escaped.replace(/\*/g, ".*");
+	return new RegExp("^" + escaped + "$");
+}
+
 // Setup isScrolling variable
 var isScrolling;
+
 function codebodyzoom(b){
-	document.body.style.zoom = b;
+	const root = document.body || document.documentElement;
+
+	if(document.documentElement.namespaceURI === "http://www.w3.org/2000/svg"){
+		root.setAttribute("transform", `scale(${b})`);
+	}else{
+		root.style.zoom = b;
+	}
 }
 
 function codebodyzoomleft(b){
@@ -128,9 +144,36 @@ function zoomtab(a, b){
 					tabs.forEach(function(tab){
 						var pop = tab.url;
 						if(typeof pop !== "undefined"){
-							var webpop;
-							if(zoombydomain == true){ webpop = pop.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0]; }else{ webpop = pop; }
-							if(webpop == webjob){ // in current tab and not in popup window
+							let webpop;
+
+							// --- determine comparison string ---
+							if(zoombydomain == true){
+								// domain only
+								webpop = pop.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0];
+							}else if(zoombyregex == true){
+								// full URL, but matched via wildcard regex
+								webpop = pop;
+							}else{
+								// fallback — exact URL match
+								webpop = pop;
+							}
+
+							// --- determine if we have a match ---
+							let matched = false;
+
+							if(zoombyregex == true){
+								// PATTERN MATCHING MODE
+								const regex = wildcardToRegex(webpop);
+								if(regex.test(webjob)){
+									matched = true;
+								}
+							}else{
+								// ORIGINAL EXACT (or domain) MATCH MODE
+								matched = (webpop == webjob);
+							}
+
+							// --- apply zoom if matched ---
+							if(matched){ // in current tab and not in popup window
 								try{
 									var supportsZoom = "zoom" in document.body.style;
 									if(supportsZoom){
@@ -188,9 +231,36 @@ function zoomtab(a, b){
 					tabs.forEach(function(tab){
 						var pop = tab.url;
 						if(typeof pop !== "undefined"){
-							var webpop;
-							if(zoombydomain == true){ webpop = pop.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0]; }else{ webpop = pop; }
-							if(webpop == webjob){ // in current tab and not in popup window
+							let webpop;
+
+							// --- determine comparison string ---
+							if(zoombydomain == true){
+								// domain only
+								webpop = pop.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0];
+							}else if(zoombyregex == true){
+								// full URL, but matched via wildcard regex
+								webpop = pop;
+							}else{
+								// fallback — exact URL match
+								webpop = pop;
+							}
+
+							// --- determine if we have a match ---
+							let matched = false;
+
+							if(zoombyregex == true){
+								// PATTERN MATCHING MODE
+								const regex = wildcardToRegex(webpop);
+								if(regex.test(webjob)){
+									matched = true;
+								}
+							}else{
+								// ORIGINAL EXACT (or domain) MATCH MODE
+								matched = (webpop == webjob);
+							}
+
+							// --- apply zoom if matched ---
+							if(matched){ // in current tab and not in popup window
 								chrome.tabs.sendMessage(tab.id, {text: "changefontsize", value: document.getElementById("number").value});
 								if(badge == true){
 									chrome.action.setBadgeBackgroundColor({color:lightcolor});
@@ -378,19 +448,6 @@ function zoomtab(a, b){
 
 function zoomview(direction){ zoom(nextratio(currentRatio * 100, direction)); }
 
-// function nextratio(ratio, direction){
-// 	ratio = Math.round(ratio);
-// 	var prevratio = parseInt(ratio) - parseInt(steps);
-// 	var nextratio = parseInt(ratio) + parseInt(steps);
-// 	if(direction == -1){
-// 		if(ratio == 10){ prevratio = 100; nextratio = 100; }
-// 	}else{
-// 		if(ratio == 400){ prevratio = 100; nextratio = 100; }
-// 	}
-// 	return(direction == -1) ? prevratio : nextratio;
-// }
-
-
 function nextratio(ratio, direction){
 	ratio = Math.round(ratio);
 	var prevratio = parseInt(ratio) - parseInt(steps);
@@ -491,7 +548,7 @@ document.addEventListener("DOMContentLoaded", function(){
 	// mouse scroll
 	$("range").addEventListener("wheel", wheel, {passive: false}); // for modern
 
-	chrome.storage.sync.get(["darkmode", "allzoom", "allzoomvalue", "websitezoom", "badge", "steps", "lightcolor", "zoomchrome", "zoomweb", "largepopup", "zoombydomain", "zoombypage", "defaultallscreen", "defaultsinglescreen", "screenzoom", "zoomfont", "smallpopup", "largepopup", "modernpopup", "prezoombutton", "websitelevel"], function(response){
+	chrome.storage.sync.get(["darkmode", "allzoom", "allzoomvalue", "websitezoom", "badge", "steps", "lightcolor", "zoomchrome", "zoomweb", "largepopup", "zoombydomain", "zoombypage", "zoombyregex", "defaultallscreen", "defaultsinglescreen", "screenzoom", "zoomfont", "smallpopup", "largepopup", "modernpopup", "prezoombutton", "websitelevel"], function(response){
 		darkmode = response.darkmode; if(darkmode == null)darkmode = 2; // default Operating System
 		allzoom = response.allzoom; if(allzoom == null)allzoom = false; // default allzoom false
 		allzoomvalue = response.allzoomvalue; if(allzoomvalue == null)allzoomvalue = 1; // default allzoomvalue value
@@ -505,6 +562,7 @@ document.addEventListener("DOMContentLoaded", function(){
 		largepopup = response.largepopup;
 		zoombydomain = response.zoombydomain; if(zoombydomain == null)zoombydomain = true;
 		zoombypage = response.zoombypage; if(zoombypage == null)zoombypage = false;
+		zoombyregex = response.zoombyregex; if(zoombyregex == null)zoombyregex = false;
 		smallpopup = response.smallpopup; if(smallpopup == null)smallpopup = false;
 		largepopup = response.largepopup; if(largepopup == null)largepopup = false;
 		modernpopup = response.modernpopup; if(modernpopup == null)modernpopup = true;
@@ -607,7 +665,10 @@ document.addEventListener("DOMContentLoaded", function(){
 			if(typeof job !== "undefined"){
 				if(zoombydomain == true){
 					webjob = job.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0];
-				}else{ webjob = job; }
+				}else{
+					// zoombypage and zoombyregex
+					webjob = job;
+				}
 				if(zoomchrome == true){
 					chrome.tabs.getZoom(thattab.id, function(zoomFactor){
 						if(chrome.runtime.lastError){

@@ -8,7 +8,7 @@
 
 Zoom
 Zoom in or out on web content using the zoom button for more comfortable reading.
-Copyright (C) 2024 Stefan vd
+Copyright (C) 2025 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -138,7 +138,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 			<br>
 			<section>
 				<div class="videopreview">
-					<iframe id="dont-turn-off-the-lights" class="dont-turn-off-the-lights" title="YouTube video" type="text/html" width="auto" height="auto" src="https://www.youtube.com/embed/?listType=playlist&amp;list=PLfXHh3TKRb4ZRrIhSRo6cWEJVeS3_M5Yb" frameborder="0" allowfullscreen=""></iframe>
+					<iframe id="dont-turn-off-the-lights" title="YouTube video" width="auto" height="auto" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>Your browser does not support iframes.</iframe>
 				</div>
 				<div class="suggpanel">
 					<div class="profile">
@@ -305,7 +305,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 			<form id="formwebsitezoom">
 			<div id="websitezoom">
 				<div class="columnspace">
-					<input id="websitezoomname" type="url" required pattern="^(https?:\/\/(www\.)?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b([a-zA-Z0-9@:%_.+-~#?&\/=]*))|(https?:\/\/(www\.)?[a-zA-Z0-9@:%.+-~#=]{2,256}\b([a-zA-Z0-9@:%_.+-~#?&\/=]*))|(file?:\/\/\/{1,256}\b([a-zA-Z0-9@:%_.+-~#?&\/=]*)))$" placeholder="https://www.example.com" aria-label="The URL box to type a website for the Zoom feature">
+					<input id="websitezoomname" type="url" required pattern="^(https?:\/\/(www\.)?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b([a-zA-Z0-9@:%_.+\-~#?&\/=\*]*))|(https?:\/\/(www\.)?[a-zA-Z0-9@:%.+\-~#=\*]{2,256}\b([a-zA-Z0-9@:%_.+\-~#?&\/=\*]*))|(file?:\/\/\/{1,256}\b([a-zA-Z0-9@:%_.+\-~#?&\/=\*]*)))$" placeholder="https://www.example.com" aria-label="The URL box to type a website for the Zoom feature">
 					<select id="websitezoomBox" name="websitezoomentryList" size="10" multiple="" aria-label="The website URLs in the box"></select>
 				</div>
 				<div class="columnspace">
@@ -327,6 +327,37 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 					<div class="md-radio">
 						<input id="zoombypage" type="radio" name="pagezoom" value="page" role="radio" aria-checked="false" aria-labelledby="websitezoom">
 						<label for="zoombypage"><div><span data-i18n="deszoombypage"></span></div></label>
+					</div>
+					<div class="md-radio">
+						<input id="zoombyregex" type="radio" name="pagezoom" value="regex" role="radio" aria-checked="false" aria-labelledby="websitezoom">
+						<label for="zoombyregex"><div><span data-i18n="deszoombyregex"></span></div></label>
+					</div>
+					<div>
+						<ul class="regexpanel">
+							<li>
+								<code>"http://www.website.com/school/*#pageDialogDetail": ["75"]</code>
+								<div><span data-i18n="desexampleschoola"></span> <code>http://www.website.com/school/</code> <span data-i18n="desexampleschoolb"></span> <code>#pageDialogDetail</code>.</div>
+								<div><span data-i18n="desexampleschoolc"></span></div>
+								<div>
+									<code>http://www.website.com/school/dutch/session/#pageDialogDetail</code>
+								</div>
+								<div>
+									<code>http://www.website.com/school/english/session/#pageDialogDetail</code>
+								</div>
+							</li>
+							<li class="regexmargetop">
+								<code>"https://*.example.com/test/*": ["90"]</code>
+								<div><span data-i18n="desexampletesta"></span> <code>/test/</code> <span data-i18n="desexampletestb"></span></div>
+								<div><span data-i18n="desexampletestc"></span></div>
+								<div>
+									<code>https://app.example.com/test/page1</code>
+								</div>
+								<div>
+									<code>https://tools.example.com/test/view?id=5</code>
+								</div>
+							</li>
+						</ul>
+						<span data-i18n="desregexcaption"></span>
 					</div>
 				</div>
 			</div>

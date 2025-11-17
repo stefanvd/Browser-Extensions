@@ -204,5 +204,13 @@
     "titleshortpredefined3": {"message": "Toggle to predefined zoom value 3"},
     "moveupbutton": {"message": "Move Up"},
     "movedownbutton": {"message": "Move Down"},
-    "descriptionshort": {"message": "Zoom in or out on web content using the zoom button and mouse scroll wheel for more comfortable reading."}
+    "descriptionshort": {"message": "Zoom in or out on web content using the zoom button and mouse scroll wheel for more comfortable reading."},
+    "deszoombyregex": {"message": "Zoom at regex-match level"},
+    "desexampleschoola": {"message": "This applies a 75% zoom to any URL that starts with "},
+    "desexampleschoolb": {"message": "and ends with"},
+    "desexampleschoolc": {"message": "It matches pages like:"},
+    "desexampletesta": {"message": "This applies a 90% zoom only to pages under the"},
+    "desexampletestb": {"message": "path of any subdomain of example.com."},
+    "desexampletestc": {"message": "For example:"},
+    "desregexcaption": {"message": "By using regex-style patterns, you can target zoom behavior precisely for different sections or subdomains of a site."}
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23727"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24412"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -118,7 +118,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="800" height="522"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2U5-yU-pJ9">
+                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2U5-yU-pJ9">
                                                             <rect key="frame" x="100" y="372" width="600" height="34"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="34" id="CFR-rx-Fg9"/>
@@ -130,7 +130,7 @@
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </textFieldCell>
                                                         </textField>
-                                                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Bcb-CL-I5L">
+                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Bcb-CL-I5L">
                                                             <rect key="frame" x="367" y="419" width="102" height="35"/>
                                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Zoom™" drawsBackground="YES" id="JF3-UG-Qvv">
                                                                 <font key="font" metaFont="system" size="30"/>
@@ -166,7 +166,7 @@
                                                 <rect key="frame" x="100" y="0.0" width="600" height="334"/>
                                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="totlinstallation" id="gGJ-e1-Gvc"/>
                                             </imageView>
-                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ubi-aS-IcC">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ubi-aS-IcC">
                                                 <rect key="frame" x="261" y="12" width="278" height="16"/>
                                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Please activate the Zoom Safari extension" drawsBackground="YES" id="jTe-S6-4kh">
                                                     <font key="font" metaFont="systemBold"/>
@@ -191,7 +191,7 @@
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="NaL-jp-fdK">
                                         <rect key="frame" x="0.0" y="0.0" width="800" height="80"/>
                                         <subviews>
-                                            <textField wantsLayer="YES" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="STK-QL-Em4">
+                                            <textField wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="STK-QL-Em4">
                                                 <rect key="frame" x="18" y="32" width="311" height="16"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="307" id="Rfc-DV-dSa"/>
@@ -203,7 +203,7 @@
                                                 </textFieldCell>
                                             </textField>
                                             <button wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bbK-04-puz">
-                                                <rect key="frame" x="567" y="22" width="220" height="32"/>
+                                                <rect key="frame" x="574" y="29" width="206" height="24"/>
                                                 <buttonCell key="cell" type="push" title="Enable Zoom" bezelStyle="rounded" imagePosition="left" alignment="center" state="on" borderStyle="border" focusRingType="none" inset="2" id="gLx-xB-yAA">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                                     <font key="font" metaFont="system"/>
