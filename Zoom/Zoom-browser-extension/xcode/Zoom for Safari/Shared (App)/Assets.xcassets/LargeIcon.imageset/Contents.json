@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "large.png",
+      "filename" : "zoom-black.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -12,7 +12,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "large-white.png",
+      "filename" : "zoom-white.png",
       "idiom" : "universal",
       "scale" : "1x"
     },

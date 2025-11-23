@@ -68,7 +68,7 @@ html,body{margin:0;padding:0}
 #predefinedbuttons .btnpreset{height:22px;display:flex;align-items:center;min-width:30px;justify-content:center;cursor:pointer;border-radius:5px;flex-wrap:wrap;-webkit-user-select:none;user-select:none}
 #predefinedbuttons .btnpreset:hover{background:var(--totl-svg-button-background-hover);color:var(--totl-primary-font-color)}
 /* modern */
-html.modern{width:300px;height:226px}
+html.modern{width:300px;height:226px;position:relative;margin:auto}
 .modern body{font-family:sans-serif,'Lucida Grande','Helvetica Neue';font-size:11px}
 .modern .panel{padding:5px}
 .modern .panel .title{padding-bottom:10px;margin:0;display:block;font-weight:bold;-webkit-user-select:none;user-select:none;cursor:default;font-size:14px}
@@ -95,6 +95,7 @@ html.modern{width:300px;height:226px}
 .modern ul.button_group li:hover .btnreset,.modern ul.button_group li:hover .btnregular,.modern ul.action_group li:hover .btnoptions{background:var(--totl-button-list-background);color:var(--totl-primary-font-color)}
 .modern input[type=range]{border-radius:50px;background-color:var(--totl-slider-background);-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:none;border:1px solid var(--totl-slider-border);color:var(--totl-slider-text);font-size:inherit;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap;height:20px;width:113px;margin:0}
 .modern input[type=range]::-moz-range-track{background-color:rgba(255,255,255,0)}
+.modern input[type="range"]::-moz-range-progress{background-color:var(--totl-slider-range-background);height:25px}
 .modern input[type=range]:focus{outline:none}
 .modern input[type=number]{background:transparent;-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:none;border:none;color:var(--totl-slider-text);font-size:inherit;overflow:hidden;padding:0 0 0 5px;text-overflow:ellipsis;white-space:nowrap;height:25px;width:60px;margin:0;text-align:right;-webkit-user-select:none;user-select:none}
 .modern input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:20px;background-color:var(--totl-slider-range-background);color:var(--totl-slider-range-background);box-shadow:-5px 0px 10px 0px var(--totl-slider-shadow-begin),-210px 0 0 200px var(--totl-slider-shadow-end);border:none;outline:none;cursor:pointer}

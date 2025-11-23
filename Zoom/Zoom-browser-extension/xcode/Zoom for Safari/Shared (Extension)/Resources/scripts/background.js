@@ -38,12 +38,17 @@ var currentRatio = 1; var ratio = 1; var job = null;
 var webjob; var websitezoom = {}; var badge; var steps; var lightcolor; var zoomchrome; var zoomweb; var zoomfont; var ignoreset;
 
 function wildcardToRegex(pattern){
-	// Escape regex chars except *
-	let escaped = pattern.replace(/[-\\/\\^$+?.()|[\]{}]/g, "\\$&");
-
-	// * → .*
-	escaped = escaped.replace(/\*/g, ".*");
-	return new RegExp("^" + escaped + "$");
+	// Check if pattern is already a valid regex
+	try{
+		return new RegExp(pattern);
+	}catch(e){
+		// If not a valid regex, treat as wildcard pattern
+		// Escape regex chars except *
+		let escaped = pattern.replace(/[-\\/\\^$+?.()|[\]{}]/g, "\\$&");
+		// * → .*
+		escaped = escaped.replace(/\*/g, ".*");
+		return new RegExp("^" + escaped + "$");
+	}
 }
 
 chrome.runtime.onMessage.addListener(function request(request, sender){

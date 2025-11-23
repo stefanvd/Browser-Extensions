@@ -3,66 +3,29 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 74;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1E221CF22DD545B1000ED0E1 /* RealityKitContent in Frameworks */ = {isa = PBXBuildFile; productRef = 1E221CF12DD545B1000ED0E1 /* RealityKitContent */; };
-		1E48AA482DD5F06B00FE647E /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1E48AA3B2DD5F06B00FE647E /* Localizable.xcstrings */; };
-		1E48AA492DD5F06B00FE647E /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 1E48AA3D2DD5F06B00FE647E /* PrivacyInfo.xcprivacy */; };
-		1E48AA4C2DD5F06B00FE647E /* StefanLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AA402DD5F06B00FE647E /* StefanLinks.swift */; };
-		1E48AA5A2DD5F06B00FE647E /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1E48AA3B2DD5F06B00FE647E /* Localizable.xcstrings */; };
-		1E48AA5B2DD5F06B00FE647E /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 1E48AA3D2DD5F06B00FE647E /* PrivacyInfo.xcprivacy */; };
-		1E48AA5E2DD5F06B00FE647E /* StefanLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AA402DD5F06B00FE647E /* StefanLinks.swift */; };
-		1E48AA612DD5F06B00FE647E /* StefanLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AA402DD5F06B00FE647E /* StefanLinks.swift */; };
-		1E48AA632DD5F06B00FE647E /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1E48AA3B2DD5F06B00FE647E /* Localizable.xcstrings */; };
-		1E48AA642DD5F06B00FE647E /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 1E48AA3D2DD5F06B00FE647E /* PrivacyInfo.xcprivacy */; };
-		1E48AA742DD5F0FB00FE647E /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AA6C2DD5F0FB00FE647E /* NewsView.swift */; };
-		1E48AA752DD5F0FB00FE647E /* FeedParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AA662DD5F0FB00FE647E /* FeedParser.swift */; };
-		1E48AA762DD5F0FB00FE647E /* ZoomApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AA712DD5F0FB00FE647E /* ZoomApp.swift */; };
-		1E48AA772DD5F0FB00FE647E /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AA672DD5F0FB00FE647E /* HelpView.swift */; };
-		1E48AA782DD5F0FB00FE647E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AA652DD5F0FB00FE647E /* ContentView.swift */; };
-		1E48AA792DD5F0FB00FE647E /* Stefanfunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AA6F2DD5F0FB00FE647E /* Stefanfunctions.swift */; };
-		1E48AA7A2DD5F0FB00FE647E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AA6E2DD5F0FB00FE647E /* SettingsView.swift */; };
-		1E48AA7C2DD5F0FB00FE647E /* LicensesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AA6B2DD5F0FB00FE647E /* LicensesView.swift */; };
-		1E48AA7D2DD5F0FB00FE647E /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AA702DD5F0FB00FE647E /* VideoView.swift */; };
-		1E48AA7E2DD5F0FB00FE647E /* OtherAppsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AA6D2DD5F0FB00FE647E /* OtherAppsView.swift */; };
-		1E48AA7F2DD5F0FB00FE647E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AA692DD5F0FB00FE647E /* HomeView.swift */; };
-		1E48AAB82DD5F5FC00FE647E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E48AAA72DD5F5FC00FE647E /* Main.storyboard */; };
-		1E48AAB92DD5F5FC00FE647E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E48AAA52DD5F5FC00FE647E /* LaunchScreen.storyboard */; };
-		1E48AABA2DD5F5FC00FE647E /* Walkthrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E48AAB32DD5F5FC00FE647E /* Walkthrough.storyboard */; };
-		1E48AABB2DD5F5FC00FE647E /* enable-safari-extension-iphone.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1E48AA9D2DD5F5FC00FE647E /* enable-safari-extension-iphone.mp4 */; };
-		1E48AABD2DD5F5FC00FE647E /* forest.mov in Resources */ = {isa = PBXBuildFile; fileRef = 1E48AAA02DD5F5FC00FE647E /* forest.mov */; };
-		1E48AABE2DD5F5FC00FE647E /* enable-safari-extension-ipad.mov in Resources */ = {isa = PBXBuildFile; fileRef = 1E48AA9C2DD5F5FC00FE647E /* enable-safari-extension-ipad.mov */; };
-		1E48AABF2DD5F5FC00FE647E /* VideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AAB12DD5F5FC00FE647E /* VideoTableViewCell.swift */; };
-		1E48AAC02DD5F5FC00FE647E /* WelcomeGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AAB42DD5F5FC00FE647E /* WelcomeGuideViewController.swift */; };
-		1E48AAC12DD5F5FC00FE647E /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AAB02DD5F5FC00FE647E /* SplitViewController.swift */; };
-		1E48AAC22DD5F5FC00FE647E /* FeedParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AA9F2DD5F5FC00FE647E /* FeedParser.swift */; };
-		1E48AAC32DD5F5FC00FE647E /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AAB52DD5F5FC00FE647E /* WelcomeViewController.swift */; };
-		1E48AAC42DD5F5FC00FE647E /* SidebarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AAAE2DD5F5FC00FE647E /* SidebarController.swift */; };
-		1E48AAC52DD5F5FC00FE647E /* GalleryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AAA12DD5F5FC00FE647E /* GalleryController.swift */; };
-		1E48AAC62DD5F5FC00FE647E /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AA992DD5F5FC00FE647E /* AboutController.swift */; };
-		1E48AAC72DD5F5FC00FE647E /* CommonClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AA9B2DD5F5FC00FE647E /* CommonClasses.swift */; };
-		1E48AAC82DD5F5FC00FE647E /* SimpleTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AAAF2DD5F5FC00FE647E /* SimpleTableViewController.swift */; };
-		1E48AAC92DD5F5FC00FE647E /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AAAC2DD5F5FC00FE647E /* PageViewController.swift */; };
-		1E48AACA2DD5F5FC00FE647E /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AAA82DD5F5FC00FE647E /* MasterViewController.swift */; };
-		1E48AACB2DD5F5FC00FE647E /* NewsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AAAB2DD5F5FC00FE647E /* NewsTableViewController.swift */; };
-		1E48AACC2DD5F5FC00FE647E /* YouTubeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AAB62DD5F5FC00FE647E /* YouTubeViewController.swift */; };
-		1E48AACD2DD5F5FC00FE647E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AA9A2DD5F5FC00FE647E /* AppDelegate.swift */; };
-		1E48AACE2DD5F5FC00FE647E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AAAD2DD5F5FC00FE647E /* SceneDelegate.swift */; };
-		1E48AACF2DD5F5FC00FE647E /* LicensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AAA62DD5F5FC00FE647E /* LicensesViewController.swift */; };
-		1E48AAD02DD5F5FC00FE647E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AAB22DD5F5FC00FE647E /* ViewController.swift */; };
-		1E48AAD12DD5F5FC00FE647E /* NetworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AAA92DD5F5FC00FE647E /* NetworkViewController.swift */; };
-		1E48AAD22DD5F5FC00FE647E /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AAAA2DD5F5FC00FE647E /* NewsTableViewCell.swift */; };
-		1E48AAD32DD5F5FC00FE647E /* EnableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AA9E2DD5F5FC00FE647E /* EnableViewController.swift */; };
-		1E48AAD42DD5FDAE00FE647E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EAB3EED25A3648F00C9B518 /* Assets.xcassets */; };
-		1E48AAD52DD5FDAE00FE647E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EAB3EED25A3648F00C9B518 /* Assets.xcassets */; };
-		1EAB3EE725A3648D00C9B518 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAB3EE625A3648D00C9B518 /* AppDelegate.swift */; };
-		1EAB3EEA25A3648D00C9B518 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EAB3EE825A3648D00C9B518 /* Main.storyboard */; };
-		1EAB3EEC25A3648D00C9B518 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAB3EEB25A3648D00C9B518 /* ViewController.swift */; };
-		1EAB3EEE25A3648F00C9B518 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EAB3EED25A3648F00C9B518 /* Assets.xcassets */; };
-		1ED1E0DE2DD64A5D007F431B /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 1ED1E0DD2DD64A5D007F431B /* Credits.rtf */; };
-		1ED1E12F2DD66A26007F431B /* Zoom for Safari Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1ED1E1172DD66A26007F431B /* Zoom for Safari Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1E5C6CB52ECDF8E500AD3FD8 /* Zoom for Safari Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1ED1E1172DD66A26007F431B /* Zoom for Safari Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1ECE6FCF2ECD026200167EF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EAB3EED25A3648F00C9B518 /* Assets.xcassets */; };
+		1ECE6FE22ECD0C9600167EF4 /* StefanFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AA6F2DD5F0FB00FE647E /* StefanFunctions.swift */; };
+		1ECE6FE32ECD0C9600167EF4 /* StefanLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AA402DD5F06B00FE647E /* StefanLinks.swift */; };
+		1ECE6FE42ECD0C9600167EF4 /* FeedParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECE6FDE2ECD0A4600167EF4 /* FeedParser.swift */; };
+		1ECE6FE52ECD0CA000167EF4 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 1E48AA3D2DD5F06B00FE647E /* PrivacyInfo.xcprivacy */; };
+		1ECE6FE62ECD0CA600167EF4 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1E48AA3B2DD5F06B00FE647E /* Localizable.xcstrings */; };
+		1ECE6FE82ECD0CDD00167EF4 /* DaringInfantileDachshund.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1ECE6FE72ECD0CDD00167EF4 /* DaringInfantileDachshund.mp4 */; };
+		1ECE6FEE2ECD14CD00167EF4 /* forest.mov in Resources */ = {isa = PBXBuildFile; fileRef = 1ECE6FEC2ECD14CD00167EF4 /* forest.mov */; };
+		1ECE6FF32ECD1D0E00167EF4 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 1ECE6FF12ECD1D0E00167EF4 /* AppIcon.icon */; };
+		1ECE6FF62ECD1FC400167EF4 /* Zoom for Safari Extension macOS.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1EDBD8142DD667B2009EFE06 /* Zoom for Safari Extension macOS.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1ECE70092ECD288C00167EF4 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 1ECE6FF12ECD1D0E00167EF4 /* AppIcon.icon */; };
+		1ECE701E2ECD313900167EF4 /* StefanLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AA402DD5F06B00FE647E /* StefanLinks.swift */; };
+		1ECE701F2ECD313F00167EF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EAB3EED25A3648F00C9B518 /* Assets.xcassets */; };
+		1ECE70202ECD318900167EF4 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1E48AA3B2DD5F06B00FE647E /* Localizable.xcstrings */; };
+		1ECE70212ECD31A800167EF4 /* forest.mov in Resources */ = {isa = PBXBuildFile; fileRef = 1ECE6FEC2ECD14CD00167EF4 /* forest.mov */; };
+		1ECE70222ECD31AC00167EF4 /* DaringInfantileDachshund.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1ECE6FE72ECD0CDD00167EF4 /* DaringInfantileDachshund.mp4 */; };
+		1ECE70232ECD31DA00167EF4 /* StefanFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AA6F2DD5F0FB00FE647E /* StefanFunctions.swift */; };
+		1ECE70242ECD31F100167EF4 /* FeedParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECE6FDE2ECD0A4600167EF4 /* FeedParser.swift */; };
 		1ED1E1342DD66A3E007F431B /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = 1E221CDB2DD4DD12000ED0E1 /* _locales */; };
 		1ED1E1352DD66A3E007F431B /* images in Resources */ = {isa = PBXBuildFile; fileRef = 1E221CDD2DD4DD12000ED0E1 /* images */; };
 		1ED1E1362DD66A3E007F431B /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 1E221CD62DD4DD12000ED0E1 /* LICENSE */; };
@@ -71,16 +34,6 @@
 		1ED1E1392DD66A3E007F431B /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = 1E221CDC2DD4DD12000ED0E1 /* popup.html */; };
 		1ED1E13A2DD66A3E007F431B /* scripts in Resources */ = {isa = PBXBuildFile; fileRef = 1E221CD72DD4DD12000ED0E1 /* scripts */; };
 		1ED1E13B2DD66A3E007F431B /* styles in Resources */ = {isa = PBXBuildFile; fileRef = 1E221CD82DD4DD12000ED0E1 /* styles */; };
-		1ED1E1582DD66C88007F431B /* Zoom for Safari Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1ED1E1402DD66C88007F431B /* Zoom for Safari Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		1ED1E15D2DD66C9F007F431B /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = 1E221CDB2DD4DD12000ED0E1 /* _locales */; };
-		1ED1E15E2DD66C9F007F431B /* images in Resources */ = {isa = PBXBuildFile; fileRef = 1E221CDD2DD4DD12000ED0E1 /* images */; };
-		1ED1E15F2DD66C9F007F431B /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 1E221CD62DD4DD12000ED0E1 /* LICENSE */; };
-		1ED1E1602DD66C9F007F431B /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 1E221CDA2DD4DD12000ED0E1 /* manifest.json */; };
-		1ED1E1612DD66C9F007F431B /* options.html in Resources */ = {isa = PBXBuildFile; fileRef = 1E221CD92DD4DD12000ED0E1 /* options.html */; };
-		1ED1E1622DD66C9F007F431B /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = 1E221CDC2DD4DD12000ED0E1 /* popup.html */; };
-		1ED1E1632DD66C9F007F431B /* scripts in Resources */ = {isa = PBXBuildFile; fileRef = 1E221CD72DD4DD12000ED0E1 /* scripts */; };
-		1ED1E1642DD66C9F007F431B /* styles in Resources */ = {isa = PBXBuildFile; fileRef = 1E221CD82DD4DD12000ED0E1 /* styles */; };
-		1EDBD82D2DD667B2009EFE06 /* Zoom for Safari Extension (macOS).appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1EDBD8142DD667B2009EFE06 /* Zoom for Safari Extension (macOS).appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		1EDBD8322DD667C2009EFE06 /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = 1E221CDB2DD4DD12000ED0E1 /* _locales */; };
 		1EDBD8332DD667C2009EFE06 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 1E221CDD2DD4DD12000ED0E1 /* images */; };
 		1EDBD8342DD667C2009EFE06 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 1E221CD62DD4DD12000ED0E1 /* LICENSE */; };
@@ -92,59 +45,41 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1ED1E12D2DD66A26007F431B /* PBXContainerItemProxy */ = {
+		1E5C6CB62ECDF8E500AD3FD8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1EAB3EDA25A3648D00C9B518 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 1ED1E1162DD66A26007F431B;
-			remoteInfo = Extension;
+			remoteInfo = "Zoom for Safari Extension iOS";
 		};
-		1ED1E1562DD66C88007F431B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1EAB3EDA25A3648D00C9B518 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 1ED1E13F2DD66C88007F431B;
-			remoteInfo = Extension;
-		};
-		1EDBD82B2DD667B2009EFE06 /* PBXContainerItemProxy */ = {
+		1ECE6FF72ECD1FC400167EF4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1EAB3EDA25A3648D00C9B518 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 1EDBD8132DD667B2009EFE06;
-			remoteInfo = Extension;
+			remoteInfo = "Zoom for Safari Extension (macOS)";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		1E48AAF82DD630F500FE647E /* Embed Foundation Extensions */ = {
+		1E5C6CB82ECDF8E500AD3FD8 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				1ED1E12F2DD66A26007F431B /* Zoom for Safari Extension.appex in Embed Foundation Extensions */,
+				1E5C6CB52ECDF8E500AD3FD8 /* Zoom for Safari Extension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1E48AAFC2DD6311100FE647E /* Embed Foundation Extensions */ = {
+		1ECE6FF92ECD1FC400167EF4 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				1ED1E1582DD66C88007F431B /* Zoom for Safari Extension.appex in Embed Foundation Extensions */,
-			);
-			name = "Embed Foundation Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1ED1E0E32DD6651B007F431B /* Embed Foundation Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				1EDBD82D2DD667B2009EFE06 /* Zoom for Safari Extension (macOS).appex in Embed Foundation Extensions */,
+				1ECE6FF62ECD1FC400167EF4 /* Zoom for Safari Extension macOS.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -161,116 +96,63 @@
 		1E221CDC2DD4DD12000ED0E1 /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = popup.html; sourceTree = "<group>"; };
 		1E221CDD2DD4DD12000ED0E1 /* images */ = {isa = PBXFileReference; lastKnownFileType = text; path = images; sourceTree = "<group>"; };
 		1E221CE72DD538A0000ED0E1 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
-		1E221CED2DD545B1000ED0E1 /* Zoom for Safari.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Zoom for Safari.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1E221CF02DD545B1000ED0E1 /* RealityKitContent */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = RealityKitContent; sourceTree = "<group>"; };
-		1E221D282DD5464F000ED0E1 /* Zoom for Safari.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Zoom for Safari.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E48AA3B2DD5F06B00FE647E /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		1E48AA3D2DD5F06B00FE647E /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		1E48AA402DD5F06B00FE647E /* StefanLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StefanLinks.swift; sourceTree = "<group>"; };
-		1E48AA652DD5F0FB00FE647E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		1E48AA662DD5F0FB00FE647E /* FeedParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedParser.swift; sourceTree = "<group>"; };
-		1E48AA672DD5F0FB00FE647E /* HelpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpView.swift; sourceTree = "<group>"; };
-		1E48AA692DD5F0FB00FE647E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		1E48AA6A2DD5F0FB00FE647E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1E48AA6B2DD5F0FB00FE647E /* LicensesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicensesView.swift; sourceTree = "<group>"; };
-		1E48AA6C2DD5F0FB00FE647E /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
-		1E48AA6D2DD5F0FB00FE647E /* OtherAppsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherAppsView.swift; sourceTree = "<group>"; };
-		1E48AA6E2DD5F0FB00FE647E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		1E48AA6F2DD5F0FB00FE647E /* Stefanfunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stefanfunctions.swift; sourceTree = "<group>"; };
-		1E48AA702DD5F0FB00FE647E /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
-		1E48AA712DD5F0FB00FE647E /* ZoomApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomApp.swift; sourceTree = "<group>"; };
-		1E48AA992DD5F5FC00FE647E /* AboutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
-		1E48AA9A2DD5F5FC00FE647E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1E48AA9B2DD5F5FC00FE647E /* CommonClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonClasses.swift; sourceTree = "<group>"; };
-		1E48AA9C2DD5F5FC00FE647E /* enable-safari-extension-ipad.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "enable-safari-extension-ipad.mov"; sourceTree = "<group>"; };
-		1E48AA9D2DD5F5FC00FE647E /* enable-safari-extension-iphone.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "enable-safari-extension-iphone.mp4"; sourceTree = "<group>"; };
-		1E48AA9E2DD5F5FC00FE647E /* EnableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableViewController.swift; sourceTree = "<group>"; };
-		1E48AA9F2DD5F5FC00FE647E /* FeedParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedParser.swift; sourceTree = "<group>"; };
-		1E48AAA02DD5F5FC00FE647E /* forest.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = forest.mov; sourceTree = "<group>"; };
-		1E48AAA12DD5F5FC00FE647E /* GalleryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryController.swift; sourceTree = "<group>"; };
-		1E48AAA32DD5F5FC00FE647E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1E48AAA42DD5F5FC00FE647E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		1E48AAA62DD5F5FC00FE647E /* LicensesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicensesViewController.swift; sourceTree = "<group>"; };
-		1E48AAA72DD5F5FC00FE647E /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		1E48AAA82DD5F5FC00FE647E /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
-		1E48AAA92DD5F5FC00FE647E /* NetworkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkViewController.swift; sourceTree = "<group>"; };
-		1E48AAAA2DD5F5FC00FE647E /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
-		1E48AAAB2DD5F5FC00FE647E /* NewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
-		1E48AAAC2DD5F5FC00FE647E /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
-		1E48AAAD2DD5F5FC00FE647E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1E48AAAE2DD5F5FC00FE647E /* SidebarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarController.swift; sourceTree = "<group>"; };
-		1E48AAAF2DD5F5FC00FE647E /* SimpleTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTableViewController.swift; sourceTree = "<group>"; };
-		1E48AAB02DD5F5FC00FE647E /* SplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
-		1E48AAB12DD5F5FC00FE647E /* VideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTableViewCell.swift; sourceTree = "<group>"; };
-		1E48AAB22DD5F5FC00FE647E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		1E48AAB32DD5F5FC00FE647E /* Walkthrough.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Walkthrough.storyboard; sourceTree = "<group>"; };
-		1E48AAB42DD5F5FC00FE647E /* WelcomeGuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeGuideViewController.swift; sourceTree = "<group>"; };
-		1E48AAB52DD5F5FC00FE647E /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
-		1E48AAB62DD5F5FC00FE647E /* YouTubeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeViewController.swift; sourceTree = "<group>"; };
-		1E48AAEF2DD6298F00FE647E /* Zoom for Safari (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Zoom for Safari (iOS).entitlements"; sourceTree = "<group>"; };
-		1E48AAF02DD6299700FE647E /* Zoom for Safari (visionOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Zoom for Safari (visionOS).entitlements"; sourceTree = "<group>"; };
-		1EAB3EE225A3648D00C9B518 /* Zoom for Safari.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Zoom for Safari.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1EAB3EE525A3648D00C9B518 /* Zoom_for_Safari.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Zoom_for_Safari.entitlements; sourceTree = "<group>"; };
-		1EAB3EE625A3648D00C9B518 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1EAB3EE925A3648D00C9B518 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		1EAB3EEB25A3648D00C9B518 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1E48AA6F2DD5F0FB00FE647E /* StefanFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StefanFunctions.swift; sourceTree = "<group>"; };
+		1E5C6CB42ECDE07B00AD3FD8 /* Zoom-for-Safari-macOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Zoom-for-Safari-macOS-Info.plist"; sourceTree = "<group>"; };
 		1EAB3EED25A3648F00C9B518 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1EAB3EEF25A3648F00C9B518 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1EAB3EF925A3648F00C9B518 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		1ED1E0DD2DD64A5D007F431B /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
+		1ECE6FC42ECD014900167EF4 /* Zoom for Safari.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Zoom for Safari.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1ECE6FDE2ECD0A4600167EF4 /* FeedParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedParser.swift; sourceTree = "<group>"; };
+		1ECE6FE72ECD0CDD00167EF4 /* DaringInfantileDachshund.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = DaringInfantileDachshund.mp4; sourceTree = "<group>"; };
+		1ECE6FEC2ECD14CD00167EF4 /* forest.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = forest.mov; sourceTree = "<group>"; };
+		1ECE6FF12ECD1D0E00167EF4 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
+		1ECE6FFE2ECD288300167EF4 /* Zoom for Safari iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Zoom for Safari iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ED1E1172DD66A26007F431B /* Zoom for Safari Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Zoom for Safari Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1ED1E1402DD66C88007F431B /* Zoom for Safari Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Zoom for Safari Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1EDBD8142DD667B2009EFE06 /* Zoom for Safari Extension (macOS).appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Zoom for Safari Extension (macOS).appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1EE5D2E225AB4625005DB296 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		1EDBD8142DD667B2009EFE06 /* Zoom for Safari Extension macOS.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Zoom for Safari Extension macOS.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		1ECE701D2ECD29B300167EF4 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				/Localized/LaunchScreen.storyboard,
+			);
+			target = 1ECE6FFD2ECD288300167EF4 /* Zoom for Safari iOS */;
+		};
 		1ED1E1302DD66A26007F431B /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = 1ED1E1162DD66A26007F431B /* Zoom for Safari Extension (iOS) */;
-		};
-		1ED1E1592DD66C88007F431B /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 1ED1E13F2DD66C88007F431B /* Zoom for Safari Extension (visionOS) */;
+			target = 1ED1E1162DD66A26007F431B /* Zoom for Safari Extension iOS */;
 		};
 		1EDBD82E2DD667B2009EFE06 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = 1EDBD8132DD667B2009EFE06 /* Zoom for Safari Extension (macOS) */;
+			target = 1EDBD8132DD667B2009EFE06 /* Zoom for Safari Extension macOS */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		1ECE6FC52ECD014900167EF4 /* macOS */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = macOS; sourceTree = "<group>"; };
+		1ECE6FFF2ECD288300167EF4 /* Zoom for Safari iOS */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1ECE701D2ECD29B300167EF4 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Zoom for Safari iOS"; sourceTree = "<group>"; };
 		1ED1E1182DD66A26007F431B /* iOS (Extension) */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1ED1E1302DD66A26007F431B /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "iOS (Extension)"; sourceTree = "<group>"; };
-		1ED1E1412DD66C88007F431B /* visionOS (Extension) */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1ED1E1592DD66C88007F431B /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "visionOS (Extension)"; sourceTree = "<group>"; };
 		1EDBD8152DD667B2009EFE06 /* macOS (Extension) */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1EDBD82E2DD667B2009EFE06 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "macOS (Extension)"; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		1E221CEA2DD545B1000ED0E1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1E221CF22DD545B1000ED0E1 /* RealityKitContent in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1E221D252DD5464F000ED0E1 /* Frameworks */ = {
+		1ECE6FC12ECD014900167EF4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1EAB3EDF25A3648D00C9B518 /* Frameworks */ = {
+		1ECE6FFB2ECD288300167EF4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -278,13 +160,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		1ED1E1142DD66A26007F431B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1ED1E13D2DD66C88007F431B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -324,19 +199,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		1E221CEF2DD545B1000ED0E1 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				1E221CF02DD545B1000ED0E1 /* RealityKitContent */,
-			);
-			path = Packages;
-			sourceTree = "<group>";
-		};
 		1E48AA3A2DD5F04900FE647E /* Shared (App) */ = {
 			isa = PBXGroup;
 			children = (
-				1E48AA6F2DD5F0FB00FE647E /* Stefanfunctions.swift */,
+				1E48AA6F2DD5F0FB00FE647E /* StefanFunctions.swift */,
+				1ECE6FDE2ECD0A4600167EF4 /* FeedParser.swift */,
 				1E48AA3B2DD5F06B00FE647E /* Localizable.xcstrings */,
+				1ECE6FEC2ECD14CD00167EF4 /* forest.mov */,
+				1ECE6FE72ECD0CDD00167EF4 /* DaringInfantileDachshund.mp4 */,
 				1E48AA3D2DD5F06B00FE647E /* PrivacyInfo.xcprivacy */,
 				1E48AA402DD5F06B00FE647E /* StefanLinks.swift */,
 				1EAB3EED25A3648F00C9B518 /* Assets.xcassets */,
@@ -344,75 +214,19 @@
 			path = "Shared (App)";
 			sourceTree = "<group>";
 		};
-		1E48AA722DD5F0FB00FE647E /* visionOS (App) */ = {
-			isa = PBXGroup;
-			children = (
-				1E48AAF02DD6299700FE647E /* Zoom for Safari (visionOS).entitlements */,
-				1E48AA652DD5F0FB00FE647E /* ContentView.swift */,
-				1E48AA662DD5F0FB00FE647E /* FeedParser.swift */,
-				1E48AA672DD5F0FB00FE647E /* HelpView.swift */,
-				1E48AA692DD5F0FB00FE647E /* HomeView.swift */,
-				1E48AA6A2DD5F0FB00FE647E /* Info.plist */,
-				1E48AA6B2DD5F0FB00FE647E /* LicensesView.swift */,
-				1E48AA6C2DD5F0FB00FE647E /* NewsView.swift */,
-				1E48AA6D2DD5F0FB00FE647E /* OtherAppsView.swift */,
-				1E48AA6E2DD5F0FB00FE647E /* SettingsView.swift */,
-				1E48AA702DD5F0FB00FE647E /* VideoView.swift */,
-				1E48AA712DD5F0FB00FE647E /* ZoomApp.swift */,
-			);
-			path = "visionOS (App)";
-			sourceTree = "<group>";
-		};
-		1E48AAB72DD5F5FC00FE647E /* iOS (App) */ = {
-			isa = PBXGroup;
-			children = (
-				1E48AA992DD5F5FC00FE647E /* AboutController.swift */,
-				1E48AA9A2DD5F5FC00FE647E /* AppDelegate.swift */,
-				1E48AA9B2DD5F5FC00FE647E /* CommonClasses.swift */,
-				1E48AA9C2DD5F5FC00FE647E /* enable-safari-extension-ipad.mov */,
-				1E48AA9D2DD5F5FC00FE647E /* enable-safari-extension-iphone.mp4 */,
-				1E48AA9E2DD5F5FC00FE647E /* EnableViewController.swift */,
-				1E48AA9F2DD5F5FC00FE647E /* FeedParser.swift */,
-				1E48AAA02DD5F5FC00FE647E /* forest.mov */,
-				1E48AAA12DD5F5FC00FE647E /* GalleryController.swift */,
-				1E48AAEF2DD6298F00FE647E /* Zoom for Safari (iOS).entitlements */,
-				1E48AAA32DD5F5FC00FE647E /* Info.plist */,
-				1E48AAA52DD5F5FC00FE647E /* LaunchScreen.storyboard */,
-				1E48AAA62DD5F5FC00FE647E /* LicensesViewController.swift */,
-				1E48AAA72DD5F5FC00FE647E /* Main.storyboard */,
-				1E48AAA82DD5F5FC00FE647E /* MasterViewController.swift */,
-				1E48AAA92DD5F5FC00FE647E /* NetworkViewController.swift */,
-				1E48AAAA2DD5F5FC00FE647E /* NewsTableViewCell.swift */,
-				1E48AAAB2DD5F5FC00FE647E /* NewsTableViewController.swift */,
-				1E48AAAC2DD5F5FC00FE647E /* PageViewController.swift */,
-				1E48AAAD2DD5F5FC00FE647E /* SceneDelegate.swift */,
-				1E48AAAE2DD5F5FC00FE647E /* SidebarController.swift */,
-				1E48AAAF2DD5F5FC00FE647E /* SimpleTableViewController.swift */,
-				1E48AAB02DD5F5FC00FE647E /* SplitViewController.swift */,
-				1E48AAB12DD5F5FC00FE647E /* VideoTableViewCell.swift */,
-				1E48AAB22DD5F5FC00FE647E /* ViewController.swift */,
-				1E48AAB32DD5F5FC00FE647E /* Walkthrough.storyboard */,
-				1E48AAB42DD5F5FC00FE647E /* WelcomeGuideViewController.swift */,
-				1E48AAB52DD5F5FC00FE647E /* WelcomeViewController.swift */,
-				1E48AAB62DD5F5FC00FE647E /* YouTubeViewController.swift */,
-			);
-			path = "iOS (App)";
-			sourceTree = "<group>";
-		};
 		1EAB3ED925A3648D00C9B518 = {
 			isa = PBXGroup;
 			children = (
-				1E48AA3A2DD5F04900FE647E /* Shared (App) */,
+				1E5C6CB42ECDE07B00AD3FD8 /* Zoom-for-Safari-macOS-Info.plist */,
+				1ECE6FF12ECD1D0E00167EF4 /* AppIcon.icon */,
 				1E221CE72DD538A0000ED0E1 /* Config.xcconfig */,
+				1E48AA3A2DD5F04900FE647E /* Shared (App) */,
 				1E2217262DD4DC56000ED0E1 /* Shared (Extension) */,
-				1EAB3EE425A3648D00C9B518 /* macOS (App) */,
-				1E48AAB72DD5F5FC00FE647E /* iOS (App) */,
-				1E48AA722DD5F0FB00FE647E /* visionOS (App) */,
 				1EDBD8152DD667B2009EFE06 /* macOS (Extension) */,
 				1ED1E1182DD66A26007F431B /* iOS (Extension) */,
-				1ED1E1412DD66C88007F431B /* visionOS (Extension) */,
+				1ECE6FC52ECD014900167EF4 /* macOS */,
+				1ECE6FFF2ECD288300167EF4 /* Zoom for Safari iOS */,
 				1EAB3EF825A3648F00C9B518 /* Frameworks */,
-				1E221CEF2DD545B1000ED0E1 /* Packages */,
 				1EAB3EE325A3648D00C9B518 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -420,27 +234,12 @@
 		1EAB3EE325A3648D00C9B518 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1EAB3EE225A3648D00C9B518 /* Zoom for Safari.app */,
-				1E221CED2DD545B1000ED0E1 /* Zoom for Safari.app */,
-				1E221D282DD5464F000ED0E1 /* Zoom for Safari.app */,
-				1EDBD8142DD667B2009EFE06 /* Zoom for Safari Extension (macOS).appex */,
+				1EDBD8142DD667B2009EFE06 /* Zoom for Safari Extension macOS.appex */,
 				1ED1E1172DD66A26007F431B /* Zoom for Safari Extension.appex */,
-				1ED1E1402DD66C88007F431B /* Zoom for Safari Extension.appex */,
+				1ECE6FC42ECD014900167EF4 /* Zoom for Safari.app */,
+				1ECE6FFE2ECD288300167EF4 /* Zoom for Safari iOS.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		1EAB3EE425A3648D00C9B518 /* macOS (App) */ = {
-			isa = PBXGroup;
-			children = (
-				1ED1E0DD2DD64A5D007F431B /* Credits.rtf */,
-				1EAB3EE525A3648D00C9B518 /* Zoom_for_Safari.entitlements */,
-				1EAB3EE625A3648D00C9B518 /* AppDelegate.swift */,
-				1EAB3EE825A3648D00C9B518 /* Main.storyboard */,
-				1EAB3EEB25A3648D00C9B518 /* ViewController.swift */,
-				1EAB3EEF25A3648F00C9B518 /* Info.plist */,
-			);
-			path = "macOS (App)";
 			sourceTree = "<group>";
 		};
 		1EAB3EF825A3648F00C9B518 /* Frameworks */ = {
@@ -454,71 +253,57 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1E221CEC2DD545B1000ED0E1 /* Zoom for Safari (visionOS) */ = {
+		1ECE6FC32ECD014900167EF4 /* Zoom for Safari macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1E221CFB2DD545B2000ED0E1 /* Build configuration list for PBXNativeTarget "Zoom for Safari (visionOS)" */;
+			buildConfigurationList = 1ECE6FCE2ECD014A00167EF4 /* Build configuration list for PBXNativeTarget "Zoom for Safari macOS" */;
 			buildPhases = (
-				1E221CE92DD545B1000ED0E1 /* Sources */,
-				1E221CEA2DD545B1000ED0E1 /* Frameworks */,
-				1E221CEB2DD545B1000ED0E1 /* Resources */,
-				1E48AAFC2DD6311100FE647E /* Embed Foundation Extensions */,
+				1ECE6FC02ECD014900167EF4 /* Sources */,
+				1ECE6FC12ECD014900167EF4 /* Frameworks */,
+				1ECE6FC22ECD014900167EF4 /* Resources */,
+				1ECE6FF92ECD1FC400167EF4 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				1ED1E1572DD66C88007F431B /* PBXTargetDependency */,
+				1ECE6FF82ECD1FC400167EF4 /* PBXTargetDependency */,
 			);
-			name = "Zoom for Safari (visionOS)";
-			packageProductDependencies = (
-				1E221CF12DD545B1000ED0E1 /* RealityKitContent */,
+			fileSystemSynchronizedGroups = (
+				1ECE6FC52ECD014900167EF4 /* macOS */,
 			);
-			productName = Zoom;
-			productReference = 1E221CED2DD545B1000ED0E1 /* Zoom for Safari.app */;
-			productType = "com.apple.product-type.application";
-		};
-		1E221D272DD5464F000ED0E1 /* Zoom for Safari (iOS) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1E221D3A2DD54650000ED0E1 /* Build configuration list for PBXNativeTarget "Zoom for Safari (iOS)" */;
-			buildPhases = (
-				1E221D242DD5464F000ED0E1 /* Sources */,
-				1E221D252DD5464F000ED0E1 /* Frameworks */,
-				1E221D262DD5464F000ED0E1 /* Resources */,
-				1E48AAF82DD630F500FE647E /* Embed Foundation Extensions */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				1ED1E12E2DD66A26007F431B /* PBXTargetDependency */,
-			);
-			name = "Zoom for Safari (iOS)";
+			name = "Zoom for Safari macOS";
 			packageProductDependencies = (
 			);
-			productName = ZoomIOS;
-			productReference = 1E221D282DD5464F000ED0E1 /* Zoom for Safari.app */;
+			productName = "Zoom for Safari macOS";
+			productReference = 1ECE6FC42ECD014900167EF4 /* Zoom for Safari.app */;
 			productType = "com.apple.product-type.application";
 		};
-		1EAB3EE125A3648D00C9B518 /* Zoom for Safari (macOS) */ = {
+		1ECE6FFD2ECD288300167EF4 /* Zoom for Safari iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1EAB3F0625A3648F00C9B518 /* Build configuration list for PBXNativeTarget "Zoom for Safari (macOS)" */;
+			buildConfigurationList = 1ECE70062ECD288500167EF4 /* Build configuration list for PBXNativeTarget "Zoom for Safari iOS" */;
 			buildPhases = (
-				1EAB3EDE25A3648D00C9B518 /* Sources */,
-				1EAB3EDF25A3648D00C9B518 /* Frameworks */,
-				1EAB3EE025A3648D00C9B518 /* Resources */,
-				1ED1E0E32DD6651B007F431B /* Embed Foundation Extensions */,
+				1ECE6FFA2ECD288300167EF4 /* Sources */,
+				1ECE6FFB2ECD288300167EF4 /* Frameworks */,
+				1ECE6FFC2ECD288300167EF4 /* Resources */,
+				1E5C6CB82ECDF8E500AD3FD8 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				1EDBD82C2DD667B2009EFE06 /* PBXTargetDependency */,
+				1E5C6CB72ECDF8E500AD3FD8 /* PBXTargetDependency */,
 			);
-			name = "Zoom for Safari (macOS)";
-			productName = "Zoom for Safari";
-			productReference = 1EAB3EE225A3648D00C9B518 /* Zoom for Safari.app */;
+			fileSystemSynchronizedGroups = (
+				1ECE6FFF2ECD288300167EF4 /* Zoom for Safari iOS */,
+			);
+			name = "Zoom for Safari iOS";
+			packageProductDependencies = (
+			);
+			productName = "Zoom for Safari iOS";
+			productReference = 1ECE6FFE2ECD288300167EF4 /* Zoom for Safari iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		1ED1E1162DD66A26007F431B /* Zoom for Safari Extension (iOS) */ = {
+		1ED1E1162DD66A26007F431B /* Zoom for Safari Extension iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1ED1E1312DD66A26007F431B /* Build configuration list for PBXNativeTarget "Zoom for Safari Extension (iOS)" */;
+			buildConfigurationList = 1ED1E1312DD66A26007F431B /* Build configuration list for PBXNativeTarget "Zoom for Safari Extension iOS" */;
 			buildPhases = (
 				1ED1E1132DD66A26007F431B /* Sources */,
 				1ED1E1142DD66A26007F431B /* Frameworks */,
@@ -531,38 +316,16 @@
 			fileSystemSynchronizedGroups = (
 				1ED1E1182DD66A26007F431B /* iOS (Extension) */,
 			);
-			name = "Zoom for Safari Extension (iOS)";
+			name = "Zoom for Safari Extension iOS";
 			packageProductDependencies = (
 			);
 			productName = Extension;
 			productReference = 1ED1E1172DD66A26007F431B /* Zoom for Safari Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		1ED1E13F2DD66C88007F431B /* Zoom for Safari Extension (visionOS) */ = {
+		1EDBD8132DD667B2009EFE06 /* Zoom for Safari Extension macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1ED1E15A2DD66C88007F431B /* Build configuration list for PBXNativeTarget "Zoom for Safari Extension (visionOS)" */;
-			buildPhases = (
-				1ED1E13C2DD66C88007F431B /* Sources */,
-				1ED1E13D2DD66C88007F431B /* Frameworks */,
-				1ED1E13E2DD66C88007F431B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				1ED1E1412DD66C88007F431B /* visionOS (Extension) */,
-			);
-			name = "Zoom for Safari Extension (visionOS)";
-			packageProductDependencies = (
-			);
-			productName = Extension;
-			productReference = 1ED1E1402DD66C88007F431B /* Zoom for Safari Extension.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
-		1EDBD8132DD667B2009EFE06 /* Zoom for Safari Extension (macOS) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1EDBD82F2DD667B2009EFE06 /* Build configuration list for PBXNativeTarget "Zoom for Safari Extension (macOS)" */;
+			buildConfigurationList = 1EDBD82F2DD667B2009EFE06 /* Build configuration list for PBXNativeTarget "Zoom for Safari Extension macOS" */;
 			buildPhases = (
 				1EDBD8102DD667B2009EFE06 /* Sources */,
 				1EDBD8112DD667B2009EFE06 /* Frameworks */,
@@ -575,11 +338,11 @@
 			fileSystemSynchronizedGroups = (
 				1EDBD8152DD667B2009EFE06 /* macOS (Extension) */,
 			);
-			name = "Zoom for Safari Extension (macOS)";
+			name = "Zoom for Safari Extension macOS";
 			packageProductDependencies = (
 			);
 			productName = Extension;
-			productReference = 1EDBD8142DD667B2009EFE06 /* Zoom for Safari Extension (macOS).appex */;
+			productReference = 1EDBD8142DD667B2009EFE06 /* Zoom for Safari Extension macOS.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -589,22 +352,16 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastSwiftUpdateCheck = 1640;
-				LastUpgradeCheck = 1640;
+				LastSwiftUpdateCheck = 2610;
+				LastUpgradeCheck = 2610;
 				TargetAttributes = {
-					1E221CEC2DD545B1000ED0E1 = {
-						CreatedOnToolsVersion = 16.3;
+					1ECE6FC32ECD014900167EF4 = {
+						CreatedOnToolsVersion = 26.1.1;
 					};
-					1E221D272DD5464F000ED0E1 = {
-						CreatedOnToolsVersion = 16.3;
-					};
-					1EAB3EE125A3648D00C9B518 = {
-						CreatedOnToolsVersion = 12.3;
+					1ECE6FFD2ECD288300167EF4 = {
+						CreatedOnToolsVersion = 26.1.1;
 					};
 					1ED1E1162DD66A26007F431B = {
-						CreatedOnToolsVersion = 16.4;
-					};
-					1ED1E13F2DD66C88007F431B = {
 						CreatedOnToolsVersion = 16.4;
 					};
 					1EDBD8132DD667B2009EFE06 = {
@@ -613,7 +370,6 @@
 				};
 			};
 			buildConfigurationList = 1EAB3EDD25A3648D00C9B518 /* Build configuration list for PBXProject "Zoom for Safari" */;
-			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -621,56 +377,42 @@
 				Base,
 			);
 			mainGroup = 1EAB3ED925A3648D00C9B518;
+			preferredProjectObjectVersion = 50;
 			productRefGroup = 1EAB3EE325A3648D00C9B518 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1EAB3EE125A3648D00C9B518 /* Zoom for Safari (macOS) */,
-				1E221D272DD5464F000ED0E1 /* Zoom for Safari (iOS) */,
-				1E221CEC2DD545B1000ED0E1 /* Zoom for Safari (visionOS) */,
-				1EDBD8132DD667B2009EFE06 /* Zoom for Safari Extension (macOS) */,
-				1ED1E1162DD66A26007F431B /* Zoom for Safari Extension (iOS) */,
-				1ED1E13F2DD66C88007F431B /* Zoom for Safari Extension (visionOS) */,
+				1EDBD8132DD667B2009EFE06 /* Zoom for Safari Extension macOS */,
+				1ED1E1162DD66A26007F431B /* Zoom for Safari Extension iOS */,
+				1ECE6FC32ECD014900167EF4 /* Zoom for Safari macOS */,
+				1ECE6FFD2ECD288300167EF4 /* Zoom for Safari iOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		1E221CEB2DD545B1000ED0E1 /* Resources */ = {
+		1ECE6FC22ECD014900167EF4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E48AA632DD5F06B00FE647E /* Localizable.xcstrings in Resources */,
-				1E48AAD52DD5FDAE00FE647E /* Assets.xcassets in Resources */,
-				1E48AA642DD5F06B00FE647E /* PrivacyInfo.xcprivacy in Resources */,
+				1ECE6FE82ECD0CDD00167EF4 /* DaringInfantileDachshund.mp4 in Resources */,
+				1ECE6FE52ECD0CA000167EF4 /* PrivacyInfo.xcprivacy in Resources */,
+				1ECE6FCF2ECD026200167EF4 /* Assets.xcassets in Resources */,
+				1ECE6FEE2ECD14CD00167EF4 /* forest.mov in Resources */,
+				1ECE6FE62ECD0CA600167EF4 /* Localizable.xcstrings in Resources */,
+				1ECE6FF32ECD1D0E00167EF4 /* AppIcon.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1E221D262DD5464F000ED0E1 /* Resources */ = {
+		1ECE6FFC2ECD288300167EF4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E48AA5A2DD5F06B00FE647E /* Localizable.xcstrings in Resources */,
-				1E48AAB82DD5F5FC00FE647E /* Main.storyboard in Resources */,
-				1E48AAB92DD5F5FC00FE647E /* LaunchScreen.storyboard in Resources */,
-				1E48AABA2DD5F5FC00FE647E /* Walkthrough.storyboard in Resources */,
-				1E48AABB2DD5F5FC00FE647E /* enable-safari-extension-iphone.mp4 in Resources */,
-				1E48AABD2DD5F5FC00FE647E /* forest.mov in Resources */,
-				1E48AABE2DD5F5FC00FE647E /* enable-safari-extension-ipad.mov in Resources */,
-				1E48AAD42DD5FDAE00FE647E /* Assets.xcassets in Resources */,
-				1E48AA5B2DD5F06B00FE647E /* PrivacyInfo.xcprivacy in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1EAB3EE025A3648D00C9B518 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1ED1E0DE2DD64A5D007F431B /* Credits.rtf in Resources */,
-				1EAB3EEE25A3648F00C9B518 /* Assets.xcassets in Resources */,
-				1E48AA482DD5F06B00FE647E /* Localizable.xcstrings in Resources */,
-				1E48AA492DD5F06B00FE647E /* PrivacyInfo.xcprivacy in Resources */,
-				1EAB3EEA25A3648D00C9B518 /* Main.storyboard in Resources */,
+				1ECE701F2ECD313F00167EF4 /* Assets.xcassets in Resources */,
+				1ECE70222ECD31AC00167EF4 /* DaringInfantileDachshund.mp4 in Resources */,
+				1ECE70212ECD31A800167EF4 /* forest.mov in Resources */,
+				1ECE70092ECD288C00167EF4 /* AppIcon.icon in Resources */,
+				1ECE70202ECD318900167EF4 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -686,21 +428,6 @@
 				1ED1E1392DD66A3E007F431B /* popup.html in Resources */,
 				1ED1E13A2DD66A3E007F431B /* scripts in Resources */,
 				1ED1E13B2DD66A3E007F431B /* styles in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1ED1E13E2DD66C88007F431B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1ED1E15D2DD66C9F007F431B /* _locales in Resources */,
-				1ED1E15E2DD66C9F007F431B /* images in Resources */,
-				1ED1E15F2DD66C9F007F431B /* LICENSE in Resources */,
-				1ED1E1602DD66C9F007F431B /* manifest.json in Resources */,
-				1ED1E1612DD66C9F007F431B /* options.html in Resources */,
-				1ED1E1622DD66C9F007F431B /* popup.html in Resources */,
-				1ED1E1632DD66C9F007F431B /* scripts in Resources */,
-				1ED1E1642DD66C9F007F431B /* styles in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -722,72 +449,27 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1E221CE92DD545B1000ED0E1 /* Sources */ = {
+		1ECE6FC02ECD014900167EF4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E48AA612DD5F06B00FE647E /* StefanLinks.swift in Sources */,
-				1E48AA742DD5F0FB00FE647E /* NewsView.swift in Sources */,
-				1E48AA752DD5F0FB00FE647E /* FeedParser.swift in Sources */,
-				1E48AA762DD5F0FB00FE647E /* ZoomApp.swift in Sources */,
-				1E48AA772DD5F0FB00FE647E /* HelpView.swift in Sources */,
-				1E48AA782DD5F0FB00FE647E /* ContentView.swift in Sources */,
-				1E48AA792DD5F0FB00FE647E /* Stefanfunctions.swift in Sources */,
-				1E48AA7A2DD5F0FB00FE647E /* SettingsView.swift in Sources */,
-				1E48AA7C2DD5F0FB00FE647E /* LicensesView.swift in Sources */,
-				1E48AA7D2DD5F0FB00FE647E /* VideoView.swift in Sources */,
-				1E48AA7E2DD5F0FB00FE647E /* OtherAppsView.swift in Sources */,
-				1E48AA7F2DD5F0FB00FE647E /* HomeView.swift in Sources */,
+				1ECE6FE22ECD0C9600167EF4 /* StefanFunctions.swift in Sources */,
+				1ECE6FE32ECD0C9600167EF4 /* StefanLinks.swift in Sources */,
+				1ECE6FE42ECD0C9600167EF4 /* FeedParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1E221D242DD5464F000ED0E1 /* Sources */ = {
+		1ECE6FFA2ECD288300167EF4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E48AA5E2DD5F06B00FE647E /* StefanLinks.swift in Sources */,
-				1E48AABF2DD5F5FC00FE647E /* VideoTableViewCell.swift in Sources */,
-				1E48AAC02DD5F5FC00FE647E /* WelcomeGuideViewController.swift in Sources */,
-				1E48AAC12DD5F5FC00FE647E /* SplitViewController.swift in Sources */,
-				1E48AAC22DD5F5FC00FE647E /* FeedParser.swift in Sources */,
-				1E48AAC32DD5F5FC00FE647E /* WelcomeViewController.swift in Sources */,
-				1E48AAC42DD5F5FC00FE647E /* SidebarController.swift in Sources */,
-				1E48AAC52DD5F5FC00FE647E /* GalleryController.swift in Sources */,
-				1E48AAC62DD5F5FC00FE647E /* AboutController.swift in Sources */,
-				1E48AAC72DD5F5FC00FE647E /* CommonClasses.swift in Sources */,
-				1E48AAC82DD5F5FC00FE647E /* SimpleTableViewController.swift in Sources */,
-				1E48AAC92DD5F5FC00FE647E /* PageViewController.swift in Sources */,
-				1E48AACA2DD5F5FC00FE647E /* MasterViewController.swift in Sources */,
-				1E48AACB2DD5F5FC00FE647E /* NewsTableViewController.swift in Sources */,
-				1E48AACC2DD5F5FC00FE647E /* YouTubeViewController.swift in Sources */,
-				1E48AACD2DD5F5FC00FE647E /* AppDelegate.swift in Sources */,
-				1E48AACE2DD5F5FC00FE647E /* SceneDelegate.swift in Sources */,
-				1E48AACF2DD5F5FC00FE647E /* LicensesViewController.swift in Sources */,
-				1E48AAD02DD5F5FC00FE647E /* ViewController.swift in Sources */,
-				1E48AAD12DD5F5FC00FE647E /* NetworkViewController.swift in Sources */,
-				1E48AAD22DD5F5FC00FE647E /* NewsTableViewCell.swift in Sources */,
-				1E48AAD32DD5F5FC00FE647E /* EnableViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1EAB3EDE25A3648D00C9B518 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1EAB3EEC25A3648D00C9B518 /* ViewController.swift in Sources */,
-				1E48AA4C2DD5F06B00FE647E /* StefanLinks.swift in Sources */,
-				1EAB3EE725A3648D00C9B518 /* AppDelegate.swift in Sources */,
+				1ECE701E2ECD313900167EF4 /* StefanLinks.swift in Sources */,
+				1ECE70232ECD31DA00167EF4 /* StefanFunctions.swift in Sources */,
+				1ECE70242ECD31F100167EF4 /* FeedParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		1ED1E1132DD66A26007F431B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1ED1E13C2DD66C88007F431B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -804,206 +486,19 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1ED1E12E2DD66A26007F431B /* PBXTargetDependency */ = {
+		1E5C6CB72ECDF8E500AD3FD8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1ED1E1162DD66A26007F431B /* Zoom for Safari Extension (iOS) */;
-			targetProxy = 1ED1E12D2DD66A26007F431B /* PBXContainerItemProxy */;
+			target = 1ED1E1162DD66A26007F431B /* Zoom for Safari Extension iOS */;
+			targetProxy = 1E5C6CB62ECDF8E500AD3FD8 /* PBXContainerItemProxy */;
 		};
-		1ED1E1572DD66C88007F431B /* PBXTargetDependency */ = {
+		1ECE6FF82ECD1FC400167EF4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1ED1E13F2DD66C88007F431B /* Zoom for Safari Extension (visionOS) */;
-			targetProxy = 1ED1E1562DD66C88007F431B /* PBXContainerItemProxy */;
-		};
-		1EDBD82C2DD667B2009EFE06 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 1EDBD8132DD667B2009EFE06 /* Zoom for Safari Extension (macOS) */;
-			targetProxy = 1EDBD82B2DD667B2009EFE06 /* PBXContainerItemProxy */;
+			target = 1EDBD8132DD667B2009EFE06 /* Zoom for Safari Extension macOS */;
+			targetProxy = 1ECE6FF72ECD1FC400167EF4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		1E48AAA52DD5F5FC00FE647E /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1E48AAA42DD5F5FC00FE647E /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		1EAB3EE825A3648D00C9B518 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1EAB3EE925A3648D00C9B518 /* Base */,
-				1EE5D2E225AB4625005DB296 /* en */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
-		1E221CFC2DD545B2000ED0E1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E221CE72DD538A0000ED0E1 /* Config.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_ENTITLEMENTS = "visionOS (App)/Zoom for Safari (visionOS).entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = PRR97757HF;
-				ENABLE_PREVIEWS = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "visionOS (App)/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Zoom for Safari";
-				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = "$(VERSION)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.stefanvd.Zoom-for-Safari";
-				PRODUCT_NAME = "Zoom for Safari";
-				SDKROOT = xros;
-				SUPPORTED_PLATFORMS = "xros xrsimulator";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 7;
-				XROS_DEPLOYMENT_TARGET = 2.0;
-			};
-			name = Debug;
-		};
-		1E221CFD2DD545B2000ED0E1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E221CE72DD538A0000ED0E1 /* Config.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_ENTITLEMENTS = "visionOS (App)/Zoom for Safari (visionOS).entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = PRR97757HF;
-				ENABLE_PREVIEWS = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "visionOS (App)/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Zoom for Safari";
-				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = "$(VERSION)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.stefanvd.Zoom-for-Safari";
-				PRODUCT_NAME = "Zoom for Safari";
-				SDKROOT = xros;
-				SUPPORTED_PLATFORMS = "xros xrsimulator";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 7;
-				VALIDATE_PRODUCT = YES;
-				XROS_DEPLOYMENT_TARGET = 2.0;
-			};
-			name = Release;
-		};
-		1E221D3B2DD54650000ED0E1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E221CE72DD538A0000ED0E1 /* Config.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_ENTITLEMENTS = "iOS (App)/Zoom for Safari (iOS).entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = PRR97757HF;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "iOS (App)/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Zoom for Safari";
-				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = "$(VERSION)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.stefanvd.Zoom-for-Safari";
-				PRODUCT_NAME = "Zoom for Safari";
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		1E221D3C2DD54650000ED0E1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E221CE72DD538A0000ED0E1 /* Config.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_ENTITLEMENTS = "iOS (App)/Zoom for Safari (iOS).entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = PRR97757HF;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "iOS (App)/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Zoom for Safari";
-				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = "$(VERSION)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.stefanvd.Zoom-for-Safari";
-				PRODUCT_NAME = "Zoom for Safari";
-				SDKROOT = iphoneos;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 		1EAB3F0025A3648F00C9B518 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1E221CE72DD538A0000ED0E1 /* Config.xcconfig */;
@@ -1065,6 +560,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -1124,62 +620,206 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
 		};
-		1EAB3F0725A3648F00C9B518 /* Debug */ = {
+		1ECE6FCC2ECD014A00167EF4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1E221CE72DD538A0000ED0E1 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "macOS (App)/Zoom_for_Safari.entitlements";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = "macOS/Zoom for Safari macOS.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
-				DEAD_CODE_STRIPPING = YES;
-				INFOPLIST_FILE = "macOS (App)/Info.plist";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Zoom-for-Safari-macOS-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Zoom for Safari";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = "$(VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.stefanvd.Zoom-for-Safari";
 				PRODUCT_NAME = "Zoom for Safari";
 				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		1EAB3F0825A3648F00C9B518 /* Release */ = {
+		1ECE6FCD2ECD014A00167EF4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1E221CE72DD538A0000ED0E1 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "macOS (App)/Zoom_for_Safari.entitlements";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = "macOS/Zoom for Safari macOS.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
-				DEAD_CODE_STRIPPING = YES;
-				INFOPLIST_FILE = "macOS (App)/Info.plist";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Zoom-for-Safari-macOS-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Zoom for Safari";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = "$(VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.stefanvd.Zoom-for-Safari";
 				PRODUCT_NAME = "Zoom for Safari";
 				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		1ECE70072ECD288500167EF4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E221CE72DD538A0000ED0E1 /* Config.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Zoom-for-Safari-iOS-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Zoom for Safari";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = "$(VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.stefanvd.Zoom-for-Safari";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Debug;
+		};
+		1ECE70082ECD288500167EF4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E221CE72DD538A0000ED0E1 /* Config.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Zoom-for-Safari-iOS-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Zoom for Safari";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = "$(VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.stefanvd.Zoom-for-Safari";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -1203,6 +843,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = "$(VERSION)";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -1212,10 +853,11 @@
 				PRODUCT_NAME = "Zoom for Safari Extension";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,7";
 			};
 			name = Debug;
 		};
@@ -1239,6 +881,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = "$(VERSION)";
 				OTHER_LDFLAGS = (
 					"-framework",
@@ -1248,84 +891,11 @@
 				PRODUCT_NAME = "Zoom for Safari Extension";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,7";
 				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		1ED1E15B2DD66C88007F431B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E221CE72DD538A0000ED0E1 /* Config.xcconfig */;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = PRR97757HF;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "visionOS (Extension)/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = Extension;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = "$(VERSION)";
-				OTHER_LDFLAGS = (
-					"-framework",
-					SafariServices,
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.stefanvd.Zoom-for-Safari.Extension";
-				PRODUCT_NAME = "Zoom for Safari Extension";
-				SDKROOT = xros;
-				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "xros xrsimulator";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 7;
-				XROS_DEPLOYMENT_TARGET = 2.0;
-			};
-			name = Debug;
-		};
-		1ED1E15C2DD66C88007F431B /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E221CE72DD538A0000ED0E1 /* Config.xcconfig */;
-			buildSettings = {
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
-				DEVELOPMENT_TEAM = PRR97757HF;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "visionOS (Extension)/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = Extension;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = "$(VERSION)";
-				OTHER_LDFLAGS = (
-					"-framework",
-					SafariServices,
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.stefanvd.Zoom-for-Safari.Extension";
-				PRODUCT_NAME = "Zoom for Safari Extension";
-				SDKROOT = xros;
-				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "xros xrsimulator";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 7;
-				VALIDATE_PRODUCT = YES;
-				XROS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};
@@ -1337,7 +907,18 @@
 				CODE_SIGN_ENTITLEMENTS = "macOS (Extension)/Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "macOS (Extension)/Info.plist";
@@ -1372,7 +953,18 @@
 				CODE_SIGN_ENTITLEMENTS = "macOS (Extension)/Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "macOS (Extension)/Info.plist";
@@ -1401,24 +993,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1E221CFB2DD545B2000ED0E1 /* Build configuration list for PBXNativeTarget "Zoom for Safari (visionOS)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1E221CFC2DD545B2000ED0E1 /* Debug */,
-				1E221CFD2DD545B2000ED0E1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		1E221D3A2DD54650000ED0E1 /* Build configuration list for PBXNativeTarget "Zoom for Safari (iOS)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1E221D3B2DD54650000ED0E1 /* Debug */,
-				1E221D3C2DD54650000ED0E1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		1EAB3EDD25A3648D00C9B518 /* Build configuration list for PBXProject "Zoom for Safari" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1428,16 +1002,25 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1EAB3F0625A3648F00C9B518 /* Build configuration list for PBXNativeTarget "Zoom for Safari (macOS)" */ = {
+		1ECE6FCE2ECD014A00167EF4 /* Build configuration list for PBXNativeTarget "Zoom for Safari macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1EAB3F0725A3648F00C9B518 /* Debug */,
-				1EAB3F0825A3648F00C9B518 /* Release */,
+				1ECE6FCC2ECD014A00167EF4 /* Debug */,
+				1ECE6FCD2ECD014A00167EF4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1ED1E1312DD66A26007F431B /* Build configuration list for PBXNativeTarget "Zoom for Safari Extension (iOS)" */ = {
+		1ECE70062ECD288500167EF4 /* Build configuration list for PBXNativeTarget "Zoom for Safari iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1ECE70072ECD288500167EF4 /* Debug */,
+				1ECE70082ECD288500167EF4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1ED1E1312DD66A26007F431B /* Build configuration list for PBXNativeTarget "Zoom for Safari Extension iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1ED1E1322DD66A26007F431B /* Debug */,
@@ -1446,16 +1029,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1ED1E15A2DD66C88007F431B /* Build configuration list for PBXNativeTarget "Zoom for Safari Extension (visionOS)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				1ED1E15B2DD66C88007F431B /* Debug */,
-				1ED1E15C2DD66C88007F431B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		1EDBD82F2DD667B2009EFE06 /* Build configuration list for PBXNativeTarget "Zoom for Safari Extension (macOS)" */ = {
+		1EDBD82F2DD667B2009EFE06 /* Build configuration list for PBXNativeTarget "Zoom for Safari Extension macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1EDBD8302DD667B2009EFE06 /* Debug */,
@@ -1465,13 +1039,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		1E221CF12DD545B1000ED0E1 /* RealityKitContent */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = RealityKitContent;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1EAB3EDA25A3648D00C9B518 /* Project object */;
 }

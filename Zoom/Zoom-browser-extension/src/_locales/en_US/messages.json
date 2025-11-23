@@ -212,5 +212,7 @@
     "desexampletesta": {"message": "This applies a 90% zoom only to pages under the"},
     "desexampletestb": {"message": "path of any subdomain of example.com."},
     "desexampletestc": {"message": "For example:"},
-    "desregexcaption": {"message": "By using regex-style patterns, you can target zoom behavior precisely for different sections or subdomains of a site."}
+    "desregexcaption": {"message": "By using regex-style patterns, you can target zoom behavior precisely for different sections or subdomains of a site."},
+    "invalidregex": {"message": "Invalid regular expression"},
+    "invalidurl": {"message": "Invalid URL format"}
 }

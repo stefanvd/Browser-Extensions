@@ -21,17 +21,29 @@
         }
       }
     },
-    "%@ %@%@" : {
+    "%@: %@" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "%1$@ %2$@%3$@"
+            "value" : "%1$@: %2$@"
           }
         }
       }
     },
     "© 2025 Stefan vd" : {
+
+    },
+    "About" : {
+
+    },
+    "About Us" : {
+
+    },
+    "Activate" : {
+
+    },
+    "Article image" : {
 
     },
     "bannerstep1a" : {
@@ -166,6 +178,33 @@
         }
       }
     },
+    "Browser Extension" : {
+
+    },
+    "Built with performance in mind, this extension runs quietly in the background. It doesn’t slow down your browser or clutter your screen. Simple, effective, and designed to just work exactly when you need it." : {
+
+    },
+    "Checking extension status…" : {
+
+    },
+    "Choose something from the sidebar to get started." : {
+
+    },
+    "Close" : {
+
+    },
+    "Contribute & Develop" : {
+
+    },
+    "Copyright" : {
+
+    },
+    "Custom Zoom for Each Website" : {
+
+    },
+    "Customizable Icon" : {
+
+    },
     "Date Today" : {
       "localizations" : {
         "en" : {
@@ -176,6 +215,45 @@
         }
       },
       "shouldTranslate" : false
+    },
+    "Design" : {
+
+    },
+    "Developer Website" : {
+
+    },
+    "Download the free Turn Off the Lights Safari extension to get Dark Mode on all websites. Try it yourself! #iOS via @TurnOfftheLight  %@" : {
+
+    },
+    "Download the free Zoom Safari extension to enjoy a more comfortable, customizable website scale. Try it yourself! via @Stefanvd  %@" : {
+
+    },
+    "Easy to set this up" : {
+
+    },
+    "Enable **\"Zoom for Safari\"**" : {
+
+    },
+    "Every website has its own layout, and not all of them suit your eyes. Zoom lets you set your preferred scale per site, so you always get the best viewing experience. Once configured, it remembers your settings automatically." : {
+
+    },
+    "Explore" : {
+
+    },
+    "Explore & Connect" : {
+
+    },
+    "FREE Zoom Safari extension" : {
+
+    },
+    "GitHub" : {
+
+    },
+    "GPL 2.0" : {
+
+    },
+    "Guide" : {
+
     },
     "Hard Disk" : {
       "localizations" : {
@@ -198,6 +276,33 @@
         }
       },
       "shouldTranslate" : false
+    },
+    "Help" : {
+
+    },
+    "Help Translate Browser Extension" : {
+
+    },
+    "Home" : {
+
+    },
+    "Home Tab" : {
+
+    },
+    "https://github.com/stefanvd/Browser-Extensions/tree/master/Zoom/Zoom-browser-extension" : {
+
+    },
+    "I take your privacy and security very seriously. I built the Zoom browser extension with my users in mind first, to ensure a great web experience for everyone. When you add Zoom, the browser states that it can \"Read and change all your data on the websites you visit\". This permission is required only so Zoom can detect the current web page address and adjust the zoom level accordingly. I have never collected, and will never collect, any personal data, credit card information, browsing history, or passwords.\n\nFurthermore, the Zoom browser extension is free and Open-Source with the source code publicly available on GitHub." : {
+
+    },
+    "Icon" : {
+
+    },
+    "Improve Readability Instantly" : {
+
+    },
+    "It includes a customizable toolbar icon, allowing you to personalize your experience. Choose from multiple styles and colors to match your preferences. It’s a small touch that makes the extension feel more natural and intuitive to use." : {
+
     },
     "lblabout" : {
       "extractionState" : "manual",
@@ -760,6 +865,24 @@
         }
       }
     },
+    "Leave this app" : {
+
+    },
+    "Let us walk you through the awesome Zoom Safari extension features." : {
+
+    },
+    "Licenses" : {
+
+    },
+    "Lightweight, Fast, and Seamless" : {
+
+    },
+    "Make a Donation" : {
+
+    },
+    "More" : {
+
+    },
     "My Christmas Tree" : {
       "localizations" : {
         "en" : {
@@ -782,6 +905,9 @@
       },
       "shouldTranslate" : false
     },
+    "Name" : {
+
+    },
     "News" : {
       "localizations" : {
         "en" : {
@@ -792,15 +918,128 @@
         }
       }
     },
-    "Step %lld" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : ""
-          }
-        }
-      }
+    "No Internet Connection" : {
+
+    },
+    "No Internet Connection. Please check your network settings and try again." : {
+
+    },
+    "Open app page: Date Today" : {
+
+    },
+    "Open app page: Hard Disk" : {
+
+    },
+    "Open app page: Hello Office" : {
+
+    },
+    "Open app page: Home Tab" : {
+
+    },
+    "Open app page: My Christmas Tree" : {
+
+    },
+    "Open app page: My Lunar New Year" : {
+
+    },
+    "Open app page: Sunrise" : {
+
+    },
+    "Open app page: The Canada Race" : {
+
+    },
+    "Open app page: Traffic Blinker" : {
+
+    },
+    "Open app page: Turn Off the Lights for Safari" : {
+
+    },
+    "Open the **\"Settings\"** app on your device" : {
+
+    },
+    "Open video: %@" : {
+
+    },
+    "Opens in your web browser" : {
+
+    },
+    "Opens the review page in your web browser" : {
+
+    },
+    "Opens the system share menu" : {
+
+    },
+    "Opens the welcome guide" : {
+
+    },
+    "Options" : {
+
+    },
+    "Other Apps" : {
+
+    },
+    "Permissions" : {
+
+    },
+    "Please check your network settings and try again." : {
+
+    },
+    "Privacy and Open-Source" : {
+
+    },
+    "Privacy Policy" : {
+
+    },
+    "Rate & Review this App" : {
+
+    },
+    "Read more news" : {
+
+    },
+    "Safari Extension" : {
+
+    },
+    "Safari extension is Disabled" : {
+
+    },
+    "Safari extension is Enabled" : {
+
+    },
+    "Scroll down and tap **\"Apps\"**" : {
+
+    },
+    "See more videos" : {
+
+    },
+    "Select **\"Safari\"**, then tap **\"Extensions\"**" : {
+
+    },
+    "Select an item" : {
+
+    },
+    "Settings" : {
+
+    },
+    "Share App" : {
+
+    },
+    "Share this App" : {
+
+    },
+    "Shows licenses used in this app" : {
+
+    },
+    "Shows other apps" : {
+
+    },
+    "Sidebar" : {
+
+    },
+    "Stefan Van Damme channel avatar" : {
+
+    },
+    "Stefan vd" : {
+
     },
     "strdesdeveloper" : {
       "extractionState" : "manual",
@@ -901,6 +1140,9 @@
         }
       }
     },
+    "Struggling to read tiny text on certain websites? With Zoom, you can easily scale up any page to make content more comfortable to read. No more squinting or adjusting display settings. Just one tap to zoom in or out." : {
+
+    },
     "strworldpremiere" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -911,6 +1153,9 @@
           }
         }
       }
+    },
+    "Subscribe" : {
+
     },
     "Sunrise" : {
       "localizations" : {
@@ -923,6 +1168,9 @@
       },
       "shouldTranslate" : false
     },
+    "Support" : {
+
+    },
     "The Canada Race" : {
       "localizations" : {
         "en" : {
@@ -934,15 +1182,8 @@
       },
       "shouldTranslate" : false
     },
-    "Thumbnail Image" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : ""
-          }
-        }
-      }
+    "The main content is unavailable while offline." : {
+
     },
     "Traffic Blinker" : {
       "localizations" : {
@@ -955,18 +1196,34 @@
       },
       "shouldTranslate" : false
     },
-    "Turn Off the Lights" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : ""
-          }
-        }
-      },
-      "shouldTranslate" : false
+    "Turn Off the Lights for Safari" : {
+
+    },
+    "Version" : {
+
+    },
+    "Videos" : {
+
+    },
+    "View Open-Source Code" : {
+
+    },
+    "Welcome" : {
+
+    },
+    "Welcome Guide" : {
+
+    },
+    "You can manage the extension from Safari’s Extensions preferences. This window updates automatically after you enable it." : {
+
     },
     "Zoom" : {
+
+    },
+    "Zoom for Safari" : {
+
+    },
+    "Zoom™" : {
 
     }
   },

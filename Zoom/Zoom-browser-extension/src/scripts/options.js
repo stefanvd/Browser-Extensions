@@ -468,13 +468,48 @@ function websitezoomchangenumberl(){
 	$("websitezoomBox").selectedIndex = selwzv;
 }
 
+// Validation function
+function isValidWebsiteInput(input){
+	// Check if zoombyregex is enabled
+	if($("zoombyregex").checked){
+		// For regex mode, accept any non-empty string as a potential regex pattern
+		// We'll validate it's a valid regex when saving
+		try{
+			new RegExp(input);
+			return true;
+		}catch(e){
+			var i18ninvalidregex = chrome.i18n.getMessage("invalidregex");
+			alert(i18ninvalidregex || "Invalid regular expression");
+			return false;
+		}
+	}else{
+		// For URL mode, validate as URL
+		const urlPattern = /^(https?:\/\/(www\.)?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b([a-zA-Z0-9@:%_.+\-~#?&\/=\*]*))|(https?:\/\/(www\.)?[a-zA-Z0-9@:%.+\-~#=\*]{2,256}\b([a-zA-Z0-9@:%_.+\-~#?&\/=\*]*))|(file?:\/\/\/{1,256}\b([a-zA-Z0-9@:%_.+\-~#?&\/=\*]*)))$/;
+		// console.log("Validation result:", urlPattern.test(input));
+		return urlPattern.test(input);
+	}
+}
+
 function websitezoomadd(){
 	var domain = $("websitezoomname").value;
 	var number = $("websitezoomnumber").value;
 	if(domain == ""){ return; }
 	if(number == ""){ return; }
 
-	// Check if the domain already exists in the list
+	// Validate input based on mode
+	if(!isValidWebsiteInput(domain)){
+		// Set validation message on the input field
+		var input = $("websitezoomname");
+		if($("zoombyregex").checked){
+			input.setCustomValidity(chrome.i18n.getMessage("invalidregex"));
+		}else{
+			input.setCustomValidity(chrome.i18n.getMessage("invalidurl"));
+		}
+		input.reportValidity();
+		return;
+	}
+
+	// Check if the domain/pattern already exists in the list
 	var listBox = document.getElementById("websitezoomBox");
 	var options = listBox.options;
 	for(var i = 0; i < options.length; i++){
@@ -798,7 +833,7 @@ chrome.runtime.onMessage.addListener(function(msg){
 
 				var textperm = "";
 				var newpermspandes = document.createElement("span");
-				if(x == "activeTab"){ textperm = chrome.i18n.getMessage("permissionactivetab"); }else if(x == "contextMenus"){ textperm = chrome.i18n.getMessage("permissioncontextmenu"); }else if(x == "storage"){ textperm = chrome.i18n.getMessage("permissionstorage"); }else if(x == "tabs"){ textperm = chrome.i18n.getMessage("permissiontabs"); }else if(x == "webNavigation"){ textperm = chrome.i18n.getMessage("permissionwebnavigation"); }else if(x == "scripting"){ textperm = chrome.i18n.getMessage("permissionscripting"); }else if(x == "system.display"){ textperm = chrome.i18n.getMessage("permissionsystemdisplay"); }
+				if(x == "activeTab"){ textperm = chrome.i18n.getMessage("permissionactivetab"); }else if(x == "contextMenus"){ textperm = chrome.i18n.getMessage("permissioncontextmenu"); }else if(x == "storage"){ textperm = chrome.i18n.getMessage("permissionstorage"); }else if(x == "tabs"){ textperm = chrome.i18n.getMessage("permissiontabs"); }else if(x == "webNavigation"){ textperm = chrome.i18n.getMessage("permissionwebnavigation"); }else if(x == "scripting"){ textperm = chrome.i18n.getMessage("permissionscripting"); }else if(x == "system.display"){ textperm = chrome.i18n.getMessage("permissionsystemdisplay"); }else if(x == "unlimitedStorage"){ textperm = chrome.i18n.getMessage("permissionunlimitedstorage"); }
 				newpermspandes.textContent = textperm;
 				newpermspandes.className = "item";
 				newperm.appendChild(newpermspandes);
@@ -1128,6 +1163,12 @@ function domcontentloaded(){
 	$("websitezoomBox").addEventListener("dblclick", function(){
 		websitezoomRemoveAndFillInputs();
 	});
+
+	// Input validation reset
+	document.getElementById("websitezoomname").addEventListener("input", function(){
+		this.setCustomValidity("");
+	});
+
 	// Add
 	document.getElementById("formwebsitezoom").addEventListener("submit", function(e){ e.preventDefault(); websitezoomadd(); });
 	// Remove
