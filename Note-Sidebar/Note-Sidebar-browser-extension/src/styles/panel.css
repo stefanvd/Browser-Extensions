@@ -59,7 +59,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 html,body{overscroll-behavior:none;background:var(--ext-primary-background);color:var(--ext-nav-color);margin:0;padding:0;font-family:'Helvetica','Verdana',sans-serif}
 .notepaper{z-index:-1;position:fixed;top:0;left:0;height:100%;width:100%}
 textarea,#powertext{overflow:auto;background:transparent;width:100%;position:fixed;left:0;right:0;bottom:0;outline:none;padding:15px;margin:0;border:0;box-sizing:border-box;resize:none;font-family:Helvetica,Arial,sans-serif;font-size:var(--ext-font-size);line-height:var(--ext-line-height);color:var(--ext-nav-color)}
-.texttoolbar{bottom:15px;right:15px;display:flex;align-items:center;position:fixed;gap:15px;height:18px}
+.texttoolbar{bottom:10px;right:10px;display:flex;align-items:center;position:fixed;gap:15px;height:18px;-webkit-backdrop-filter:saturate(1.8) blur(20px);backdrop-filter:saturate(1.8) blur(20px);padding:5px;border-radius:8px;overflow:hidden}
 #counter{height:18px;display:flex;color:var(--ext-nav-color);-webkit-user-select:none;user-select:none;align-items:center}
 .btn-copy{width:18px;height:18px;background:none;border:none;padding:0;margin:0;cursor:pointer}
 .btn-copy:hover{opacity:.65}
@@ -121,7 +121,7 @@ textarea,#powertext{overflow:auto;background:transparent;width:100%;position:fix
 @keyframes wrapper{0%{opacity:0}20%{opacity:0;transform:translate(0,-100px)}40%{opacity:0.98;transform:translate(0,0)}80%{opacity:0.98;transform:translate(0,0)}100%{opacity:0;transform:translate(0, -100px)}}
 .tab-bar{gap:5px;height:38px;overflow-x:hidden;overflow-y:hidden;display:flex;align-items:flex-start;background-color:var(--totl-tab-background-color);padding:10px 10px 0px 10px}
 .tab-bar:hover{overflow-x:auto}
-.tab{user-select:none;min-width:fit-content;justify-content:space-between;display:inline-flex;padding:8px 12px;background-color:var(--totl-tab-inactive-background-color);border-radius:8px 8px 0 0;cursor:pointer;align-items:baseline;border-bottom:1px solid var(--totl-tab-inactive-background-color)}
+.tab{-webkit-user-select:none;user-select:none;min-width:fit-content;justify-content:space-between;display:inline-flex;padding:8px 12px;background-color:var(--totl-tab-inactive-background-color);border-radius:8px 8px 0 0;cursor:pointer;align-items:baseline;border-bottom:1px solid var(--totl-tab-inactive-background-color)}
 .tab:hover{background-color:var(--totl-tab-inactive-hover-background-color);}
 .tab.active:hover{background-color:var(--totl-tab-active-hover-background-color);}
 .tab.active{background-color:var(--totl-tab-active-background-color);border-bottom:2px solid #007bff}
@@ -129,7 +129,7 @@ textarea,#powertext{overflow:auto;background:transparent;width:100%;position:fix
 .tab-content.active{display:block}
 .tab-close{line-height:20px;cursor:pointer;margin-left:5px;font-size:16px;border-radius:16px;width:16px;height:16px;padding:2px;display:flex;align-items:center;justify-content:center}
 .tab-close:hover{background:var(--totl-close-color-hover)}
-.add-tab{cursor:pointer;user-select:none;font-size:16px;border-radius:32px;min-width:32px;width:32px;height:32px;display:flex;align-items:center;line-height:32px;justify-content:center}
+.add-tab{cursor:pointer;-webkit-user-select:none;user-select:none;font-size:16px;border-radius:32px;min-width:32px;width:32px;height:32px;display:flex;align-items:center;line-height:32px;justify-content:center}
 .add-tab:hover{background:var(--totl-svg-fill-color-hover)}
 .enablebar{top:48px;height:calc(100% - 48px)}
 .enablerichbarmulti{top:94px;height:calc(100% - 94px)}
@@ -140,7 +140,7 @@ textarea,#powertext{overflow:auto;background:transparent;width:100%;position:fix
 #search-input{outline:none;border:0;height:28px;background:#ffffff5c;padding:0px 8px}
 #highlighted-text{position:absolute;left:0;width:100%;pointer-events:none;color:transparent;background-color:transparent;overflow-wrap:break-word;font-family:Helvetica,Arial,sans-serif;font-size:var(--ext-font-size);line-height:var(--ext-line-height);padding:15px;overflow-x:hidden;overflow-y:hidden;box-sizing:border-box}
 .highlight{background-color:yellow;color:black}
-#close-search-box{background:transparent;border:0;cursor:pointer;user-select:none;font-size:16px;border-radius:32px;min-width:32px;width:32px;height:32px;display:flex;align-items:center;line-height:32px;justify-content:center}
+#close-search-box{background:transparent;border:0;cursor:pointer;-webkit-user-select:none;user-select:none;font-size:16px;border-radius:32px;min-width:32px;width:32px;height:32px;display:flex;align-items:center;line-height:32px;justify-content:center}
 #close-search-box:hover{background:var(--totl-svg-fill-color-hover)}
 /* width */
 .tab-bar::-webkit-scrollbar{width:10px;height:4px}

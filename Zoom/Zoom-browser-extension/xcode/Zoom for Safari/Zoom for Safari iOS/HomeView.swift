@@ -124,7 +124,7 @@ struct HomeView: View {
                     ShareLink("",
                               item: URL(string: StefanLinks().linkappstore())!,
                               subject: Text("FREE Zoom Safari extension"),
-                              message: Text("Download the free Turn Off the Lights Safari extension to get Dark Mode on all websites. Try it yourself! #iOS via @TurnOfftheLight  \(StefanLinks().linkdeveloperwebsite())"))
+                              message: Text("Download the free Zoom Safari extension to enjoy a more comfortable, customizable website scale. Try it yourself! via @Stefanvd  \(StefanLinks().linkdeveloperwebsite())"))
                     .accessibilityLabel(Text("Share App"))
                     .accessibilityHint(Text("Opens the system share menu"))
                 }

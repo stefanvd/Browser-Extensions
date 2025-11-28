@@ -216,5 +216,7 @@
     "tooltipremovenote": {"message": "Remove note"},
     "desresetwarningtitle": {"message": "Warning:"},
     "desresetwarningcaption": {"message": "Resetting will remove all your settings and any notes you have typed."},
-    "desresetwarningundo": {"message": "This action cannot be undone."}
+    "desresetwarningundo": {"message": "This action cannot be undone."},
+    "titeltextspeed": {"message": "TTS speed"},
+    "destextspeed": {"message": "Adjust the speed of spoken text"}
 }

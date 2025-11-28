@@ -583,6 +583,7 @@ function switchtab(number){
 
 var tabContainer;
 var currentVoice;
+var enterspeed;
 function init(){
 	// open connnection to background that the panel is open
 	chrome.runtime.connect({name: "myNoteSidebar"});
@@ -707,6 +708,7 @@ function init(){
 		richtexttoolbar = items["richtexttoolbar"]; if(richtexttoolbar == null){ richtexttoolbar = false; }
 		richtextshortcut = items["richtextshortcut"]; if(richtextshortcut == null){ richtextshortcut = false; }
 		selectedvoice = items["selectedvoice"]; if(selectedvoice == null){ selectedvoice = 0; }
+		enterspeed = items["enterspeed"]; if(enterspeed == null){ enterspeed = 0.8; }
 
 		if(richtexttoolbar == true){
 			document.getElementById("richtexttoolbar").className = "richtexttoolbar";
@@ -934,7 +936,7 @@ function init(){
 		}
 		utterance = new SpeechSynthesisUtterance(toSay);
 		utterance.voice = currentVoice;
-		utterance.rate = 0.85;
+		utterance.rate = enterspeed;
 		utterance.addEventListener("start", () => {
 			document.getElementsByTagName("main")[0].classList.add("speaking");
 			document.getElementById("startspeech").classList.add("hidden");
@@ -1716,6 +1718,8 @@ chrome.runtime.onMessage.addListener(function(request){
 		}else{
 			removeRichTextShortcut();
 		}
+	}else if(request.msg == "setenterspeed"){
+		enterspeed = request.value;
 	}
 });
 
@@ -1735,7 +1739,7 @@ function loadNotesAndSettings(callback){
 	getNotesStorageArea(function(noteStorage){
 		noteStorage.get(["txtvalue", "multivalue"], function(noteItems){
 			// Load all other settings from sync
-			chrome.storage.sync.get(["firstDate", "optionskipremember", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsource", "backgroundsize", "print", "password", "enterpassword", "richtext", "plaintext", "multiple", "preventclose", "texttabname", "save", "bartabdesign", "barselectdesign", "download", "find", "richtexttoolbar", "richtextshortcut", "selectedvoice"], function(settingsItems){
+			chrome.storage.sync.get(["firstDate", "optionskipremember", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsource", "backgroundsize", "print", "password", "enterpassword", "richtext", "plaintext", "multiple", "preventclose", "texttabname", "save", "bartabdesign", "barselectdesign", "download", "find", "richtexttoolbar", "richtextshortcut", "selectedvoice", "enterspeed"], function(settingsItems){
 				callback(Object.assign({}, noteItems, settingsItems));
 			});
 		});

@@ -539,6 +539,9 @@ chrome.storage.onChanged.addListener(function(changes){
 	if(changes["richtextshortcut"]){
 		chrome.runtime.sendMessage({msg: "setrichtextshortcut", value: changes["richtextshortcut"].newValue});
 	}
+	if(changes["enterspeed"]){
+		chrome.runtime.sendMessage({msg: "setenterspeed", value: changes["enterspeed"].newValue});
+	}
 });
 
 function initwelcome(){
