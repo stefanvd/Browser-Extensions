@@ -114,11 +114,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		1ECE701D2ECD29B300167EF4 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		1E7CA6742EDB47C7007EF866 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				/Localized/LaunchScreen.storyboard,
-			);
+			platformFiltersByRelativePath = {
+				/Localized/LaunchScreen.storyboard = (
+					ios,
+				);
+			};
 			target = 1ECE6FFD2ECD288300167EF4 /* Zoom for Safari iOS */;
 		};
 		1ED1E1302DD66A26007F431B /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
@@ -139,7 +141,7 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		1ECE6FC52ECD014900167EF4 /* macOS */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = macOS; sourceTree = "<group>"; };
-		1ECE6FFF2ECD288300167EF4 /* Zoom for Safari iOS */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1ECE701D2ECD29B300167EF4 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Zoom for Safari iOS"; sourceTree = "<group>"; };
+		1ECE6FFF2ECD288300167EF4 /* Zoom for Safari iOS */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1E7CA6742EDB47C7007EF866 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Zoom for Safari iOS"; sourceTree = "<group>"; };
 		1ED1E1182DD66A26007F431B /* iOS (Extension) */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1ED1E1302DD66A26007F431B /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "iOS (Extension)"; sourceTree = "<group>"; };
 		1EDBD8152DD667B2009EFE06 /* macOS (Extension) */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1EDBD82E2DD667B2009EFE06 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "macOS (Extension)"; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -751,6 +753,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
@@ -797,6 +802,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
