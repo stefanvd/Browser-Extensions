@@ -6,7 +6,7 @@
     "nameedge": {"message": "Full Screen for Microsoft Edge"},
     "namesafari": {"message": "Full Screen for Safari"},
     "namewhale": {"message": "Full Screen for Naver Whale"},
-    "description": {"message": "Go full screen with one click on the full screen button. That includes also the full screen movies such as YouTube, Vimeo, etc."},
+    "description": {"message": "Enter full screen with one click, including for videos on YouTube, Vimeo, and other sites."},
     "pageatitle": {"message": "Full Screen"},
     "textfoot": {"message": "This software is licensed under the CC-GNU GPL. To view a copy of this license, visit"},
     "titelcontextmenus": {"message": "Context Menu"},
@@ -163,5 +163,6 @@
     "titelpopupsize": {"message": "Popup size"},
     "desfullpopup": {"message": "Choose the desktop screen size"},
     "descustompopup": {"message": "Custom Popup size"},
-    "desautodimsizepixel": {"message": "pixel"}
+    "desautodimsizepixel": {"message": "pixel"},
+    "permissionsystemdisplay": {"message": "This is to get the system to display information so the popup window size can be set properly."}
 }

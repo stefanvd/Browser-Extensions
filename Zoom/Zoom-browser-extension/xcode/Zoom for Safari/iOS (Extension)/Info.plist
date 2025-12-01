@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>SFSafariCorrespondingMacOSExtensionBundleIdentifier</key>
-	<string>com.stefanvd.Zoom-for-Safari.Extension</string>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionPointIdentifier</key>
@@ -11,5 +9,7 @@
 		<key>NSExtensionPrincipalClass</key>
 		<string>$(PRODUCT_MODULE_NAME).SafariWebExtensionHandler</string>
 	</dict>
+	<key>SFSafariCorrespondingMacOSExtensionBundleIdentifier</key>
+	<string>com.stefanvd.Zoom-for-Safari.Extension</string>
 </dict>
 </plist>

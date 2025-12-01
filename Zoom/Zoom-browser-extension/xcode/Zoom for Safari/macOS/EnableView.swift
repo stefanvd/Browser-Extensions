@@ -20,7 +20,6 @@ struct EnableView: View {
     @State private var isEnabled: Bool?
     @State private var errorMessage: String?
     @State private var timer: Publishers.Autoconnect<Timer.TimerPublisher> = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
-    @State private var player = AVPlayer(url: Bundle.main.url(forResource: "DaringInfantileDachshund", withExtension: "mp4")!)
 
     var body: some View {
         Form {

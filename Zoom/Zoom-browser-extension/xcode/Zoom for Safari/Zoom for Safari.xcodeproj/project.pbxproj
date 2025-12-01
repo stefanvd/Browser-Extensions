@@ -14,7 +14,6 @@
 		1ECE6FE42ECD0C9600167EF4 /* FeedParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECE6FDE2ECD0A4600167EF4 /* FeedParser.swift */; };
 		1ECE6FE52ECD0CA000167EF4 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 1E48AA3D2DD5F06B00FE647E /* PrivacyInfo.xcprivacy */; };
 		1ECE6FE62ECD0CA600167EF4 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1E48AA3B2DD5F06B00FE647E /* Localizable.xcstrings */; };
-		1ECE6FE82ECD0CDD00167EF4 /* DaringInfantileDachshund.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1ECE6FE72ECD0CDD00167EF4 /* DaringInfantileDachshund.mp4 */; };
 		1ECE6FEE2ECD14CD00167EF4 /* forest.mov in Resources */ = {isa = PBXBuildFile; fileRef = 1ECE6FEC2ECD14CD00167EF4 /* forest.mov */; };
 		1ECE6FF32ECD1D0E00167EF4 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 1ECE6FF12ECD1D0E00167EF4 /* AppIcon.icon */; };
 		1ECE6FF62ECD1FC400167EF4 /* Zoom for Safari Extension macOS.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1EDBD8142DD667B2009EFE06 /* Zoom for Safari Extension macOS.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -23,7 +22,6 @@
 		1ECE701F2ECD313F00167EF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EAB3EED25A3648F00C9B518 /* Assets.xcassets */; };
 		1ECE70202ECD318900167EF4 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 1E48AA3B2DD5F06B00FE647E /* Localizable.xcstrings */; };
 		1ECE70212ECD31A800167EF4 /* forest.mov in Resources */ = {isa = PBXBuildFile; fileRef = 1ECE6FEC2ECD14CD00167EF4 /* forest.mov */; };
-		1ECE70222ECD31AC00167EF4 /* DaringInfantileDachshund.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1ECE6FE72ECD0CDD00167EF4 /* DaringInfantileDachshund.mp4 */; };
 		1ECE70232ECD31DA00167EF4 /* StefanFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E48AA6F2DD5F0FB00FE647E /* StefanFunctions.swift */; };
 		1ECE70242ECD31F100167EF4 /* FeedParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECE6FDE2ECD0A4600167EF4 /* FeedParser.swift */; };
 		1ED1E1342DD66A3E007F431B /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = 1E221CDB2DD4DD12000ED0E1 /* _locales */; };
@@ -100,12 +98,10 @@
 		1E48AA3D2DD5F06B00FE647E /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		1E48AA402DD5F06B00FE647E /* StefanLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StefanLinks.swift; sourceTree = "<group>"; };
 		1E48AA6F2DD5F0FB00FE647E /* StefanFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StefanFunctions.swift; sourceTree = "<group>"; };
-		1E5C6CB42ECDE07B00AD3FD8 /* Zoom-for-Safari-macOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Zoom-for-Safari-macOS-Info.plist"; sourceTree = "<group>"; };
 		1EAB3EED25A3648F00C9B518 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1EAB3EF925A3648F00C9B518 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		1ECE6FC42ECD014900167EF4 /* Zoom for Safari.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Zoom for Safari.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ECE6FDE2ECD0A4600167EF4 /* FeedParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedParser.swift; sourceTree = "<group>"; };
-		1ECE6FE72ECD0CDD00167EF4 /* DaringInfantileDachshund.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = DaringInfantileDachshund.mp4; sourceTree = "<group>"; };
 		1ECE6FEC2ECD14CD00167EF4 /* forest.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = forest.mov; sourceTree = "<group>"; };
 		1ECE6FF12ECD1D0E00167EF4 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		1ECE6FFE2ECD288300167EF4 /* Zoom for Safari iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Zoom for Safari iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,7 +137,7 @@
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		1ECE6FC52ECD014900167EF4 /* macOS */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = macOS; sourceTree = "<group>"; };
-		1ECE6FFF2ECD288300167EF4 /* Zoom for Safari iOS */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1E7CA6742EDB47C7007EF866 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "Zoom for Safari iOS"; sourceTree = "<group>"; };
+		1ECE6FFF2ECD288300167EF4 /* iOS */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1E7CA6742EDB47C7007EF866 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = iOS; sourceTree = "<group>"; };
 		1ED1E1182DD66A26007F431B /* iOS (Extension) */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1ED1E1302DD66A26007F431B /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "iOS (Extension)"; sourceTree = "<group>"; };
 		1EDBD8152DD667B2009EFE06 /* macOS (Extension) */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1EDBD82E2DD667B2009EFE06 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "macOS (Extension)"; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -208,7 +204,6 @@
 				1ECE6FDE2ECD0A4600167EF4 /* FeedParser.swift */,
 				1E48AA3B2DD5F06B00FE647E /* Localizable.xcstrings */,
 				1ECE6FEC2ECD14CD00167EF4 /* forest.mov */,
-				1ECE6FE72ECD0CDD00167EF4 /* DaringInfantileDachshund.mp4 */,
 				1E48AA3D2DD5F06B00FE647E /* PrivacyInfo.xcprivacy */,
 				1E48AA402DD5F06B00FE647E /* StefanLinks.swift */,
 				1EAB3EED25A3648F00C9B518 /* Assets.xcassets */,
@@ -219,7 +214,6 @@
 		1EAB3ED925A3648D00C9B518 = {
 			isa = PBXGroup;
 			children = (
-				1E5C6CB42ECDE07B00AD3FD8 /* Zoom-for-Safari-macOS-Info.plist */,
 				1ECE6FF12ECD1D0E00167EF4 /* AppIcon.icon */,
 				1E221CE72DD538A0000ED0E1 /* Config.xcconfig */,
 				1E48AA3A2DD5F04900FE647E /* Shared (App) */,
@@ -227,7 +221,7 @@
 				1EDBD8152DD667B2009EFE06 /* macOS (Extension) */,
 				1ED1E1182DD66A26007F431B /* iOS (Extension) */,
 				1ECE6FC52ECD014900167EF4 /* macOS */,
-				1ECE6FFF2ECD288300167EF4 /* Zoom for Safari iOS */,
+				1ECE6FFF2ECD288300167EF4 /* iOS */,
 				1EAB3EF825A3648F00C9B518 /* Frameworks */,
 				1EAB3EE325A3648D00C9B518 /* Products */,
 			);
@@ -294,7 +288,7 @@
 				1E5C6CB72ECDF8E500AD3FD8 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				1ECE6FFF2ECD288300167EF4 /* Zoom for Safari iOS */,
+				1ECE6FFF2ECD288300167EF4 /* iOS */,
 			);
 			name = "Zoom for Safari iOS";
 			packageProductDependencies = (
@@ -397,7 +391,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1ECE6FE82ECD0CDD00167EF4 /* DaringInfantileDachshund.mp4 in Resources */,
 				1ECE6FE52ECD0CA000167EF4 /* PrivacyInfo.xcprivacy in Resources */,
 				1ECE6FCF2ECD026200167EF4 /* Assets.xcassets in Resources */,
 				1ECE6FEE2ECD14CD00167EF4 /* forest.mov in Resources */,
@@ -411,7 +404,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1ECE701F2ECD313F00167EF4 /* Assets.xcassets in Resources */,
-				1ECE70222ECD31AC00167EF4 /* DaringInfantileDachshund.mp4 in Resources */,
 				1ECE70212ECD31A800167EF4 /* forest.mov in Resources */,
 				1ECE70092ECD288C00167EF4 /* AppIcon.icon in Resources */,
 				1ECE70202ECD318900167EF4 /* Localizable.xcstrings in Resources */,
@@ -862,6 +854,9 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -900,6 +895,9 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,7";

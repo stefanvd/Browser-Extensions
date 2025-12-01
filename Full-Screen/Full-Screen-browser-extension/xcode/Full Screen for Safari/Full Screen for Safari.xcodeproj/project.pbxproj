@@ -1,0 +1,1053 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1E88A2D52EDDAF7E00142A91 /* options.html in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2CD2EDDAF7D00142A91 /* options.html */; };
+		1E88A2D62EDDAF7E00142A91 /* scripts in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2CE2EDDAF7D00142A91 /* scripts */; };
+		1E88A2D72EDDAF7E00142A91 /* styles in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2CF2EDDAF7D00142A91 /* styles */; };
+		1E88A2D82EDDAF7E00142A91 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2D02EDDAF7D00142A91 /* LICENSE */; };
+		1E88A2D92EDDAF7E00142A91 /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2D12EDDAF7D00142A91 /* _locales */; };
+		1E88A2DA2EDDAF7E00142A91 /* palette.html in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2D22EDDAF7D00142A91 /* palette.html */; };
+		1E88A2DB2EDDAF7E00142A91 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2D32EDDAF7E00142A91 /* images */; };
+		1E88A2DC2EDDAF7E00142A91 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2D42EDDAF7E00142A91 /* manifest.json */; };
+		1E88A2DD2EDDAF8E00142A91 /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2D12EDDAF7D00142A91 /* _locales */; };
+		1E88A2DE2EDDAF8E00142A91 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2D32EDDAF7E00142A91 /* images */; };
+		1E88A2DF2EDDAF8E00142A91 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2D02EDDAF7D00142A91 /* LICENSE */; };
+		1E88A2E02EDDAF8E00142A91 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2D42EDDAF7E00142A91 /* manifest.json */; };
+		1E88A2E12EDDAF8E00142A91 /* options.html in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2CD2EDDAF7D00142A91 /* options.html */; };
+		1E88A2E22EDDAF8E00142A91 /* palette.html in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2D22EDDAF7D00142A91 /* palette.html */; };
+		1E88A2E32EDDAF8E00142A91 /* scripts in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2CE2EDDAF7D00142A91 /* scripts */; };
+		1E88A2E42EDDAF8E00142A91 /* styles in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2CF2EDDAF7D00142A91 /* styles */; };
+		1EB481432EDC99CA0031C80F /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 1EB481422EDC99CA0031C80F /* AppIcon.icon */; };
+		1EB482482EDCCC920031C80F /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 1EB481422EDC99CA0031C80F /* AppIcon.icon */; };
+		1EB482C82EDCEA540031C80F /* Full Screen Safari Extension iOS.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1EB482462EDCCC000031C80F /* Full Screen Safari Extension iOS.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1EB482CC2EDCEA5B0031C80F /* Full Screen Safari Extension macOS.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1EB481482EDC9A9C0031C80F /* Full Screen Safari Extension macOS.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1EB482C92EDCEA540031C80F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1EB4812C2EDC98B30031C80F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1EB4823F2EDCCC000031C80F;
+			remoteInfo = "Full Screen Safari Extension iOS";
+		};
+		1EB482CD2EDCEA5B0031C80F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1EB4812C2EDC98B30031C80F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1EB481472EDC9A9C0031C80F;
+			remoteInfo = "Full Screen Safari Extension macOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1EB482CB2EDCEA540031C80F /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				1EB482C82EDCEA540031C80F /* Full Screen Safari Extension iOS.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EB482CF2EDCEA5B0031C80F /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				1EB482CC2EDCEA5B0031C80F /* Full Screen Safari Extension macOS.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1E88A2CD2EDDAF7D00142A91 /* options.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = options.html; sourceTree = "<group>"; };
+		1E88A2CE2EDDAF7D00142A91 /* scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = scripts; sourceTree = "<group>"; };
+		1E88A2CF2EDDAF7D00142A91 /* styles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = styles; sourceTree = "<group>"; };
+		1E88A2D02EDDAF7D00142A91 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		1E88A2D12EDDAF7D00142A91 /* _locales */ = {isa = PBXFileReference; lastKnownFileType = folder; path = _locales; sourceTree = "<group>"; };
+		1E88A2D22EDDAF7D00142A91 /* palette.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = palette.html; sourceTree = "<group>"; };
+		1E88A2D32EDDAF7E00142A91 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
+		1E88A2D42EDDAF7E00142A91 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
+		1EB481342EDC98B30031C80F /* Full Screen for Safari.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Full Screen for Safari.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EB481422EDC99CA0031C80F /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
+		1EB481482EDC9A9C0031C80F /* Full Screen Safari Extension macOS.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Full Screen Safari Extension macOS.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EB482162EDCC9AD0031C80F /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		1EB4821E2EDCCA960031C80F /* Full Screen for Safari iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Full Screen for Safari iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EB482462EDCCC000031C80F /* Full Screen Safari Extension iOS.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Full Screen Safari Extension iOS.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		1E8899B62EDDAC0100142A91 /* Exceptions for "macOS (Extension)" folder in "Full Screen Safari Extension iOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				SafariWebExtensionHandler.swift,
+			);
+			target = 1EB4823F2EDCCC000031C80F /* Full Screen Safari Extension iOS */;
+		};
+		1EB482302EDCCAE30031C80F /* Exceptions for "Shared (App)" folder in "Full Screen for Safari iOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Assets.xcassets,
+				FeedParser.swift,
+				forest.mov,
+				Localizable.xcstrings,
+				PrivacyInfo.xcprivacy,
+				StefanFunctions.swift,
+				StefanLinks.swift,
+			);
+			target = 1EB4821D2EDCCA960031C80F /* Full Screen for Safari iOS */;
+		};
+		1EB482882EDCE21D0031C80F /* Exceptions for "macOS" folder in "Full Screen for Safari macOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1EB481332EDC98B30031C80F /* Full Screen for Safari macOS */;
+		};
+		1EB482892EDCE2210031C80F /* Exceptions for "iOS" folder in "Full Screen for Safari iOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			platformFiltersByRelativePath = {
+				"/Localized: LaunchScreen.storyboard" = (ios, );
+			};
+			target = 1EB4821D2EDCCA960031C80F /* Full Screen for Safari iOS */;
+		};
+		1EB482D32EDCEDA80031C80F /* Exceptions for "macOS (Extension)" folder in "Full Screen Safari Extension macOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				SafariWebExtensionHandler.swift,
+			);
+			target = 1EB481472EDC9A9C0031C80F /* Full Screen Safari Extension macOS */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		1EB481362EDC98B30031C80F /* macOS */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1EB482882EDCE21D0031C80F /* Exceptions for "macOS" folder in "Full Screen for Safari macOS" target */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		1EB4821F2EDCCA960031C80F /* iOS */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1EB482892EDCE2210031C80F /* Exceptions for "iOS" folder in "Full Screen for Safari iOS" target */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		1EB482292EDCCAB20031C80F /* Shared (App) */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1EB482302EDCCAE30031C80F /* Exceptions for "Shared (App)" folder in "Full Screen for Safari iOS" target */,
+			);
+			path = "Shared (App)";
+			sourceTree = "<group>";
+		};
+		1EB482832EDCD32D0031C80F /* iOS (Extension) */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "iOS (Extension)";
+			sourceTree = "<group>";
+		};
+		1EB482872EDCD3480031C80F /* macOS (Extension) */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1EB482D32EDCEDA80031C80F /* Exceptions for "macOS (Extension)" folder in "Full Screen Safari Extension macOS" target */,
+				1E8899B62EDDAC0100142A91 /* Exceptions for "macOS (Extension)" folder in "Full Screen Safari Extension iOS" target */,
+			);
+			path = "macOS (Extension)";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1EB481312EDC98B30031C80F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EB481452EDC9A9C0031C80F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EB4821B2EDCCA960031C80F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EB482412EDCCC000031C80F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1E889A412EDDADE700142A91 /* Shared (Extension) */ = {
+			isa = PBXGroup;
+			children = (
+				1E889F3D2EDDAF2700142A91 /* Resources */,
+			);
+			path = "Shared (Extension)";
+			sourceTree = "<group>";
+		};
+		1E889F3D2EDDAF2700142A91 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1E88A2D12EDDAF7D00142A91 /* _locales */,
+				1E88A2D32EDDAF7E00142A91 /* images */,
+				1E88A2D02EDDAF7D00142A91 /* LICENSE */,
+				1E88A2D42EDDAF7E00142A91 /* manifest.json */,
+				1E88A2CD2EDDAF7D00142A91 /* options.html */,
+				1E88A2D22EDDAF7D00142A91 /* palette.html */,
+				1E88A2CE2EDDAF7D00142A91 /* scripts */,
+				1E88A2CF2EDDAF7D00142A91 /* styles */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		1EB4812B2EDC98B30031C80F = {
+			isa = PBXGroup;
+			children = (
+				1EB481422EDC99CA0031C80F /* AppIcon.icon */,
+				1EB482162EDCC9AD0031C80F /* Config.xcconfig */,
+				1EB482292EDCCAB20031C80F /* Shared (App) */,
+				1E889A412EDDADE700142A91 /* Shared (Extension) */,
+				1EB481362EDC98B30031C80F /* macOS */,
+				1EB482872EDCD3480031C80F /* macOS (Extension) */,
+				1EB4821F2EDCCA960031C80F /* iOS */,
+				1EB482832EDCD32D0031C80F /* iOS (Extension) */,
+				1EB482C72EDCEA540031C80F /* Frameworks */,
+				1EB481352EDC98B30031C80F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1EB481352EDC98B30031C80F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1EB481342EDC98B30031C80F /* Full Screen for Safari.app */,
+				1EB481482EDC9A9C0031C80F /* Full Screen Safari Extension macOS.appex */,
+				1EB4821E2EDCCA960031C80F /* Full Screen for Safari iOS.app */,
+				1EB482462EDCCC000031C80F /* Full Screen Safari Extension iOS.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1EB482C72EDCEA540031C80F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1EB481332EDC98B30031C80F /* Full Screen for Safari macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1EB4813F2EDC98B40031C80F /* Build configuration list for PBXNativeTarget "Full Screen for Safari macOS" */;
+			buildPhases = (
+				1EB481302EDC98B30031C80F /* Sources */,
+				1EB481312EDC98B30031C80F /* Frameworks */,
+				1EB481322EDC98B30031C80F /* Resources */,
+				1EB482CF2EDCEA5B0031C80F /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1EB482CE2EDCEA5B0031C80F /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				1EB481362EDC98B30031C80F /* macOS */,
+				1EB482292EDCCAB20031C80F /* Shared (App) */,
+			);
+			name = "Full Screen for Safari macOS";
+			packageProductDependencies = (
+			);
+			productName = "Full Screen for Safari";
+			productReference = 1EB481342EDC98B30031C80F /* Full Screen for Safari.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1EB481472EDC9A9C0031C80F /* Full Screen Safari Extension macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1EB481622EDC9A9C0031C80F /* Build configuration list for PBXNativeTarget "Full Screen Safari Extension macOS" */;
+			buildPhases = (
+				1EB481442EDC9A9C0031C80F /* Sources */,
+				1EB481452EDC9A9C0031C80F /* Frameworks */,
+				1EB481462EDC9A9C0031C80F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Full Screen Safari Extension macOS";
+			packageProductDependencies = (
+			);
+			productName = "Full Screen Safari Extension";
+			productReference = 1EB481482EDC9A9C0031C80F /* Full Screen Safari Extension macOS.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		1EB4821D2EDCCA960031C80F /* Full Screen for Safari iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1EB482262EDCCA970031C80F /* Build configuration list for PBXNativeTarget "Full Screen for Safari iOS" */;
+			buildPhases = (
+				1EB4821A2EDCCA960031C80F /* Sources */,
+				1EB4821B2EDCCA960031C80F /* Frameworks */,
+				1EB4821C2EDCCA960031C80F /* Resources */,
+				1EB482CB2EDCEA540031C80F /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1EB482CA2EDCEA540031C80F /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				1EB4821F2EDCCA960031C80F /* iOS */,
+			);
+			name = "Full Screen for Safari iOS";
+			packageProductDependencies = (
+			);
+			productName = "Full Screen for Safari iOS";
+			productReference = 1EB4821E2EDCCA960031C80F /* Full Screen for Safari iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1EB4823F2EDCCC000031C80F /* Full Screen Safari Extension iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1EB482432EDCCC000031C80F /* Build configuration list for PBXNativeTarget "Full Screen Safari Extension iOS" */;
+			buildPhases = (
+				1EB482402EDCCC000031C80F /* Sources */,
+				1EB482412EDCCC000031C80F /* Frameworks */,
+				1EB482422EDCCC000031C80F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Full Screen Safari Extension iOS";
+			packageProductDependencies = (
+			);
+			productName = "Full Screen Safari Extension";
+			productReference = 1EB482462EDCCC000031C80F /* Full Screen Safari Extension iOS.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1EB4812C2EDC98B30031C80F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2610;
+				LastUpgradeCheck = 2610;
+				TargetAttributes = {
+					1EB481332EDC98B30031C80F = {
+						CreatedOnToolsVersion = 26.1.1;
+					};
+					1EB481472EDC9A9C0031C80F = {
+						CreatedOnToolsVersion = 26.1.1;
+					};
+					1EB4821D2EDCCA960031C80F = {
+						CreatedOnToolsVersion = 26.1.1;
+					};
+				};
+			};
+			buildConfigurationList = 1EB4812F2EDC98B30031C80F /* Build configuration list for PBXProject "Full Screen for Safari" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1EB4812B2EDC98B30031C80F;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 1EB481352EDC98B30031C80F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1EB481332EDC98B30031C80F /* Full Screen for Safari macOS */,
+				1EB4821D2EDCCA960031C80F /* Full Screen for Safari iOS */,
+				1EB481472EDC9A9C0031C80F /* Full Screen Safari Extension macOS */,
+				1EB4823F2EDCCC000031C80F /* Full Screen Safari Extension iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1EB481322EDC98B30031C80F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1EB481432EDC99CA0031C80F /* AppIcon.icon in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EB481462EDC9A9C0031C80F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E88A2D52EDDAF7E00142A91 /* options.html in Resources */,
+				1E88A2D62EDDAF7E00142A91 /* scripts in Resources */,
+				1E88A2D72EDDAF7E00142A91 /* styles in Resources */,
+				1E88A2D82EDDAF7E00142A91 /* LICENSE in Resources */,
+				1E88A2D92EDDAF7E00142A91 /* _locales in Resources */,
+				1E88A2DA2EDDAF7E00142A91 /* palette.html in Resources */,
+				1E88A2DB2EDDAF7E00142A91 /* images in Resources */,
+				1E88A2DC2EDDAF7E00142A91 /* manifest.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EB4821C2EDCCA960031C80F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1EB482482EDCCC920031C80F /* AppIcon.icon in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EB482422EDCCC000031C80F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E88A2DD2EDDAF8E00142A91 /* _locales in Resources */,
+				1E88A2DE2EDDAF8E00142A91 /* images in Resources */,
+				1E88A2DF2EDDAF8E00142A91 /* LICENSE in Resources */,
+				1E88A2E02EDDAF8E00142A91 /* manifest.json in Resources */,
+				1E88A2E12EDDAF8E00142A91 /* options.html in Resources */,
+				1E88A2E22EDDAF8E00142A91 /* palette.html in Resources */,
+				1E88A2E32EDDAF8E00142A91 /* scripts in Resources */,
+				1E88A2E42EDDAF8E00142A91 /* styles in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1EB481302EDC98B30031C80F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EB481442EDC9A9C0031C80F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EB4821A2EDCCA960031C80F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EB482402EDCCC000031C80F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1EB482CA2EDCEA540031C80F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1EB4823F2EDCCC000031C80F /* Full Screen Safari Extension iOS */;
+			targetProxy = 1EB482C92EDCEA540031C80F /* PBXContainerItemProxy */;
+		};
+		1EB482CE2EDCEA5B0031C80F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1EB481472EDC9A9C0031C80F /* Full Screen Safari Extension macOS */;
+			targetProxy = 1EB482CD2EDCEA5B0031C80F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1EB4813D2EDC98B40031C80F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EB482162EDCC9AD0031C80F /* Config.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1EB4813E2EDC98B40031C80F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EB482162EDCC9AD0031C80F /* Config.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Release;
+		};
+		1EB481402EDC98B40031C80F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EB482162EDCC9AD0031C80F /* Config.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Full Screen for Safari";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = "$(VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.stefanvd.Full-Screen-for-Safari";
+				PRODUCT_NAME = "Full Screen for Safari";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		1EB481412EDC98B40031C80F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EB482162EDCC9AD0031C80F /* Config.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Full Screen for Safari";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = "$(VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.stefanvd.Full-Screen-for-Safari";
+				PRODUCT_NAME = "Full Screen for Safari";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		1EB481632EDC9A9C0031C80F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EB482162EDCC9AD0031C80F /* Config.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Full Screen Safari Extension";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = "$(VERSION)";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.stefanvd.Full-Screen-for-Safari.Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		1EB481642EDC9A9C0031C80F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EB482162EDCC9AD0031C80F /* Config.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Full Screen Safari Extension";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = "$(VERSION)";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.stefanvd.Full-Screen-for-Safari.Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		1EB482272EDCCA970031C80F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EB482162EDCC9AD0031C80F /* Config.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Full Screen for Safari";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = "$(VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.stefanvd.Full-Screen-for-Safari";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Debug;
+		};
+		1EB482282EDCCA970031C80F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EB482162EDCC9AD0031C80F /* Config.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Full Screen for Safari";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = "$(VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.stefanvd.Full-Screen-for-Safari";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1EB482442EDCCC000031C80F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EB482162EDCC9AD0031C80F /* Config.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Full Screen Safari Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = "$(VERSION)";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.stefanvd.Full-Screen-for-Safari.Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		1EB482452EDCCC000031C80F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EB482162EDCC9AD0031C80F /* Config.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Full Screen Safari Extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = "$(VERSION)";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.stefanvd.Full-Screen-for-Safari.Extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1EB4812F2EDC98B30031C80F /* Build configuration list for PBXProject "Full Screen for Safari" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EB4813D2EDC98B40031C80F /* Debug */,
+				1EB4813E2EDC98B40031C80F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1EB4813F2EDC98B40031C80F /* Build configuration list for PBXNativeTarget "Full Screen for Safari macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EB481402EDC98B40031C80F /* Debug */,
+				1EB481412EDC98B40031C80F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1EB481622EDC9A9C0031C80F /* Build configuration list for PBXNativeTarget "Full Screen Safari Extension macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EB481632EDC9A9C0031C80F /* Debug */,
+				1EB481642EDC9A9C0031C80F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1EB482262EDCCA970031C80F /* Build configuration list for PBXNativeTarget "Full Screen for Safari iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EB482272EDCCA970031C80F /* Debug */,
+				1EB482282EDCCA970031C80F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1EB482432EDCCC000031C80F /* Build configuration list for PBXNativeTarget "Full Screen Safari Extension iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EB482442EDCCC000031C80F /* Debug */,
+				1EB482452EDCCC000031C80F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1EB4812C2EDC98B30031C80F /* Project object */;
+}

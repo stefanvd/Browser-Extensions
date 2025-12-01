@@ -1,5 +1,5 @@
 {
-  "name": "__MSG_namechrome__",
+  "name": "__MSG_name__",
   "action": {
     "default_icon": {
       "19": "images/icon19.png",
@@ -25,6 +25,11 @@
   }],
   "offline_enabled": true,
   "minimum_chrome_version": "114",
-  "permissions": [ "contextMenus", "tabs", "storage", "scripting", "system.display"],
-  "host_permissions": ["<all_urls>"]
+  "permissions": [ "contextMenus", "tabs", "storage", "scripting"],
+  "host_permissions": ["<all_urls>"],
+  "browser_specific_settings": {
+    "safari": {
+      "strict_min_version": "15.4"
+    }
+  }
 }
