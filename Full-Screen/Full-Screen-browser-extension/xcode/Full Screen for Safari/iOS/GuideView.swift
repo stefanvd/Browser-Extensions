@@ -189,7 +189,7 @@ struct Page2: View{
                     }
                     .padding(.bottom, 30)
                     
-                    Text("I take your privacy and security very seriously. I built the Full Screen browser extension with my users in mind first, to ensure a great web experience for everyone. When you add Full Screen, the browser states that it can \"Read and change all your data on the websites you visit\". This permission is required only so that Full Screen can detect the current webpage address and adjust the content to fit the full screen accordingly. I have never collected, and will never collect, any personal data, credit card information, browsing history, or passwords.\n\nFurthermore, the Full Screen browser extension is free and Open-Source with the source code publicly available on GitHub.")
+                    Text("I take your privacy and security very seriously. I built the Full Screen browser extension with my users in mind first, to ensure a great web experience for everyone. When you add Full Screen, the browser states that it can \"Read and change all your data on the websites you visit\". This permission is required only so that Full Screen can detect the current web page address and adjust the content to fit the full screen accordingly. I have never collected, and will never collect, any personal data, credit card information, browsing history, or passwords.\n\nFurthermore, the Full Screen browser extension is free and Open-Source with the source code publicly available on GitHub.")
                      
                     Link(destination: URL(string: "https://github.com/stefanvd/Browser-Extensions/tree/master/Full-Screen/Full-Screen-browser-extension")!) {
                         Text("https://github.com/stefanvd/Browser-Extensions/tree/master/Full-Screen/Full-Screen-browser-extension")
@@ -249,7 +249,7 @@ struct Page3: View{
                     }
                     .padding(.bottom, 30)
                     
-                    Text("When you double-tap the Full Screen icon, a quick menu appears where you can choose to maximize the current webpage, view it in full screen, or open it in a popup window. An Options button also provides instant access to the Full Screen Options page.")
+                    Text("When you double-tap the Full Screen icon, a quick menu appears where you can choose to maximize the current web page, view it in full screen, or open it in a popup window. An Options button also provides instant access to the Full Screen Options page.")
                     
                     Spacer(minLength: 100)
                 }

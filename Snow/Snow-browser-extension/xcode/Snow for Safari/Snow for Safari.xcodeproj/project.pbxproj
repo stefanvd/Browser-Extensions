@@ -1,0 +1,1031 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1E181F4F2EDEF7C7004DDC29 /* Snow for Safari extension iOS.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1E88A47E2EDE4C9700142A91 /* Snow for Safari extension iOS.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1E18218E2EDF03B5004DDC29 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 1E1821872EDF03B5004DDC29 /* manifest.json */; };
+		1E18218F2EDF03B5004DDC29 /* scripts in Resources */ = {isa = PBXBuildFile; fileRef = 1E1821882EDF03B5004DDC29 /* scripts */; };
+		1E1821902EDF03B5004DDC29 /* options.html in Resources */ = {isa = PBXBuildFile; fileRef = 1E1821892EDF03B5004DDC29 /* options.html */; };
+		1E1821912EDF03B5004DDC29 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 1E18218A2EDF03B5004DDC29 /* images */; };
+		1E1821922EDF03B5004DDC29 /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = 1E18218B2EDF03B5004DDC29 /* _locales */; };
+		1E1821932EDF03B5004DDC29 /* styles in Resources */ = {isa = PBXBuildFile; fileRef = 1E18218C2EDF03B5004DDC29 /* styles */; };
+		1E1821942EDF03B5004DDC29 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = 1E18218D2EDF03B5004DDC29 /* popup.html */; };
+		1E1821952EDF03C0004DDC29 /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = 1E18218B2EDF03B5004DDC29 /* _locales */; };
+		1E1821962EDF03C0004DDC29 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 1E18218A2EDF03B5004DDC29 /* images */; };
+		1E1821972EDF03C0004DDC29 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 1E1821872EDF03B5004DDC29 /* manifest.json */; };
+		1E1821982EDF03C0004DDC29 /* options.html in Resources */ = {isa = PBXBuildFile; fileRef = 1E1821892EDF03B5004DDC29 /* options.html */; };
+		1E1821992EDF03C0004DDC29 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = 1E18218D2EDF03B5004DDC29 /* popup.html */; };
+		1E18219A2EDF03C0004DDC29 /* scripts in Resources */ = {isa = PBXBuildFile; fileRef = 1E1821882EDF03B5004DDC29 /* scripts */; };
+		1E18219B2EDF03C0004DDC29 /* styles in Resources */ = {isa = PBXBuildFile; fileRef = 1E18218C2EDF03B5004DDC29 /* styles */; };
+		1E88A3D92EDE48F000142A91 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A3D82EDE48F000142A91 /* AppIcon.icon */; };
+		1E88A4242EDE4B4D00142A91 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A4232EDE4B4D00142A91 /* Config.xcconfig */; };
+		1E88A4712EDE4C9000142A91 /* Snow for Safari extension macOS.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1E88A4592EDE4C9000142A91 /* Snow for Safari extension macOS.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1E88A4812EDE4C9F00142A91 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A3D82EDE48F000142A91 /* AppIcon.icon */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1E181F502EDEF7C7004DDC29 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1E88A3C22EDE481500142A91 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1E88A4772EDE4C9700142A91;
+			remoteInfo = "Snow for Safari extension iOS";
+		};
+		1E88A46F2EDE4C9000142A91 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1E88A3C22EDE481500142A91 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1E88A4582EDE4C9000142A91;
+			remoteInfo = "Snow for Safari extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1E181F522EDEF7C7004DDC29 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				1E181F4F2EDEF7C7004DDC29 /* Snow for Safari extension iOS.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E88A4762EDE4C9000142A91 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				1E88A4712EDE4C9000142A91 /* Snow for Safari extension macOS.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1E1821872EDF03B5004DDC29 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
+		1E1821882EDF03B5004DDC29 /* scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = scripts; sourceTree = "<group>"; };
+		1E1821892EDF03B5004DDC29 /* options.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = options.html; sourceTree = "<group>"; };
+		1E18218A2EDF03B5004DDC29 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
+		1E18218B2EDF03B5004DDC29 /* _locales */ = {isa = PBXFileReference; lastKnownFileType = folder; path = _locales; sourceTree = "<group>"; };
+		1E18218C2EDF03B5004DDC29 /* styles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = styles; sourceTree = "<group>"; };
+		1E18218D2EDF03B5004DDC29 /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = popup.html; sourceTree = "<group>"; };
+		1E88A3CA2EDE481500142A91 /* Snow for Safari.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Snow for Safari.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E88A3D82EDE48F000142A91 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
+		1E88A4232EDE4B4D00142A91 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		1E88A44A2EDE4BB400142A91 /* Snow for Safari iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Snow for Safari iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E88A4592EDE4C9000142A91 /* Snow for Safari extension macOS.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Snow for Safari extension macOS.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E88A47E2EDE4C9700142A91 /* Snow for Safari extension iOS.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Snow for Safari extension iOS.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		1E181F812EDEF983004DDC29 /* Exceptions for "macOS" folder in "Snow for Safari macOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1E88A3C92EDE481500142A91 /* Snow for Safari macOS */;
+		};
+		1E181F822EDEF986004DDC29 /* Exceptions for "iOS" folder in "Snow for Safari iOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			platformFiltersByRelativePath = {
+				"/Localized: LaunchScreen.storyboard" = (ios, );
+			};
+			target = 1E88A4492EDE4BB400142A91 /* Snow for Safari iOS */;
+		};
+		1E181F842EDEF9E2004DDC29 /* Exceptions for "macOS (Extension)" folder in "Snow for Safari macOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+				SafariWebExtensionHandler.swift,
+			);
+			target = 1E88A3C92EDE481500142A91 /* Snow for Safari macOS */;
+		};
+		1E181F852EDEF9E2004DDC29 /* Exceptions for "macOS (Extension)" folder in "Snow for Safari extension macOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				SafariWebExtensionHandler.swift,
+			);
+			target = 1E88A4582EDE4C9000142A91 /* Snow for Safari extension macOS */;
+		};
+		1E181F862EDEF9E2004DDC29 /* Exceptions for "macOS (Extension)" folder in "Snow for Safari extension iOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				SafariWebExtensionHandler.swift,
+			);
+			target = 1E88A4772EDE4C9700142A91 /* Snow for Safari extension iOS */;
+		};
+		1E88A49B2EDE50E500142A91 /* Exceptions for "Shared (App)" folder in "Snow for Safari iOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Assets.xcassets,
+				FeedParser.swift,
+				forest.mov,
+				Localizable.xcstrings,
+				PrivacyInfo.xcprivacy,
+				StefanFunctions.swift,
+				StefanLinks.swift,
+			);
+			target = 1E88A4492EDE4BB400142A91 /* Snow for Safari iOS */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		1E181F832EDEF9DB004DDC29 /* macOS (Extension) */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1E181F842EDEF9E2004DDC29 /* Exceptions for "macOS (Extension)" folder in "Snow for Safari macOS" target */,
+				1E181F852EDEF9E2004DDC29 /* Exceptions for "macOS (Extension)" folder in "Snow for Safari extension macOS" target */,
+				1E181F862EDEF9E2004DDC29 /* Exceptions for "macOS (Extension)" folder in "Snow for Safari extension iOS" target */,
+			);
+			path = "macOS (Extension)";
+			sourceTree = "<group>";
+		};
+		1E181F872EDEF9FA004DDC29 /* iOS (Extension) */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "iOS (Extension)";
+			sourceTree = "<group>";
+		};
+		1E88A3CC2EDE481500142A91 /* macOS */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1E181F812EDEF983004DDC29 /* Exceptions for "macOS" folder in "Snow for Safari macOS" target */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		1E88A4252EDE4B7900142A91 /* Shared (App) */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1E88A49B2EDE50E500142A91 /* Exceptions for "Shared (App)" folder in "Snow for Safari iOS" target */,
+			);
+			path = "Shared (App)";
+			sourceTree = "<group>";
+		};
+		1E88A44B2EDE4BB400142A91 /* iOS */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1E181F822EDEF986004DDC29 /* Exceptions for "iOS" folder in "Snow for Safari iOS" target */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1E88A3C72EDE481500142A91 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E88A4472EDE4BB400142A91 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E88A4562EDE4C9000142A91 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E88A4792EDE4C9700142A91 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1E181F4E2EDEF7C7004DDC29 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1E181F9B2EDF0355004DDC29 /* Shared (Extension) */ = {
+			isa = PBXGroup;
+			children = (
+				1E181F9C2EDF0374004DDC29 /* Resources */,
+			);
+			path = "Shared (Extension)";
+			sourceTree = "<group>";
+		};
+		1E181F9C2EDF0374004DDC29 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1E18218B2EDF03B5004DDC29 /* _locales */,
+				1E18218A2EDF03B5004DDC29 /* images */,
+				1E1821872EDF03B5004DDC29 /* manifest.json */,
+				1E1821892EDF03B5004DDC29 /* options.html */,
+				1E18218D2EDF03B5004DDC29 /* popup.html */,
+				1E1821882EDF03B5004DDC29 /* scripts */,
+				1E18218C2EDF03B5004DDC29 /* styles */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		1E88A3C12EDE481500142A91 = {
+			isa = PBXGroup;
+			children = (
+				1E88A3D82EDE48F000142A91 /* AppIcon.icon */,
+				1E88A4232EDE4B4D00142A91 /* Config.xcconfig */,
+				1E88A4252EDE4B7900142A91 /* Shared (App) */,
+				1E88A3CC2EDE481500142A91 /* macOS */,
+				1E88A44B2EDE4BB400142A91 /* iOS */,
+				1E181F9B2EDF0355004DDC29 /* Shared (Extension) */,
+				1E181F832EDEF9DB004DDC29 /* macOS (Extension) */,
+				1E181F872EDEF9FA004DDC29 /* iOS (Extension) */,
+				1E181F4E2EDEF7C7004DDC29 /* Frameworks */,
+				1E88A3CB2EDE481500142A91 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1E88A3CB2EDE481500142A91 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1E88A3CA2EDE481500142A91 /* Snow for Safari.app */,
+				1E88A44A2EDE4BB400142A91 /* Snow for Safari iOS.app */,
+				1E88A4592EDE4C9000142A91 /* Snow for Safari extension macOS.appex */,
+				1E88A47E2EDE4C9700142A91 /* Snow for Safari extension iOS.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1E88A3C92EDE481500142A91 /* Snow for Safari macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1E88A3D52EDE481700142A91 /* Build configuration list for PBXNativeTarget "Snow for Safari macOS" */;
+			buildPhases = (
+				1E88A3C62EDE481500142A91 /* Sources */,
+				1E88A3C72EDE481500142A91 /* Frameworks */,
+				1E88A3C82EDE481500142A91 /* Resources */,
+				1E88A4762EDE4C9000142A91 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1E88A4702EDE4C9000142A91 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				1E181F832EDEF9DB004DDC29 /* macOS (Extension) */,
+				1E88A3CC2EDE481500142A91 /* macOS */,
+				1E88A4252EDE4B7900142A91 /* Shared (App) */,
+			);
+			name = "Snow for Safari macOS";
+			packageProductDependencies = (
+			);
+			productName = "Snow for Safari";
+			productReference = 1E88A3CA2EDE481500142A91 /* Snow for Safari.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1E88A4492EDE4BB400142A91 /* Snow for Safari iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1E88A4522EDE4BB500142A91 /* Build configuration list for PBXNativeTarget "Snow for Safari iOS" */;
+			buildPhases = (
+				1E88A4462EDE4BB400142A91 /* Sources */,
+				1E88A4472EDE4BB400142A91 /* Frameworks */,
+				1E88A4482EDE4BB400142A91 /* Resources */,
+				1E181F522EDEF7C7004DDC29 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1E181F512EDEF7C7004DDC29 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				1E88A44B2EDE4BB400142A91 /* iOS */,
+			);
+			name = "Snow for Safari iOS";
+			packageProductDependencies = (
+			);
+			productName = "Snow for Safari iOS";
+			productReference = 1E88A44A2EDE4BB400142A91 /* Snow for Safari iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1E88A4582EDE4C9000142A91 /* Snow for Safari extension macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1E88A4732EDE4C9000142A91 /* Build configuration list for PBXNativeTarget "Snow for Safari extension macOS" */;
+			buildPhases = (
+				1E88A4552EDE4C9000142A91 /* Sources */,
+				1E88A4562EDE4C9000142A91 /* Frameworks */,
+				1E88A4572EDE4C9000142A91 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Snow for Safari extension macOS";
+			packageProductDependencies = (
+			);
+			productName = "Snow for Safari extension";
+			productReference = 1E88A4592EDE4C9000142A91 /* Snow for Safari extension macOS.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		1E88A4772EDE4C9700142A91 /* Snow for Safari extension iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1E88A47B2EDE4C9700142A91 /* Build configuration list for PBXNativeTarget "Snow for Safari extension iOS" */;
+			buildPhases = (
+				1E88A4782EDE4C9700142A91 /* Sources */,
+				1E88A4792EDE4C9700142A91 /* Frameworks */,
+				1E88A47A2EDE4C9700142A91 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Snow for Safari extension iOS";
+			packageProductDependencies = (
+			);
+			productName = "Snow for Safari extension";
+			productReference = 1E88A47E2EDE4C9700142A91 /* Snow for Safari extension iOS.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1E88A3C22EDE481500142A91 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2610;
+				LastUpgradeCheck = 2610;
+				TargetAttributes = {
+					1E88A3C92EDE481500142A91 = {
+						CreatedOnToolsVersion = 26.1.1;
+					};
+					1E88A4492EDE4BB400142A91 = {
+						CreatedOnToolsVersion = 26.1.1;
+					};
+					1E88A4582EDE4C9000142A91 = {
+						CreatedOnToolsVersion = 26.1.1;
+					};
+				};
+			};
+			buildConfigurationList = 1E88A3C52EDE481500142A91 /* Build configuration list for PBXProject "Snow for Safari" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1E88A3C12EDE481500142A91;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 1E88A3CB2EDE481500142A91 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1E88A3C92EDE481500142A91 /* Snow for Safari macOS */,
+				1E88A4492EDE4BB400142A91 /* Snow for Safari iOS */,
+				1E88A4582EDE4C9000142A91 /* Snow for Safari extension macOS */,
+				1E88A4772EDE4C9700142A91 /* Snow for Safari extension iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1E88A3C82EDE481500142A91 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E88A4242EDE4B4D00142A91 /* Config.xcconfig in Resources */,
+				1E88A3D92EDE48F000142A91 /* AppIcon.icon in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E88A4482EDE4BB400142A91 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E88A4812EDE4C9F00142A91 /* AppIcon.icon in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E88A4572EDE4C9000142A91 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E18218E2EDF03B5004DDC29 /* manifest.json in Resources */,
+				1E18218F2EDF03B5004DDC29 /* scripts in Resources */,
+				1E1821902EDF03B5004DDC29 /* options.html in Resources */,
+				1E1821912EDF03B5004DDC29 /* images in Resources */,
+				1E1821922EDF03B5004DDC29 /* _locales in Resources */,
+				1E1821932EDF03B5004DDC29 /* styles in Resources */,
+				1E1821942EDF03B5004DDC29 /* popup.html in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E88A47A2EDE4C9700142A91 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E1821952EDF03C0004DDC29 /* _locales in Resources */,
+				1E1821962EDF03C0004DDC29 /* images in Resources */,
+				1E1821972EDF03C0004DDC29 /* manifest.json in Resources */,
+				1E1821982EDF03C0004DDC29 /* options.html in Resources */,
+				1E1821992EDF03C0004DDC29 /* popup.html in Resources */,
+				1E18219A2EDF03C0004DDC29 /* scripts in Resources */,
+				1E18219B2EDF03C0004DDC29 /* styles in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1E88A3C62EDE481500142A91 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E88A4462EDE4BB400142A91 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E88A4552EDE4C9000142A91 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E88A4782EDE4C9700142A91 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1E181F512EDEF7C7004DDC29 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1E88A4772EDE4C9700142A91 /* Snow for Safari extension iOS */;
+			targetProxy = 1E181F502EDEF7C7004DDC29 /* PBXContainerItemProxy */;
+		};
+		1E88A4702EDE4C9000142A91 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1E88A4582EDE4C9000142A91 /* Snow for Safari extension macOS */;
+			targetProxy = 1E88A46F2EDE4C9000142A91 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1E88A3D32EDE481700142A91 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E88A4232EDE4B4D00142A91 /* Config.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1E88A3D42EDE481700142A91 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E88A4232EDE4B4D00142A91 /* Config.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		1E88A3D62EDE481700142A91 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E88A4232EDE4B4D00142A91 /* Config.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Snow for Safari";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = "$(VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanvd.snowsafari;
+				PRODUCT_NAME = "Snow for Safari";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		1E88A3D72EDE481700142A91 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E88A4232EDE4B4D00142A91 /* Config.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Snow for Safari";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = "$(VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanvd.snowsafari;
+				PRODUCT_NAME = "Snow for Safari";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		1E88A4532EDE4BB500142A91 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E88A4232EDE4B4D00142A91 /* Config.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Snow for Safari";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = "$(VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanvd.snowsafari;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Debug;
+		};
+		1E88A4542EDE4BB500142A91 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E88A4232EDE4B4D00142A91 /* Config.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Snow for Safari";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = "$(VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanvd.snowsafari;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1E88A4742EDE4C9000142A91 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E88A4232EDE4B4D00142A91 /* Config.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Snow for Safari extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = "$(VERSION)";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanvd.snowsafari.extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		1E88A4752EDE4C9000142A91 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E88A4232EDE4B4D00142A91 /* Config.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Snow for Safari extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = "$(VERSION)";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanvd.snowsafari.extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		1E88A47C2EDE4C9700142A91 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E88A4232EDE4B4D00142A91 /* Config.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Snow for Safari extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = "$(VERSION)";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanvd.snowsafari.extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Debug;
+		};
+		1E88A47D2EDE4C9700142A91 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E88A4232EDE4B4D00142A91 /* Config.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Snow for Safari extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = "$(VERSION)";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanvd.snowsafari.extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1E88A3C52EDE481500142A91 /* Build configuration list for PBXProject "Snow for Safari" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E88A3D32EDE481700142A91 /* Debug */,
+				1E88A3D42EDE481700142A91 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1E88A3D52EDE481700142A91 /* Build configuration list for PBXNativeTarget "Snow for Safari macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E88A3D62EDE481700142A91 /* Debug */,
+				1E88A3D72EDE481700142A91 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1E88A4522EDE4BB500142A91 /* Build configuration list for PBXNativeTarget "Snow for Safari iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E88A4532EDE4BB500142A91 /* Debug */,
+				1E88A4542EDE4BB500142A91 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1E88A4732EDE4C9000142A91 /* Build configuration list for PBXNativeTarget "Snow for Safari extension macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E88A4742EDE4C9000142A91 /* Debug */,
+				1E88A4752EDE4C9000142A91 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1E88A47B2EDE4C9700142A91 /* Build configuration list for PBXNativeTarget "Snow for Safari extension iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E88A47C2EDE4C9700142A91 /* Debug */,
+				1E88A47D2EDE4C9700142A91 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1E88A3C22EDE481500142A91 /* Project object */;
+}

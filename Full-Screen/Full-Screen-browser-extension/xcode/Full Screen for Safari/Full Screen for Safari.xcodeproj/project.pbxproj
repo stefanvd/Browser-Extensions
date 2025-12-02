@@ -7,22 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1E88A2D52EDDAF7E00142A91 /* options.html in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2CD2EDDAF7D00142A91 /* options.html */; };
-		1E88A2D62EDDAF7E00142A91 /* scripts in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2CE2EDDAF7D00142A91 /* scripts */; };
-		1E88A2D72EDDAF7E00142A91 /* styles in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2CF2EDDAF7D00142A91 /* styles */; };
-		1E88A2D82EDDAF7E00142A91 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2D02EDDAF7D00142A91 /* LICENSE */; };
-		1E88A2D92EDDAF7E00142A91 /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2D12EDDAF7D00142A91 /* _locales */; };
-		1E88A2DA2EDDAF7E00142A91 /* palette.html in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2D22EDDAF7D00142A91 /* palette.html */; };
-		1E88A2DB2EDDAF7E00142A91 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2D32EDDAF7E00142A91 /* images */; };
-		1E88A2DC2EDDAF7E00142A91 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2D42EDDAF7E00142A91 /* manifest.json */; };
-		1E88A2DD2EDDAF8E00142A91 /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2D12EDDAF7D00142A91 /* _locales */; };
-		1E88A2DE2EDDAF8E00142A91 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2D32EDDAF7E00142A91 /* images */; };
-		1E88A2DF2EDDAF8E00142A91 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2D02EDDAF7D00142A91 /* LICENSE */; };
-		1E88A2E02EDDAF8E00142A91 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2D42EDDAF7E00142A91 /* manifest.json */; };
-		1E88A2E12EDDAF8E00142A91 /* options.html in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2CD2EDDAF7D00142A91 /* options.html */; };
-		1E88A2E22EDDAF8E00142A91 /* palette.html in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2D22EDDAF7D00142A91 /* palette.html */; };
-		1E88A2E32EDDAF8E00142A91 /* scripts in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2CE2EDDAF7D00142A91 /* scripts */; };
-		1E88A2E42EDDAF8E00142A91 /* styles in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2CF2EDDAF7D00142A91 /* styles */; };
+		1E181F8A2EDF030B004DDC29 /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2D12EDDAF7D00142A91 /* _locales */; };
+		1E181F8B2EDF030B004DDC29 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2D32EDDAF7E00142A91 /* images */; };
+		1E181F8C2EDF030B004DDC29 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2D02EDDAF7D00142A91 /* LICENSE */; };
+		1E181F8D2EDF030B004DDC29 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2D42EDDAF7E00142A91 /* manifest.json */; };
+		1E181F8E2EDF030B004DDC29 /* options.html in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2CD2EDDAF7D00142A91 /* options.html */; };
+		1E181F8F2EDF030B004DDC29 /* palette.html in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2D22EDDAF7D00142A91 /* palette.html */; };
+		1E181F902EDF030B004DDC29 /* scripts in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2CE2EDDAF7D00142A91 /* scripts */; };
+		1E181F912EDF030B004DDC29 /* styles in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2CF2EDDAF7D00142A91 /* styles */; };
+		1E181F922EDF0310004DDC29 /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2D12EDDAF7D00142A91 /* _locales */; };
+		1E181F932EDF0310004DDC29 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2D32EDDAF7E00142A91 /* images */; };
+		1E181F942EDF0310004DDC29 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2D02EDDAF7D00142A91 /* LICENSE */; };
+		1E181F952EDF0310004DDC29 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2D42EDDAF7E00142A91 /* manifest.json */; };
+		1E181F962EDF0310004DDC29 /* options.html in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2CD2EDDAF7D00142A91 /* options.html */; };
+		1E181F972EDF0310004DDC29 /* palette.html in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2D22EDDAF7D00142A91 /* palette.html */; };
+		1E181F982EDF0310004DDC29 /* scripts in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2CE2EDDAF7D00142A91 /* scripts */; };
+		1E181F992EDF0310004DDC29 /* styles in Resources */ = {isa = PBXBuildFile; fileRef = 1E88A2CF2EDDAF7D00142A91 /* styles */; };
 		1EB481432EDC99CA0031C80F /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 1EB481422EDC99CA0031C80F /* AppIcon.icon */; };
 		1EB482482EDCCC920031C80F /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 1EB481422EDC99CA0031C80F /* AppIcon.icon */; };
 		1EB482C82EDCEA540031C80F /* Full Screen Safari Extension iOS.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1EB482462EDCCC000031C80F /* Full Screen Safari Extension iOS.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -411,14 +411,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E88A2D52EDDAF7E00142A91 /* options.html in Resources */,
-				1E88A2D62EDDAF7E00142A91 /* scripts in Resources */,
-				1E88A2D72EDDAF7E00142A91 /* styles in Resources */,
-				1E88A2D82EDDAF7E00142A91 /* LICENSE in Resources */,
-				1E88A2D92EDDAF7E00142A91 /* _locales in Resources */,
-				1E88A2DA2EDDAF7E00142A91 /* palette.html in Resources */,
-				1E88A2DB2EDDAF7E00142A91 /* images in Resources */,
-				1E88A2DC2EDDAF7E00142A91 /* manifest.json in Resources */,
+				1E181F8A2EDF030B004DDC29 /* _locales in Resources */,
+				1E181F8B2EDF030B004DDC29 /* images in Resources */,
+				1E181F8C2EDF030B004DDC29 /* LICENSE in Resources */,
+				1E181F8D2EDF030B004DDC29 /* manifest.json in Resources */,
+				1E181F8E2EDF030B004DDC29 /* options.html in Resources */,
+				1E181F8F2EDF030B004DDC29 /* palette.html in Resources */,
+				1E181F902EDF030B004DDC29 /* scripts in Resources */,
+				1E181F912EDF030B004DDC29 /* styles in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,14 +434,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E88A2DD2EDDAF8E00142A91 /* _locales in Resources */,
-				1E88A2DE2EDDAF8E00142A91 /* images in Resources */,
-				1E88A2DF2EDDAF8E00142A91 /* LICENSE in Resources */,
-				1E88A2E02EDDAF8E00142A91 /* manifest.json in Resources */,
-				1E88A2E12EDDAF8E00142A91 /* options.html in Resources */,
-				1E88A2E22EDDAF8E00142A91 /* palette.html in Resources */,
-				1E88A2E32EDDAF8E00142A91 /* scripts in Resources */,
-				1E88A2E42EDDAF8E00142A91 /* styles in Resources */,
+				1E181F922EDF0310004DDC29 /* _locales in Resources */,
+				1E181F932EDF0310004DDC29 /* images in Resources */,
+				1E181F942EDF0310004DDC29 /* LICENSE in Resources */,
+				1E181F952EDF0310004DDC29 /* manifest.json in Resources */,
+				1E181F962EDF0310004DDC29 /* options.html in Resources */,
+				1E181F972EDF0310004DDC29 /* palette.html in Resources */,
+				1E181F982EDF0310004DDC29 /* scripts in Resources */,
+				1E181F992EDF0310004DDC29 /* styles in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
