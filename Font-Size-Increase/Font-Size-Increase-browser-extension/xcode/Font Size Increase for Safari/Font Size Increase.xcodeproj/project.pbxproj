@@ -1,0 +1,1033 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1E4DCD762EE1E888007B2664 /* Font Size Increase for Safari extension iOS.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1EDFB82B2EE0D11D002AEABB /* Font Size Increase for Safari extension iOS.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1EB091432EE0D39700CB70D7 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 1EB0913C2EE0D39700CB70D7 /* images */; };
+		1EB091442EE0D39700CB70D7 /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = 1EB0913D2EE0D39700CB70D7 /* _locales */; };
+		1EB091452EE0D39700CB70D7 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 1EB0913E2EE0D39700CB70D7 /* LICENSE */; };
+		1EB091462EE0D39700CB70D7 /* options.html in Resources */ = {isa = PBXBuildFile; fileRef = 1EB0913F2EE0D39700CB70D7 /* options.html */; };
+		1EB091472EE0D39700CB70D7 /* scripts in Resources */ = {isa = PBXBuildFile; fileRef = 1EB091402EE0D39700CB70D7 /* scripts */; };
+		1EB091482EE0D39700CB70D7 /* styles in Resources */ = {isa = PBXBuildFile; fileRef = 1EB091412EE0D39700CB70D7 /* styles */; };
+		1EB091492EE0D39700CB70D7 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 1EB091422EE0D39700CB70D7 /* manifest.json */; };
+		1EB0914A2EE0D3A100CB70D7 /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = 1EB0913D2EE0D39700CB70D7 /* _locales */; };
+		1EB0914B2EE0D3A100CB70D7 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 1EB0913C2EE0D39700CB70D7 /* images */; };
+		1EB0914C2EE0D3A100CB70D7 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 1EB0913E2EE0D39700CB70D7 /* LICENSE */; };
+		1EB0914D2EE0D3A100CB70D7 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 1EB091422EE0D39700CB70D7 /* manifest.json */; };
+		1EB0914E2EE0D3A100CB70D7 /* options.html in Resources */ = {isa = PBXBuildFile; fileRef = 1EB0913F2EE0D39700CB70D7 /* options.html */; };
+		1EB0914F2EE0D3A100CB70D7 /* scripts in Resources */ = {isa = PBXBuildFile; fileRef = 1EB091402EE0D39700CB70D7 /* scripts */; };
+		1EB091502EE0D3A100CB70D7 /* styles in Resources */ = {isa = PBXBuildFile; fileRef = 1EB091412EE0D39700CB70D7 /* styles */; };
+		1EB091A42EE0DDD600CB70D7 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 1EB091A32EE0DDD600CB70D7 /* AppIcon.icon */; };
+		1EB091A52EE0DDD600CB70D7 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 1EB091A32EE0DDD600CB70D7 /* AppIcon.icon */; };
+		1EDFB7B62EE0C950002AEABB /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 1EDFB7B52EE0C950002AEABB /* Config.xcconfig */; };
+		1EDFB81E2EE0D102002AEABB /* Font Size Increase for Safari extension macOS.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1EDFB8062EE0D102002AEABB /* Font Size Increase for Safari extension macOS.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1E4DCD772EE1E888007B2664 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1EDFB71E2EE0C7E5002AEABB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1EDFB8242EE0D11D002AEABB;
+			remoteInfo = "Font Size Increase for Safari extension iOS";
+		};
+		1EDFB81C2EE0D102002AEABB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1EDFB71E2EE0C7E5002AEABB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1EDFB8052EE0D102002AEABB;
+			remoteInfo = "Font Size Increase Safari";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1E4DCD272EE1E33E007B2664 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				1E4DCD762EE1E888007B2664 /* Font Size Increase for Safari extension iOS.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EDFB8232EE0D102002AEABB /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				1EDFB81E2EE0D102002AEABB /* Font Size Increase for Safari extension macOS.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1EB0913C2EE0D39700CB70D7 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
+		1EB0913D2EE0D39700CB70D7 /* _locales */ = {isa = PBXFileReference; lastKnownFileType = folder; path = _locales; sourceTree = "<group>"; };
+		1EB0913E2EE0D39700CB70D7 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		1EB0913F2EE0D39700CB70D7 /* options.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = options.html; sourceTree = "<group>"; };
+		1EB091402EE0D39700CB70D7 /* scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = scripts; sourceTree = "<group>"; };
+		1EB091412EE0D39700CB70D7 /* styles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = styles; sourceTree = "<group>"; };
+		1EB091422EE0D39700CB70D7 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
+		1EB091A32EE0DDD600CB70D7 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
+		1EDFB7262EE0C7E5002AEABB /* Font Size Increase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Font Size Increase.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EDFB7B52EE0C950002AEABB /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		1EDFB7BC2EE0C972002AEABB /* Font Size Increase iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Font Size Increase iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EDFB8062EE0D102002AEABB /* Font Size Increase for Safari extension macOS.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Font Size Increase for Safari extension macOS.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EDFB82B2EE0D11D002AEABB /* Font Size Increase for Safari extension iOS.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Font Size Increase for Safari extension iOS.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		1E4DCD7A2EE1EE4D007B2664 /* Exceptions for "macOS (Extension)" folder in "Font Size Increase for Safari extension iOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				SafariWebExtensionHandler.swift,
+			);
+			target = 1EDFB8242EE0D11D002AEABB /* Font Size Increase for Safari extension iOS */;
+		};
+		1EB0919F2EE0D60B00CB70D7 /* Exceptions for "macOS" folder in "Font Size Increase macOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1EDFB7252EE0C7E5002AEABB /* Font Size Increase macOS */;
+		};
+		1EB091A02EE0D60E00CB70D7 /* Exceptions for "iOS" folder in "Font Size Increase iOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			platformFiltersByRelativePath = {
+				"/Localized: LaunchScreen.storyboard" = (ios, );
+			};
+			target = 1EDFB7BB2EE0C972002AEABB /* Font Size Increase iOS */;
+		};
+		1EB091A12EE0D61000CB70D7 /* Exceptions for "iOS (Extension)" folder in "Font Size Increase for Safari extension macOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1EDFB8052EE0D102002AEABB /* Font Size Increase for Safari extension macOS */;
+		};
+		1EB091A22EE0D61100CB70D7 /* Exceptions for "macOS (Extension)" folder in "Font Size Increase for Safari extension macOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1EDFB8052EE0D102002AEABB /* Font Size Increase for Safari extension macOS */;
+		};
+		1EDFB8002EE0D0DD002AEABB /* Exceptions for "Shared" folder in "Font Size Increase iOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Assets.xcassets,
+				FeedParser.swift,
+				forest.mov,
+				Localizable.xcstrings,
+				PrivacyInfo.xcprivacy,
+				StefanFunctions.swift,
+				StefanLinks.swift,
+			);
+			target = 1EDFB7BB2EE0C972002AEABB /* Font Size Increase iOS */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		1EB091532EE0D4D100CB70D7 /* iOS (Extension) */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1EB091A12EE0D61000CB70D7 /* Exceptions for "iOS (Extension)" folder in "Font Size Increase for Safari extension macOS" target */,
+			);
+			path = "iOS (Extension)";
+			sourceTree = "<group>";
+		};
+		1EB091582EE0D4DC00CB70D7 /* macOS (Extension) */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1EB091A22EE0D61100CB70D7 /* Exceptions for "macOS (Extension)" folder in "Font Size Increase for Safari extension macOS" target */,
+				1E4DCD7A2EE1EE4D007B2664 /* Exceptions for "macOS (Extension)" folder in "Font Size Increase for Safari extension iOS" target */,
+			);
+			path = "macOS (Extension)";
+			sourceTree = "<group>";
+		};
+		1EDFB7282EE0C7E5002AEABB /* macOS */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1EB0919F2EE0D60B00CB70D7 /* Exceptions for "macOS" folder in "Font Size Increase macOS" target */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		1EDFB7BD2EE0C972002AEABB /* iOS */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1EB091A02EE0D60E00CB70D7 /* Exceptions for "iOS" folder in "Font Size Increase iOS" target */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		1EDFB7C72EE0C97A002AEABB /* Shared */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1EDFB8002EE0D0DD002AEABB /* Exceptions for "Shared" folder in "Font Size Increase iOS" target */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1EDFB7232EE0C7E5002AEABB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EDFB7B92EE0C972002AEABB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EDFB8032EE0D102002AEABB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EDFB8262EE0D11D002AEABB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1E4DCD232EE1E33E007B2664 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1EB08F532EE0D34800CB70D7 /* Shared (Extension) */ = {
+			isa = PBXGroup;
+			children = (
+				1EB08F542EE0D34F00CB70D7 /* Resources */,
+			);
+			path = "Shared (Extension)";
+			sourceTree = "<group>";
+		};
+		1EB08F542EE0D34F00CB70D7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1EB0913D2EE0D39700CB70D7 /* _locales */,
+				1EB0913C2EE0D39700CB70D7 /* images */,
+				1EB0913E2EE0D39700CB70D7 /* LICENSE */,
+				1EB091422EE0D39700CB70D7 /* manifest.json */,
+				1EB0913F2EE0D39700CB70D7 /* options.html */,
+				1EB091402EE0D39700CB70D7 /* scripts */,
+				1EB091412EE0D39700CB70D7 /* styles */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		1EDFB71D2EE0C7E5002AEABB = {
+			isa = PBXGroup;
+			children = (
+				1EDFB7B52EE0C950002AEABB /* Config.xcconfig */,
+				1EB091A32EE0DDD600CB70D7 /* AppIcon.icon */,
+				1EDFB7C72EE0C97A002AEABB /* Shared */,
+				1EB08F532EE0D34800CB70D7 /* Shared (Extension) */,
+				1EDFB7282EE0C7E5002AEABB /* macOS */,
+				1EDFB7BD2EE0C972002AEABB /* iOS */,
+				1EB091582EE0D4DC00CB70D7 /* macOS (Extension) */,
+				1EB091532EE0D4D100CB70D7 /* iOS (Extension) */,
+				1E4DCD232EE1E33E007B2664 /* Frameworks */,
+				1EDFB7272EE0C7E5002AEABB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1EDFB7272EE0C7E5002AEABB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1EDFB7262EE0C7E5002AEABB /* Font Size Increase.app */,
+				1EDFB7BC2EE0C972002AEABB /* Font Size Increase iOS.app */,
+				1EDFB8062EE0D102002AEABB /* Font Size Increase for Safari extension macOS.appex */,
+				1EDFB82B2EE0D11D002AEABB /* Font Size Increase for Safari extension iOS.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1EDFB7252EE0C7E5002AEABB /* Font Size Increase macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1EDFB7312EE0C7E7002AEABB /* Build configuration list for PBXNativeTarget "Font Size Increase macOS" */;
+			buildPhases = (
+				1EDFB7222EE0C7E5002AEABB /* Sources */,
+				1EDFB7232EE0C7E5002AEABB /* Frameworks */,
+				1EDFB7242EE0C7E5002AEABB /* Resources */,
+				1EDFB8232EE0D102002AEABB /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1EDFB81D2EE0D102002AEABB /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				1EDFB7282EE0C7E5002AEABB /* macOS */,
+				1EDFB7C72EE0C97A002AEABB /* Shared */,
+			);
+			name = "Font Size Increase macOS";
+			packageProductDependencies = (
+			);
+			productName = "Font Size Increase";
+			productReference = 1EDFB7262EE0C7E5002AEABB /* Font Size Increase.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1EDFB7BB2EE0C972002AEABB /* Font Size Increase iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1EDFB7C42EE0C973002AEABB /* Build configuration list for PBXNativeTarget "Font Size Increase iOS" */;
+			buildPhases = (
+				1EDFB7B82EE0C972002AEABB /* Sources */,
+				1EDFB7B92EE0C972002AEABB /* Frameworks */,
+				1EDFB7BA2EE0C972002AEABB /* Resources */,
+				1E4DCD272EE1E33E007B2664 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1E4DCD782EE1E888007B2664 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				1EDFB7BD2EE0C972002AEABB /* iOS */,
+			);
+			name = "Font Size Increase iOS";
+			packageProductDependencies = (
+			);
+			productName = "Font Size Increase iOS";
+			productReference = 1EDFB7BC2EE0C972002AEABB /* Font Size Increase iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1EDFB8052EE0D102002AEABB /* Font Size Increase for Safari extension macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1EDFB8202EE0D102002AEABB /* Build configuration list for PBXNativeTarget "Font Size Increase for Safari extension macOS" */;
+			buildPhases = (
+				1EDFB8022EE0D102002AEABB /* Sources */,
+				1EDFB8032EE0D102002AEABB /* Frameworks */,
+				1EDFB8042EE0D102002AEABB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				1EB091532EE0D4D100CB70D7 /* iOS (Extension) */,
+				1EB091582EE0D4DC00CB70D7 /* macOS (Extension) */,
+			);
+			name = "Font Size Increase for Safari extension macOS";
+			packageProductDependencies = (
+			);
+			productName = "Font Size Increase Safari";
+			productReference = 1EDFB8062EE0D102002AEABB /* Font Size Increase for Safari extension macOS.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		1EDFB8242EE0D11D002AEABB /* Font Size Increase for Safari extension iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1EDFB8282EE0D11D002AEABB /* Build configuration list for PBXNativeTarget "Font Size Increase for Safari extension iOS" */;
+			buildPhases = (
+				1EDFB8252EE0D11D002AEABB /* Sources */,
+				1EDFB8262EE0D11D002AEABB /* Frameworks */,
+				1EDFB8272EE0D11D002AEABB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Font Size Increase for Safari extension iOS";
+			packageProductDependencies = (
+			);
+			productName = "Font Size Increase Safari";
+			productReference = 1EDFB82B2EE0D11D002AEABB /* Font Size Increase for Safari extension iOS.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1EDFB71E2EE0C7E5002AEABB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2610;
+				LastUpgradeCheck = 2610;
+				TargetAttributes = {
+					1EDFB7252EE0C7E5002AEABB = {
+						CreatedOnToolsVersion = 26.1.1;
+					};
+					1EDFB7BB2EE0C972002AEABB = {
+						CreatedOnToolsVersion = 26.1.1;
+					};
+					1EDFB8052EE0D102002AEABB = {
+						CreatedOnToolsVersion = 26.1.1;
+					};
+				};
+			};
+			buildConfigurationList = 1EDFB7212EE0C7E5002AEABB /* Build configuration list for PBXProject "Font Size Increase" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1EDFB71D2EE0C7E5002AEABB;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 1EDFB7272EE0C7E5002AEABB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1EDFB7252EE0C7E5002AEABB /* Font Size Increase macOS */,
+				1EDFB7BB2EE0C972002AEABB /* Font Size Increase iOS */,
+				1EDFB8052EE0D102002AEABB /* Font Size Increase for Safari extension macOS */,
+				1EDFB8242EE0D11D002AEABB /* Font Size Increase for Safari extension iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1EDFB7242EE0C7E5002AEABB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1EDFB7B62EE0C950002AEABB /* Config.xcconfig in Resources */,
+				1EB091A52EE0DDD600CB70D7 /* AppIcon.icon in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EDFB7BA2EE0C972002AEABB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1EB091A42EE0DDD600CB70D7 /* AppIcon.icon in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EDFB8042EE0D102002AEABB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1EB0914A2EE0D3A100CB70D7 /* _locales in Resources */,
+				1EB0914B2EE0D3A100CB70D7 /* images in Resources */,
+				1EB0914C2EE0D3A100CB70D7 /* LICENSE in Resources */,
+				1EB0914D2EE0D3A100CB70D7 /* manifest.json in Resources */,
+				1EB0914E2EE0D3A100CB70D7 /* options.html in Resources */,
+				1EB0914F2EE0D3A100CB70D7 /* scripts in Resources */,
+				1EB091502EE0D3A100CB70D7 /* styles in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EDFB8272EE0D11D002AEABB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1EB091432EE0D39700CB70D7 /* images in Resources */,
+				1EB091442EE0D39700CB70D7 /* _locales in Resources */,
+				1EB091452EE0D39700CB70D7 /* LICENSE in Resources */,
+				1EB091462EE0D39700CB70D7 /* options.html in Resources */,
+				1EB091472EE0D39700CB70D7 /* scripts in Resources */,
+				1EB091482EE0D39700CB70D7 /* styles in Resources */,
+				1EB091492EE0D39700CB70D7 /* manifest.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1EDFB7222EE0C7E5002AEABB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EDFB7B82EE0C972002AEABB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EDFB8022EE0D102002AEABB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EDFB8252EE0D11D002AEABB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1E4DCD782EE1E888007B2664 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1EDFB8242EE0D11D002AEABB /* Font Size Increase for Safari extension iOS */;
+			targetProxy = 1E4DCD772EE1E888007B2664 /* PBXContainerItemProxy */;
+		};
+		1EDFB81D2EE0D102002AEABB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1EDFB8052EE0D102002AEABB /* Font Size Increase for Safari extension macOS */;
+			targetProxy = 1EDFB81C2EE0D102002AEABB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1EDFB72F2EE0C7E7002AEABB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EDFB7B52EE0C950002AEABB /* Config.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1EDFB7302EE0C7E7002AEABB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EDFB7B52EE0C950002AEABB /* Config.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		1EDFB7322EE0C7E7002AEABB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EDFB7B52EE0C950002AEABB /* Config.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Font Size Increase for Safari";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = "$(VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanvd.fontsizeincreasesafari;
+				PRODUCT_NAME = "Font Size Increase";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		1EDFB7332EE0C7E7002AEABB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EDFB7B52EE0C950002AEABB /* Config.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Font Size Increase for Safari";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = "$(VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanvd.fontsizeincreasesafari;
+				PRODUCT_NAME = "Font Size Increase";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		1EDFB7C52EE0C973002AEABB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EDFB7B52EE0C950002AEABB /* Config.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Font Size Increase for Safari";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = "$(VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanvd.fontsizeincreasesafari;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Debug;
+		};
+		1EDFB7C62EE0C973002AEABB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EDFB7B52EE0C950002AEABB /* Config.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Font Size Increase for Safari";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = "$(VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanvd.fontsizeincreasesafari;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1EDFB8212EE0D102002AEABB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EDFB7B52EE0C950002AEABB /* Config.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Font Size Increase Safari";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = "$(VERSION)";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanvd.fontsizeincreasesafari.extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		1EDFB8222EE0D102002AEABB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EDFB7B52EE0C950002AEABB /* Config.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Font Size Increase Safari";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = "$(VERSION)";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanvd.fontsizeincreasesafari.extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		1EDFB8292EE0D11D002AEABB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EDFB7B52EE0C950002AEABB /* Config.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Font Size Increase Safari";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = "$(VERSION)";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanvd.fontsizeincreasesafari.extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Debug;
+		};
+		1EDFB82A2EE0D11D002AEABB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EDFB7B52EE0C950002AEABB /* Config.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Font Size Increase Safari";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = "$(VERSION)";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanvd.fontsizeincreasesafari.extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1EDFB7212EE0C7E5002AEABB /* Build configuration list for PBXProject "Font Size Increase" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EDFB72F2EE0C7E7002AEABB /* Debug */,
+				1EDFB7302EE0C7E7002AEABB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1EDFB7312EE0C7E7002AEABB /* Build configuration list for PBXNativeTarget "Font Size Increase macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EDFB7322EE0C7E7002AEABB /* Debug */,
+				1EDFB7332EE0C7E7002AEABB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1EDFB7C42EE0C973002AEABB /* Build configuration list for PBXNativeTarget "Font Size Increase iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EDFB7C52EE0C973002AEABB /* Debug */,
+				1EDFB7C62EE0C973002AEABB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1EDFB8202EE0D102002AEABB /* Build configuration list for PBXNativeTarget "Font Size Increase for Safari extension macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EDFB8212EE0D102002AEABB /* Debug */,
+				1EDFB8222EE0D102002AEABB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1EDFB8282EE0D11D002AEABB /* Build configuration list for PBXNativeTarget "Font Size Increase for Safari extension iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EDFB8292EE0D11D002AEABB /* Debug */,
+				1EDFB82A2EE0D11D002AEABB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1EDFB71E2EE0C7E5002AEABB /* Project object */;
+}
