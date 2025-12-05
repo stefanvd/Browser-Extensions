@@ -63,7 +63,7 @@ class StefanLinks {
     func linkprivacy() -> String{
         return "https://www.stefanvd.net/privacy/"
     }
- 
+    
     func linksourcecode() -> String{
         return "https://github.com/stefanvd/Browser-Extensions/tree/master/Font-Size-Increase/Font-Size-Increase-browser-extension"
     }
@@ -108,7 +108,7 @@ class StefanLinks {
     func webapptrafficblinker() -> String{
         return "https://apps.apple.com/app/id1073990483"
     }
-   
+    
     func webappmylunarnewyear() -> String{
         return "https://apps.apple.com/app/id1596469569"
     }
@@ -127,6 +127,10 @@ class StefanLinks {
     
     func webappfontsizeincrease() -> String{
         return "https://apps.apple.com/app/id6756031354"
+    }
+    
+    func webappfontsizedecrease() -> String{
+        return "https://apps.apple.com/app/id6756031162"
     }
     
 }

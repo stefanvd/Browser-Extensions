@@ -183,6 +183,21 @@ struct OtherAppsView: View {
                     .accessibilityHint(Text("Opens in your web browser"))
                            
                     Button(action: {
+                        StefanFunctions().openURL(URL(string: StefanLinks().webappfontsizedecrease())!)
+                    }) {
+                        HStack(spacing:10) {
+                            Image(.appFontSizeDecrease)
+                                .resizable()
+                                .frame(width: 50, height: 50)
+                                .cornerRadius(10)
+                                .accessibilityHidden(true)
+                            Text("Font Size Decrease for Safari")
+                        }.frame(maxWidth:.infinity, alignment: .leading)
+                    }
+                    .accessibilityLabel(Text("Open app page: Font Size Decrease for Safari"))
+                    .accessibilityHint(Text("Opens in your web browser"))
+                    
+                    Button(action: {
                         StefanFunctions().openURL(URL(string: StefanLinks().webappcanadarace())!)
                     }) {
                         HStack(spacing:10) {

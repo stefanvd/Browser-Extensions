@@ -111,20 +111,6 @@
 			};
 			target = 1EDFB7BB2EE0C972002AEABB /* Font Size Increase iOS */;
 		};
-		1EB091A12EE0D61000CB70D7 /* Exceptions for "iOS (Extension)" folder in "Font Size Increase for Safari extension macOS" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 1EDFB8052EE0D102002AEABB /* Font Size Increase for Safari extension macOS */;
-		};
-		1EB091A22EE0D61100CB70D7 /* Exceptions for "macOS (Extension)" folder in "Font Size Increase for Safari extension macOS" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 1EDFB8052EE0D102002AEABB /* Font Size Increase for Safari extension macOS */;
-		};
 		1EDFB8002EE0D0DD002AEABB /* Exceptions for "Shared" folder in "Font Size Increase iOS" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -143,16 +129,12 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		1EB091532EE0D4D100CB70D7 /* iOS (Extension) */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				1EB091A12EE0D61000CB70D7 /* Exceptions for "iOS (Extension)" folder in "Font Size Increase for Safari extension macOS" target */,
-			);
 			path = "iOS (Extension)";
 			sourceTree = "<group>";
 		};
 		1EB091582EE0D4DC00CB70D7 /* macOS (Extension) */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				1EB091A22EE0D61100CB70D7 /* Exceptions for "macOS (Extension)" folder in "Font Size Increase for Safari extension macOS" target */,
 				1E4DCD7A2EE1EE4D007B2664 /* Exceptions for "macOS (Extension)" folder in "Font Size Increase for Safari extension iOS" target */,
 			);
 			path = "macOS (Extension)";
@@ -734,6 +716,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
@@ -777,6 +762,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;

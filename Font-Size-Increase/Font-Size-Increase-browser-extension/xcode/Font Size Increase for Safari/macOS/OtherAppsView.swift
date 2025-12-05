@@ -217,6 +217,23 @@ struct OtherAppsView: View {
                     .accessibilityLabel(Text("Open app page: Snow for Safari"))
                     .accessibilityHint(Text("Opens in your web browser"))
                     
+                    Button(action: {
+                        if let url = URL(string: StefanLinks().webappfontsizedecrease()) {
+                            StefanLinks().openURL(url)
+                        }
+                    }) {
+                        HStack(spacing:10) {
+                            Image(nsImage: NSImage(named: "AppFontSizeDecrease")!)
+                                .resizable()
+                                .frame(width: 50, height: 50)
+                                .cornerRadius(10)
+                                .accessibilityHidden(true)
+                            Text("Font Size Decrease for Safari")
+                        }
+                    }
+                    .buttonStyle(.link)
+                    .accessibilityLabel(Text("Open app page: Font Size Decrease for Safari"))
+                    .accessibilityHint(Text("Opens in your web browser"))
                     
                     Button(action: {
                         if let url = URL(string: StefanLinks().webappcanadarace()) {

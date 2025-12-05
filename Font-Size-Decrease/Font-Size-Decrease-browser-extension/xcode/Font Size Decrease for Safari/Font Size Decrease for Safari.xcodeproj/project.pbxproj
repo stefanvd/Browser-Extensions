@@ -1,0 +1,1059 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1EE5D19B2EE316E6004D77F8 /* Font Size Decrease for Safari extension macOS.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1EE5D1832EE316E6004D77F8 /* Font Size Decrease for Safari extension macOS.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1EE5D1F02EE31BC6004D77F8 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 1EE5D16D2EE316AB004D77F8 /* AppIcon.icon */; };
+		1EE5D2372EE32230004D77F8 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 1EE5D16D2EE316AB004D77F8 /* AppIcon.icon */; };
+		1EE5D7F82EE32523004D77F8 /* options.html in Resources */ = {isa = PBXBuildFile; fileRef = 1EE5D7F12EE32522004D77F8 /* options.html */; };
+		1EE5D7F92EE32523004D77F8 /* styles in Resources */ = {isa = PBXBuildFile; fileRef = 1EE5D7F22EE32522004D77F8 /* styles */; };
+		1EE5D7FA2EE32523004D77F8 /* scripts in Resources */ = {isa = PBXBuildFile; fileRef = 1EE5D7F32EE32523004D77F8 /* scripts */; };
+		1EE5D7FB2EE32523004D77F8 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 1EE5D7F42EE32523004D77F8 /* images */; };
+		1EE5D7FC2EE32523004D77F8 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 1EE5D7F52EE32523004D77F8 /* LICENSE */; };
+		1EE5D7FD2EE32523004D77F8 /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = 1EE5D7F62EE32523004D77F8 /* _locales */; };
+		1EE5D7FE2EE32523004D77F8 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 1EE5D7F72EE32523004D77F8 /* manifest.json */; };
+		1EE5D7FF2EE3252E004D77F8 /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = 1EE5D7F62EE32523004D77F8 /* _locales */; };
+		1EE5D8002EE3252E004D77F8 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 1EE5D7F42EE32523004D77F8 /* images */; };
+		1EE5D8012EE3252E004D77F8 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 1EE5D7F52EE32523004D77F8 /* LICENSE */; };
+		1EE5D8022EE3252E004D77F8 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 1EE5D7F72EE32523004D77F8 /* manifest.json */; };
+		1EE5D8032EE3252E004D77F8 /* options.html in Resources */ = {isa = PBXBuildFile; fileRef = 1EE5D7F12EE32522004D77F8 /* options.html */; };
+		1EE5D8042EE3252E004D77F8 /* scripts in Resources */ = {isa = PBXBuildFile; fileRef = 1EE5D7F32EE32523004D77F8 /* scripts */; };
+		1EE5D8052EE3252E004D77F8 /* styles in Resources */ = {isa = PBXBuildFile; fileRef = 1EE5D7F22EE32522004D77F8 /* styles */; };
+		1EE5D8A32EE3484B004D77F8 /* Font Size Decrease for Safari extension iOS.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1EE5D1A82EE316EB004D77F8 /* Font Size Decrease for Safari extension iOS.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1EE5D1992EE316E6004D77F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1EE5D10A2EE31662004D77F8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1EE5D1822EE316E6004D77F8;
+			remoteInfo = "Font Size Decrease for Safari extension";
+		};
+		1EE5D8A02EE34841004D77F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1EE5D10A2EE31662004D77F8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1EE5D1A12EE316EB004D77F8;
+			remoteInfo = "Font Size Decrease for Safari extension iOS";
+		};
+		1EE5D8A42EE3484B004D77F8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1EE5D10A2EE31662004D77F8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1EE5D1A12EE316EB004D77F8;
+			remoteInfo = "Font Size Decrease for Safari extension iOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1EE5D1A02EE316E6004D77F8 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				1EE5D19B2EE316E6004D77F8 /* Font Size Decrease for Safari extension macOS.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EE5D8A62EE3484B004D77F8 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				1EE5D8A32EE3484B004D77F8 /* Font Size Decrease for Safari extension iOS.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1EE5D1122EE31662004D77F8 /* Font Size Decrease for Safari.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Font Size Decrease for Safari.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EE5D16C2EE316AB004D77F8 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		1EE5D16D2EE316AB004D77F8 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
+		1EE5D1742EE316C8004D77F8 /* Font Size Decrease for Safari iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Font Size Decrease for Safari iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EE5D1832EE316E6004D77F8 /* Font Size Decrease for Safari extension macOS.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Font Size Decrease for Safari extension macOS.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EE5D1A82EE316EB004D77F8 /* Font Size Decrease for Safari extension iOS.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Font Size Decrease for Safari extension iOS.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EE5D7F12EE32522004D77F8 /* options.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = options.html; sourceTree = "<group>"; };
+		1EE5D7F22EE32522004D77F8 /* styles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = styles; sourceTree = "<group>"; };
+		1EE5D7F32EE32523004D77F8 /* scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = scripts; sourceTree = "<group>"; };
+		1EE5D7F42EE32523004D77F8 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
+		1EE5D7F52EE32523004D77F8 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		1EE5D7F62EE32523004D77F8 /* _locales */ = {isa = PBXFileReference; lastKnownFileType = folder; path = _locales; sourceTree = "<group>"; };
+		1EE5D7F72EE32523004D77F8 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		1EE5D2122EE321ED004D77F8 /* Exceptions for "iOS" folder in "Font Size Decrease for Safari iOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			platformFiltersByRelativePath = {
+				"/Localized: LaunchScreen.storyboard" = (ios, );
+			};
+			target = 1EE5D1732EE316C8004D77F8 /* Font Size Decrease for Safari iOS */;
+		};
+		1EE5D21F2EE321FF004D77F8 /* Exceptions for "macOS" folder in "Font Size Decrease for Safari macOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Credits.rtf,
+				Info.plist,
+			);
+			target = 1EE5D1112EE31662004D77F8 /* Font Size Decrease for Safari macOS */;
+		};
+		1EE5D2202EE321FF004D77F8 /* Exceptions for "macOS (Extension)" folder in "Font Size Decrease for Safari macOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1EE5D1112EE31662004D77F8 /* Font Size Decrease for Safari macOS */;
+		};
+		1EE5D2212EE321FF004D77F8 /* Exceptions for "iOS (Extension)" folder in "Font Size Decrease for Safari macOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1EE5D1112EE31662004D77F8 /* Font Size Decrease for Safari macOS */;
+		};
+		1EE5D2362EE3220F004D77F8 /* Exceptions for "Shared" folder in "Font Size Decrease for Safari iOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Assets.xcassets,
+				FeedParser.swift,
+				forest.mov,
+				Localizable.xcstrings,
+				PrivacyInfo.xcprivacy,
+				StefanFunctions.swift,
+				StefanLinks.swift,
+			);
+			target = 1EE5D1732EE316C8004D77F8 /* Font Size Decrease for Safari iOS */;
+		};
+		1EE5D8072EE32537004D77F8 /* Exceptions for "macOS (Extension)" folder in "Font Size Decrease for Safari extension macOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				SafariWebExtensionHandler.swift,
+			);
+			target = 1EE5D1822EE316E6004D77F8 /* Font Size Decrease for Safari extension macOS */;
+		};
+		1EE5D8092EE3253B004D77F8 /* Exceptions for "macOS (Extension)" folder in "Font Size Decrease for Safari extension iOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				SafariWebExtensionHandler.swift,
+			);
+			target = 1EE5D1A12EE316EB004D77F8 /* Font Size Decrease for Safari extension iOS */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		1EE5D1142EE31662004D77F8 /* macOS */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1EE5D21F2EE321FF004D77F8 /* Exceptions for "macOS" folder in "Font Size Decrease for Safari macOS" target */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		1EE5D1752EE316C8004D77F8 /* iOS */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1EE5D2122EE321ED004D77F8 /* Exceptions for "iOS" folder in "Font Size Decrease for Safari iOS" target */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		1EE5D1BE2EE3173A004D77F8 /* Shared */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1EE5D2362EE3220F004D77F8 /* Exceptions for "Shared" folder in "Font Size Decrease for Safari iOS" target */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		1EE5D1E92EE31771004D77F8 /* macOS (Extension) */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1EE5D2202EE321FF004D77F8 /* Exceptions for "macOS (Extension)" folder in "Font Size Decrease for Safari macOS" target */,
+				1EE5D8072EE32537004D77F8 /* Exceptions for "macOS (Extension)" folder in "Font Size Decrease for Safari extension macOS" target */,
+				1EE5D8092EE3253B004D77F8 /* Exceptions for "macOS (Extension)" folder in "Font Size Decrease for Safari extension iOS" target */,
+			);
+			path = "macOS (Extension)";
+			sourceTree = "<group>";
+		};
+		1EE5D1EC2EE31771004D77F8 /* iOS (Extension) */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1EE5D2212EE321FF004D77F8 /* Exceptions for "iOS (Extension)" folder in "Font Size Decrease for Safari macOS" target */,
+			);
+			path = "iOS (Extension)";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1EE5D10F2EE31662004D77F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EE5D1712EE316C8004D77F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EE5D1802EE316E6004D77F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EE5D1A32EE316EB004D77F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1EE5D1092EE31661004D77F8 = {
+			isa = PBXGroup;
+			children = (
+				1EE5D16C2EE316AB004D77F8 /* Config.xcconfig */,
+				1EE5D16D2EE316AB004D77F8 /* AppIcon.icon */,
+				1EE5D1BE2EE3173A004D77F8 /* Shared */,
+				1EE5D7F02EE3250B004D77F8 /* Shared (Extension) */,
+				1EE5D1142EE31662004D77F8 /* macOS */,
+				1EE5D1752EE316C8004D77F8 /* iOS */,
+				1EE5D1E92EE31771004D77F8 /* macOS (Extension) */,
+				1EE5D1EC2EE31771004D77F8 /* iOS (Extension) */,
+				1EE5D8A22EE3484B004D77F8 /* Frameworks */,
+				1EE5D1132EE31662004D77F8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1EE5D1132EE31662004D77F8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1EE5D1122EE31662004D77F8 /* Font Size Decrease for Safari.app */,
+				1EE5D1742EE316C8004D77F8 /* Font Size Decrease for Safari iOS.app */,
+				1EE5D1832EE316E6004D77F8 /* Font Size Decrease for Safari extension macOS.appex */,
+				1EE5D1A82EE316EB004D77F8 /* Font Size Decrease for Safari extension iOS.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1EE5D7EF2EE324FB004D77F8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1EE5D7F62EE32523004D77F8 /* _locales */,
+				1EE5D7F42EE32523004D77F8 /* images */,
+				1EE5D7F52EE32523004D77F8 /* LICENSE */,
+				1EE5D7F72EE32523004D77F8 /* manifest.json */,
+				1EE5D7F12EE32522004D77F8 /* options.html */,
+				1EE5D7F32EE32523004D77F8 /* scripts */,
+				1EE5D7F22EE32522004D77F8 /* styles */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		1EE5D7F02EE3250B004D77F8 /* Shared (Extension) */ = {
+			isa = PBXGroup;
+			children = (
+				1EE5D7EF2EE324FB004D77F8 /* Resources */,
+			);
+			path = "Shared (Extension)";
+			sourceTree = "<group>";
+		};
+		1EE5D8A22EE3484B004D77F8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1EE5D1112EE31662004D77F8 /* Font Size Decrease for Safari macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1EE5D11D2EE31663004D77F8 /* Build configuration list for PBXNativeTarget "Font Size Decrease for Safari macOS" */;
+			buildPhases = (
+				1EE5D10E2EE31662004D77F8 /* Sources */,
+				1EE5D10F2EE31662004D77F8 /* Frameworks */,
+				1EE5D1102EE31662004D77F8 /* Resources */,
+				1EE5D1A02EE316E6004D77F8 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1EE5D19A2EE316E6004D77F8 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				1EE5D1142EE31662004D77F8 /* macOS */,
+				1EE5D1BE2EE3173A004D77F8 /* Shared */,
+				1EE5D1E92EE31771004D77F8 /* macOS (Extension) */,
+				1EE5D1EC2EE31771004D77F8 /* iOS (Extension) */,
+			);
+			name = "Font Size Decrease for Safari macOS";
+			packageProductDependencies = (
+			);
+			productName = "Font Size Decrease for Safari";
+			productReference = 1EE5D1122EE31662004D77F8 /* Font Size Decrease for Safari.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1EE5D1732EE316C8004D77F8 /* Font Size Decrease for Safari iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1EE5D17C2EE316C9004D77F8 /* Build configuration list for PBXNativeTarget "Font Size Decrease for Safari iOS" */;
+			buildPhases = (
+				1EE5D1702EE316C8004D77F8 /* Sources */,
+				1EE5D1712EE316C8004D77F8 /* Frameworks */,
+				1EE5D1722EE316C8004D77F8 /* Resources */,
+				1EE5D8A62EE3484B004D77F8 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1EE5D8A12EE34841004D77F8 /* PBXTargetDependency */,
+				1EE5D8A52EE3484B004D77F8 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				1EE5D1752EE316C8004D77F8 /* iOS */,
+			);
+			name = "Font Size Decrease for Safari iOS";
+			packageProductDependencies = (
+			);
+			productName = "Font Size Decrease for Safari iOS";
+			productReference = 1EE5D1742EE316C8004D77F8 /* Font Size Decrease for Safari iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1EE5D1822EE316E6004D77F8 /* Font Size Decrease for Safari extension macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1EE5D19D2EE316E6004D77F8 /* Build configuration list for PBXNativeTarget "Font Size Decrease for Safari extension macOS" */;
+			buildPhases = (
+				1EE5D17F2EE316E6004D77F8 /* Sources */,
+				1EE5D1802EE316E6004D77F8 /* Frameworks */,
+				1EE5D1812EE316E6004D77F8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Font Size Decrease for Safari extension macOS";
+			packageProductDependencies = (
+			);
+			productName = "Font Size Decrease for Safari extension";
+			productReference = 1EE5D1832EE316E6004D77F8 /* Font Size Decrease for Safari extension macOS.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		1EE5D1A12EE316EB004D77F8 /* Font Size Decrease for Safari extension iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1EE5D1A52EE316EB004D77F8 /* Build configuration list for PBXNativeTarget "Font Size Decrease for Safari extension iOS" */;
+			buildPhases = (
+				1EE5D1A22EE316EB004D77F8 /* Sources */,
+				1EE5D1A32EE316EB004D77F8 /* Frameworks */,
+				1EE5D1A42EE316EB004D77F8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Font Size Decrease for Safari extension iOS";
+			packageProductDependencies = (
+			);
+			productName = "Font Size Decrease for Safari extension";
+			productReference = 1EE5D1A82EE316EB004D77F8 /* Font Size Decrease for Safari extension iOS.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1EE5D10A2EE31662004D77F8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2610;
+				LastUpgradeCheck = 2610;
+				TargetAttributes = {
+					1EE5D1112EE31662004D77F8 = {
+						CreatedOnToolsVersion = 26.1.1;
+					};
+					1EE5D1732EE316C8004D77F8 = {
+						CreatedOnToolsVersion = 26.1.1;
+					};
+					1EE5D1822EE316E6004D77F8 = {
+						CreatedOnToolsVersion = 26.1.1;
+					};
+				};
+			};
+			buildConfigurationList = 1EE5D10D2EE31662004D77F8 /* Build configuration list for PBXProject "Font Size Decrease for Safari" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1EE5D1092EE31661004D77F8;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 1EE5D1132EE31662004D77F8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1EE5D1112EE31662004D77F8 /* Font Size Decrease for Safari macOS */,
+				1EE5D1732EE316C8004D77F8 /* Font Size Decrease for Safari iOS */,
+				1EE5D1822EE316E6004D77F8 /* Font Size Decrease for Safari extension macOS */,
+				1EE5D1A12EE316EB004D77F8 /* Font Size Decrease for Safari extension iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1EE5D1102EE31662004D77F8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1EE5D2372EE32230004D77F8 /* AppIcon.icon in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EE5D1722EE316C8004D77F8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1EE5D1F02EE31BC6004D77F8 /* AppIcon.icon in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EE5D1812EE316E6004D77F8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1EE5D7F82EE32523004D77F8 /* options.html in Resources */,
+				1EE5D7F92EE32523004D77F8 /* styles in Resources */,
+				1EE5D7FA2EE32523004D77F8 /* scripts in Resources */,
+				1EE5D7FB2EE32523004D77F8 /* images in Resources */,
+				1EE5D7FC2EE32523004D77F8 /* LICENSE in Resources */,
+				1EE5D7FD2EE32523004D77F8 /* _locales in Resources */,
+				1EE5D7FE2EE32523004D77F8 /* manifest.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EE5D1A42EE316EB004D77F8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1EE5D7FF2EE3252E004D77F8 /* _locales in Resources */,
+				1EE5D8002EE3252E004D77F8 /* images in Resources */,
+				1EE5D8012EE3252E004D77F8 /* LICENSE in Resources */,
+				1EE5D8022EE3252E004D77F8 /* manifest.json in Resources */,
+				1EE5D8032EE3252E004D77F8 /* options.html in Resources */,
+				1EE5D8042EE3252E004D77F8 /* scripts in Resources */,
+				1EE5D8052EE3252E004D77F8 /* styles in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1EE5D10E2EE31662004D77F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EE5D1702EE316C8004D77F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EE5D17F2EE316E6004D77F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EE5D1A22EE316EB004D77F8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1EE5D19A2EE316E6004D77F8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1EE5D1822EE316E6004D77F8 /* Font Size Decrease for Safari extension macOS */;
+			targetProxy = 1EE5D1992EE316E6004D77F8 /* PBXContainerItemProxy */;
+		};
+		1EE5D8A12EE34841004D77F8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1EE5D1A12EE316EB004D77F8 /* Font Size Decrease for Safari extension iOS */;
+			targetProxy = 1EE5D8A02EE34841004D77F8 /* PBXContainerItemProxy */;
+		};
+		1EE5D8A52EE3484B004D77F8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1EE5D1A12EE316EB004D77F8 /* Font Size Decrease for Safari extension iOS */;
+			targetProxy = 1EE5D8A42EE3484B004D77F8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1EE5D11B2EE31663004D77F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EE5D16C2EE316AB004D77F8 /* Config.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1EE5D11C2EE31663004D77F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EE5D16C2EE316AB004D77F8 /* Config.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		1EE5D11E2EE31663004D77F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EE5D16C2EE316AB004D77F8 /* Config.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Font Size Decrease for Safari";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = "$(VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanvd.fontsizedecreasesafari;
+				PRODUCT_NAME = "Font Size Decrease for Safari";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		1EE5D11F2EE31663004D77F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EE5D16C2EE316AB004D77F8 /* Config.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Font Size Decrease for Safari";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = "$(VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanvd.fontsizedecreasesafari;
+				PRODUCT_NAME = "Font Size Decrease for Safari";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		1EE5D17D2EE316C9004D77F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EE5D16C2EE316AB004D77F8 /* Config.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Font Size Decrease for Safari";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = "$(VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanvd.fontsizedecreasesafari;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Debug;
+		};
+		1EE5D17E2EE316C9004D77F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EE5D16C2EE316AB004D77F8 /* Config.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Font Size Decrease for Safari";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = "$(VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanvd.fontsizedecreasesafari;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1EE5D19E2EE316E6004D77F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EE5D16C2EE316AB004D77F8 /* Config.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Font Size Decrease for Safari extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = "$(VERSION)";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanvd.fontsizedecreasesafari.extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		1EE5D19F2EE316E6004D77F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EE5D16C2EE316AB004D77F8 /* Config.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Font Size Decrease for Safari extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = "$(VERSION)";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanvd.fontsizedecreasesafari.extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		1EE5D1A62EE316EB004D77F8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EE5D16C2EE316AB004D77F8 /* Config.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Font Size Decrease for Safari extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = "$(VERSION)";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanvd.fontsizedecreasesafari.extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Debug;
+		};
+		1EE5D1A72EE316EB004D77F8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EE5D16C2EE316AB004D77F8 /* Config.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Font Size Decrease for Safari extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = "$(VERSION)";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanvd.fontsizedecreasesafari.extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1EE5D10D2EE31662004D77F8 /* Build configuration list for PBXProject "Font Size Decrease for Safari" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EE5D11B2EE31663004D77F8 /* Debug */,
+				1EE5D11C2EE31663004D77F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1EE5D11D2EE31663004D77F8 /* Build configuration list for PBXNativeTarget "Font Size Decrease for Safari macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EE5D11E2EE31663004D77F8 /* Debug */,
+				1EE5D11F2EE31663004D77F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1EE5D17C2EE316C9004D77F8 /* Build configuration list for PBXNativeTarget "Font Size Decrease for Safari iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EE5D17D2EE316C9004D77F8 /* Debug */,
+				1EE5D17E2EE316C9004D77F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1EE5D19D2EE316E6004D77F8 /* Build configuration list for PBXNativeTarget "Font Size Decrease for Safari extension macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EE5D19E2EE316E6004D77F8 /* Debug */,
+				1EE5D19F2EE316E6004D77F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1EE5D1A52EE316EB004D77F8 /* Build configuration list for PBXNativeTarget "Font Size Decrease for Safari extension iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EE5D1A62EE316EB004D77F8 /* Debug */,
+				1EE5D1A72EE316EB004D77F8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1EE5D10A2EE31662004D77F8 /* Project object */;
+}
