@@ -32,7 +32,7 @@
     "content_scripts": [
       {
         "matches": ["http://*/*","https://*/*"],
-        "js": ["scripts/content.js", "scripts/rotate.js"],
+        "js": ["scripts/constants.js", "scripts/content.js", "scripts/rotate.js"],
         "run_at": "document_end"
       }
     ],

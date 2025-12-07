@@ -16,7 +16,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1EE5D1112EE31662004D77F8"
-               BuildableName = "Font Size Decrease for Safari macOS.app"
+               BuildableName = "Font Size Decrease for Safari.app"
                BlueprintName = "Font Size Decrease for Safari macOS"
                ReferencedContainer = "container:Font Size Decrease for Safari.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1EE5D1112EE31662004D77F8"
-            BuildableName = "Font Size Decrease for Safari macOS.app"
+            BuildableName = "Font Size Decrease for Safari.app"
             BlueprintName = "Font Size Decrease for Safari macOS"
             ReferencedContainer = "container:Font Size Decrease for Safari.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1EE5D1112EE31662004D77F8"
-            BuildableName = "Font Size Decrease for Safari macOS.app"
+            BuildableName = "Font Size Decrease for Safari.app"
             BlueprintName = "Font Size Decrease for Safari macOS"
             ReferencedContainer = "container:Font Size Decrease for Safari.xcodeproj">
          </BuildableReference>

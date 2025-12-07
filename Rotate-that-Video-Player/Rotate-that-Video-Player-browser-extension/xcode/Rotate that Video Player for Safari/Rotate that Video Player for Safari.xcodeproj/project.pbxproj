@@ -1,0 +1,1066 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1E18EDE42EE443EA00BF6025 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 1E18EDDC2EE443E900BF6025 /* images */; };
+		1E18EDE52EE443EA00BF6025 /* scripts in Resources */ = {isa = PBXBuildFile; fileRef = 1E18EDDD2EE443E900BF6025 /* scripts */; };
+		1E18EDE62EE443EA00BF6025 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 1E18EDDE2EE443E900BF6025 /* manifest.json */; };
+		1E18EDE72EE443EA00BF6025 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = 1E18EDDF2EE443EA00BF6025 /* popup.html */; };
+		1E18EDE82EE443EA00BF6025 /* styles in Resources */ = {isa = PBXBuildFile; fileRef = 1E18EDE02EE443EA00BF6025 /* styles */; };
+		1E18EDE92EE443EA00BF6025 /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = 1E18EDE12EE443EA00BF6025 /* _locales */; };
+		1E18EDEA2EE443EA00BF6025 /* options.html in Resources */ = {isa = PBXBuildFile; fileRef = 1E18EDE22EE443EA00BF6025 /* options.html */; };
+		1E18EDEB2EE443EA00BF6025 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 1E18EDE32EE443EA00BF6025 /* LICENSE */; };
+		1E18EDFC2EE4440400BF6025 /* _locales in Resources */ = {isa = PBXBuildFile; fileRef = 1E18EDE12EE443EA00BF6025 /* _locales */; };
+		1E18EDFD2EE4440400BF6025 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 1E18EDDC2EE443E900BF6025 /* images */; };
+		1E18EDFE2EE4440400BF6025 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 1E18EDE32EE443EA00BF6025 /* LICENSE */; };
+		1E18EDFF2EE4440400BF6025 /* manifest.json in Resources */ = {isa = PBXBuildFile; fileRef = 1E18EDDE2EE443E900BF6025 /* manifest.json */; };
+		1E18EE002EE4440400BF6025 /* options.html in Resources */ = {isa = PBXBuildFile; fileRef = 1E18EDE22EE443EA00BF6025 /* options.html */; };
+		1E18EE012EE4440400BF6025 /* popup.html in Resources */ = {isa = PBXBuildFile; fileRef = 1E18EDDF2EE443EA00BF6025 /* popup.html */; };
+		1E18EE022EE4440400BF6025 /* scripts in Resources */ = {isa = PBXBuildFile; fileRef = 1E18EDDD2EE443E900BF6025 /* scripts */; };
+		1E18EE032EE4440400BF6025 /* styles in Resources */ = {isa = PBXBuildFile; fileRef = 1E18EDE02EE443EA00BF6025 /* styles */; };
+		1E18EEE32EE4CD5500BF6025 /* Rotate that Video Player for Safari extension iOS.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1EB681FB2EE3977A00733956 /* Rotate that Video Player for Safari extension iOS.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1EB681672EE38F6300733956 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 1EB681642EE38F6300733956 /* AppIcon.icon */; };
+		1EB681EE2EE394BD00733956 /* Rotate that Video Player for Safari extension macOS.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1EB681D62EE394BD00733956 /* Rotate that Video Player for Safari extension macOS.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1EB682172EE397DA00733956 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 1EB681642EE38F6300733956 /* AppIcon.icon */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1E18EEE42EE4CD5500BF6025 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1EB681052EE38F4A00733956 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1EB681F42EE3977A00733956;
+			remoteInfo = "Rotate that Video Player for Safari extension iOS";
+		};
+		1EB681EC2EE394BD00733956 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1EB681052EE38F4A00733956 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1EB681D52EE394BD00733956;
+			remoteInfo = "Rotate that Video Player for Safari extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1EB681F32EE394BD00733956 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				1EB681EE2EE394BD00733956 /* Rotate that Video Player for Safari extension macOS.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EB682C12EE39B4500733956 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				1E18EEE32EE4CD5500BF6025 /* Rotate that Video Player for Safari extension iOS.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1E18EDDC2EE443E900BF6025 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
+		1E18EDDD2EE443E900BF6025 /* scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = scripts; sourceTree = "<group>"; };
+		1E18EDDE2EE443E900BF6025 /* manifest.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manifest.json; sourceTree = "<group>"; };
+		1E18EDDF2EE443EA00BF6025 /* popup.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = popup.html; sourceTree = "<group>"; };
+		1E18EDE02EE443EA00BF6025 /* styles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = styles; sourceTree = "<group>"; };
+		1E18EDE12EE443EA00BF6025 /* _locales */ = {isa = PBXFileReference; lastKnownFileType = folder; path = _locales; sourceTree = "<group>"; };
+		1E18EDE22EE443EA00BF6025 /* options.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = options.html; sourceTree = "<group>"; };
+		1E18EDE32EE443EA00BF6025 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		1EB6810D2EE38F4A00733956 /* Rotate that Video Player for Safari.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rotate that Video Player for Safari.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EB681642EE38F6300733956 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
+		1EB681652EE38F6300733956 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		1EB681C72EE394A400733956 /* Rotate that Video Player for Safari iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rotate that Video Player for Safari iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EB681D62EE394BD00733956 /* Rotate that Video Player for Safari extension macOS.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Rotate that Video Player for Safari extension macOS.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EB681FB2EE3977A00733956 /* Rotate that Video Player for Safari extension iOS.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Rotate that Video Player for Safari extension iOS.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		1E18EE992EE4BA8300BF6025 /* Exceptions for "iOS (Extension)" folder in "Rotate that Video Player for Safari macOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1EB6810C2EE38F4A00733956 /* Rotate that Video Player for Safari macOS */;
+		};
+		1EB681FC2EE3977A00733956 /* Exceptions for "macOS (Extension)" folder in "Rotate that Video Player for Safari extension iOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1EB681F42EE3977A00733956 /* Rotate that Video Player for Safari extension iOS */;
+		};
+		1EB682162EE397D300733956 /* Exceptions for "Shared" folder in "Rotate that Video Player for Safari iOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Assets.xcassets,
+				FeedParser.swift,
+				forest.mov,
+				Localizable.xcstrings,
+				PrivacyInfo.xcprivacy,
+				StefanFunctions.swift,
+				StefanLinks.swift,
+			);
+			target = 1EB681C62EE394A400733956 /* Rotate that Video Player for Safari iOS */;
+		};
+		1EB682BA2EE39ACA00733956 /* Exceptions for "macOS" folder in "Rotate that Video Player for Safari macOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1EB6810C2EE38F4A00733956 /* Rotate that Video Player for Safari macOS */;
+		};
+		1EB682BB2EE39ACC00733956 /* Exceptions for "iOS" folder in "Rotate that Video Player for Safari iOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			platformFiltersByRelativePath = {
+				"/Localized: LaunchScreen.storyboard" = (ios, );
+			};
+			target = 1EB681C62EE394A400733956 /* Rotate that Video Player for Safari iOS */;
+		};
+		1EB682BC2EE39ACE00733956 /* Exceptions for "macOS (Extension)" folder in "Rotate that Video Player for Safari extension macOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1EB681D52EE394BD00733956 /* Rotate that Video Player for Safari extension macOS */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		1EB6810F2EE38F4A00733956 /* macOS */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1EB682BA2EE39ACA00733956 /* Exceptions for "macOS" folder in "Rotate that Video Player for Safari macOS" target */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		1EB681682EE3945800733956 /* Shared */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1EB682162EE397D300733956 /* Exceptions for "Shared" folder in "Rotate that Video Player for Safari iOS" target */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		1EB681C82EE394A400733956 /* iOS */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1EB682BB2EE39ACC00733956 /* Exceptions for "iOS" folder in "Rotate that Video Player for Safari iOS" target */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		1EB681D72EE394BD00733956 /* macOS (Extension) */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1EB682BC2EE39ACE00733956 /* Exceptions for "macOS (Extension)" folder in "Rotate that Video Player for Safari extension macOS" target */,
+				1EB681FC2EE3977A00733956 /* Exceptions for "macOS (Extension)" folder in "Rotate that Video Player for Safari extension iOS" target */,
+			);
+			path = "macOS (Extension)";
+			sourceTree = "<group>";
+		};
+		1EB6827C2EE3988F00733956 /* iOS (Extension) */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1E18EE992EE4BA8300BF6025 /* Exceptions for "iOS (Extension)" folder in "Rotate that Video Player for Safari macOS" target */,
+			);
+			path = "iOS (Extension)";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1EB6810A2EE38F4A00733956 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EB681C42EE394A400733956 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EB681D32EE394BD00733956 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EB681F62EE3977A00733956 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1E18EDDB2EE443D700BF6025 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1E18EDE12EE443EA00BF6025 /* _locales */,
+				1E18EDDC2EE443E900BF6025 /* images */,
+				1E18EDE32EE443EA00BF6025 /* LICENSE */,
+				1E18EDDE2EE443E900BF6025 /* manifest.json */,
+				1E18EDE22EE443EA00BF6025 /* options.html */,
+				1E18EDDF2EE443EA00BF6025 /* popup.html */,
+				1E18EDDD2EE443E900BF6025 /* scripts */,
+				1E18EDE02EE443EA00BF6025 /* styles */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		1EB681042EE38F4A00733956 = {
+			isa = PBXGroup;
+			children = (
+				1EB681642EE38F6300733956 /* AppIcon.icon */,
+				1EB681652EE38F6300733956 /* Config.xcconfig */,
+				1EB681682EE3945800733956 /* Shared */,
+				1EB682812EE398A900733956 /* Shared (Extension) */,
+				1EB6810F2EE38F4A00733956 /* macOS */,
+				1EB681C82EE394A400733956 /* iOS */,
+				1EB6827C2EE3988F00733956 /* iOS (Extension) */,
+				1EB681D72EE394BD00733956 /* macOS (Extension) */,
+				1EB682BD2EE39B4500733956 /* Frameworks */,
+				1EB6810E2EE38F4A00733956 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1EB6810E2EE38F4A00733956 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1EB6810D2EE38F4A00733956 /* Rotate that Video Player for Safari.app */,
+				1EB681C72EE394A400733956 /* Rotate that Video Player for Safari iOS.app */,
+				1EB681D62EE394BD00733956 /* Rotate that Video Player for Safari extension macOS.appex */,
+				1EB681FB2EE3977A00733956 /* Rotate that Video Player for Safari extension iOS.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1EB682812EE398A900733956 /* Shared (Extension) */ = {
+			isa = PBXGroup;
+			children = (
+				1E18EDDB2EE443D700BF6025 /* Resources */,
+			);
+			path = "Shared (Extension)";
+			sourceTree = "<group>";
+		};
+		1EB682BD2EE39B4500733956 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1EB6810C2EE38F4A00733956 /* Rotate that Video Player for Safari macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1EB681182EE38F4B00733956 /* Build configuration list for PBXNativeTarget "Rotate that Video Player for Safari macOS" */;
+			buildPhases = (
+				1EB681092EE38F4A00733956 /* Sources */,
+				1EB6810A2EE38F4A00733956 /* Frameworks */,
+				1EB6810B2EE38F4A00733956 /* Resources */,
+				1EB681F32EE394BD00733956 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1EB681ED2EE394BD00733956 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				1EB6810F2EE38F4A00733956 /* macOS */,
+				1EB681682EE3945800733956 /* Shared */,
+				1EB6827C2EE3988F00733956 /* iOS (Extension) */,
+			);
+			name = "Rotate that Video Player for Safari macOS";
+			packageProductDependencies = (
+			);
+			productName = "Rotate that Video Player for Safari";
+			productReference = 1EB6810D2EE38F4A00733956 /* Rotate that Video Player for Safari.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1EB681C62EE394A400733956 /* Rotate that Video Player for Safari iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1EB681CF2EE394A500733956 /* Build configuration list for PBXNativeTarget "Rotate that Video Player for Safari iOS" */;
+			buildPhases = (
+				1EB681C32EE394A400733956 /* Sources */,
+				1EB681C42EE394A400733956 /* Frameworks */,
+				1EB681C52EE394A400733956 /* Resources */,
+				1EB682C12EE39B4500733956 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1E18EEE52EE4CD5500BF6025 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				1EB681C82EE394A400733956 /* iOS */,
+			);
+			name = "Rotate that Video Player for Safari iOS";
+			packageProductDependencies = (
+			);
+			productName = "Rotate that Video Player for Safari iOS";
+			productReference = 1EB681C72EE394A400733956 /* Rotate that Video Player for Safari iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1EB681D52EE394BD00733956 /* Rotate that Video Player for Safari extension macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1EB681F02EE394BD00733956 /* Build configuration list for PBXNativeTarget "Rotate that Video Player for Safari extension macOS" */;
+			buildPhases = (
+				1EB681D22EE394BD00733956 /* Sources */,
+				1EB681D32EE394BD00733956 /* Frameworks */,
+				1EB681D42EE394BD00733956 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				1EB681D72EE394BD00733956 /* macOS (Extension) */,
+			);
+			name = "Rotate that Video Player for Safari extension macOS";
+			packageProductDependencies = (
+			);
+			productName = "Rotate that Video Player for Safari extension";
+			productReference = 1EB681D62EE394BD00733956 /* Rotate that Video Player for Safari extension macOS.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		1EB681F42EE3977A00733956 /* Rotate that Video Player for Safari extension iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1EB681F82EE3977A00733956 /* Build configuration list for PBXNativeTarget "Rotate that Video Player for Safari extension iOS" */;
+			buildPhases = (
+				1EB681F52EE3977A00733956 /* Sources */,
+				1EB681F62EE3977A00733956 /* Frameworks */,
+				1EB681F72EE3977A00733956 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				1EB681D72EE394BD00733956 /* macOS (Extension) */,
+			);
+			name = "Rotate that Video Player for Safari extension iOS";
+			packageProductDependencies = (
+			);
+			productName = "Rotate that Video Player for Safari extension";
+			productReference = 1EB681FB2EE3977A00733956 /* Rotate that Video Player for Safari extension iOS.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1EB681052EE38F4A00733956 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2610;
+				LastUpgradeCheck = 2610;
+				TargetAttributes = {
+					1EB6810C2EE38F4A00733956 = {
+						CreatedOnToolsVersion = 26.1.1;
+					};
+					1EB681C62EE394A400733956 = {
+						CreatedOnToolsVersion = 26.1.1;
+					};
+					1EB681D52EE394BD00733956 = {
+						CreatedOnToolsVersion = 26.1.1;
+					};
+				};
+			};
+			buildConfigurationList = 1EB681082EE38F4A00733956 /* Build configuration list for PBXProject "Rotate that Video Player for Safari" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1EB681042EE38F4A00733956;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 1EB6810E2EE38F4A00733956 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1EB6810C2EE38F4A00733956 /* Rotate that Video Player for Safari macOS */,
+				1EB681C62EE394A400733956 /* Rotate that Video Player for Safari iOS */,
+				1EB681D52EE394BD00733956 /* Rotate that Video Player for Safari extension macOS */,
+				1EB681F42EE3977A00733956 /* Rotate that Video Player for Safari extension iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1EB6810B2EE38F4A00733956 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1EB681672EE38F6300733956 /* AppIcon.icon in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EB681C52EE394A400733956 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1EB682172EE397DA00733956 /* AppIcon.icon in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EB681D42EE394BD00733956 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E18EDE42EE443EA00BF6025 /* images in Resources */,
+				1E18EDE52EE443EA00BF6025 /* scripts in Resources */,
+				1E18EDE62EE443EA00BF6025 /* manifest.json in Resources */,
+				1E18EDE72EE443EA00BF6025 /* popup.html in Resources */,
+				1E18EDE82EE443EA00BF6025 /* styles in Resources */,
+				1E18EDE92EE443EA00BF6025 /* _locales in Resources */,
+				1E18EDEA2EE443EA00BF6025 /* options.html in Resources */,
+				1E18EDEB2EE443EA00BF6025 /* LICENSE in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EB681F72EE3977A00733956 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E18EDFC2EE4440400BF6025 /* _locales in Resources */,
+				1E18EDFD2EE4440400BF6025 /* images in Resources */,
+				1E18EDFE2EE4440400BF6025 /* LICENSE in Resources */,
+				1E18EDFF2EE4440400BF6025 /* manifest.json in Resources */,
+				1E18EE002EE4440400BF6025 /* options.html in Resources */,
+				1E18EE012EE4440400BF6025 /* popup.html in Resources */,
+				1E18EE022EE4440400BF6025 /* scripts in Resources */,
+				1E18EE032EE4440400BF6025 /* styles in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1EB681092EE38F4A00733956 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EB681C32EE394A400733956 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EB681D22EE394BD00733956 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EB681F52EE3977A00733956 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1E18EEE52EE4CD5500BF6025 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1EB681F42EE3977A00733956 /* Rotate that Video Player for Safari extension iOS */;
+			targetProxy = 1E18EEE42EE4CD5500BF6025 /* PBXContainerItemProxy */;
+		};
+		1EB681ED2EE394BD00733956 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1EB681D52EE394BD00733956 /* Rotate that Video Player for Safari extension macOS */;
+			targetProxy = 1EB681EC2EE394BD00733956 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1EB681162EE38F4B00733956 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EB681652EE38F6300733956 /* Config.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1EB681172EE38F4B00733956 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EB681652EE38F6300733956 /* Config.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		1EB681192EE38F4B00733956 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EB681652EE38F6300733956 /* Config.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Rotate that Video Player for Safari";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = "$(VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanvd.rotatethatvideoplayerforsafari;
+				PRODUCT_NAME = "Rotate that Video Player for Safari";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		1EB6811A2EE38F4B00733956 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EB681652EE38F6300733956 /* Config.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Rotate that Video Player for Safari";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = "$(VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanvd.rotatethatvideoplayerforsafari;
+				PRODUCT_NAME = "Rotate that Video Player for Safari";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		1EB681D02EE394A500733956 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EB681652EE38F6300733956 /* Config.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Rotate that Video Player for Safari";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = "$(VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanvd.rotatethatvideoplayerforsafari;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Debug;
+		};
+		1EB681D12EE394A500733956 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EB681652EE38F6300733956 /* Config.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Rotate that Video Player for Safari";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = "$(VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanvd.rotatethatvideoplayerforsafari;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1EB681F12EE394BD00733956 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EB681652EE38F6300733956 /* Config.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Rotate that Video Player for Safari extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = "$(VERSION)";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanvd.rotatethatvideoplayerforsafari.extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		1EB681F22EE394BD00733956 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EB681652EE38F6300733956 /* Config.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Rotate that Video Player for Safari extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = "$(VERSION)";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanvd.rotatethatvideoplayerforsafari.extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		1EB681F92EE3977A00733956 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EB681652EE38F6300733956 /* Config.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Rotate that Video Player for Safari extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = "$(VERSION)";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanvd.rotatethatvideoplayerforsafari.extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Debug;
+		};
+		1EB681FA2EE3977A00733956 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EB681652EE38F6300733956 /* Config.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Rotate that Video Player for Safari extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = "$(VERSION)";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.stefanvd.rotatethatvideoplayerforsafari.extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1EB681082EE38F4A00733956 /* Build configuration list for PBXProject "Rotate that Video Player for Safari" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EB681162EE38F4B00733956 /* Debug */,
+				1EB681172EE38F4B00733956 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1EB681182EE38F4B00733956 /* Build configuration list for PBXNativeTarget "Rotate that Video Player for Safari macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EB681192EE38F4B00733956 /* Debug */,
+				1EB6811A2EE38F4B00733956 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1EB681CF2EE394A500733956 /* Build configuration list for PBXNativeTarget "Rotate that Video Player for Safari iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EB681D02EE394A500733956 /* Debug */,
+				1EB681D12EE394A500733956 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1EB681F02EE394BD00733956 /* Build configuration list for PBXNativeTarget "Rotate that Video Player for Safari extension macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EB681F12EE394BD00733956 /* Debug */,
+				1EB681F22EE394BD00733956 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1EB681F82EE3977A00733956 /* Build configuration list for PBXNativeTarget "Rotate that Video Player for Safari extension iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EB681F92EE3977A00733956 /* Debug */,
+				1EB681FA2EE3977A00733956 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1EB681052EE38F4A00733956 /* Project object */;
+}

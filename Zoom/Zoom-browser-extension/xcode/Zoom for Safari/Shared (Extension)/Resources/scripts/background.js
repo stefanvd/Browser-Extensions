@@ -778,6 +778,11 @@ chrome.tabs.onHighlighted.addListener(function(tab){
 	checkaddpopup(tab);
 });
 
+// Also set popup for newly created tabs
+chrome.tabs.onCreated.addListener(function(tab){
+	checkaddpopup(tab);
+});
+
 var websitelevel;
 chrome.commands.onCommand.addListener(function(command){
 	if(command == "toggle-feature-zoomin"){

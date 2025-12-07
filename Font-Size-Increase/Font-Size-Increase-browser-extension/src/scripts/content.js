@@ -32,7 +32,7 @@ function $(id){ return document.getElementById(id); }
 if(window.location.href.match(/^http(s)?:\/\/(www\.)?stefanvd.net/i)){
 	if($("font-size-increase-" + exbrowser + "-install-button")){
 		$("font-size-increase-" + exbrowser + "-install-button").style.display = "none";
-		$("ffont-size-increase-" + exbrowser + "-thanks-button").style.display = "block";
+		$("font-size-increase-" + exbrowser + "-thanks-button").style.display = "block";
 	}
 }
 
