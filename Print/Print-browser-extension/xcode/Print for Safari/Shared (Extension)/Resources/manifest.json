@@ -40,6 +40,18 @@
 			}
 		}
 	},
+	"content_scripts": [
+		{
+			"matches": [
+				"<all_urls>"
+			],
+			"js": [
+				"scripts/constants.js",
+				"scripts/content.js"
+			],
+			"run_at": "document_end"
+		}
+	],
 	"offline_enabled": true,
 	"minimum_chrome_version": "116",
 	"permissions": [
