@@ -1350,6 +1350,22 @@ function checkaddpopup(tab){
 	}
 }
 
+
+// Set popup for all existing tabs on startup
+async function initializePopupsForAllTabs(){
+	chrome.storage.sync.get(["zoomsingleclick"], function(response){
+		zoomsingleclick = response.zoomsingleclick; if(zoomsingleclick == null)zoomsingleclick = true;
+
+		if(zoomsingleclick == true){
+			chrome.tabs.query({}, function(tabs){
+				tabs.forEach(function(tab){
+					chrome.action.setPopup({tabId: tab.id, popup: "popup.html"});
+				});
+			});
+		}
+	});
+}
+
 chrome.storage.onChanged.addListener(function(changes){
 	if(changes["icon"]){
 		if(changes["icon"].newValue){
@@ -1432,6 +1448,11 @@ function installation(){
 	initwelcome();
 }
 
+// Call on startup
+chrome.runtime.onStartup.addListener(function(){
+	initializePopupsForAllTabs();
+});
+// Call on installation
 chrome.runtime.onInstalled.addListener(function(){
 	installation();
 	if(chrome.runtime.setUninstallURL){

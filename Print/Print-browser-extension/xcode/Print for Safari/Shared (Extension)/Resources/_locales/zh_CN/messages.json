@@ -1,0 +1,56 @@
+{
+  "name": {
+    "message": "打印"
+  },
+  "namechrome": {
+    "message": "打印 for Google Chrome"
+  },
+  "namefirefox": {
+    "message": "打印 for Firefox"
+  },
+  "nameopera": {
+    "message": "打印 for Opera"
+  },
+  "nameedge": {
+    "message": "打印 for Microsoft Edge"
+  },
+  "namesafari": {
+    "message": "打印 for Safari"
+  },
+   "description": {
+      "message": "打印当前网页"
+   },
+   "pageatitle": {
+      "message": "打印"
+   },
+   "head1": {
+      "message": "打印选项"
+   },
+   "head2": {
+      "message": "选择你最喜欢的打印图标:"
+   },
+   "textfoot": {
+      "message": "本软件的授权遵守CC - GNU通用公共许可协议。要查看本许可协议，请访问"
+   },
+    "donatepromotext": {
+      "message": "如果你可以做出任何款项捐赠，我会非常感激！"
+   },
+   "changelog": {
+      "message": "更新日志"
+   },
+   "version": {
+      "message": "版本"
+   },
+   "optionpagetitle": {
+      "message": "打印 - 选项"
+   },
+   "reportbug": {
+      "message": "报告问题"
+   },
+   "settings": {
+      "message": "设置"
+   },
+   "basicsettings": {
+      "message": "基础知识"
+   }
+}

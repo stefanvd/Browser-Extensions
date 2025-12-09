@@ -1,0 +1,56 @@
+{
+  "name": {
+    "message": "Drucken"
+  },
+  "namechrome": {
+    "message": "Drucken für Google Chrome"
+  },
+  "namefirefox": {
+    "message": "Drucken für Firefox"
+  },
+  "nameopera": {
+    "message": "Drucken für Opera"
+  },
+  "nameedge": {
+    "message": "Drucken für Microsoft Edge"
+  },
+  "namesafari": {
+    "message": "Drucken für Safari"
+  },
+   "description": {
+      "message": "Drucken Sie die aktuelle Seite mit einem Klick. Drucken Sie schnell Website-Inhalte, Artikel, Fotos und mehr."
+   },
+   "pageatitle": {
+      "message": "Drucken"
+   },
+   "head1": {
+      "message": "Druckoptionen"
+   },
+   "head2": {
+      "message": "Wählen Sie Ihren Favoriten Drucken Symbol:"
+   },
+   "textfoot": {
+      "message": "Diese Software ist unter der CC-GNU GPL lizenziert. Um eine Kopie dieser Lizenz einzusehen, besuchen Sie"
+   },
+    "donatepromotext": {
+      "message": "Wenn Sie einen einen Betrag in beliebiger Höhe spenden könnten, würde ich es ungemein zu schätzen wissen!"
+   },
+   "changelog": {
+      "message": "Änderungen"
+   },
+   "version": {
+      "message": "Version"
+   },
+   "optionpagetitle": {
+      "message": "Print - Optionen"
+   },
+   "reportbug": {
+      "message": "Problem melden"
+   },
+   "settings": {
+      "message": "Einstellungen"
+   },
+   "basicsettings": {
+      "message": "Basis"
+   }
+}

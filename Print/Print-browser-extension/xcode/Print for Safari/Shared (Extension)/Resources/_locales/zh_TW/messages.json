@@ -1,0 +1,56 @@
+{
+  "name": {
+    "message": "打印"
+  },
+  "namechrome": {
+    "message": "打印 for Google Chrome"
+  },
+  "namefirefox": {
+    "message": "打印 for Firefox"
+  },
+  "nameopera": {
+    "message": "打印 for Opera"
+  },
+  "nameedge": {
+    "message": "打印 for Microsoft Edge"
+  },
+  "namesafari": {
+    "message": "打印 for Safari"
+  },
+   "description": {
+      "message": "打印當前網頁"
+   },
+   "pageatitle": {
+      "message": "打印"
+   },
+   "head1": {
+      "message": "打印選項"
+   },
+   "head2": {
+      "message": "選擇你最喜歡的打印圖標:"
+   },
+   "textfoot": {
+      "message": "本軟件的授權遵守CC - GNU通用公共許可協議。要查看本許可協議，請訪問"
+   },
+    "donatepromotext": {
+      "message": "如果您可以進行任何數額的捐贈，我將非常感激 ！"
+   },
+    "changelog": {
+      "message": "更新日誌"
+   },
+   "version": {
+      "message": "版本"
+   },
+   "optionpagetitle": {
+      "message": "打印 - 選項"
+   },
+   "reportbug": {
+      "message": "報告問題"
+   },
+   "settings": {
+      "message": "設置"
+   },
+   "basicsettings": {
+      "message": "基礎知識"
+   }
+}

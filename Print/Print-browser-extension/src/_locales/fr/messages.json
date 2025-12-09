@@ -18,51 +18,39 @@
     "message": "Imprimer pour Safari"
   },
    "description": {
-      "message": "Imprimer la page courante que vous voyez.",
-	  "description": "Print the current page you see."
+      "message": "Imprimez la page en un clic et imprimez rapidement le contenu de sites, articles, photos et plus encore."
    },
    "pageatitle": {
-      "message": "Imprimer",
-	  "description": "Print"
+      "message": "Imprimer"
    },
    "head1": {
-      "message": "Options d'impression",
-	  "description": "Print Options"
+      "message": "Options d'impression"
    },
    "head2": {
-      "message": "Choisissez votre icône d'impression préféré:",
-	  "description": "Choose your favorite print icon:"
+      "message": "Choisissez votre icône d'impression préféré:"
    },
    "textfoot": {
-      "message": "Ce logiciel est sous licence CC-GNU GPL. Pour voir une copie de cette licence, visitez",
-	  "description": "This software is licensed under the CC-GNU GPL. To view a copy of this license, visit"
+      "message": "Ce logiciel est sous licence CC-GNU GPL. Pour voir une copie de cette licence, visitez"
    },
     "donatepromotext": {
-      "message": "Merci pour les dons que vous pouvez me faire quels qu'en soit le montant!",
-      "description": "If you can make a donation of any amount, I'd appreciate it immensely!"
+      "message": "Merci pour les dons que vous pouvez me faire quels qu'en soit le montant!"
    },
     "changelog": {
-      "message": "Changelog",
-      "description": "changelog link"
+      "message": "Changelog"
    },
    "version": {
-      "message": "Version",
-      "description": "Version number text"
+      "message": "Version"
    },
    "optionpagetitle": {
-      "message": "Imprimer - Options",
-      "description": "Option page title"
+      "message": "Imprimer - Options"
    },
    "reportbug": {
-      "message": "Signaler un problème",
-      "description": "Report an Issue of my extension"
+      "message": "Signaler un problème"
    },
    "settings": {
-      "message": "Paramètres",
-      "description": "Settings"
+      "message": "Paramètres"
    },
    "basicsettings": {
-      "message": "Notions de base",
-      "description": "Basics"
+      "message": "Notions de base"
    }
 }

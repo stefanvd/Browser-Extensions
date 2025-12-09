@@ -18,51 +18,39 @@
     "message": "Drucken für Safari"
   },
    "description": {
-      "message": "Drucken Sie die aktuelle Seite sehen.",
-	  "description": "Print the current page you see."
+      "message": "Drucken Sie die aktuelle Seite mit einem Klick. Drucken Sie schnell Website-Inhalte, Artikel, Fotos und mehr."
    },
    "pageatitle": {
-      "message": "Drucken",
-	  "description": "Print"
+      "message": "Drucken"
    },
    "head1": {
-      "message": "Druckoptionen",
-	  "description": "Print Options"
+      "message": "Druckoptionen"
    },
    "head2": {
-      "message": "Wählen Sie Ihren Favoriten Drucken Symbol:",
-	  "description": "Choose your favorite print icon:"
+      "message": "Wählen Sie Ihren Favoriten Drucken Symbol:"
    },
    "textfoot": {
-      "message": "Diese Software ist unter der CC-GNU GPL lizenziert. Um eine Kopie dieser Lizenz einzusehen, besuchen Sie",
-	  "description": "This software is licensed under the CC-GNU GPL. To view a copy of this license, visit"
+      "message": "Diese Software ist unter der CC-GNU GPL lizenziert. Um eine Kopie dieser Lizenz einzusehen, besuchen Sie"
    },
     "donatepromotext": {
-      "message": "Wenn Sie einen einen Betrag in beliebiger Höhe spenden könnten, würde ich es ungemein zu schätzen wissen!",
-      "description": "If you can make a donation of any amount, I'd appreciate it immensely!"
+      "message": "Wenn Sie einen einen Betrag in beliebiger Höhe spenden könnten, würde ich es ungemein zu schätzen wissen!"
    },
    "changelog": {
-      "message": "Änderungen",
-      "description": "changelog link"
+      "message": "Änderungen"
    },
    "version": {
-      "message": "Version",
-      "description": "Version number text"
+      "message": "Version"
    },
    "optionpagetitle": {
-      "message": "Print - Optionen",
-      "description": "Option page title"
+      "message": "Print - Optionen"
    },
    "reportbug": {
-      "message": "Problem melden",
-      "description": "Report an Issue of my extension"
+      "message": "Problem melden"
    },
    "settings": {
-      "message": "Einstellungen",
-      "description": "Settings"
+      "message": "Einstellungen"
    },
    "basicsettings": {
-      "message": "Basis",
-      "description": "Basics"
+      "message": "Basis"
    }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "__MSG_namechrome__",
+  "name": "__MSG_name__",
   "action": {
     "default_title": "__MSG_name__",
     "default_icon": {

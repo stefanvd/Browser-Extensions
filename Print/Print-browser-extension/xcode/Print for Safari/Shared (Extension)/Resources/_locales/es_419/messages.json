@@ -1,0 +1,56 @@
+{
+  "name": {
+    "message": "Imprimir"
+  },
+  "namechrome": {
+    "message": "Imprimir para Google Chrome"
+  },
+  "namefirefox": {
+    "message": "Imprimir para Firefox"
+  },
+  "nameopera": {
+    "message": "Imprimir para Opera"
+  },
+  "nameedge": {
+    "message": "Imprimir para Microsoft Edge"
+  },
+  "namesafari": {
+    "message": "Imprimir para Safari"
+  },
+   "description": {
+      "message": "Imprima la página actual con un solo clic. Imprima rápidamente contenido de sitios web, artículos, fotos y más."
+   },
+   "pageatitle": {
+      "message": "Imprimir"
+   },
+   "head1": {
+      "message": "Imprimir Options"
+   },
+   "head2": {
+      "message": "Elige tu icono favorito de impresión:"
+   },
+   "textfoot": {
+      "message": "Este software está licenciado bajo la CC-GNU GPL. Para ver una copia esta licencia, visite"
+   },
+   "donatepromotext": {
+      "message": "Si pudiera hacer una donación de cualquier cantidad, le agradecería inmensamente!"
+   },
+    "changelog": {
+      "message": "Cambios"
+   },
+   "version": {
+      "message": "Versión"
+   },
+   "optionpagetitle": {
+      "message": "Imprimir - Opciones"
+   },
+   "reportbug": {
+      "message": "Reportar un problema"
+   },
+   "settings": {
+      "message": "Configuración"
+   },
+   "basicsettings": {
+      "message": "Conceptos básicos"
+   }
+}
