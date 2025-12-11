@@ -114,28 +114,32 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 						// NOTE
 						// do not open the Chrome dev background script, else it detect this as first active tab and window
 						if(tabs[0]){
-							chrome.tabs.getZoom(tabs[0].id, function(zoomFactor){
-								if(zoomFactor != allzoomvalue){
-									if(zoomchrome == true){
-										chrome.tabs.setZoom(tabs[0].id, allzoomvalue); // needed for the default zoom value such as 110%
-									}else if(zoomweb == true){
-										// Check for transform support so that we can fallback otherwise
-										chrome.tabs.query({}, function(opentabs){
-											opentabs.forEach(function(opentab){
-												// inject only if different than 1
-												if(allzoomvalue != 1){
-													chrome.tabs.sendMessage(opentab.id, {text:"setbodycsszoom", value:allzoomvalue});
-												}
+							if(chrome.tabs.getZoom){
+								// only available for desktop web browsers
+								// and not for Firefox Android mobile web browser
+								chrome.tabs.getZoom(tabs[0].id, function(zoomFactor){
+									if(zoomFactor != allzoomvalue){
+										if(zoomchrome == true){
+											chrome.tabs.setZoom(tabs[0].id, allzoomvalue); // needed for the default zoom value such as 110%
+										}else if(zoomweb == true){
+											// Check for transform support so that we can fallback otherwise
+											chrome.tabs.query({}, function(opentabs){
+												opentabs.forEach(function(opentab){
+													// inject only if different than 1
+													if(allzoomvalue != 1){
+														chrome.tabs.sendMessage(opentab.id, {text:"setbodycsszoom", value:allzoomvalue});
+													}
+												});
 											});
-										});
-									}else if(zoomfont == true){
-										chrome.tabs.sendMessage(tabs[0].id, {text: "changefontsize", value: Math.round(allzoomvalue * 100)});
+										}else if(zoomfont == true){
+											chrome.tabs.sendMessage(tabs[0].id, {text: "changefontsize", value: Math.round(allzoomvalue * 100)});
+										}
+									}else{
+										// Needed if the zoom value is the same, update the badge value
+										setBadgeValue(allzoomvalue, tabs[0].id);
 									}
-								}else{
-									// Needed if the zoom value is the same, update the badge value
-									setBadgeValue(allzoomvalue, tabs[0].id);
-								}
-							});
+								});
+							}
 						}
 					});
 			}else{
@@ -186,27 +190,31 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 
 						if(matchedTab){
 							if(zoomchrome == true){
-								chrome.tabs.getZoom(sender.tab.id, function(zoomFactor){
-									if(zoomFactor != editzoom){
-										// this to keep to zoom level by tab and not the whole domain (= automatic)
-										if(zoombypage == true){
-											chrome.tabs.setZoomSettings(sender.tab.id, {mode: "automatic", scope: "per-tab"},
-												function(){
-													if(chrome.runtime.lastError){
-														// console.log('[ZoomDemoExtension] doSetMode() error: ' + chrome.runtime.lastError.message);
-													}
-												});
-										}else{
-											chrome.tabs.setZoomSettings(sender.tab.id, {mode: "automatic"/* , scope: 'per-tab'*/},
-												function(){
-													if(chrome.runtime.lastError){
-														// console.log('[ZoomDemoExtension] doSetMode() error: ' + chrome.runtime.lastError.message);
-													}
-												});
+								if(chrome.tabs.getZoom){
+									// only available for desktop web browsers
+									// and not for Firefox Android mobile web browser
+									chrome.tabs.getZoom(sender.tab.id, function(zoomFactor){
+										if(zoomFactor != editzoom){
+											// this to keep to zoom level by tab and not the whole domain (= automatic)
+											if(zoombypage == true){
+												chrome.tabs.setZoomSettings(sender.tab.id, {mode: "automatic", scope: "per-tab"},
+													function(){
+														if(chrome.runtime.lastError){
+															// console.log('[ZoomDemoExtension] doSetMode() error: ' + chrome.runtime.lastError.message);
+														}
+													});
+											}else{
+												chrome.tabs.setZoomSettings(sender.tab.id, {mode: "automatic"/* , scope: 'per-tab'*/},
+													function(){
+														if(chrome.runtime.lastError){
+															// console.log('[ZoomDemoExtension] doSetMode() error: ' + chrome.runtime.lastError.message);
+														}
+													});
+											}
+											chrome.tabs.setZoom(sender.tab.id, editzoom); // needed for the default zoom value such as 110%
 										}
-										chrome.tabs.setZoom(sender.tab.id, editzoom); // needed for the default zoom value such as 110%
-									}
-								});
+									});
+								}
 							}else if(zoomweb == true){
 								// inject only if different than 1
 								if(editzoom != 1){
@@ -224,45 +232,48 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 				// reset got inside
 				if(goturlinside != true){
 					// use default zoom from the Options page -- normal is 100%
-					chrome.tabs.getZoom(sender.tab.id, function(zoomFactor){
-						if(zoomFactor != allzoomvalue){
-							if(zoomchrome == true){
-								// this to keep to zoom level by tab and not the whole domain (= automatic)
-								if(zoombypage == true){
-									chrome.tabs.setZoomSettings(sender.tab.id, {mode: "automatic", scope: "per-tab"},
-										function(){
-											if(chrome.runtime.lastError){
-												// console.log('[ZoomDemoExtension] doSetMode() error: ' + chrome.runtime.lastError.message);
-											}
-										});
-								}else{
-									chrome.tabs.setZoomSettings(sender.tab.id, {mode: "automatic"/* , scope: 'per-tab'*/},
-										function(){
-											if(chrome.runtime.lastError){
-												// console.log('[ZoomDemoExtension] doSetMode() error: ' + chrome.runtime.lastError.message);
-											}
-										});
-								}
-								// If set not to ignore, then it set it back to the default zoom value that is set by the Zoom browser extension
-								if(ignoreset != true){
-									chrome.tabs.setZoom(sender.tab.id, allzoomvalue); // needed for the default zoom value such as 110%
+					if(chrome.tabs.getZoom){
+						// only available for desktop web browsers
+						// and not for Firefox Android mobile web browser
+						chrome.tabs.getZoom(sender.tab.id, function(zoomFactor){
+							if(zoomFactor != allzoomvalue){
+								if(zoomchrome == true){
+									// this to keep to zoom level by tab and not the whole domain (= automatic)
+									if(zoombypage == true){
+										chrome.tabs.setZoomSettings(sender.tab.id, {mode: "automatic", scope: "per-tab"},
+											function(){
+												if(chrome.runtime.lastError){
+													// console.log('[ZoomDemoExtension] doSetMode() error: ' + chrome.runtime.lastError.message);
+												}
+											});
+									}else{
+										chrome.tabs.setZoomSettings(sender.tab.id, {mode: "automatic"/* , scope: 'per-tab'*/},
+											function(){
+												if(chrome.runtime.lastError){
+													// console.log('[ZoomDemoExtension] doSetMode() error: ' + chrome.runtime.lastError.message);
+												}
+											});
+									}
+									// If set not to ignore, then it set it back to the default zoom value that is set by the Zoom browser extension
+									if(ignoreset != true){
+										chrome.tabs.setZoom(sender.tab.id, allzoomvalue); // needed for the default zoom value such as 110%
+										setBadgeValue(allzoomvalue, sender.tab.id);
+									}
+								}else if(zoomweb == true){
+									// inject only if different than 1
+									if(allzoomvalue != 1){
+										chrome.tabs.sendMessage(sender.tab.id, {text:"setbodycsszoom", value:allzoomvalue});
+									}
+									setBadgeValue(allzoomvalue, sender.tab.id);
+								}else if(zoomfont == true){
+									chrome.tabs.sendMessage(sender.tab.id, {text: "changefontsize", value: Math.round(allzoomvalue * 100)});
 									setBadgeValue(allzoomvalue, sender.tab.id);
 								}
-							}else if(zoomweb == true){
-								// inject only if different than 1
-								if(allzoomvalue != 1){
-									chrome.tabs.sendMessage(sender.tab.id, {text:"setbodycsszoom", value:allzoomvalue});
-								}
-								setBadgeValue(allzoomvalue, sender.tab.id);
-							}else if(zoomfont == true){
-								chrome.tabs.sendMessage(sender.tab.id, {text: "changefontsize", value: Math.round(allzoomvalue * 100)});
+							}else{
 								setBadgeValue(allzoomvalue, sender.tab.id);
 							}
-						}else{
-							setBadgeValue(allzoomvalue, sender.tab.id);
-						}
-					});
-
+						});
+					}
 				}
 				goturlinside = false;
 			}
@@ -630,15 +641,19 @@ async function getCurrentTab(){
 // Get current tab zoom value
 function getZoomValue(thattab){
 	return new Promise((resolve) => {
-		chrome.tabs.getZoom(thattab, (zoomFactor) => {
-			if(chrome.runtime.lastError){
-				// console.error("ERROR: ", chrome.runtime.lastError);
-			}
+		if(chrome.tabs.getZoom){
+			// only available for desktop web browsers
+			// and not for Firefox Android mobile web browser
+			chrome.tabs.getZoom(thattab, (zoomFactor) => {
+				if(chrome.runtime.lastError){
+					// console.error("ERROR: ", chrome.runtime.lastError);
+				}
 
-			const ratio = zoomFactor || 1;
-			const currentRatio = ratio * 100;
-			resolve(Math.round(currentRatio));
-		});
+				const ratio = zoomFactor || 1;
+				const currentRatio = ratio * 100;
+				resolve(Math.round(currentRatio));
+			});
+		}
 	});
 }
 
@@ -694,17 +709,21 @@ function backgroundrefreshzoom(){
 					var filtermatch = job.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/);
 					if(zoombydomain == true){ if(filtermatch){ webjob = filtermatch[0]; } }else{ webjob = job; }
 					if(zoomchrome == true){
-						chrome.tabs.getZoom(thattab.id, function(zoomFactor){
-							if(chrome.runtime.lastError){
-								// if current tab do not have the content.js and can not send the message to local chrome:// page.
-								// The line will excute, and log 'ERROR:  {message: "Could not establish connection. Receiving end does not exist."}'
-								// console.log("ERROR: ", chrome.runtime.lastError);
-							}
-							ratio = zoomFactor;
-							if(ratio == null){ ratio = 1; }
-							currentRatio = ratio;
-							setBadgeValue(currentRatio, thattab.id);
-						});
+						if(chrome.tabs.getZoom){
+							// only available for desktop web browsers
+							// and not for Firefox Android mobile web browser
+							chrome.tabs.getZoom(thattab.id, function(zoomFactor){
+								if(chrome.runtime.lastError){
+									// if current tab do not have the content.js and can not send the message to local chrome:// page.
+									// The line will excute, and log 'ERROR:  {message: "Could not establish connection. Receiving end does not exist."}'
+									// console.log("ERROR: ", chrome.runtime.lastError);
+								}
+								ratio = zoomFactor;
+								if(ratio == null){ ratio = 1; }
+								currentRatio = ratio;
+								setBadgeValue(currentRatio, thattab.id);
+							});
+						}
 					}else if(zoomweb == true){
 						chrome.tabs.sendMessage(thattab.id, {text: "getwebzoom"}, function(info){
 							if(chrome.runtime.lastError){
@@ -784,56 +803,59 @@ chrome.tabs.onCreated.addListener(function(tab){
 });
 
 var websitelevel;
-chrome.commands.onCommand.addListener(function(command){
-	if(command == "toggle-feature-zoomin"){
-		handleZoomCommand(+1);
-	}else if(command == "toggle-feature-zoomout"){
-		handleZoomCommand(-1);
-	}else if(command == "toggle-feature-zoomreset"){
-		chrome.storage.sync.get(["allzoomvalue"], function(response){
-			allzoomvalue = response.allzoomvalue; if(allzoomvalue == null)allzoomvalue = 1;
-			handleZoomCommand(0, allzoomvalue * 100);
-		});
-	}else if(command == "toggle-feature-magnify"){
-		chrome.tabs.query({active: true, currentWindow: true},
-			function(tabs){
-				if(tabs[0]){
-					chrome.tabs.sendMessage(tabs[0].id, {text: "enablemagnifyingglass"});
-				}
+// keyboard shortcuts only for desktop web browser
+// and not for Firefox Android mobile web browser
+if(chrome.commands && chrome.commands.onCommand){
+	chrome.commands.onCommand.addListener(function(command){
+		if(command == "toggle-feature-zoomin"){
+			handleZoomCommand(+1);
+		}else if(command == "toggle-feature-zoomout"){
+			handleZoomCommand(-1);
+		}else if(command == "toggle-feature-zoomreset"){
+			chrome.storage.sync.get(["allzoomvalue"], function(response){
+				allzoomvalue = response.allzoomvalue; if(allzoomvalue == null)allzoomvalue = 1;
+				handleZoomCommand(0, allzoomvalue * 100);
 			});
-	}else if(command == "toggle-feature-predefined1"){
-		chrome.storage.sync.get(["websitelevel"], function(items){
-			websitelevel = items["websitelevel"];
-			if(typeof websitelevel == "undefined" || websitelevel == null){
-				websitelevel = ["85", "115", "123"];
-			}
-			// Get the first item and pass it to zoom function
-			var firstItem = websitelevel[0];
-			zoom(firstItem);
-		});
-	}else if(command == "toggle-feature-predefined2"){
-		chrome.storage.sync.get(["websitelevel"], function(items){
-			websitelevel = items["websitelevel"];
-			if(typeof websitelevel == "undefined" || websitelevel == null){
-				websitelevel = ["85", "115", "123"];
-			}
-			// Get the second item and pass it to zoom function
-			var secondItem = websitelevel[1];
-			zoom(secondItem);
-		});
-	}else if(command == "toggle-feature-predefined3"){
-		chrome.storage.sync.get(["websitelevel"], function(items){
-			websitelevel = items["websitelevel"];
-			if(typeof websitelevel == "undefined" || websitelevel == null){
-				websitelevel = ["85", "115", "123"];
-			}
-			// Get the third item and pass it to zoom function
-			var thirdItem = websitelevel[2];
-			zoom(thirdItem);
-		});
-	}
-
-});
+		}else if(command == "toggle-feature-magnify"){
+			chrome.tabs.query({active: true, currentWindow: true},
+				function(tabs){
+					if(tabs[0]){
+						chrome.tabs.sendMessage(tabs[0].id, {text: "enablemagnifyingglass"});
+					}
+				});
+		}else if(command == "toggle-feature-predefined1"){
+			chrome.storage.sync.get(["websitelevel"], function(items){
+				websitelevel = items["websitelevel"];
+				if(typeof websitelevel == "undefined" || websitelevel == null){
+					websitelevel = ["85", "115", "123"];
+				}
+				// Get the first item and pass it to zoom function
+				var firstItem = websitelevel[0];
+				zoom(firstItem);
+			});
+		}else if(command == "toggle-feature-predefined2"){
+			chrome.storage.sync.get(["websitelevel"], function(items){
+				websitelevel = items["websitelevel"];
+				if(typeof websitelevel == "undefined" || websitelevel == null){
+					websitelevel = ["85", "115", "123"];
+				}
+				// Get the second item and pass it to zoom function
+				var secondItem = websitelevel[1];
+				zoom(secondItem);
+			});
+		}else if(command == "toggle-feature-predefined3"){
+			chrome.storage.sync.get(["websitelevel"], function(items){
+				websitelevel = items["websitelevel"];
+				if(typeof websitelevel == "undefined" || websitelevel == null){
+					websitelevel = ["85", "115", "123"];
+				}
+				// Get the third item and pass it to zoom function
+				var thirdItem = websitelevel[2];
+				zoom(thirdItem);
+			});
+		}
+	});
+}
 
 async function handleZoomCommand(direction, absoluteZoom){
 	const items = await new Promise((resolve) => {
@@ -1350,6 +1372,30 @@ function checkaddpopup(tab){
 	}
 }
 
+// Firefox Android
+// helper to set global popup (no tabId) and per-tab popup (when possible)
+function applyPopups(){
+	try{
+		chrome.action.setPopup({popup: "popup.html"});
+	}catch(e){
+		/* ignore */
+	}
+
+	try{
+		chrome.tabs.query({}, function(tabs){
+			if(!tabs || !tabs.length)return;
+			tabs.forEach(function(tab){
+				try{
+					chrome.action.setPopup({tabId: tab.id, popup: "popup.html"});
+				}catch(e){
+					/* ignore per-tab failures */
+				}
+			});
+		});
+	}catch(e){
+		/* ignore */
+	}
+}
 
 // Set popup for all existing tabs on startup
 async function initializePopupsForAllTabs(){
@@ -1357,14 +1403,13 @@ async function initializePopupsForAllTabs(){
 		zoomsingleclick = response.zoomsingleclick; if(zoomsingleclick == null)zoomsingleclick = true;
 
 		if(zoomsingleclick == true){
-			chrome.tabs.query({}, function(tabs){
-				tabs.forEach(function(tab){
-					chrome.action.setPopup({tabId: tab.id, popup: "popup.html"});
-				});
-			});
+			// immediate attempt
+			applyPopups();
 		}
 	});
 }
+// Call on runtime
+initializePopupsForAllTabs();
 
 chrome.storage.onChanged.addListener(function(changes){
 	if(changes["icon"]){
@@ -1448,11 +1493,6 @@ function installation(){
 	initwelcome();
 }
 
-// Call on startup
-chrome.runtime.onStartup.addListener(function(){
-	initializePopupsForAllTabs();
-});
-// Call on installation
 chrome.runtime.onInstalled.addListener(function(){
 	installation();
 	if(chrome.runtime.setUninstallURL){
