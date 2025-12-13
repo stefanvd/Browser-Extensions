@@ -164,5 +164,8 @@
     "desfullpopup": {"message": "Choose the desktop screen size"},
     "descustompopup": {"message": "Custom Popup size"},
     "desautodimsizepixel": {"message": "pixel"},
-    "permissionsystemdisplay": {"message": "This is to get the system to display information so the popup window size can be set properly."}
+    "permissionsystemdisplay": {"message": "This is to get the system to display information so the popup window size can be set properly."},
+    "palbtncurrentvideomaximize": {"message": "Maximize current video"},
+    "palbtncurrentvideofullscreen": {"message": "Full screen current video"},
+    "novideofound": {"message": "No video found on this web page"}
 }

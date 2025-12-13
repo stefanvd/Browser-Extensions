@@ -80,8 +80,8 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 --totl-button-disabled-background:rgba(0,0,0,.12);
 }
 
-html{min-width:300px;min-height:371px;padding:0;margin:0}
-body{background:var(--totl-body-background);color:var(--totl-primary-font-color);width:300px;padding:0;margin:0;-webkit-user-select:none;-moz-user-select:none;user-select:none;font-family:sans-serif;font-size:12px}
+html{min-width:300px;min-height:348px;padding:0;margin:0}
+body{background:var(--totl-body-background);color:var(--totl-primary-font-color);width:300px;padding:0;margin:auto;-webkit-user-select:none;-moz-user-select:none;user-select:none;font-family:sans-serif;font-size:12px}
 *{outline:0}
 .hidden{display:none}
 .bigtitle{font-size:16px;margin-bottom:5px}
@@ -133,7 +133,7 @@ hr{margin:0;border:0px;height:1px;background:var(--totl-hr-border)}
 .nightheader{position:relative;height:105px;background:#01579B;color:white;font-size:20px;line-height:58px;padding:0 16px;overflow:hidden}
 .nightheader video{position:absolute;top:-30px;left:0}
 .nightheader span{position:absolute}
-#btncurrentmaximize,#btnallmaximize,#btncurrentfullscreen,#btnallfullscreen,#btncurrentpopup,#btnalltabspopup{width:100%}
+#btncurrentmaximize,#btnallmaximize,#btncurrentfullscreen,#btnallfullscreen,#btncurrentpopup,#btnalltabspopup,#btncurrentvideomaximize,#btncurrentvideofullscreen{width:100%}
 .md-subin{transform:translateX(22px) translateY(-5px);overflow:hidden;width:calc(100% - 22px)}
 /* Checkbox */
 .md-checkbox{position:relative;margin:16px 0;box-sizing:border-box}

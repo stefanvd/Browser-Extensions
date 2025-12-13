@@ -116,6 +116,80 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 			createpopup(websiteurl);
 		});
 		break;
+	case"sendcurrentvideomaximize":
+		chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+			if(!tabs[0])return;
+			chrome.scripting.executeScript({
+				target: {tabId: tabs[0].id},
+				func: () => {
+					var stefanvdregularhtmlplayer; var stefanyoutubecontrols;
+					function $(id){ return document.getElementById(id); }
+
+					if(document.getElementsByTagName("video")[0]){
+						if(window.location.href.match(/((http:\/\/(.*youtube\.com\/.*))|(https:\/\/(.*youtube\.com\/.*)))/i)){
+							// YouTube website
+							var ytplayerapi = document.getElementById("player-api");
+							var playercontainer = document.getElementById("player-container");
+
+							var pagemanager = $("page-manager");
+							if(pagemanager)$("page-manager").style.cssText = "z-index:auto !important";
+
+							if(playercontainer){
+								stefanvdregularhtmlplayer = document.getElementsByClassName("stefanvdvideowindow")[0];
+								stefanyoutubecontrols = document.getElementsByClassName("ytp-chrome-bottom")[0];
+								if(stefanvdregularhtmlplayer){
+									playercontainer.classList.remove("stefanvdvideowindow");
+									document.getElementsByTagName("video")[0].classList.remove("stefanvdvideowindow");
+								}else{
+									playercontainer.classList.add("stefanvdvideowindow");
+									document.getElementsByTagName("video")[0].classList.add("stefanvdvideowindow");
+									stefanyoutubecontrols.style.cssText = "width:100% !important";
+								}
+							}else if(ytplayerapi){
+								stefanvdregularhtmlplayer = document.getElementsByClassName("stefanvdvideowindow")[0];
+								stefanyoutubecontrols = document.getElementsByClassName("ytp-chrome-bottom")[0];
+								if(stefanvdregularhtmlplayer){
+									ytplayerapi.classList.remove("stefanvdvideowindow");
+									document.getElementsByTagName("video")[0].classList.remove("stefanvdvideowindow");
+								}else{
+									ytplayerapi.classList.add("stefanvdvideowindow");
+									document.getElementsByTagName("video")[0].classList.add("stefanvdvideowindow");
+									stefanyoutubecontrols.style.width = "98%";
+								}
+							}
+						}else{
+							if(document.getElementsByTagName("video")[0].classList.contains("stefanvdvideowindow")){
+								document.getElementsByTagName("video")[0].classList.remove("stefanvdvideowindow");
+							}else{
+								document.getElementsByTagName("video")[0].classList.add("stefanvdvideowindow");
+							}
+						}
+					}else{
+						alert(chrome.i18n.getMessage("novideofound"));
+					}
+				}
+			});
+		});
+		break;
+	case"sendcurrentvideofullscreen":
+		chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
+			if(!tabs[0])return;
+			chrome.scripting.executeScript({
+				target: {tabId: tabs[0].id},
+				func: () => {
+					const video = document.querySelector("video");
+					if(video){
+						if(video.requestFullscreen) video.requestFullscreen();
+						else if(video.webkitRequestFullscreen) video.webkitRequestFullscreen();
+						else if(video.mozRequestFullScreen) video.mozRequestFullScreen();
+						else if(video.msRequestFullscreen) video.msRequestFullscreen();
+					}else{
+						alert(chrome.i18n.getMessage("novideofound"));
+					}
+				}
+			});
+		});
+		break;
 	case"updateContextMenu":
 		renewcontextmenu();
 		break;
@@ -232,58 +306,78 @@ async function getPopupOpenLength(){
 	return total;
 }
 
+function getOS(){
+	return new Promise((resolve) => {
+		chrome.runtime.getPlatformInfo((info) => {
+			resolve(info.os);
+		});
+	});
+}
+
 function actionbutton(tab){
 	chrome.windows.getCurrent(function(window){
-		chrome.storage.sync.get(["fullscreenweb", "fullscreenwindow", "fullscreenpopup", "fullscreenvideo", "allwindows", "videoinwindow"], function(items){
-			fullscreenweb = items["fullscreenweb"]; if(fullscreenweb == null)fullscreenweb = true;
-			fullscreenwindow = items["fullscreenwindow"];
-			fullscreenpopup = items["fullscreenpopup"];
-			fullscreenvideo = items["fullscreenvideo"];
-			allwindows = items["allwindows"];
-			videoinwindow = items["videoinwindow"];
+		chrome.storage.sync.get(["fullscreenweb", "fullscreenwindow", "fullscreenpopup", "fullscreenvideo", "allwindows", "videoinwindow", "videooutwindow"], function(items){
 
-			if(fullscreenweb == true){
-				if(allwindows == true){
-					chrome.windows.getAll({}, function(windows){
-						windows.forEach(function(window){
-							if(window.state == "fullscreen"){
-								chrome.windows.update(window.id, {state: oldwindowstatus});
-							}else{
-								oldwindowstatus = window.state;
-								chrome.windows.update(window.id, {state: "fullscreen"});
-							}
+			getOS().then((os) => {
+				if(os === "ios"){
+					fullscreenweb = items["fullscreenweb"]; if(fullscreenweb == null)fullscreenweb = false; // default false
+					fullscreenwindow = items["fullscreenwindow"]; if(fullscreenwindow == null)fullscreenwindow = false; // default false
+					fullscreenpopup = items["fullscreenpopup"]; if(fullscreenpopup == null)fullscreenpopup = false; // default false
+					fullscreenvideo = items["fullscreenvideo"]; if(fullscreenvideo == null)fullscreenvideo = true; // default true
+					videoinwindow = items["videoinwindow"]; if(videoinwindow == null)videoinwindow = true; // default true
+					allwindows = items["allwindows"]; if(fullscreenwindow == null)fullscreenwindow = true;
+				}else{
+					fullscreenweb = items["fullscreenweb"]; if(fullscreenweb == null)fullscreenweb = true; // default true
+					fullscreenwindow = items["fullscreenwindow"]; if(fullscreenwindow == null)fullscreenwindow = false; // default false
+					fullscreenpopup = items["fullscreenpopup"]; if(fullscreenpopup == null)fullscreenpopup = false; // default false
+					fullscreenvideo = items["fullscreenvideo"]; if(fullscreenvideo == null)fullscreenvideo = false; // default false
+					videoinwindow = items["videoinwindow"]; if(videoinwindow == null)videoinwindow = true; // default true
+					allwindows = items["allwindows"]; if(fullscreenwindow == null)fullscreenwindow = true;
+				}
+
+				if(fullscreenweb == true){
+					if(allwindows == true){
+						chrome.windows.getAll({}, function(windows){
+							windows.forEach(function(window){
+								if(window.state == "fullscreen"){
+									chrome.windows.update(window.id, {state: oldwindowstatus});
+								}else{
+									oldwindowstatus = window.state;
+									chrome.windows.update(window.id, {state: "fullscreen"});
+								}
+							});
 						});
-					});
-				}else{
-					// Firefox extension do not use the Full Screen API, permission issue. So use the Chrome window method
-					// Bug Chrome: do not restore previous state
-					if(window.state == "fullscreen"){
-						chrome.windows.update(window.id, {state: oldwindowstatus});
 					}else{
-						oldwindowstatus = window.state;
-						chrome.windows.update(window.id, {state: "fullscreen"});
-					}
+						// Firefox extension do not use the Full Screen API, permission issue. So use the Chrome window method
+						// Bug Chrome: do not restore previous state
+						if(window.state == "fullscreen"){
+							chrome.windows.update(window.id, {state: oldwindowstatus});
+						}else{
+							oldwindowstatus = window.state;
+							chrome.windows.update(window.id, {state: "fullscreen"});
+						}
 
-					// Chromium web browsers
-					// Old way
-					// if(tab.url.match(/^http/i)||tab.url.match(/^file/i)){
-					// chrome.scripting.executeScript({
-					// 	target: {tabId: tab.id},
-					//	files: ["scripts/fullscreen.js"]
-					// });
-					// }
+						// Chromium web browsers
+						// Old way
+						// if(tab.url.match(/^http/i)||tab.url.match(/^file/i)){
+						// chrome.scripting.executeScript({
+						// 	target: {tabId: tab.id},
+						//	files: ["scripts/fullscreen.js"]
+						// });
+						// }
+					}
+				}else if(fullscreenwindow == true){
+					setfullscreenwindow();
+				}else if(fullscreenpopup == true){
+					setfullscreenpopup();
+				}else if(fullscreenvideo == true){
+					if(videoinwindow == true){
+						chrome.tabs.sendMessage(tab.id, {name: "govideoinwindow"});
+					}else{
+						setfullscreenvideo(tab);
+					}
 				}
-			}else if(fullscreenwindow == true){
-				setfullscreenwindow();
-			}else if(fullscreenpopup == true){
-				setfullscreenpopup();
-			}else if(fullscreenvideo == true){
-				if(videoinwindow == true){
-					chrome.tabs.sendMessage(tab.id, {name: "govideoinwindow"});
-				}else{
-					setfullscreenvideo(tab);
-				}
-			}
+			});
 		});
 	});
 }
@@ -610,65 +704,52 @@ chrome.storage.sync.get(["contextmenus"], function(items){
 });
 
 // context menu for page and video
-var menuitems = null;
 var contextmenuadded = false;
-var contextarrayvideo = [];
-var contextarrayimage = [];
-var contextarraypage = [];
-var contextsvideo = null;
-var contextsimage = null;
-var contextspage = null;
 
-function addwebpagecontext(a, b, c, d){
-	var k;
-	var addvideolength = b.length;
-	for(k = 0; k < addvideolength; k++){
-		var contextvideo = b[k];
-		menuitems = chrome.contextMenus.create({"title": a, "type":"normal", "id": d, "contexts":[contextvideo]});
-		c.push(menuitems);
-	}
+let contextMenuIds = {
+	video: null,
+	image: null,
+	page: null
+};
+
+function addwebpagecontext(title, contexts, id){
+	// Create context menu and store the returned ID
+	contextMenuIds[id] = chrome.contextMenus.create({
+		title,
+		type: "normal",
+		id: id,
+		contexts: contexts
+	});
 }
 
 function checkcontextmenus(){
 	if(chrome.contextMenus){
-		if(contextmenuadded == false){
+		if(!contextmenuadded){
 			contextmenuadded = true;
 			// video
-			var videotitle = chrome.i18n.getMessage("videotitle");
-			var contextsvideo = ["video"];
-			addwebpagecontext(videotitle, contextsvideo, contextarrayvideo, "fsvideo");
+			addwebpagecontext(chrome.i18n.getMessage("videotitle"), ["video"], "fsvideo");
 			// image
-			var imagetitle = chrome.i18n.getMessage("imagetitle");
-			var contextsimage = ["image"];
-			addwebpagecontext(imagetitle, contextsimage, contextarrayimage, "fsimage");
+			addwebpagecontext(chrome.i18n.getMessage("imagetitle"), ["image"], "fsimage");
 			// page
-			var pagetitle = chrome.i18n.getMessage("pagetitle");
-			var contextspage = ["page"];
-			addwebpagecontext(pagetitle, contextspage, contextarraypage, "fspage");
+			addwebpagecontext(chrome.i18n.getMessage("pagetitle"), ["page"], "fspage");
 		}
 	}
 }
 
 function removecontexmenus(){
-	if(contextsvideo != null){
-		chrome.contextMenus.remove("fsvideo");
-	}
-	if(contextsimage != null){
-		chrome.contextMenus.remove("fsimage");
-	}
-	if(contextspage != null){
-		chrome.contextMenus.remove("fspage");
-	}
-	contextsvideo = null;
-	contextsimage = null;
-	contextspage = null;
+	Object.values(contextMenuIds).forEach((id) => {
+		if(id !== null){
+			chrome.contextMenus.remove(id, () => {
+				if(chrome.runtime.lastError){
+					console.warn(`Failed to remove menu ${id}: ${chrome.runtime.lastError.message}`);
+				}
+			});
+		}
+	});
+	contextMenuIds.video = null;
+	contextMenuIds.image = null;
+	contextMenuIds.page = null;
 	contextmenuadded = false;
-}
-
-function onchangestorage(a, b, c, d){
-	if(a[b]){
-		if(a[b].newValue == true){ c(); }else{ d(); }
-	}
 }
 
 chrome.storage.sync.get(["icon"], function(items){
@@ -688,7 +769,13 @@ chrome.storage.sync.get(["icon"], function(items){
 });
 
 chrome.storage.onChanged.addListener(function(changes){
-	onchangestorage(changes, "contextmenus", checkcontextmenus, removecontexmenus);
+	if(changes["contextmenus"]){
+		if(changes["contextmenus"].newValue){
+			checkcontextmenus();
+		}else{
+			removecontexmenus();
+		}
+	}
 	if(changes["icon"]){
 		if(changes["icon"].newValue){
 			chrome.tabs.query({}, function(tabs){

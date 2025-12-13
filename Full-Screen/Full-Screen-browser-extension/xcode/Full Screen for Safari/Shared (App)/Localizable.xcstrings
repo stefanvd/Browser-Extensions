@@ -6164,7 +6164,11 @@
         }
       }
     },
+    "I take your privacy and security very seriously. I built the Full Screen browser extension with my users in mind first, to ensure a great web experience for everyone. When you add Full Screen, the browser states that it can \"Read and change all your data on the websites you visit\". This permission is required only so that Full Screen can detect the current web page address and adjust the content to fit the full screen accordingly. I have never collected, and will never collect, any personal data, credit card information, browsing history, or passwords.\n\nFurthermore, the Full Screen browser extension is free and Open-Source with the source code publicly available on GitHub." : {
+
+    },
     "I take your privacy and security very seriously. I built the Full Screen browser extension with my users in mind first, to ensure a great web experience for everyone. When you add Full Screen, the browser states that it can \"Read and change all your data on the websites you visit\". This permission is required only so that Full Screen can detect the current webpage address and adjust the content to fit the full screen accordingly. I have never collected, and will never collect, any personal data, credit card information, browsing history, or passwords.\n\nFurthermore, the Full Screen browser extension is free and Open-Source with the source code publicly available on GitHub." : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -7243,6 +7247,7 @@
       }
     },
     "Make a Donation" : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {
@@ -16642,7 +16647,11 @@
         }
       }
     },
+    "When you double-tap the Full Screen icon, a quick menu appears where you can choose to maximize the current web page, view it in full screen, or open it in a popup window. An Options button also provides instant access to the Full Screen Options page." : {
+
+    },
     "When you double-tap the Full Screen icon, a quick menu appears where you can choose to maximize the current webpage, view it in full screen, or open it in a popup window. An Options button also provides instant access to the Full Screen Options page." : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

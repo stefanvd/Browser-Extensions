@@ -30,8 +30,16 @@ function $(id){ return document.getElementById(id); }
 var youtubeembed = "https://www.stefanvd.net/browser/extension/embed/?vid=PLfXHh3TKRb4Zw-Ou8sg7V5NuS482WDvTg";
 var darkmode = false;
 
+function getOS(){
+	return new Promise((resolve) => {
+		chrome.runtime.getPlatformInfo((info) => {
+			resolve(info.os);
+		});
+	});
+}
+
 function defaultgetsettings(){
-	read_options();
+	setfirstdefaultvalues();
 }
 
 function eventsubmitFunc(selector, callback){
@@ -58,36 +66,64 @@ function save_options(){
 	chrome.storage.sync.set({"icon": $("btnpreview").src, "contextmenus":$("contextmenus").checked, "autofullscreen":$("autofullscreen").checked, "optionskipremember":$("optionskipremember").checked, "fullscreenweb":$("fullscreenweb").checked, "fullscreenwindow":$("fullscreenwindow").checked, "fullscreenpopup":$("fullscreenpopup").checked, "fullscreenvideo":$("fullscreenvideo").checked, "allwindows":$("allwindows").checked, "videoinwindow":$("videoinwindow").checked, "videooutwindow":$("videooutwindow").checked, "autostartup":$("autostartup").checked, "startupallwindow":$("startupallwindow").checked, "startupcurrentwindow":$("startupcurrentwindow").checked, "autofullscreenDomains":getalldomains("autofullscreenDomainsBox"), "autofullscreenchecklistwhite":$("autofullscreenchecklistwhite").checked, "autofullscreenchecklistblack":$("autofullscreenchecklistblack").checked, "autofullscreenonly":$("autofullscreenonly").checked, "fullpopup":$("fullpopup").checked, "custompopup":$("custompopup").checked, "custompopuppixelwidth":$("custompopuppixelwidth").value, "custompopuppixelheight":$("custompopuppixelheight").value});
 }
 
-var firstdefaultvalues = {};
-// Option default value to read if there is no current value from chrome.storage AND init default value
-chrome.storage.sync.get(["icon", "contextmenus", "fullscreenweb", "fullscreenwindow", "fullscreenpopup", "fullscreenvideo", "videoinwindow", "videooutwindow", "startupallwindow", "startupcurrentwindow", "autofullscreenDomains", "autofullscreenchecklistwhite", "autofullscreenchecklistblack", "fullpopup", "custompopup", "custompopuppixelwidth", "custompopuppixelheight"], function(items){
-	// find no localstore zoomengine
-	if(items["icon"] == null){
-		if(exbrowser == "safari"){
-			firstdefaultvalues["icon"] = "/images/icon38.png";
-		}else{
-			firstdefaultvalues["icon"] = "/images/icon38.png";
-		}
-	}
-	if(items["contextmenus"] == null){ firstdefaultvalues["contextmenus"] = true; }
-	if(items["fullscreenweb"] == null && items["fullscreenwindow"] == null && items["fullscreenvideo"] == null){ firstdefaultvalues["fullscreenweb"] = true; firstdefaultvalues["fullscreenwindow"] = false; firstdefaultvalues["fullscreenpopup"] = false; firstdefaultvalues["fullscreenvideo"] = false; }
-	if(items["videoinwindow"] == null && items["videooutwindow"] == null){ firstdefaultvalues["videoinwindow"] = true; firstdefaultvalues["videooutwindow"] = false; }
-	if(items["startupallwindow"] == null && items["startupcurrentwindow"] == null){ firstdefaultvalues["startupallwindow"] = true; firstdefaultvalues["startupcurrentwindow"] = false; }
-	if(items["autofullscreenDomains"] == null){
-		firstdefaultvalues["autofullscreenDomains"] = JSON.stringify({"https://www.youtube.com": true, "https://vimeo.com": true});
-	}
-	// find no localstore autofullscreen whitelist
-	if(items["autofullscreenchecklistwhite"] == null && items["autofullscreenchecklistblack"] == null){ firstdefaultvalues["autofullscreenchecklistwhite"] = true; firstdefaultvalues["autofullscreenchecklistblack"] = false; }
-	if(items["fullpopup"] == null && items["custompopup"] == null){ firstdefaultvalues["fullpopup"] = true; firstdefaultvalues["custompopup"] = false; }
-	if(items["custompopuppixelwidth"] == null){ firstdefaultvalues["custompopuppixelwidth"] = 600; }
-	if(items["custompopuppixelheight"] == null){ firstdefaultvalues["custompopuppixelheight"] = 400; }
-	// Save the init value
-	chrome.storage.sync.set(firstdefaultvalues, function(){
-		// console.log('Settings saved');
+function setfirstdefaultvalues(){
+	var firstdefaultvalues = {};
+	// Option default value to read if there is no current value from chrome.storage AND init default value
+	chrome.storage.sync.get(["icon", "contextmenus", "fullscreenweb", "fullscreenwindow", "fullscreenpopup", "fullscreenvideo", "videoinwindow", "videooutwindow", "startupallwindow", "startupcurrentwindow", "autofullscreenDomains", "autofullscreenchecklistwhite", "autofullscreenchecklistblack", "fullpopup", "custompopup", "custompopuppixelwidth", "custompopuppixelheight"], function(items){
+
+		getOS().then((os) => {
+			// find no localstore zoomengine
+			if(os === "ios"){
+				if(items["fullscreenweb"] == null && items["fullscreenwindow"] == null && items["fullscreenvideo"] == null){ firstdefaultvalues["fullscreenweb"] = false; firstdefaultvalues["fullscreenwindow"] = false; firstdefaultvalues["fullscreenpopup"] = false; firstdefaultvalues["fullscreenvideo"] = true; }
+				if(items["videoinwindow"] == null && items["videooutwindow"] == null){ firstdefaultvalues["videoinwindow"] = true; firstdefaultvalues["videooutwindow"] = false; }
+			}else{
+				if(items["fullscreenweb"] == null && items["fullscreenwindow"] == null && items["fullscreenvideo"] == null){ firstdefaultvalues["fullscreenweb"] = true; firstdefaultvalues["fullscreenwindow"] = false; firstdefaultvalues["fullscreenpopup"] = false; firstdefaultvalues["fullscreenvideo"] = false; }
+				if(items["videoinwindow"] == null && items["videooutwindow"] == null){ firstdefaultvalues["videoinwindow"] = true; firstdefaultvalues["videooutwindow"] = false; }
+			}
+
+			if(items["icon"] == null){
+				if(exbrowser == "safari"){
+					firstdefaultvalues["icon"] = "/images/icon38.png";
+				}else{
+					firstdefaultvalues["icon"] = "/images/icon38.png";
+				}
+			}
+			if(items["contextmenus"] == null){ firstdefaultvalues["contextmenus"] = true; }
+			if(items["startupallwindow"] == null && items["startupcurrentwindow"] == null){ firstdefaultvalues["startupallwindow"] = true; firstdefaultvalues["startupcurrentwindow"] = false; }
+			if(items["autofullscreenDomains"] == null){
+				firstdefaultvalues["autofullscreenDomains"] = JSON.stringify({"https://www.youtube.com": true, "https://vimeo.com": true});
+			}
+			// find no localstore autofullscreen whitelist
+			if(items["autofullscreenchecklistwhite"] == null && items["autofullscreenchecklistblack"] == null){ firstdefaultvalues["autofullscreenchecklistwhite"] = true; firstdefaultvalues["autofullscreenchecklistblack"] = false; }
+			if(items["fullpopup"] == null && items["custompopup"] == null){ firstdefaultvalues["fullpopup"] = true; firstdefaultvalues["custompopup"] = false; }
+			if(items["custompopuppixelwidth"] == null){ firstdefaultvalues["custompopuppixelwidth"] = 600; }
+			if(items["custompopuppixelheight"] == null){ firstdefaultvalues["custompopuppixelheight"] = 400; }
+			// Save the init value
+			chrome.storage.sync.set(firstdefaultvalues, function(){
+				// console.log('Settings saved');
+			});
+
+			// call read options after setting default values
+			read_options();
+
+		});
 	});
-});
+}
 
 function read_options(){
+	// hidden content for iOS Safari
+	getOS().then((os) => {
+		if(os === "ios"){
+			$("groupweb").style.display = "none";
+			$("groupwindow").style.display = "none";
+			$("grouppopup").style.display = "none";
+			$("panelcontextmenus").style.display = "none";
+			$("panelstartup").style.display = "none";
+			$("panelpopupsize").style.display = "none";
+			$("panelallwindows").style.display = "none";
+		}
+	});
+
 	// youtube
 	$("materialModalYouTubeButtonOK").addEventListener("click", function(e){
 		closeMaterialYouTubeAlert(e);
@@ -518,7 +554,7 @@ chrome.runtime.onMessage.addListener(function(msg){
 
 				var textperm = "";
 				var newpermspandes = document.createElement("span");
-				if(x == "activeTab"){ textperm = chrome.i18n.getMessage("permissionactivetab"); }else if(x == "contextMenus"){ textperm = chrome.i18n.getMessage("permissioncontextmenu"); }else if(x == "storage"){ textperm = chrome.i18n.getMessage("permissionstorage"); }else if(x == "tabs"){ textperm = chrome.i18n.getMessage("permissiontabs"); }else if(x == "scripting"){ textperm = chrome.i18n.getMessage("permissionscripting");} else if(x == "system.display"){ textperm = chrome.i18n.getMessage("permissionsystemdisplay"); }
+				if(x == "activeTab"){ textperm = chrome.i18n.getMessage("permissionactivetab"); }else if(x == "contextMenus"){ textperm = chrome.i18n.getMessage("permissioncontextmenu"); }else if(x == "storage"){ textperm = chrome.i18n.getMessage("permissionstorage"); }else if(x == "tabs"){ textperm = chrome.i18n.getMessage("permissiontabs"); }else if(x == "scripting"){ textperm = chrome.i18n.getMessage("permissionscripting"); }else if(x == "system.display"){ textperm = chrome.i18n.getMessage("permissionsystemdisplay"); }
 				newpermspandes.textContent = textperm;
 				newpermspandes.className = "item";
 				newperm.appendChild(newpermspandes);

@@ -34,64 +34,97 @@ function save_options(){
 	chrome.storage.sync.set({"fullscreenweb":$("fullscreenweb").checked, "fullscreenwindow":$("fullscreenwindow").checked, "fullscreenpopup":$("fullscreenpopup").checked, "fullscreenvideo":$("fullscreenvideo").checked, "videoinwindow":$("videoinwindow").checked, "videooutwindow":$("videooutwindow").checked});
 }
 
+function getOS(){
+	return new Promise((resolve) => {
+		chrome.runtime.getPlatformInfo((info) => {
+			resolve(info.os);
+		});
+	});
+}
+
 document.addEventListener("DOMContentLoaded", function(){
 	// disable context menu
 	document.addEventListener("contextmenu", function(e){
 		e.preventDefault();
 	}, false);
 
+	// hidden content for iOS Safari
+	getOS().then((os) => {
+		if(os === "ios"){
+			$("controlmaximize").style.display = "none";
+			$("controlfullscreen").style.display = "none";
+			$("controlpopup").style.display = "none";
+			$("groupweb").style.display = "none";
+			$("groupwindow").style.display = "none";
+			$("grouppopup").style.display = "none";
+		}
+	});
+
 	chrome.storage.sync.get(["darkmode", "firstDate", "optionskipremember", "firstsawrate", "fullscreenweb", "fullscreenwindow", "fullscreenpopup", "fullscreenvideo", "videoinwindow", "videooutwindow"], function(items){
 		darkmode = items["darkmode"]; if(darkmode == null)darkmode = false; // default false
-		fullscreenweb = items["fullscreenweb"]; if(fullscreenweb == null)fullscreenweb = true; // default true
-		fullscreenwindow = items["fullscreenwindow"]; if(fullscreenwindow == null)fullscreenwindow = false; // default false
-		fullscreenpopup = items["fullscreenpopup"]; if(fullscreenpopup == null)fullscreenpopup = false; // default false
-		fullscreenvideo = items["fullscreenvideo"]; if(fullscreenvideo == null)fullscreenvideo = false; // default false
-		videoinwindow = items["videoinwindow"]; if(videoinwindow == null)videoinwindow = true; // default true
-		videooutwindow = items["videooutwindow"]; if(videooutwindow == null)videooutwindow = false; // default false
 
-		if(fullscreenweb == true)$("fullscreenweb").checked = true;
-		if(fullscreenwindow == true)$("fullscreenwindow").checked = true;
-		if(fullscreenvideo == true)$("fullscreenvideo").checked = true;
-		if(fullscreenpopup == true)$("fullscreenpopup").checked = true;
-		if(videoinwindow == true)$("videoinwindow").checked = true;
-		if(videooutwindow == true)$("videooutwindow").checked = true;
+		getOS().then((os) => {
+			if(os === "ios"){
+				fullscreenweb = items["fullscreenweb"]; if(fullscreenweb == null)fullscreenweb = false; // default false
+				fullscreenwindow = items["fullscreenwindow"]; if(fullscreenwindow == null)fullscreenwindow = false; // default false
+				fullscreenpopup = items["fullscreenpopup"]; if(fullscreenpopup == null)fullscreenpopup = false; // default false
+				fullscreenvideo = items["fullscreenvideo"]; if(fullscreenvideo == null)fullscreenvideo = true; // default true
+				videoinwindow = items["videoinwindow"]; if(videoinwindow == null)videoinwindow = true; // default true
+				videooutwindow = items["videooutwindow"]; if(videooutwindow == null)videooutwindow = false; // default false
+			}else{
+				fullscreenweb = items["fullscreenweb"]; if(fullscreenweb == null)fullscreenweb = true; // default true
+				fullscreenwindow = items["fullscreenwindow"]; if(fullscreenwindow == null)fullscreenwindow = false; // default false
+				fullscreenpopup = items["fullscreenpopup"]; if(fullscreenpopup == null)fullscreenpopup = false; // default false
+				fullscreenvideo = items["fullscreenvideo"]; if(fullscreenvideo == null)fullscreenvideo = false; // default false
+				videoinwindow = items["videoinwindow"]; if(videoinwindow == null)videoinwindow = true; // default true
+				videooutwindow = items["videooutwindow"]; if(videooutwindow == null)videooutwindow = false; // default false
+			}
 
-		// dark mode
-		if(darkmode == true){
-			document.body.className = "dark";
-		}else{
-			document.body.className = "light";
-		}
+			if(fullscreenweb == true)$("fullscreenweb").checked = true;
+			if(fullscreenwindow == true)$("fullscreenwindow").checked = true;
+			if(fullscreenvideo == true)$("fullscreenvideo").checked = true;
+			if(fullscreenpopup == true)$("fullscreenpopup").checked = true;
+			if(videoinwindow == true)$("videoinwindow").checked = true;
+			if(videooutwindow == true)$("videooutwindow").checked = true;
 
-		if(optionskipremember){ optionskipremember = items["optionskipremember"]; }
-		if(firstDate){ firstDate = items["firstDate"]; }
-		if(firstsawrate){ firstsawrate = items["firstsawrate"]; }
+			// dark mode
+			if(darkmode == true){
+				document.body.className = "dark";
+			}else{
+				document.body.className = "light";
+			}
 
-		// final
-		test();
+			if(optionskipremember){ optionskipremember = items["optionskipremember"]; }
+			if(firstDate){ firstDate = items["firstDate"]; }
+			if(firstsawrate){ firstsawrate = items["firstsawrate"]; }
 
-		// show remember page
-		var firstmonth = false;
-		var currentDate = new Date().getTime();
-		if(firstDate){
-			var datestart = firstDate;
-			var dateend = datestart + (30 * 24 * 60 * 60 * 1000);
-			if(currentDate >= dateend){ firstmonth = false; }else{ firstmonth = true; }
-		}else{
-			chrome.storage.sync.set({"firstDate": currentDate});
-			firstmonth = true;
-		}
+			// final
+			test();
 
-		if(firstmonth){
-			// show nothing
-		}else{
-			if(optionskipremember != true){
-				if(firstsawrate != true){
-					materialRateAlert();
-					chrome.storage.sync.set({"firstsawrate": true});
+			// show remember page
+			var firstmonth = false;
+			var currentDate = new Date().getTime();
+			if(firstDate){
+				var datestart = firstDate;
+				var dateend = datestart + (30 * 24 * 60 * 60 * 1000);
+				if(currentDate >= dateend){ firstmonth = false; }else{ firstmonth = true; }
+			}else{
+				chrome.storage.sync.set({"firstDate": currentDate});
+				firstmonth = true;
+			}
+
+			if(firstmonth){
+				// show nothing
+			}else{
+				if(optionskipremember != true){
+					if(firstsawrate != true){
+						materialRateAlert();
+						chrome.storage.sync.set({"firstsawrate": true});
+					}
 				}
 			}
-		}
+		});
+
 	});
 
 	// Detect click / change to save the page and test it.
@@ -133,6 +166,12 @@ document.addEventListener("DOMContentLoaded", function(){
 	});
 	$("btnalltabspopup").addEventListener("click", function(){
 		chrome.runtime.sendMessage({name: "sendalltabspopup"});
+	});
+	$("btncurrentvideomaximize").addEventListener("click", function(){
+		chrome.runtime.sendMessage({name: "sendcurrentvideomaximize"});
+	});
+	$("btncurrentvideofullscreen").addEventListener("click", function(){
+		chrome.runtime.sendMessage({name: "sendcurrentvideofullscreen"});
 	});
 
 	$("btnoptions").addEventListener("click", function(){ chrome.tabs.create({url: chrome.runtime.getURL("options.html"), active:true}); });

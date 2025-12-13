@@ -86,14 +86,6 @@ chrome.storage.sync.get(["videoinwindow", "videooutwindow"], function(items){
 			}else{ document.exitFullscreen(); }
 		}
 	}else{
-		if(!document.fullscreenElement){
-			if(document.documentElement.requestFullScreen){
-				document.documentElement.requestFullScreen();
-			}else if(document.documentElement.mozRequestFullScreen){
-				document.documentElement.mozRequestFullScreen();
-			}else if(document.documentElement.webkitRequestFullScreen){
-				document.documentElement.webkitRequestFullScreen();
-			}
-		}else{ document.exitFullscreen(); }
+		alert(chrome.i18n.getMessage("novideofound"));
 	}
 });
