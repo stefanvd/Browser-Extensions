@@ -44,17 +44,6 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 			chrome.runtime.openOptionsPage();
 		});
 		break;
-	case"youtubefullscreen":
-		chrome.tabs.query({active: true}, function(tabs){
-			for(var i = 0; i < tabs.length; i++){
-				chrome.scripting.executeScript({
-					target: {tabId: tabs[i].id},
-					files: ["scripts/video.js"]
-				});
-			}
-		}
-		);
-		break;
 	case"getallpermissions":
 		var result = "";
 		chrome.permissions.getAll(function(permissions){
@@ -123,7 +112,6 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 				target: {tabId: tabs[0].id},
 				func: () => {
 					var stefanvdregularhtmlplayer; var stefanyoutubecontrols;
-					function $(id){ return document.getElementById(id); }
 
 					if(document.getElementsByTagName("video")[0]){
 						if(window.location.href.match(/((http:\/\/(.*youtube\.com\/.*))|(https:\/\/(.*youtube\.com\/.*)))/i)){
@@ -131,8 +119,11 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 							var ytplayerapi = document.getElementById("player-api");
 							var playercontainer = document.getElementById("player-container");
 
-							var pagemanager = $("page-manager");
-							if(pagemanager)$("page-manager").style.cssText = "z-index:auto !important";
+							var fullbleedcontainer = document.getElementById("full-bleed-container");
+							if(fullbleedcontainer)fullbleedcontainer.style.cssText = "z-index:2000 !important";
+
+							var pagemanager = document.getElementById("page-manager");
+							if(pagemanager)pagemanager.style.cssText = "z-index:auto !important";
 
 							if(playercontainer){
 								stefanvdregularhtmlplayer = document.getElementsByClassName("stefanvdvideowindow")[0];

@@ -280,6 +280,9 @@ function ytFullMode(isFullScreen){
 	var playercontrols = document.getElementsByClassName("ytp-chrome-bottom")[0];
 	var playercontainer = document.getElementById("ytd-player");
 
+	var fullbleedcontainer = document.getElementById("full-bleed-container");
+	if(fullbleedcontainer)fullbleedcontainer.style.cssText = "z-index:2000 !important";
+
 	var masthead = $("masthead-container");
 	if(masthead)masthead.style.cssText = "z-index:auto !important";
 
@@ -313,8 +316,6 @@ function ytFullMode(isFullScreen){
 				removeexitshortcut();
 			}
 		}
-
-
 	}
 }
 

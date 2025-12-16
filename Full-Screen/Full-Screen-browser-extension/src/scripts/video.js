@@ -26,14 +26,11 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-function $(id){ return document.getElementById(id); }
-
 var videoinwindow = null, videooutwindow = null;
 var stefanvdregularhtmlplayer; var stefanyoutubecontrols;
 chrome.storage.sync.get(["videoinwindow", "videooutwindow"], function(items){
 	videoinwindow = items["videoinwindow"]; if(videoinwindow == null)videoinwindow = true;
 	videooutwindow = items["videooutwindow"]; if(videooutwindow == null)videooutwindow = false;
-
 	if(document.getElementsByTagName("video")[0]){
 		if(videoinwindow == true){
 			if(window.location.href.match(/((http:\/\/(.*youtube\.com\/.*))|(https:\/\/(.*youtube\.com\/.*)))/i)){
@@ -41,8 +38,11 @@ chrome.storage.sync.get(["videoinwindow", "videooutwindow"], function(items){
 				var ytplayerapi = document.getElementById("player-api");
 				var playercontainer = document.getElementById("player-container");
 
-				var pagemanager = $("page-manager");
-				if(pagemanager)$("page-manager").style.cssText = "z-index:auto !important";
+				var fullbleedcontainer = document.getElementById("full-bleed-container");
+				if(fullbleedcontainer)fullbleedcontainer.style.cssText = "z-index:2000 !important";
+
+				var pagemanager = document.getElementById("page-manager");
+				if(pagemanager)pagemanager.style.cssText = "z-index:auto !important";
 
 				if(playercontainer){
 					stefanvdregularhtmlplayer = document.getElementsByClassName("stefanvdvideowindow")[0];
