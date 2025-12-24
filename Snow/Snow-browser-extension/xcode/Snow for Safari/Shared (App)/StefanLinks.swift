@@ -25,7 +25,7 @@ class StefanLinks {
     }
     
     func linkredirectionoptions() -> String{
-        return "https://www.stefanvd.net/project/full-screen/browser/options/"
+        return "https://www.stefanvd.net/project/snow/browser/options/"
     }
     
     func linktranslate() -> String{

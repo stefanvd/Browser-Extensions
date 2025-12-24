@@ -9,5 +9,5 @@
 // https://developer.apple.com/documentation/xcode/adding-a-build-configuration-file-to-your-project
 
 // Update the version number here for all platforms
-VERSION = 2.0.2
-BUILD_NUMBER = 5
+VERSION = 2.0.3
+BUILD_NUMBER = 6

@@ -123,8 +123,8 @@ struct HomeView: View {
                 ToolbarItemGroup(placement: .primaryAction) {
                     ShareLink("",
                               item: URL(string: StefanLinks().linkappstore())!,
-                              subject: Text("FREE Full Screen Safari extension"),
-                              message: Text("Download the free Full Screen Safari extension to get your web page, image, or video in full screen. Try it yourself! via @Stefanvd  \(StefanLinks().linkdeveloperwebsite())"))
+                              subject: Text("FREE Snow Safari extension"),
+                              message: Text("Download the free Snow Safari extension to let it snow on all web pages. Try it yourself! via @Stefanvd  \(StefanLinks().linkdeveloperwebsite())"))
                     .accessibilityLabel(Text("Share App"))
                     .accessibilityHint(Text("Opens the system share menu"))
                 }
