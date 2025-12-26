@@ -1,0 +1,13 @@
+//
+//  Config.xcconfig
+//  Ambient Aurea for Safari
+//
+//  Created by Stefan Van Damme on 14/05/2025.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://developer.apple.com/documentation/xcode/adding-a-build-configuration-file-to-your-project
+
+// Update the version number here for all platforms
+VERSION = 2.4.1
+BUILD_NUMBER = 4

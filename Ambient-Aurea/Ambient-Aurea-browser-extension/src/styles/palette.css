@@ -1,0 +1,77 @@
+/*
+//================================================
+
+Zoom
+Zoom in or out on web content using the zoom button for more comfortable reading.
+Copyright (C) 2021 Stefan vd
+www.stefanvd.net
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+
+To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.0/
+
+//================================================
+*/
+
+.dark{
+--totl-primary-background:#232323;
+--totl-primary-font-color:#fff;
+--totl-body-background:#111111;
+}
+.light{
+--totl-primary-background:#fff;
+--totl-primary-font-color:#000;
+/*--totl-body-background:#fff;*/
+}
+
+#hund{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* mac */
+html,body{font-family:sans-serif,'Lucida Grande','Helvetica Neue';font-size:11px;margin:0;padding:0;width:300px;height:50px}
+.mac .panel{padding:5px}
+.mac .panel .title{padding-bottom:10px;margin:0;display:block;font-weight:bold;-webkit-user-select:none;user-select:none;cursor:default;font-size:14px}
+.mac .panel .titleb{padding-bottom:5px;margin:0 0 0 12px;display:block;font-weight:bold;-webkit-user-select:none;user-select:none;cursor:default;font-size:12px;opacity:.6;}
+.mac .panel .slider{position:relative}
+.mac .panel .slider .sliderlabel{position:absolute;font-size:10px;color:rgb(193,193,193);top:5px;left:7px;-webkit-user-select:none;user-select:none;cursor:default}
+.mac .panel .slider .sliderlabel svg{fill:rgb(193,193,193)}
+.mac .panel .number{position:absolute;top:10px;left:230px}
+.mac .groupbox .slider,.mac .groupbox .items{display:inline-block}
+.mac .groupbox{margin:0 0 10px 0}
+.mac .magbox{margin:10px 0 0 0}
+.mac .zbox{margin:10px 0 0 12px}
+.mac .link{margin:5px 0 0 0}
+.mac .icon{margin:3px 8px 3px 0;padding:0;border-radius:12px;background:rgba(0,0,0,.15);height:26px;width:26px;display:inline-block;align-items:center;justify-content:center;float:left;text-align:center;line-height:40px}
+.mac .des{display:inline-block;float:left;font-size:12px;-webkit-user-select:none;user-select:none}
+.mac .icon svg{fill:rgba(0,0,0,.6)}
+.mac .func{height:32px;padding:0 12px;line-height:32px;overflow:hidden;border-radius:5px;cursor:default;margin:5px 0}
+.mac .func:hover{background:rgba(0,0,0,.15);color:var(--totl-primary-font-color)}
+.mac ul{padding:0;list-style:none;overflow:hidden;margin:0;width:100%}
+.mac ul.button_group li{height:22px;float:left;overflow:hidden;border-radius:5px;cursor:default}
+.mac ul.button_group li .btnregular{user-select:none;-webkit-user-select:none;padding:0 12px;line-height:22px;color:var(--totl-primary-font-color);text-decoration:none;display:inline-block;height:22px;width:11px;text-align:center;font-weight:bold}
+.mac ul.button_group li .btnreset{user-select:none;-webkit-user-select:none;padding:0 12px;line-height:22px;color:var(--totl-primary-font-color);text-decoration:none;display:inline-block;height:22px;width:55px;text-align:center;font-weight:bold}
+.mac ul.action_group li{height:22px;overflow:hidden;border-radius:5px;cursor:default}
+.mac ul.action_group li .btnoptions{user-select:none;-webkit-user-select:none;padding:0 12px;line-height:22px;color:var(--totl-primary-font-color);text-decoration:none;display:inline-block;height:22px;width:100%;font-size:12px}
+.mac ul.button_group li:hover .btnreset,.mac ul.button_group li:hover .btnregular,.mac ul.action_group li:hover .btnoptions{background:rgb(0,0,0,.15);color:var(--totl-primary-font-color)}
+.mac input[type=number]::-webkit-inner-spin-button,.mac input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
+.mac input[type=number]:hover::-webkit-inner-spin-button,.mac input[type=number]:hover::-webkit-outer-spin-button{-webkit-appearance:inner-spin-button;margin:0}
+.mac input[type=range]{border-radius:50px;background-color:rgba(17, 17, 17, 0.1);-webkit-appearance:none;-moz-appearance:none;outline:none;border:1px solid rgba(0,0,0,.2);color:#555;font-size:inherit;overflow:hidden;padding:0;text-overflow:ellipsis;white-space:nowrap;height:20px;width:265px;margin:0}
+.mac input[type=range]::-moz-range-track{background-color:rgba(255,255,255,0)}
+.mac input[type=range]:focus{outline:none}
+.mac input[type=number]{background:transparent;-webkit-appearance:none;-moz-appearance:none;outline:none;border:none;color:#555;font-size:inherit;overflow:hidden;padding:0 0 0 5px;text-overflow:ellipsis;white-space:nowrap;height:25px;width:40px;margin:0;text-align:right;-webkit-user-select:none;user-select:none}
+.mac input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:20px;background-color:#fff;color:#fff;box-shadow:-5px 0px 10px 0px rgba(17,17,17,0.2),-210px 0 0 200px white;border:none;outline:none;cursor:pointer}
+.mac input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:20px;background-color:#fff;color:#fff;box-shadow:-5px 0px 10px 0px rgba(17,17,17,0.2);border:none;outline:none;cursor:pointer}
+.mac input[type=range]::-ms-thumb{width:20px;height:20px;border-radius:20px;background-color:#fff;color:#fff;box-shadow:-5px 0px 10px 0px rgba(17,17,17,0.2);border:none;outline:none;cursor:pointer}
+.mac hr{display:block;width:calc(100% - 20px);border-top-style:none;border-right-style:none;border-bottom-style:solid;border-left-style:none;border-bottom-width:1px;border-bottom-color:rgba(0,0,0,.15);margin:0 auto}
+.mac .action_group ul li{display:block}

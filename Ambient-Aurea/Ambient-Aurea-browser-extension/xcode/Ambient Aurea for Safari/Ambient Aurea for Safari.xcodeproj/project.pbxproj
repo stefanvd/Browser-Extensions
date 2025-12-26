@@ -1,0 +1,1054 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1E18406B2EFEABA100BAA067 /* Ambient Aurea for Safari extension iOS.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1E678A682EFD4F00006608E1 /* Ambient Aurea for Safari extension iOS.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1E678A2A2EFD4EAB006608E1 /* Ambient Aurea for Safari extension macOS.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1E678A122EFD4EAB006608E1 /* Ambient Aurea for Safari extension macOS.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1E9F32A32EFDE1080066E77D /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 1E9F32A22EFDE1080066E77D /* AppIcon.icon */; };
+		1E9F32A42EFDE1080066E77D /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 1E9F32A22EFDE1080066E77D /* AppIcon.icon */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1E18406C2EFEABA100BAA067 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1E6789F82EFD4E8B006608E1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1E678A612EFD4F00006608E1;
+			remoteInfo = "Ambient Aurea for Safari extension iOS";
+		};
+		1E678A282EFD4EAB006608E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1E6789F82EFD4E8B006608E1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1E678A112EFD4EAB006608E1;
+			remoteInfo = "Ambient Aurea for Safari extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1E678A2F2EFD4EAB006608E1 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				1E678A2A2EFD4EAB006608E1 /* Ambient Aurea for Safari extension macOS.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E678A602EFD4EE7006608E1 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				1E18406B2EFEABA100BAA067 /* Ambient Aurea for Safari extension iOS.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1E678A002EFD4E8B006608E1 /* Ambient Aurea.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ambient Aurea.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E678A122EFD4EAB006608E1 /* Ambient Aurea for Safari extension macOS.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Ambient Aurea for Safari extension macOS.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E678A342EFD4EC5006608E1 /* Ambient Aurea for Safari iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Ambient Aurea for Safari iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E678A682EFD4F00006608E1 /* Ambient Aurea for Safari extension iOS.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Ambient Aurea for Safari extension iOS.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E9F32A22EFDE1080066E77D /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
+		1E9F32A52EFDE10E0066E77D /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		1E18406E2EFEABE400BAA067 /* Exceptions for "Shared (App)" folder in "Ambient Aurea for Safari extension macOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				FeedParser.swift,
+				StefanFunctions.swift,
+				StefanLinks.swift,
+			);
+			target = 1E678A112EFD4EAB006608E1 /* Ambient Aurea for Safari extension macOS */;
+		};
+		1E18406F2EFEABEA00BAA067 /* Exceptions for "Shared (App)" folder in "Ambient Aurea for Safari extension iOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				FeedParser.swift,
+				StefanFunctions.swift,
+				StefanLinks.swift,
+			);
+			target = 1E678A612EFD4F00006608E1 /* Ambient Aurea for Safari extension iOS */;
+		};
+		1E678A2B2EFD4EAB006608E1 /* Exceptions for "macOS (Extension)" folder in "Ambient Aurea for Safari extension macOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1E678A112EFD4EAB006608E1 /* Ambient Aurea for Safari extension macOS */;
+		};
+		1E678A692EFD4F00006608E1 /* Exceptions for "macOS (Extension)" folder in "Ambient Aurea for Safari extension iOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1E678A612EFD4F00006608E1 /* Ambient Aurea for Safari extension iOS */;
+		};
+		1E9F32B62EFDE2250066E77D /* Exceptions for "Shared (App)" folder in "Ambient Aurea for Safari macOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Assets.xcassets,
+				FeedParser.swift,
+				forest.mov,
+				Localizable.xcstrings,
+				PrivacyInfo.xcprivacy,
+				StefanFunctions.swift,
+				StefanLinks.swift,
+			);
+			target = 1E6789FF2EFD4E8B006608E1 /* Ambient Aurea for Safari macOS */;
+		};
+		1E9F32B72EFDE2250066E77D /* Exceptions for "Shared (App)" folder in "Ambient Aurea for Safari iOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Assets.xcassets,
+				FeedParser.swift,
+				forest.mov,
+				Localizable.xcstrings,
+				PrivacyInfo.xcprivacy,
+				StefanFunctions.swift,
+				StefanLinks.swift,
+			);
+			target = 1E678A332EFD4EC5006608E1 /* Ambient Aurea for Safari iOS */;
+		};
+		1E9F32BE2EFDE93F0066E77D /* Exceptions for "iOS (Extension)" folder in "Ambient Aurea for Safari extension macOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1E678A112EFD4EAB006608E1 /* Ambient Aurea for Safari extension macOS */;
+		};
+		1E9F32BF2EFDE93F0066E77D /* Exceptions for "iOS (Extension)" folder in "Ambient Aurea for Safari extension iOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1E678A612EFD4F00006608E1 /* Ambient Aurea for Safari extension iOS */;
+		};
+		1E9F3A102EFDF2820066E77D /* Exceptions for "macOS" folder in "Ambient Aurea for Safari macOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1E6789FF2EFD4E8B006608E1 /* Ambient Aurea for Safari macOS */;
+		};
+		1E9F3A112EFDF2850066E77D /* Exceptions for "iOS" folder in "Ambient Aurea for Safari iOS" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			platformFiltersByRelativePath = {
+				"/Localized: LaunchScreen.storyboard" = (ios, );
+			};
+			target = 1E678A332EFD4EC5006608E1 /* Ambient Aurea for Safari iOS */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		1E678A022EFD4E8B006608E1 /* macOS */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1E9F3A102EFDF2820066E77D /* Exceptions for "macOS" folder in "Ambient Aurea for Safari macOS" target */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		1E678A132EFD4EAB006608E1 /* macOS (Extension) */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1E678A2B2EFD4EAB006608E1 /* Exceptions for "macOS (Extension)" folder in "Ambient Aurea for Safari extension macOS" target */,
+				1E678A692EFD4F00006608E1 /* Exceptions for "macOS (Extension)" folder in "Ambient Aurea for Safari extension iOS" target */,
+			);
+			path = "macOS (Extension)";
+			sourceTree = "<group>";
+		};
+		1E678A352EFD4EC5006608E1 /* iOS */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1E9F3A112EFDF2850066E77D /* Exceptions for "iOS" folder in "Ambient Aurea for Safari iOS" target */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		1E678A6B2EFD4F15006608E1 /* Shared (App) */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1E9F32B62EFDE2250066E77D /* Exceptions for "Shared (App)" folder in "Ambient Aurea for Safari macOS" target */,
+				1E9F32B72EFDE2250066E77D /* Exceptions for "Shared (App)" folder in "Ambient Aurea for Safari iOS" target */,
+				1E18406E2EFEABE400BAA067 /* Exceptions for "Shared (App)" folder in "Ambient Aurea for Safari extension macOS" target */,
+				1E18406F2EFEABEA00BAA067 /* Exceptions for "Shared (App)" folder in "Ambient Aurea for Safari extension iOS" target */,
+			);
+			path = "Shared (App)";
+			sourceTree = "<group>";
+		};
+		1E9F32BC2EFDE93F0066E77D /* iOS (Extension) */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				1E9F32BE2EFDE93F0066E77D /* Exceptions for "iOS (Extension)" folder in "Ambient Aurea for Safari extension macOS" target */,
+				1E9F32BF2EFDE93F0066E77D /* Exceptions for "iOS (Extension)" folder in "Ambient Aurea for Safari extension iOS" target */,
+			);
+			path = "iOS (Extension)";
+			sourceTree = "<group>";
+		};
+		1E9F39F42EFDEC4A0066E77D /* Shared (Extension) */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFolders = (
+				Resources/_locales,
+				Resources/images,
+				Resources/scripts,
+				Resources/styles,
+			);
+			path = "Shared (Extension)";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1E6789FD2EFD4E8B006608E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E678A0F2EFD4EAB006608E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E678A312EFD4EC5006608E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E678A632EFD4F00006608E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1E18406A2EFEABA100BAA067 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1E6789F72EFD4E8B006608E1 = {
+			isa = PBXGroup;
+			children = (
+				1E9F32A52EFDE10E0066E77D /* Config.xcconfig */,
+				1E9F32A22EFDE1080066E77D /* AppIcon.icon */,
+				1E678A6B2EFD4F15006608E1 /* Shared (App) */,
+				1E9F39F42EFDEC4A0066E77D /* Shared (Extension) */,
+				1E678A022EFD4E8B006608E1 /* macOS */,
+				1E678A132EFD4EAB006608E1 /* macOS (Extension) */,
+				1E9F32BC2EFDE93F0066E77D /* iOS (Extension) */,
+				1E678A352EFD4EC5006608E1 /* iOS */,
+				1E18406A2EFEABA100BAA067 /* Frameworks */,
+				1E678A012EFD4E8B006608E1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1E678A012EFD4E8B006608E1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1E678A002EFD4E8B006608E1 /* Ambient Aurea.app */,
+				1E678A122EFD4EAB006608E1 /* Ambient Aurea for Safari extension macOS.appex */,
+				1E678A342EFD4EC5006608E1 /* Ambient Aurea for Safari iOS.app */,
+				1E678A682EFD4F00006608E1 /* Ambient Aurea for Safari extension iOS.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1E6789FF2EFD4E8B006608E1 /* Ambient Aurea for Safari macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1E678A0B2EFD4E8C006608E1 /* Build configuration list for PBXNativeTarget "Ambient Aurea for Safari macOS" */;
+			buildPhases = (
+				1E6789FC2EFD4E8B006608E1 /* Sources */,
+				1E6789FD2EFD4E8B006608E1 /* Frameworks */,
+				1E6789FE2EFD4E8B006608E1 /* Resources */,
+				1E678A2F2EFD4EAB006608E1 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1E678A292EFD4EAB006608E1 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				1E678A022EFD4E8B006608E1 /* macOS */,
+			);
+			name = "Ambient Aurea for Safari macOS";
+			packageProductDependencies = (
+			);
+			productName = "Ambient Aurea for Safari";
+			productReference = 1E678A002EFD4E8B006608E1 /* Ambient Aurea.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1E678A112EFD4EAB006608E1 /* Ambient Aurea for Safari extension macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1E678A2C2EFD4EAB006608E1 /* Build configuration list for PBXNativeTarget "Ambient Aurea for Safari extension macOS" */;
+			buildPhases = (
+				1E678A0E2EFD4EAB006608E1 /* Sources */,
+				1E678A0F2EFD4EAB006608E1 /* Frameworks */,
+				1E678A102EFD4EAB006608E1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				1E678A132EFD4EAB006608E1 /* macOS (Extension) */,
+				1E678A6B2EFD4F15006608E1 /* Shared (App) */,
+				1E9F32BC2EFDE93F0066E77D /* iOS (Extension) */,
+				1E9F39F42EFDEC4A0066E77D /* Shared (Extension) */,
+			);
+			name = "Ambient Aurea for Safari extension macOS";
+			packageProductDependencies = (
+			);
+			productName = "Ambient Aurea for Safari extension";
+			productReference = 1E678A122EFD4EAB006608E1 /* Ambient Aurea for Safari extension macOS.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		1E678A332EFD4EC5006608E1 /* Ambient Aurea for Safari iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1E678A3C2EFD4EC6006608E1 /* Build configuration list for PBXNativeTarget "Ambient Aurea for Safari iOS" */;
+			buildPhases = (
+				1E678A302EFD4EC5006608E1 /* Sources */,
+				1E678A312EFD4EC5006608E1 /* Frameworks */,
+				1E678A322EFD4EC5006608E1 /* Resources */,
+				1E678A602EFD4EE7006608E1 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1E18406D2EFEABA100BAA067 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				1E678A352EFD4EC5006608E1 /* iOS */,
+			);
+			name = "Ambient Aurea for Safari iOS";
+			packageProductDependencies = (
+			);
+			productName = "Ambient Aurea for Safari iOS";
+			productReference = 1E678A342EFD4EC5006608E1 /* Ambient Aurea for Safari iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1E678A612EFD4F00006608E1 /* Ambient Aurea for Safari extension iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1E678A652EFD4F00006608E1 /* Build configuration list for PBXNativeTarget "Ambient Aurea for Safari extension iOS" */;
+			buildPhases = (
+				1E678A622EFD4F00006608E1 /* Sources */,
+				1E678A632EFD4F00006608E1 /* Frameworks */,
+				1E678A642EFD4F00006608E1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				1E678A132EFD4EAB006608E1 /* macOS (Extension) */,
+				1E678A6B2EFD4F15006608E1 /* Shared (App) */,
+				1E9F32BC2EFDE93F0066E77D /* iOS (Extension) */,
+				1E9F39F42EFDEC4A0066E77D /* Shared (Extension) */,
+			);
+			name = "Ambient Aurea for Safari extension iOS";
+			packageProductDependencies = (
+			);
+			productName = "Ambient Aurea for Safari extension";
+			productReference = 1E678A682EFD4F00006608E1 /* Ambient Aurea for Safari extension iOS.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1E6789F82EFD4E8B006608E1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2620;
+				LastUpgradeCheck = 2620;
+				TargetAttributes = {
+					1E6789FF2EFD4E8B006608E1 = {
+						CreatedOnToolsVersion = 26.2;
+					};
+					1E678A112EFD4EAB006608E1 = {
+						CreatedOnToolsVersion = 26.2;
+					};
+					1E678A332EFD4EC5006608E1 = {
+						CreatedOnToolsVersion = 26.2;
+					};
+					1E678A612EFD4F00006608E1 = {
+						LastSwiftMigration = 2620;
+					};
+				};
+			};
+			buildConfigurationList = 1E6789FB2EFD4E8B006608E1 /* Build configuration list for PBXProject "Ambient Aurea for Safari" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1E6789F72EFD4E8B006608E1;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 1E678A012EFD4E8B006608E1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1E6789FF2EFD4E8B006608E1 /* Ambient Aurea for Safari macOS */,
+				1E678A332EFD4EC5006608E1 /* Ambient Aurea for Safari iOS */,
+				1E678A112EFD4EAB006608E1 /* Ambient Aurea for Safari extension macOS */,
+				1E678A612EFD4F00006608E1 /* Ambient Aurea for Safari extension iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1E6789FE2EFD4E8B006608E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E9F32A42EFDE1080066E77D /* AppIcon.icon in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E678A102EFD4EAB006608E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E678A322EFD4EC5006608E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E9F32A32EFDE1080066E77D /* AppIcon.icon in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E678A642EFD4F00006608E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1E6789FC2EFD4E8B006608E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E678A0E2EFD4EAB006608E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E678A302EFD4EC5006608E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1E678A622EFD4F00006608E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1E18406D2EFEABA100BAA067 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1E678A612EFD4F00006608E1 /* Ambient Aurea for Safari extension iOS */;
+			targetProxy = 1E18406C2EFEABA100BAA067 /* PBXContainerItemProxy */;
+		};
+		1E678A292EFD4EAB006608E1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1E678A112EFD4EAB006608E1 /* Ambient Aurea for Safari extension macOS */;
+			targetProxy = 1E678A282EFD4EAB006608E1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1E678A092EFD4E8C006608E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E9F32A52EFDE10E0066E77D /* Config.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1E678A0A2EFD4E8C006608E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E9F32A52EFDE10E0066E77D /* Config.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		1E678A0C2EFD4E8C006608E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E9F32A52EFDE10E0066E77D /* Config.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Ambient Aurea for Safari";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = "$(VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.stefanvd.Ambient-Aurea-for-Safari";
+				PRODUCT_NAME = "Ambient Aurea";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		1E678A0D2EFD4E8C006608E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E9F32A52EFDE10E0066E77D /* Config.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = macOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Ambient Aurea for Safari";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = "$(VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.stefanvd.Ambient-Aurea-for-Safari";
+				PRODUCT_NAME = "Ambient Aurea";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		1E678A2D2EFD4EAB006608E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E9F32A52EFDE10E0066E77D /* Config.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Ambient Aurea for Safari extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MARKETING_VERSION = "$(VERSION)";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.stefanvd.Ambient-Aurea-for-Safari.extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		1E678A2E2EFD4EAB006608E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E9F32A52EFDE10E0066E77D /* Config.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "macOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Ambient Aurea for Safari extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MARKETING_VERSION = "$(VERSION)";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.stefanvd.Ambient-Aurea-for-Safari.extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		1E678A3D2EFD4EC6006608E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E9F32A52EFDE10E0066E77D /* Config.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Ambient Aurea for Safari";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = "$(VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.stefanvd.Ambient-Aurea-for-Safari";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Debug;
+		};
+		1E678A3E2EFD4EC6006608E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E9F32A52EFDE10E0066E77D /* Config.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = iOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Ambient Aurea for Safari";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = "$(VERSION)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.stefanvd.Ambient-Aurea-for-Safari";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1E678A662EFD4F00006608E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E9F32A52EFDE10E0066E77D /* Config.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Ambient Aurea for Safari extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = "$(VERSION)";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.stefanvd.Ambient-Aurea-for-Safari.extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Debug;
+		};
+		1E678A672EFD4F00006608E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E9F32A52EFDE10E0066E77D /* Config.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = "$(BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = PRR97757HF;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = NO;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "iOS (Extension)/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Ambient Aurea for Safari extension";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = "$(VERSION)";
+				OTHER_LDFLAGS = (
+					"-framework",
+					SafariServices,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.stefanvd.Ambient-Aurea-for-Safari.extension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1E6789FB2EFD4E8B006608E1 /* Build configuration list for PBXProject "Ambient Aurea for Safari" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E678A092EFD4E8C006608E1 /* Debug */,
+				1E678A0A2EFD4E8C006608E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1E678A0B2EFD4E8C006608E1 /* Build configuration list for PBXNativeTarget "Ambient Aurea for Safari macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E678A0C2EFD4E8C006608E1 /* Debug */,
+				1E678A0D2EFD4E8C006608E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1E678A2C2EFD4EAB006608E1 /* Build configuration list for PBXNativeTarget "Ambient Aurea for Safari extension macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E678A2D2EFD4EAB006608E1 /* Debug */,
+				1E678A2E2EFD4EAB006608E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1E678A3C2EFD4EC6006608E1 /* Build configuration list for PBXNativeTarget "Ambient Aurea for Safari iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E678A3D2EFD4EC6006608E1 /* Debug */,
+				1E678A3E2EFD4EC6006608E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1E678A652EFD4F00006608E1 /* Build configuration list for PBXNativeTarget "Ambient Aurea for Safari extension iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E678A662EFD4F00006608E1 /* Debug */,
+				1E678A672EFD4F00006608E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1E6789F82EFD4E8B006608E1 /* Project object */;
+}

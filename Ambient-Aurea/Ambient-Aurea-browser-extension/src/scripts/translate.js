@@ -3,7 +3,7 @@
 
 Ambient Aurea
 Instantly craft stunning photo galleries with ambient lighting effects in a single click.
-Copyright (C) 2024 Stefan vd
+Copyright (C) 2025 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
