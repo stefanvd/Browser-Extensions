@@ -7,32 +7,61 @@ const{join} = require("path");
 const{exec} = require("child_process");
 
 const outputDir = "dist";
+const safariOutputDir = "xcode/Proper Menubar for Safari/Shared (Extension)/Resources";
 const packageDef = require("./package.json");
 
 const buildExtension = (browser) => {
-	const destination = `${outputDir}/${browser}`;
+	// Set destination based on browser type
+	const destination = browser === "safari" ? safariOutputDir : `${outputDir}/${browser}`;
 
-	// manifest file
+	// Manifest file
 	const commonManifest = "./src/manifests/common.json";
 	const browserManifest = `./src/manifests/${browser}.json`;
 
-	// get the version number from the package.json file and add it in the manifest.json file
+	// Helper function to merge content_scripts
+	const mergeContentScripts = (commonScripts, browserScripts) => {
+		const mergedScripts = [...commonScripts];
+
+		browserScripts.forEach((browserScript) => {
+			const matchExists = commonScripts.some((commonScript) =>
+				JSON.stringify(commonScript.matches) === JSON.stringify(browserScript.matches) &&
+            JSON.stringify(commonScript.js || []) === JSON.stringify(browserScript.js || []) &&
+            JSON.stringify(commonScript.css || []) === JSON.stringify(browserScript.css || [])
+			);
+			if(!matchExists){
+				mergedScripts.push(browserScript);
+			}
+		});
+
+		return mergedScripts;
+	};
+
+	// Get the version number from package.json and add it to manifest.json
 	src([commonManifest, browserManifest])
 		.pipe(mergeJson({
 			fileName: "manifest.json",
 			edit: (json) => {
 				json.version = packageDef.version;
+
+				// Merge content_scripts if present
+				if(json.content_scripts && Array.isArray(json.content_scripts)){
+					const commonContentScripts = require(commonManifest).content_scripts || [];
+					const browserContentScripts = require(browserManifest).content_scripts || [];
+					json.content_scripts = mergeContentScripts(commonContentScripts, browserContentScripts);
+				}
+
 				return json;
 			}
 		}))
 		.pipe(dest(`${destination}/`));
 
+	// Constants file
 	const browserConstantFile = `./src/constants/${browser}/constants.js`;
 	const destinationConstantFile = join(destination, "scripts", "constants.js");
 	fs.mkdirSync(join(destination, "scripts"), {recursive: true});
 	fs.copyFileSync(browserConstantFile, destinationConstantFile);
 
-	// html, scripts, styles files
+	// HTML, scripts, styles, and other necessary files
 	const sourceFiles = src([
 		"!**/index.js",
 		"./src/LICENSE",
@@ -111,5 +140,6 @@ exports.browserzip = series(
 	exports.edge,
 	exports["edge-zip"],
 	exports.whale,
-	exports["whale-zip"]
+	exports["whale-zip"],
+	exports.safari
 );

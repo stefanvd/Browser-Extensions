@@ -181,7 +181,7 @@
     "Browser Extension" : {
 
     },
-    "Built with performance in mind, this extension runs quietly in the background. It doesn’t slow down your browser or clutter your screen. Simple, effective, and designed to just work exactly when you need it." : {
+    "Built with performance in mind, this extension runs quietly in the background. It does not slow down your browser or clutter your screen. Simple, effective, and designed to just work exactly when you need it." : {
 
     },
     "Checking extension status…" : {
@@ -228,7 +228,7 @@
     "Easy to set this up" : {
 
     },
-    "Enable **\"Zoom for Safari\"**" : {
+    "Enable **\"Zoom\"**" : {
 
     },
     "Every website has its own layout, and not all of them suit your eyes. Zoom lets you set your preferred scale per site, so you always get the best viewing experience. Once configured, it remembers your settings automatically." : {
@@ -298,7 +298,7 @@
     "Improve Readability Instantly" : {
 
     },
-    "It includes a customizable toolbar icon, allowing you to personalize your experience. Choose from multiple styles and colors to match your preferences. It’s a small touch that makes the extension feel more natural and intuitive to use." : {
+    "It includes a customizable toolbar icon, allowing you to personalize your experience. Choose from multiple styles and colors to match your preferences. It is a small touch that makes the extension feel more natural and intuitive to use." : {
 
     },
     "lblabout" : {
@@ -872,9 +872,6 @@
 
     },
     "Lightweight, Fast, and Seamless" : {
-
-    },
-    "Make a Donation" : {
 
     },
     "More" : {

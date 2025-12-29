@@ -1,0 +1,116 @@
+{
+	"manifest_version": 3,
+	"homepage_url": "https://www.stefanvd.net/support/",
+	"description": "__MSG_description__",
+	"author": "Stefan vd",
+	"icons": {
+		"16": "images/icon16.png",
+		"24": "images/icon24.png",
+		"32": "images/icon32.png",
+		"48": "images/icon48.png",
+		"96": "images/icon96.png",
+		"128": "images/icon128.png"
+	},
+	"default_locale": "en",
+	"content_security_policy": {
+		"extension_pages": "default-src 'none'; style-src 'self' 'unsafe-inline'; media-src https://www.stefanvd.net; frame-src https://www.youtube.com https://www.stefanvd.net; connect-src https://www.stefanvd.net; script-src 'self'; img-src 'self' https://www.stefanvd.net * data:; object-src 'none'"
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"*://*/*"
+			],
+			"css": [
+				"styles/body.css"
+			],
+			"run_at": "document_end"
+		},
+		{
+			"matches": [
+				"<all_urls>"
+			],
+			"js": [
+				"scripts/constants.js",
+				"scripts/g.js",
+				"scripts/content.js"
+			],
+			"run_at": "document_start"
+		}
+	],
+	"options_ui": {
+		"page": "options.html",
+		"open_in_tab": true
+	},
+	"version": "1.5.3",
+	"name": "__MSG_name__",
+	"short_name": "__MSG_name__",
+	"action": {
+		"default_icon": {
+			"19": "images/icon19safari.png",
+			"38": "images/icon38safari.png"
+		},
+		"default_title": "__MSG_name__",
+		"default_popup": "popup.html"
+	},
+	"background": {
+		"service_worker": "scripts/background.js"
+	},
+	"commands": {
+		"_execute_action": {
+			"suggested_key": {
+				"default": "Ctrl+Shift+M",
+				"mac": "MacCtrl+Shift+M"
+			}
+		},
+		"toggle-feature-propermenubar": {
+			"suggested_key": {
+				"default": "Ctrl+Shift+P",
+				"mac": "MacCtrl+Shift+P"
+			},
+			"description": "__MSG_titelshortproper__"
+		},
+		"toggle-feature-focus": {
+			"suggested_key": {
+				"default": "Ctrl+Shift+1",
+				"mac": "MacCtrl+Shift+1"
+			},
+			"description": "__MSG_titelshortfocus__"
+		}
+	},
+	"web_accessible_resources": [
+		{
+			"resources": [
+				"images/slice1.png",
+				"images/slice2.png",
+				"images/slice3.png",
+				"images/slice4.png",
+				"images/slice5.png",
+				"images/slice6.png",
+				"images/folder@2x.png",
+				"styles/toolbar.css"
+			],
+			"matches": [
+				"<all_urls>"
+			]
+		}
+	],
+	"permissions": [
+		"contextMenus",
+		"activeTab",
+		"storage",
+		"webNavigation",
+		"scripting"
+	],
+	"optional_permissions": [
+		"clipboardWrite"
+	],
+	"host_permissions": [
+		"<all_urls>"
+	],
+	"browser_specific_settings": {
+		"safari": {
+			"strict_min_version": "15.0",
+			"strict_max_version": "*"
+		}
+	}
+}

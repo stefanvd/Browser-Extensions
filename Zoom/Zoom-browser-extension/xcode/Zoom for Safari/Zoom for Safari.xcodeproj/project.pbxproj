@@ -110,8 +110,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		1E1EA9EE2EFFF50700D210E6 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1ECE6FC32ECD014900167EF4 /* Zoom for Safari macOS */;
+		};
 		1E7CA6742EDB47C7007EF866 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
 			platformFiltersByRelativePath = {
 				/Localized/LaunchScreen.storyboard = (
 					ios,
@@ -136,7 +146,7 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		1ECE6FC52ECD014900167EF4 /* macOS */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = macOS; sourceTree = "<group>"; };
+		1ECE6FC52ECD014900167EF4 /* macOS */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1E1EA9EE2EFFF50700D210E6 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = macOS; sourceTree = "<group>"; };
 		1ECE6FFF2ECD288300167EF4 /* iOS */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1E7CA6742EDB47C7007EF866 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = iOS; sourceTree = "<group>"; };
 		1ED1E1182DD66A26007F431B /* iOS (Extension) */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1ED1E1302DD66A26007F431B /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "iOS (Extension)"; sourceTree = "<group>"; };
 		1EDBD8152DD667B2009EFE06 /* macOS (Extension) */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1EDBD82E2DD667B2009EFE06 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "macOS (Extension)"; sourceTree = "<group>"; };
@@ -349,7 +359,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 2610;
-				LastUpgradeCheck = 2610;
+				LastUpgradeCheck = 2620;
 				TargetAttributes = {
 					1ECE6FC32ECD014900167EF4 = {
 						CreatedOnToolsVersion = 26.1.1;
@@ -648,7 +658,7 @@
 				ENABLE_RESOURCE_ACCESS_USB = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Zoom-for-Safari-macOS-Info.plist";
+				INFOPLIST_FILE = macOS/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Zoom for Safari";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
@@ -701,7 +711,7 @@
 				ENABLE_RESOURCE_ACCESS_USB = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Zoom-for-Safari-macOS-Info.plist";
+				INFOPLIST_FILE = macOS/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Zoom for Safari";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
@@ -738,7 +748,7 @@
 				ENABLE_PREVIEWS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Zoom-for-Safari-iOS-Info.plist";
+				INFOPLIST_FILE = iOS/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Zoom for Safari";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
@@ -756,6 +766,7 @@
 					"@executable_path/Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = "$(VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.stefanvd.Zoom-for-Safari";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -787,7 +798,7 @@
 				ENABLE_PREVIEWS = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Zoom-for-Safari-iOS-Info.plist";
+				INFOPLIST_FILE = iOS/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Zoom for Safari";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
@@ -805,6 +816,7 @@
 					"@executable_path/Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = "$(VERSION)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.stefanvd.Zoom-for-Safari";
 				PRODUCT_NAME = "$(TARGET_NAME)";

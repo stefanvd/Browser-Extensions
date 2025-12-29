@@ -3,7 +3,7 @@
 
 Proper Menubar
 Add the best menu bar to get easy and fast access to all your useful browser options and internet products!
-Copyright (C) 2024 Stefan vd
+Copyright (C) 2025 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -156,13 +156,13 @@ function renderBookmarks(bookmarks, parentElement, zIndexLevel = 3000){
 				link.addEventListener("click", function(event){
 					event.preventDefault();
 					openweb(bookmark.url, existingtab);
-					SD("btnfile").checked = false;
-					SD("btnedit").checked = false;
-					SD("btnview").checked = false;
-					SD("btnhistory").checked = false;
-					SD("btnbookmarks").checked = false;
-					SD("btnwindow").checked = false;
-					SD("btnhelp").checked = false;
+					if(SD("btnfile")) SD("btnfile").checked = false;
+					if(SD("btnedit")) SD("btnedit").checked = false;
+					if(SD("btnview")) SD("btnview").checked = false;
+					if(SD("btnhistory")) SD("btnhistory").checked = false;
+					if(SD("btnbookmarks")) SD("btnbookmarks").checked = false;
+					if(SD("btnwindow")) SD("btnwindow").checked = false;
+					if(SD("btnhelp")) SD("btnhelp").checked = false;
 
 					const existingDiv = SD("menubookmarks");
 					if(existingDiv){
@@ -260,14 +260,14 @@ function createmenubar(a, b, c, d, e){
 		// automatically open new panel with hover
 		if(hovermenu == true){
 			newdropdown.addEventListener("mouseover", function(event){
-				if(SD("btnfile").checked || SD("btnedit").checked || SD("btnview").checked || SD("btnhistory").checked || SD("btnbookmarks").checked || SD("btnwindow").checked || SD("btnhelp").checked){
-					SD("btnfile").checked = false;
-					SD("btnedit").checked = false;
-					SD("btnview").checked = false;
-					SD("btnhistory").checked = false;
-					SD("btnbookmarks").checked = false;
-					SD("btnwindow").checked = false;
-					SD("btnhelp").checked = false;
+				if((SD("btnfile") && SD("btnfile").checked) || (SD("btnedit") && SD("btnedit").checked) || (SD("btnview") && SD("btnview").checked) || (SD("btnhistory") && SD("btnhistory").checked) || (SD("btnbookmarks") && SD("btnbookmarks").checked) || (SD("btnwindow") && SD("btnwindow").checked) || (SD("btnhelp") && SD("btnhelp").checked)){
+					if(SD("btnfile")) SD("btnfile").checked = false;
+					if(SD("btnedit")) SD("btnedit").checked = false;
+					if(SD("btnview")) SD("btnview").checked = false;
+					if(SD("btnhistory")) SD("btnhistory").checked = false;
+					if(SD("btnbookmarks")) SD("btnbookmarks").checked = false;
+					if(SD("btnwindow")) SD("btnwindow").checked = false;
+					if(SD("btnhelp")) SD("btnhelp").checked = false;
 					// enable the current panel
 					SD(this.getAttribute("for")).checked = true;
 				}
@@ -467,6 +467,21 @@ function removetoolbar(){
 	newtoolbardiv = null;
 	newtoolbarul = null;
 	numberitems = 0;
+}
+
+function getSafariVersion(){
+	const ua = navigator.userAgent;
+
+	const isSafari =
+		/Safari/.test(ua) &&
+		!/Chrome/.test(ua) &&
+		!/Chromium/.test(ua) &&
+		!/Edg/.test(ua);
+
+	if(!isSafari)return null;
+
+	const match = ua.match(/Version\/([\d.]+)/);
+	return match ? match[1] : "Unknown";
 }
 
 var i18nlink1a = chrome.i18n.getMessage("link1a");
@@ -876,13 +891,13 @@ function addtoolbar(){
 					if(event.target.id == "btnfile" || event.target.id == "btnedit" || event.target.id == "btnview" || event.target.id == "btnhistory" || event.target.id == "btnbookmarks" || event.target.id == "btnwindow" || event.target.id == "btnhelp" || event.target.id == "stefanvdpropermenubar"){
 						// console.log(event);
 					}else{
-						SD("btnfile").checked = false;
-						SD("btnedit").checked = false;
-						SD("btnview").checked = false;
-						SD("btnhistory").checked = false;
-						SD("btnbookmarks").checked = false;
-						SD("btnwindow").checked = false;
-						SD("btnhelp").checked = false;
+						if(SD("btnfile")) SD("btnfile").checked = false;
+						if(SD("btnedit")) SD("btnedit").checked = false;
+						if(SD("btnview")) SD("btnview").checked = false;
+						if(SD("btnhistory")) SD("btnhistory").checked = false;
+						if(SD("btnbookmarks")) SD("btnbookmarks").checked = false;
+						if(SD("btnwindow")) SD("btnwindow").checked = false;
+						if(SD("btnhelp")) SD("btnhelp").checked = false;
 
 						// remove browser bookmarks panel
 						var element = SD("menubookmarks");
@@ -949,11 +964,14 @@ function addtoolbar(){
 			SD("menu9s").addEventListener("click", function(){
 				document.execCommand("paste");
 			}, false);
-			createline("paneledit");
-			createmenubar(i18nmenu10a, ["menu10s", ""], "paneledit", i18nmenuedit, rootedit);
-			SD("menu10s").addEventListener("click", function(){
-				chrome.runtime.sendMessage({name: "stefansettings"});
-			}, false);
+			if(exbrowser != "safari"){
+				// not for Safari web browser
+				createline("paneledit");
+				createmenubar(i18nmenu10a, ["menu10s", ""], "paneledit", i18nmenuedit, rootedit);
+				SD("menu10s").addEventListener("click", function(){
+					chrome.runtime.sendMessage({name: "stefansettings"});
+				}, false);
+			}
 			createline("paneledit");
 			createmenubar(i18nmenu11a, ["menu11s", ""], "paneledit", i18nmenuedit, rootedit);
 			SD("menu11s").addEventListener("click", function(){
@@ -1006,113 +1024,122 @@ function addtoolbar(){
 			SD("menu20s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanhistoryforward"});
 			}, false);
-			createline("panelhistory");
-			createmenubar(i18nmenu26a, ["menu26s", ""], "panelhistory", i18nmenuhistory, roothistory);
-			SD("menu26s").addEventListener("click", function(){
-				chrome.runtime.sendMessage({name: "stefanhistory"});
-			}, false);
+
+			if(exbrowser != "safari"){
+				// not for Safari web browser
+				createline("panelhistory");
+				createmenubar(i18nmenu26a, ["menu26s", ""], "panelhistory", i18nmenuhistory, roothistory);
+				SD("menu26s").addEventListener("click", function(){
+					chrome.runtime.sendMessage({name: "stefanhistory"});
+				}, false);
+			}
 
 			// Bookmarks
-			var rootbookmarks = ["btnbookmarks", "b"];
-			createmenubar(i18nmenu14a, ["menu14s", ""], "panelbookmarks", i18nmenubookmarks, rootbookmarks);
-			SD("menu14s").addEventListener("click", function(){
-				chrome.runtime.sendMessage({name: "stefanbookmarkmanager"});
-			}, false);
-			createmenubar(i18nmenu18a, ["menu18s", ""], "panelbookmarks", i18nmenubookmarks, rootbookmarks);
-			SD("menu18s").addEventListener("click", function(){
-				chrome.runtime.sendMessage({name: "stefanbookmarkadd"});
-			}, false);
-			createmenubar(i18nmenu33a, ["menu33s", ""], "panelbookmarks", i18nmenubookmarks, rootbookmarks);
-			SD("menu33s").addEventListener("click", function(){
-				chrome.runtime.sendMessage({name: "stefanbookmarkaddall"});
-			}, false);
-			createline("panelbookmarks");
-			var panelbookmarks = SD("panelbookmarks");
-			const div = document.createElement("div");
-			const ul = document.createElement("ul");
-			div.appendChild(ul);
-			const li = document.createElement("li");
-			ul.appendChild(li);
-			const a = document.createElement("a");
-			a.id = "hyperbtnviewbookmarks";
-			a.innerText = i18nviewbookmarks;
-			a.style.color = fontcolor;
+			if(exbrowser != "safari"){
+				var rootbookmarks = ["btnbookmarks", "b"];
 
-			let menubookmarks; // Variable to store the reference of the "menubookmarks" div
-			a.addEventListener("mouseover", function(event){
-				// Parent container where the new div will be added
-				const parentNav = SD("stefanvdnavwrappe");
+				// not for Safari web browser
+				createmenubar(i18nmenu14a, ["menu14s", ""], "panelbookmarks", i18nmenubookmarks, rootbookmarks);
+				SD("menu14s").addEventListener("click", function(){
+					chrome.runtime.sendMessage({name: "stefanbookmarkmanager"});
+				}, false);
 
-				var rgb = hex2rgb(backgroundhex);
-				// Check if the div with ID "menubookmarks" already exists inside the parent container
-				let existingDiv = SD("menubookmarks");
-				if(!existingDiv){
-					// Create the new div if it doesn't exist
-					menubookmarks = document.createElement("div");
-					menubookmarks.style.background = "rgba(" + rgb.red + "," + rgb.green + "," + rgb.blue + "," + (opacity / 100) + ")";
-					menubookmarks.id = "menubookmarks";
-					if(getpositionbottom == false){
-						menubookmarks.className = "top";
-					}else{
-						menubookmarks.className = "bottom";
-					}
+				createmenubar(i18nmenu18a, ["menu18s", ""], "panelbookmarks", i18nmenubookmarks, rootbookmarks);
+				SD("menu18s").addEventListener("click", function(){
+					chrome.runtime.sendMessage({name: "stefanbookmarkadd"});
+				}, false);
+				createmenubar(i18nmenu33a, ["menu33s", ""], "panelbookmarks", i18nmenubookmarks, rootbookmarks);
+				SD("menu33s").addEventListener("click", function(){
+					chrome.runtime.sendMessage({name: "stefanbookmarkaddall"});
+				}, false);
+				createline("panelbookmarks");
+				var panelbookmarks = SD("panelbookmarks");
+				const div = document.createElement("div");
+				const ul = document.createElement("ul");
+				div.appendChild(ul);
+				const li = document.createElement("li");
+				ul.appendChild(li);
+				const a = document.createElement("a");
+				a.id = "hyperbtnviewbookmarks";
+				a.innerText = i18nviewbookmarks;
+				a.style.color = fontcolor;
 
-					// Add ul and other elements inside the new div
-					const newUl = document.createElement("ul");
-					newUl.id = "list";
-					menubookmarks.appendChild(newUl);
+				let menubookmarks; // Variable to store the reference of the "menubookmarks" div
+				a.addEventListener("mouseover", function(event){
+					// Parent container where the new div will be added
+					const parentNav = SD("stefanvdnavwrappe");
 
-					// Get the position of the hovered element
-					const rect = event.target.getBoundingClientRect();
-
-					// Set the position of the new div
-					menubookmarks.style.position = "fixed";
-					if(getpositionbottom == false){
-						menubookmarks.style.top = `${rect.top - 5}px`;
-						menubookmarks.style.left = `${rect.right + window.scrollX - 8}px`;
-					}else{
-						menubookmarks.style.bottom = "30px";
-						menubookmarks.style.left = `${rect.right + window.scrollX - 8}px`;
-					}
-
-					// Add event listeners to remove the div when the mouse leaves
-					menubookmarks.addEventListener("mouseleave", function(){
-						// Remove the div when the mouse leaves the "menubookmarks" area
-						if(document.body.contains(menubookmarks)){
-							let existingDiv = SD("menubookmarks");
-							if(existingDiv){
-								existingDiv.parentNode.removeChild(existingDiv); // Remove the div
-							}
-							menubookmarks = null;
-						}
-					});
-
-					// Append the new div to the "stefanvdpropermenubarnav" container
-					parentNav.appendChild(menubookmarks);
-					createbrowserbookmark();
-				}
-			});
-
-			a.addEventListener("mouseleave", function(event){
-				// Check if the mouse moved to the "menubookmarks" area
-				const relatedTarget = event.relatedTarget;
-				if(menubookmarks && (!relatedTarget || !menubookmarks.contains(relatedTarget))){
+					var rgb = hex2rgb(backgroundhex);
+					// Check if the div with ID "menubookmarks" already exists inside the parent container
 					let existingDiv = SD("menubookmarks");
-					if(existingDiv){
-						existingDiv.parentNode.removeChild(existingDiv); // Remove the div
+					if(!existingDiv){
+						// Create the new div if it doesn't exist
+						menubookmarks = document.createElement("div");
+						menubookmarks.style.background = "rgba(" + rgb.red + "," + rgb.green + "," + rgb.blue + "," + (opacity / 100) + ")";
+						menubookmarks.id = "menubookmarks";
+						if(getpositionbottom == false){
+							menubookmarks.className = "top";
+						}else{
+							menubookmarks.className = "bottom";
+						}
+
+						// Add ul and other elements inside the new div
+						const newUl = document.createElement("ul");
+						newUl.id = "list";
+						menubookmarks.appendChild(newUl);
+
+						// Get the position of the hovered element
+						const rect = event.target.getBoundingClientRect();
+
+						// Set the position of the new div
+						menubookmarks.style.position = "fixed";
+						if(getpositionbottom == false){
+							menubookmarks.style.top = `${rect.top - 5}px`;
+							menubookmarks.style.left = `${rect.right + window.scrollX - 8}px`;
+						}else{
+							menubookmarks.style.bottom = "30px";
+							menubookmarks.style.left = `${rect.right + window.scrollX - 8}px`;
+						}
+
+						// Add event listeners to remove the div when the mouse leaves
+						menubookmarks.addEventListener("mouseleave", function(){
+							// Remove the div when the mouse leaves the "menubookmarks" area
+							if(document.body.contains(menubookmarks)){
+								let existingDiv = SD("menubookmarks");
+								if(existingDiv){
+									existingDiv.parentNode.removeChild(existingDiv); // Remove the div
+								}
+								menubookmarks = null;
+							}
+						});
+
+						// Append the new div to the "stefanvdpropermenubarnav" container
+						parentNav.appendChild(menubookmarks);
+						createbrowserbookmark();
 					}
-				}
-			});
-			li.appendChild(a);
+				});
 
-			var arrow = document.createElement("div");
-			arrow.textContent = "⌃";
-			arrow.style.margin = "0 10px";
-			arrow.style.float = "right";
-			arrow.style.transform = "rotate(90deg)";
-			a.appendChild(arrow);
+				a.addEventListener("mouseleave", function(event){
+					// Check if the mouse moved to the "menubookmarks" area
+					const relatedTarget = event.relatedTarget;
+					if(menubookmarks && (!relatedTarget || !menubookmarks.contains(relatedTarget))){
+						let existingDiv = SD("menubookmarks");
+						if(existingDiv){
+							existingDiv.parentNode.removeChild(existingDiv); // Remove the div
+						}
+					}
+				});
+				li.appendChild(a);
 
-			panelbookmarks.appendChild(div);
+				var arrow = document.createElement("div");
+				arrow.textContent = "⌃";
+				arrow.style.margin = "0 10px";
+				arrow.style.float = "right";
+				arrow.style.transform = "rotate(90deg)";
+				a.appendChild(arrow);
+
+				panelbookmarks.appendChild(div);
+			}
 
 			// Window
 			var rootwindow = ["btnwindow", "w"];
@@ -1173,27 +1200,31 @@ function addtoolbar(){
 					}
 				});
 			}, false);
-			createline("panelwindow");
-			createmenubar(i18nmenu21a, ["menu21s", ""], "panelwindow", i18nmenuwindow, rootwindow);
-			SD("menu21s").addEventListener("click", function(){
-				chrome.runtime.sendMessage({name: "stefandownloads"});
-			}, false);
-			createmenubar(i18nmenu22a, ["menu22s", ""], "panelwindow", i18nmenuwindow, rootwindow);
-			SD("menu22s").addEventListener("click", function(){
-				chrome.runtime.sendMessage({name: "stefanextensions"});
-			}, false);
-			createmenubar(i18nmenu23a, ["menu23s", ""], "panelwindow", i18nmenuwindow, rootwindow);
-			SD("menu23s").addEventListener("click", function(){
-				chrome.runtime.sendMessage({name: "stefanpolicy"});
-			}, false);
-			createmenubar(i18nmenu24a, ["menu24s", ""], "panelwindow", i18nmenuwindow, rootwindow);
-			SD("menu24s").addEventListener("click", function(){
-				chrome.runtime.sendMessage({name: "stefaninspect"});
-			}, false);
-			createmenubar(i18nmenu25a, ["menu25s", ""], "panelwindow", i18nmenuwindow, rootwindow);
-			SD("menu25s").addEventListener("click", function(){
-				chrome.runtime.sendMessage({name: "stefanflags"});
-			}, false);
+
+			if(exbrowser != "safari"){
+				// not for Safari web browser
+				createline("panelwindow");
+				createmenubar(i18nmenu21a, ["menu21s", ""], "panelwindow", i18nmenuwindow, rootwindow);
+				SD("menu21s").addEventListener("click", function(){
+					chrome.runtime.sendMessage({name: "stefandownloads"});
+				}, false);
+				createmenubar(i18nmenu22a, ["menu22s", ""], "panelwindow", i18nmenuwindow, rootwindow);
+				SD("menu22s").addEventListener("click", function(){
+					chrome.runtime.sendMessage({name: "stefanextensions"});
+				}, false);
+				createmenubar(i18nmenu23a, ["menu23s", ""], "panelwindow", i18nmenuwindow, rootwindow);
+				SD("menu23s").addEventListener("click", function(){
+					chrome.runtime.sendMessage({name: "stefanpolicy"});
+				}, false);
+				createmenubar(i18nmenu24a, ["menu24s", ""], "panelwindow", i18nmenuwindow, rootwindow);
+				SD("menu24s").addEventListener("click", function(){
+					chrome.runtime.sendMessage({name: "stefaninspect"});
+				}, false);
+				createmenubar(i18nmenu25a, ["menu25s", ""], "panelwindow", i18nmenuwindow, rootwindow);
+				SD("menu25s").addEventListener("click", function(){
+					chrome.runtime.sendMessage({name: "stefanflags"});
+				}, false);
+			}
 
 			// Help
 			var roothelp = ["btnhelp", "h"];
@@ -1203,9 +1234,12 @@ function addtoolbar(){
 			}, false);
 			createmenubar(i18nmenu17a, ["menu17s", ""], "panelhelp", i18nmenuhelp, roothelp);
 			SD("menu17s").addEventListener("click", function(){
-				chrome.runtime.sendMessage({name: "stefanchromeabout"});
+				if(exbrowser == "safari"){
+					chrome.runtime.sendMessage({name: "stefanbrowserversion"});
+				}else{
+					chrome.runtime.sendMessage({name: "stefanchromeabout"});
+				}
 			}, false);
-
 
 			// Start root menu shortcut
 			menuRootItems = el.shadowRoot.querySelectorAll("#btnfile + a, #btnhelp + a, #btnedit + a, #btnview + a, #btnhistory + a, #btnbookmarks + a, #btnwindow + a");
@@ -1404,7 +1438,7 @@ function runopenfile(){
 	// <input type="file" id="attachment" style="display: none;" onchange="fileSelected(this)"/>
 	// <input type="button" id="btnAttachment" onclick="openAttachment()" value="File"/>
 
-	if(exbrowser == "firefox"){
+	if(exbrowser == "firefox" || exbrowser == "safari"){
 		// old way
 		var input = document.createElement("input");
 		input.type = "file";
@@ -1468,6 +1502,42 @@ chrome.runtime.onMessage.addListener(function request(request){
 		range.selectNode(document.body);
 		window.getSelection().removeAllRanges();
 		window.getSelection().addRange(range);
+	}else if(request.action == "gobrowserversion"){
+		const safariVersion = getSafariVersion();
+		alert("Safari\n" + chrome.i18n.getMessage("version") + " " + safariVersion);
+	}else if(request.action == "goviewsource"){
+		const source = document.documentElement.outerHTML;
+		// Clear the current document
+		document.open();
+		document.write(`<!DOCTYPE html>
+		<html>
+		<head>
+			<title>Source of ${location.href}</title>
+			<meta name="viewport" content="width=device-width">
+			<style>
+				html, body {
+					margin: 0;
+					padding: 0;
+					height: 100%;
+					background: #fff;
+					font-family: monospace;
+				}
+				pre {
+					white-space: pre-wrap;
+					word-wrap: break-word;
+					padding: 12px;
+					box-sizing: border-box;
+					overflow: auto;
+					height: 100%;
+				}
+			</style>
+		</head>
+		<body>
+			<pre></pre>
+		</body>
+		</html>`);
+		document.close();
+		document.querySelector("pre").textContent = source;
 	}else if(request.action == "goprint"){
 		window.print();
 	}else if(request.action == "gostop"){
