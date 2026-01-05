@@ -45,7 +45,7 @@ function save_options(){
 	var googlebarDomains = {};
 	for(var j = 0; j < googlebarDomainsBox.length; j++){ googlebarDomains[googlebarDomainsBox.options[j].value] = true; }
 
-	chrome.storage.sync.set({"icon": $("btnpreview").src, "opacity": $("opacity").value, "country":$("country").value, "backgroundhex":$("backgroundhex").value, "backgroundimagesource":$("backgroundimagesource").value, "backgroundcolor":$("backgroundcolor").checked, "backgroundimage":$("backgroundimage").checked, "dropshadow":$("dropshadow").checked, "allsites":$("allsites").checked, "fontcolor":$("fontcolor").value, "googlesites":$("googlesites").checked, "search":$("search").checked, "existingtab":$("existingtab").checked, "toolbarDomains": JSON.stringify(toolbarDomains), "optionskipremember":$("optionskipremember").checked, "display":$("display").value, "hovertextcolor":$("hovertextcolor").value, "hoverbackground":$("hoverbackground").value, "getpositiontop": $("getpositiontop").checked, "getpositionbottom": $("getpositionbottom").checked, "toolbarwhite": $("toolbarwhite").checked, "toolbarblack": $("toolbarblack").checked, "toolbaronly":$("toolbaronly").checked, "googleproducts":$("googleproducts").checked, "menuproducts":$("menuproducts").checked, "googlebarDomains": JSON.stringify(googlebarDomains), "hovermenu": $("hovermenu").checked, "contextmenus": $("contextmenus").checked, "filterbydomain": $("filterbydomain").checked, "filterbypage": $("filterbypage").checked});
+	chrome.storage.sync.set({"icon": $("btnpreview").src, "opacity": $("opacity").value, "country":$("country").value, "backgroundhex":$("backgroundhex").value, "backgroundimagesource":$("backgroundimagesource").dataset.previewurl, "backgroundcolor":$("backgroundcolor").checked, "backgroundimage":$("backgroundimage").checked, "dropshadow":$("dropshadow").checked, "allsites":$("allsites").checked, "fontcolor":$("fontcolor").value, "googlesites":$("googlesites").checked, "search":$("search").checked, "existingtab":$("existingtab").checked, "toolbarDomains": JSON.stringify(toolbarDomains), "optionskipremember":$("optionskipremember").checked, "display":$("display").value, "hovertextcolor":$("hovertextcolor").value, "hoverbackground":$("hoverbackground").value, "getpositiontop": $("getpositiontop").checked, "getpositionbottom": $("getpositionbottom").checked, "toolbarwhite": $("toolbarwhite").checked, "toolbarblack": $("toolbarblack").checked, "toolbaronly":$("toolbaronly").checked, "googleproducts":$("googleproducts").checked, "menuproducts":$("menuproducts").checked, "googlebarDomains": JSON.stringify(googlebarDomains), "hovermenu": $("hovermenu").checked, "contextmenus": $("contextmenus").checked, "filterbydomain": $("filterbydomain").checked, "filterbypage": $("filterbypage").checked});
 }
 
 var firstdefaultvalues = {};
@@ -165,7 +165,7 @@ function read_options(){
 		if(items["opacity"]){ $("opacity").value = items["opacity"]; }else{ $("opacity").value = "100"; }
 		if(items["country"]){ $("country").value = items["country"]; }else{ $("country").value = "com"; }
 		if(items["backgroundhex"]){ $("backgroundhex").value = items["backgroundhex"]; }else{ $("backgroundhex").value = "#2D2D2D"; }
-		if(items["backgroundimagesource"]){ $("backgroundimagesource").value = items["backgroundimagesource"]; }else{ $("backgroundimagesource").value = ""; }
+		if(items["backgroundimagesource"]){ $("backgroundimagesource").value = chrome.runtime.getURL(items["backgroundimagesource"]); $("backgroundimagesource").dataset.previewurl = items["backgroundimagesource"]; }else{ $("backgroundimagesource").value = ""; $("backgroundimagesource").dataset.previewurl = ""; }
 		if(items["backgroundcolor"] == true)$("backgroundcolor").checked = true;
 		if(items["backgroundimage"] == true)$("backgroundimage").checked = true;
 		if(items["googlesites"] == true)$("googlesites").checked = true;
@@ -465,12 +465,12 @@ function test(){
 	}
 }
 
-function slidepreview1(){ $("backgroundimagesource").value = chrome.runtime.getURL("/images/slice1.png"); ariacheck(); save_options(); }
-function slidepreview2(){ $("backgroundimagesource").value = chrome.runtime.getURL("/images/slice2.png"); ariacheck(); save_options(); }
-function slidepreview3(){ $("backgroundimagesource").value = chrome.runtime.getURL("/images/slice3.png"); ariacheck(); save_options(); }
-function slidepreview4(){ $("backgroundimagesource").value = chrome.runtime.getURL("/images/slice4.png"); ariacheck(); save_options(); }
-function slidepreview5(){ $("backgroundimagesource").value = chrome.runtime.getURL("/images/slice5.png"); ariacheck(); save_options(); }
-function slidepreview6(){ $("backgroundimagesource").value = chrome.runtime.getURL("/images/slice6.png"); ariacheck(); save_options(); }
+function slidepreview1(){ $("backgroundimagesource").value = chrome.runtime.getURL("/images/slice1.png"); $("backgroundimagesource").dataset.previewurl = "/images/slice1.png"; ariacheck(); save_options(); }
+function slidepreview2(){ $("backgroundimagesource").value = chrome.runtime.getURL("/images/slice2.png"); $("backgroundimagesource").dataset.previewurl = "/images/slice2.png"; ariacheck(); save_options(); }
+function slidepreview3(){ $("backgroundimagesource").value = chrome.runtime.getURL("/images/slice3.png"); $("backgroundimagesource").dataset.previewurl = "/images/slice3.png"; ariacheck(); save_options(); }
+function slidepreview4(){ $("backgroundimagesource").value = chrome.runtime.getURL("/images/slice4.png"); $("backgroundimagesource").dataset.previewurl = "/images/slice4.png"; ariacheck(); save_options(); }
+function slidepreview5(){ $("backgroundimagesource").value = chrome.runtime.getURL("/images/slice5.png"); $("backgroundimagesource").dataset.previewurl = "/images/slice5.png"; ariacheck(); save_options(); }
+function slidepreview6(){ $("backgroundimagesource").value = chrome.runtime.getURL("/images/slice6.png"); $("backgroundimagesource").dataset.previewurl = "/images/slice6.png"; ariacheck(); save_options(); }
 
 function ariacheck(){
 	var inputs = document.querySelectorAll("input");
