@@ -684,6 +684,10 @@ document.addEventListener("DOMContentLoaded", function(){
 		e.preventDefault();
 	}, false);
 
+	if(devdonate == true){
+		$("opendonate").className = "hidden";
+	}
+
 	chrome.storage.sync.get(["addbar", "dropshadow", "toolbarDomains", "allsites", "toolbaronly", "getpositiontop", "getpositionbottom", "toolbarwhite", "toolbarblack", "backgroundhex", "opacity", "backgroundcolor", "backgroundimage", "allsites", "fontcolor", "googlesites", "search", "existingtab", "display", "hovertextcolor", "hoverbackground", "googleproducts", "menuproducts", "googlebarDomains"
 	], function(items){
 		addbar = items["addbar"]; if(addbar == null)addbar = true;

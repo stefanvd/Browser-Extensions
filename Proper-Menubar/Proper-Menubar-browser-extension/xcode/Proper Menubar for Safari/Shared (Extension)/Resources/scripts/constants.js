@@ -17,7 +17,7 @@ const browsernewtab = "";
 const browserstore = "https://test.apple.com";
 const linkyoutube = "https://www.youtube.com/@stefanvandamme?sub_confirmation=1";
 const devmode = true;
-const devdonate = false;
+const devdonate = true;
 const helpenablebookmark = "https://www.stefanvd.net/support/how-to-display-bookmarks-proper-menubar/";
 const browserextensions = "";
 const browsersettings = "";
