@@ -1579,7 +1579,7 @@ chrome.runtime.onMessage.addListener(function request(request){
 				googlebarDomains = JSON.stringify({"link1a": true, "link2a": true, "link3a": true, "link4a": true, "link5a": true, "link6a": true, "link7a": true, "link8a": true, "link9a": true, "link10a": true, "link11a": true, "link12a": true, "link13a": true, "link14a": true, "link15a": true, "link16a": true, "link17a": true, "link18a": true, "link19a": true, "link20a": true, "link21a": true, "link22a": true, "link23a": true, "link24a": true, "link25a": true, "link26a": true, "link27a": true, "link28a": true});
 
 			backgroundhex = items["backgroundhex"]; if(backgroundhex == null)backgroundhex = "#2d2d2d";
-			backgroundimagesource = chrome.runtime.getURL(items["backgroundimagesource"]);
+			backgroundimagesource = items["backgroundimagesource"] ? chrome.runtime.getURL(items["backgroundimagesource"]) : ""; if(backgroundimagesource == null)backgroundimagesource = "";
 			opacity = items["opacity"]; if(opacity == null)opacity = "100";
 			backgroundcolor = items["backgroundcolor"]; if(backgroundcolor == null)backgroundcolor = true;
 			backgroundimage = items["backgroundimage"]; if(backgroundimage == null)backgroundimage = false;

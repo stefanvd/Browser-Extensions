@@ -41,7 +41,7 @@
 		"page": "options.html",
 		"open_in_tab": true
 	},
-	"version": "1.5.4",
+	"version": "1.5.5",
 	"name": "__MSG_name__",
 	"short_name": "__MSG_name__",
 	"action": {
