@@ -157,6 +157,11 @@ function onClickHandler(info, tab){
 					setTimeout(function(){
 						chrome.runtime.sendMessage({msg: "setpage", value: currentpage});
 					}, 500);
+				}else if(exbrowser == "firefox"){
+					browser.sidebarAction.open();
+					setTimeout(function(){
+						chrome.runtime.sendMessage({msg: "setpage", value: currentpage});
+					}, 500);
 				}else{
 					// Chromium
 					// console.log("currentpage= " + currentpage);
@@ -171,9 +176,14 @@ function onClickHandler(info, tab){
 		});
 	}else if(info.menuItemId == "snpage"){
 		var selectedlink = info.linkUrl;
-		// console.log("selectedlink= " + selectedlink);
+		console.log("selectedlink= " + selectedlink);
 		if(exbrowser == "opera"){
 			// wait when panel is open, then send the message
+			setTimeout(function(){
+				chrome.runtime.sendMessage({msg: "setpage", value: selectedlink});
+			}, 500);
+		}else if(exbrowser == "firefox"){
+			browser.sidebarAction.open();
 			setTimeout(function(){
 				chrome.runtime.sendMessage({msg: "setpage", value: selectedlink});
 			}, 500);
@@ -192,6 +202,11 @@ function onClickHandler(info, tab){
 			// wait when panel is open, then send the message
 			setTimeout(function(){
 				chrome.runtime.sendMessage({msg: "setsearch", value: searchquery});
+			}, 500);
+		}else if(exbrowser == "firefox"){
+			browser.sidebarAction.open();
+			setTimeout(function(){
+				chrome.runtime.sendMessage({msg: "setpage", value: searchquery});
 			}, 500);
 		}else{
 			chrome.sidePanel.open({windowId: tab.windowId}, function(){
