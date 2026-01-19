@@ -1478,7 +1478,7 @@ function applyStyles(multiple, richtext){
 
 function createTabContent(){
 	if(multiple == true){
-		if(multivalue == null){ multivalue = [{"note":i18nfirsttext}]; }
+		if(multivalue == null || multivalue.length === 0){ multivalue = [{"note":i18nfirsttext}]; }
 
 		if(bartabdesign == true){
 			document.getElementById("tabstrip").setAttribute("data-hide", "false");
