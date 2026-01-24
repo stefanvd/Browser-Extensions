@@ -47,7 +47,7 @@
 		"page": "options.html",
 		"open_in_tab": true
 	},
-	"version": "1.0.9",
+	"version": "1.0.10",
 	"name": "__MSG_namefull__",
 	"background": {
 		"service_worker": "scripts/background.js"

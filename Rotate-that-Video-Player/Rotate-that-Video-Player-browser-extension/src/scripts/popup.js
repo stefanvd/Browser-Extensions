@@ -256,11 +256,20 @@ function wheelscaley(event){
 
 
 function checkForHTML5Video(){
-	var videoTags = document.getElementsByTagName("video");
-	if(videoTags.length > 0){
-		return true;
+	if(window.location.href.match(/((http:\/\/(.*dailymotion\.com\/.*))|(https:\/\/(.*dailymotion\.com\/.*)))/i)){
+		var dmPlayer = document.querySelector(".dailymotion-player");
+		if(!dmPlayer){
+			return false;
+		}else{
+			return true;
+		}
 	}else{
-		return false;
+		var videoTags = document.getElementsByTagName("video");
+		if(videoTags.length > 0){
+			return true;
+		}else{
+			return false;
+		}
 	}
 }
 

@@ -64,6 +64,10 @@ function startRotate(videorotate, videotop, videoleft, videoscale, videoscalex, 
 				player.classList.add("stefanvdrotate");
 				player.style.zIndex = 1001;
 			}
+		}else if(window.location.href.match(/((http:\/\/(.*dailymotion\.com\/.*))|(https:\/\/(.*dailymotion\.com\/.*)))/i)){
+			if(!document.getElementById("player-wrapper").classList.contains("stefanvdrotate")){
+				document.getElementById("player-wrapper").classList.add("stefanvdrotate");
+			}
 		}else if(window.location.href.match(/((http:\/\/(.*vimeo\.com\/.*))|(https:\/\/(.*vimeo\.com\/.*)))/i)){
 			const videoWrappers = document.getElementsByClassName("vp-video-wrapper");
 			for(let i = 0; i < videoWrappers.length; i++){
@@ -115,8 +119,7 @@ function startRotate(videorotate, videotop, videoleft, videoscale, videoscalex, 
 	});
 
 	if(videorotate == 0 && videotop == 0 && videoleft == 0 && videoscale == 100 && videoscalex == 100 && videoscaley == 100){
-		console.log("delete here stefan");
-
+		// console.log("delete here stefan");
 		var item = document.getElementById("stefanvdrotate-style");
 		if(item){
 			item.parentNode.removeChild(item);
@@ -124,6 +127,10 @@ function startRotate(videorotate, videotop, videoleft, videoscale, videoscalex, 
 		if(window.location.href.match(/((http:\/\/(.*youtube\.com\/.*))|(https:\/\/(.*youtube\.com\/.*)))/i)){
 			if(document.getElementById("player").classList.contains("stefanvdrotate")){
 				document.getElementById("player").classList.remove("stefanvdrotate");
+			}
+		}else if(window.location.href.match(/((http:\/\/(.*dailymotion\.com\/.*))|(https:\/\/(.*dailymotion\.com\/.*)))/i)){
+			if(document.getElementById("player-wrapper").classList.contains("stefanvdrotate")){
+				document.getElementById("player-wrapper").classList.remove("stefanvdrotate");
 			}
 		}else{
 			var video = document.getElementsByTagName("video")[0];
