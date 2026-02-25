@@ -39,7 +39,7 @@ var getfontfamily;
 document.addEventListener("DOMContentLoaded", function(){
 	// disable context menu
 	document.addEventListener("contextmenu", function(e){
-		//e.preventDefault();
+		e.preventDefault();
 	}, false);
 
 	chrome.storage.sync.get(["firstDate", "optionskipremember", "countremember", "color1", "color2", "color3", "color4", "color5", "color6", "color7", "color8", "twelfh", "begintime", "endtime", "nightmode", "color1night", "color2night", "color3night", "color4night", "color5night", "color6night", "color7night", "color8night", "stamptypeA", "stamptypeB", "stamptypeC", "stamptypeD", "getfontfamily", "stamptypeE", "optionpip", "stamptypeF"], function(response){

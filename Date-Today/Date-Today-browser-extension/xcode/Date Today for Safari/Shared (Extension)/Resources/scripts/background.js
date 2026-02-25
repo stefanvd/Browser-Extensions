@@ -428,6 +428,7 @@ function addwebpagecontext(title, contexts, id){
 	}
 	// Create context menu and store the returned ID
 	contextMenuIds[id] = chrome.contextMenus.create({
+		id: id,
 		title,
 		type: "normal",
 		contexts: contexts

@@ -9,5 +9,5 @@
 // https://developer.apple.com/documentation/xcode/adding-a-build-configuration-file-to-your-project
 
 // Update the version number here for all platforms
-VERSION = 1.4.9
-BUILD_NUMBER = 3
+VERSION = 1.4.10
+BUILD_NUMBER = 4
