@@ -3,7 +3,7 @@
 
 Font Size Decrease
 Decrease font size on any web page with one click.
-Copyright (C) 2025 Stefan vd
+Copyright (C) 2026 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -52,7 +52,6 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 		});
 		break;
 	}
-	return true;
 });
 
 // Function to reset the font size for all elements
