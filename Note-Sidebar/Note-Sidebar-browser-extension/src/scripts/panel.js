@@ -3,7 +3,7 @@
 
 Note Sidebar
 Simple note sidebar which can be used to write a note, record thoughts, to-do list, meeting notes, etc.
-Copyright (C) 2025 Stefan vd
+Copyright (C) 2026 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -200,16 +200,25 @@ function notesave(){
 
 function handleTabKey(event){
 	if(event.key !== "Tab")return;
-	event.preventDefault();
 	const target = event.target;
-	if(target instanceof HTMLTextAreaElement){
-		const start = target.selectionStart;
-		const end = target.selectionEnd;
-		const value = target.value;
-		target.value = value.slice(0, start) + "\t" + value.slice(end);
-		target.selectionStart = target.selectionEnd = start + 1;
+	const textareaTarget = target instanceof HTMLTextAreaElement ? target : null;
+	let editableTarget = null;
+	if(target instanceof HTMLElement){
+		editableTarget = target.isContentEditable ? target : target.closest("[contenteditable]");
+	}
+	if(!textareaTarget && !(editableTarget instanceof HTMLElement && editableTarget.isContentEditable)){
+		return;
+	}
+	event.preventDefault();
+	event.stopPropagation();
+	if(textareaTarget){
+		const start = textareaTarget.selectionStart;
+		const end = textareaTarget.selectionEnd;
+		const value = textareaTarget.value;
+		textareaTarget.value = value.slice(0, start) + "\t" + value.slice(end);
+		textareaTarget.selectionStart = textareaTarget.selectionEnd = start + 1;
 		notesave();
-	}else if(target instanceof HTMLElement && target.isContentEditable){
+	}else{
 		const selection = window.getSelection();
 		if(!selection || !selection.rangeCount)return;
 		const range = selection.getRangeAt(0);
