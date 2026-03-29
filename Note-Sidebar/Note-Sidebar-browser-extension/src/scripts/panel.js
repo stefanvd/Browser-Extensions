@@ -198,6 +198,32 @@ function notesave(){
 	}
 }
 
+function handleTabKey(event){
+	if(event.key !== "Tab")return;
+	event.preventDefault();
+	const target = event.target;
+	if(target instanceof HTMLTextAreaElement){
+		const start = target.selectionStart;
+		const end = target.selectionEnd;
+		const value = target.value;
+		target.value = value.slice(0, start) + "\t" + value.slice(end);
+		target.selectionStart = target.selectionEnd = start + 1;
+		notesave();
+	}else if(target instanceof HTMLElement && target.isContentEditable){
+		const selection = window.getSelection();
+		if(!selection || !selection.rangeCount)return;
+		const range = selection.getRangeAt(0);
+		range.deleteContents();
+		const tabNode = document.createTextNode("\t");
+		range.insertNode(tabNode);
+		range.setStartAfter(tabNode);
+		range.setEndAfter(tabNode);
+		selection.removeAllRanges();
+		selection.addRange(range);
+		notesave();
+	}
+}
+
 var i18nfirsttext = chrome.i18n.getMessage("firsttext");
 var i18ndefault = chrome.i18n.getMessage("titeldefault");
 var i18npasswordplaceholder = chrome.i18n.getMessage("passwordplaceholder");
@@ -870,6 +896,7 @@ function init(){
 				updatetabname();
 				hardsave();
 			};
+			maintext.addEventListener("keydown", handleTabKey);
 		}else if(richtext == true){
 			powertext.oninput = function(){
 				notesave();
@@ -877,6 +904,7 @@ function init(){
 				updatetabname();
 				hardsave();
 			};
+			powertext.addEventListener("keydown", handleTabKey);
 		}
 
 		// on the end update tab names or not
