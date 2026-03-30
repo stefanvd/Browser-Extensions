@@ -33,7 +33,7 @@ var darkmode = false;
 var firstdefaultvalues = {};
 function defaultgetsettings(){
 	// Option default value to read if there is no current value from chrome.storage AND init default value
-	chrome.storage.sync.get(["icon", "contextmenus", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsize", "print", "password", "enterpassword", "richtext", "plaintext", "save", "bartabdesign", "barselectdesign", "download", "find", "notesStorageType", "enterspeed"], function(items){
+	chrome.storage.sync.get(["icon", "contextmenus", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsize", "print", "password", "enterpassword", "richtext", "plaintext", "save", "bartabdesign", "barselectdesign", "download", "find", "notesStorageType", "enterspeed", "fontfamily"], function(items){
 		// find no localstore zoomengine
 		if(items["icon"] == null){
 			if(exbrowser == "safari"){
@@ -65,6 +65,8 @@ function defaultgetsettings(){
 		if(items["find"] == null){ firstdefaultvalues["find"] = false; }
 		if(items["notesStorageType"] == null){ firstdefaultvalues["notesStorageType"] = "sync"; }
 		if(items["enterspeed"] == null){ firstdefaultvalues["enterspeed"] = 0.8; }
+		if(items["maxquality"] == null){ firstdefaultvalues["maxquality"] = "hd1080"; }
+		if(items["fontfamily"] == null){ firstdefaultvalues["fontfamily"] = "Helvetica"; }
 
 		// find no localstore lightimage
 		// Save the init value
@@ -77,7 +79,9 @@ function defaultgetsettings(){
 
 // Option to save current value
 function save_options(){
-	chrome.storage.sync.set({"icon": $("btnpreview").src, "optionskipremember":$("optionskipremember").checked, "contextmenus":$("contextmenus").checked, "counter":$("counter").checked, "copy":$("copy").checked, "speech":$("speech").checked, "voices":$("voices").checked, "fontsize":$("fontsize").value, "lineheight":$("lineheight").value, "colorlight":$("colorlight").value, "colordark":$("colordark").value, "backgroundlight":$("backgroundlight").value, "backgrounddark":$("backgrounddark").value, "backgroundcolor":$("backgroundcolor").checked, "backgroundimage":$("backgroundimage").checked, "backgroundsize":$("backgroundsize").value, "print":$("print").checked, "password":$("password").checked, "richtext":$("richtext").checked, "plaintext":$("plaintext").checked, "multiple":$("multiple").checked, "preventclose":$("preventclose").checked, "texttabname":$("texttabname").checked, "save":$("save").checked, "bartabdesign":$("bartabdesign").checked, "barselectdesign":$("barselectdesign").checked, "download":$("download").checked, "find":$("find").checked, "richtexttoolbar":$("richtexttoolbar").checked, "richtextshortcut":$("richtextshortcut").checked, "notesStorageType": $("notesStorageSync").checked ? "sync" : "local", "enterspeed":$("enterspeed").value});
+	var getfontfamily = document.getElementById("fontfamily");
+
+	chrome.storage.sync.set({"icon": $("btnpreview").src, "optionskipremember":$("optionskipremember").checked, "contextmenus":$("contextmenus").checked, "counter":$("counter").checked, "copy":$("copy").checked, "speech":$("speech").checked, "voices":$("voices").checked, "fontsize":$("fontsize").value, "lineheight":$("lineheight").value, "colorlight":$("colorlight").value, "colordark":$("colordark").value, "backgroundlight":$("backgroundlight").value, "backgrounddark":$("backgrounddark").value, "backgroundcolor":$("backgroundcolor").checked, "backgroundimage":$("backgroundimage").checked, "backgroundsize":$("backgroundsize").value, "print":$("print").checked, "password":$("password").checked, "richtext":$("richtext").checked, "plaintext":$("plaintext").checked, "multiple":$("multiple").checked, "preventclose":$("preventclose").checked, "texttabname":$("texttabname").checked, "save":$("save").checked, "bartabdesign":$("bartabdesign").checked, "barselectdesign":$("barselectdesign").checked, "download":$("download").checked, "find":$("find").checked, "richtexttoolbar":$("richtexttoolbar").checked, "richtextshortcut":$("richtextshortcut").checked, "notesStorageType": $("notesStorageSync").checked ? "sync" : "local", "enterspeed":$("enterspeed").value, "fontfamily":getfontfamily.options[getfontfamily.selectedIndex].value});
 }
 
 function read_options(){
@@ -168,7 +172,7 @@ function read_options(){
 		showhidemodal("materialModalYouTube", "hide", "true");
 	}
 
-	chrome.storage.sync.get(["icon", "firstDate", "contextmenus", "optionskipremember", "firstsawrate", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsize", "print", "password", "enterpassword", "plaintext", "richtext", "multiple", "preventclose", "texttabname", "save", "bartabdesign", "barselectdesign", "download", "find", "richtexttoolbar", "richtextshortcut", "notesStorageType", "enterspeed"], function(items){
+	chrome.storage.sync.get(["icon", "firstDate", "contextmenus", "optionskipremember", "firstsawrate", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsize", "print", "password", "enterpassword", "plaintext", "richtext", "multiple", "preventclose", "texttabname", "save", "bartabdesign", "barselectdesign", "download", "find", "richtexttoolbar", "richtextshortcut", "notesStorageType", "enterspeed", "fontfamily"], function(items){
 		if(items["icon"]){ $("btnpreview").src = items["icon"]; }
 		if(items["contextmenus"] == true)$("contextmenus").checked = true;
 		if(items["optionskipremember"] == true)$("optionskipremember").checked = true;
@@ -201,6 +205,7 @@ function read_options(){
 		if(items["richtexttoolbar"] == true)$("richtexttoolbar").checked = true;
 		if(items["richtextshortcut"] == true)$("richtextshortcut").checked = true;
 		if(items["enterspeed"])$("enterspeed").value = items["enterspeed"];
+		if(items["fontfamily"])$("fontfamily").value = items["fontfamily"];
 
 		// Set notesStorageType radio
 		var notesStorageType = items["notesStorageType"];
@@ -209,6 +214,10 @@ function read_options(){
 		}else{
 			$("notesStorageSync").checked = true;
 		}
+
+		// font family
+		$("fontfamily").addEventListener("click", function(){ save_options(); });
+		$("fontfamily").addEventListener("change", function(){ save_options(); });
 
 		// show remember page
 		var firstmonth = false;

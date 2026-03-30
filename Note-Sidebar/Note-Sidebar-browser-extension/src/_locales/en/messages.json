@@ -218,5 +218,7 @@
     "desresetwarningcaption": {"message": "Resetting will remove all your settings and any notes you have typed."},
     "desresetwarningundo": {"message": "This action cannot be undone."},
     "titeltextspeed": {"message": "TTS speed"},
-    "destextspeed": {"message": "Adjust the speed of spoken text"}
+    "destextspeed": {"message": "Adjust the speed of spoken text"},
+    "titelfontfamily": {"message": "Font Family"},
+    "desfontfamily": {"message": "Change the font family of the text area"}
 }

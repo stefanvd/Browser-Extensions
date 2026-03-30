@@ -322,6 +322,7 @@ header .rightmenu:hover{background:var(--totl-svg-fill-color-hover);cursor:point
 #menu:hover{ background:var(--totl-menu-background-hover);cursor:pointer}
 #menuToggle{height:12px;width:20px;border-radius:50%;position:absolute;top:0;bottom:0;margin:auto;left:0;right:0}
 #menuToggle span{display:block;width:20px;height:2px;margin-bottom:3px;position:relative;background:var(--totl-primary-font-color)}
+#boxfontfamily{width:180px}
 /* Mobile sidebar */
 input[type=checkbox]:checked ~ #navbar-container{display:none}
 input[type=checkbox]:checked ~ #mainview{padding-left:0px}
