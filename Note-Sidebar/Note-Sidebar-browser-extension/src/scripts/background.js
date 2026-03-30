@@ -542,6 +542,9 @@ chrome.storage.onChanged.addListener(function(changes){
 	if(changes["enterspeed"]){
 		chrome.runtime.sendMessage({msg: "setenterspeed", value: changes["enterspeed"].newValue});
 	}
+	if(changes["fontfamily"]){
+		chrome.runtime.sendMessage({msg: "setfontfamily", value: changes["fontfamily"].newValue});
+	}
 });
 
 function initwelcome(){

@@ -26,7 +26,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-var maintext; var powertext; var txtvalue; var multivalue; var counter; var copy; var speech; var voices; var fontsize; var lineheight; var colorlight; var colordark; var backgroundlight; var backgrounddark; var backgroundcolor; var backgroundimage; var backgroundsource; var backgroundsize; var printicon; var password; var enterpassword; var richtext; var plaintext; var multiple; var preventclose; var texttabname; var save; var bartabdesign; var barselectdesign; var download; var find; var textarea; var highlightedText; var searchInput; var searchBox; var richtexttoolbar; var richtextshortcut; var selectedvoice;
+var maintext; var powertext; var txtvalue; var multivalue; var counter; var copy; var speech; var voices; var fontsize; var lineheight; var colorlight; var colordark; var backgroundlight; var backgrounddark; var backgroundcolor; var backgroundimage; var backgroundsource; var backgroundsize; var printicon; var password; var enterpassword; var richtext; var plaintext; var multiple; var preventclose; var texttabname; var save; var bartabdesign; var barselectdesign; var download; var find; var textarea; var highlightedText; var searchInput; var searchBox; var richtexttoolbar; var richtextshortcut; var selectedvoice; var fontfamily;
 
 function wrapText(tag){
 	const selection = window.getSelection();
@@ -744,6 +744,9 @@ function init(){
 		richtextshortcut = items["richtextshortcut"]; if(richtextshortcut == null){ richtextshortcut = false; }
 		selectedvoice = items["selectedvoice"]; if(selectedvoice == null){ selectedvoice = 0; }
 		enterspeed = items["enterspeed"]; if(enterspeed == null){ enterspeed = 0.8; }
+		fontfamily = items["fontfamily"]; if(fontfamily == null){ fontfamily = "Helvetica"; }
+
+		addfontstylecode(fontfamily);
 
 		if(richtexttoolbar == true){
 			document.getElementById("richtexttoolbar").className = "richtexttoolbar";
@@ -1757,8 +1760,23 @@ chrome.runtime.onMessage.addListener(function(request){
 		}
 	}else if(request.msg == "setenterspeed"){
 		enterspeed = request.value;
+	}else if(request.msg == "setfontfamily"){
+		fontfamily = request.value;
+		addfontstylecode(fontfamily);
 	}
 });
+
+function addfontstylecode(fontfamily){
+	if(document.getElementById("fontfamilystyle")){
+		document.getElementById("fontfamilystyle").parentNode.removeChild(document.getElementById("fontfamilystyle"));
+	}
+	const style = document.createElement("style");
+	style.id = "fontfamilystyle";
+	style.textContent = `
+		textarea, #powertext{font-family:` + fontfamily + `;}
+	`;
+	document.head.appendChild(style);
+}
 
 // Helper to get the correct storage area for notes
 function getNotesStorageArea(callback){
@@ -1776,7 +1794,7 @@ function loadNotesAndSettings(callback){
 	getNotesStorageArea(function(noteStorage){
 		noteStorage.get(["txtvalue", "multivalue"], function(noteItems){
 			// Load all other settings from sync
-			chrome.storage.sync.get(["firstDate", "optionskipremember", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsource", "backgroundsize", "print", "password", "enterpassword", "richtext", "plaintext", "multiple", "preventclose", "texttabname", "save", "bartabdesign", "barselectdesign", "download", "find", "richtexttoolbar", "richtextshortcut", "selectedvoice", "enterspeed"], function(settingsItems){
+			chrome.storage.sync.get(["firstDate", "optionskipremember", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsource", "backgroundsize", "print", "password", "enterpassword", "richtext", "plaintext", "multiple", "preventclose", "texttabname", "save", "bartabdesign", "barselectdesign", "download", "find", "richtexttoolbar", "richtextshortcut", "selectedvoice", "enterspeed", "fontfamily"], function(settingsItems){
 				callback(Object.assign({}, noteItems, settingsItems));
 			});
 		});
