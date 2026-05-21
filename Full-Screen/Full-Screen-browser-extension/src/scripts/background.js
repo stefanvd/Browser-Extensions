@@ -3,7 +3,7 @@
 
 Full Screen
 Go full screen with one click on the button.
-Copyright (C) 2025 Stefan vd
+Copyright (C) 2026 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -54,9 +54,12 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 	case"sendcurrentmaximize":
 		chrome.windows.getCurrent(function(window){
 			if(window.state == "maximized"){
-				chrome.windows.update(window.id, {state: oldwindowstatus});
+				chrome.storage.session.get(["oldwindowstatus"], function(result){
+					const previousState = result.oldwindowstatus || "normal";
+					chrome.windows.update(window.id, {state: previousState});
+				});
 			}else{
-				oldwindowstatus = window.state;
+				chrome.storage.session.set({oldwindowstatus: window.state});
 				chrome.windows.update(window.id, {state: "maximized"});
 			}
 		});
@@ -75,9 +78,12 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 	case"sendcurrentfullscreen":
 		chrome.windows.getCurrent(function(window){
 			if(window.state == "fullscreen"){
-				chrome.windows.update(window.id, {state: oldwindowstatus});
+				chrome.storage.session.get(["oldwindowstatus"], function(result){
+					const previousState = result.oldwindowstatus || "normal";
+					chrome.windows.update(window.id, {state: previousState});
+				});
 			}else{
-				oldwindowstatus = window.state;
+				chrome.storage.session.set({oldwindowstatus: window.state});
 				chrome.windows.update(window.id, {state: "fullscreen"});
 			}
 		});
@@ -86,10 +92,13 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 		chrome.windows.getAll({}, function(windows){
 			windows.forEach(function(window){
 				if(window.state == "fullscreen"){
-					chrome.windows.update(window.id, {state: oldwindowstatus});
+					chrome.storage.session.get(["oldwindowstatus"], function(result){
+						const previousState = result.oldwindowstatus || "normal";
+						chrome.windows.update(window.id, {state: previousState});
+					});
 				}else{
+					chrome.storage.session.set({oldwindowstatus: window.state});
 					chrome.windows.update(window.id, {state: "fullscreen"});
-					oldwindowstatus = window.state;
 				}
 			});
 		});
@@ -289,7 +298,6 @@ chrome.windows.onFocusChanged.addListener(function(){
 	renewcontextmenu();
 });
 
-var oldwindowstatus;
 var fullscreenweb = null, fullscreenwindow = null, fullscreenpopup = null, fullscreenvideo = null, allwindows = null, autostartup = null, autostartupall = null, autostartupcurrent = null, videoinwindow = null;
 
 async function getPopupOpenLength(){
@@ -331,9 +339,12 @@ function actionbutton(tab){
 						chrome.windows.getAll({}, function(windows){
 							windows.forEach(function(window){
 								if(window.state == "fullscreen"){
-									chrome.windows.update(window.id, {state: oldwindowstatus});
+									chrome.storage.session.get(["oldwindowstatus"], function(result){
+										const previousState = result.oldwindowstatus || "normal";
+										chrome.windows.update(window.id, {state: previousState});
+									});
 								}else{
-									oldwindowstatus = window.state;
+									chrome.storage.session.set({oldwindowstatus: window.state});
 									chrome.windows.update(window.id, {state: "fullscreen"});
 								}
 							});
@@ -342,9 +353,12 @@ function actionbutton(tab){
 						// Firefox extension do not use the Full Screen API, permission issue. So use the Chrome window method
 						// Bug Chrome: do not restore previous state
 						if(window.state == "fullscreen"){
-							chrome.windows.update(window.id, {state: oldwindowstatus});
+							chrome.storage.session.get(["oldwindowstatus"], function(result){
+								const previousState = result.oldwindowstatus || "normal";
+								chrome.windows.update(window.id, {state: previousState});
+							});
 						}else{
-							oldwindowstatus = window.state;
+							chrome.storage.session.set({oldwindowstatus: window.state});
 							chrome.windows.update(window.id, {state: "fullscreen"});
 						}
 
@@ -558,9 +572,12 @@ function onClickHandler(info, tab){
 				chrome.contextMenus.update("fspage", {"title": pagetitle});
 			}else{
 				if(window.state == "fullscreen"){
-					chrome.windows.update(window.id, {state: oldwindowstatus});
+					chrome.storage.session.get(["oldwindowstatus"], function(result){
+						const previousState = result.oldwindowstatus || "normal";
+						chrome.windows.update(window.id, {state: previousState});
+					});
 				}else{
-					oldwindowstatus = window.state;
+					chrome.storage.session.set({oldwindowstatus: window.state});
 					chrome.windows.update(window.id, {state: "fullscreen"});
 				}
 			}

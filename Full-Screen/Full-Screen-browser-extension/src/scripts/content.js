@@ -3,7 +3,7 @@
 
 Full Screen
 Go full screen with one click on the button.
-Copyright (C) 2025 Stefan vd
+Copyright (C) 2026 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -281,10 +281,7 @@ function ytFullMode(isFullScreen){
 	var playercontainer = document.getElementById("ytd-player");
 
 	var fullbleedcontainer = document.getElementById("full-bleed-container");
-	if(fullbleedcontainer)fullbleedcontainer.style.cssText = "z-index:2000 !important";
-
-	var masthead = $("masthead-container");
-	if(masthead)masthead.style.cssText = "z-index:auto !important";
+	if(fullbleedcontainer)fullbleedcontainer.style.cssText = "z-index:1001 !important";
 
 	if(playercontainer){
 		var stefanvdregularhtmlplayer = document.getElementsByClassName("stefanvdvideowindow")[0];
@@ -301,6 +298,9 @@ function ytFullMode(isFullScreen){
 			playercontrols.classList.add("stefanvdvideocontrols");
 			document.querySelector("video").classList.add("stefanvdvideowindow");
 
+			var nextmasthead = $("masthead-container");
+			if(nextmasthead)nextmasthead.style.cssText = "z-index:1000 !important";
+
 			videowindow = true;
 			setexitshortcut();
 		}else{
@@ -311,6 +311,9 @@ function ytFullMode(isFullScreen){
 				playercontainer.classList.remove("stefanvdvideowindow");
 				playercontrols.classList.remove("stefanvdvideocontrols");
 				document.querySelector("video").classList.remove("stefanvdvideowindow");
+
+				var prevmasthead = $("masthead-container");
+				if(prevmasthead)prevmasthead.style.cssText = "";
 
 				videowindow = false;
 				removeexitshortcut();

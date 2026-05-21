@@ -286,12 +286,16 @@ if(chrome.contextMenus){
 	}
 }
 
-chrome.contextMenus.onClicked.addListener(onClickHandler);
-chrome.commands.onCommand.addListener(function(command){
-	if(command == "toggle-feature-fontreset"){
-		codereset();
-	}
-});
+if(chrome.contextMenus){
+	chrome.contextMenus.onClicked.addListener(onClickHandler);
+}
+if(chrome.commands){
+	chrome.commands.onCommand.addListener(function(command){
+		if(command == "toggle-feature-fontreset"){
+			codereset();
+		}
+	});
+}
 
 function buttonaction(){
 	getCurrentTab().then((thattab) => {
