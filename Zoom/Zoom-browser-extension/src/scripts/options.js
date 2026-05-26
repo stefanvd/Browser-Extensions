@@ -1296,7 +1296,9 @@ function domcontentloaded(){
 			var partsection = allsections[sectionsx];
 			var content = partsection.textContent;
 
-			if(content.search(new RegExp(searchword, "i")) < 1){
+			const escaped = searchword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+			const regex = new RegExp(escaped, "i");
+			if(content.search(regex) < 1){
 				partsection.classList.add("searchfoundnothing");
 			}else{
 				partsection.classList.remove("searchfoundnothing");

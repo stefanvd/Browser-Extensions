@@ -105,13 +105,13 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 		break;
 	case"sendcurrentpopup":
 		chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
-			// close current tab
-			var websiteurl = tabs[0].url;
 			if(tabs[0]){
+				var websiteurl = tabs[0].url;
+				// close current tab
 				chrome.tabs.remove(tabs[0].id);
+				// open popup window
+				createpopup(websiteurl);
 			}
-			// open popup window
-			createpopup(websiteurl);
 		});
 		break;
 	case"sendcurrentvideomaximize":
@@ -488,13 +488,13 @@ function createpopup(websiteurl){
 
 function setfullscreenpopup(){
 	chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
-		// close current tab
-		var websiteurl = tabs[0].url;
 		if(tabs[0]){
+			var websiteurl = tabs[0].url;
+			// close current tab
 			chrome.tabs.remove(tabs[0].id);
+			// open popup window
+			createpopup(websiteurl);
 		}
-		// open popup window
-		createpopup(websiteurl);
 	});
 }
 

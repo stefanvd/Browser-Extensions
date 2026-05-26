@@ -17,4 +17,4 @@ const browsernewtab = "chrome://newtab/";
 const browserstore = "https://test.apple.com";
 const linkyoutube = "https://www.youtube.com/@stefanvandamme?sub_confirmation=1";
 const devmode = false;
-const devdonate = false;
+const devdonate = true;

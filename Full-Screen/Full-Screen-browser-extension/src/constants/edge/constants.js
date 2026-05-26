@@ -16,5 +16,5 @@ const linkproductdescription = "https://www.stefanvd.net/project/full-screen/bro
 const browsernewtab = "edge://newtab/";
 const browserstore = "https://microsoftedge.microsoft.com";
 const linkyoutube = "https://www.youtube.com/@stefanvandamme?sub_confirmation=1";
-const devmode = true;
+const devmode = false;
 const devdonate = false;

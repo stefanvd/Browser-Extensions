@@ -198,24 +198,6 @@ document.addEventListener("DOMContentLoaded", function(){
 	});
 });
 
-chrome.storage.onChanged.addListener(function(changes){
-	if(changes["atmosvivid"]){
-		if(changes["atmosvivid"].newValue == true){
-			chrome.tabs.query({}, function(tabs){
-				tabs.forEach(function(tab){
-					chrome.tabs.sendMessage(tab.id, {action: "goenableatmos"});
-				});
-			});
-		}else{
-			chrome.tabs.query({}, function(tabs){
-				tabs.forEach(function(tab){
-					chrome.tabs.sendMessage(tab.id, {action: "goenableatmos"});
-				});
-			});
-		}
-	}
-});
-
 function test(){
 	if($("fullscreenvideo").checked){
 		$("videoinwindow").disabled = false;
