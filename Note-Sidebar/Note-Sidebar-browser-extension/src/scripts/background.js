@@ -479,13 +479,13 @@ chrome.storage.onChanged.addListener(function(changes){
 	if(changes["multiple"]){
 		// convert to single text or multiple text
 		const multiple = changes["multiple"].newValue;
-		getNotesStorageArea(function(storage){
-			storage.get(["txtvalue", "multivalue"], function(items){
-				var txtvalue = items["txtvalue"]; if(txtvalue == null){ txtvalue = i18nfirsttext; }
-				var multivalue = items["multivalue"]; if(multivalue == null){ multivalue = [{"note":i18nfirsttext}]; }
+		// Only convert if the multiple setting actually changed value
+		if(changes["multiple"].oldValue !== undefined && changes["multiple"].oldValue !== changes["multiple"].newValue){
+			getNotesStorageArea(function(storage){
+				storage.get(["txtvalue", "multivalue"], function(items){
+					var txtvalue = items["txtvalue"]; if(txtvalue == null){ txtvalue = i18nfirsttext; }
+					var multivalue = items["multivalue"]; if(multivalue == null){ multivalue = [{"note":i18nfirsttext}]; }
 
-				// Only convert if there was a previous setting value
-				if(changes["multiple"].oldValue !== undefined){
 					if(multiple){
 						// Reset and convert txtvalue to multivalue
 						multivalue = txtvalue ? [{"note": txtvalue}] : [];
@@ -495,18 +495,18 @@ chrome.storage.onChanged.addListener(function(changes){
 						txtvalue = multivalue.map((item) => item.note).join("\n");
 						multivalue = []; // Reset multivalue
 					}
-				}
 
-				// Save the updated values back to storage
-				storage.set({"txtvalue": txtvalue, "multivalue": multivalue}, function(){
-					// update background
-					currentnotetext = txtvalue;
-					currentmultinotetext = multivalue;
+					// Save the updated values back to storage
+					storage.set({"txtvalue": txtvalue, "multivalue": multivalue}, function(){
+						// update background
+						currentnotetext = txtvalue;
+						currentmultinotetext = multivalue;
 
-					chrome.runtime.sendMessage({msg: "setmultiple", value: changes["multiple"].newValue, singletext: txtvalue, tabtext: multivalue});
+						chrome.runtime.sendMessage({msg: "setmultiple", value: changes["multiple"].newValue, singletext: txtvalue, tabtext: multivalue});
+					});
 				});
 			});
-		});
+		}
 	}
 	if(changes["preventclose"]){
 		chrome.runtime.sendMessage({msg: "setpreventclose", value: changes["preventclose"].newValue});
