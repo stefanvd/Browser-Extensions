@@ -476,6 +476,18 @@ chrome.storage.onChanged.addListener(function(changes){
 	if(changes["plaintext"]){
 		chrome.runtime.sendMessage({msg: "settype", value: changes["plaintext"].newValue});
 	}
+	if(changes["txtvalue"]){
+		if(changes["txtvalue"].newValue !== undefined){
+			currentnotetext = changes["txtvalue"].newValue;
+			chrome.runtime.sendMessage({msg: "setnotetext", value: changes["txtvalue"].newValue});
+		}
+	}
+	if(changes["multivalue"]){
+		if(changes["multivalue"].newValue !== undefined){
+			currentmultinotetext = changes["multivalue"].newValue;
+			chrome.runtime.sendMessage({msg: "setnotemulti", value: changes["multivalue"].newValue});
+		}
+	}
 	if(changes["multiple"]){
 		// convert to single text or multiple text
 		const multiple = changes["multiple"].newValue;

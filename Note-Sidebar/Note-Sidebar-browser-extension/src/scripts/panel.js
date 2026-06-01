@@ -27,6 +27,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 //================================================
 
 var maintext; var powertext; var txtvalue; var multivalue; var counter; var copy; var speech; var voices; var fontsize; var lineheight; var colorlight; var colordark; var backgroundlight; var backgrounddark; var backgroundcolor; var backgroundimage; var backgroundsource; var backgroundsize; var printicon; var password; var enterpassword; var richtext; var plaintext; var multiple; var preventclose; var texttabname; var save; var bartabdesign; var barselectdesign; var download; var find; var textarea; var highlightedText; var searchInput; var searchBox; var richtexttoolbar; var richtextshortcut; var selectedvoice; var fontfamily;
+var isLocalChange = false;
 
 function wrapText(tag){
 	const selection = window.getSelection();
@@ -154,6 +155,8 @@ function notesave(){
 		savingtext = powertext.innerHTML;
 	}
 
+	isLocalChange = true;
+
 	if(multiple == true){
 		var previoustab = document.getElementById("tabstrip").dataset.active;
 		if(plaintext == true){
@@ -175,6 +178,7 @@ function notesave(){
 				}
 				noteStorage.set({"multivalue": multivalue});
 				chrome.runtime.sendMessage({name: "newmultinotetext", value: multivalue});
+				setTimeout(() => { isLocalChange = false; }, 1000);
 			});
 		});
 	}else{
@@ -193,6 +197,7 @@ function notesave(){
 				txtvalue = savingtext;
 				noteStorage.set({"txtvalue": savingtext});
 				chrome.runtime.sendMessage({name: "newnotetext", value: savingtext});
+				setTimeout(() => { isLocalChange = false; }, 1000);
 			});
 		});
 	}
@@ -1565,17 +1570,21 @@ document.addEventListener("DOMContentLoaded", init, false);
 
 chrome.runtime.onMessage.addListener(function(request){
 	if(request.msg == "setnotetext"){
-		if(plaintext == true){
-			document.querySelector("#maintext").value = request.value;
-		}else if(richtext == true){
-			document.querySelector("#powertext").innerHTML = request.value;
+		if(!isLocalChange){
+			if(plaintext == true){
+				document.querySelector("#maintext").value = request.value;
+			}else if(richtext == true){
+				document.querySelector("#powertext").innerHTML = request.value;
+			}
+			updatetabname();
 		}
-		updatetabname();
 	}else if(request.msg == "setnotemulti"){
-		multivalue = request.value;
-		applyStyles(multivalue, richtext);
-		createTabContent();
-		updatetabname();
+		if(!isLocalChange){
+			multivalue = request.value;
+			applyStyles(multivalue, richtext);
+			createTabContent();
+			updatetabname();
+		}
 	}else if(request.msg == "setcounter"){
 		if(request.value == true){
 			countcharacters();
