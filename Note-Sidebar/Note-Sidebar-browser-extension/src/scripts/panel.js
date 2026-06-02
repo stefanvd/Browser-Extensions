@@ -176,9 +176,29 @@ function notesave(){
 				}else{
 					removeWarning();
 				}
-				noteStorage.set({"multivalue": multivalue});
-				chrome.runtime.sendMessage({name: "newmultinotetext", value: multivalue});
-				setTimeout(() => { isLocalChange = false; }, 1000);
+				try{
+					noteStorage.set({"multivalue": multivalue}, function(){
+						if(chrome.runtime.lastError){
+							// Handle quota exceeded error
+							if(chrome.runtime.lastError.message.includes("quota") || chrome.runtime.lastError.message.includes("QuotaExceededError")){
+								showWarning(chrome.i18n.getMessage("warningtitle"), chrome.i18n.getMessage("warningdes", String(bytesInUse)));
+							}
+						}
+						setTimeout(() => { isLocalChange = false; }, 1000);
+					}).catch(function(error){
+						// Catch promise rejections
+						if(error.message && (error.message.includes("quota") || error.message.includes("QuotaExceededError"))){
+							showWarning(chrome.i18n.getMessage("warningtitle"), chrome.i18n.getMessage("warningdes", String(bytesInUse)));
+						}
+						setTimeout(() => { isLocalChange = false; }, 1000);
+					});
+				}catch(error){
+					// Catch synchronous errors
+					if(error.message && (error.message.includes("quota") || error.message.includes("QuotaExceededError"))){
+						showWarning(chrome.i18n.getMessage("warningtitle"), chrome.i18n.getMessage("warningdes", String(bytesInUse)));
+					}
+					setTimeout(() => { isLocalChange = false; }, 1000);
+				}
 			});
 		});
 	}else{
@@ -195,9 +215,29 @@ function notesave(){
 					removeWarning();
 				}
 				txtvalue = savingtext;
-				noteStorage.set({"txtvalue": savingtext});
-				chrome.runtime.sendMessage({name: "newnotetext", value: savingtext});
-				setTimeout(() => { isLocalChange = false; }, 1000);
+				try{
+					noteStorage.set({"txtvalue": savingtext}, function(){
+						if(chrome.runtime.lastError){
+							// Handle quota exceeded error
+							if(chrome.runtime.lastError.message.includes("quota") || chrome.runtime.lastError.message.includes("QuotaExceededError")){
+								showWarning(chrome.i18n.getMessage("warningtitle"), chrome.i18n.getMessage("warningdes", String(bytesInUse)));
+							}
+						}
+						setTimeout(() => { isLocalChange = false; }, 1000);
+					}).catch(function(error){
+						// Catch promise rejections
+						if(error.message && (error.message.includes("quota") || error.message.includes("QuotaExceededError"))){
+							showWarning(chrome.i18n.getMessage("warningtitle"), chrome.i18n.getMessage("warningdes", String(bytesInUse)));
+						}
+						setTimeout(() => { isLocalChange = false; }, 1000);
+					});
+				}catch(error){
+					// Catch synchronous errors
+					if(error.message && (error.message.includes("quota") || error.message.includes("QuotaExceededError"))){
+						showWarning(chrome.i18n.getMessage("warningtitle"), chrome.i18n.getMessage("warningdes", String(bytesInUse)));
+					}
+					setTimeout(() => { isLocalChange = false; }, 1000);
+				}
 			});
 		});
 	}
@@ -561,41 +601,6 @@ function showConfirmationDialog(){
 	}
 }
 
-// Begin Hard Saving ---
-// Chrome.storage API MAX_WRITE_OPERATIONS_PER_MINUTE = 120
-// 500ms (2 per second)
-
-// Queue to store save requests
-let saveQueue = [];
-
-// Function to process the save queue
-function processQueue(){
-	if(saveQueue.length === 0)return;
-
-	// Get the next save request from the queue
-	const nextSave = saveQueue.shift();
-
-	// Execute the save function
-	nextSave();
-
-	// Process the next save request after 1 second
-	setTimeout(processQueue, 1000);
-}
-
-// Your save function that writes to chrome storage
-function hardsave(){
-	// Add the save request to the queue
-	saveQueue.push(() => {
-		// Send the message and wait for a response
-		chrome.runtime.sendMessage({name: "hardsave"});
-	});
-
-	// If the queue was empty before adding this save request, start processing
-	if(saveQueue.length === 1){
-		processQueue();
-	}
-}
-// End Hard Saving ---
 
 function switchtab(number){
 	// save previous text
@@ -625,9 +630,6 @@ var tabContainer;
 var currentVoice;
 var enterspeed;
 function init(){
-	// open connnection to background that the panel is open
-	chrome.runtime.connect({name: "myNoteSidebar"});
-
 	// Begin multiple tabs
 	tabContainer = document.querySelector(".tab-bar");
 
@@ -911,7 +913,6 @@ function init(){
 				notesave();
 				countcharacters();
 				updatetabname();
-				hardsave();
 			};
 			maintext.addEventListener("keydown", handleTabKey);
 		}else if(richtext == true){
@@ -919,7 +920,6 @@ function init(){
 				notesave();
 				countcharacters();
 				updatetabname();
-				hardsave();
 			};
 			powertext.addEventListener("keydown", handleTabKey);
 		}

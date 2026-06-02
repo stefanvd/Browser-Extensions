@@ -3,7 +3,7 @@
 
 Note Sidebar
 Simple note sidebar which can be used to write a note, record thoughts, to-do list, meeting notes, etc.
-Copyright (C) 2025 Stefan vd
+Copyright (C) 2026 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -193,7 +193,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 
 html{overflow:hidden;height:100vh}
 body{min-width:1150px;min-height:800px;background:var(--totl-body-background);color:var(--totl-primary-font-color);font-family:Arial,sans-serif;cursor:default;font-size:13px}
-#main-content{display:-webkit-box;position:absolute;left:0;right:0;top:0;bottom:0}
+#main-content{display:flex;position:absolute;left:0;right:0;top:0;bottom:0}
 #mainview{padding-left:240px;margin:0;position:fixed;left:0;right:0;top:0;bottom:0;z-index:1;overflow:auto;margin-top:56px}
 #mainview-content{box-sizing:border-box;max-width:1020px;min-width:600px;padding:0 calc(24px + env(safe-area-inset-right)) 0 calc(24px + env(safe-area-inset-left));position:relative}
 #managed-prefs-banner{background:var(--totl-donation-bar);height:32px;margin:0;padding:0 calc(24px + env(safe-area-inset-right)) 0 calc(24px + env(safe-area-inset-left));-webkit-user-select:none;-moz-user-select:none;user-select:none;color:black;position:relative}
@@ -207,11 +207,11 @@ body{min-width:1150px;min-height:800px;background:var(--totl-body-background);co
 .navbar-item-selected{background:var(--totl-nav-background-hover);color:var(--totl-primary-font-color)}
 ul#navbar li a{display:flex;align-items:center;margin-right:0;padding:12px 24px 12px 24px;font-size:105%;cursor:pointer}
 ul#navbar li a svg{margin-right:24px;fill:var(--totl-sidebar-icon-background)}
-.page h2{-webkit-padding-end:24px;-webkit-user-select:none;-moz-user-select:none;user-select:none;color:var(--totl-title-color);font-size:200%;font-weight:400;margin:0;padding-bottom:4px;padding-top:13px}
+.page h2{padding-inline-end:24px;-webkit-user-select:none;-moz-user-select:none;user-select:none;color:var(--totl-title-color);font-size:200%;font-weight:400;margin:0;padding-bottom:4px;padding-top:13px}
 .page{height:100%;width:100%;position:relative}
-section{position:relative;-webkit-box-orient:horizontal;border-bottom:var(--totl-section-border);display:-webkit-box;padding-top:20px;padding-bottom:20px;width:100%}
+section{position:relative;flex-direction:row;display:flex;border-bottom:var(--totl-section-border);padding-top:20px;padding-bottom:20px;width:100%}
 section>h3{font-size:105%;font-weight:700;margin:0;width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-section>div:only-of-type{-webkit-box-flex:1}
+section>div:only-of-type{flex:1}
 .page section:last-child{margin-bottom:20px}
 /* Hyperlinks */
 #mainview-content section a{color:rgb(51, 103, 214);text-decoration:underline}
@@ -258,9 +258,9 @@ section>div:only-of-type{-webkit-box-flex:1}
 /* lamp */
 #loadinglamp{margin-right:5px}
 /* share box */
-#shareboxyoutube{background:url(../images/youtube@2x.png)left top no-repeat;background:-webkit-image-set(url(../images/youtube.png) 1x,url(../images/youtube@2x.png) 2x);width:25px;height:18px;display:inline-block;background-size:cover;margin-left:10px;margin-right:10px;cursor:pointer}
-#shareboxfacebook{background:url(../images/facebook@2x.png)left top no-repeat;background:-webkit-image-set(url(../images/facebook.png) 1x,url(../images/facebook@2x.png) 2x);width:18px;height:18px;display:inline-block;background-size:cover;margin-right:10px;cursor:pointer}
-#shareboxx{background:url(../images/x@2x.png)left top no-repeat;background:-webkit-image-set(url(../images/x.png) 1x,url(../images/x@2x.png) 2x);width:18px;height:18px;display:inline-block;background-size:cover;cursor:pointer}
+#shareboxyoutube{background:url(../images/youtube@2x.png)left top no-repeat;background:image-set(url(../images/youtube.png) 1x,url(../images/youtube@2x.png) 2x);width:25px;height:18px;display:inline-block;background-size:cover;margin-left:10px;margin-right:10px;cursor:pointer}
+#shareboxfacebook{background:url(../images/facebook@2x.png)left top no-repeat;background:image-set(url(../images/facebook.png) 1x,url(../images/facebook@2x.png) 2x);width:18px;height:18px;display:inline-block;background-size:cover;margin-right:10px;cursor:pointer}
+#shareboxx{background:url(../images/x@2x.png)left top no-repeat;background:image-set(url(../images/x.png) 1x,url(../images/x@2x.png) 2x);width:18px;height:18px;display:inline-block;background-size:cover;cursor:pointer}
 #shareboxrate:hover,#shareboxyoutube:hover,#shareboxfacebook:hover,#shareboxx:hover{opacity:.8;cursor:pointer}
 .probox{top:0;position:absolute;background:#FDD835;color:black;font-size:12px;padding:2px 12px;border-radius:2px;display:inline-block}
 .proboxtext{display:inline-flex;line-height:18px;padding:15px 15px 10px;gap:25px}
@@ -283,7 +283,7 @@ section>div:only-of-type{-webkit-box-flex:1}
 .browserbuttons img{border-radius:5px;border:var(--totl-input-other-border);cursor:pointer}
 .browserbuttons .lightbackground{background:#ffffff}
 .browserbuttons .darkbackground{background:#232323}
-.browserpreview{background:var(--browser-preview-image)left top no-repeat;background:-webkit-image-set(var(--browser-preview-image) 1x, var(--browser-preview-image-2x) 2x);background:image-set(var(--browser-preview-image) 1x, var(--browser-preview-image-2x) 2x);height:110px;width:300px;background-size:contain}
+.browserpreview{background:var(--browser-preview-image)left top no-repeat;background:image-set(var(--browser-preview-image) 1x, var(--browser-preview-image-2x) 2x);height:110px;width:300px;background-size:contain}
 /* Profile */
 .cardokbutton{display:block;-webkit-user-select:none;-moz-user-select:none;user-select:none;margin:8px 0;float:left;background:0 0;border:none;border-radius:2px;color:#2296f3;position:relative;height:36px;min-width:64px;padding:0 16px;font-family:"Roboto","Helvetica","Arial",sans-serif;font-size:14px;font-weight:500;text-transform:uppercase;letter-spacing:0;overflow:hidden;outline:none;cursor:pointer;text-decoration:none;text-align:center;line-height:36px}
 .cardokbutton:active{background-color:rgba(158,158,158,.4)}
@@ -337,9 +337,9 @@ input[type=range]::-ms-track{width:100%;height:2px;background:transparent;border
 input[type=range]::-ms-fill-lower{background-color:#4285f4;border:none;border-radius:10px;transition:all 400ms;outline:none;padding:0;margin:0}
 input[type=range]::-ms-fill-upper{background-color:#4285f4;border:none;border-radius:10px;transition:all 400ms;outline:none;padding:0;margin:0}
 /* thumb */
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none!important;-moz-appearance:none!important;appearance:none!important;transform:scale(0.75);width:20px;height:20px;border:none;background-color:var(--totl-range-background);border-radius:40px;box-shadow:0px 0px 0px green;transition:all 400ms;outline:none;margin-top:-9px}
-input[type=range]::-moz-range-thumb{-webkit-appearance:none!important;-moz-appearance:none!important;appearance:none!important;transform:scale(0.75);width:20px;height:20px;border:none;background-color:var(--totl-range-background);border-radius:40px;box-shadow:0px 0px 0px green;transition:all 400ms;outline:none;margin-top:0px}
-input[type=range]::-ms-thumb{-webkit-appearance:none!important;-moz-appearance:none!important;appearance:none!important;transform:scale(0.75);width:20px;height:20px;border:none;background:#4285f4;border-radius:40px;box-shadow:0px 0px 0px green;transition:all 400ms;outline:none;margin-top:0px}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none!important;-moz-appearance:none!important;appearance:none!important;transform:scale(0.75);width:20px;height:20px;border:none;background-color:var(--totl-range-background);border-radius:40px;transition:all 400ms;outline:none;margin-top:-9px}
+input[type=range]::-moz-range-thumb{-webkit-appearance:none!important;-moz-appearance:none!important;appearance:none!important;transform:scale(0.75);width:20px;height:20px;border:none;background-color:var(--totl-range-background);border-radius:40px;transition:all 400ms;outline:none;margin-top:0px}
+input[type=range]::-ms-thumb{-webkit-appearance:none!important;-moz-appearance:none!important;appearance:none!important;transform:scale(0.75);width:20px;height:20px;border:none;background:#4285f4;border-radius:40px;transition:all 400ms;outline:none;margin-top:0px}
 /* thumb hover */
 input[type=range]::-webkit-slider-thumb:hover{transform:scale(0.85)}
 input[type=range]::-moz-range-thumb:hover{transform:scale(0.85)}
@@ -509,7 +509,7 @@ only screen and (max-device-width:480px){
   body{min-width:auto;min-height:auto}
   #mainview{padding-left:0px}
   #mainview-content{max-width:100%;min-width:100%}
-  section{-webkit-box-orient:vertical}
+  section{flex-direction:column}
   #loadingcenter{width:230px}
   #progressbar{width:230px}
   #dont-turn-off-the-lights{width:100%;height:auto}

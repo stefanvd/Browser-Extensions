@@ -3,7 +3,7 @@
 
 Note Sidebar
 Simple note sidebar which can be used to write a note, record thoughts, to-do list, meeting notes, etc.
-Copyright (C) 2025 Stefan vd
+Copyright (C) 2026 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -56,36 +56,24 @@ if(isChromePanel()){
 
 // --- General code
 
-chrome.runtime.onMessage.addListener(function request(request, sender){
+chrome.runtime.onMessage.addListener(function request(request, sender, sendResponse){
 	// eye protection & autodim & shortcut
 	switch(request.name){
 	case"bckreload":
 		currentnotetext = chrome.i18n.getMessage("firsttext");
 		currentmultinotetext = [{"note":i18nfirsttext}];
 		installation();
-		break;
-	case"newnotetext":
-		currentnotetext = request.value;
-		// console.log("currentnotetext=", currentnotetext);
-		break;
-	case"newmultinotetext":
-		currentmultinotetext = request.value;
-		// console.log("currentmultinotetext=", currentmultinotetext);
-		break;
-	case"hardsave":
-		getNotesStorageArea(function(storage){
-			storage.set({"txtvalue": currentnotetext, "multivalue": currentmultinotetext});
-		});
+		sendResponse({success: true});
 		break;
 	case"getallpermissions":
 		var result = "";
 		chrome.permissions.getAll(function(permissions){
 			result = permissions.permissions;
 			chrome.tabs.sendMessage(sender.tab.id, {text: "receiveallpermissions", value: result});
+			sendResponse({success: true});
 		});
-		break;
+		return true;
 	}
-	return true;
 });
 
 var i18nfirsttext = chrome.i18n.getMessage("firsttext");
@@ -102,17 +90,6 @@ function init(){
 		});
 	});
 }
-
-chrome.runtime.onConnect.addListener((port) => {
-	if(port.name === "myNoteSidebar"){
-		port.onDisconnect.addListener(() => {
-			// console.log("Notesidebar Sidepanel closed");
-			getNotesStorageArea(function(storage){
-				storage.set({"txtvalue": currentnotetext, "multivalue": currentmultinotetext});
-			});
-		});
-	}
-});
 
 chrome.commands.onCommand.addListener((command) => {
 	if(command === "copytext_action"){
@@ -184,10 +161,9 @@ function addTextToLastContentNote(thatselectedtext){
 					noteValue = noteValue + "\n" + thatselectedtext;
 				}
 				multivalue[0].note = noteValue;
-				currentmultinotetext = multivalue;
-				storage.set({"multivalue": currentmultinotetext});
+				storage.set({"multivalue": multivalue});
 
-				chrome.runtime.sendMessage({msg: "setnotemulti", value: currentmultinotetext}, function(){
+				chrome.runtime.sendMessage({msg: "setnotemulti", value: multivalue}, function(){
 					var lastError = chrome.runtime.lastError;
 					if(lastError){
 						// error panel not open
@@ -198,14 +174,15 @@ function addTextToLastContentNote(thatselectedtext){
 				});
 			}else{
 				// single note
+				var newTxtValue;
 				if(richtext == true){
-					currentnotetext = txtvalue + "<br>" + thatselectedtext;
+					newTxtValue = txtvalue + "<br>" + thatselectedtext;
 				}else{
-					currentnotetext = txtvalue + "\n" + thatselectedtext;
+					newTxtValue = txtvalue + "\n" + thatselectedtext;
 				}
-				storage.set({"txtvalue": currentnotetext});
+				storage.set({"txtvalue": newTxtValue});
 
-				chrome.runtime.sendMessage({msg: "setnotetext", value: currentnotetext}, function(){
+				chrome.runtime.sendMessage({msg: "setnotetext", value: newTxtValue}, function(){
 					var lastError = chrome.runtime.lastError;
 					if(lastError){
 						// error panel not open
@@ -579,13 +556,6 @@ chrome.runtime.onInstalled.addListener(function(){
 	if(chrome.runtime.setUninstallURL){
 		chrome.runtime.setUninstallURL(linkuninstall);
 	}
-});
-
-chrome.runtime.onUpdateAvailable.addListener(function(){
-	// save the current note before update
-	getNotesStorageArea(function(storage){
-		storage.set({"txtvalue": currentnotetext, "multivalue": currentmultinotetext});
-	});
 });
 
 // Helper to get the correct storage area for notes
