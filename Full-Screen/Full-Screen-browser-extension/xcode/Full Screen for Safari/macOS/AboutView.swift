@@ -13,7 +13,7 @@ struct AboutView: View {
     let helpItems: [MenuItem] = [
         MenuItem(titleKey: "Developer Website", url: URL(string: StefanLinks().linkdeveloperwebsite())!),
         MenuItem(titleKey: "Privacy Policy", url: URL(string: StefanLinks().linkprivacy())!),
-        MenuItem(titleKey: "Support", url: URL(string: StefanLinks().linksupport())!)
+        MenuItem(titleKey: "Help & Feedback", url: URL(string: StefanLinks().linksupport())!)
     ]
     
     private var versionNumber: String {
@@ -51,7 +51,7 @@ struct AboutView: View {
                     
                     HStack{
                         Text("Copyright")
-                        Text("© 2025 Stefan vd")
+                        Text("© 2026 Stefan vd")
                     }
                     .accessibilityElement(children: .combine)
                     
