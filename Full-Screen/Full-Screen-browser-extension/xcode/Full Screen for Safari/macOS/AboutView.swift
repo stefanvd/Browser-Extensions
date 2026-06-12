@@ -63,6 +63,8 @@ struct AboutView: View {
                     .accessibilityHint(Text("Shows licenses used in this app"))
                 }
                 
+                /*
+                
                 Section("Help") {
                     ForEach(helpItems) { menuItem in
                         Button(action: {
@@ -73,7 +75,7 @@ struct AboutView: View {
                         .accessibilityHint(Text("Opens in your web browser"))
                     }
                 }
-                
+             
                 Section(header: Text("Contribute & Develop"))
                 {
                     Button(action: {
@@ -90,15 +92,16 @@ struct AboutView: View {
                     }
                     .accessibilityHint(Text("Opens in your web browser"))
 
-                    /*
+                    
                     Button(action: {
                         StefanFunctions().openURL(URL(string: StefanLinks().linkdonate())!)
                     }) {
                         Text("Make a Donation")
                     }
                     .accessibilityHint(Text("Opens in your web browser"))
-                     */
+                     
                 }
+                 */
                 
                 Section(header: Text("Explore & Connect"))
                 {
