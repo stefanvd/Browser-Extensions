@@ -453,6 +453,9 @@ chrome.storage.onChanged.addListener(function(changes){
 	if(changes["plaintext"]){
 		chrome.runtime.sendMessage({msg: "settype", value: changes["plaintext"].newValue});
 	}
+	if(changes["pipbutton"]){
+		chrome.runtime.sendMessage({msg: "setpipbutton", value: changes["pipbutton"].newValue});
+	}
 	if(changes["txtvalue"]){
 		if(changes["txtvalue"].newValue !== undefined){
 			currentnotetext = changes["txtvalue"].newValue;

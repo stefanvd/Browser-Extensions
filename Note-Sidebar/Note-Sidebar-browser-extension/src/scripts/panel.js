@@ -26,7 +26,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 */
 //================================================
 
-var maintext; var powertext; var txtvalue; var multivalue; var counter; var copy; var speech; var voices; var fontsize; var lineheight; var colorlight; var colordark; var backgroundlight; var backgrounddark; var backgroundcolor; var backgroundimage; var backgroundsource; var backgroundsize; var printicon; var password; var enterpassword; var richtext; var plaintext; var multiple; var preventclose; var texttabname; var save; var bartabdesign; var barselectdesign; var download; var find; var textarea; var highlightedText; var searchInput; var searchBox; var richtexttoolbar; var richtextshortcut; var selectedvoice; var fontfamily;
+var maintext; var powertext; var txtvalue; var multivalue; var counter; var copy; var speech; var voices; var fontsize; var lineheight; var colorlight; var colordark; var backgroundlight; var backgrounddark; var backgroundcolor; var backgroundimage; var backgroundsource; var backgroundsize; var printicon; var password; var enterpassword; var richtext; var plaintext; var multiple; var preventclose; var texttabname; var save; var bartabdesign; var barselectdesign; var download; var find; var textarea; var highlightedText; var searchInput; var searchBox; var richtexttoolbar; var richtextshortcut; var selectedvoice; var fontfamily; var pipbutton;
 var isLocalChange = false;
 
 function wrapText(tag){
@@ -752,6 +752,7 @@ function init(){
 		selectedvoice = items["selectedvoice"]; if(selectedvoice == null){ selectedvoice = 0; }
 		enterspeed = items["enterspeed"]; if(enterspeed == null){ enterspeed = 0.8; }
 		fontfamily = items["fontfamily"]; if(fontfamily == null){ fontfamily = "Helvetica"; }
+		pipbutton = items["pipbutton"]; if(pipbutton == null){ pipbutton = false; }
 
 		addfontstylecode(fontfamily);
 
@@ -895,6 +896,14 @@ function init(){
 			document.getElementById("findtext").className = "btn-find";
 		}else{
 			document.getElementById("findtext").className = "hidden";
+		}
+
+		if(pipbutton == true){
+			document.getElementById("pip-controls").className = "pip-controls";
+			document.getElementById("tabstrip").classList.add("tab-bar-pip");
+		}else{
+			document.getElementById("pip-controls").className = "hidden";
+			document.getElementById("tabstrip").classList.remove("tab-bar-pip");
 		}
 
 		if(backgroundimage == true){
@@ -1103,6 +1112,34 @@ function init(){
 
 	// Set a timeout to execute the function after 1,5 seconds (1500 milliseconds)
 	setTimeout(setCursorToEnd, 1500);
+
+	// PIP button event listener
+	document.getElementById("pip-button").addEventListener("click", () => {
+		chrome.windows.create({
+			url: chrome.runtime.getURL("panel.html"),
+			type: "popup",
+			width: 500,
+			height: 600,
+			focused: true
+		}, (panel) => {window.close();
+			
+			if(chrome.runtime.lastError){
+				console.error("Failed to create popup window:", chrome.runtime.lastError);
+			}else{
+				console.log("Popup window created:", window.id);
+				document.getElementById("pip-button").classList.add("hidden");
+				chrome.storage.local.set({"pipWindowId": window.id});
+			}
+		});
+	});
+
+	// Check if window is in popup mode and hide PIP button accordingly
+	chrome.windows.getCurrent((currentWindow) => {
+		if(currentWindow.type === "popup"){
+			// This is a popup window, hide PIP button and show return button
+			document.getElementById("pip-button").classList.add("hidden");
+		}
+	});
 }
 
 const populateVoices = () => {
@@ -1652,7 +1689,16 @@ chrome.runtime.onMessage.addListener(function(request){
 		}
 	}else if(request.msg == "settype"){
 		location.reload();
-	}else if(request.msg == "setmultiple"){
+	}else if(request.msg == "setpipbutton"){
+		if(request.value == true){
+			document.getElementById("pip-controls").className = "pip-controls";
+			document.getElementById("tabstrip").classList.add("tab-bar-pip");
+		}else{
+			document.getElementById("pip-controls").className = "hidden";
+			document.getElementById("tabstrip").classList.remove("tab-bar-pip");
+		}
+	}
+	else if(request.msg == "setmultiple"){
 		multiple = request.value;
 		txtvalue = request.singletext;
 		multivalue = request.tabtext;
@@ -1803,7 +1849,7 @@ function loadNotesAndSettings(callback){
 	getNotesStorageArea(function(noteStorage){
 		noteStorage.get(["txtvalue", "multivalue"], function(noteItems){
 			// Load all other settings from sync
-			chrome.storage.sync.get(["firstDate", "optionskipremember", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsource", "backgroundsize", "print", "password", "enterpassword", "richtext", "plaintext", "multiple", "preventclose", "texttabname", "save", "bartabdesign", "barselectdesign", "download", "find", "richtexttoolbar", "richtextshortcut", "selectedvoice", "enterspeed", "fontfamily"], function(settingsItems){
+			chrome.storage.sync.get(["firstDate", "optionskipremember", "counter", "copy", "speech", "voices", "fontsize", "lineheight", "colorlight", "colordark", "backgroundlight", "backgrounddark", "backgroundcolor", "backgroundimage", "backgroundsource", "backgroundsize", "print", "password", "enterpassword", "richtext", "plaintext", "multiple", "preventclose", "texttabname", "save", "bartabdesign", "barselectdesign", "download", "find", "richtexttoolbar", "richtextshortcut", "selectedvoice", "enterspeed", "fontfamily", "pipbutton"], function(settingsItems){
 				callback(Object.assign({}, noteItems, settingsItems));
 			});
 		});

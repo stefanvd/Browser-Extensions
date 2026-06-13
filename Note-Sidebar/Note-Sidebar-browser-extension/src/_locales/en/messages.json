@@ -220,5 +220,7 @@
     "titeltextspeed": {"message": "TTS speed"},
     "destextspeed": {"message": "Adjust the speed of spoken text"},
     "titelfontfamily": {"message": "Font Family"},
-    "desfontfamily": {"message": "Change the font family of the text area"}
+    "desfontfamily": {"message": "Change the font family of the text area"},
+    "titelpipbutton": {"message": "Flyout Panel Button"},
+    "despipbutton": {"message": "Show the Flyout Panel button in the panel"}
 }
