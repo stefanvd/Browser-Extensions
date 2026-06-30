@@ -337,9 +337,21 @@ function setActiveTabContent(numb){
 	}
 
 	if(plaintext == true){
-		maintext.value = noteValue;
+		// Only update if content has changed to preserve cursor position
+		if(maintext.value !== noteValue){
+			// Save current cursor position if possible
+			const cursorPosition = maintext.selectionStart;
+			maintext.value = noteValue;
+			// Restore cursor position if it was at the end (common typing scenario)
+			if(cursorPosition === maintext.value.length - 1 || cursorPosition === maintext.value.length){
+				maintext.setSelectionRange(maintext.value.length, maintext.value.length);
+			}
+		}
 	}else if(richtext == true){
-		powertext.innerHTML = noteValue;
+		// Only update if content has changed to preserve cursor position
+		if(powertext.innerHTML !== noteValue){
+			powertext.innerHTML = noteValue;
+		}
 	}
 }
 
@@ -1571,17 +1583,24 @@ function createTabContent(){
 		// remove all tabs
 		removeTabs();
 		createAllTabsInBar();
+		
+		// Preserve the currently active tab index, or default to 0 if invalid
+		const currentActiveIndex = parseInt(document.getElementById("tabstrip").dataset.active) || 0;
+		const validActiveIndex = Math.min(currentActiveIndex, multivalue.length - 1);
+		
 		// set the current active tab
-		document.getElementById("tabstrip").dataset.active = 0;
+		document.getElementById("tabstrip").dataset.active = validActiveIndex;
 		const tabs = document.querySelectorAll(".tab");
 		tabs.forEach((t) => t.classList.remove("active"));
-		const firstTab = tabs[0];
-		firstTab.classList.add("active");
+		const activeTab = tabs[validActiveIndex];
+		if(activeTab){
+			activeTab.classList.add("active");
+		}
 
 		if(plaintext == true){
-			setActiveTabContent(0);
+			setActiveTabContent(validActiveIndex);
 		}else if(richtext == true){
-			setActiveTabContent(0);
+			setActiveTabContent(validActiveIndex);
 		}
 	}else{
 		if(plaintext == true){
