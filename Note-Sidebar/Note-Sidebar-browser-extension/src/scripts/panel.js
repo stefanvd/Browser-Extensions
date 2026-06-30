@@ -29,6 +29,10 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 var maintext; var powertext; var txtvalue; var multivalue; var counter; var copy; var speech; var voices; var fontsize; var lineheight; var colorlight; var colordark; var backgroundlight; var backgrounddark; var backgroundcolor; var backgroundimage; var backgroundsource; var backgroundsize; var printicon; var password; var enterpassword; var richtext; var plaintext; var multiple; var preventclose; var texttabname; var save; var bartabdesign; var barselectdesign; var download; var find; var textarea; var highlightedText; var searchInput; var searchBox; var richtexttoolbar; var richtextshortcut; var selectedvoice; var fontfamily; var pipbutton;
 var isLocalChange = false;
 
+function getByteSize(value){
+	return new Blob([JSON.stringify(value)]).size;
+}
+
 function wrapText(tag){
 	const selection = window.getSelection();
 	if(!selection.rangeCount)return;
@@ -167,12 +171,15 @@ function notesave(){
 		// Check actual storage usage for 'multivalue' key
 		getNotesStorageArea(function(noteStorage){
 			noteStorage.getBytesInUse("multivalue", function(bytesInUse){
+				// Calculate the size of the new value
+				var newByteSize = getByteSize(multivalue);
 				// console.log("Current bytes in use (multivalue):", bytesInUse);
+				// console.log("New value size:", newByteSize);
 				// For sync storage, check if the new value would exceed the 8KB limit
-				if(noteStorage === chrome.storage.sync && bytesInUse >= 8192){
+				if(noteStorage === chrome.storage.sync && newByteSize >= 8192){
 					// Default web browser storage 8192 bytes = 8 KB
 					// console.log("Warning: Multivalue size exceeds 8 KB limit");
-					showWarning(chrome.i18n.getMessage("warningtitle"), chrome.i18n.getMessage("warningdes", String(bytesInUse)));
+					showWarning(chrome.i18n.getMessage("warningtitle"), chrome.i18n.getMessage("warningdes", String(newByteSize)));
 				}else{
 					removeWarning();
 				}
@@ -181,21 +188,27 @@ function notesave(){
 						if(chrome.runtime.lastError){
 							// Handle quota exceeded error
 							if(chrome.runtime.lastError.message.includes("quota") || chrome.runtime.lastError.message.includes("QuotaExceededError")){
-								showWarning(chrome.i18n.getMessage("warningtitle"), chrome.i18n.getMessage("warningdes", String(bytesInUse)));
+								if(newByteSize >= 8192){
+									showWarning(chrome.i18n.getMessage("warningtitle"), chrome.i18n.getMessage("warningdes", String(newByteSize)));
+								}
 							}
 						}
 						setTimeout(() => { isLocalChange = false; }, 1000);
 					}).catch(function(error){
 						// Catch promise rejections
 						if(error.message && (error.message.includes("quota") || error.message.includes("QuotaExceededError"))){
-							showWarning(chrome.i18n.getMessage("warningtitle"), chrome.i18n.getMessage("warningdes", String(bytesInUse)));
+							if(newByteSize >= 8192){
+								showWarning(chrome.i18n.getMessage("warningtitle"), chrome.i18n.getMessage("warningdes", String(newByteSize)));
+							}
 						}
 						setTimeout(() => { isLocalChange = false; }, 1000);
 					});
 				}catch(error){
 					// Catch synchronous errors
 					if(error.message && (error.message.includes("quota") || error.message.includes("QuotaExceededError"))){
-						showWarning(chrome.i18n.getMessage("warningtitle"), chrome.i18n.getMessage("warningdes", String(bytesInUse)));
+						if(newByteSize >= 8192){
+							showWarning(chrome.i18n.getMessage("warningtitle"), chrome.i18n.getMessage("warningdes", String(newByteSize)));
+						}
 					}
 					setTimeout(() => { isLocalChange = false; }, 1000);
 				}
@@ -205,12 +218,15 @@ function notesave(){
 		// Check actual storage usage for 'txtvalue' key
 		getNotesStorageArea(function(noteStorage){
 			noteStorage.getBytesInUse("txtvalue", function(bytesInUse){
+				// Calculate the size of the new value
+				var newByteSize = getByteSize(savingtext);
 				// console.log("Current bytes in use (txtvalue):", bytesInUse);
+				// console.log("New value size:", newByteSize);
 				// For sync storage, check if the new value would exceed the 8KB limit
-				if(noteStorage === chrome.storage.sync && bytesInUse >= 8192){
+				if(noteStorage === chrome.storage.sync && newByteSize >= 8192){
 					// Default web browser storage 8192 bytes = 8 KB
 					// console.log("Warning: New value size exceeds 8 KB limit");
-					showWarning(chrome.i18n.getMessage("warningtitle"), chrome.i18n.getMessage("warningdes", String(bytesInUse)));
+					showWarning(chrome.i18n.getMessage("warningtitle"), chrome.i18n.getMessage("warningdes", String(newByteSize)));
 				}else{
 					removeWarning();
 				}
@@ -220,21 +236,27 @@ function notesave(){
 						if(chrome.runtime.lastError){
 							// Handle quota exceeded error
 							if(chrome.runtime.lastError.message.includes("quota") || chrome.runtime.lastError.message.includes("QuotaExceededError")){
-								showWarning(chrome.i18n.getMessage("warningtitle"), chrome.i18n.getMessage("warningdes", String(bytesInUse)));
+								if(newByteSize >= 8192){
+									showWarning(chrome.i18n.getMessage("warningtitle"), chrome.i18n.getMessage("warningdes", String(newByteSize)));
+								}
 							}
 						}
 						setTimeout(() => { isLocalChange = false; }, 1000);
 					}).catch(function(error){
 						// Catch promise rejections
 						if(error.message && (error.message.includes("quota") || error.message.includes("QuotaExceededError"))){
-							showWarning(chrome.i18n.getMessage("warningtitle"), chrome.i18n.getMessage("warningdes", String(bytesInUse)));
+							if(newByteSize >= 8192){
+								showWarning(chrome.i18n.getMessage("warningtitle"), chrome.i18n.getMessage("warningdes", String(newByteSize)));
+							}
 						}
 						setTimeout(() => { isLocalChange = false; }, 1000);
 					});
 				}catch(error){
 					// Catch synchronous errors
 					if(error.message && (error.message.includes("quota") || error.message.includes("QuotaExceededError"))){
-						showWarning(chrome.i18n.getMessage("warningtitle"), chrome.i18n.getMessage("warningdes", String(bytesInUse)));
+						if(newByteSize >= 8192){
+							showWarning(chrome.i18n.getMessage("warningtitle"), chrome.i18n.getMessage("warningdes", String(newByteSize)));
+						}
 					}
 					setTimeout(() => { isLocalChange = false; }, 1000);
 				}
