@@ -420,9 +420,6 @@ function init(){
 	document.addEventListener("mouseover", handleMouseEnter);
 	document.addEventListener("mouseout", handleMouseLeave);
 
-	document.querySelector(".close").addEventListener("click", () => {
-		document.getElementById("stefanvdpromo").className = "hidden";
-	});
 
 	zoomInButton = document.getElementById("zoom-in-button");
 	zoomOutButton = document.getElementById("zoom-out-button");
@@ -623,16 +620,6 @@ function init(){
 			firstmonth = true;
 		}
 
-		if(firstmonth){
-			// show nothing
-			document.getElementById("stefanvdpromo").className = "hidden";
-		}else{
-			if(items["optionskipremember"] != true){
-				document.getElementById("stefanvdpromo").className = ""; // show now always the banner
-			}else{
-				document.getElementById("stefanvdpromo").className = "hidden";
-			}
-		}
 
 		typepanelzone = items.typepanelzone; if(typepanelzone == null)typepanelzone = true;
 		typepanelcustom = items.typepanelcustom; if(typepanelcustom == null)typepanelcustom = false;

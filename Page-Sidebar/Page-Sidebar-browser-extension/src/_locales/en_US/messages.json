@@ -129,8 +129,6 @@
     "guide": {"message": "Page Sidebar Guide"},
     "basicsettings": {"message": "Basics"},
     "changelog": {"message": "Changelog"},
-    "stefanvdpromonew": {"message": "New!"},
-    "stefanvdpromotext": {"message": "Discover all my FREE browser extensions"},
     "donatepromotext": {"message": "If you can make a donation of any amount, I'd appreciate it immensely!"},
     "titelpassword": {"message": "Password"},
     "despassword": {"message": "Lock your notes with a pasword"},
