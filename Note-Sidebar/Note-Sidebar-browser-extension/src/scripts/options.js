@@ -808,6 +808,58 @@ document.addEventListener("DOMContentLoaded", function(){
 
 	});
 
+	// Import TXT
+	$("importnotes").addEventListener("click", function(){
+		$("importfile").click();
+	});
+
+	$("importfile").addEventListener("change", function(e){
+		var file = e.target.files[0];
+		if(!file) return;
+		
+		var reader = new FileReader();
+		reader.onload = function(e){
+			var content = e.target.result;
+			
+			// Check if user wants to replace current notes
+			var confirmMessage = chrome.i18n.getMessage("importconfirm");
+			if(!confirm(confirmMessage)) return;
+			
+			chrome.storage.sync.get(["multiple"], function(items){
+				var isMultiple = items["multiple"];
+				
+				if(isMultiple){
+					// Try to parse as JSON for multiple notes
+					try{
+						var importedData = JSON.parse(content);
+						if(Array.isArray(importedData)){
+							chrome.storage.sync.set({"multivalue": importedData}, function(){
+								var successMsg = chrome.i18n.getMessage("importsuccess");
+								alert(successMsg);
+							});
+						}else{
+							var errorMsg = chrome.i18n.getMessage("importerror");
+							alert(errorMsg);
+						}
+					}catch(err){
+						var errorMsg = chrome.i18n.getMessage("importerror");
+						alert(errorMsg);
+					}
+				}else{
+					// Single note - import as plain text
+					chrome.storage.sync.set({"txtvalue": content}, function(){
+						var successMsg = chrome.i18n.getMessage("importsuccess");
+						alert(successMsg);
+					});
+				}
+			});
+		};
+		reader.readAsText(file);
+		
+		// Reset file input
+		e.target.value = "";
+	});
+
 	// Review box
 	$("war").addEventListener("click", function(){ window.open(writereview, "_blank"); $("sectionreviewbox").style.display = "none"; chrome.storage.sync.set({"reviewedlastonversion": chrome.runtime.getManifest().version}); });
 	$("nt").addEventListener("click", function(){ $("sectionreviewbox").style.display = "none"; chrome.storage.sync.set({"reviewedlastonversion": chrome.runtime.getManifest().version}); });
