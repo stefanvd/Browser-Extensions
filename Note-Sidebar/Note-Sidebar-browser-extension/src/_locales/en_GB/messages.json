@@ -156,8 +156,6 @@
   "changelog": {"message": "Changelog"},
   "titelprint": {"message": "Print"},
   "desprint": {"message": "Show the print button"},
-  "stefanvdpromonew": {"message": "New!"},
-  "stefanvdpromotext": {"message": "Discover all my FREE browser extensions"},
   "donatepromotext": {"message": "If you can make a donation of any amount, I'd appreciate it immensely!"},
   "titelpassword": {"message": "Password"},
   "despassword": {"message": "Lock your notes with a pasword"},

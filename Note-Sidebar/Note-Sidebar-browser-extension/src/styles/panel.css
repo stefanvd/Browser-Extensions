@@ -91,12 +91,6 @@ textarea,#powertext{overflow:auto;background:transparent;width:100%;position:fix
 .btn-stopspeech svg{fill:var(--ext-nav-color);height:18px;width:18px}
 #field{margin-left:15px}
 #voices{display:block;outline:none;width:100%;background:var(--ext-primary-background);border:1px solid var(--ext-nav-color);color:var(--ext-primary-font-color);border-radius: 2px;padding:2px 5px}
-#stefanvdpromo{font-family:Helvetica,Arial,sans-serif;margin:auto;width:305px;position:fixed;bottom:50px;left:0;right:0;background-color:#ffffff;border:solid #dadce0 1px;border-radius:24px;box-sizing:border-box;color:#000000}
-#stefanvdpromo .box{display:flex;flex-direction:row;height:30px;justify-content:center;align-items:center;gap:8px}
-#stefanvdpromo a,#stefanvdpromo a:hover,#stefanvdpromo a:visited{color:rgb(25 103 210)}
-#stefanvdpromo .red{color:red;padding-inline-start:8px}
-#stefanvdpromo .close{border-radius:20px;width:20px;height:20px;color:#5f6367;margin-inline-end:4px;display:flex;align-items:center;justify-content:center;cursor:pointer;-webkit-user-select:none;user-select:none}
-#stefanvdpromo .close:hover{background:#e8e8e9}
 #lockscreen{position:fixed;top:0;left:0;right:0;bottom:0;width:100%;height:100%;background:var(--ext-primary-background);opacity:1}
 #lockscreen input{background:var(--ext-primary-background);position:absolute;top:0;bottom:0;margin:auto;width:250px;height:40px;font-size:40px;padding:0px 20px;border-radius:20px;border:0;left:0;right:0;outline:none;box-shadow:var(--ext-lock-boxshadow)}
 #lockscreen input:hover{background:var(--ext-lock-hover)}
