@@ -1189,7 +1189,7 @@ const populateVoices = () => {
 };
 
 function checkpassword(value){
-	if(value == enterpassword){
+	if(value == atob(enterpassword)){
 		var elem = document.getElementById("lockscreen");
 		if(elem){
 			elem.parentNode.removeChild(elem);

@@ -745,7 +745,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 	// Save password
 	$("confirmpassword").addEventListener("click", function(){
-		chrome.storage.sync.set({"enterpassword":$("enterpassword").value});
+		chrome.storage.sync.set({"enterpassword": btoa($("enterpassword").value)});
 		var optionpastemp = chrome.i18n.getMessage("optionpasswordsaved"); window.alert(optionpastemp);
 	});
 
