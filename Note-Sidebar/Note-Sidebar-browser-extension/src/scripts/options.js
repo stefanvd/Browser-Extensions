@@ -743,9 +743,18 @@ document.addEventListener("DOMContentLoaded", function(){
 	// Reset settings
 	$("resetbrowserextension").addEventListener("click", function(){ chrome.storage.sync.clear(); chrome.runtime.sendMessage({name: "bckreload"}); location.reload(); });
 
+	// Hash password function
+	async function hashPassword(password){
+		const encoder = new TextEncoder();
+		const data = encoder.encode(password);
+		const hash = await crypto.subtle.digest('SHA-256', data);
+		return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+	}
+
 	// Save password
-	$("confirmpassword").addEventListener("click", function(){
-		chrome.storage.sync.set({"enterpassword": btoa($("enterpassword").value)});
+	$("confirmpassword").addEventListener("click", async function(){
+		const hashedPassword = await hashPassword($("enterpassword").value);
+		chrome.storage.sync.set({"enterpassword": hashedPassword});
 		var optionpastemp = chrome.i18n.getMessage("optionpasswordsaved"); window.alert(optionpastemp);
 	});
 

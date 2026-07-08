@@ -835,13 +835,13 @@ function init(){
 			newinput.addEventListener("mousemove", function(){
 				focuspassword();
 			});
-			newinput.addEventListener("input", function(){
-				checkpassword(this.value);
+			newinput.addEventListener("input", async function(){
+				await checkpassword(this.value);
 			});
-			newinput.addEventListener("keypress", function(e){
+			newinput.addEventListener("keypress", async function(e){
 				if(e.key === "Enter"){
-					checkpassword(this.value);
-					if(this.value != enterpassword){
+					const hashedInput = await hashPassword(this.value);
+					if(hashedInput !== enterpassword){
 						newinput.classList.add("animation");
 						window.setTimeout(() => {
 							if(newinput.classList.contains("animation")){
@@ -1188,8 +1188,17 @@ const populateVoices = () => {
 	currentVoice = voices[selectedvoice];
 };
 
-function checkpassword(value){
-	if(value == atob(enterpassword)){
+// Hash password function
+async function hashPassword(password){
+	const encoder = new TextEncoder();
+	const data = encoder.encode(password);
+	const hash = await crypto.subtle.digest('SHA-256', data);
+	return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+async function checkpassword(value){
+	const hashedInput = await hashPassword(value);
+	if(hashedInput === enterpassword){
 		var elem = document.getElementById("lockscreen");
 		if(elem){
 			elem.parentNode.removeChild(elem);
