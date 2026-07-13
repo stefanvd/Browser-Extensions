@@ -3,7 +3,7 @@
 
 Proper Menubar
 Add the best menu bar to get easy and fast access to all your useful browser options and internet products!
-Copyright (C) 2025 Stefan vd
+Copyright (C) 2026 Stefan vd
 www.stefanvd.net
 
 This program is free software; you can redistribute it and/or
@@ -249,7 +249,8 @@ function hex2rgb(hex){
 }
 
 var el;
-function SD(id){ return el.shadowRoot.getElementById(id); }
+var shadowRoot;
+function SD(id){ return shadowRoot.getElementById(id); }
 
 function createmenubar(a, b, c, d, e){
 	var newdropdowncontent = SD(e[0]);
@@ -713,10 +714,10 @@ function addtoolbar(){
 
 		//------
 		el = document.querySelector("#stefanvdpropermenubar");
-		el.attachShadow({mode: "open"});
+		shadowRoot = el.attachShadow({mode: "closed"});
 		// Just like prototype & constructor bi-directional references, we have...
-		// el.shadowRoot // the shadow root.
-		// el.shadowRoot.host // the element itself.
+		// shadowRoot // the shadow root.
+		// shadowRoot.host // the element itself.
 
 		var link = document.createElement("link");
 		link.id = "csspalette";
@@ -728,7 +729,7 @@ function addtoolbar(){
 		link.onload = function(){
 			newtoolbar.style.display = "block";
 		};
-		el.shadowRoot.appendChild(link);
+		shadowRoot.appendChild(link);
 		//----
 
 		// inject CSS for the hover effect
@@ -736,7 +737,7 @@ function addtoolbar(){
 			var pmcssbar = "#stefanvdnavwrappe #stefanvdpropermenubarnav li:hover a,#stefanvdnavwrappe #stefanvdpropermenubarnav a:focus,#stefanvdnavwrappe #stefanvdpropermenubarnav a:active{padding:0 7px;line-height:30px!important;color:" + hovertextcolor + "!important;background:" + hoverbackground + "!important;text-decoration:none;height:30px;font-weight:normal}#stefanvdnavwrappe #stefanvdpropermenubarclose:hover{color:" + hovertextcolor + "!important}#stefanvdnavwrappe #stefanvdpropermenubarnav label a:hover{color:" + hovertextcolor + "!important;background:" + hoverbackground + "!important;}#menubookmarks a:hover,.bookmark-item a:hover{background:" + hoverbackground + "}";
 
 			if($("csspropermenubar")){
-				var elem = el.shadowRoot.getElementById("csspropermenubar");
+				var elem = shadowRoot.getElementById("csspropermenubar");
 				elem.parentElement.removeChild(elem);
 			}
 
@@ -744,7 +745,7 @@ function addtoolbar(){
 			css.setAttribute("id", "csspropermenubar");
 			css.type = "text/css";
 			css.appendChild(document.createTextNode(pmcssbar));
-			el.shadowRoot.appendChild(css);
+			shadowRoot.appendChild(css);
 		}catch(e){
 			// console.log(e);
 		}
@@ -775,7 +776,7 @@ function addtoolbar(){
 		if(dropshadow == true){
 			newtoolbar.style.boxShadow = "0px 2px 10px rgba(0,0,0,.2)";
 		}
-		el.shadowRoot.appendChild(newtoolbar);
+		shadowRoot.appendChild(newtoolbar);
 
 		var newtoolbarclose = document.createElement("div");
 		newtoolbarclose.setAttribute("id", "stefanvdpropermenubarclose");
@@ -961,7 +962,8 @@ function addtoolbar(){
 				document.execCommand("copy");
 			}, false);
 			createmenubar(i18nmenu9a, ["menu9s", ""], "paneledit", i18nmenuedit, rootedit);
-			SD("menu9s").addEventListener("click", function(){
+			SD("menu9s").addEventListener("click", function(event){
+				if(!event.isTrusted) return;
 				document.execCommand("paste");
 			}, false);
 			if(exbrowser != "safari"){
@@ -1040,16 +1042,19 @@ function addtoolbar(){
 
 				// not for Safari web browser
 				createmenubar(i18nmenu14a, ["menu14s", ""], "panelbookmarks", i18nmenubookmarks, rootbookmarks);
-				SD("menu14s").addEventListener("click", function(){
+				SD("menu14s").addEventListener("click", function(event){
+					if(!event.isTrusted) return;
 					chrome.runtime.sendMessage({name: "stefanbookmarkmanager"});
 				}, false);
 
 				createmenubar(i18nmenu18a, ["menu18s", ""], "panelbookmarks", i18nmenubookmarks, rootbookmarks);
-				SD("menu18s").addEventListener("click", function(){
+				SD("menu18s").addEventListener("click", function(event){
+					if(!event.isTrusted) return;
 					chrome.runtime.sendMessage({name: "stefanbookmarkadd"});
 				}, false);
 				createmenubar(i18nmenu33a, ["menu33s", ""], "panelbookmarks", i18nmenubookmarks, rootbookmarks);
-				SD("menu33s").addEventListener("click", function(){
+				SD("menu33s").addEventListener("click", function(event){
+					if(!event.isTrusted) return;
 					chrome.runtime.sendMessage({name: "stefanbookmarkaddall"});
 				}, false);
 				createline("panelbookmarks");
@@ -1066,6 +1071,7 @@ function addtoolbar(){
 
 				let menubookmarks; // Variable to store the reference of the "menubookmarks" div
 				a.addEventListener("mouseover", function(event){
+					if(!event.isTrusted) return;
 					// Parent container where the new div will be added
 					const parentNav = SD("stefanvdnavwrappe");
 
@@ -1242,7 +1248,7 @@ function addtoolbar(){
 			}, false);
 
 			// Start root menu shortcut
-			menuRootItems = el.shadowRoot.querySelectorAll("#btnfile + a, #btnhelp + a, #btnedit + a, #btnview + a, #btnhistory + a, #btnbookmarks + a, #btnwindow + a");
+			menuRootItems = shadowRoot.querySelectorAll("#btnfile + a, #btnhelp + a, #btnedit + a, #btnview + a, #btnhistory + a, #btnbookmarks + a, #btnwindow + a");
 
 			// Add event listener for keyboard events
 			let keyboardEventListener = null;
@@ -1285,50 +1291,50 @@ function handleKeyboardEvent(event){
 			const direction = event.key === "ArrowDown" ? 1 : -1;
 			let activeMenuItem;
 			let menuItemsArray;
-			if(el.shadowRoot.getElementById("btnfile").checked){
+			if(shadowRoot.getElementById("btnfile").checked){
 				activeMenuItem = activeMenuItemFile;
-				menuItemsArray = Array.from(el.shadowRoot.querySelectorAll(".panelfile a"));
-			}else if(el.shadowRoot.getElementById("btnhelp").checked){
+				menuItemsArray = Array.from(shadowRoot.querySelectorAll(".panelfile a"));
+			}else if(shadowRoot.getElementById("btnhelp").checked){
 				activeMenuItem = activeMenuItemHelp;
-				menuItemsArray = Array.from(el.shadowRoot.querySelectorAll(".panelhelp a"));
-			}else if(el.shadowRoot.getElementById("btnedit").checked){
+				menuItemsArray = Array.from(shadowRoot.querySelectorAll(".panelhelp a"));
+			}else if(shadowRoot.getElementById("btnedit").checked){
 				activeMenuItem = activeMenuItemEdit;
-				menuItemsArray = Array.from(el.shadowRoot.querySelectorAll(".paneledit a"));
-			}else if(el.shadowRoot.getElementById("btnview").checked){
+				menuItemsArray = Array.from(shadowRoot.querySelectorAll(".paneledit a"));
+			}else if(shadowRoot.getElementById("btnview").checked){
 				activeMenuItem = activeMenuItemView;
-				menuItemsArray = Array.from(el.shadowRoot.querySelectorAll(".panelview a"));
-			}else if(el.shadowRoot.getElementById("btnhistory").checked){
+				menuItemsArray = Array.from(shadowRoot.querySelectorAll(".panelview a"));
+			}else if(shadowRoot.getElementById("btnhistory").checked){
 				activeMenuItem = activeMenuItemHistory;
-				menuItemsArray = Array.from(el.shadowRoot.querySelectorAll(".panelhistory a"));
-			}else if(el.shadowRoot.getElementById("btnbookmarks").checked){
+				menuItemsArray = Array.from(shadowRoot.querySelectorAll(".panelhistory a"));
+			}else if(shadowRoot.getElementById("btnbookmarks").checked){
 				activeMenuItem = activeMenuItemBookmarks;
-				menuItemsArray = Array.from(el.shadowRoot.querySelectorAll(".panelbookmarks a"));
-			}else if(el.shadowRoot.getElementById("btnwindow").checked){
+				menuItemsArray = Array.from(shadowRoot.querySelectorAll(".panelbookmarks a"));
+			}else if(shadowRoot.getElementById("btnwindow").checked){
 				activeMenuItem = activeMenuItemWindow;
-				menuItemsArray = Array.from(el.shadowRoot.querySelectorAll(".panelwindow a"));
+				menuItemsArray = Array.from(shadowRoot.querySelectorAll(".panelwindow a"));
 			}
 			if(menuItemsArray && menuItemsArray.length > 0){
 				const newIndex = (activeMenuItem + direction + menuItemsArray.length) % menuItemsArray.length;
 				switch(true){
-				case el.shadowRoot.getElementById("btnfile").checked:
+				case shadowRoot.getElementById("btnfile").checked:
 					activeMenuItemFile = newIndex;
 					break;
-				case el.shadowRoot.getElementById("btnhelp").checked:
+				case shadowRoot.getElementById("btnhelp").checked:
 					activeMenuItemHelp = newIndex;
 					break;
-				case el.shadowRoot.getElementById("btnedit").checked:
+				case shadowRoot.getElementById("btnedit").checked:
 					activeMenuItemEdit = newIndex;
 					break;
-				case el.shadowRoot.getElementById("btnview").checked:
+				case shadowRoot.getElementById("btnview").checked:
 					activeMenuItemView = newIndex;
 					break;
-				case el.shadowRoot.getElementById("btnhistory").checked:
+				case shadowRoot.getElementById("btnhistory").checked:
 					activeMenuItemHistory = newIndex;
 					break;
-				case el.shadowRoot.getElementById("btnbookmarks").checked:
+				case shadowRoot.getElementById("btnbookmarks").checked:
 					activeMenuItemBookmarks = newIndex;
 					break;
-				case el.shadowRoot.getElementById("btnwindow").checked:
+				case shadowRoot.getElementById("btnwindow").checked:
 					activeMenuItemWindow = newIndex;
 					break;
 				default:
@@ -1361,7 +1367,7 @@ function handleKeyboardEvent(event){
 			}
 		}else if(event.key === "Enter"){
 			event.preventDefault();
-			const focusedElement = el.shadowRoot.activeElement;
+			const focusedElement = shadowRoot.activeElement;
 			if(focusedElement){
 				focusedElement.click();
 			}
@@ -1445,9 +1451,9 @@ function runopenfile(){
 		input.id = "attachment";
 		input.className = "stefanvdhidden";
 		input.addEventListener("change", function(){ fileSelected(this); });
-		el.shadowRoot.appendChild(input);
+		shadowRoot.appendChild(input);
 
-		el.shadowRoot.getElementById("attachment").click();
+		shadowRoot.getElementById("attachment").click();
 
 		var element = SD("attachment");
 		if(element){
@@ -1551,7 +1557,7 @@ chrome.runtime.onMessage.addListener(function request(request){
 	}else if(request.action == "goforward"){
 		window.history.forward();
 	}else if(request.action == "gofocus"){
-		const btnFile = el.shadowRoot.getElementById("hyperbtnfile");
+		const btnFile = shadowRoot.getElementById("hyperbtnfile");
 		if(btnFile){
 			btnFile.focus();
 		}
