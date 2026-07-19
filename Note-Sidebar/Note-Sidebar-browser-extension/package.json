@@ -2,9 +2,8 @@
   "name": "note-sidebar",
   "version": "1.0.42",
   "description": "browser extension",
-  "homepage": "https://wwww.stefanvd.net",
+  "homepage": "https://www.stefanvd.net",
   "author": "Stefan Van Damme",
-  "main": "index.js",
   "license": "GPL-2.0",
   "devDependencies": {
     "eslint": "^7.17.0",
