@@ -200,43 +200,64 @@ function clearmagnify(){
 }
 
 function addmanify(image){
+	// Create Shadow DOM host element
+	var host = document.createElement("div");
+	host.setAttribute("id", "stefanvdzoompoint");
+	host.style.position = "fixed";
+	host.style.width = circlewidth + "px";
+	host.style.height = circlewidth + "px";
+	host.style.left = parseInt(prevcoordx) - circlewidth / 2 + "px";
+	host.style.top = parseInt(prevcoordy) - circlewidth / 2 + "px";
+	host.style.zIndex = 990;
+	host.style.pointerEvents = "auto";
+	
+	// Create closed Shadow DOM to isolate screenshot data from page JavaScript
+	var shadow = host.attachShadow({mode: "closed"});
+	
+	// Create the magnifier glass inside Shadow DOM
 	var div = document.createElement("div");
-	div.setAttribute("id", "stefanvdzoompoint");
 	div.setAttribute("class", "stefanzoommagnify");
-	div.style.position = "fixed";
+	div.style.position = "absolute";
+	div.style.top = "0";
+	div.style.left = "0";
+	div.style.width = "100%";
+	div.style.height = "100%";
 	div.style.border = "3px solid #000";
 	if(zoommagcircle == true){
 		div.style.borderRadius = "50%";
 	}
 	div.style.cursor = "none";
-	div.style.width = circlewidth + "px";
-	div.style.height = circlewidth + "px";
 	div.style.boxSizing = "border-box";
 	div.addEventListener("click", function(){
 		magnifyenabled = false;
 		var elem = document.getElementById("stefanvdzoompoint");
-		elem.parentElement.removeChild(elem);
+		if(elem) elem.parentElement.removeChild(elem);
 	}, false);
-	div.style.zIndex = 990;
-	// the image
+	
+	// the image - now isolated inside Shadow DOM
 	div.style.backgroundImage = "url('" + image + "')";
 	div.style.backgroundRepeat = "no-repeat";
 
 	var docheight = document.documentElement.clientHeight;
 	var docwidth = document.documentElement.clientWidth;
 	div.style.backgroundSize = (docwidth * zoom) + "px " + (docheight * zoom) + "px";
-	div.style.left = parseInt(prevcoordx) - circlewidth / 2 + "px";// previous
-	div.style.top = parseInt(prevcoordy) - circlewidth / 2 + "px";// previous
-	div.style.backgroundPosition = prefleft + "px " + preftop + "px";// previous
-	document.body.appendChild(div);
+	div.style.backgroundPosition = prefleft + "px " + preftop + "px";
+	
+	// Append the magnifier glass to Shadow DOM
+	shadow.appendChild(div);
+	
+	// Append the host to the page
+	document.body.appendChild(host);
 
-	glass = $("stefanvdzoompoint");
+	glass = div;
+	glassHost = host;
 
 	w = circlewidth / 2;
 	h = circlewidth / 2;
 }
 
 var glass;
+var glassHost;
 var w; var h;
 var topsign;
 var preventDefaultOnTouchMove = false;
@@ -263,9 +284,9 @@ function moveSpot(e){
 	prevcoordx = x;
 	prevcoordy = y;
 
-	// set the view position of the magnifier glass
-	glass.style.left = x - w + "px";
-	glass.style.top = y - h + "px";
+	// set the view position of the magnifier glass host
+	glassHost.style.left = x - w + "px";
+	glassHost.style.top = y - h + "px";
 
 	// see area of the magnifier glass
 	if(y * zoom - h + bw >= 0){
