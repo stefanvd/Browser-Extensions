@@ -10,9 +10,9 @@
       "32": "images/iconstick32.png",
       "38": "images/iconstick38.png",
       "40": "images/iconstick40.png",
-      "64": "images/iconstick64.png",
-      "default_area": "navbar"
-    }
+      "64": "images/iconstick64.png"
+    },
+    "default_area": "navbar"
   },
   "background": {
     "scripts": ["scripts/constants.js","scripts/background.js"]
