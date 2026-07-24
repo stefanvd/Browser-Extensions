@@ -55,7 +55,7 @@
     "matches": ["<all_urls>"]
   }],
   "permissions": ["contextMenus", "activeTab", "storage", "webNavigation", "scripting"],
-  "optional_permissions": ["clipboardWrite", "clipboardRead", "bookmarks", "downloads"],
+  "optional_permissions": ["clipboardWrite", "clipboardRead", "bookmarks", "downloads", "tabs"],
   "host_permissions": ["<all_urls>"],
   "browser_specific_settings": {
     "gecko": {

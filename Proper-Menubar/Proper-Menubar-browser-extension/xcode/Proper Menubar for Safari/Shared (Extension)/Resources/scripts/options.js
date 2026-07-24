@@ -916,6 +916,23 @@ function domcontentloaded(){
 		});
 	});
 
+	$("removepermissiontabs").addEventListener("click", function(){
+		chrome.permissions.remove({
+			permissions: ["tabs"]
+		}, function(removed){
+			if(removed){
+				// The permissions have been removed.
+				var txtpermission = chrome.i18n.getMessage("wpermissionremoved");
+				window.alert(txtpermission);
+			}else{
+				// The permissions have not been removed (e.g., you tried to remove
+				// required permissions).
+				var txtpermissionnot = chrome.i18n.getMessage("wpermissionnotremoved");
+				window.alert(txtpermissionnot);
+			}
+		});
+	});
+
 	// Save KB download
 	$("tabbasic").addEventListener("click", function(){ Scrolltotop(); ONworkaroundbugpreview(); OFFworkaroundbugfromsafari(); $("welcomeguide").src = ""; memguide(); guidekb = true; mobilecheck(); });
 	$("tabdesign").addEventListener("click", function(){ Scrolltotop(); ONworkaroundbugpreview(); $("welcomeguide").src = ""; memguide(); guidekb = true; mobilecheck(); });

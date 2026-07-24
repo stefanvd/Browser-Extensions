@@ -559,6 +559,83 @@ function addtoolbar(){
 				chrome.runtime.sendMessage({name: "stefanzoom"});
 			}, false);
 			createline("panelwindow");
+
+			// Window list - dynamically populated
+			var loadWindowList = function(){
+				chrome.permissions.contains({permissions: ["tabs"]}, function(hasTabsPermission){
+					if(hasTabsPermission){
+						chrome.windows.getAll({populate: true, windowTypes: ["normal"]}, function(windows){
+							renderWindowList(windows, true);
+						});
+					}else{
+						// Show "Click to show windows" menu item
+						var showWindowsText = chrome.i18n.getMessage("showwindows") || "Click to show windows";
+						createmenubar(showWindowsText, "showwindowsitem", "panelwindow", i18nmenuwindow, "btnwindow");
+						$("showwindowsitem").addEventListener("click", function(){
+							chrome.permissions.request({permissions: ["tabs"]}, function(granted){
+								if(granted){
+									// Remove the "Click to show windows" item (remove the parent li)
+									var showWindowsItem = $("showwindowsitem");
+									if(showWindowsItem && showWindowsItem.parentNode && showWindowsItem.parentNode.parentNode){
+										showWindowsItem.parentNode.parentNode.removeChild(showWindowsItem.parentNode);
+									}
+									// Load and show actual window list
+									chrome.windows.getAll({populate: true, windowTypes: ["normal"]}, function(windows){
+										renderWindowList(windows, true);
+									});
+								}
+							});
+						}, false);
+					}
+				});
+			};
+
+			var renderWindowList = function(windows, hasTitles){
+				// Filter out windows with no tabs
+				windows = windows.filter(function(win){
+					return win.tabs && win.tabs.length > 0;
+				});
+
+				// Sort windows
+				windows.sort(function(a, b){
+					if(hasTitles && a.tabs && a.tabs.length > 0 && b.tabs && b.tabs.length > 0){
+						// Sort by active tab title alphabetically
+						var titleA = (a.tabs.find((t) => t.active) || a.tabs[0]).title || "";
+						var titleB = (b.tabs.find((t) => t.active) || b.tabs[0]).title || "";
+						return titleA.localeCompare(titleB);
+					}else{
+						// Sort by window ID
+						return a.id - b.id;
+					}
+				});
+
+				// Create menu items for each window
+				windows.forEach(function(win, index){
+					var windowName;
+					if(hasTitles && win.tabs && win.tabs.length > 0){
+						var activeTab = win.tabs.find((t) => t.active) || win.tabs[0];
+						windowName = activeTab.title || ("Window " + (index + 1));
+					}else{
+						windowName = "Window " + (index + 1);
+					}
+
+					// Skip if window name is empty
+					if(!windowName || windowName.trim() === ""){
+						return;
+					}
+
+					var menuItemId = "windowitem" + win.id;
+					createmenubar(windowName, menuItemId, "panelwindow", i18nmenuwindow, "btnwindow");
+					$(menuItemId).addEventListener("click", function(){
+						chrome.windows.update(win.id, {focused: true});
+					}, false);
+				});
+			};
+
+			// Load window list immediately
+			loadWindowList();
+
+			createline("panelwindow");
 			createmenubar(i18nmenu15a, "menu15s", "panelwindow", i18nmenuwindow, "btnwindow");
 			$("menu15s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanswitchtabright"});

@@ -963,7 +963,7 @@ function addtoolbar(){
 			}, false);
 			createmenubar(i18nmenu9a, ["menu9s", ""], "paneledit", i18nmenuedit, rootedit);
 			SD("menu9s").addEventListener("click", function(event){
-				if(!event.isTrusted) return;
+				if(!event.isTrusted)return;
 				document.execCommand("paste");
 			}, false);
 			if(exbrowser != "safari"){
@@ -1043,18 +1043,18 @@ function addtoolbar(){
 				// not for Safari web browser
 				createmenubar(i18nmenu14a, ["menu14s", ""], "panelbookmarks", i18nmenubookmarks, rootbookmarks);
 				SD("menu14s").addEventListener("click", function(event){
-					if(!event.isTrusted) return;
+					if(!event.isTrusted)return;
 					chrome.runtime.sendMessage({name: "stefanbookmarkmanager"});
 				}, false);
 
 				createmenubar(i18nmenu18a, ["menu18s", ""], "panelbookmarks", i18nmenubookmarks, rootbookmarks);
 				SD("menu18s").addEventListener("click", function(event){
-					if(!event.isTrusted) return;
+					if(!event.isTrusted)return;
 					chrome.runtime.sendMessage({name: "stefanbookmarkadd"});
 				}, false);
 				createmenubar(i18nmenu33a, ["menu33s", ""], "panelbookmarks", i18nmenubookmarks, rootbookmarks);
 				SD("menu33s").addEventListener("click", function(event){
-					if(!event.isTrusted) return;
+					if(!event.isTrusted)return;
 					chrome.runtime.sendMessage({name: "stefanbookmarkaddall"});
 				}, false);
 				createline("panelbookmarks");
@@ -1071,7 +1071,7 @@ function addtoolbar(){
 
 				let menubookmarks; // Variable to store the reference of the "menubookmarks" div
 				a.addEventListener("mouseover", function(event){
-					if(!event.isTrusted) return;
+					if(!event.isTrusted)return;
 					// Parent container where the new div will be added
 					const parentNav = SD("stefanvdnavwrappe");
 
@@ -1158,6 +1158,83 @@ function addtoolbar(){
 				chrome.runtime.sendMessage({name: "stefanmaximize"});
 			}, false);
 			createline("panelwindow");
+
+			// Window list - dynamically populated via background script
+			var loadWindowList = function(){
+				chrome.runtime.sendMessage({name: "stefangetwindowlist"}, function(response){
+					if(response && response.windows){
+						renderWindowList(response.windows, response.hasTitles);
+					}else if(response && response.showPermissionRequest){
+						// Show "Click to show windows" menu item
+						var showWindowsText = chrome.i18n.getMessage("showwindows") || "Click to show windows";
+						createmenubar(showWindowsText, ["showwindowsitem", ""], "panelwindow", i18nmenuwindow, rootwindow);
+						SD("showwindowsitem").addEventListener("click", function(){
+							chrome.runtime.sendMessage({name: "stefanrequesttabspermission"}, function(response){
+								if(response && response.granted){
+									// Remove the "Click to show windows" item (remove the parent li)
+									var showWindowsItem = SD("showwindowsitem");
+									if(showWindowsItem && showWindowsItem.parentNode && showWindowsItem.parentNode.parentNode){
+										showWindowsItem.parentNode.parentNode.removeChild(showWindowsItem.parentNode);
+									}
+									// Load and show actual window list
+									chrome.runtime.sendMessage({name: "stefangetwindowlist"}, function(response){
+										if(response && response.windows){
+											renderWindowList(response.windows, response.hasTitles);
+										}
+									});
+								}
+							});
+						}, false);
+					}
+				});
+			};
+
+			var renderWindowList = function(windows, hasTitles){
+				// Filter out windows with no tabs
+				windows = windows.filter(function(win){
+					return win.tabs && win.tabs.length > 0;
+				});
+
+				// Sort windows
+				windows.sort(function(a, b){
+					if(hasTitles && a.tabs && a.tabs.length > 0 && b.tabs && b.tabs.length > 0){
+						// Sort by active tab title alphabetically
+						var titleA = (a.tabs.find((t) => t.active) || a.tabs[0]).title || "";
+						var titleB = (b.tabs.find((t) => t.active) || b.tabs[0]).title || "";
+						return titleA.localeCompare(titleB);
+					}else{
+						// Sort by window ID
+						return a.id - b.id;
+					}
+				});
+
+				// Create menu items for each window
+				windows.forEach(function(win, index){
+					var windowName;
+					if(hasTitles && win.tabs && win.tabs.length > 0){
+						var activeTab = win.tabs.find((t) => t.active) || win.tabs[0];
+						windowName = activeTab.title || ("Window " + (index + 1));
+					}else{
+						windowName = "Window " + (index + 1);
+					}
+
+					// Skip if window name is empty
+					if(!windowName || windowName.trim() === ""){
+						return;
+					}
+
+					var menuItemId = "windowitem" + win.id;
+					createmenubar(windowName, [menuItemId, ""], "panelwindow", i18nmenuwindow, rootwindow);
+					SD(menuItemId).addEventListener("click", function(){
+						chrome.runtime.sendMessage({name: "stefanswitchwindow", windowId: win.id});
+					}, false);
+				});
+			};
+
+			// Load window list immediately
+			loadWindowList();
+
+			createline("panelwindow");
 			createmenubar(i18nmenu15a, ["menu15s", ""], "panelwindow", i18nmenuwindow, rootwindow);
 			SD("menu15s").addEventListener("click", function(){
 				chrome.runtime.sendMessage({name: "stefanswitchtabright"});
@@ -1230,6 +1307,7 @@ function addtoolbar(){
 				SD("menu25s").addEventListener("click", function(){
 					chrome.runtime.sendMessage({name: "stefanflags"});
 				}, false);
+				createline("panelwindow");
 			}
 
 			// Help

@@ -41,7 +41,7 @@
 		"page": "options.html",
 		"open_in_tab": true
 	},
-	"version": "1.5.6",
+	"version": "1.5.8",
 	"name": "__MSG_name__",
 	"short_name": "__MSG_name__",
 	"action": {
@@ -102,7 +102,8 @@
 		"scripting"
 	],
 	"optional_permissions": [
-		"clipboardWrite"
+		"clipboardWrite",
+		"tabs"
 	],
 	"host_permissions": [
 		"<all_urls>"

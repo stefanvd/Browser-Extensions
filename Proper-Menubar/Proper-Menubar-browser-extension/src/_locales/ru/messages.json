@@ -259,7 +259,7 @@
     "sharetextd": {"message": "Proper Menubar' browser extension is the Best Useful Tool. Download it and try it yourself!"},
     "permissionrequired": {"message": "Current Active Permissions"},
     "permissionactivetab": {"message": "This will only manage the Proper Menubar of the web page on the currently open tab page."},
-    "permissiontabs": {"message": "This is needed for the following features: to show you the welcome and guide page, manage the Proper Menubar on all the open tabs, and to open the Options page."},
+    "permissiontabs": {"message": "This is needed for the following features: managing open windows and viewing the name of the currently active tab in each window."},
     "permissioncontextmenu": {"message": "This to add all the Proper Menubar item in the web browser context menu."},
     "permissionstorage": {"message": "This to save the settings on your local computer, and to sync it to your web browser account."},
     "permissionpagecapture": {"message": "This to save the currently open web page as an MHTML file type."},

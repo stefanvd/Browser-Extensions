@@ -398,6 +398,24 @@ chrome.runtime.onMessage.addListener(function request(request, sender, sendRespo
 		chrome.windows.getCurrent(null, function(window){
 			chrome.windows.update(window.id, {state: "maximized"});
 		});
+	}else if(request.name == "stefangetwindowlist"){
+		chrome.permissions.contains({permissions: ["tabs"]}, function(hasTabsPermission){
+			if(hasTabsPermission){
+				chrome.windows.getAll({populate: true, windowTypes: ["normal"]}, function(windows){
+					sendResponse({windows: windows, hasTitles: true});
+				});
+			}else{
+				sendResponse({showPermissionRequest: true});
+			}
+		});
+		return true;
+	}else if(request.name == "stefanrequesttabspermission"){
+		chrome.permissions.request({permissions: ["tabs"]}, function(granted){
+			sendResponse({granted: granted});
+		});
+		return true;
+	}else if(request.name == "stefanswitchwindow"){
+		chrome.windows.update(request.windowId, {focused: true});
 	}else if(request.name == "stefandownloads"){
 		chrome.tabs.create({url: browserdownloads});
 	}else if(request.name == "stefanextensions"){
