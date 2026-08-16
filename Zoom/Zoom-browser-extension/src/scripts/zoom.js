@@ -151,6 +151,7 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse){
 });
 
 var magnifyenabled = false;
+var currentMagnifyImage = "";
 var prevcoordx = -25;
 var prevcoordy = -25;
 var circlewidth;
@@ -158,8 +159,14 @@ var zoom;
 var bw;
 var isScrolling;
 var prefleft = 0; var preftop = 0;
+var currentVideo = null;
+var currentX = 0;
+var currentY = 0;
+var magnifyingVideo = false;
+var animationFrameId;
 function showmagnify(image){
 	// mouse magnifying glass
+	currentMagnifyImage = image;
 	circlewidth = zoommagszoomsize;
 	zoom = zoommagszoomlevel;
 	bw = 3;
@@ -167,6 +174,9 @@ function showmagnify(image){
 	// Add magnifying glass
 	if(!$("stefanvdzoompoint")){
 		addmanify(image);
+		// Start the continuous magnifier render loop
+		cancelAnimationFrame(animationFrameId);
+		animationFrameId = requestAnimationFrame(updateMagnifier);
 	}else{
 		clearmagnify();
 	}
@@ -195,11 +205,17 @@ function showmagnify(image){
 }
 
 function clearmagnify(){
+	cancelAnimationFrame(animationFrameId);
+	animationFrameId = null;
+	currentVideo = null;
+
 	var elem = document.getElementById("stefanvdzoompoint");
 	if(elem){ elem.parentElement.removeChild(elem); }
 }
 
 function addmanify(image){
+	currentMagnifyImage = image;
+
 	// Create Shadow DOM host element
 	var host = document.createElement("div");
 	host.setAttribute("id", "stefanvdzoompoint");
@@ -208,7 +224,7 @@ function addmanify(image){
 	host.style.height = circlewidth + "px";
 	host.style.left = parseInt(prevcoordx) - circlewidth / 2 + "px";
 	host.style.top = parseInt(prevcoordy) - circlewidth / 2 + "px";
-	host.style.zIndex = 990;
+	host.style.zIndex = 1010;
 	host.style.pointerEvents = "auto";
 	
 	// Create closed Shadow DOM to isolate screenshot data from page JavaScript
@@ -223,6 +239,7 @@ function addmanify(image){
 	div.style.width = "100%";
 	div.style.height = "100%";
 	div.style.border = "3px solid #000";
+	div.style.overflow = "hidden";
 	if(zoommagcircle == true){
 		div.style.borderRadius = "50%";
 	}
@@ -243,6 +260,20 @@ function addmanify(image){
 	div.style.backgroundSize = (docwidth * zoom) + "px " + (docheight * zoom) + "px";
 	div.style.backgroundPosition = prefleft + "px " + preftop + "px";
 	
+	// Create canvas for live video (initially hidden)
+	var canvas = document.createElement("canvas");
+	var canvasSize = Math.max(1, circlewidth - bw * 2);
+	canvas.width = canvasSize;
+	canvas.height = canvasSize;
+	canvas.style.position = "absolute";
+	canvas.style.top = "0";
+	canvas.style.left = "0";
+	canvas.style.width = "100%";
+	canvas.style.height = "100%";
+	canvas.style.display = "none";
+	canvas.style.cursor = "none";
+	div.appendChild(canvas);
+	
 	// Append the magnifier glass to Shadow DOM
 	shadow.appendChild(div);
 	
@@ -251,6 +282,9 @@ function addmanify(image){
 
 	glass = div;
 	glassHost = host;
+	glassCanvas = canvas;
+	glassCtx = canvas.getContext("2d");
+	magnifyingVideo = false;
 
 	w = circlewidth / 2;
 	h = circlewidth / 2;
@@ -258,6 +292,8 @@ function addmanify(image){
 
 var glass;
 var glassHost;
+var glassCanvas;
+var glassCtx;
 var w; var h;
 var topsign;
 var preventDefaultOnTouchMove = false;
@@ -305,6 +341,75 @@ function moveSpot(e){
 	prefleft = leftsign;
 
 	glass.style.backgroundPosition = leftsign + "px " + topsign + "px";
+
+	// Remember the current cursor position and video under it
+	currentX = x;
+	currentY = y;
+	currentVideo = getVideoAtPoint(x, y);
+}
+
+function updateMagnifier(){
+	if(!magnifyenabled) return;
+
+	if(currentVideo){
+		if(!magnifyingVideo){
+			magnifyingVideo = true;
+			glass.style.backgroundImage = "none";
+			glassCanvas.style.display = "block";
+		}
+		drawVideoToMagnifier(currentVideo, currentX, currentY);
+	}else{
+		if(magnifyingVideo){
+			magnifyingVideo = false;
+			glassCanvas.style.display = "none";
+			glass.style.backgroundImage = "url('" + currentMagnifyImage + "')";
+		}
+	}
+
+	animationFrameId = requestAnimationFrame(updateMagnifier);
+}
+
+function getVideoAtPoint(x, y){
+	var videos = document.querySelectorAll("video");
+	for(var i = 0; i < videos.length; i++){
+		var rect = videos[i].getBoundingClientRect();
+		if(x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom){
+			if(glassHost && glassHost.contains(videos[i])) continue;
+			return videos[i];
+		}
+	}
+	return null;
+}
+
+function drawVideoToMagnifier(video, x, y){
+	if(!glassCtx || !glassCanvas) return;
+
+	var rect = video.getBoundingClientRect();
+	if(rect.width === 0 || rect.height === 0 || video.videoWidth === 0 || video.videoHeight === 0) return;
+
+	// Convert viewport coordinates to video intrinsic coordinates
+	var videoX = (x - rect.left) / rect.width * video.videoWidth;
+	var videoY = (y - rect.top) / rect.height * video.videoHeight;
+
+	var sourceSize = glassCanvas.width / zoom;
+	var sx = videoX - sourceSize / 2;
+	var sy = videoY - sourceSize / 2;
+
+	// Visible source area, clipped to video bounds
+	var sxVisible = Math.max(0, sx);
+	var syVisible = Math.max(0, sy);
+	var sw = Math.min(sx + sourceSize, video.videoWidth) - sxVisible;
+	var sh = Math.min(sy + sourceSize, video.videoHeight) - syVisible;
+
+	if(sw <= 0 || sh <= 0) return;
+
+	var dx = (sxVisible - sx) * zoom;
+	var dy = (syVisible - sy) * zoom;
+	var dw = sw * zoom;
+	var dh = sh * zoom;
+
+	glassCtx.clearRect(0, 0, glassCanvas.width, glassCanvas.height);
+	glassCtx.drawImage(video, sxVisible, syVisible, sw, sh, dx, dy, dw, dh);
 }
 
 function setdefaultfontsize(){
