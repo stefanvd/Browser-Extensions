@@ -301,9 +301,13 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 					<input id="allzoom" type="checkbox" role="checkbox" aria-checked="true" aria-labelledby="allzoom">
 					<label for="allzoom"><div><span data-i18n="desallzoom"></span></div></label>
 				</div>
+				<div class="md-checkbox md-subin">
+					<input id="allzoomoverrides" type="checkbox" role="checkbox" aria-checked="false" aria-labelledby="allzoomoverrideslabel" disabled>
+					<label for="allzoomoverrides"><div><span id="allzoomoverrideslabel" data-i18n="desallzoomoverrides"></span></div></label>
+				</div>
 			<label class="checkbox">
 			<form id="formwebsitezoom">
-			<div id="websitezoom">
+			<div id="websitezoom" aria-disabled="false">
 				<div class="columnspace">
 					<input id="websitezoomname" type="text" required placeholder="https://www.example.com or https://*.example.com/*" aria-label="The URL box or regex pattern for the Zoom feature">
 					<select id="websitezoomBox" name="websitezoomentryList" size="10" multiple="" aria-label="The website URLs in the box"></select>
