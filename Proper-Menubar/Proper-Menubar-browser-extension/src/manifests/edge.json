@@ -46,7 +46,7 @@
     "use_dynamic_url": true
   }],
   "offline_enabled": true,
-  "minimum_chrome_version": "114",
+  "minimum_chrome_version": "102",
   "permissions": ["contextMenus", "activeTab", "storage", "webNavigation", "scripting"],
   "optional_permissions": ["pageCapture", "clipboardWrite", "clipboardRead", "bookmarks", "downloads", "tabs"],
   "host_permissions": ["<all_urls>"]

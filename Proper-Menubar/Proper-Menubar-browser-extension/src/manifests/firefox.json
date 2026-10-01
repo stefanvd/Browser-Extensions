@@ -19,7 +19,8 @@
       "dark": "images/icon32.png",
       "size": 32
     }],
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_area": "navbar"
   },
   "commands": {
     "_execute_action": {
