@@ -758,6 +758,7 @@ function createCspRule(removeCSP){
 		},
 		condition: {
 			urlFilter: "|*://*/*",
+			initiatorDomains: [chrome.runtime.id],
 			resourceTypes: ["sub_frame"]
 		}
 	};
@@ -779,6 +780,7 @@ function createUserAgentRule(userAgentString){
 		},
 		condition: {
 			urlFilter: "|*://*/*",
+			initiatorDomains: [chrome.runtime.id],
 			resourceTypes: ["sub_frame"]
 		}
 	};
@@ -817,5 +819,9 @@ async function updateRulesFromStorage(){
 
 chrome.runtime.onInstalled.addListener(async() => {
 	installation();
+	updateRulesFromStorage();
+});
+
+chrome.runtime.onStartup.addListener(() => {
 	updateRulesFromStorage();
 });
