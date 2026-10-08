@@ -30,28 +30,149 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 // Execute if importScripts is support such as Google Chrome and not Firefox
 if(typeof importScripts !== "undefined"){
 	// eslint-disable-next-line no-undef
-	importScripts("constants.js");
+	importScripts("constants.js", "zoom-match.js");
 }
 
-var currentURL; var allzoom; var allzoomvalue; var zoombydomain; var zoombypage; var zoombyregex; var defaultallscreen; var defaultsinglescreen; var goturlinside = false; var currentscreen; var chromedisplay; var screenzoom; var zoomsingleclick; var zoomnewsingleclick; var zoomdoubleclick; var zoomoutdoubleclick; var contexta; var contextb; var contextc; var websitepreset;
-var currentRatio = 1; var ratio = 1; var job = null;
-var webjob; var websitezoom = {}; var badge; var steps; var lightcolor; var zoomchrome; var zoomweb; var zoomfont; var ignoreset;
+var allzoomvalue; var defaultallscreen; var defaultsinglescreen; var currentscreen; var screenzoom; var zoomsingleclick; var zoomnewsingleclick; var zoomdoubleclick; var zoomoutdoubleclick; var contexta; var contextb; var contextc; var websitepreset;
+var badge; var steps; var lightcolor; var zoomchrome; var zoomweb; var zoomfont;
 
-function wildcardToRegex(pattern){
-	// Check if pattern is already a valid regex
-	try{
-		return new RegExp(pattern);
-	}catch(e){
-		// If not a valid regex, treat as wildcard pattern
-		// Escape regex chars except *
-		let escaped = pattern.replace(/[-\\/\\^$+?.()|[\]{}]/g, "\\$&");
-		// * → .*
-		escaped = escaped.replace(/\*/g, ".*");
-		return new RegExp("^" + escaped + "$");
+function parseWebsiteZoom(value){
+	if(value == null)return{"https://www.example.com": ["90"], "https://www.nytimes.com": ["85"]};
+	if(typeof value == "string"){
+		try{
+			return JSON.parse(value);
+		}catch(e){
+			return{};
+		}
 	}
+	return value;
 }
 
-chrome.runtime.onMessage.addListener(function request(request, sender){
+function readZoomSettings(callback){
+	chrome.storage.sync.get(["allzoom", "allzoomoverrides", "allzoomvalue", "websitezoom", "badge", "steps", "lightcolor", "zoomchrome", "zoomweb", "zoombydomain", "zoombypage", "zoombyregex", "zoomfont", "ignoreset", "defaultsinglescreen", "screenzoom"], function(items){
+		callback({
+			allzoom: items.allzoom ?? false,
+			allzoomoverrides: items.allzoomoverrides ?? false,
+			allzoomvalue: items.allzoomvalue ?? 1,
+			websitezoom: parseWebsiteZoom(items.websitezoom),
+			badge: items.badge ?? false,
+			steps: items.steps ?? 10,
+			lightcolor: items.lightcolor ?? "#3cb4fe",
+			zoomchrome: items.zoomchrome ?? false,
+			zoomweb: items.zoomweb ?? true,
+			zoomfont: items.zoomfont ?? false,
+			zoombydomain: items.zoombydomain ?? true,
+			zoombypage: items.zoombypage ?? false,
+			zoombyregex: items.zoombyregex ?? false,
+			ignoreset: items.ignoreset ?? false,
+			defaultsinglescreen: items.defaultsinglescreen ?? false,
+			screenzoom: items.screenzoom == null ? {} : parseWebsiteZoom(items.screenzoom)
+		});
+	});
+}
+
+function useSettings(items){
+	allzoomvalue = items.allzoomvalue;
+	badge = items.badge;
+	steps = items.steps;
+	lightcolor = items.lightcolor;
+	zoomchrome = items.zoomchrome;
+	zoomweb = items.zoomweb;
+	zoomfont = items.zoomfont;
+}
+
+function getEffectiveZoom(url, items, screen){
+	var override = null;
+	if(!items.allzoom || items.allzoomoverrides){
+		override = globalThis.ZoomMatch.findOverride(items.websitezoom, url, items.zoombydomain, items.zoombyregex);
+	}
+	var inheritedValue = items.allzoomvalue;
+	if(items.defaultsinglescreen && screen && items.screenzoom[screen] != null)inheritedValue = Number(items.screenzoom[screen]) / 100;
+	return{override: override, value: override ? override.value : inheritedValue};
+}
+
+function applyZoomToTab(tab, value, items){
+	if(!tab || tab.id == null || !Number.isFinite(value))return;
+	if(items.zoomchrome && chrome.tabs.setZoom){
+		if((items.zoombypage || items.zoombyregex) && chrome.tabs.setZoomSettings){
+			chrome.tabs.setZoomSettings(tab.id, {mode: "automatic", scope: "per-tab"}, function(){ void chrome.runtime.lastError; });
+		}
+		chrome.tabs.setZoom(tab.id, value, function(){ void chrome.runtime.lastError; });
+	}else if(items.zoomweb){
+		chrome.tabs.sendMessage(tab.id, {text: "setbodycsszoom", value: value}, function(){ void chrome.runtime.lastError; });
+	}else if(items.zoomfont){
+		chrome.tabs.sendMessage(tab.id, {text: "changefontsize", value: Math.round(value * 100)}, function(){ void chrome.runtime.lastError; });
+	}
+	badge = items.badge;
+	lightcolor = items.lightcolor;
+	setBadgeValue(value, tab.id);
+}
+
+function applyEffectiveZoomToAllTabs(items){
+	chrome.tabs.query({}, function(tabs){
+		tabs.forEach(function(tab){
+			chrome.tabs.sendMessage(tab.id, {text: "refreshzoom"}, function(){
+				if(chrome.runtime.lastError){
+					var effective = getEffectiveZoom(tab.url, items);
+					if(!(items.ignoreset && !items.allzoom && !effective.override))applyZoomToTab(tab, effective.value, items);
+				}
+			});
+		});
+	});
+}
+
+function changeEffectiveZoom(value, reset, screen, callback, tabId){
+	readZoomSettings(function(items){
+		useSettings(items);
+		var changeTabZoom = function(tab){
+			if(!tab || !tab.url)return;
+			var update = function(currentScreen){
+				var effective = getEffectiveZoom(tab.url, items, currentScreen);
+				var changes = {};
+				if(effective.override){
+					if(reset)delete items.websitezoom[effective.override.key];
+					else items.websitezoom[effective.override.key] = Math.round(value * 100);
+					changes.websitezoom = JSON.stringify(items.websitezoom);
+				}else if(items.allzoom){
+					if(!reset){
+						if(items.defaultsinglescreen && currentScreen && items.screenzoom[currentScreen] != null){
+							items.screenzoom[currentScreen] = Math.round(value * 100);
+							changes.screenzoom = JSON.stringify(items.screenzoom);
+						}else{
+							items.allzoomvalue = value;
+							changes.allzoomvalue = value;
+						}
+					}
+				}else if(!reset){
+					var key = globalThis.ZoomMatch.createKey(tab.url, items.zoombydomain, items.zoombyregex);
+					items.websitezoom[key] = Math.round(value * 100);
+					changes.websitezoom = JSON.stringify(items.websitezoom);
+				}
+
+				var finish = function(){
+					if(callback)callback(getEffectiveZoom(tab.url, items, currentScreen).value);
+				};
+				if(Object.keys(changes).length)chrome.storage.sync.set(changes, finish);
+				else{
+					applyEffectiveZoomToAllTabs(items);
+					finish();
+				}
+			};
+			if(screen)update(screen);
+			else{
+				chrome.tabs.sendMessage(tab.id, {text: "getscreen"}, function(currentScreen){
+					if(chrome.runtime.lastError)currentScreen = null;
+					update(currentScreen);
+				});
+			}
+		};
+		if(tabId != null)chrome.tabs.get(tabId, function(tab){ void chrome.runtime.lastError; changeTabZoom(tab); });
+		else chrome.tabs.query({active: true, currentWindow: true}, function(tabs){ changeTabZoom(tabs[0]); });
+	});
+}
+
+var popupZoomTimer;
+chrome.runtime.onMessage.addListener(function request(request, sender, sendResponse){
 	switch(request.name){
 	case"bckreload":
 		installation();
@@ -63,222 +184,20 @@ chrome.runtime.onMessage.addListener(function request(request, sender){
 		});
 		break;
 	case"getallRatio":
-		currentURL = request.website;
-		chromedisplay = request.screen;
-		chrome.storage.sync.get(["allzoom", "allzoomvalue", "websitezoom", "badge", "lightcolor", "zoomchrome", "zoomweb", "zoombydomain", "zoombypage", "zoombyregex", "defaultallscreen", "defaultsinglescreen", "screenzoom", "zoomfont", "ignoreset"], function(response){
-			allzoom = response.allzoom; if(allzoom == null)allzoom = false; // default allzoom false
-			allzoomvalue = response.allzoomvalue; if(allzoomvalue == null)allzoomvalue = 1; // default allzoomvalue value
-			badge = response.badge; if(badge == null)badge = false;
-			lightcolor = response.lightcolor; if(lightcolor == null)lightcolor = "#3cb4fe";
-			zoomchrome = response.zoomchrome; if(zoomchrome == null)zoomchrome = false;
-			zoomweb = response.zoomweb; if(zoomweb == null)zoomweb = true;
-			zoomfont = response.zoomfont; if(zoomfont == null)zoomfont = false;
-			zoombydomain = response.zoombydomain; if(zoombydomain == null)zoombydomain = true;
-			zoombypage = response.zoombypage; if(zoombypage == null)zoombypage = false;
-			if(zoombydomain == true){
-				currentURL = currentURL.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/)[0];
-			}
-			zoombyregex = response.zoombyregex; if(zoombyregex == null)zoombyregex = false;
-			defaultallscreen = response.defaultallscreen; if(defaultallscreen == null)defaultallscreen = true;
-			defaultsinglescreen = response.defaultsinglescreen; if(defaultsinglescreen == null)defaultsinglescreen = false;
-			websitezoom = response["websitezoom"];
-			// if empty use this
-			if(typeof websitezoom == "undefined" || websitezoom == null){
-				websitezoom = JSON.stringify({"https://www.example.com": ["90"], "https://www.nytimes.com": ["85"]});
-			}
-			websitezoom = JSON.parse(websitezoom);
-			ignoreset = response.ignoreset; if(ignoreset == null)ignoreset = false;
-
-			//---
-			if(defaultsinglescreen == true){
-				var screenzoom = response["screenzoom"];
-				screenzoom = JSON.parse(screenzoom);
-				var satbbuf = [];
-				var domain;
-				for(domain in screenzoom)
-					satbbuf.push(domain);
-				satbbuf.sort();
-				var i;
-				var l = satbbuf.length;
-				for(i = 0; i < l; i++){
-					if(satbbuf[i] == chromedisplay){
-						allzoomvalue = screenzoom[satbbuf[i]] / 100;
-					}
-				}
-			}
-
-			//---
-			if(allzoom == true){
-				chrome.tabs.query({active: true, currentWindow: true},
-					function(tabs){
-						// NOTE
-						// do not open the Chrome dev background script, else it detect this as first active tab and window
-						if(tabs[0]){
-							if(chrome.tabs.getZoom){
-								// only available for desktop web browsers
-								// and not for Firefox Android mobile web browser
-								chrome.tabs.getZoom(tabs[0].id, function(zoomFactor){
-									if(zoomFactor != allzoomvalue){
-										if(zoomchrome == true){
-											chrome.tabs.setZoom(tabs[0].id, allzoomvalue); // needed for the default zoom value such as 110%
-										}else if(zoomweb == true){
-											// Check for transform support so that we can fallback otherwise
-											chrome.tabs.query({}, function(opentabs){
-												opentabs.forEach(function(opentab){
-													// inject only if different than 1
-													if(allzoomvalue != 1){
-														chrome.tabs.sendMessage(opentab.id, {text:"setbodycsszoom", value:allzoomvalue});
-													}
-												});
-											});
-										}else if(zoomfont == true){
-											chrome.tabs.sendMessage(tabs[0].id, {text: "changefontsize", value: Math.round(allzoomvalue * 100)});
-										}
-									}else{
-										// Needed if the zoom value is the same, update the badge value
-										setBadgeValue(allzoomvalue, tabs[0].id);
-									}
-								});
-							}
-						}
-					});
-			}else{
-				var atbbuf = [];
-				var domainsv;
-				for(domainsv in websitezoom){ atbbuf.push(domainsv); atbbuf.sort(); }
-				var isv;
-				var lsv = atbbuf.length;
-				for(isv = 0; isv < lsv; isv++){
-					let tempatbbuf = atbbuf[isv];
-					let editzoom = websitezoom[atbbuf[isv]] / 100;
-
-					let matched = false;
-
-					if(zoombyregex === true){
-						// convert wildcard to regex
-						const regex = wildcardToRegex(tempatbbuf);
-						if(regex.test(currentURL)){
-							matched = true;
-						}
-					}else{
-						if(tempatbbuf === currentURL){
-							matched = true;
-						}
-					}
-
-					if(matched == true){
-						var tor = sender.tab.url;
-						var filtermatch = tor.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/);
-						let webtor;
-						if(zoombydomain == true){ if(filtermatch){ webtor = filtermatch[0]; } }else{ webtor = tor; }
-
-						// --- determine if we have a match (supports wildcard when zoombyregex) ---
-						let matchedTab = false;
-						if(zoombyregex == true){
-							const regex = wildcardToRegex(tempatbbuf);
-							if(regex.test(webtor)){
-								matchedTab = true;
-								goturlinside = true;
-							}
-						}else{
-							// ORIGINAL EXACT (or domain) MATCH MODE
-							if(webtor == tempatbbuf){
-								matchedTab = true;
-								goturlinside = true;
-							}
-						}
-
-						if(matchedTab){
-							if(zoomchrome == true){
-								if(chrome.tabs.getZoom){
-									// only available for desktop web browsers
-									// and not for Firefox Android mobile web browser
-									chrome.tabs.getZoom(sender.tab.id, function(zoomFactor){
-										if(zoomFactor != editzoom){
-											// this to keep to zoom level by tab and not the whole domain (= automatic)
-											if(zoombypage == true){
-												chrome.tabs.setZoomSettings(sender.tab.id, {mode: "automatic", scope: "per-tab"},
-													function(){
-														if(chrome.runtime.lastError){
-															// console.log('[ZoomDemoExtension] doSetMode() error: ' + chrome.runtime.lastError.message);
-														}
-													});
-											}else{
-												chrome.tabs.setZoomSettings(sender.tab.id, {mode: "automatic"/* , scope: 'per-tab'*/},
-													function(){
-														if(chrome.runtime.lastError){
-															// console.log('[ZoomDemoExtension] doSetMode() error: ' + chrome.runtime.lastError.message);
-														}
-													});
-											}
-											chrome.tabs.setZoom(sender.tab.id, editzoom); // needed for the default zoom value such as 110%
-										}
-									});
-								}
-							}else if(zoomweb == true){
-								// inject only if different than 1
-								if(editzoom != 1){
-									chrome.tabs.sendMessage(sender.tab.id, {text:"setbodycsszoom", value:editzoom});
-								}
-							}else if(zoomfont == true){
-								chrome.tabs.sendMessage(sender.tab.id, {text: "changefontsize", value: Math.round(editzoom * 100)});
-							}
-							setBadgeValue(editzoom, sender.tab.id);
-						}
-					}
-				}
-
-				// URL is not in the table, so use the default zoom value (that by screen size)
-				// reset got inside
-				if(goturlinside != true){
-					// use default zoom from the Options page -- normal is 100%
-					if(chrome.tabs.getZoom){
-						// only available for desktop web browsers
-						// and not for Firefox Android mobile web browser
-						chrome.tabs.getZoom(sender.tab.id, function(zoomFactor){
-							if(zoomFactor != allzoomvalue){
-								if(zoomchrome == true){
-									// this to keep to zoom level by tab and not the whole domain (= automatic)
-									if(zoombypage == true){
-										chrome.tabs.setZoomSettings(sender.tab.id, {mode: "automatic", scope: "per-tab"},
-											function(){
-												if(chrome.runtime.lastError){
-													// console.log('[ZoomDemoExtension] doSetMode() error: ' + chrome.runtime.lastError.message);
-												}
-											});
-									}else{
-										chrome.tabs.setZoomSettings(sender.tab.id, {mode: "automatic"/* , scope: 'per-tab'*/},
-											function(){
-												if(chrome.runtime.lastError){
-													// console.log('[ZoomDemoExtension] doSetMode() error: ' + chrome.runtime.lastError.message);
-												}
-											});
-									}
-									// If set not to ignore, then it set it back to the default zoom value that is set by the Zoom browser extension
-									if(ignoreset != true){
-										chrome.tabs.setZoom(sender.tab.id, allzoomvalue); // needed for the default zoom value such as 110%
-										setBadgeValue(allzoomvalue, sender.tab.id);
-									}
-								}else if(zoomweb == true){
-									// inject only if different than 1
-									if(allzoomvalue != 1){
-										chrome.tabs.sendMessage(sender.tab.id, {text:"setbodycsszoom", value:allzoomvalue});
-									}
-									setBadgeValue(allzoomvalue, sender.tab.id);
-								}else if(zoomfont == true){
-									chrome.tabs.sendMessage(sender.tab.id, {text: "changefontsize", value: Math.round(allzoomvalue * 100)});
-									setBadgeValue(allzoomvalue, sender.tab.id);
-								}
-							}else{
-								setBadgeValue(allzoomvalue, sender.tab.id);
-							}
-						});
-					}
-				}
-				goturlinside = false;
-			}
+		readZoomSettings(function(items){
+			useSettings(items);
+			var effective = getEffectiveZoom(request.website, items, request.screen);
+			if(!(items.ignoreset && !items.allzoom && !effective.override))applyZoomToTab(sender.tab, effective.value, items);
 		});
 		break;
+	case"changezoom":
+		clearTimeout(popupZoomTimer);
+		popupZoomTimer = setTimeout(function(){ changeEffectiveZoom(Number(request.value), false, request.screen, null, request.tabId); }, 150);
+		break;
+	case"resetzoom":
+		clearTimeout(popupZoomTimer);
+		changeEffectiveZoom(1, true, request.screen, sendResponse, request.tabId);
+		return true;
 	case"contextmenuon":
 		checkcontextmenus();
 		break;
@@ -352,184 +271,9 @@ function setTabView(tabId, url){
 
 // Begin zoom engine ---
 function zoom(ratio){
-	currentRatio = ratio / 100;
-	chrome.tabs.query({active: true, currentWindow: true}, function(tabs){ zoomtab(tabs[0].id, currentRatio); });
+	changeEffectiveZoom(ratio / 100, false);
 }
-
-function zoomtab(a, b){
-	// console.log(Math.round(b * 100));
-	if(zoomchrome == true){
-		if(allzoom == true){
-			chrome.tabs.query({},
-				function(tabs){
-					tabs.forEach(function(tab){
-						chrome.tabs.setZoom(tab.id, b);
-					});
-				});
-		}else{
-			try{
-				chrome.tabs.setZoom(a, b);
-			}catch(e){
-				// console.log(e);
-			}
-		}
-	}else if(zoomweb == true){
-		if(allzoom == true){
-			chrome.tabs.query({},
-				function(tabs){
-					tabs.forEach(function(tab){
-						try{
-							chrome.tabs.sendMessage(tab.id, {text:"setbodycsszoom", value:b});
-						}catch(e){
-							// console.log(e);
-						}
-						setBadgeValue(b, tab.id);
-					});
-				});
-		}else{
-			chrome.tabs.query({},
-				function(tabs){
-					tabs.forEach(function(tab){
-						var pop = tab.url;
-						if(typeof pop !== "undefined"){
-							var filtermatch = pop.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/);
-							// --- determine comparison string ---
-							let localWebpop;
-							if(zoombydomain == true){
-								// domain only
-								if(filtermatch){ localWebpop = filtermatch[0]; }
-							}else if(zoombyregex == true){
-								// full URL, but matched via wildcard regex
-								localWebpop = pop;
-							}else{
-								// fallback — exact URL match
-								localWebpop = pop;
-							}
-
-							// --- determine if we have a match ---
-							let matched = false;
-
-							if(zoombyregex == true){
-								// PATTERN MATCHING MODE
-								const regex = wildcardToRegex(localWebpop);
-								if(regex.test(webjob)){
-									matched = true;
-								}
-							}else{
-								// ORIGINAL EXACT (or domain) MATCH MODE
-								matched = (localWebpop == webjob);
-							}
-
-							if(matched){
-								try{
-									chrome.tabs.sendMessage(tab.id, {text:"setbodycsszoom", value:b});
-								}catch(e){
-									// console.log(e);
-								}
-								setBadgeValue(b, tab.id);
-							}
-						}
-					});
-				});
-		}
-	}else if(zoomfont == true){
-		if(allzoom == true){
-			chrome.tabs.query({},
-				function(tabs){
-					tabs.forEach(function(tab){
-						chrome.tabs.sendMessage(tab.id, {text: "changefontsize", value: Math.round(b * 100)});
-						setBadgeValue(b, tab.id);
-					});
-				});
-		}else{
-			chrome.tabs.query({},
-				function(tabs){
-					tabs.forEach(function(tab){
-						var pop = tab.url;
-						if(typeof pop !== "undefined"){
-							var filtermatch = pop.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/);
-							// --- determine comparison string ---
-							let localWebpop;
-							if(zoombydomain == true){
-								// domain only
-								if(filtermatch){ localWebpop = filtermatch[0]; }
-							}else if(zoombyregex == true){
-								// full URL, but matched via wildcard regex
-								localWebpop = pop;
-							}else{
-								// fallback — exact URL match
-								localWebpop = pop;
-							}
-
-							// --- determine if we have a match ---
-							let matched = false;
-
-							if(zoombyregex == true){
-								// PATTERN MATCHING MODE
-								const regex = wildcardToRegex(localWebpop);
-								if(regex.test(webjob)){
-									matched = true;
-								}
-							}else{
-								// ORIGINAL EXACT (or domain) MATCH MODE
-								matched = (localWebpop == webjob);
-							}
-
-							if(matched){
-								chrome.tabs.sendMessage(tab.id, {text: "changefontsize", value: Math.round(b * 100)});
-								setBadgeValue(b, tab.id);
-							}
-						}
-					});
-				});
-		}
-	}
-
-	// saving feature
-	if(allzoom == true){
-		// save for all zoom feature
-		chrome.storage.sync.set({"allzoomvalue": b});
-	}else{
-		var atbbuf = [];
-		var domain;
-		for(domain in websitezoom){ atbbuf.push(domain); atbbuf.sort(); }
-		var i;
-		var l = atbbuf.length;
-		// website is in the list,
-		for(i = 0; i < l; i++){
-			if(atbbuf[i] == webjob){ // update
-				if(b == 1){
-					// remove from list
-					delete websitezoom["" + atbbuf[i] + ""];
-					atbbuf = websitezoom;
-				}else{
-					// update ratio
-					websitezoom["" + atbbuf[i] + ""] = parseInt(b * 100);
-				}
-				// save for zoom feature
-				chrome.storage.sync.set({"websitezoom":JSON.stringify(websitezoom)});
-			}else{
-				// add to list
-				websitezoom["" + webjob + ""] = parseInt(b * 100);
-				// save for zoom feature
-				chrome.storage.sync.set({"websitezoom":JSON.stringify(websitezoom)});
-			}
-		}
-
-		// website is not in the list, then add this new website with his new zoom value
-		try{
-			if((atbbuf.includes(webjob) != true)){
-				// add to list
-				websitezoom["" + webjob + ""] = b;
-				// save for zoom feature
-				chrome.storage.sync.set({"websitezoom": JSON.stringify(websitezoom)});
-			}
-		}catch(e){
-			// console.log(e);
-		}
-	}
-}
-function zoomview(direction){ zoom(nextratio(currentRatio * 100, direction)); }
+function zoomview(direction){ handleZoomCommand(direction); }
 
 function nextratio(ratio, direction){
 	ratio = Math.round(ratio);
@@ -683,72 +427,50 @@ async function getCurrentZoomValue(thattab){
 //---
 
 function backgroundrefreshzoom(){
-	chrome.storage.sync.get(["allzoom", "allzoomvalue", "websitezoom", "badge", "steps", "lightcolor", "zoomchrome", "zoomweb", "zoombydomain", "zoombypage", "zoomfont", "ignoreset"], function(response){
-		allzoom = response.allzoom; if(allzoom == null)allzoom = false; // default allzoom false
-		allzoomvalue = response.allzoomvalue; if(allzoomvalue == null)allzoomvalue = 1; // default allzoomvalue value
+	chrome.storage.sync.get(["badge", "lightcolor", "zoomchrome", "zoomweb", "zoomfont"], function(response){
 		badge = response.badge; if(badge == null)badge = false;
 		lightcolor = response.lightcolor; if(lightcolor == null)lightcolor = "#3cb4fe";
-		steps = response.steps; if(steps == null)steps = 10;
 		zoomchrome = response.zoomchrome; if(zoomchrome == null)zoomchrome = false;
 		zoomweb = response.zoomweb; if(zoomweb == null)zoomweb = true;
 		zoomfont = response.zoomfont; if(zoomfont == null)zoomfont = false;
-		websitezoom = response.websitezoom;
-		zoombydomain = response.zoombydomain; if(zoombydomain == null)zoombydomain = true;
-		zoombypage = response.zoombypage; if(zoombypage == null)zoombypage = false;
-		// if empty use this
-		if(typeof websitezoom == "undefined" || websitezoom == null){
-			websitezoom = JSON.stringify({"https://www.example.com": ["90"], "https://www.nytimes.com": ["85"]});
-		}
-		websitezoom = JSON.parse(websitezoom);
-		ignoreset = response.ignoreset; if(ignoreset == null)ignoreset = false;
 
 		getCurrentTab().then((thattab) => {
 			if(thattab){
-				job = thattab.url;
-				if(typeof job !== "undefined"){
-					var filtermatch = job.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/);
-					if(zoombydomain == true){ if(filtermatch){ webjob = filtermatch[0]; } }else{ webjob = job; }
-					if(zoomchrome == true){
-						if(chrome.tabs.getZoom){
-							// only available for desktop web browsers
-							// and not for Firefox Android mobile web browser
-							chrome.tabs.getZoom(thattab.id, function(zoomFactor){
-								if(chrome.runtime.lastError){
-									// if current tab do not have the content.js and can not send the message to local chrome:// page.
-									// The line will excute, and log 'ERROR:  {message: "Could not establish connection. Receiving end does not exist."}'
-									// console.log("ERROR: ", chrome.runtime.lastError);
-								}
-								ratio = zoomFactor;
-								if(ratio == null){ ratio = 1; }
-								currentRatio = ratio;
-								setBadgeValue(currentRatio, thattab.id);
-							});
-						}
-					}else if(zoomweb == true){
-						chrome.tabs.sendMessage(thattab.id, {text: "getwebzoom"}, function(info){
+				if(zoomchrome == true){
+					if(chrome.tabs.getZoom){
+						// only available for desktop web browsers
+						// and not for Firefox Android mobile web browser
+						chrome.tabs.getZoom(thattab.id, function(zoomFactor){
 							if(chrome.runtime.lastError){
 								// if current tab do not have the content.js and can not send the message to local chrome:// page.
 								// The line will excute, and log 'ERROR:  {message: "Could not establish connection. Receiving end does not exist."}'
 								// console.log("ERROR: ", chrome.runtime.lastError);
 							}
-							if(info == null || info == ""){ info = 1; }
-							ratio = info;
-							currentRatio = ratio;
-							setBadgeValue(currentRatio, thattab.id);
-						});
-					}else if(zoomfont == true){
-						chrome.tabs.sendMessage(thattab.id, {text: "getfontsize"}, function(info){
-							if(chrome.runtime.lastError){
-								// if current tab do not have the content.js and can not send the message to local chrome:// page.
-								// The line will excute, and log 'ERROR:  {message: "Could not establish connection. Receiving end does not exist."}'
-								// console.log("ERROR: ", chrome.runtime.lastError);
-							}
-							if(info == null || info == ""){ info = 1; }
-							ratio = info;
-							currentRatio = ratio;
-							setBadgeValue(currentRatio, thattab.id);
+							var currentZoom = zoomFactor;
+							if(currentZoom == null){ currentZoom = 1; }
+							setBadgeValue(currentZoom, thattab.id);
 						});
 					}
+				}else if(zoomweb == true){
+					chrome.tabs.sendMessage(thattab.id, {text: "getwebzoom"}, function(info){
+						if(chrome.runtime.lastError){
+							// if current tab do not have the content.js and can not send the message to local chrome:// page.
+							// The line will excute, and log 'ERROR:  {message: "Could not establish connection. Receiving end does not exist."}'
+							// console.log("ERROR: ", chrome.runtime.lastError);
+						}
+						if(info == null || info == ""){ info = 1; }
+						setBadgeValue(info, thattab.id);
+					});
+				}else if(zoomfont == true){
+					chrome.tabs.sendMessage(thattab.id, {text: "getfontsize"}, function(info){
+						if(chrome.runtime.lastError){
+							// if current tab do not have the content.js and can not send the message to local chrome:// page.
+							// The line will excute, and log 'ERROR:  {message: "Could not establish connection. Receiving end does not exist."}'
+							// console.log("ERROR: ", chrome.runtime.lastError);
+						}
+						if(info == null || info == ""){ info = 1; }
+						setBadgeValue(info, thattab.id);
+					});
 				}
 			}
 		});
@@ -812,10 +534,7 @@ if(chrome.commands && chrome.commands.onCommand){
 		}else if(command == "toggle-feature-zoomout"){
 			handleZoomCommand(-1);
 		}else if(command == "toggle-feature-zoomreset"){
-			chrome.storage.sync.get(["allzoomvalue"], function(response){
-				allzoomvalue = response.allzoomvalue; if(allzoomvalue == null)allzoomvalue = 1;
-				handleZoomCommand(0, allzoomvalue * 100);
-			});
+			changeEffectiveZoom(1, true);
 		}else if(command == "toggle-feature-magnify"){
 			chrome.tabs.query({active: true, currentWindow: true},
 				function(tabs){
@@ -857,44 +576,19 @@ if(chrome.commands && chrome.commands.onCommand){
 	});
 }
 
-async function handleZoomCommand(direction, absoluteZoom){
+async function handleZoomCommand(direction){
 	const items = await new Promise((resolve) => {
-		chrome.storage.sync.get(["allzoom", "allzoomvalue", "websitezoom", "badge", "steps", "lightcolor", "zoomchrome", "zoomweb", "zoombydomain", "zoombypage", "zoomfont", "ignoreset"], resolve);
+		readZoomSettings(resolve);
 	});
-
-	// Populate global variables
-	allzoom = items.allzoom ?? false;
-	allzoomvalue = items.allzoomvalue ?? 1;
-	badge = items.badge ?? false;
-	lightcolor = items.lightcolor ?? "#3cb4fe";
-	steps = items.steps ?? 10;
-	zoomchrome = items.zoomchrome ?? false;
-	zoomweb = items.zoomweb ?? true;
-	zoomfont = items.zoomfont ?? false;
-	websitezoom = items.websitezoom;
-	zoombydomain = items.zoombydomain ?? true;
-	zoombypage = items.zoombypage ?? false;
-	ignoreset = items.ignoreset ?? false;
-	if(typeof websitezoom == "undefined" || websitezoom == null){
-		websitezoom = JSON.stringify({"https://www.example.com": ["90"], "https://www.nytimes.com": ["85"]});
-	}
-	websitezoom = JSON.parse(websitezoom);
+	useSettings(items);
 
 	const thattab = await getCurrentTab();
 	if(thattab && thattab.url){
-		job = thattab.url;
-		var filtermatch = job.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/);
-		if(zoombydomain == true){ if(filtermatch){ webjob = filtermatch[0]; } }else{ webjob = job; }
-
 		// This check is important because content scripts can't run on all pages.
 		try{
 			const zoomValue = await getCurrentZoomValue(thattab.id);
-			currentRatio = zoomValue / 100;
-			if(absoluteZoom){
-				zoom(absoluteZoom);
-			}else{
-				zoomview(direction);
-			}
+			var nextZoom = nextratio(zoomValue, direction);
+			changeEffectiveZoom(nextZoom / 100, false);
 		}catch(e){
 			// Silently fail if the content script is not available.
 			// console.error(e);
@@ -906,70 +600,16 @@ async function handleZoomCommand(direction, absoluteZoom){
 async function onClickHandler(info){
 	var str = info.menuItemId; var respage = str.substring(0, 8); var czl = str.substring(8); var reszoomin = str.substring(0, 8); var reszoomout = str.substring(0, 9); var reszoomreset = str.substring(0, 11);
 	if(respage == "zoompage"){
-		chrome.storage.sync.get(["allzoom", "allzoomvalue", "badge", "zoomchrome", "zoomweb", "websitezoom", "zoombydomain", "zoombypage", "zoomfont", "ignoreset"], function(response){
-			allzoom = response.allzoom;
-			allzoomvalue = response.allzoomvalue; if(allzoomvalue == null)allzoomvalue = 1; // default allzoomvalue value
-			badge = response.badge; if(badge == null)badge = false;
-			zoomchrome = response.zoomchrome; if(zoomchrome == null)zoomchrome = false;
-			zoomweb = response.zoomweb; if(zoomweb == null)zoomweb = true;
-			zoomfont = response.zoomfont; if(zoomfont == null)zoomfont = false;
-			websitezoom = response.websitezoom; websitezoom = JSON.parse(websitezoom);
-			zoombydomain = response.zoombydomain; if(zoombydomain == null)zoombydomain = true;
-			zoombypage = response.zoombypage; if(zoombypage == null)zoombypage = false;
-			ignoreset = response.ignoreset; if(ignoreset == null)ignoreset = false;
-			chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
-				if(zoomchrome == true){
-					chrome.tabs.setZoom(tabs[0].id, czl / 100);
-				}else if(zoomweb == true){
-					chrome.tabs.sendMessage(tabs[0].id, {text:"setbodycsszoom", value:czl / 100});
-				}else if(zoomfont == true){
-					chrome.tabs.sendMessage(tabs[0].id, {text: "changefontsize", value: Math.round(czl)});
-				}
-				setBadgeValue(czl / 100, tabs[0].id);
-				job = tabs[0].url;
-				if(typeof job !== "undefined"){
-					var filtermatch = job.match(/^[\w-]+:\/*\[?([\w.:-]+)\]?(?::\d+)?/);
-					if(zoombydomain == true){ if(filtermatch){ webjob = filtermatch[0]; } }else{ webjob = job; }
-					if(allzoom == true){
-						// save for all zoom feature
-						chrome.storage.sync.set({"allzoomvalue": czl / 100});
-					}else{
-						var atbbuf = [];
-						var domain;
-						for(domain in websitezoom){ atbbuf.push(domain); atbbuf.sort(); }
-						var i;
-						var l = atbbuf.length;
-						for(i = 0; i < l; i++){
-							if(atbbuf[i] == webjob){ // update
-								if(parseInt(czl / 100) == 1){
-									// remove from list
-									delete websitezoom["" + atbbuf[i] + ""];
-									break; // go out of the loop because it found the current web page to save the new zoom value
-								}else{
-									// update ratio
-									websitezoom["" + atbbuf[i] + ""] = parseInt(czl);
-									break; // go out of the loop because it found the current web page to save the new zoom value
-								}
-							}else{
-								// add to list
-								websitezoom["" + webjob + ""] = parseInt(czl);
-							}
-						}
-						// save for zoom feature
-						chrome.storage.sync.set({"websitezoom": JSON.stringify(websitezoom)});
-					}
-				}
-			});
-		});
-	}else if(reszoomin == "ctzoomin"){
+		changeEffectiveZoom(Number(czl) / 100, false);
+		return;
+	}else if(reszoomreset == "ctzoomreset"){
+		changeEffectiveZoom(1, true);
+		return;
+	}
+	if(reszoomin == "ctzoomin"){
 		handleZoomCommand(+1);
 	}else if(reszoomout == "ctzoomout"){
 		handleZoomCommand(-1);
-	}else if(reszoomreset == "ctzoomreset"){
-		chrome.storage.sync.get(["allzoomvalue"], function(response){
-			allzoomvalue = response.allzoomvalue; if(allzoomvalue == null)allzoomvalue = 1;
-			handleZoomCommand(0, allzoomvalue * 100);
-		});
 	}else if(info.menuItemId == "totlguideemenu"){
 		chrome.tabs.create({url: linkguide, active:true});
 	}else if(info.menuItemId == "totldevelopmenu"){
@@ -1243,7 +883,7 @@ function checkcontextmenus(){
 									var p;
 									var pl = values.length;
 									for(p = 0; p < pl; p++){
-										job = thattab.url;
+										var job = thattab.url;
 
 										// Check if job is a valid URL
 										try{
@@ -1412,6 +1052,12 @@ async function initializePopupsForAllTabs(){
 initializePopupsForAllTabs();
 
 chrome.storage.onChanged.addListener(function(changes){
+	if(changes["allzoom"] || changes["allzoomoverrides"] || changes["allzoomvalue"] || changes["websitezoom"] || changes["screenzoom"] || changes["zoombydomain"] || changes["zoombypage"] || changes["zoombyregex"]){
+		readZoomSettings(function(items){
+			useSettings(items);
+			applyEffectiveZoomToAllTabs(items);
+		});
+	}
 	if(changes["icon"]){
 		if(changes["icon"].newValue){
 			chrome.tabs.query({}, function(tabs){
