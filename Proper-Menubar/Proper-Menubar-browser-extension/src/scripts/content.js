@@ -1449,7 +1449,20 @@ function handleKeyboardEvent(event){
 			if(focusedElement){
 				focusedElement.click();
 			}
+		}else if(event.key === "Escape"){
+			event.preventDefault();
+			releaseMenuBarFocus();
 		}
+	}
+}
+
+function releaseMenuBarFocus(){
+	const openInputs = shadowRoot.querySelectorAll("input[name='ppcontrol']");
+	openInputs.forEach(function(input){
+		input.checked = false;
+	});
+	if(shadowRoot.activeElement){
+		shadowRoot.activeElement.blur();
 	}
 }
 // End shortcut
@@ -1637,7 +1650,11 @@ chrome.runtime.onMessage.addListener(function request(request){
 	}else if(request.action == "gofocus"){
 		const btnFile = shadowRoot.getElementById("hyperbtnfile");
 		if(btnFile){
-			btnFile.focus();
+			if(shadowRoot.activeElement){
+				releaseMenuBarFocus();
+			}else{
+				btnFile.focus();
+			}
 		}
 	}else if(request.action == "addremove"){
 		chrome.storage.sync.get(["country", "addbar", "dropshadow", "toolbarDomains", "allsites", "toolbaronly", "getpositiontop", "getpositionbottom", "toolbarwhite", "toolbarblack", "backgroundhex", "backgroundimagesource", "opacity", "backgroundcolor", "backgroundimage", "allsites", "fontcolor", "googlesites", "search", "existingtab", "display", "hovertextcolor", "hoverbackground", "googleproducts", "menuproducts", "googlebarDomains", "hovermenu", "filterbydomain", "filterbypage"], function(items){
