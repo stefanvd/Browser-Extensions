@@ -224,13 +224,12 @@ function getDomain(url){
 }
 
 function openweb(url, openInNewTab){
-	if(openInNewTab == true){
-		// Open the URL in the current window
-		window.location.href = url;
-	}else{
-		// Open the URL in a new tab
-		window.open(url, "_blank");
+	try{
+		if(!["http:", "https:", "file:"].includes(new URL(url).protocol))return;
+	}catch(e){
+		return;
 	}
+	chrome.runtime.sendMessage({name: "stefanthaturl", url: url, tabaction: openInNewTab ? "_self" : "_blank"});
 }
 
 function hex2rgb(hex){
@@ -1513,7 +1512,7 @@ if(document.body){
 
 function propopenurl(a, b){
 	const thatkeyword = getkeyword();
-	const openthat = thatkeyword ? a(country, thatkeyword) : a;
+	const openthat = thatkeyword ? a(country, encodeURIComponent(thatkeyword)) : a;
 	chrome.runtime.sendMessage({name: "stefanthaturl", url: openthat, tabaction: b});
 }
 

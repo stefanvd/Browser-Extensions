@@ -492,13 +492,21 @@ chrome.runtime.onMessage.addListener(function request(request, sender, sendRespo
 		}
 		);
 	}else if(request.name == "stefanthaturl"){
-		if(request.tabaction == "_blank"){
-			chrome.tabs.create({url: request.url});
-		}else if(request.tabaction == "_self"){
-			chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
-				var tab = tabs[0];
-				chrome.tabs.update(tab.id, {url: request.url});
-			});
+		var urlisvalid = false;
+		try{
+			urlisvalid = ["http:", "https:", "file:"].includes(new URL(request.url).protocol);
+		}catch(e){
+			urlisvalid = false;
+		}
+		if(urlisvalid){
+			if(request.tabaction == "_blank"){
+				chrome.tabs.create({url: request.url});
+			}else if(request.tabaction == "_self"){
+				chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+					var tab = tabs[0];
+					chrome.tabs.update(tab.id, {url: request.url});
+				});
+			}
 		}
 	}else if(request.name == "stefanviewsource"){
 		chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
