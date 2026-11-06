@@ -793,6 +793,7 @@ function addtoolbar(){
 
 		newtoolbarul = document.createElement("ul");
 		newtoolbarul.className = "stefanvdpropermenubarroot";
+		if(centercontent == true){ newtoolbarul.classList.add("stefanvdcenter"); }
 		newtoolbardiv.appendChild(newtoolbarul);
 
 		// gmail app
@@ -1591,7 +1592,7 @@ function fileSelected(input){
 }
 
 var addbar = null; var dropshadow = null; var allsites = null; var toolbaronly = null; var toolbarDomains = null; var getpositiontop = null; var getpositionbottom = null; var toolbarwhite = null; var toolbarblack = null;
-var opacity = null; var backgroundcolor = null; var backgroundhex = null; var backgroundimagesource = null; var backgroundimage = null; var country = null; var fontcolor = null; var googlesites = null; var search = null; var existingtab = null; var display = null; var hovertextcolor = null; var hoverbackground = null; var googleproducts = null; var menuproducts = null; var googlebarDomains = null, hovermenu = null; var filterbydomain = null; var filterbypage = null; var currenturl = null;
+var opacity = null; var backgroundcolor = null; var backgroundhex = null; var backgroundimagesource = null; var backgroundimage = null; var country = null; var fontcolor = null; var googlesites = null; var search = null; var existingtab = null; var display = null; var hovertextcolor = null; var hoverbackground = null; var googleproducts = null; var menuproducts = null; var googlebarDomains = null, hovermenu = null; var filterbydomain = null; var filterbypage = null; var currenturl = null; var centercontent = null;
 
 chrome.runtime.onMessage.addListener(function request(request){
 	if(request.action == "goselectall"){
@@ -1657,7 +1658,7 @@ chrome.runtime.onMessage.addListener(function request(request){
 			}
 		}
 	}else if(request.action == "addremove"){
-		chrome.storage.sync.get(["country", "addbar", "dropshadow", "toolbarDomains", "allsites", "toolbaronly", "getpositiontop", "getpositionbottom", "toolbarwhite", "toolbarblack", "backgroundhex", "backgroundimagesource", "opacity", "backgroundcolor", "backgroundimage", "allsites", "fontcolor", "googlesites", "search", "existingtab", "display", "hovertextcolor", "hoverbackground", "googleproducts", "menuproducts", "googlebarDomains", "hovermenu", "filterbydomain", "filterbypage"], function(items){
+		chrome.storage.sync.get(["country", "addbar", "dropshadow", "toolbarDomains", "allsites", "toolbaronly", "getpositiontop", "getpositionbottom", "toolbarwhite", "toolbarblack", "backgroundhex", "backgroundimagesource", "opacity", "backgroundcolor", "backgroundimage", "allsites", "fontcolor", "googlesites", "search", "existingtab", "display", "hovertextcolor", "hoverbackground", "googleproducts", "menuproducts", "googlebarDomains", "hovermenu", "filterbydomain", "filterbypage", "centercontent"], function(items){
 			country = items.country;
 			if(country == null){
 				var userLang = navigator.language || navigator.userLanguage;
@@ -1696,6 +1697,7 @@ chrome.runtime.onMessage.addListener(function request(request){
 			hovermenu = items["hovermenu"]; if(hovermenu == null)hovermenu = true;
 			filterbydomain = items["filterbydomain"]; if(filterbydomain == null)filterbydomain = true;
 			filterbypage = items["filterbypage"]; if(filterbypage == null)filterbypage = false;
+			centercontent = items["centercontent"]; if(centercontent == null)centercontent = false;
 
 			if(addbar == true){
 				// remove bar code

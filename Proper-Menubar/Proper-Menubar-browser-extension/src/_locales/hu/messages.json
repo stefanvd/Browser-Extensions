@@ -185,6 +185,8 @@
     "titelpositionbar": {"message": "A menü helye"},
     "despositionbartop": {"message": "Felül"},
     "despositionbarbottom": {"message": "Alul"},
+    "titelcentercontent": {"message": "Center the content"},
+    "descentercontent": {"message": "Center the menu items horizontally on the bar"},
     "menufile": {"message": "Fájl"},
     "menuedit": {"message": "Szerkesztés"},
     "menuview": {"message": "Nézet"},

@@ -185,6 +185,8 @@
     "titelpositionbar": {"message": "Position de la barre"},
     "despositionbartop": {"message": "Haut"},
     "despositionbarbottom": {"message": "Bas"},
+    "titelcentercontent": {"message": "Center the content"},
+    "descentercontent": {"message": "Center the menu items horizontally on the bar"},
     "menufile": {"message": "Fichier"},
     "menuedit": {"message": "Éditer"},
     "menuview": {"message": "Vue"},

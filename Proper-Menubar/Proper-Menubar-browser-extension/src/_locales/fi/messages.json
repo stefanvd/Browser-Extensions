@@ -185,6 +185,8 @@
     "titelpositionbar": {"message": "SIjainti palkissa"},
     "despositionbartop": {"message": "Ylä"},
     "despositionbarbottom": {"message": "Ala"},
+    "titelcentercontent": {"message": "Center the content"},
+    "descentercontent": {"message": "Center the menu items horizontally on the bar"},
     "menufile": {"message": "Tiedosto"},
     "menuedit": {"message": "Muokkaa"},
     "menuview": {"message": "Näytä"},

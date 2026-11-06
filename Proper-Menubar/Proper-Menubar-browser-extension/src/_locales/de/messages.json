@@ -185,6 +185,8 @@
     "titelpositionbar": {"message": "Position der Leiste"},
     "despositionbartop": {"message": "Oben"},
     "despositionbarbottom": {"message": "Unten"},
+    "titelcentercontent": {"message": "Center the content"},
+    "descentercontent": {"message": "Center the menu items horizontally on the bar"},
     "menufile": {"message": "Datei"},
     "menuedit": {"message": "Bearbeiten"},
     "menuview": {"message": "Anzeige"},

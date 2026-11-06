@@ -185,6 +185,8 @@
     "titelpositionbar": {"message": "Çubuğun konumu"},
     "despositionbartop": {"message": "Üst"},
     "despositionbarbottom": {"message": "Alt"},
+    "titelcentercontent": {"message": "Center the content"},
+    "descentercontent": {"message": "Center the menu items horizontally on the bar"},
     "menufile": {"message": "Dosya"},
     "menuedit": {"message": "Düzenle"},
     "menuview": {"message": "Görünüm"},

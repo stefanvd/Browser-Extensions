@@ -185,6 +185,8 @@
     "titelpositionbar": {"message": "Positie van de balk"},
     "despositionbartop": {"message": "Boven"},
     "despositionbarbottom": {"message": "Onder"},
+    "titelcentercontent": {"message": "Center the content"},
+    "descentercontent": {"message": "Center the menu items horizontally on the bar"},
     "menufile": {"message": "Bestand"},
     "menuedit": {"message": "Bewerken"},
     "menuview": {"message": "Weergave"},

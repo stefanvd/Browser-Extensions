@@ -182,6 +182,8 @@
     "titelpositionbar": {"message": "選單列位置"},
     "despositionbartop": {"message": "上"},
     "despositionbarbottom": {"message": "下"},
+    "titelcentercontent": {"message": "Center the content"},
+    "descentercontent": {"message": "Center the menu items horizontally on the bar"},
     "menufile": {"message": "檔案"},
     "menuedit": {"message": "編輯"},
     "menuview": {"message": "檢視"},
