@@ -90,6 +90,8 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse){
 		var output = 1;
 		if(document.body && document.body.style && typeof document.body.style.zoom != "undefined"){
 			output = document.body.style.zoom;
+		}else if(document.documentElement.namespaceURI === "http://www.w3.org/2000/svg"){
+			output = document.documentElement.getAttribute("data-zoom") || 1;
 		}
 		sendResponse(output);
 	}else if(msg.text === "getfontsize"){
@@ -106,6 +108,10 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse){
 		// because send message will overwrite if use many tabs and the last tab will be only send
 		// runtime.sendMessage can be used only for one-time requests
 		// chrome.runtime.sendMessage({name: "getallRatio", website: window.location.href, screen: currentscreen});
+	}else if(msg.text === "refreshzoom"){
+		chrome.runtime.sendMessage({name: "getallRatio", website: location.href, screen: screen.width + "x" + screen.height});
+	}else if(msg.text === "getscreen"){
+		sendResponse(screen.width + "x" + screen.height);
 	}else if(msg.text === "changefontsize"){
 		initfont(msg.value);
 		sendResponse(true);
@@ -121,6 +127,11 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse){
 			showmagnify(msg.value);
 		});
 	}else if(msg.text === "setbodycsszoom"){
+		if(document.documentElement.namespaceURI === "http://www.w3.org/2000/svg"){
+			document.documentElement.setAttribute("transform", "scale(" + msg.value + ")");
+			document.documentElement.setAttribute("data-zoom", msg.value);
+			return;
+		}
 		if(document.body){
 			// Check for transform support so that we can fallback otherwise
 			var supportsZoom = "zoom" in document.body.style;

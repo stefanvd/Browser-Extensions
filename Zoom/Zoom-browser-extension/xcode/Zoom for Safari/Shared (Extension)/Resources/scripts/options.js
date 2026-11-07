@@ -80,12 +80,12 @@ function save_options(){
 		websitelevel.push(selectElement[i].value);
 	}
 
-	chrome.storage.sync.set({"icon": $("btnpreview").src, "allzoom": $("allzoom").checked, "optionskipremember": $("optionskipremember").checked, "contextmenus": $("contextmenus").checked, "badge": $("badge").checked, "steps": $("steps").value, "lightcolor": $("lightcolor").value, "zoomchrome": $("zoomchrome").checked, "zoomweb": $("zoomweb").checked, "websitezoom": JSON.stringify(websitezoom), "zoomdoubleclick": $("zoomdoubleclick").checked, "zoomoutdoubleclick": $("zoomoutdoubleclick").checked, "zoomnewsingleclick": $("zoomnewsingleclick").checked, "zoomsingleclick": $("zoomsingleclick").checked, "zoommousescroll": $("zoommousescroll").checked, "zoommousebuttonleft": $("zoommousebuttonleft").checked, "zoommousebuttonright": $("zoommousebuttonright").checked, "zoommousescrollup": $("zoommousescrollup").checked, "zoommousescrolldown": $("zoommousescrolldown").checked, "smallpopup": $("smallpopup").checked, "largepopup": $("largepopup").checked, "modernpopup": $("modernpopup").checked, "zoombydomain": $("zoombydomain").checked, "zoombypage": $("zoombypage").checked, "allzoomvalue": $("allzoomvalue").value / 100, "defaultallscreen": $("defaultallscreen").checked, "defaultsinglescreen": $("defaultsinglescreen").checked, "screenzoom": JSON.stringify(screenzoom), "zoomfont": $("zoomfont").checked, "zoommagcircle": $("zoommagcircle").checked, "zoommagsquare": $("zoommagsquare").checked, "zoommagszoomlevel": $("zoommagszoomlevel").value, "zoommagszoomsize": $("zoommagszoomsize").value, "contexta": $("contexta").checked, "contextb": $("contextb").checked, "contextc": $("contextc").checked, "websitepreset": JSON.stringify(websitepreset), "prezoombutton": $("prezoombutton").checked, "websitelevel": websitelevel, "ignoreset": $("ignoreset").checked, "zoombyregex": $("zoombyregex").checked});
+	chrome.storage.sync.set({"icon": $("btnpreview").src, "allzoom": $("allzoom").checked, "allzoomoverrides": $("allzoomoverrides").checked, "optionskipremember": $("optionskipremember").checked, "contextmenus": $("contextmenus").checked, "badge": $("badge").checked, "steps": $("steps").value, "lightcolor": $("lightcolor").value, "zoomchrome": $("zoomchrome").checked, "zoomweb": $("zoomweb").checked, "websitezoom": JSON.stringify(websitezoom), "zoomdoubleclick": $("zoomdoubleclick").checked, "zoomoutdoubleclick": $("zoomoutdoubleclick").checked, "zoomnewsingleclick": $("zoomnewsingleclick").checked, "zoomsingleclick": $("zoomsingleclick").checked, "zoommousescroll": $("zoommousescroll").checked, "zoommousebuttonleft": $("zoommousebuttonleft").checked, "zoommousebuttonright": $("zoommousebuttonright").checked, "zoommousescrollup": $("zoommousescrollup").checked, "zoommousescrolldown": $("zoommousescrolldown").checked, "smallpopup": $("smallpopup").checked, "largepopup": $("largepopup").checked, "modernpopup": $("modernpopup").checked, "zoombydomain": $("zoombydomain").checked, "zoombypage": $("zoombypage").checked, "allzoomvalue": $("allzoomvalue").value / 100, "defaultallscreen": $("defaultallscreen").checked, "defaultsinglescreen": $("defaultsinglescreen").checked, "screenzoom": JSON.stringify(screenzoom), "zoomfont": $("zoomfont").checked, "zoommagcircle": $("zoommagcircle").checked, "zoommagsquare": $("zoommagsquare").checked, "zoommagszoomlevel": $("zoommagszoomlevel").value, "zoommagszoomsize": $("zoommagszoomsize").value, "contexta": $("contexta").checked, "contextb": $("contextb").checked, "contextc": $("contextc").checked, "websitepreset": JSON.stringify(websitepreset), "prezoombutton": $("prezoombutton").checked, "websitelevel": websitelevel, "ignoreset": $("ignoreset").checked, "zoombyregex": $("zoombyregex").checked});
 }
 
 var firstdefaultvalues = {};
 // Option default value to read if there is no current value from chrome.storage AND init default value
-chrome.storage.sync.get(["icon", "zoomchrome", "zoomweb", "zoommousebuttonleft", "zoommousebuttonright", "zoommousescrollup", "zoommousescrolldown", "zoombydomain", "zoombypage", "defaultallscreen", "defaultsinglescreen", "zoomfont", "zoomdoubleclick", "zoomoutdoubleclick", "zoombyregex", "zoomnewsingleclick", "zoomsingleclick", "zoommagcircle", "zoommagsquare", "contexta", "contextb", "contextc", "smallpopup", "largepopup", "modernpopup"], function(items){
+chrome.storage.sync.get(["icon", "allzoomoverrides", "zoomchrome", "zoomweb", "zoommousebuttonleft", "zoommousebuttonright", "zoommousescrollup", "zoommousescrolldown", "zoombydomain", "zoombypage", "defaultallscreen", "defaultsinglescreen", "zoomfont", "zoomdoubleclick", "zoomoutdoubleclick", "zoombyregex", "zoomnewsingleclick", "zoomsingleclick", "zoommagcircle", "zoommagsquare", "contexta", "contextb", "contextc", "smallpopup", "largepopup", "modernpopup"], function(items){
 	// find no localstore
 	if(items["icon"] == null){
 		if(exbrowser == "safari"){
@@ -94,6 +94,7 @@ chrome.storage.sync.get(["icon", "zoomchrome", "zoomweb", "zoommousebuttonleft",
 			firstdefaultvalues["icon"] = "/images/iconstick38.png";
 		}
 	}
+	if(items["allzoomoverrides"] == null)firstdefaultvalues["allzoomoverrides"] = false;
 	if(items["zoomchrome"] == null && items["zoomweb"] == null && items["zoomfont"] == null){ firstdefaultvalues["zoomweb"] = true; firstdefaultvalues["zoomchrome"] = false; firstdefaultvalues["zoomfont"] = false; }
 	if(items["zoommousebuttonleft"] == null && items["zoommousebuttonright"] == null){ firstdefaultvalues["zoommousebuttonleft"] = true; firstdefaultvalues["zoommousebuttonright"] = false; }
 	if(items["zoommousescrollup"] == null && items["zoommousescrolldown"] == null){ firstdefaultvalues["zoommousescrollup"] = true; firstdefaultvalues["zoommousescrolldown"] = false; }
@@ -198,12 +199,13 @@ function read_options(){
 		showhidemodal("materialModalYouTube", "hide", "true");
 	}
 
-	chrome.storage.sync.get(["firstDate", "icon", "optionskipremember", "countremember", "allzoom", "websitezoom", "allzoomvalue", "contextmenus", "badge", "steps", "lightcolor", "zoomweb", "zoomchrome", "zoomdoubleclick", "zoomoutdoubleclick", "zoomnewsingleclick", "zoomsingleclick", "zoommousescroll", "zoommousebuttonleft", "zoommousebuttonright", "zoommousescrollup", "zoommousescrolldown", "smallpopup", "largepopup", "modernpopup", "zoombydomain", "zoombypage", "defaultallscreen", "defaultsinglescreen", "screenzoom", "firstsawrate", "zoomfont", "zoommagcircle", "zoommagsquare", "zoommagszoomlevel", "zoommagszoomsize", "contexta", "contextb", "contextc", "websitepreset", "prezoombutton", "websitelevel", "ignoreset", "zoombyregex"], function(items){
+	chrome.storage.sync.get(["firstDate", "icon", "optionskipremember", "countremember", "allzoom", "allzoomoverrides", "websitezoom", "allzoomvalue", "contextmenus", "badge", "steps", "lightcolor", "zoomweb", "zoomchrome", "zoomdoubleclick", "zoomoutdoubleclick", "zoomnewsingleclick", "zoomsingleclick", "zoommousescroll", "zoommousebuttonleft", "zoommousebuttonright", "zoommousescrollup", "zoommousescrolldown", "smallpopup", "largepopup", "modernpopup", "zoombydomain", "zoombypage", "defaultallscreen", "defaultsinglescreen", "screenzoom", "firstsawrate", "zoomfont", "zoommagcircle", "zoommagsquare", "zoommagszoomlevel", "zoommagszoomsize", "contexta", "contextb", "contextc", "websitepreset", "prezoombutton", "websitelevel", "ignoreset", "zoombyregex"], function(items){
 		if(items["icon"]){ $("btnpreview").src = items["icon"]; }
 		if(items["allzoomvalue"]){ $("allzoomvalue").value = Math.round(items["allzoomvalue"] * 100); $("slider").value = Math.round(items["allzoomvalue"] * 100); }else{ $("allzoomvalue").value = 100; $("slider").value = 100; }
 		if(items["steps"]){ $("steps").value = items["steps"]; }else $("steps").value = 10;
 		if(items["lightcolor"]){ $("lightcolor").value = items["lightcolor"]; }else $("lightcolor").value = "#3cb4fe";
 		if(items["allzoom"] == true)$("allzoom").checked = true;
+		if(items["allzoomoverrides"] == true)$("allzoomoverrides").checked = true;
 		if(items["optionskipremember"] == true)$("optionskipremember").checked = true;
 		if(items["contextmenus"] == true)$("contextmenus").checked = true;
 		if(items["badge"] == true)$("badge").checked = true;
@@ -405,6 +407,7 @@ function read_options(){
 		$("version_number").innerText = manifestData.version;
 
 		test(); // do the test
+		ariacheck();
 
 	});// chrome storage end
 } // end read
@@ -652,25 +655,20 @@ function test(){
 		$("ignoreset").disabled = true;
 	}
 
-	if($("allzoom").checked){
-		$("websitezoomBox").disabled = true;
-		$("websitezoomnumberBox").disabled = true;
-		$("websitezoomname").disabled = true;
-		$("websitezoomnumber").disabled = true;
-		$("websitezoomaddbutton").disabled = true;
-		$("websitezoomremovebutton").disabled = true;
-		$("zoombydomain").disabled = true;
-		$("zoombypage").disabled = true;
-	}else{
-		$("websitezoomBox").disabled = false;
-		$("websitezoomnumberBox").disabled = false;
-		$("websitezoomname").disabled = false;
-		$("websitezoomnumber").disabled = false;
-		$("websitezoomaddbutton").disabled = false;
-		$("websitezoomremovebutton").disabled = false;
-		$("zoombydomain").disabled = false;
-		$("zoombypage").disabled = false;
-	}
+	var allZoomEnabled = $("allzoom").checked;
+	var websiteZoomDisabled = allZoomEnabled && !$("allzoomoverrides").checked;
+	$("allzoomoverrides").disabled = !allZoomEnabled;
+	$("allzoomoverrides").setAttribute("aria-disabled", !allZoomEnabled);
+	$("websitezoom").setAttribute("aria-disabled", websiteZoomDisabled);
+	$("websitezoomBox").disabled = websiteZoomDisabled;
+	$("websitezoomnumberBox").disabled = websiteZoomDisabled;
+	$("websitezoomname").disabled = websiteZoomDisabled;
+	$("websitezoomnumber").disabled = websiteZoomDisabled;
+	$("websitezoomaddbutton").disabled = websiteZoomDisabled;
+	$("websitezoomremovebutton").disabled = websiteZoomDisabled;
+	$("zoombydomain").disabled = websiteZoomDisabled;
+	$("zoombypage").disabled = websiteZoomDisabled;
+	$("zoombyregex").disabled = websiteZoomDisabled;
 	if($("defaultallscreen").checked){
 		$("screenzoomBox").disabled = true;
 		$("screenzoomnumberBox").disabled = true;

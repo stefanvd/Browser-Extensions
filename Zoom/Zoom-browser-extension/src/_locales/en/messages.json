@@ -22,6 +22,7 @@
     "productshare": {"message": "Share"},
     "titelallzoom": {"message": "All Zoom In/Out"},
     "desallzoom": {"message": "Apply the zoom level to all pages"},
+    "desallzoomoverrides": {"message": "Enable overrides for specific pages"},
     "pagehelp": {"message": "help"},
     "pagestillloading": {"message": "The page is still loading?"},
     "optionpagetitle": {"message": "Zoom - Options"},

@@ -15,7 +15,7 @@
     "default_area": "navbar"
   },
   "background": {
-    "scripts": ["scripts/constants.js","scripts/background.js"]
+    "scripts": ["scripts/constants.js","scripts/zoom-match.js","scripts/background.js"]
   },
   "commands": {
     "toggle-feature-zoomin": {
