@@ -28,6 +28,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 
 var maintext; var powertext; var txtvalue; var multivalue; var counter; var copy; var speech; var voices; var fontsize; var lineheight; var colorlight; var colordark; var backgroundlight; var backgrounddark; var backgroundcolor; var backgroundimage; var backgroundsource; var backgroundsize; var printicon; var password; var enterpassword; var richtext; var plaintext; var multiple; var preventclose; var texttabname; var save; var bartabdesign; var barselectdesign; var download; var find; var textarea; var highlightedText; var searchInput; var searchBox; var richtexttoolbar; var richtextshortcut; var selectedvoice; var fontfamily; var pipbutton;
 var isLocalChange = false;
+var editorTouched = false;
 
 function getByteSize(value){
 	return new Blob([JSON.stringify(value)]).size;
@@ -437,6 +438,20 @@ function setActiveTab(tab){
 	tab.classList.add("active");
 }
 
+// Set a textarea value while keeping the caret at its previous position
+function setTextareaValuePreserveCursor(textareaEl, newValue){
+	const cursorStart = textareaEl.selectionStart;
+	const cursorEnd = textareaEl.selectionEnd;
+	textareaEl.value = newValue;
+	const newLength = textareaEl.value.length;
+	textareaEl.setSelectionRange(Math.min(cursorStart, newLength), Math.min(cursorEnd, newLength));
+}
+
+// True while the user is actively editing (panel window focused and caret inside the editor)
+function isEditorActive(editor){
+	return document.hasFocus() && document.activeElement === editor;
+}
+
 function setActiveTabContent(numb){
 	// Retrieve the note value
 	var noteValue = multivalue[numb].note;
@@ -446,18 +461,12 @@ function setActiveTabContent(numb){
 
 	if(plaintext == true){
 		// Only update if content has changed to preserve cursor position
-		if(maintext.value !== noteValue){
-			// Save current cursor position if possible
-			const cursorPosition = maintext.selectionStart;
-			maintext.value = noteValue;
-			// Restore cursor position if it was at the end (common typing scenario)
-			if(cursorPosition === maintext.value.length - 1 || cursorPosition === maintext.value.length){
-				maintext.setSelectionRange(maintext.value.length, maintext.value.length);
-			}
+		if(maintext.value !== noteValue && !isEditorActive(maintext)){
+			setTextareaValuePreserveCursor(maintext, noteValue);
 		}
 	}else if(richtext == true){
 		// Only update if content has changed to preserve cursor position
-		if(powertext.innerHTML !== noteValue){
+		if(powertext.innerHTML !== noteValue && !isEditorActive(powertext)){
 			powertext.innerHTML = noteValue;
 		}
 	}
@@ -882,6 +891,14 @@ function init(){
 	maintext = document.querySelector("#maintext");
 	powertext = document.querySelector("#powertext");
 
+	var markEditorTouched = function(){ editorTouched = true; };
+	maintext.addEventListener("pointerdown", markEditorTouched);
+	maintext.addEventListener("keydown", markEditorTouched);
+	maintext.addEventListener("focus", markEditorTouched);
+	powertext.addEventListener("pointerdown", markEditorTouched);
+	powertext.addEventListener("keydown", markEditorTouched);
+	powertext.addEventListener("focus", markEditorTouched);
+
 	loadNotesAndSettings(function(items){
 		txtvalue = items["txtvalue"]; if(txtvalue == null){ txtvalue = i18nfirsttext; }
 		multivalue = items["multivalue"]; if(multivalue == null){ multivalue = [{"note":i18nfirsttext}]; }
@@ -1002,6 +1019,14 @@ function init(){
 		applyStyles(multiple, richtext);
 		// show the content
 		createTabContent();
+
+		// Set a timeout to move the cursor to the end after 1,5 seconds (1500 milliseconds)
+		setTimeout(function(){
+			var noUserFocus = !document.activeElement || document.activeElement === document.body || document.activeElement === document.documentElement;
+			if(!editorTouched && noUserFocus){
+				setCursorToEnd();
+			}
+		}, 1500);
 
 		if(counter == true){
 			countcharacters();
@@ -1236,33 +1261,6 @@ function init(){
 		}
 	});
 
-	// Function to set cursor to the end of the input field
-	const setCursorToEnd = () => {
-		if(richtext == true){
-			const powerTextDiv = document.getElementById("powertext");
-			if(powerTextDiv){
-				const range = document.createRange();
-				const selection = window.getSelection();
-				range.selectNodeContents(powerTextDiv);
-				range.collapse(false);
-				selection.removeAllRanges();
-				selection.addRange(range);
-				powerTextDiv.focus();
-			}
-		}else{
-			const input = document.getElementById("maintext");
-			if(input){
-				// Focus the input field
-				input.focus();
-				// Set cursor position to the end
-				input.setSelectionRange(input.value.length, input.value.length);
-			}
-		}
-	};
-
-	// Set a timeout to execute the function after 1,5 seconds (1500 milliseconds)
-	setTimeout(setCursorToEnd, 1500);
-
 	// PIP button event listener
 	document.getElementById("pip-button").addEventListener("click", () => {
 		chrome.windows.create({
@@ -1290,6 +1288,30 @@ function init(){
 			document.getElementById("pip-button").classList.add("hidden");
 		}
 	});
+}
+
+// Function to set cursor to the end of the input field
+function setCursorToEnd(){
+	if(richtext == true){
+		const powerTextDiv = document.getElementById("powertext");
+		if(powerTextDiv){
+			const range = document.createRange();
+			const selection = window.getSelection();
+			range.selectNodeContents(powerTextDiv);
+			range.collapse(false);
+			selection.removeAllRanges();
+			selection.addRange(range);
+			powerTextDiv.focus();
+		}
+	}else{
+		const input = document.getElementById("maintext");
+		if(input){
+			// Focus the input field
+			input.focus();
+			// Set cursor position to the end
+			input.setSelectionRange(input.value.length, input.value.length);
+		}
+	}
 }
 
 const populateVoices = () => {
@@ -1760,7 +1782,7 @@ function createTabContent(){
 			if(!txtvalue){
 				txtvalue = "";
 			}
-			maintext.value = txtvalue;
+			setTextareaValuePreserveCursor(maintext, txtvalue);
 		}else if(richtext == true){
 			if(!txtvalue){
 				txtvalue = "";
@@ -1779,11 +1801,12 @@ document.addEventListener("DOMContentLoaded", init, false);
 
 chrome.runtime.onMessage.addListener(function(request){
 	if(request.msg == "setnotetext"){
-		if(!isLocalChange){
+		var editorEl = (plaintext == true) ? document.getElementById("maintext") : document.getElementById("powertext");
+		if(!isLocalChange && !isEditorActive(editorEl)){
 			if(plaintext == true){
-				document.querySelector("#maintext").value = request.value;
+				setTextareaValuePreserveCursor(editorEl, request.value);
 			}else if(richtext == true){
-				document.querySelector("#powertext").innerHTML = request.value;
+				editorEl.innerHTML = request.value;
 			}
 			updatetabname();
 		}
