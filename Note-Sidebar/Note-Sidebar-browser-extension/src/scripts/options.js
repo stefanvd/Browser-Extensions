@@ -768,51 +768,51 @@ document.addEventListener("DOMContentLoaded", function(){
 	$("imagec").addEventListener("click", function(){ chrome.storage.sync.set({"backgroundsource": 2}); });
 	$("imaged").addEventListener("click", function(){ chrome.storage.sync.set({"backgroundsource": 3}); });
 
+	// Helper to get the correct storage area for notes
+	function getNotesStorageArea(callback){
+		chrome.storage.sync.get(["notesStorageType"], function(items){
+			if(items.notesStorageType === "local"){
+				callback(chrome.storage.local);
+			}else{
+				callback(chrome.storage.sync);
+			}
+		});
+	}
+
+	function saveData(data, fileName){
+		var a = document.createElement("a");
+		a.style.display = "none";
+		document.body.appendChild(a);
+		var blob = new Blob([data], {type: "text/plain;charset=utf-8"}),
+			url = window.URL.createObjectURL(blob);
+		a.href = url;
+		a.download = fileName;
+		a.click();
+		setTimeout(function(){
+			document.body.removeChild(a);
+			window.URL.revokeObjectURL(url);
+		}, 0);
+	}
+
 	// Export TXT
 	var i18nfirsttext = chrome.i18n.getMessage("firsttext");
 	$("exportnotes").addEventListener("click", function(){
 
-		chrome.storage.sync.get(["txtvalue", "multivalue"], function(items){
-			var txtvalue = items["txtvalue"]; if(txtvalue == null){ txtvalue = i18nfirsttext; }
-			var multivalue = items["multivalue"]; if(multivalue == null){ multivalue = [{"note":i18nfirsttext}]; }
+		getNotesStorageArea(function(noteStorage){
+			noteStorage.get(["txtvalue", "multivalue"], function(items){
+				var txtvalue = items["txtvalue"]; if(txtvalue == null){ txtvalue = i18nfirsttext; }
+				var multivalue = items["multivalue"]; if(multivalue == null){ multivalue = [{"note":i18nfirsttext}]; }
 
-			if(document.getElementById("multiple").checked){
-				// multiple note
-				let saveData = (function(){
-					var a = document.createElement("a");
-					// document.body.appendChild(a);
-					// a.style = "display: none";
-					return function(data, fileName){
-						var blob = new Blob([data], {type: "text/plain;charset=utf-8"}),
-							url = window.URL.createObjectURL(blob);
-						a.href = url;
-						a.download = fileName;
-						a.click();
-						window.URL.revokeObjectURL(url);
-					};
-				}());
-
-				let data = JSON.stringify(multivalue), fileName = "export-notes.txt";
+				var data, fileName = "export-notes.txt";
+				if(document.getElementById("multiple").checked){
+					// multiple notes
+					data = JSON.stringify(multivalue);
+				}else{
+					// single note
+					data = txtvalue;
+				}
 				saveData(data, fileName);
-			}else{
-				// single note
-				let saveData = (function(){
-					var a = document.createElement("a");
-					// document.body.appendChild(a);
-					// a.style = "display: none";
-					return function(data, fileName){
-						var blob = new Blob([data], {type: "text/plain;charset=utf-8"}),
-							url = window.URL.createObjectURL(blob);
-						a.href = url;
-						a.download = fileName;
-						a.click();
-						window.URL.revokeObjectURL(url);
-					};
-				}());
-
-				let data = txtvalue, fileName = "export-notes.txt";
-				saveData(data, fileName);
-			}
+			});
 		});
 
 	});
@@ -836,31 +836,33 @@ document.addEventListener("DOMContentLoaded", function(){
 			
 			chrome.storage.sync.get(["multiple"], function(items){
 				var isMultiple = items["multiple"];
-				
-				if(isMultiple){
-					// Try to parse as JSON for multiple notes
-					try{
-						var importedData = JSON.parse(content);
-						if(Array.isArray(importedData)){
-							chrome.storage.sync.set({"multivalue": importedData}, function(){
-								var successMsg = chrome.i18n.getMessage("importsuccess");
-								alert(successMsg);
-							});
-						}else{
+
+				getNotesStorageArea(function(noteStorage){
+					if(isMultiple){
+						// Try to parse as JSON for multiple notes
+						try{
+							var importedData = JSON.parse(content);
+							if(Array.isArray(importedData)){
+								noteStorage.set({"multivalue": importedData}, function(){
+									var successMsg = chrome.i18n.getMessage("importsuccess");
+									alert(successMsg);
+								});
+							}else{
+								var errorMsg = chrome.i18n.getMessage("importerror");
+								alert(errorMsg);
+							}
+						}catch(err){
 							var errorMsg = chrome.i18n.getMessage("importerror");
 							alert(errorMsg);
 						}
-					}catch(err){
-						var errorMsg = chrome.i18n.getMessage("importerror");
-						alert(errorMsg);
+					}else{
+						// Single note - import as plain text
+						noteStorage.set({"txtvalue": content}, function(){
+							var successMsg = chrome.i18n.getMessage("importsuccess");
+							alert(successMsg);
+						});
 					}
-				}else{
-					// Single note - import as plain text
-					chrome.storage.sync.set({"txtvalue": content}, function(){
-						var successMsg = chrome.i18n.getMessage("importsuccess");
-						alert(successMsg);
-					});
-				}
+				});
 			});
 		};
 		reader.readAsText(file);
