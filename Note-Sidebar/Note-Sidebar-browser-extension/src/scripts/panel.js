@@ -1404,6 +1404,14 @@ function addbackgroundpaper(){
 	bck.style.backgroundSize = backgroundsize + "px " + backgroundsize + "px";
 	document.body.appendChild(bck);
 	updatebackgroundpaper();
+	syncnotepaperscroll();
+}
+
+function syncnotepaperscroll(){
+	var bcknotepaper = document.getElementById("bcknotepaper");
+	if(bcknotepaper && textarea){
+		bcknotepaper.style.backgroundPosition = "0px " + (-textarea.scrollTop) + "px";
+	}
 }
 
 function removebackgroundpaper(){
@@ -1618,6 +1626,7 @@ function updateHighlight(){
 // Synchronize the textarea and highlighted text
 function syncScroll(){
 	highlightedText.scrollTop = textarea.scrollTop;
+	syncnotepaperscroll();
 }
 
 function hideSearchBox(){
