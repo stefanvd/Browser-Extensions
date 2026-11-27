@@ -818,57 +818,95 @@ document.addEventListener("DOMContentLoaded", function(){
 	});
 
 	// Import TXT
+	var pendingImportContent = null;
+
+	function showImportStatus(message, isError){
+		var status = $("importstatus");
+		if(message){
+			status.textContent = message;
+			status.className = isError ? "warning-text" : "gray-text";
+			status.style.display = "block";
+		}else{
+			status.style.display = "none";
+		}
+	}
+
+	function importNotes(content){
+		chrome.storage.sync.get(["multiple"], function(items){
+			var isMultiple = items["multiple"];
+			getNotesStorageArea(function(noteStorage){
+				var successMsg = chrome.i18n.getMessage("importsuccess");
+				var errorMsg = chrome.i18n.getMessage("importerror");
+				var onSaved = function(){
+					var lastError = chrome.runtime.lastError;
+					if(lastError){
+						if(noteStorage === chrome.storage.sync && lastError.message && /quota/i.test(lastError.message)){
+							showImportStatus(chrome.i18n.getMessage("warningdes", String(new Blob([content]).size)), true);
+						}else{
+							showImportStatus(errorMsg, true);
+						}
+					}else{
+						showImportStatus(successMsg, false);
+					}
+				};
+				if(isMultiple){
+					// Try to parse as JSON for multiple notes
+					try{
+						var importedData = JSON.parse(content);
+						if(Array.isArray(importedData) && importedData.every(function(item){
+							return(item && typeof item === "object" && typeof item.note === "string") || typeof item === "string";
+						})){
+							importedData = importedData.map(function(item){
+								return typeof item === "string" ? {"note": item} : item;
+							});
+							noteStorage.set({"multivalue": importedData}, onSaved);
+						}else{
+							showImportStatus(errorMsg, true);
+						}
+					}catch(err){
+						showImportStatus(errorMsg, true);
+					}
+				}else{
+					// Single note - import as plain text
+					noteStorage.set({"txtvalue": content}, onSaved);
+				}
+			});
+		});
+	}
+
 	$("importnotes").addEventListener("click", function(){
 		$("importfile").click();
 	});
 
 	$("importfile").addEventListener("change", function(e){
 		var file = e.target.files[0];
-		if(!file) return;
-		
-		var reader = new FileReader();
-		reader.onload = function(e){
-			var content = e.target.result;
-			
-			// Check if user wants to replace current notes
-			var confirmMessage = chrome.i18n.getMessage("importconfirm");
-			if(!confirm(confirmMessage)) return;
-			
-			chrome.storage.sync.get(["multiple"], function(items){
-				var isMultiple = items["multiple"];
+		// Reset file input so picking the same file fires "change" again
+		e.target.value = "";
+		if(!file)return;
 
-				getNotesStorageArea(function(noteStorage){
-					if(isMultiple){
-						// Try to parse as JSON for multiple notes
-						try{
-							var importedData = JSON.parse(content);
-							if(Array.isArray(importedData)){
-								noteStorage.set({"multivalue": importedData}, function(){
-									var successMsg = chrome.i18n.getMessage("importsuccess");
-									alert(successMsg);
-								});
-							}else{
-								var errorMsg = chrome.i18n.getMessage("importerror");
-								alert(errorMsg);
-							}
-						}catch(err){
-							var errorMsg = chrome.i18n.getMessage("importerror");
-							alert(errorMsg);
-						}
-					}else{
-						// Single note - import as plain text
-						noteStorage.set({"txtvalue": content}, function(){
-							var successMsg = chrome.i18n.getMessage("importsuccess");
-							alert(successMsg);
-						});
-					}
-				});
-			});
+		var reader = new FileReader();
+		reader.onload = function(ev){
+			pendingImportContent = ev.target.result;
+			showImportStatus(null);
+			$("importconfirmbox").style.display = "block";
+		};
+		reader.onerror = function(){
+			showImportStatus(chrome.i18n.getMessage("importerror"), true);
 		};
 		reader.readAsText(file);
-		
-		// Reset file input
-		e.target.value = "";
+	});
+
+	$("importconfirmok").addEventListener("click", function(){
+		$("importconfirmbox").style.display = "none";
+		if(pendingImportContent != null){
+			importNotes(pendingImportContent);
+			pendingImportContent = null;
+		}
+	});
+
+	$("importconfirmcancel").addEventListener("click", function(){
+		$("importconfirmbox").style.display = "none";
+		pendingImportContent = null;
 	});
 
 	// Review box

@@ -255,6 +255,9 @@ section>div:only-of-type{flex:1}
 .suggpanel{width:335px;position:relative;display:block;float:left}
 /* warning */
 .warning-text{background:var(--totl-donation-bar);color:black;padding:16px;margin-top:16px;border-radius:2px}
+/* import */
+.importconfirmbuttons{display:flex;gap:8px;margin-top:12px}
+#importstatus{margin-top:16px}
 /* lamp */
 #loadinglamp{margin-right:5px}
 /* share box */

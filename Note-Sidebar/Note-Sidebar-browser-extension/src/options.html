@@ -520,6 +520,14 @@ To view a copy of this license, visit http://creativecommons.org/licenses/GPL/2.
 					<div>
 						<label><button id="importnotes" data-i18n="desimportnotes"></button></label>
 						<input type="file" id="importfile" accept=".txt" style="display: none;">
+						<div id="importconfirmbox" class="warning-text" style="display: none;">
+							<span data-i18n="importconfirm"></span>
+							<div class="importconfirmbuttons">
+								<button type="button" id="importconfirmok" data-i18n="titleok"></button>
+								<button type="button" id="importconfirmcancel" data-i18n="titlecancel"></button>
+							</div>
+						</div>
+						<div id="importstatus" style="display: none;"></div>
 					</div>
 				</section>
 				<section>
