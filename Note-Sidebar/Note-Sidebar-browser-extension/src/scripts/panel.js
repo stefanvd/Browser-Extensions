@@ -306,7 +306,6 @@ var i18npasswordplaceholder = chrome.i18n.getMessage("passwordplaceholder");
 var i18ntitelcopytext = chrome.i18n.getMessage("titlecopytextdone");
 var i18ndescopytext = chrome.i18n.getMessage("descopytextdone");
 var i18nnote = chrome.i18n.getMessage("note");
-var i18nclosetab = chrome.i18n.getMessage("closetab");
 var i18ntitelsavetext = chrome.i18n.getMessage("titlesavetextdone");
 var i18ndessavetext = chrome.i18n.getMessage("descopysavedone");
 var i18ntooltipremovenote = chrome.i18n.getMessage("tooltipremovenote");
@@ -423,11 +422,19 @@ function createAllTabsInBar(){
 	}
 }
 
+// Get the displayed name of a tab ("Note1" or its first-line title)
+function getNoteTabName(tabElement, index){
+	var title = tabElement ? tabElement.querySelector(".title") : null;
+	var name = title ? title.textContent.trim() : "";
+	return name || (i18nnote + (parseInt(index) + 1));
+}
+
 function removeTab(){
 	var continueremove = false;
 	if(preventclose == true){
+		var activeIndex = document.getElementById("tabstrip").dataset.active;
 		// Example usage
-		var userResponse = showConfirmationDialog();
+		var userResponse = showConfirmationDialog(getNoteTabName(document.querySelectorAll(".tab")[activeIndex], activeIndex));
 		if(userResponse == 1){
 			// yes
 			continueremove = true;
@@ -524,7 +531,7 @@ function createNewTab(){
 // End tabs functions
 
 // Function to show a custom confirmation dialog
-function showConfirmationDialog(){
+function showConfirmationDialog(noteName){
 	if(exbrowser == "opera"){
 		// Opera does not support confirm in this panel
 		return new Promise((resolve) => {
@@ -564,7 +571,7 @@ function showConfirmationDialog(){
 
 			// Add message
 			const message = document.createElement("p");
-			message.textContent = i18nclosetab;
+			message.textContent = chrome.i18n.getMessage("closetab", noteName);
 			message.style.cssText = `
 				margin: 0 0 20px 0;
 				font-size: 14px;
@@ -624,7 +631,7 @@ function showConfirmationDialog(){
 	}else{
 		// all other web browsers
 		// Display the confirmation dialog with custom message
-		var result = confirm(i18nclosetab);
+		var result = confirm(chrome.i18n.getMessage("closetab", noteName));
 
 		// Check the result and return 1 for 'Yes' and 0 for 'No'
 		if(result){
@@ -698,8 +705,8 @@ function init(){
 			hideSearchBox();
 			var continueremove = false;
 			if(preventclose == true){
-				// Example usage
-				var userResponse = showConfirmationDialog();
+				const index = [...event.target.parentNode.parentNode.children].indexOf(event.target.parentNode);
+				var userResponse = showConfirmationDialog(getNoteTabName(event.target.parentNode, index));
 				if(userResponse == 1){
 					// yes
 					continueremove = true;

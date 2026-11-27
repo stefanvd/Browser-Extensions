@@ -179,7 +179,10 @@
     "destabs": {"message": "Add multiple notes in the sidebar"},
     "note": {"message": "Note"},
     "despreventclosetabs": {"message": "Show a warning before closing a tab"},
-    "closetab": {"message": "Do you wan to close this tab?"},
+    "closetab": {
+        "message": "Do you want to close $name$?",
+        "placeholders": {"name": {"content": "$1", "example": "Note1"}}
+    },
     "destexttabname": {"message": "Show the title of the first line in the tab"},
     "permissionunlimitedstorage": {"message": "This allows you to save unlimited text in your storage."},
     "permissionsidepanel": {"message": "This opens the side panel in your web browser."},
