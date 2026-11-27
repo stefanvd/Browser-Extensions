@@ -429,6 +429,23 @@ function getNoteTabName(tabElement, index){
 	return name || (i18nnote + (parseInt(index) + 1));
 }
 
+// Build a safe download filename from the current tab's name
+function getDownloadFileName(noteText){
+	var name;
+	if(multiple == true){
+		var activeIndex = parseInt(document.getElementById("tabstrip").dataset.active) || 0;
+		name = getNoteTabName(document.querySelectorAll(".tab")[activeIndex], activeIndex);
+	}else if(texttabname == true){
+		name = getFirstLine(noteText) || (i18nnote + "1");
+	}else{
+		name = i18nnote + "1";
+	}
+	// Strip characters that are invalid in filenames and cap the length
+	name = name.replace(/[\\/:*?"<>|\p{Cc}]/gu, " ").replace(/\s+/g, " ").trim().replace(/\.+$/, "");
+	if(!name){ name = "note"; }
+	return name.substring(0, 100) + ".txt";
+}
+
 function removeTab(){
 	var continueremove = false;
 	if(preventclose == true){
@@ -1087,7 +1104,7 @@ function init(){
 		// Create a download link
 		const link = document.createElement("a");
 		link.href = URL.createObjectURL(blob);
-		link.download = "note.txt"; // Default filename for the download
+		link.download = getDownloadFileName(notecontent); // Filename based on the current tab name
 
 		// Trigger the download
 		link.click();
@@ -1286,6 +1303,43 @@ function stripHtmlTags(str){
 	return str.replace(/<[^>]*>/g, ""); // Removes all HTML tags
 }
 
+// Get the first line of the note text
+function getFirstLine(noteText){
+	var firstLine;
+	if(richtext == true){
+		try{
+			// Treat <div> and <br> as line breaks BEFORE parsing
+			let cleanHTML = noteText
+				.replace(/<div[^>]*>/gi, "\n")
+				.replace(/<br\s*\/?>/gi, "\n")
+				.replace(/<\/div>/gi, "");
+
+			const parser = new DOMParser();
+			const doc = parser.parseFromString(cleanHTML, "text/html");
+
+			// Extract text content
+			let text = doc.body.textContent || "";
+			text = text.replace(/\u00a0/g, " "); // replace &nbsp;
+
+			// Split into lines, trim, and remove empty ones
+			const lines = text
+				.split(/\r?\n+/)
+				.map((line) => line.trim())
+				.filter((line) => line.length > 0);
+
+			// First non-empty line
+			firstLine = lines.length > 0 ? lines[0] : "";
+		}catch(e){
+			firstLine = "";
+		}
+	}else{
+		// plaintext default
+		firstLine = noteText.split("\n")[0].trim();
+		firstLine = stripHtmlTags(firstLine);
+	}
+	return firstLine;
+}
+
 function updatetabname(){
 	if(texttabname == true){
 		if(multiple == true){
@@ -1301,38 +1355,7 @@ function updatetabname(){
 				var noteText = multivalue[index]?.note || "";
 
 				// Get the first line of the note text
-				var firstLine;
-				if(richtext == true){
-					try{
-						// Treat <div> and <br> as line breaks BEFORE parsing
-						let cleanHTML = noteText
-							.replace(/<div[^>]*>/gi, "\n")
-							.replace(/<br\s*\/?>/gi, "\n")
-							.replace(/<\/div>/gi, "");
-
-						const parser = new DOMParser();
-						const doc = parser.parseFromString(cleanHTML, "text/html");
-
-						// Extract text content
-						let text = doc.body.textContent || "";
-						text = text.replace(/\u00a0/g, " "); // replace &nbsp;
-
-						// Split into lines, trim, and remove empty ones
-						const lines = text
-							.split(/\r?\n+/)
-							.map((line) => line.trim())
-							.filter((line) => line.length > 0);
-
-						// First non-empty line
-						firstLine = lines.length > 0 ? lines[0] : "";
-					}catch(e){
-						firstLine = "";
-					}
-				}else{
-					// plaintext default
-					firstLine = noteText.split("\n")[0].trim();
-					firstLine = stripHtmlTags(firstLine);
-				}
+				var firstLine = getFirstLine(noteText);
 
 				if(!firstLine){
 					// If note text is empty, show default text with index number
