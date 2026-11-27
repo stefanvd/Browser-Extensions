@@ -344,6 +344,93 @@ function removeTabs(){
 	});
 }
 
+// Ghost tabs: keep recently closed notes so they can be restored
+function getClosedNotesStorageArea(){
+	if(chrome.storage.session){ return chrome.storage.session; }
+	return chrome.storage.local;
+}
+
+function saveClosedTab(index){
+	var i = parseInt(index);
+	if(i < 0 || i >= multivalue.length){ return; }
+	var activeIndex = parseInt(document.getElementById("tabstrip").dataset.active);
+	if(i === activeIndex){
+		if(plaintext == true){
+			multivalue[i].note = maintext.value;
+		}else if(richtext == true){
+			multivalue[i].note = powertext.innerHTML;
+		}
+	}
+	var ghost = {"note": multivalue[i].note, "index": i};
+	var noteStorage = getClosedNotesStorageArea();
+	noteStorage.get("closedNotes", function(items){
+		var closedNotes = items["closedNotes"] || [];
+		closedNotes.push(ghost);
+		if(closedNotes.length > 10){ closedNotes = closedNotes.slice(-10); }
+		noteStorage.set({"closedNotes": closedNotes});
+	});
+}
+
+function restoreClosedTab(){
+	var noteStorage = getClosedNotesStorageArea();
+	noteStorage.get("closedNotes", function(items){
+		var closedNotes = items["closedNotes"] || [];
+		if(closedNotes.length === 0){ return; }
+		var ghost = closedNotes.pop();
+		noteStorage.set({"closedNotes": closedNotes});
+
+		var previoustab = document.getElementById("tabstrip").dataset.active;
+		if(plaintext == true){
+			multivalue[previoustab].note = maintext.value;
+		}else if(richtext == true){
+			multivalue[previoustab].note = powertext.innerHTML;
+		}
+
+		var newIndex = Math.min(ghost.index == null ? multivalue.length : ghost.index, multivalue.length);
+		multivalue.splice(newIndex, 0, {"note": ghost.note});
+
+		removeTabs();
+		createAllTabsInBar();
+		document.getElementById("tabstrip").dataset.active = newIndex;
+		var tabs = document.querySelectorAll(".tab");
+		tabs.forEach((t) => t.classList.remove("active"));
+		tabs[newIndex].classList.add("active");
+		setActiveTabContent(newIndex);
+		updatetabname();
+		var selectBox = document.querySelector(".tab-select");
+		if(selectBox){ selectBox.value = newIndex; }
+		notesave();
+	});
+}
+
+var tabContextMenu = null;
+function hideTabContextMenu(){
+	if(tabContextMenu){
+		tabContextMenu.parentNode.removeChild(tabContextMenu);
+		tabContextMenu = null;
+	}
+}
+
+function showTabContextMenu(x, y, hasClosedNotes){
+	hideTabContextMenu();
+	var menu = document.createElement("div");
+	menu.className = "tab-context-menu";
+	var item = document.createElement("div");
+	item.className = "tab-context-menu-item";
+	if(!hasClosedNotes){ item.classList.add("disabled"); }
+	item.textContent = chrome.i18n.getMessage("desrestoreclosedtab");
+	item.addEventListener("click", function(){
+		hideTabContextMenu();
+		restoreClosedTab();
+	});
+	menu.appendChild(item);
+	document.body.appendChild(menu);
+	var rect = menu.getBoundingClientRect();
+	menu.style.left = Math.min(x, window.innerWidth - rect.width - 4) + "px";
+	menu.style.top = Math.min(y, window.innerHeight - rect.height - 4) + "px";
+	tabContextMenu = menu;
+}
+
 function setActiveTab(tab){
 	const tabs = document.querySelectorAll(".tab");
 	tabs.forEach((t) => t.classList.remove("active"));
@@ -468,6 +555,7 @@ function removeTab(){
 	if(continueremove == true){
 		if(multivalue.length > 1){
 			const index = document.getElementById("tabstrip").dataset.active;
+			saveClosedTab(index);
 			multivalue = removeObjectAtIndex(index, multivalue);
 
 			document.getElementById("tabstrip").dataset.active = multivalue.length - 1;
@@ -740,6 +828,7 @@ function init(){
 			if(continueremove == true){
 				if(multivalue.length > 1){
 					const index = [...event.target.parentNode.parentNode.children].indexOf(event.target.parentNode);
+					saveClosedTab(index);
 					multivalue = removeObjectAtIndex(index, multivalue);
 
 					document.getElementById("tabstrip").dataset.active = multivalue.length - 1;
@@ -770,6 +859,24 @@ function init(){
 	});
 
 	document.querySelector(".add-tab").addEventListener("click", createNewTab);
+
+	// Right-click a tab to restore a closed note
+	tabContainer.addEventListener("contextmenu", function(event){
+		var target = event.target.closest(".tab, .tab-select");
+		if(!target || target.classList.contains("add-tab")){ return; }
+		event.preventDefault();
+		getClosedNotesStorageArea().get("closedNotes", function(items){
+			var closedNotes = items["closedNotes"] || [];
+			showTabContextMenu(event.clientX, event.clientY, closedNotes.length > 0);
+		});
+	});
+
+	document.addEventListener("click", function(event){
+		if(tabContextMenu && !tabContextMenu.contains(event.target)){ hideTabContextMenu(); }
+	});
+	document.addEventListener("keydown", function(event){
+		if(event.key === "Escape"){ hideTabContextMenu(); }
+	});
 	// End multiple tabs ---
 
 	maintext = document.querySelector("#maintext");

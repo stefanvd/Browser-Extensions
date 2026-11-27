@@ -157,6 +157,11 @@ textarea,#powertext{overflow:auto;background:transparent;width:100%;position:fix
 .tab-select{padding:0px 12px;height:32px;width:100%}
 .sel-close{line-height:20px;cursor:pointer;margin-left:5px;font-size:16px;border-radius:32px;min-width:32px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:0}
 .sel-close:hover{background:var(--totl-close-color-hover)}
+/* Tab context menu (restore closed tab) */
+.tab-context-menu{position:fixed;z-index:4000;min-width:160px;background:var(--ext-primary-background,#fff);color:var(--ext-primary-font-color,#000);border:1px solid rgba(0,0,0,.2);border-radius:6px;box-shadow:0 4px 12px rgba(0,0,0,.15);padding:4px 0;font-size:13px}
+.tab-context-menu-item{padding:6px 12px;cursor:pointer;white-space:nowrap}
+.tab-context-menu-item:hover{background:var(--totl-svg-fill-color-hover,#f1f1f1)}
+.tab-context-menu-item.disabled{opacity:.5;cursor:default}
 /* Rich Toolbar */
 .richtexttoolbar{height:25px;display:flex;gap:5px;padding:10px;border-bottom:1px solid var(--totl-tab-rightext-line)}
 .richtexttoolbar button{font-size:12px;padding:5px 10px;cursor:pointer;border:none;background:var(--totl-tab-rightext-color);border-radius:5px}

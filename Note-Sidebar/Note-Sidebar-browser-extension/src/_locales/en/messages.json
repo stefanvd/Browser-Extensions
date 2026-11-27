@@ -179,6 +179,7 @@
     "destabs": {"message": "Add multiple notes in the sidebar"},
     "note": {"message": "Note"},
     "despreventclosetabs": {"message": "Show a warning before closing a tab"},
+    "desrestoreclosedtab": {"message": "Restore closed tab"},
     "closetab": {
         "message": "Do you want to close $name$?",
         "placeholders": {"name": {"content": "$1", "example": "Note1"}}
